@@ -20,7 +20,7 @@ const View = forwardRef(({ children, orbit, ...props }, ref) => {
 
   return (
     <>
-      <div className='three-canvas' ref={localRef} {...props} />
+      <div ref={localRef} {...props} />
       <Three>
         <ViewImpl track={localRef}>
           {children}

@@ -1,5 +1,5 @@
 'use client'
-import './global.css'
+
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import Flowers from '@/components/canvas/Flowers'
@@ -35,6 +35,7 @@ export default function Page() {
           </Suspense>
         </View>
         <div className='relative z-10 mx-auto flex w-full flex-col flex-wrap items-center md:flex-row lg:w-4/5'>
+          {/* jumbo */}
           <div className='flex w-full flex-col items-start justify-center p-12 text-center md:w-2/5 md:text-left'>
             <p className='w-full uppercase'>art&tech polymath</p>
             <h1 className='my-4 text-5xl font-bold leading-tight'>zenbauhaus</h1>
@@ -43,11 +44,15 @@ export default function Page() {
         </div>
 
         <div className='relative z-10 mx-auto flex w-full flex-col flex-wrap items-center p-12 md:flex-row lg:w-4/5'>
+          {/* first row */}
           <div className='relative h-48 w-full py-6 sm:w-1/2 md:my-12 md:mb-40'>
-            <h2 className='mb-3 text-3xl font-bold leading-none text-gray-800'>with a profound passion</h2>
-            <p className='mb-8 text-gray-600'>for the synergy of art and technology</p>
+            <h2 className='mb-3 text-3xl font-bold leading-none text-gray-800 shadow-white'>with a profound passion</h2>
+            <p className='mb-8 text-gray-600 shadow-white'>for the synergy of art and technology</p>
           </div>
-
+          {/*  <div className='relative my-12 h-48 w-full py-6 sm:w-1/2 md:mb-40'>
+            <Computer/>
+          </div> */}
+          {/* second row */}
           <div className='relative my-12 h-48 w-full py-6 sm:w-1/2 md:mb-40'></div>
           <div className='w-full p-6 sm:w-1/2'>
             <h2 className='mb-3 text-3xl font-bold leading-none text-gray-800'>
