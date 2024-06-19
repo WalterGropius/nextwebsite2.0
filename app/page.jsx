@@ -1,5 +1,5 @@
 'use client'
-
+import './global.css'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 import Flowers from '@/components/canvas/Flowers'
@@ -28,45 +28,39 @@ const Common = dynamic(() => import('@/components/canvas/View').then((mod) => mo
 export default function Page() {
   return (
     <>
-      <div className='mx-auto flex w-full flex-col flex-wrap items-center md:flex-row  lg:w-4/5'>
-        {/* jumbo */}
-        <div className='flex w-full flex-col items-start justify-center p-12 text-center md:w-2/5 md:text-left'>
-          <p className='w-full uppercase'>art&tech polymath</p>
-          <h1 className='my-4 text-5xl font-bold leading-tight'>zenbauhaus</h1>
-          <p className='mb-8 text-2xl leading-normal'>lifelong learner driven by boundless curiosity</p>
+      <div className='relative h-screen w-screen'>
+        <View className='absolute inset-0 z-0'>
+          <Suspense fallback={null}>
+            <Flowers />
+          </Suspense>
+        </View>
+        <div className='relative z-10 mx-auto flex w-full flex-col flex-wrap items-center md:flex-row lg:w-4/5'>
+          <div className='flex w-full flex-col items-start justify-center p-12 text-center md:w-2/5 md:text-left'>
+            <p className='w-full uppercase'>art&tech polymath</p>
+            <h1 className='my-4 text-5xl font-bold leading-tight'>zenbauhaus</h1>
+            <p className='mb-8 text-2xl leading-normal'>lifelong learner driven by boundless curiosity</p>
+          </div>
         </div>
 
-        <div className='w-full text-center md:w-3/5'>
-          <View className='flex h-96 w-full flex-col items-center justify-center'>
-            <Suspense fallback={null}>
-              <Flowers />
-            </Suspense>
-          </View>
-        </div>
-      </div>
+        <div className='relative z-10 mx-auto flex w-full flex-col flex-wrap items-center p-12 md:flex-row lg:w-4/5'>
+          <div className='relative h-48 w-full py-6 sm:w-1/2 md:my-12 md:mb-40'>
+            <h2 className='mb-3 text-3xl font-bold leading-none text-gray-800'>with a profound passion</h2>
+            <p className='mb-8 text-gray-600'>for the synergy of art and technology</p>
+          </div>
 
-      <div className='mx-auto flex w-full flex-col flex-wrap items-center p-12 md:flex-row  lg:w-4/5'>
-        {/* first row */}
-        <div className='relative h-48 w-full py-6 sm:w-1/2 md:my-12 md:mb-40'>
-          <h2 className='mb-3 text-3xl font-bold leading-none text-gray-800'>with a profound passsion</h2>
-          <p className='mb-8 text-gray-600'>for the synergy of art and technology</p>
-        </div>
-        {/*  <div className='relative my-12 h-48 w-full py-6 sm:w-1/2 md:mb-40'>
-          <Computer/>
-        </div> */}
-        {/* second row */}
-        <div className='relative my-12 h-48 w-full py-6 sm:w-1/2 md:mb-40'></div>
-        <div className='w-full p-6 sm:w-1/2'>
-          <h2 className='mb-3 text-3xl font-bold leading-none text-gray-800'>
-            dedicated to being a bridge between creative vision and technical execution
-          </h2>
-          <p className='mb-8 text-gray-600'>
-            whether supporting artists in making their dreams tangible or spicing up a simple technical query with a
-            fresh idea, my heart lies at the crossroads of imagination and innovation. fortunate to work with both
-            artistic and technical minds, continually learning the importance of functionality, aesthetics and user
-            experience. every collaboration is an opportunity to unleash visionary creativity and state of the art
-            technology. lets collaborate and bring new visions to life together!
-          </p>
+          <div className='relative my-12 h-48 w-full py-6 sm:w-1/2 md:mb-40'></div>
+          <div className='w-full p-6 sm:w-1/2'>
+            <h2 className='mb-3 text-3xl font-bold leading-none text-gray-800'>
+              dedicated to being a bridge between creative vision and technical execution
+            </h2>
+            <p className='mb-8 text-gray-600'>
+              whether supporting artists in making their dreams tangible or spicing up a simple technical query with a
+              fresh idea, my heart lies at the crossroads of imagination and innovation. fortunate to work with both
+              artistic and technical minds, continually learning the importance of functionality, aesthetics and user
+              experience. every collaboration is an opportunity to unleash visionary creativity and state of the art
+              technology. lets collaborate and bring new visions to life together!
+            </p>
+          </div>
         </div>
       </div>
     </>

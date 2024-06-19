@@ -10,18 +10,17 @@ export default function Flowers() {
     <>
       <OrbitControls />
       <ambientLight color={'white'} intensity={10} />
-
-      {/*  <PresentationControls
+      <PresentationControls
         config={{ mass: 2, tension: 500 }}
         snap={{ mass: 4, tension: 1500 }}
         rotation={[0, 1, 0]}
         polar={[-Math.PI / 3, Math.PI / 3]}
         azimuth={[-Math.PI / 1.4, Math.PI / 2]}
-      > */}
-      <Float>
-        <Splat scale={3} rotation={[0, -0.7 * Math.PI, 0]} src='flowers_white.splat' />
-      </Float>
-      {/*       </PresentationControls> */}
+      >
+        <Float>
+          <Splat scale={3} rotation={[0, -0.7 * Math.PI, 0]} src='flowers_white.splat' />
+        </Float>
+      </PresentationControls>
     </>
   )
 }
