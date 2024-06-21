@@ -45,25 +45,48 @@ export default function Page() {
 
         <div className='relative z-10 mx-auto flex w-full flex-col flex-wrap items-center p-12 md:flex-row lg:w-4/5'>
           {/* first row */}
-          <div className='relative h-48 w-full py-6 sm:w-1/2 md:my-12 md:mb-40'>
-            <h2 className='mb-3 text-3xl font-bold leading-none text-gray-800 shadow-white'>with a profound passion</h2>
-            <p className='mb-8 text-gray-600 shadow-white'>for the synergy of art and technology</p>
+          <div className='rounded-lg bg-white bg-opacity-50 p-6 backdrop-blur-md'>
+            <h2 className='mb-3 text-3xl font-bold leading-none text-gray-800'>with a profound passion</h2>
+            <p className='mb-8 text-2xl text-black'>for the synergy of art and technology</p>
           </div>
           {/*  <div className='relative my-12 h-48 w-full py-6 sm:w-1/2 md:mb-40'>
             <Computer/>
           </div> */}
           {/* second row */}
           <div className='relative my-12 h-48 w-full py-6 sm:w-1/2 md:mb-40'></div>
-          <div className='w-full p-6 sm:w-1/2'>
+          <div className=' rounded-lg bg-white bg-opacity-50 p-6 backdrop-blur-md'>
             <h2 className='mb-3 text-3xl font-bold leading-none text-gray-800'>
               dedicated to being a bridge between creative vision and technical execution
             </h2>
-            <p className='mb-8 text-gray-600'>
-              whether supporting artists in making their dreams tangible or spicing up a simple technical query with a
-              fresh idea, my heart lies at the crossroads of imagination and innovation. fortunate to work with both
-              artistic and technical minds, continually learning the importance of functionality, aesthetics and user
-              experience. every collaboration is an opportunity to unleash visionary creativity and state of the art
-              technology. lets collaborate and bring new visions to life together!
+            <p className='mb-8 text-lg text-gray-600'>
+              whether supporting <span className='text-2xl font-bold'>artists</span> in making their{' '}
+              <span className='text-2xl font-bold'>dreams</span> tangible or spicing up a simple technical query with a
+              fresh idea,
+            </p>
+            <p className='mb-8 text-lg text-gray-600'>
+              my heart lies at the crossroads of <span className='text-2xl font-bold'>imagination</span> and{' '}
+              <span className='text-2xl font-bold'>innovation</span>.
+            </p>
+            <p className='mb-8 text-lg text-gray-600'>
+              fortunate to work with both artistic and technical minds, continually learning the importance of
+              <span className='text-2xl font-bold'> functionality</span>,{' '}
+              <span className='text-2xl font-bold'>aesthetics</span> and{' '}
+              <span className='text-2xl font-bold'>user experience</span>.
+            </p>
+            <p className='mb-8 text-lg text-gray-600'>
+              every collaboration is an opportunity to unleash{' '}
+              <span className='text-2xl font-bold'>visionary creativity</span> and{' '}
+              <span className='text-2xl font-bold'>state of the art technology</span>.
+            </p>
+            <p className='mb-8 text-lg text-gray-600'>
+              lets collaborate and bring new <span className='text-xl font-bold'>visions</span> to life together!
+            </p>
+            <p className='mb-8 text-lg text-gray-600'>
+              Check out my{' '}
+              <a href='/portfolio' className='text-blue-500 underline'>
+                portfolio
+              </a>{' '}
+              to see more of my work.
             </p>
           </div>
         </div>
