@@ -20,6 +20,7 @@ import {
 import { suspend } from 'suspend-react'
 import { easing, geometry } from 'maath'
 import portfolioData from '../../public/portfolio.json'
+import { RoundedBox } from '@react-three/drei'
 
 extend(geometry)
 extend({ PlaneGeometry })
@@ -27,10 +28,15 @@ const inter = import('@pmndrs/assets/fonts/inter_regular.woff')
 const bridge = import('@pmndrs/assets/hdri/dawn.exr.js')
 export default function Page() {
   return (
-    <Canvas dpr={[1, 1.5]}>
+    <Canvas dpr={[1, 1.5]} style={{ overflow: 'none' }}>
       <ScrollControls pages={4} infinite>
         <Scene position={[0, 1.5, 0]} />
-        <Environment files={suspend(bridge).default} background={true} backgroundBlurriness={0.4} />
+        <Environment
+          files={suspend(bridge).default}
+          background={true}
+          backgroundIntensity={0}
+          backgroundBlurriness={0.4}
+        />
       </ScrollControls>
     </Canvas>
   )
@@ -39,6 +45,7 @@ export default function Page() {
     const ref = useRef()
     const scroll = useScroll()
     const [hovered, setHovered] = useState(null)
+
     const [selected, setSelected] = useState(null)
     const [isModalBig, setIsModalBig] = useState(false)
 
@@ -57,7 +64,7 @@ export default function Page() {
     )
 
     const handlePointerOut = useCallback(() => {
-      if (!isModalBig) setHovered(null)
+      console.log('hoverout')
     }, [isModalBig])
 
     const handleClick = useCallback(() => {
@@ -75,7 +82,7 @@ export default function Page() {
     return (
       <group ref={ref} {...props}>
         <Cards
-          category='Recent Projects'
+          category=''
           from={0}
           len={Math.PI / 4}
           onPointerOver={handlePointerOver}
@@ -115,7 +122,7 @@ export default function Page() {
     return (
       <group {...props}>
         <Billboard position={[Math.sin(textPosition) * radius * 1.4, 0.5, Math.cos(textPosition) * radius * 1.4]}>
-          <Text font={suspend(inter).default} fontSize={0.25} anchorX='center' color='black'>
+          <Text font={suspend(inter).default} fontSize={0.25} anchorX='center' color='white'>
             {category}
           </Text>
         </Billboard>
@@ -145,7 +152,7 @@ export default function Page() {
     useFrame((state, delta) => {
       const f = hovered ? 1.4 : active ? 1.25 : 1
       easing.damp3(ref.current.position, [0, hovered ? 0.25 : 0, 0], 0.1, delta)
-      easing.damp3(ref.current.scale, [1.618 * f, 1 * f, 1], 0.15, delta)
+
       ref.current.material.opacity = isModalBig ? 0.3 : 1
     })
     return (
@@ -157,10 +164,15 @@ export default function Page() {
 
   function ActiveCard({ hovered, selected, setSelected, isModalBig, setIsModalBig, onClickAway, ...props }) {
     const ref = useRef()
-
+    const [hoveredImage, setHoveredImage] = useState(false)
     const handleClickAway = () => {
       setIsModalBig(false)
       setSelected(null)
+    }
+
+    const handleClick = () => {
+      setIsModalBig(true)
+      setSelected(hovered)
     }
 
     useFrame((state, delta) => {
@@ -176,57 +188,81 @@ export default function Page() {
           <>
             <Text
               font={suspend(inter).default}
-              fontSize={0.3}
-              position={[-7.5, 4, 1]}
-              anchorX='center'
-              color='red'
-              maxWidth={5}
-              onClick={() => handleClickAway()}
-            >
-              back
-            </Text>
-            <Text
-              font={suspend(inter).default}
+              color={'black'}
               fontSize={0.4}
-              position={[6, 3.5, 1]}
+              position={[0, -1.5, 1]}
               anchorX='center'
               padding={[0.1, 0.2]} // Add padding
               maxWidth={5} // Set maxWidth to control text wrapping
+              outlineColor={'white'}
+              outlineOpacity={0.3}
+              outlineBlur={0.7}
+              outlineWidth={0.02}
             >
               {selected.description}
-              <MeshTransmissionMaterial
-                resolution={1024}
-                emissive='grey'
-                distortion={0.7}
-                color='white'
-                thickness={1}
-                anisotropy={1}
-                background='white'
-              />
             </Text>
             {selected.link && (
               <Text
                 font={suspend(inter).default}
                 fontSize={0.3}
-                position={[-6, -6, 1]}
+                position={[0, -3.5, 1]}
                 anchorX='right'
-                color='blue'
+                color='black'
                 maxWidth={5}
+                outlineColor={'white'}
+                outlineOpacity={0.3}
+                outlineBlur={0.7}
+                outlineWidth={0.02}
                 onClick={() => window.open(selected.link, '_blank')}
+                onPointerEnter={(e) => {
+                  e.object.scale.set(1.1, 1.1, 1.1)
+                  e.object.rotation.z = 0.05
+                }}
+                onPointerLeave={(e) => {
+                  e.object.scale.set(1, 1, 1)
+                  e.object.rotation.z = 0
+                }}
               >
-                featured link
+                See more...
               </Text>
             )}
-            <Image
-              ref={ref}
-              transparent
-              radius={0.3}
-              position={[-4, -1, 0]}
-              scale={[10, 10, 1]}
-              url={selected.image || ''}
-              side={THREE.DoubleSide}
-              alt={selected.title}
-            />
+            <group onClick={handleClickAway}>
+              <Image
+                ref={ref}
+                transparent
+                radius={0.3}
+                position={[0, 0, 0]}
+                scale={[7, 7, 1]}
+                url={selected.image || ''}
+                side={THREE.DoubleSide}
+                alt={selected.title}
+                onPointerEnter={() => setHoveredImage(true)}
+                onPointerLeave={() => setHoveredImage(false)}
+              />
+
+              <Text
+                font={suspend(inter).default}
+                fontSize={1}
+                position={[-3, 3, 0.2]}
+                anchorX='center'
+                anchorY='middle'
+                color='black'
+                outlineColor={'white'}
+                outlineOpacity={0.3}
+                outlineBlur={0.7}
+                outlineWidth={0.02}
+                onPointerEnter={(e) => {
+                  e.object.scale.set(1.1, 1.1, 1.1)
+                  e.object.rotation.z = 0.05
+                }}
+                onPointerLeave={(e) => {
+                  e.object.scale.set(1, 1, 1)
+                  e.object.rotation.z = 0
+                }}
+              >
+                {'<'}
+              </Text>
+            </group>
           </>
         )}
         {hovered !== null && !selected && (
@@ -236,7 +272,7 @@ export default function Page() {
               fontSize={0.5}
               position={[0, 3, 0]}
               anchorX='center'
-              color='black'
+              color='white'
               maxWidth={5} // Set maxWidth to control text wrapping
             >
               {hovered.title}
@@ -249,6 +285,7 @@ export default function Page() {
               url={hovered.image || ''}
               side={THREE.DoubleSide}
               alt={hovered.title}
+              onClick={handleClick}
             />
           </>
         )}
