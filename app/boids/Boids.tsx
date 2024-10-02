@@ -1,11 +1,22 @@
 import { useRef, useMemo, useCallback } from 'react'
 import { useFrame, extend } from '@react-three/fiber'
-import { Vector3, Mesh, Quaternion, Color, MeshBasicMaterial, Vector2, Sphere, Box3 } from 'three'
+import {
+  Vector3,
+  Mesh,
+  Quaternion,
+  Color,
+  MeshBasicMaterial,
+  Vector2,
+  Sphere,
+  Box3,
+  CylinderGeometry,
+  MeshLambertMaterial,
+} from 'three'
 import { useControls } from 'leva'
 import { Cone, Sphere as DreiSphere } from '@react-three/drei'
-import { EffectComposer, Bloom, ChromaticAberration, Vignette } from '@react-three/postprocessing'
+import { EffectComposer, Bloom, ChromaticAberration, Vignette, DepthOfField } from '@react-three/postprocessing'
 
-extend({ EffectComposer, Bloom, ChromaticAberration, Vignette })
+extend({ EffectComposer, Bloom, ChromaticAberration, Vignette, DepthOfField })
 
 interface Boid {
   position: Vector3
@@ -33,7 +44,7 @@ const Boid = ({ position, velocity, size }) => {
       mesh.current.setRotationFromQuaternion(quaternion)
       const speed = velocity.length()
       const t = Math.min(speed / 0.1, 1)
-      const color = new Color().setHSL(t * 0.3, 1, 0.5)
+      const color = new Color().setHSL(t * 0.3, 1, 0.5) // Add color variation based on speed
       ;(mesh.current.material as MeshBasicMaterial).color = color
     }
   })
@@ -61,6 +72,17 @@ const Boundary = ({ radius }) => {
   )
 }
 
+const HoleObstacle = ({ position, radius, holeRadius }) => {
+  const geometry = new CylinderGeometry(holeRadius, holeRadius, radius * 2, 32)
+  geometry.translate(0, radius, 0)
+  return (
+    <mesh position={position}>
+      <meshLambertMaterial color='red' transparent opacity={0.5} />
+      <primitive object={geometry} />
+    </mesh>
+  )
+}
+
 const Boids = () => {
   const {
     count,
@@ -77,11 +99,19 @@ const Boids = () => {
     obstacleRadius,
     avoidanceDistance,
     avoidanceWeight,
+    wanderDistance,
+    wanderWeight,
+    holeObstacleCount,
+    holeObstacleRadius,
+    holeObstacleHoleRadius,
     bloomIntensity,
     bloomThreshold,
     bloomRadius,
     chromaticAberrationOffset,
     vignetteIntensity,
+    depthOfFieldFocalLength,
+    depthOfFieldBokehScale,
+    filmNoiseIntensity,
   } = useControls({
     count: { value: 200, min: 1, max: 500, step: 1 },
     maxSpeed: { value: 0.05, min: 0.01, max: 0.2, step: 0.01 },
@@ -97,11 +127,19 @@ const Boids = () => {
     obstacleRadius: { value: 1, min: 0.1, max: 5, step: 0.1 },
     avoidanceDistance: { value: 2, min: 0.1, max: 5, step: 0.1 },
     avoidanceWeight: { value: 2, min: 0, max: 5, step: 0.1 },
+    wanderDistance: { value: 1, min: 0.1, max: 5, step: 0.1 },
+    wanderWeight: { value: 0.5, min: 0, max: 2, step: 0.1 },
+    holeObstacleCount: { value: 3, min: 0, max: 10, step: 1 },
+    holeObstacleRadius: { value: 2, min: 0.1, max: 5, step: 0.1 },
+    holeObstacleHoleRadius: { value: 0.5, min: 0.1, max: 2, step: 0.1 },
     bloomIntensity: { value: 1, min: 0, max: 2, step: 0.1 },
     bloomThreshold: { value: 0.1, min: 0, max: 1, step: 0.1 },
     bloomRadius: { value: 0.5, min: 0, max: 1, step: 0.1 },
     chromaticAberrationOffset: { value: 0.005, min: 0, max: 0.02, step: 0.001 },
     vignetteIntensity: { value: 0.5, min: 0, max: 1, step: 0.05 },
+    depthOfFieldFocalLength: { value: 5, min: 1, max: 10, step: 1 },
+    depthOfFieldBokehScale: { value: 2, min: 0.1, max: 5, step: 0.1 },
+    filmNoiseIntensity: { value: 0.1, min: 0, max: 1, step: 0.1 },
   })
 
   const boids = useMemo(() => {
@@ -132,6 +170,18 @@ const Boids = () => {
       radius: obstacleRadius,
     }))
   }, [obstacleCount, boundaryRadius, obstacleRadius])
+
+  const holeObstacles = useMemo(() => {
+    return Array.from({ length: holeObstacleCount }, () => ({
+      position: new Vector3(
+        (Math.random() - 0.5) * boundaryRadius * 1.5,
+        (Math.random() - 0.5) * boundaryRadius * 1.5,
+        (Math.random() - 0.5) * boundaryRadius * 1.5,
+      ),
+      radius: holeObstacleRadius,
+      holeRadius: holeObstacleHoleRadius,
+    }))
+  }, [holeObstacleCount, boundaryRadius, holeObstacleRadius, holeObstacleHoleRadius])
 
   const applyForce = (boid: Boid, force: Vector3) => {
     force.divideScalar(boid.mass)
@@ -227,6 +277,14 @@ const Boids = () => {
     return steer
   }
 
+  const wander = (boid: Boid): Vector3 => {
+    const wanderTarget = new Vector3(wanderDistance, 0, 0)
+    const wanderAngle = boid.velocity.angleTo(new Vector3(1, 0, 0))
+    wanderTarget.applyAxisAngle(new Vector3(0, 1, 0), wanderAngle)
+    wanderTarget.add(boid.position)
+    return seek(boid, wanderTarget)
+  }
+
   const updateBoid = useCallback(
     (boid: Boid) => {
       const separationForce = separate(boid, boids).multiplyScalar(separationWeight)
@@ -234,12 +292,14 @@ const Boids = () => {
       const cohesionForce = cohesion(boid, boids).multiplyScalar(cohesionWeight)
       const boundaryForce = avoidBoundary(boid)
       const obstacleForce = avoidObstacles(boid, obstacles).multiplyScalar(avoidanceWeight)
+      const wanderForce = wander(boid).multiplyScalar(wanderWeight)
 
       applyForce(boid, separationForce)
       applyForce(boid, alignmentForce)
       applyForce(boid, cohesionForce)
       applyForce(boid, boundaryForce)
       applyForce(boid, obstacleForce)
+      applyForce(boid, wanderForce)
 
       boid.velocity.add(boid.acceleration).clampLength(0, boid.maxSpeed)
       boid.position.add(boid.velocity)
@@ -257,6 +317,8 @@ const Boids = () => {
       alignmentDistance,
       cohesionDistance,
       avoidanceDistance,
+      wanderDistance,
+      wanderWeight,
     ],
   )
 
@@ -273,6 +335,14 @@ const Boids = () => {
         {obstacles.map((obstacle, index) => (
           <Obstacle key={index} position={obstacle.position} radius={obstacle.radius} />
         ))}
+        {holeObstacles.map((holeObstacle, index) => (
+          <HoleObstacle
+            key={index}
+            position={holeObstacle.position}
+            radius={holeObstacle.radius}
+            holeRadius={holeObstacle.holeRadius}
+          />
+        ))}
         <Boundary radius={boundaryRadius} />
       </group>
       <EffectComposer>
@@ -283,6 +353,7 @@ const Boids = () => {
           modulationOffset={0.1}
         />
         <Vignette eskil={false} offset={0.1} darkness={vignetteIntensity} />
+        <DepthOfField focalLength={depthOfFieldFocalLength} bokehScale={depthOfFieldBokehScale} />
       </EffectComposer>
     </>
   )
