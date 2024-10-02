@@ -1,20 +1,28 @@
 import { useRef, useMemo, useCallback } from 'react'
 import { useFrame, extend } from '@react-three/fiber'
-import { Vector3, Mesh, Quaternion, Color, MeshBasicMaterial } from 'three'
+import { Vector3, Mesh, Quaternion, Color, MeshBasicMaterial, Vector2 } from 'three'
 import { useControls } from 'leva'
 import { Cone } from '@react-three/drei'
-import { EffectComposer } from '@react-three/postprocessing'
-import { Bloom } from '@react-three/postprocessing'
+import {
+  EffectComposer,
+  Bloom,
+  ChromaticAberration,
+  Noise,
+  Vignette,
+  GodRays,
+  LensFlare,
+} from '@react-three/postprocessing'
 
-extend({ EffectComposer, Bloom })
+extend({ EffectComposer, Bloom, ChromaticAberration, Noise, Vignette })
 
 interface Boid {
   position: Vector3
   velocity: Vector3
   speed: number
+  size: number
 }
 
-const Boid = ({ position, velocity, speed, minSpeed, maxSpeed }) => {
+const Boid = ({ position, velocity, speed, minSpeed, maxSpeed, size }) => {
   const mesh = useRef<Mesh>(null)
 
   useFrame(() => {
@@ -34,7 +42,7 @@ const Boid = ({ position, velocity, speed, minSpeed, maxSpeed }) => {
   })
 
   return (
-    <Cone ref={mesh} args={[0.1, 0.3]}>
+    <Cone ref={mesh} args={[size * 0.1, size * 0.3]}>
       <meshBasicMaterial />
     </Cone>
   )
@@ -56,6 +64,9 @@ const Boids = () => {
     bloomIntensity,
     bloomThreshold,
     bloomRadius,
+    chromaticAberrationOffset,
+    noiseIntensity,
+    vignetteIntensity,
   } = useControls({
     count: { value: 200, min: 1, max: 500, step: 1 },
     speed: { value: 0.01, min: 0.01, max: 0.1, step: 0.01 },
@@ -71,31 +82,37 @@ const Boids = () => {
     bloomIntensity: { value: 1, min: 0, max: 2, step: 0.1 },
     bloomThreshold: { value: 0.1, min: 0, max: 1, step: 0.1 },
     bloomRadius: { value: 0.5, min: 0, max: 1, step: 0.1 },
+    chromaticAberrationOffset: { value: 0.005, min: 0, max: 0.02, step: 0.001 },
+    noiseIntensity: { value: 0.1, min: 0, max: 1, step: 0.05 },
+    vignetteIntensity: { value: 0.5, min: 0, max: 1, step: 0.05 },
   })
+
+  const randomBoundaryRadius = useMemo(() => boundaryRadius * (Math.random() * 9 + 1), [boundaryRadius])
 
   const boids = useMemo(() => {
     return Array.from({ length: count }, () => ({
       position: new Vector3(
-        (Math.random() - 0.5) * boundaryRadius,
-        (Math.random() - 0.5) * boundaryRadius,
-        (Math.random() - 0.5) * boundaryRadius,
+        (Math.random() - 0.5) * randomBoundaryRadius,
+        (Math.random() - 0.5) * randomBoundaryRadius,
+        (Math.random() - 0.5) * randomBoundaryRadius,
       ),
       velocity: new Vector3(Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1)
         .normalize()
         .multiplyScalar(speed),
-      speed: speed,
+      speed: speed * (Math.random() * 0.5 + 0.75), // Random speed between 75% and 125% of base speed
+      size: Math.random() * 0.5 + 0.75, // Random size between 75% and 125% of base size
     }))
-  }, [count, boundaryRadius, speed])
+  }, [count, randomBoundaryRadius, speed])
 
   const applyBoundaryForce = useCallback(
     (boid) => {
       const distanceToCenter = boid.position.length()
-      if (distanceToCenter > boundaryRadius) {
+      if (distanceToCenter > randomBoundaryRadius) {
         const boundaryForceVector = boid.position.clone().negate().normalize().multiplyScalar(boundaryForce)
         boid.velocity.add(boundaryForceVector)
       }
     },
-    [boundaryForce, boundaryRadius],
+    [boundaryForce, randomBoundaryRadius],
   )
 
   const updateBoid = useCallback(
@@ -154,7 +171,7 @@ const Boids = () => {
       }
 
       if (closestBoid) {
-        boid.speed = speed * (closestDistance / separationDistance)
+        boid.speed = speed * (closestDistance / separationDistance) * (Math.random() * 0.2 + 0.9) // Add some randomness to speed
       }
 
       boid.velocity.add(separation).add(alignment).add(cohesion).normalize().multiplyScalar(boid.speed)
@@ -193,11 +210,18 @@ const Boids = () => {
             speed={boid.speed}
             minSpeed={minSpeed}
             maxSpeed={maxSpeed}
+            size={boid.size}
           />
         ))}
       </group>
       <EffectComposer>
         <Bloom intensity={bloomIntensity} luminanceThreshold={bloomThreshold} luminanceSmoothing={bloomRadius} />
+        <ChromaticAberration
+          offset={new Vector2(chromaticAberrationOffset, chromaticAberrationOffset)}
+          radialModulation={false}
+          modulationOffset={0.1}
+        />
+        <Vignette eskil={false} offset={0.1} darkness={vignetteIntensity} />
       </EffectComposer>
     </>
   )
