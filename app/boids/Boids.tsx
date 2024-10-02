@@ -1,42 +1,39 @@
 import { useRef, useMemo, useCallback } from 'react'
 import { useFrame, extend } from '@react-three/fiber'
-import { Vector3, Mesh, Quaternion, Color, MeshBasicMaterial, Vector2 } from 'three'
+import { Vector3, Mesh, Quaternion, Color, MeshBasicMaterial, Vector2, Sphere, Box3 } from 'three'
 import { useControls } from 'leva'
-import { Cone } from '@react-three/drei'
-import {
-  EffectComposer,
-  Bloom,
-  ChromaticAberration,
-  Noise,
-  Vignette,
-  GodRays,
-  LensFlare,
-} from '@react-three/postprocessing'
+import { Cone, Sphere as DreiSphere } from '@react-three/drei'
+import { EffectComposer, Bloom, ChromaticAberration, Vignette } from '@react-three/postprocessing'
 
-extend({ EffectComposer, Bloom, ChromaticAberration, Noise, Vignette })
+extend({ EffectComposer, Bloom, ChromaticAberration, Vignette })
 
 interface Boid {
   position: Vector3
   velocity: Vector3
-  speed: number
+  acceleration: Vector3
+  maxSpeed: number
+  maxForce: number
   size: number
+  mass: number
 }
 
-const Boid = ({ position, velocity, speed, minSpeed, maxSpeed, size }) => {
+interface Obstacle {
+  position: Vector3
+  radius: number
+}
+
+const Boid = ({ position, velocity, size }) => {
   const mesh = useRef<Mesh>(null)
 
   useFrame(() => {
     if (mesh.current) {
       mesh.current.position.copy(position)
-
-      // Calculate rotation based on velocity vector
       const direction = velocity.clone().normalize()
       const quaternion = new Quaternion().setFromUnitVectors(new Vector3(0, 1, 0), direction)
       mesh.current.setRotationFromQuaternion(quaternion)
-
-      // Calculate color based on speed
-      const t = (speed - minSpeed) / (maxSpeed - minSpeed)
-      const color = new Color().setHSL(t * 0.3, 1, 0.5) // Vary color from red (slow) to green (fast)
+      const speed = velocity.length()
+      const t = Math.min(speed / 0.1, 1)
+      const color = new Color().setHSL(t * 0.3, 1, 0.5)
       ;(mesh.current.material as MeshBasicMaterial).color = color
     }
   })
@@ -48,147 +45,218 @@ const Boid = ({ position, velocity, speed, minSpeed, maxSpeed, size }) => {
   )
 }
 
+const Obstacle = ({ position, radius }) => {
+  return (
+    <DreiSphere position={position} args={[radius]}>
+      <meshBasicMaterial color='red' transparent opacity={0.5} />
+    </DreiSphere>
+  )
+}
+
+const Boundary = ({ radius }) => {
+  return (
+    <DreiSphere args={[radius]}>
+      <meshBasicMaterial color='white' opacity={0.1} transparent />
+    </DreiSphere>
+  )
+}
+
 const Boids = () => {
   const {
     count,
-    speed,
+    maxSpeed,
+    maxForce,
     separationDistance,
     alignmentDistance,
     cohesionDistance,
-    separationForce,
-    alignmentForce,
-    cohesionForce,
-    boundaryForce,
+    separationWeight,
+    alignmentWeight,
+    cohesionWeight,
     boundaryRadius,
-    fieldOfView,
+    obstacleCount,
+    obstacleRadius,
+    avoidanceDistance,
+    avoidanceWeight,
     bloomIntensity,
     bloomThreshold,
     bloomRadius,
     chromaticAberrationOffset,
-    noiseIntensity,
     vignetteIntensity,
   } = useControls({
     count: { value: 200, min: 1, max: 500, step: 1 },
-    speed: { value: 0.01, min: 0.01, max: 0.1, step: 0.01 },
+    maxSpeed: { value: 0.05, min: 0.01, max: 0.2, step: 0.01 },
+    maxForce: { value: 0.01, min: 0.001, max: 0.05, step: 0.001 },
     separationDistance: { value: 0.5, min: 0.1, max: 2, step: 0.1 },
-    alignmentDistance: { value: 4.4, min: 0.1, max: 5, step: 0.1 },
-    cohesionDistance: { value: 1.0, min: 0.1, max: 5, step: 0.1 },
-    separationForce: { value: 0.05, min: 0, max: 0.1, step: 0.01 },
-    alignmentForce: { value: 0.05, min: 0, max: 0.1, step: 0.01 },
-    cohesionForce: { value: 0.01, min: 0, max: 0.1, step: 0.01 },
-    boundaryForce: { value: 0.03, min: 0, max: 0.1, step: 0.01 },
+    alignmentDistance: { value: 2, min: 0.1, max: 5, step: 0.1 },
+    cohesionDistance: { value: 1.5, min: 0.1, max: 5, step: 0.1 },
+    separationWeight: { value: 1.5, min: 0, max: 3, step: 0.1 },
+    alignmentWeight: { value: 1, min: 0, max: 3, step: 0.1 },
+    cohesionWeight: { value: 1, min: 0, max: 3, step: 0.1 },
     boundaryRadius: { value: 15, min: 10, max: 50, step: 1 },
-    fieldOfView: { value: 37, min: 10, max: 180, step: 1 },
+    obstacleCount: { value: 5, min: 0, max: 20, step: 1 },
+    obstacleRadius: { value: 1, min: 0.1, max: 5, step: 0.1 },
+    avoidanceDistance: { value: 2, min: 0.1, max: 5, step: 0.1 },
+    avoidanceWeight: { value: 2, min: 0, max: 5, step: 0.1 },
     bloomIntensity: { value: 1, min: 0, max: 2, step: 0.1 },
     bloomThreshold: { value: 0.1, min: 0, max: 1, step: 0.1 },
     bloomRadius: { value: 0.5, min: 0, max: 1, step: 0.1 },
     chromaticAberrationOffset: { value: 0.005, min: 0, max: 0.02, step: 0.001 },
-    noiseIntensity: { value: 0.1, min: 0, max: 1, step: 0.05 },
     vignetteIntensity: { value: 0.5, min: 0, max: 1, step: 0.05 },
   })
-
-  const randomBoundaryRadius = useMemo(() => boundaryRadius * (Math.random() * 9 + 1), [boundaryRadius])
 
   const boids = useMemo(() => {
     return Array.from({ length: count }, () => ({
       position: new Vector3(
-        (Math.random() - 0.5) * randomBoundaryRadius,
-        (Math.random() - 0.5) * randomBoundaryRadius,
-        (Math.random() - 0.5) * randomBoundaryRadius,
+        (Math.random() - 0.5) * boundaryRadius * 2,
+        (Math.random() - 0.5) * boundaryRadius * 2,
+        (Math.random() - 0.5) * boundaryRadius * 2,
       ),
-      velocity: new Vector3(Math.random() * 2 - 1, Math.random() * 2 - 1, Math.random() * 2 - 1)
+      velocity: new Vector3(Math.random() - 0.5, Math.random() - 0.5, Math.random() - 0.5)
         .normalize()
-        .multiplyScalar(speed),
-      speed: speed * (Math.random() * 0.5 + 0.75), // Random speed between 75% and 125% of base speed
-      size: Math.random() * 0.5 + 0.75, // Random size between 75% and 125% of base size
+        .multiplyScalar(maxSpeed * (0.5 + Math.random() * 0.5)),
+      acceleration: new Vector3(),
+      maxSpeed,
+      maxForce,
+      size: Math.random() * 0.5 + 0.75,
+      mass: Math.random() * 0.5 + 0.75,
     }))
-  }, [count, randomBoundaryRadius, speed])
+  }, [count, boundaryRadius, maxSpeed, maxForce])
 
-  const applyBoundaryForce = useCallback(
-    (boid) => {
-      const distanceToCenter = boid.position.length()
-      if (distanceToCenter > randomBoundaryRadius) {
-        const boundaryForceVector = boid.position.clone().negate().normalize().multiplyScalar(boundaryForce)
-        boid.velocity.add(boundaryForceVector)
+  const obstacles = useMemo(() => {
+    return Array.from({ length: obstacleCount }, () => ({
+      position: new Vector3(
+        (Math.random() - 0.5) * boundaryRadius * 1.5,
+        (Math.random() - 0.5) * boundaryRadius * 1.5,
+        (Math.random() - 0.5) * boundaryRadius * 1.5,
+      ),
+      radius: obstacleRadius,
+    }))
+  }, [obstacleCount, boundaryRadius, obstacleRadius])
+
+  const applyForce = (boid: Boid, force: Vector3) => {
+    force.divideScalar(boid.mass)
+    boid.acceleration.add(force)
+  }
+
+  const seek = (boid: Boid, target: Vector3): Vector3 => {
+    const desired = target.clone().sub(boid.position)
+    desired.normalize().multiplyScalar(boid.maxSpeed)
+    return desired.sub(boid.velocity).clampLength(0, boid.maxForce)
+  }
+
+  const separate = (boid: Boid, boids: Boid[]): Vector3 => {
+    const steer = new Vector3()
+    let count = 0
+    for (const other of boids) {
+      if (other === boid) continue
+      const d = boid.position.distanceTo(other.position)
+      if (d > 0 && d < separationDistance) {
+        const diff = boid.position.clone().sub(other.position)
+        diff.normalize().divideScalar(d)
+        steer.add(diff)
+        count++
       }
-    },
-    [boundaryForce, randomBoundaryRadius],
-  )
+    }
+    if (count > 0) {
+      steer.divideScalar(count)
+    }
+    if (steer.lengthSq() > 0) {
+      steer.normalize().multiplyScalar(boid.maxSpeed).sub(boid.velocity).clampLength(0, boid.maxForce)
+    }
+    return steer
+  }
+
+  const align = (boid: Boid, boids: Boid[]): Vector3 => {
+    const sum = new Vector3()
+    let count = 0
+    for (const other of boids) {
+      if (other === boid) continue
+      const d = boid.position.distanceTo(other.position)
+      if (d > 0 && d < alignmentDistance) {
+        sum.add(other.velocity)
+        count++
+      }
+    }
+    if (count > 0) {
+      sum.divideScalar(count)
+      sum.normalize().multiplyScalar(boid.maxSpeed)
+      return sum.sub(boid.velocity).clampLength(0, boid.maxForce)
+    }
+    return new Vector3()
+  }
+
+  const cohesion = (boid: Boid, boids: Boid[]): Vector3 => {
+    const sum = new Vector3()
+    let count = 0
+    for (const other of boids) {
+      if (other === boid) continue
+      const d = boid.position.distanceTo(other.position)
+      if (d > 0 && d < cohesionDistance) {
+        sum.add(other.position)
+        count++
+      }
+    }
+    if (count > 0) {
+      sum.divideScalar(count)
+      return seek(boid, sum)
+    }
+    return new Vector3()
+  }
+
+  const avoidBoundary = (boid: Boid): Vector3 => {
+    const distance = boid.position.length()
+    if (distance > boundaryRadius * 0.9) {
+      return seek(boid, new Vector3())
+    }
+    return new Vector3()
+  }
+
+  const avoidObstacles = (boid: Boid, obstacles: Obstacle[]): Vector3 => {
+    const steer = new Vector3()
+    for (const obstacle of obstacles) {
+      const d = boid.position.distanceTo(obstacle.position)
+      if (d < avoidanceDistance + obstacle.radius) {
+        const diff = boid.position.clone().sub(obstacle.position)
+        diff.normalize().divideScalar(d)
+        steer.add(diff)
+      }
+    }
+    if (steer.lengthSq() > 0) {
+      steer.normalize().multiplyScalar(boid.maxSpeed).sub(boid.velocity).clampLength(0, boid.maxForce)
+    }
+    return steer
+  }
 
   const updateBoid = useCallback(
-    (boid, index) => {
-      const separation = new Vector3()
-      const alignment = new Vector3()
-      const cohesion = new Vector3()
-      let separationCount = 0
-      let alignmentCount = 0
-      let cohesionCount = 0
-      let closestDistance = Infinity
-      let closestBoid: Boid | null = null
+    (boid: Boid) => {
+      const separationForce = separate(boid, boids).multiplyScalar(separationWeight)
+      const alignmentForce = align(boid, boids).multiplyScalar(alignmentWeight)
+      const cohesionForce = cohesion(boid, boids).multiplyScalar(cohesionWeight)
+      const boundaryForce = avoidBoundary(boid)
+      const obstacleForce = avoidObstacles(boid, obstacles).multiplyScalar(avoidanceWeight)
 
-      // Iterate over other boids
-      boids.forEach((otherBoid, j) => {
-        if (index !== j) {
-          const distance = boid.position.distanceTo(otherBoid.position)
+      applyForce(boid, separationForce)
+      applyForce(boid, alignmentForce)
+      applyForce(boid, cohesionForce)
+      applyForce(boid, boundaryForce)
+      applyForce(boid, obstacleForce)
 
-          // Check if the other boid is within the field of view
-          const directionToOtherBoid = otherBoid.position.clone().sub(boid.position).normalize()
-          const angle = boid.velocity.angleTo(directionToOtherBoid)
-          if (angle < fieldOfView * (Math.PI / 180)) {
-            if (distance < separationDistance) {
-              separation.add(boid.position.clone().sub(otherBoid.position).normalize().divideScalar(distance))
-              separationCount++
-            }
-
-            if (distance < alignmentDistance) {
-              alignment.add(otherBoid.velocity)
-              alignmentCount++
-            }
-
-            if (distance < cohesionDistance) {
-              cohesion.add(otherBoid.position)
-              cohesionCount++
-            }
-
-            if (distance < closestDistance) {
-              closestDistance = distance
-              closestBoid = otherBoid
-            }
-          }
-        }
-      })
-
-      if (separationCount > 0) {
-        separation.divideScalar(separationCount).sub(boid.velocity).multiplyScalar(separationForce)
-      }
-
-      if (alignmentCount > 0) {
-        alignment.divideScalar(alignmentCount).sub(boid.velocity).multiplyScalar(alignmentForce)
-      }
-
-      if (cohesionCount > 0) {
-        cohesion.divideScalar(cohesionCount).sub(boid.position).normalize().multiplyScalar(cohesionForce)
-      }
-
-      if (closestBoid) {
-        boid.speed = speed * (closestDistance / separationDistance) * (Math.random() * 0.2 + 0.9) // Add some randomness to speed
-      }
-
-      boid.velocity.add(separation).add(alignment).add(cohesion).normalize().multiplyScalar(boid.speed)
-      applyBoundaryForce(boid)
+      boid.velocity.add(boid.acceleration).clampLength(0, boid.maxSpeed)
       boid.position.add(boid.velocity)
+      boid.acceleration.multiplyScalar(0)
     },
     [
       boids,
+      obstacles,
+      separationWeight,
+      alignmentWeight,
+      cohesionWeight,
+      avoidanceWeight,
+      boundaryRadius,
       separationDistance,
       alignmentDistance,
       cohesionDistance,
-      separationForce,
-      alignmentForce,
-      cohesionForce,
-      speed,
-      applyBoundaryForce,
-      fieldOfView,
+      avoidanceDistance,
     ],
   )
 
@@ -196,23 +264,16 @@ const Boids = () => {
     boids.forEach(updateBoid)
   })
 
-  const minSpeed = speed * 0.5
-  const maxSpeed = speed * 1.5
-
   return (
     <>
       <group>
         {boids.map((boid, index) => (
-          <Boid
-            key={index}
-            position={boid.position}
-            velocity={boid.velocity}
-            speed={boid.speed}
-            minSpeed={minSpeed}
-            maxSpeed={maxSpeed}
-            size={boid.size}
-          />
+          <Boid key={index} position={boid.position} velocity={boid.velocity} size={boid.size} />
         ))}
+        {obstacles.map((obstacle, index) => (
+          <Obstacle key={index} position={obstacle.position} radius={obstacle.radius} />
+        ))}
+        <Boundary radius={boundaryRadius} />
       </group>
       <EffectComposer>
         <Bloom intensity={bloomIntensity} luminanceThreshold={bloomThreshold} luminanceSmoothing={bloomRadius} />
