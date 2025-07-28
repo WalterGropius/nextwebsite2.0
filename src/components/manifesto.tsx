@@ -47,7 +47,7 @@ export function Manifesto() {
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            Let's collaborate and bring new visions to life.
+            Let&apos;s collaborate and bring new visions to life.
           </motion.p>
         </div>
       </motion.div>

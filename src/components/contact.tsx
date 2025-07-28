@@ -26,7 +26,7 @@ export function Contact() {
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            Have an idea? Let's build it together.
+            Have an idea? Let&apos;s build it together.
           </motion.p>
 
           <motion.div
