@@ -24,17 +24,17 @@ export const metadata: Metadata = {
     description: "Art & Tech Polymath. Building Emergent Worlds.",
     type: "website",
   },
-    generator: 'v0.dev'
+  generator: 'v0.dev'
 }
 
-export default function RootLayout({
+export default function LandingLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} ${cormorant.variable} font-sans antialiased`}>{children}</body>
-    </html>
+    <div className={`${inter.variable} ${cormorant.variable} font-sans antialiased`}>
+      {children}
+    </div>
   )
 }
