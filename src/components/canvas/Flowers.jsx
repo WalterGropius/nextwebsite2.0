@@ -1,9 +1,10 @@
 import { PresentationControls, Float, Splat } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 
 export default function Flowers() {
   const splatRef = useRef()
+  const [hasError, setHasError] = useState(false)
 
   // Subtle rotation animation
   useFrame((state) => {
@@ -38,14 +39,26 @@ export default function Flowers() {
           rotationIntensity={0.1}
           floatIntensity={0.1}
         >
-          <Splat
-            ref={splatRef}
-            scale={3}
-            rotation={[0, -0.7 * Math.PI, 0]}
-            src="/flowers_white.splat"
-            alphaTest={0.1}
-            transparent
-          />
+          {!hasError ? (
+            <Splat
+              ref={splatRef}
+              scale={3}
+              rotation={[0, -0.7 * Math.PI, 0]}
+              src="/flowers_white.splat"
+              alphaTest={0.1}
+              transparent
+              onError={() => {
+                console.warn('Failed to load flowers.splat, using fallback')
+                setHasError(true)
+              }}
+            />
+          ) : (
+            // Fallback: Simple geometric shape when splat fails to load
+            <mesh ref={splatRef} scale={2}>
+              <sphereGeometry args={[1, 32, 32]} />
+              <meshStandardMaterial color="#ffffff" transparent opacity={0.3} />
+            </mesh>
+          )}
         </Float>
       </PresentationControls>
     </>

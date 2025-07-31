@@ -12,7 +12,6 @@ export function SketchfabEmbed() {
                         src="https://sketchfab.com/playlists/embed?collection=ff58263bbe42472fb3d657a709d71d81&autostart=1"
                         title="mywork"
                         frameBorder="0"
-                        allowFullScreen
                         allow="autoplay; fullscreen; xr-spatial-tracking"
                         className="w-full max-w-[640px] h-[480px] rounded-lg shadow-lg"
                     />
