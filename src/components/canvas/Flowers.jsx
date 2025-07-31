@@ -1,10 +1,16 @@
 import { PresentationControls, Float, Splat } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 
 export default function Flowers() {
   const splatRef = useRef()
   const [hasError, setHasError] = useState(false)
+  const [isClient, setIsClient] = useState(false)
+
+  // Ensure we're client-side before rendering 3D content
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
 
   // Subtle rotation animation
   useFrame((state) => {
@@ -12,6 +18,11 @@ export default function Flowers() {
       splatRef.current.rotation.y = Math.sin(state.clock.elapsedTime * 0.1) * 0.1
     }
   })
+
+  // Don't render anything until we're client-side
+  if (!isClient) {
+    return null
+  }
 
   return (
     <>
@@ -44,7 +55,7 @@ export default function Flowers() {
               ref={splatRef}
               scale={3}
               rotation={[0, -0.7 * Math.PI, 0]}
-              src="https://otvca533ygdbv0tt.public.blob.vercel-storage.com/flowers_white.splat"
+              src="/flowers_white.splat"
               alphaTest={0.1}
               transparent
               onError={() => {
