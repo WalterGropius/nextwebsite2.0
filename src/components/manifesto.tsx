@@ -4,57 +4,78 @@ import { useRef, useEffect, useState } from "react"
 
 const cards = [
   {
-    title: "Art Meets Tech",
+    title: "Art Meets Technology",
     content: (
       <>
-        I love both{" "}
+        I bridge the gap between{" "}
         <span className="inline-block text-5xl md:text-3xl font-extrabold leading-none uppercase" style={{ color: 'var(--vermilion)' }}>
-          ART
+          CREATIVE VISION
         </span>{" "}
         and{" "}
         <span className="inline-block text-5xl md:text-3xl font-extrabold leading-none uppercase" style={{ color: 'var(--cobalt-blue)' }}>
-          TECHNOLOGY
-        </span>{" "}
-        and especially finding ways to{" "}
-        <span className="inline-block text-5xl md:text-3xl font-extrabold leading-none uppercase" style={{ color: 'var(--fern-green)' }}>
-          MAKE THEM WORK TOGETHER
+          TECHNICAL EXECUTION
         </span>.
         <br />
         <br />
-        It’s just applied curiosity and a hard head.
+        Whether you need immersive VR experiences, AI-powered solutions, or cutting-edge web applications, I turn ideas into reality.
       </>
     ),
   },
   {
-    title: "Collaboration is Everything",
+    title: "The Polymath's Advantage",
     content: (
       <>
-        I get a kick out of teaming up with people from all walks—artists, engineers, dreamers, doers.
+        My skills cover multiple fields, including{" "}
+        <span className="inline-block text-5xl md:text-3xl font-extrabold leading-none uppercase" style={{ color: 'var(--fern-green)' }}>
+          XR/VFX
+        </span>{" "}
+        ,{" "}
+        <span className="inline-block text-5xl md:text-3xl font-extrabold leading-none uppercase" style={{ color: 'var(--cobalt-blue)' }}>
+          AI SYSTEMS
+        </span>{" "}
+        ,{" "}
+        <span className="inline-block text-5xl md:text-3xl font-extrabold leading-none uppercase" style={{ color: 'var(--vermilion)' }}>
+          FULL-STACK
+        </span>{" "}
+        and{" "}
+        <span className="inline-block text-5xl md:text-3xl font-extrabold leading-none uppercase" style={{ color: 'var(--pistachio)' }}>
+          VISUAL ART
+        </span>
         <br />
         <br />
-        Every project is a chance to learn something new and make something better, together.
+        I see connections others may overlook.
+        <br />
+        <br />
+        Expect fresh perspectives and unexpected solutions.
       </>
     ),
   },
   {
-    title: "Keep It Real, Keep It Useful",
+    title: "Creative Technologist, Not Just Developer",
     content: (
       <>
-        I strive to make things work, look good, and feel right.
+        Every project is an opportunity to create something that feels magical.
         <br />
         <br />
-        If it doesn’t help someone, what’s the point?
+        Let's build something that makes people say "wow."
       </>
     ),
   },
   {
-    title: "Let’s Make Cool Stuff",
+    title: "Solving the Impossible",
     content: (
       <>
-        I’m here to push boundaries, learn as much as I can, and have fun doing it.
+        I'm drawn to challenges that seem{" "}
+        <span className="inline-block text-5xl md:text-3xl font-extrabold leading-none uppercase" style={{ color: 'var(--fern-green)' }}>
+          IMPOSSIBLE
+        </span>{" "}
+        at first glance.
         <br />
         <br />
-        If you want to build something that makes people say “wow,” let’s talk.
+        That's where breakthrough innovation happens.
+        <br />
+        <br />
+        If you have a wild idea that others say can't be done, let's prove them wrong!
       </>
     ),
   },
