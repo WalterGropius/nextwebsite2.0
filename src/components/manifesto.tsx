@@ -57,7 +57,7 @@ const cards = [
         Every project is an opportunity to create something that feels magical.
         <br />
         <br />
-        Let's build something that makes people say "wow."
+        Let&apos;s build something that makes people say &quot;wow.&quot;
       </>
     ),
   },
@@ -65,17 +65,17 @@ const cards = [
     title: "Solving the Impossible",
     content: (
       <>
-        I'm drawn to challenges that seem{" "}
+        I&apos;m drawn to challenges that seem{" "}
         <span className="inline-block text-5xl md:text-3xl font-extrabold leading-none uppercase" style={{ color: 'var(--fern-green)' }}>
           IMPOSSIBLE
         </span>{" "}
         at first glance.
         <br />
         <br />
-        That's where breakthrough innovation happens.
+        That&apos;s where breakthrough innovation happens.
         <br />
         <br />
-        If you have a wild idea that others say can't be done, let's prove them wrong!
+        If you have a wild idea that others say can&apos;t be done, let&apos;s prove them wrong!
       </>
     ),
   },
