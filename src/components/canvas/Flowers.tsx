@@ -59,7 +59,7 @@ export function Flowers() {
               <Splat
                 scale={3}
                 rotation={[0, -0.7 * Math.PI, 0]}
-                src="../../public/flowers_white.splat"
+                src="../../flowers_white.splat"
 
 
               />
