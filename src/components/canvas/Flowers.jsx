@@ -44,7 +44,7 @@ export default function Flowers() {
               ref={splatRef}
               scale={3}
               rotation={[0, -0.7 * Math.PI, 0]}
-              src="/flowers_white.splat"
+              src="https://zenbauhaus.vercel.app/flowers_white.splat"
               alphaTest={0.1}
               transparent
               onError={() => {

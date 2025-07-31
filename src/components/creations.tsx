@@ -25,7 +25,7 @@ export function Creations() {
   useEffect(() => {
     let ignore = false
     setLoading(true)
-    fetch("/portfolio.json")
+    fetch("https://zenbauhaus.vercel.app/portfolio.json")
       .then((res) => {
         if (!res.ok) throw new Error("Network response was not ok")
         return res.json()
