@@ -19,7 +19,7 @@ import {
 } from '@react-three/drei'
 import { suspend } from 'suspend-react'
 import { easing, geometry } from 'maath'
-import portfolioData from '/portfolio.json'
+import portfolioData from '../../public/portfolio.json'
 import { RoundedBox } from '@react-three/drei'
 
 extend(geometry)

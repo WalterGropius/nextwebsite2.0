@@ -25,7 +25,7 @@ export function Creations() {
   useEffect(() => {
     let ignore = false
     setLoading(true)
-    fetch("https://zenbauhaus.vercel.app/portfolio.json")
+    fetch("/portfolio.json")
       .then((res) => {
         if (!res.ok) throw new Error("Network response was not ok")
         return res.json()
@@ -94,7 +94,7 @@ export function Creations() {
                 >
                   <div className="relative w-full aspect-[2/3]">
                     <Image
-                      src={`https://zenbauhaus.vercel.app/${project.image}`}
+                      src={project.image}
                       alt={project.title}
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-300"
