@@ -73,7 +73,7 @@ export function Creations() {
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-serif mb-16 text-center">Portfolio</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">Portfolio</h2>
 
           {loading ? (
             <div className="text-center text-gray-400 py-16">Loading...</div>

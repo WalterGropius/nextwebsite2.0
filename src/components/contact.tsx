@@ -18,7 +18,7 @@ export function Contact() {
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-serif mb-16 text-center">Collaborate</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">Collaborate</h2>
 
           <div className="text-center mb-16">
             <motion.p
@@ -78,7 +78,7 @@ export function Contact() {
           </motion.div>
 
           <motion.div
-            className="text-center text-sm text-gray-600 font-mono"
+            className="text-center text-sm text-gray-600"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}

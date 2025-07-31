@@ -56,7 +56,7 @@ export function Arsenal() {
         animate={isInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 0.8 }}
       >
-        <h2 className="text-4xl md:text-5xl font-serif mb-16 text-center">Arsenal</h2>
+        <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">Arsenal</h2>
 
         <div className="grid md:grid-cols-3 gap-8">
           {skillCategories.map((category, categoryIndex) => (
@@ -73,7 +73,7 @@ export function Arsenal() {
                 >
                   <category.icon size={32} />
                 </div>
-                <h3 className={`text-2xl font-serif ${category.color}`}>{category.title}</h3>
+                <h3 className={`text-2xl font-bold ${category.color}`}>{category.title}</h3>
               </div>
 
               <div className="space-y-3">
@@ -86,7 +86,7 @@ export function Arsenal() {
                     transition={{ duration: 0.4, delay: categoryIndex * 0.2 + skillIndex * 0.05 }}
                     whileHover={{ scale: 1.02, backgroundColor: "rgba(39, 39, 42, 0.8)" }}
                   >
-                    <span className="text-zinc-300 font-mono text-sm">{skill}</span>
+                    <span className="text-zinc-300 text-sm">{skill}</span>
                   </motion.div>
                 ))}
               </div>

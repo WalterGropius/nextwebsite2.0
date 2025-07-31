@@ -39,7 +39,7 @@ export function Philosophy() {
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="text-4xl md:text-5xl font-serif mb-16 text-center">Philosophy</h2>
+          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">Philosophy</h2>
 
           <motion.div
             className="text-center mb-16"
@@ -67,7 +67,7 @@ export function Philosophy() {
                   <div className={`p-3 rounded-lg bg-gray-800 ${area.color}`}>
                     <area.icon size={24} />
                   </div>
-                  <h3 className={`text-2xl font-serif ${area.color}`}>{area.title}</h3>
+                  <h3 className={`text-2xl font-bold ${area.color}`}>{area.title}</h3>
                 </div>
 
                 <p className="text-gray-300 leading-relaxed">

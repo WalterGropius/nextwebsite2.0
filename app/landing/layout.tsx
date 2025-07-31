@@ -1,23 +1,7 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
-import { Inter, Cormorant_Garamond } from "next/font/google"
 import Script from "next/script"
 import "./globals.css"
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-  display: 'swap',
-  preload: true,
-})
-
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-cormorant",
-  display: 'swap',
-  preload: true,
-})
 
 export const metadata: Metadata = {
   title: "zenbauhaus - Digital Garden",
@@ -57,7 +41,7 @@ export default function LandingLayout({
     <>
       <div
         data-landing="true"
-        className={`${inter.variable} ${cormorant.variable} antialiased min-h-screen text-gray-100 font-sans`}
+        className="antialiased min-h-screen text-gray-100 font-sans"
       >
         {children}
 
