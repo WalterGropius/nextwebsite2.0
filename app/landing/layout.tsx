@@ -54,13 +54,8 @@ export default function LandingLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="antialiased">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <meta name="format-detection" content="telephone=no" />
-      </head>
-      <body
+    <>
+      <div
         data-landing="true"
         className={`${inter.variable} ${cormorant.variable} antialiased min-h-screen text-gray-100 font-sans`}
       >
@@ -81,7 +76,7 @@ export default function LandingLayout({
             }
           `}
         </Script>
-      </body>
-    </html>
+      </div>
+    </>
   )
 }
