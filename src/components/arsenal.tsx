@@ -1,8 +1,6 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useEffect, useState } from "react"
 import { Brain, Zap, Code } from "lucide-react"
 
 const skillCategories = [
@@ -46,26 +44,41 @@ const skillCategories = [
 
 export function Arsenal() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const [isInView, setIsInView] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+        }
+      },
+      { threshold: 0.1, rootMargin: "-100px" }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <section id="arsenal" className="py-32 px-6 max-w-6xl mx-auto">
-      <motion.div
+      <div
         ref={ref}
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.8 }}
+        className={isInView ? "animate-fade-in" : "opacity-0"}
       >
         <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">Arsenal</h2>
 
         <div className="grid md:grid-cols-3 gap-8">
           {skillCategories.map((category, categoryIndex) => (
-            <motion.div
+            <div
               key={category.title}
-              className="group"
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-              transition={{ duration: 0.6, delay: categoryIndex * 0.2 }}
+              className={`group ${
+                isInView ? "animate-slide-up" : "opacity-0"
+              }`}
+              style={{ animationDelay: `${categoryIndex * 0.2}s` }}
             >
               <div className="text-center mb-8">
                 <div
@@ -78,22 +91,21 @@ export function Arsenal() {
 
               <div className="space-y-3">
                 {category.skills.map((skill, skillIndex) => (
-                  <motion.div
+                  <div
                     key={skill}
-                    className="p-3 bg-zinc-900/50 rounded-lg border border-zinc-800 hover:border-zinc-700 transition-colors"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-                    transition={{ duration: 0.4, delay: categoryIndex * 0.2 + skillIndex * 0.05 }}
-                    whileHover={{ scale: 1.02, backgroundColor: "rgba(39, 39, 42, 0.8)" }}
+                    className={`p-3 bg-zinc-900/50 rounded-lg border border-zinc-800 hover:border-zinc-700 transition-all duration-300 hover:scale-102 hover:bg-zinc-900/80 ${
+                      isInView ? "animate-slide-up" : "opacity-0"
+                    }`}
+                    style={{ animationDelay: `${categoryIndex * 0.2 + skillIndex * 0.05}s` }}
                   >
                     <span className="text-zinc-300 text-sm">{skill}</span>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
-      </motion.div>
+      </div>
     </section>
   )
 }

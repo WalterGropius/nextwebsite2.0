@@ -1,6 +1,5 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
 import { useRef, useState, useEffect } from "react"
 import { ExternalLink, Calendar, Tag } from "lucide-react"
 import Image from "next/image"
@@ -17,10 +16,27 @@ interface ProjectItem {
 
 export function Creations() {
   const ref = useRef<HTMLDivElement | null>(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const [isInView, setIsInView] = useState(false)
   const [projects, setProjects] = useState<ProjectItem[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+        }
+      },
+      { threshold: 0.1, rootMargin: "-100px" }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
 
   useEffect(() => {
     let ignore = false
@@ -51,27 +67,12 @@ export function Creations() {
     }
   }, [])
 
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.1 },
-    },
-  }
-
-  const item = {
-    hidden: { opacity: 0, y: 50 },
-    show: { opacity: 1, y: 0 },
-  }
-
   return (
     <section id="creations" className="py-32 px-6">
       <div className="max-w-6xl mx-auto">
-        <motion.div
+        <div
           ref={ref}
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.8 }}
+          className={isInView ? "animate-fade-in" : "opacity-0"}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">Portfolio</h2>
 
@@ -80,17 +81,14 @@ export function Creations() {
           ) : error ? (
             <div className="text-center text-red-400 py-16">{error}</div>
           ) : (
-            <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-              variants={container}
-              initial="hidden"
-              animate={isInView ? "show" : "hidden"}
-            >
-              {projects.map((project) => (
-                <motion.div
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projects.map((project, index) => (
+                <div
                   key={project.id}
-                  variants={item}
-                  className="group relative rounded-lg overflow-hidden hover:scale-105 transition-all duration-300"
+                  className={`group relative rounded-lg overflow-hidden hover:scale-105 transition-all duration-300 ${
+                    isInView ? "animate-slide-up" : "opacity-0"
+                  }`}
+                  style={{ animationDelay: `${0.1 * index}s` }}
                 >
                   <div className="relative w-full aspect-[2/3]">
                     <Image
@@ -137,16 +135,15 @@ export function Creations() {
                       )}
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </div>
           )}
 
-          <motion.div
-            className="text-center mt-16"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+          <div
+            className={`text-center mt-16 ${
+              isInView ? "animate-slide-up animation-delay-800" : "opacity-0"
+            }`}
           >
             <p className="mb-8 text-lg text-gray-400">
               Check out my{" "}
@@ -155,8 +152,8 @@ export function Creations() {
               </a>{" "}
               to see more of my work.
             </p>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   )

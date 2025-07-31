@@ -1,53 +1,63 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useEffect, useState } from "react"
 import { Mail, Github, Linkedin, ArrowUpRight } from "lucide-react"
 
 export function Contact() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const [isInView, setIsInView] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+        }
+      },
+      { threshold: 0.1, rootMargin: "-100px" }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <section id="contact" className="py-32 px-6">
       <div className="max-w-4xl mx-auto">
-        <motion.div
+        <div
           ref={ref}
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.8 }}
+          className={isInView ? "animate-fade-in" : "opacity-0"}
         >
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">Collaborate</h2>
 
           <div className="text-center mb-16">
-            <motion.p
-              className="text-2xl text-gray-300 mb-8 leading-relaxed"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+            <p
+              className={`text-2xl text-gray-300 mb-8 leading-relaxed ${
+                isInView ? "animate-slide-up animation-delay-200" : "opacity-0"
+              }`}
             >
               lets collaborate and bring new <span className="text-amber-400 font-bold">visions</span> to life together!
-            </motion.p>
+            </p>
 
-            <motion.p
-              className="mb-8 text-lg text-gray-400"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+            <p
+              className={`mb-8 text-lg text-gray-400 ${
+                isInView ? "animate-slide-up animation-delay-300" : "opacity-0"
+              }`}
             >
               Check out my{" "}
               <a href="/portfolio" className="text-amber-400 hover:text-amber-300 underline transition-colors">
                 portfolio
               </a>{" "}
               to see more of my work.
-            </motion.p>
+            </p>
 
-            <motion.div
-              className="flex justify-center gap-8"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+            <div
+              className={`flex justify-center gap-8 ${
+                isInView ? "animate-slide-up animation-delay-400" : "opacity-0"
+              }`}
             >
               <a
                 href="mailto:zenbauhaus@gmail.com"
@@ -60,14 +70,13 @@ export function Contact() {
                   className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
                 />
               </a>
-            </motion.div>
+            </div>
           </div>
 
-          <motion.div
-            className="flex justify-center gap-6 mb-16"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
+          <div
+            className={`flex justify-center gap-6 mb-16 ${
+              isInView ? "animate-fade-in animation-delay-600" : "opacity-0"
+            }`}
           >
             <a href="#" className="p-3 text-gray-500 hover:text-cyan-400 transition-colors" aria-label="GitHub">
               <Github size={24} />
@@ -75,17 +84,16 @@ export function Contact() {
             <a href="#" className="p-3 text-gray-500 hover:text-cyan-400 transition-colors" aria-label="LinkedIn">
               <Linkedin size={24} />
             </a>
-          </motion.div>
+          </div>
 
-          <motion.div
-            className="text-center text-sm text-gray-600"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
+          <div
+            className={`text-center text-sm text-gray-600 ${
+              isInView ? "animate-fade-in animation-delay-800" : "opacity-0"
+            }`}
           >
             Crafted by zenbauhaus. © 2024
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   )

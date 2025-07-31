@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react"
 
 interface PerformanceIssue {
-  type: 'image' | 'animation' | 'threejs' | 'framer-motion' | 'network'
+  type: 'image' | 'animation' | 'threejs' | 'network'
   severity: 'low' | 'medium' | 'high' | 'critical'
   description: string
   recommendation: string
@@ -88,18 +88,6 @@ export function PerformanceAnalysis() {
           description: `Large images detected: ${largeImages.slice(0, 3).join(', ')}${largeImages.length > 3 ? '...' : ''}`,
           recommendation: 'Compress images above 2MB to reduce load times',
           metric: largeImages.length
-        })
-      }
-
-      // Analyze Framer Motion usage
-      const motionElements = document.querySelectorAll('[data-framer-motion]')
-      if (motionElements.length > 10) {
-        newIssues.push({
-          type: 'framer-motion',
-          severity: 'medium',
-          description: `${motionElements.length} Framer Motion components detected`,
-          recommendation: 'Consider reducing animation complexity or using CSS transitions for simple animations',
-          metric: motionElements.length
         })
       }
 

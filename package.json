@@ -22,7 +22,6 @@
     "@react-three/drei": "^10.6.1",
     "@react-three/fiber": "^9.3.0",
     "@react-three/postprocessing": "^3.0.4",
-    "framer-motion": "^12.23.12",
     "glsl-random": "^0.0.5",
     "leva": "^0.10.0",
     "lucide-react": "^0.535.0",

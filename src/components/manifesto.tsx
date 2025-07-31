@@ -1,7 +1,6 @@
 "use client"
 
-import { motion, useInView } from "framer-motion"
-import { useRef } from "react"
+import { useRef, useEffect, useState } from "react"
 
 const cards = [
   {
@@ -90,7 +89,24 @@ const cards = [
 
 export function Manifesto() {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: "-100px" })
+  const [isInView, setIsInView] = useState(false)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsInView(true)
+        }
+      },
+      { threshold: 0.1, rootMargin: "-100px" }
+    )
+
+    if (ref.current) {
+      observer.observe(ref.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <section
@@ -106,37 +122,37 @@ export function Manifesto() {
         className="relative z-10 mx-auto grid grid-cols-1 gap-8 md:grid-cols-2 md:grid-rows-2 md:gap-10 w-full max-w-5xl"
       >
         {cards.map((card, idx) => (
-          <motion.div
+          <div
             key={idx}
-            className="flex flex-col justify-between rounded-2xl bg-white shadow-2xl p-7 md:p-8 border border-black/10 min-h-[320px] transition-all"
+            className={`flex flex-col justify-between rounded-2xl bg-white shadow-2xl p-7 md:p-8 border border-black/10 min-h-[320px] transition-all ${
+              isInView ? "animate-scale-in" : "opacity-0"
+            }`}
             style={{
               minWidth: 0,
               flexBasis: "0",
               flexGrow: 1,
               flexShrink: 1,
               maxWidth: "100%",
+              animationDelay: `${0.15 * idx}s`,
             }}
-            initial={{ opacity: 0, y: 80, scale: 0.98 }}
-            animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 80, scale: 0.98 }}
-            transition={{ duration: 0.7, delay: 0.15 * idx, ease: "easeOut" }}
           >
-            <motion.h2
-              className="mb-5 text-2xl md:text-2xl lg:text-3xl font-extrabold leading-tight text-black tracking-tight uppercase"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.18 * idx + 0.1 }}
+            <h2
+              className={`mb-5 text-2xl md:text-2xl lg:text-3xl font-extrabold leading-tight text-black tracking-tight uppercase ${
+                isInView ? "animate-slide-up" : "opacity-0"
+              }`}
+              style={{ animationDelay: `${0.18 * idx + 0.1}s` }}
             >
               {card.title}
-            </motion.h2>
-            <motion.div
-              className="text-lg md:text-lg lg:text-xl font-medium text-black"
-              initial={{ opacity: 0, y: 20 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-              transition={{ duration: 0.6, delay: 0.22 * idx + 0.2 }}
+            </h2>
+            <div
+              className={`text-lg md:text-lg lg:text-xl font-medium text-black ${
+                isInView ? "animate-slide-up" : "opacity-0"
+              }`}
+              style={{ animationDelay: `${0.22 * idx + 0.2}s` }}
             >
               {card.content}
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         ))}
       </div>
     </section>

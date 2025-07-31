@@ -13,7 +13,6 @@ interface PerformanceMetrics {
   imageCount: number
   totalImageSize: number
   threeJsObjects: number
-  framerMotionComponents: number
   memoryUsage: number | null
 }
 
@@ -29,7 +28,6 @@ export function PerformanceDebugger() {
     imageCount: 0,
     totalImageSize: 0,
     threeJsObjects: 0,
-    framerMotionComponents: 0,
     memoryUsage: null,
   })
   const [isVisible, setIsVisible] = useState(false)
@@ -151,12 +149,6 @@ export function PerformanceDebugger() {
       }
     }
 
-    // Count Framer Motion components
-    const countFramerMotionComponents = () => {
-      const motionElements = document.querySelectorAll('[data-framer-motion]')
-      setMetrics(prev => ({ ...prev, framerMotionComponents: motionElements.length }))
-    }
-
     // Get memory usage if available
     const getMemoryUsage = () => {
       if ('memory' in performance) {
@@ -172,14 +164,12 @@ export function PerformanceDebugger() {
     trackMetrics()
     countImages()
     countThreeJsObjects()
-    countFramerMotionComponents()
     getMemoryUsage()
 
     // Set up periodic updates
     const interval = setInterval(() => {
       countImages()
       countThreeJsObjects()
-      countFramerMotionComponents()
       getMemoryUsage()
     }, 2000)
 
@@ -256,11 +246,6 @@ export function PerformanceDebugger() {
         <div className="flex justify-between">
           <span>Three.js Objects:</span>
           <span className="text-blue-400">{metrics.threeJsObjects}</span>
-        </div>
-
-        <div className="flex justify-between">
-          <span>Framer Motion:</span>
-          <span className="text-purple-400">{metrics.framerMotionComponents}</span>
         </div>
 
         <div className="flex justify-between">

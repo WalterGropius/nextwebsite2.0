@@ -7,7 +7,7 @@ const imageFiles = fs.readdirSync(publicDir).filter(file =>
     file.match(/^image\d+\.png$/i)
 )
 
-console.log(`Found ${imageFiles.length} image files to optimize`)
+console.log(`Found ${imageFiles.length} PNG images to convert to JPG`)
 
 imageFiles.forEach(file => {
     const filePath = path.join(publicDir, file)
@@ -17,34 +17,19 @@ imageFiles.forEach(file => {
     console.log(`\nProcessing ${file} (${sizeInMB}MB)...`)
 
     try {
-        // Create optimized version with reduced quality
-        const optimizedPath = path.join(publicDir, `optimized_${file}`)
+        const jpgFile = file.replace(/\.png$/i, '.jpg')
+        const jpgPath = path.join(publicDir, jpgFile)
 
-        // Use ImageMagick if available, otherwise use sharp
+        // Convert PNG to JPG using ImageMagick
         try {
-            execSync(`convert "${filePath}" -quality 85 -strip "${optimizedPath}"`, { cwd: publicDir })
-            console.log(`✓ Created optimized version: optimized_${file}`)
+            execSync(`convert "${filePath}" -quality 85 -background white -alpha remove "${jpgPath}"`, { cwd: publicDir })
+            console.log(`✓ Converted to JPG: ${jpgFile}`)
         } catch (error) {
-            console.log(`⚠ ImageMagick not available, skipping ${file}`)
+            console.log(`✗ Failed to convert ${file} to JPG (is ImageMagick installed?)`)
         }
-
-        // Also create WebP version for better compression
-        try {
-            const webpPath = path.join(publicDir, file.replace('.png', '.webp'))
-            execSync(`convert "${filePath}" -quality 85 "${webpPath}"`, { cwd: publicDir })
-            console.log(`✓ Created WebP version: ${file.replace('.png', '.webp')}`)
-        } catch (error) {
-            console.log(`⚠ Could not create WebP version for ${file}`)
-        }
-
     } catch (error) {
         console.error(`✗ Error processing ${file}:`, error.message)
     }
 })
 
-console.log('\nImage optimization complete!')
-console.log('\nRecommendations:')
-console.log('1. Replace original PNG files with optimized versions')
-console.log('2. Use WebP format for better compression')
-console.log('3. Consider implementing lazy loading for images')
-console.log('4. Use responsive images with different sizes') 
+console.log('\nPNG to JPG conversion complete!')

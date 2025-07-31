@@ -1,7 +1,7 @@
 [
   {
     "id": 16,
-    "image": "/image14.png",
+    "image": "/image14.jpg",
     "title": "Cpt. Demo EP",
     "description": "I made this EP cover with GIMP it was the beginning of a long and beautiful collaboration with Cpt. Demo",
     "date": "October 2021",
@@ -10,7 +10,7 @@
   },
   {
     "id": 11,
-    "image": "/image27.png",
+    "image": "/image27.jpg",
     "title": "Jan Kaláb sculpture",
     "description": "I made a 3d model in blender based on mockups and technical drawings to preview a sculpture and prepare it for cnc milling",
     "date": "July 2020",
@@ -19,7 +19,7 @@
   },
   {
     "id": 9,
-    "image": "/image17.png",
+    "image": "/image17.jpg",
     "title": "Epos 257 - Vanitas",
     "description": "I made an NFT replica of a sculpture for Epos 257",
     "date": "June 2020",
@@ -28,7 +28,7 @@
   },
   {
     "id": 12,
-    "image": "/image34.png",
+    "image": "/image34.jpg",
     "title": "Mancuska VR exhibit",
     "description": "VR gallery exposition of A gap by J. Mančuška for Viktor Takač with viewer analytics",
     "date": "June 2021",
@@ -37,7 +37,7 @@
   },
   {
     "id": 14,
-    "image": "/image02.png",
+    "image": "/image02.jpg",
     "title": "Adrex advertisement",
     "description": "VFX/VP commerical i made with oldrich.rocks",
     "date": "July 2021",
@@ -46,7 +46,7 @@
   },
   {
     "id": 15,
-    "image": "/image37.png",
+    "image": "/image37.jpg",
     "title": "Vlak LED screen UE4 support",
     "description": "Virtual production using gargantuous LED panels on czech feature film with VFXR",
     "date": "July 2021",
@@ -55,7 +55,7 @@
   },
   {
     "id": 13,
-    "image": "/image19.png",
+    "image": "/image19.jpg",
     "title": "Hotdog Shooter",
     "description": "playful collaboration with my student of Game Design, crowd system ai made from scratch",
     "date": "June 2021",
@@ -64,7 +64,7 @@
   },
   {
     "id": 21,
-    "image": "/image31.png",
+    "image": "/image31.jpg",
     "title": "Kevin Gates mv VFX",
     "description": "realistic jaguar comped in realtime in Unreal using reprojected and relit geometry + Mocha pro facetrack",
     "date": "March 2022",
@@ -73,7 +73,7 @@
   },
   {
     "id": 10,
-    "image": "/image03.png",
+    "image": "/image03.jpg",
     "title": "ALIENDIESEL EP",
     "description": "spotify artwork made with blender,ue and substance",
     "date": "June 2020",
@@ -82,7 +82,7 @@
   },
   {
     "id": 18,
-    "image": "/image13.png",
+    "image": "/image13.jpg",
     "title": "Cpt. Demo EP",
     "description": "made another EP cover for čardáš in GIMP",
     "date": "November 2021",
@@ -91,7 +91,7 @@
   },
   {
     "id": 25,
-    "image": "/image01.png",
+    "image": "/image01.jpg",
     "title": "2MEDIA website",
     "description": "2media 3d website using playcanvas, polygon.js and finally settling on react-three-fiber",
     "date": "October 2022",
@@ -100,7 +100,7 @@
   },
   {
     "id": 17,
-    "image": "/image15.png",
+    "image": "/image15.jpg",
     "title": "Cpt. Demo LP",
     "description": "Nobel Prize replica LP cover",
     "date": "November 2021",
@@ -109,7 +109,7 @@
   },
   {
     "id": 23,
-    "image": "/image08.png",
+    "image": "/image08.jpg",
     "title": "Burian LP GFX",
     "description": "cover artwork design for upcoming Burian LP",
     "date": "July 2022",
@@ -118,7 +118,7 @@
   },
   {
     "id": 24,
-    "image": "/image28.png",
+    "image": "/image28.jpg",
     "title": "Johnny Majestic mv",
     "description": "Color grading and digital talking horse VFX",
     "date": "August 2022",
@@ -127,7 +127,7 @@
   },
   {
     "id": 19,
-    "image": "/image16.png",
+    "image": "/image16.jpg",
     "title": "Cpt. Demo mv VFX",
     "description": "I made a bunch of unreal scenes, a bttf-style car entry, a lightsabre streetfight a flying car and hand animated bullets (including their reflection on dat windshield",
     "date": "December 2021",
@@ -136,7 +136,7 @@
   },
   {
     "id": 20,
-    "image": "/image10.png",
+    "image": "/image10.jpg",
     "title": "CPT. Demo CNN reportage",
     "description": "Unreal VP for CNN Prima SHOWTIME reportage about Cpt. Demo",
     "date": "January 2022",
@@ -145,7 +145,7 @@
   },
   {
     "id": 22,
-    "image": "/image26.png",
+    "image": "/image26.jpg",
     "title": "HPNOVERSE VFX",
     "description": "I made a satirical booze commercial come to life with unreal and DaVinci",
     "date": "July 2022",
@@ -154,7 +154,7 @@
   },
   {
     "id": 5,
-    "image": "/image09.png",
+    "image": "/image09.jpg",
     "title": "CIEXPO",
     "description": "http://ciexpo.cz",
     "date": "February 2018",
@@ -163,7 +163,7 @@
   },
   {
     "id": 7,
-    "image": "/image04.png",
+    "image": "/image04.jpg",
     "title": "ARROW",
     "description": "Custom branded teambuidling VR archery game featuring boids programmed from scratch",
     "date": "February 2018",
@@ -172,7 +172,7 @@
   },
   {
     "id": 4,
-    "image": "/image06.png",
+    "image": "/image06.jpg",
     "title": "Bee Game",
     "description": "Educational VR game for kids about the life of a bee",
     "date": "January 19, 2018",
@@ -181,7 +181,7 @@
   },
   {
     "id": 8,
-    "image": "/image38.png",
+    "image": "/image38.jpg",
     "title": "VR and AR for Svoboda Williams",
     "description": "case study for VR and AR in real estate",
     "date": "January 2019",
@@ -190,7 +190,7 @@
   },
   {
     "id": 1,
-    "image": "/image41.png",
+    "image": "/image41.jpg",
     "title": "ŽIDLICKÝ VR gallery",
     "description": "first virtual gallery in central Europe :D ",
     "date": "April 2015",
@@ -199,7 +199,7 @@
   },
   {
     "id": 2,
-    "image": "/image35.png",
+    "image": "/image35.jpg",
     "title": "Excalibur military",
     "description": "VR+AR Military factory presentation for Indonesian Gvt.",
     "date": "February 2017",
@@ -208,7 +208,7 @@
   },
   {
     "id": 6,
-    "image": "/image18.png",
+    "image": "/image18.jpg",
     "title": "old fancy AR tests",
     "description": "early Unity tests with Lucas Saidl",
     "date": "February 2018",
@@ -217,7 +217,7 @@
   },
   {
     "id": 3,
-    "image": "/image05.png",
+    "image": "/image05.jpg",
     "title": "BANK renders and VR",
     "description": "Unreal, BLender, Substance",
     "date": "June 2017",
@@ -226,7 +226,7 @@
   },
   {
     "id": 26,
-    "image": "/image39.png",
+    "image": "/image39.jpg",
     "title": "WIP trust perfumes website",
     "description": "r3f perfume mixer for artisanal scent creator",
     "date": "March 2023",
@@ -235,7 +235,7 @@
   },
   {
     "id": 27,
-    "image": "/image36.png",
+    "image": "/image36.jpg",
     "title": "numinos VR timetravel",
     "description": "varied work for Numinos VR timetravel as Tech artist, RnD dev, Render in Unreal Engine",
     "date": "March 2023",
