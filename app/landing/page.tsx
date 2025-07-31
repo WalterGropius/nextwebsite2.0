@@ -12,6 +12,8 @@ import { Navigation } from "@/components/navigation"
 import { Flowers } from "@/components/canvas/Flowers"
 import { LoadingSpinner } from "@/components/loading-spinner"
 import { SketchfabEmbed } from "@/components/sketchfab-embed"
+import { PerformanceDebugger } from "@/components/performance-debugger"
+import { PerformanceAnalysis } from "@/components/performance-analysis"
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
@@ -81,6 +83,9 @@ export default function Home() {
           <Contact />
         </Suspense>
       </div>
+      
+      <PerformanceDebugger />
+      <PerformanceAnalysis />
     </main>
   )
 }

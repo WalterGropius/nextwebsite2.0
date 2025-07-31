@@ -16,8 +16,6 @@ import { useControls } from 'leva'
 import { Cone, Sphere as DreiSphere } from '@react-three/drei'
 import { EffectComposer, Bloom, ChromaticAberration, Vignette, DepthOfField } from '@react-three/postprocessing'
 
-extend({ EffectComposer, Bloom, ChromaticAberration, Vignette, DepthOfField })
-
 interface Boid {
   position: Vector3
   velocity: Vector3
