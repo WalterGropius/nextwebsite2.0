@@ -98,7 +98,7 @@ export function Creations({ randomCount }: CreationsProps) {
                   style={{ animationDelay: `${0.1 * index}s` }}
                 >
                   <div className="relative w-full aspect-[2/3]">
-                    <Image
+                    {/* <Image
                       src={project.image}
                       alt={project.title}
                       fill
@@ -106,6 +106,12 @@ export function Creations({ randomCount }: CreationsProps) {
                       style={{ zIndex: 0 }}
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                       priority={false}
+                    /> */}
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      className="object-cover group-hover:scale-110 transition-transform duration-300"
+                      style={{ zIndex: 0, position: "absolute", inset: 0, width: "100%", height: "100%" }}
                     />
                   </div>
                   <div className="absolute inset-0 flex items-end pointer-events-none">
