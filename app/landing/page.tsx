@@ -9,7 +9,7 @@ import { Arsenal } from "@/components/arsenal"
 import { Philosophy } from "@/components/philosophy"
 import { Contact } from "@/components/contact"
 import { Navigation } from "@/components/navigation"
-import Flowers from "@/components/canvas/Flowers"
+import { Flowers } from "@/components/canvas/Flowers"
 import { LoadingSpinner } from "@/components/loading-spinner"
 import { SketchfabEmbed } from "@/components/sketchfab-embed"
 
