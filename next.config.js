@@ -67,7 +67,7 @@ const nextConfig = {
         ],
       },
       {
-        source: '**/*.splat',
+        source: '/**/*.splat',
         headers: [
           {
             key: 'Content-Type',
