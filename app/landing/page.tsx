@@ -10,6 +10,7 @@ import { Contact } from "@/components/contact"
 import { Navigation } from "@/components/navigation"
 import Flowers from "@/components/canvas/Flowers"
 import { LoadingSpinner } from "@/components/loading-spinner"
+import { SketchfabEmbed } from "@/components/sketchfab-embed"
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
@@ -61,6 +62,10 @@ export default function Home() {
 
         <Suspense fallback={<LoadingSpinner />}>
           <Creations />
+        </Suspense>
+
+        <Suspense fallback={<LoadingSpinner />}>
+          <SketchfabEmbed />
         </Suspense>
 
         <Suspense fallback={<LoadingSpinner />}>
