@@ -22,8 +22,6 @@
     "@react-three/drei": "^10.6.1",
     "@react-three/fiber": "^9.3.0",
     "@react-three/postprocessing": "^3.0.4",
-    "@tailwindcss/line-clamp": "^0.4.4",
-    "@tailwindcss/postcss": "^4.1.11",
     "framer-motion": "^12.23.12",
     "glsl-random": "^0.0.5",
     "leva": "^0.10.0",
@@ -55,7 +53,7 @@
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
     "raw-loader": "^4.0.2",
-    "tailwindcss": "^4.1.11",
+    "tailwindcss": "^3.4.0",
     "typescript": "^5.8.3",
     "url-loader": "^4.1.1"
   },
