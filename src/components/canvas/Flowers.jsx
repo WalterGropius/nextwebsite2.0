@@ -1,3 +1,4 @@
+'use client'
 import { PresentationControls, Float, Splat } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { useRef, useState, useEffect } from 'react'
