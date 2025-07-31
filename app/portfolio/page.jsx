@@ -4,6 +4,7 @@ import * as THREE from 'three'
 import { Mesh, PlaneGeometry } from 'three'
 import { useLayoutEffect, useMemo, useRef, useState, useEffect, useCallback } from 'react'
 import { Canvas, extend, useFrame } from '@react-three/fiber'
+import dynamic from 'next/dynamic'
 import {
   Image,
   ScrollControls,
@@ -26,9 +27,16 @@ extend(geometry)
 extend({ PlaneGeometry })
 const inter = import('@pmndrs/assets/fonts/inter_regular.woff')
 const bridge = import('@pmndrs/assets/hdri/dawn.exr.js')
+// Create a client-only Canvas component
+const ClientOnlyCanvas = dynamic(() => Promise.resolve(({ children }) => (
+  <Canvas dpr={[1, 1.5]} style={{ overflow: 'none' }}>
+    {children}
+  </Canvas>
+)), { ssr: false })
+
 export default function Page() {
   return (
-    <Canvas dpr={[1, 1.5]} style={{ overflow: 'none' }}>
+    <ClientOnlyCanvas>
       <ScrollControls pages={4} infinite>
         <Scene position={[0, 1.5, 0]} />
         <Environment
@@ -38,7 +46,7 @@ export default function Page() {
           backgroundBlurriness={0.4}
         />
       </ScrollControls>
-    </Canvas>
+    </ClientOnlyCanvas>
   )
 
   function Scene({ children, ...props }) {
