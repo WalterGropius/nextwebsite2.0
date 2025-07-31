@@ -29,18 +29,20 @@ export function Contact() {
 
           <div className="text-center mb-16">
             <p
-              className={`text-2xl text-gray-300 mb-8 leading-relaxed ${isInView ? "animate-slide-up animation-delay-200" : "opacity-0"
+              className={`text-2xl mb-8 leading-relaxed ${isInView ? "animate-slide-up animation-delay-200" : "opacity-0"
                 }`}
+              style={{ color: 'var(--thistle)' }}
             >
-              lets collaborate and bring new <span className="text-amber-400 font-bold">visions</span> to life together!
+              lets collaborate and bring new <span style={{ color: 'var(--flax)', fontWeight: 'bold' }}>visions</span> to life together!
             </p>
 
             <p
-              className={`mb-8 text-lg text-gray-400 ${isInView ? "animate-slide-up animation-delay-300" : "opacity-0"
+              className={`mb-8 text-lg ${isInView ? "animate-slide-up animation-delay-300" : "opacity-0"
                 }`}
+              style={{ color: 'var(--salmon-pink)' }}
             >
               Check out my{" "}
-              <a href="/portfolio" className="text-amber-400 hover:text-amber-300 underline transition-colors">
+              <a href="/portfolio" style={{ color: 'var(--flax)' }} className="hover:opacity-80 underline transition-colors">
                 portfolio
               </a>{" "}
               to see more of my work.
@@ -52,7 +54,8 @@ export function Contact() {
             >
               <a
                 href="mailto:zenbauhaus@gmail.com"
-                className="group flex items-center gap-3 px-6 py-3 bg-amber-400 text-white rounded-lg font-medium hover:bg-amber-300 transition-colors"
+                className="group flex items-center gap-3 px-6 py-3 rounded-lg font-medium transition-colors"
+                style={{ backgroundColor: 'var(--vermilion)', color: 'white' }}
               >
                 <Mail size={20} />
                 Get in Touch
@@ -70,7 +73,8 @@ export function Contact() {
           >
             <a
               href="https://github.com/WalterGropius"
-              className="p-3 text-gray-500 hover:text-cyan-400 transition-colors"
+              className="p-3 transition-colors"
+              style={{ color: 'var(--salmon-pink)' }}
               aria-label="GitHub"
               target="_blank" rel="noopener noreferrer"
             >
@@ -78,7 +82,8 @@ export function Contact() {
             </a>
             <a
               href="https://linkedin.com/in/zenbauhaus"
-              className="p-3 text-gray-500 hover:text-cyan-400 transition-colors"
+              className="p-3 transition-colors"
+              style={{ color: 'var(--vista-blue)' }}
               aria-label="LinkedIn"
               target="_blank" rel="noopener noreferrer"
             >
@@ -86,7 +91,8 @@ export function Contact() {
             </a>
             <a
               href="https://instagram.com/y4ngyin"
-              className="p-3 text-gray-500 hover:text-pink-400 transition-colors"
+              className="p-3 transition-colors"
+              style={{ color: 'var(--pistachio)' }}
               aria-label="Instagram y4ngyin"
               target="_blank" rel="noopener noreferrer"
             >
@@ -94,7 +100,8 @@ export function Contact() {
             </a>
             <a
               href="https://instagram.com/tra5her_sk8"
-              className="p-3 text-gray-500 hover:text-pink-400 transition-colors"
+              className="p-3 transition-colors"
+              style={{ color: 'var(--lion)' }}
               aria-label="Instagram tra5her_sk8"
               target="_blank" rel="noopener noreferrer"
             >
@@ -102,7 +109,8 @@ export function Contact() {
             </a>
             <a
               href="https://facebook.com/ezbawa"
-              className="p-3 text-gray-500 hover:text-blue-500 transition-colors"
+              className="p-3 transition-colors"
+              style={{ color: 'var(--thistle)' }}
               aria-label="Facebook ezbawa"
               target="_blank" rel="noopener noreferrer"
             >
@@ -110,7 +118,8 @@ export function Contact() {
             </a>
             <a
               href="https://soundcloud.com/mczenbauhaus"
-              className="p-3 text-gray-500 hover:text-orange-400 transition-colors"
+              className="p-3 transition-colors"
+              style={{ color: 'var(--flax)' }}
               aria-label="SoundCloud mczenbauhaus"
               target="_blank" rel="noopener noreferrer"
             >
@@ -119,8 +128,9 @@ export function Contact() {
           </div>
 
           <div
-            className={`text-center text-sm text-gray-600 ${isInView ? "animate-fade-in animation-delay-800" : "opacity-0"
+            className={`text-center text-sm ${isInView ? "animate-fade-in animation-delay-800" : "opacity-0"
               }`}
+            style={{ color: 'var(--fern-green)' }}
           >
             Crafted by zenbauhaus. © 2024
           </div>

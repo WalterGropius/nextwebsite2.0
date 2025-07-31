@@ -67,20 +67,15 @@ export function Flowers() {
 
   return (
     <>
-      <ambientLight intensity={0.8} />
-      <directionalLight position={[10, 10, 5]} intensity={1.2} castShadow={false} />
-      <pointLight position={[-5, -5, -5]} color="#3b82f6" intensity={0.4} />
-      <Float speed={0.5} rotationIntensity={0.1} floatIntensity={0.1}>
-        {!hasError ? (
-          <group ref={splatRef}>
-            <Splat
-              scale={3}
-              rotation={[0, -0.7 * Math.PI, 0]}
-              src="../../flowers_white.splat"
-            />
-          </group>
-        ) : null}
-      </Float>
+      {!hasError ? (
+        <group ref={splatRef}>
+          <Splat
+            scale={3}
+            rotation={[0, -0.7 * Math.PI, 0]}
+            src="../../flowers_white.splat"
+          />
+        </group>
+      ) : null}
     </>
   )
 }

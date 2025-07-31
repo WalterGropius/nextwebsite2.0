@@ -5,6 +5,21 @@
 @tailwind utilities;
 
 @layer base {
+  :root {
+    /* Custom Color Palette */
+    --vermilion: #ee4a44;
+    --salmon-pink: #fc7472;
+    --lion: #ab874a;
+    --flax: #fced87;
+    --pistachio: #b5cf73;
+    --fern-green: #55743f;
+    --vista-blue: #a3a4e1;
+    --thistle: #dcd0f1;
+    --delft-blue: #1d1f2c;
+    --cobalt-blue: #3b66f3;
+    --indigo: #5e5372;
+  }
+
   * {
     box-sizing: border-box;
   }
@@ -68,6 +83,7 @@
 }
 
 @layer utilities {
+
   /* Custom animations to replace Framer Motion */
   .animate-fade-in-up {
     animation: fadeInUp 1s ease-out forwards;

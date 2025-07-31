@@ -41,7 +41,8 @@ export default function LandingLayout({
     <>
       <div
         data-landing="true"
-        className="antialiased min-h-screen text-gray-100 font-sans"
+        className="antialiased min-h-screen font-sans"
+        style={{ color: 'var(--thistle)' }}
       >
         {children}
 

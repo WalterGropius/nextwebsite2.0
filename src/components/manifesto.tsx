@@ -4,84 +4,57 @@ import { useRef, useEffect, useState } from "react"
 
 const cards = [
   {
-    title: "with a profound passion",
+    title: "Art Meets Tech",
     content: (
       <>
-        for the synergy of
-        <br />
-        <br />
-        <span className="inline-block text-5xl md:text-6xl font-extrabold leading-none uppercase">
+        I love both{" "}
+        <span className="inline-block text-5xl md:text-3xl font-extrabold leading-none uppercase" style={{ color: 'var(--vermilion)' }}>
           ART
         </span>{" "}
         and{" "}
-        <span className="inline-block text-5xl md:text-6xl font-extrabold leading-none uppercase">
+        <span className="inline-block text-5xl md:text-3xl font-extrabold leading-none uppercase" style={{ color: 'var(--cobalt-blue)' }}>
           TECHNOLOGY
-        </span>
+        </span>{" "}
+        and especially finding ways to{" "}
+        <span className="inline-block text-5xl md:text-3xl font-extrabold leading-none uppercase" style={{ color: 'var(--fern-green)' }}>
+          MAKE THEM WORK TOGETHER
+        </span>.
+        <br />
+        <br />
+        It’s just applied curiosity and a hard head.
       </>
     ),
   },
   {
-    title: "bridging creative vision & technical execution",
-    content: (
-      <ul className="space-y-7">
-        <li>
-          whether supporting{" "}
-          <span className="inline-block text-4xl md:text-5xl font-extrabold uppercase">
-            ARTISTS
-          </span>{" "}
-          in making their{" "}
-          <span className="inline-block text-4xl md:text-5xl font-extrabold uppercase">
-            DREAMS
-          </span>{" "}
-          tangible or spicing up a technical query with a fresh idea,
-        </li>
-        <li>
-          my heart lies at the crossroads of{" "}
-          <span className="inline-block text-4xl md:text-5xl font-extrabold uppercase">
-            IMAGINATION
-          </span>{" "}
-          and{" "}
-          <span className="inline-block text-4xl md:text-5xl font-extrabold uppercase">
-            INNOVATION
-          </span>
-          .
-        </li>
-      </ul>
-    ),
-  },
-  {
-    title: "learning from every mind",
+    title: "Collaboration is Everything",
     content: (
       <>
-        fortunate to work with both artistic and technical minds, continually learning the importance of{" "}
-        <span className="inline-block text-3xl md:text-4xl font-extrabold uppercase">
-          FUNCTIONALITY
-        </span>
-        ,{" "}
-        <span className="inline-block text-3xl md:text-4xl font-extrabold uppercase">
-          AESTHETICS
-        </span>{" "}
-        and{" "}
-        <span className="inline-block text-3xl md:text-4xl font-extrabold uppercase">
-          USER EXPERIENCE
-        </span>
-        .
+        I get a kick out of teaming up with people from all walks—artists, engineers, dreamers, doers.
+        <br />
+        <br />
+        Every project is a chance to learn something new and make something better, together.
       </>
     ),
   },
   {
-    title: "unleashing creativity & technology",
+    title: "Keep It Real, Keep It Useful",
     content: (
       <>
-        every collaboration is an opportunity to unleash{" "}
-        <span className="inline-block text-4xl md:text-5xl font-extrabold uppercase">
-          VISIONARY CREATIVITY
-        </span>{" "}
-        and{" "}
-        <span className="inline-block text-4xl md:text-5xl font-extrabold uppercase">
-          STATE OF THE ART TECHNOLOGY
-        </span>
-        .
+        I strive to make things work, look good, and feel right.
+        <br />
+        <br />
+        If it doesn’t help someone, what’s the point?
+      </>
+    ),
+  },
+  {
+    title: "Let’s Make Cool Stuff",
+    content: (
+      <>
+        I’m here to push boundaries, learn as much as I can, and have fun doing it.
+        <br />
+        <br />
+        If you want to build something that makes people say “wow,” let’s talk.
       </>
     ),
   },
@@ -94,17 +67,11 @@ export function Manifesto() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true)
-        }
+        if (entry.isIntersecting) setIsInView(true)
       },
       { threshold: 0.1, rootMargin: "-100px" }
     )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
+    if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
   }, [])
 
@@ -113,9 +80,9 @@ export function Manifesto() {
       id="manifesto"
       className="relative py-24 px-4 sm:px-12 md:px-20 overflow-hidden"
     >
-      {/* Bold, minimal background shapes */}
-      <div className="pointer-events-none absolute -top-40 -left-40 h-[28rem] w-[28rem] rounded-full bg-black/5 blur-2xl" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-96 w-96 rounded-full bg-black/10 blur-2xl" />
+      {/* Soft, playful background shapes */}
+      <div className="pointer-events-none absolute -top-40 -left-40 h-[28rem] w-[28rem] rounded-full blur-2xl" style={{ backgroundColor: 'rgba(238, 74, 68, 0.12)' }} />
+      <div className="pointer-events-none absolute bottom-0 right-0 h-96 w-96 rounded-full blur-2xl" style={{ backgroundColor: 'rgba(29, 31, 44, 0.13)' }} />
 
       <div
         ref={ref}
@@ -124,9 +91,8 @@ export function Manifesto() {
         {cards.map((card, idx) => (
           <div
             key={idx}
-            className={`flex flex-col justify-between rounded-2xl bg-white shadow-2xl p-7 md:p-8 border border-black/10 min-h-[320px] transition-all ${
-              isInView ? "animate-scale-in" : "opacity-0"
-            }`}
+            className={`flex flex-col justify-between rounded-2xl bg-white shadow-2xl p-7 md:p-8 border border-black/10 min-h-[220px] transition-all ${isInView ? "animate-scale-in" : "opacity-0"
+              }`}
             style={{
               minWidth: 0,
               flexBasis: "0",
@@ -137,17 +103,15 @@ export function Manifesto() {
             }}
           >
             <h2
-              className={`mb-5 text-2xl md:text-2xl lg:text-3xl font-extrabold leading-tight text-black tracking-tight uppercase ${
-                isInView ? "animate-slide-up" : "opacity-0"
-              }`}
-              style={{ animationDelay: `${0.18 * idx + 0.1}s` }}
+              className={`mb-5 text-2xl md:text-2xl lg:text-3xl font-extrabold leading-tight text-black tracking-tight uppercase ${isInView ? "animate-slide-up" : "opacity-0"
+                }`}
+              style={{ animationDelay: `${0.18 * idx + 0.1}s`, color: 'var(--cobalt-blue)' }}
             >
               {card.title}
             </h2>
             <div
-              className={`text-lg md:text-lg lg:text-xl font-medium text-black ${
-                isInView ? "animate-slide-up" : "opacity-0"
-              }`}
+              className={`text-lg md:text-lg lg:text-xl font-medium text-black ${isInView ? "animate-slide-up" : "opacity-0"
+                }`}
               style={{ animationDelay: `${0.22 * idx + 0.2}s` }}
             >
               {card.content}

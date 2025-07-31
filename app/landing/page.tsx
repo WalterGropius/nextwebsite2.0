@@ -15,6 +15,7 @@ import { SketchfabEmbed } from "@/components/sketchfab-embed"
 import { PerformanceDebugger } from "@/components/performance-debugger"
 import { PerformanceAnalysis } from "@/components/performance-analysis"
 import { PageLoader } from "@/components/page-loader"
+import { EffectComposer, Bloom as BloomEffect } from "@react-three/postprocessing"
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
@@ -35,7 +36,7 @@ export default function Home() {
             {mounted ? (
               <Canvas
                 style={{ backgroundColor: "transparent" }}
-                camera={{ position: [0, 0, 5], fov: 75 }}
+                camera={{ position: [0, 0, 3], fov: 75 }}
                 className="size-full"
                 dpr={[1, 2]}
                 performance={{ min: 0.5 }}
@@ -45,7 +46,9 @@ export default function Home() {
                   powerPreference: "high-performance"
                 }}
               >
-
+                {/*  <EffectComposer>
+                  <BloomEffect intensity={0} />
+                </EffectComposer> */}
                 <Flowers />
               </Canvas>
             ) : (
@@ -57,7 +60,7 @@ export default function Home() {
             <Hero />
           </div>
         </section>
-        <div className="relative z-20 bg-blue">
+        <div className="relative z-20" style={{ backgroundColor: 'var(--delft-blue)' }}>
           <Manifesto />
           <Philosophy />
           <Creations randomCount={6} />

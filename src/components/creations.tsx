@@ -134,7 +134,8 @@ export function Creations({ randomCount }: CreationsProps) {
                           href={project.link}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-amber-400 hover:text-amber-300 transition-colors text-sm"
+                          className="inline-flex items-center gap-2 transition-colors text-sm"
+                          style={{ color: 'var(--flax)' }}
                         >
                           View Project
                           <ExternalLink size={14} />
@@ -151,9 +152,9 @@ export function Creations({ randomCount }: CreationsProps) {
             <div
               className={`text-center mt-16 ${isInView ? "animate-slide-up animation-delay-800" : "opacity-0"}`}
             >
-              <p className="mb-8 text-lg text-gray-400">
+              <p className="mb-8 text-lg" style={{ color: 'var(--salmon-pink)' }}>
                 Check out my{" "}
-                <a href="/portfolio-s" className="text-amber-400 hover:text-amber-300 underline transition-colors">
+                <a href="/portfolio-s" style={{ color: 'var(--flax)' }} className="hover:opacity-80 underline transition-colors">
                   full portfolio
                 </a>{" "}
                 to see more of my work.

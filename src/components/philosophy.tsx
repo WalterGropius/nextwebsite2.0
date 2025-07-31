@@ -8,19 +8,19 @@ const philosophyAreas = [
     title: "Functionality",
     icon: Lightbulb,
     description: "Building solutions that work seamlessly and serve their intended purpose with reliability and efficiency.",
-    color: "text-amber-400",
+    color: "var(--salmon-pink)",
   },
   {
     title: "Aesthetics",
     icon: Heart,
     description: "Creating beautiful experiences that inspire and delight, understanding that form and function are inseparable.",
-    color: "text-cyan-400",
+    color: "var(--flax)",
   },
   {
     title: "User Experience",
     icon: Users,
     description: "Crafting intuitive interactions that empower users and make complex technology accessible to everyone.",
-    color: "text-emerald-400",
+    color: "var(--cobalt-blue)",
   },
 ]
 
@@ -55,9 +55,8 @@ export function Philosophy() {
           <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">Philosophy</h2>
 
           <div
-            className={`text-center mb-16 ${
-              isInView ? "animate-slide-up animation-delay-200" : "opacity-0"
-            }`}
+            className={`text-center mb-16 ${isInView ? "animate-slide-up animation-delay-200" : "opacity-0"
+              }`}
           >
             <p className="text-xl text-gray-300 leading-relaxed max-w-3xl mx-auto">
               Continually learning the importance of balancing the essential pillars
@@ -69,16 +68,19 @@ export function Philosophy() {
             {philosophyAreas.map((area, index) => (
               <div
                 key={area.title}
-                className={`group p-8 bg-gray-900/50 rounded-lg border border-gray-800 hover:border-gray-700 transition-all duration-300 hover:-translate-y-1 ${
-                  isInView ? "animate-scale-in" : "opacity-0"
-                }`}
-                style={{ animationDelay: `${0.3 + index * 0.1}s` }}
+                className={`group p-8 rounded-lg border transition-all duration-300 hover:-translate-y-1 ${isInView ? "animate-scale-in" : "opacity-0"
+                  }`}
+                style={{
+                  animationDelay: `${0.3 + index * 0.1}s`,
+                  backgroundColor: 'rgba(58, 63, 106, 0.5)',
+                  borderColor: 'var(--vista-blue)'
+                }}
               >
                 <div className="flex items-center gap-4 mb-6">
-                  <div className={`p-3 rounded-lg bg-gray-800 ${area.color}`}>
+                  <div className="p-3 rounded-lg" style={{ backgroundColor: 'var(--delft-blue)', color: area.color }}>
                     <area.icon size={24} />
                   </div>
-                  <h3 className={`text-2xl font-bold ${area.color}`}>{area.title}</h3>
+                  <h3 className="text-2xl font-bold" style={{ color: area.color }}>{area.title}</h3>
                 </div>
 
                 <p className="text-gray-300 leading-relaxed">
