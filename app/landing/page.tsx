@@ -45,9 +45,8 @@ export default function Home() {
                   powerPreference: "high-performance"
                 }}
               >
-                <Suspense fallback={null}>
-                  <Flowers />
-                </Suspense>
+
+                <Flowers />
               </Canvas>
             ) : (
               <div className="absolute inset-0 z-0" />
@@ -58,29 +57,12 @@ export default function Home() {
             <Hero />
           </div>
         </section>
-
-        {/* Content Sections with improved performance */}
         <div className="relative z-20 bg-blue">
-          <Suspense fallback={<LoadingSpinner />}>
-            <Manifesto />
-          </Suspense>
-
-          <Suspense fallback={<LoadingSpinner />}>
-            <Philosophy />
-          </Suspense>
-
-          <Suspense fallback={<LoadingSpinner />}>
-            <Creations randomCount={6} />
-          </Suspense>
-
-          <Suspense fallback={<LoadingSpinner />}>
-            <Arsenal />
-          </Suspense>
-
+          <Manifesto />
+          <Philosophy />
+          <Creations randomCount={6} />
+          <Arsenal />
         </div>
-
-        {/*  <PerformanceDebugger />
-      <PerformanceAnalysis /> */}
       </main>
     </PageLoader>
   )
