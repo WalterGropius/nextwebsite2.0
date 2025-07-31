@@ -63,7 +63,7 @@ export default function Home() {
         <div className="relative z-20" style={{ backgroundColor: 'var(--delft-blue)' }}>
           <Manifesto />
           <Philosophy />
-          <Creations randomCount={6} />
+          {/*  <Creations randomCount={6} /> */}
           <Arsenal />
         </div>
       </main>
