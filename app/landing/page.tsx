@@ -14,6 +14,7 @@ import { LoadingSpinner } from "@/components/loading-spinner"
 import { SketchfabEmbed } from "@/components/sketchfab-embed"
 import { PerformanceDebugger } from "@/components/performance-debugger"
 import { PerformanceAnalysis } from "@/components/performance-analysis"
+import { PageLoader } from "@/components/page-loader"
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
@@ -24,61 +25,63 @@ export default function Home() {
   }, [])
 
   return (
-    <main className="min-h-screen overflow-x-hidden text-gray-100">
-      <Navigation />
+    <PageLoader>
+      <main className="min-h-screen overflow-x-hidden text-gray-100">
+        <Navigation />
 
-      {/* Hero Section with Optimized 3D Background */}
-      <section className="relative h-screen w-full bg-[#f2f2f2]">
-        <div className="absolute inset-0 z-0" suppressHydrationWarning>
-          {mounted ? (
-            <Canvas
-              style={{ backgroundColor: "transparent" }}
-              camera={{ position: [0, 0, 5], fov: 75 }}
-              className="size-full"
-              dpr={[1, 2]}
-              performance={{ min: 0.5 }}
-              gl={{
-                antialias: true,
-                alpha: true,
-                powerPreference: "high-performance"
-              }}
-            >
-              <Suspense fallback={null}>
-                <Flowers />
-              </Suspense>
-            </Canvas>
-          ) : (
-            <div className="absolute inset-0 z-0" />
-          )}
+        {/* Hero Section with Optimized 3D Background */}
+        <section className="relative h-screen w-full bg-[#f2f2f2]">
+          <div className="absolute inset-0 z-0" suppressHydrationWarning>
+            {mounted ? (
+              <Canvas
+                style={{ backgroundColor: "transparent" }}
+                camera={{ position: [0, 0, 5], fov: 75 }}
+                className="size-full"
+                dpr={[1, 2]}
+                performance={{ min: 0.5 }}
+                gl={{
+                  antialias: true,
+                  alpha: true,
+                  powerPreference: "high-performance"
+                }}
+              >
+                <Suspense fallback={null}>
+                  <Flowers />
+                </Suspense>
+              </Canvas>
+            ) : (
+              <div className="absolute inset-0 z-0" />
+            )}
+          </div>
+
+          <div className="absolute inset-0 z-10">
+            <Hero />
+          </div>
+        </section>
+
+        {/* Content Sections with improved performance */}
+        <div className="relative z-20 bg-blue">
+          <Suspense fallback={<LoadingSpinner />}>
+            <Manifesto />
+          </Suspense>
+
+          <Suspense fallback={<LoadingSpinner />}>
+            <Philosophy />
+          </Suspense>
+
+          <Suspense fallback={<LoadingSpinner />}>
+            <Creations randomCount={6} />
+          </Suspense>
+
+          <Suspense fallback={<LoadingSpinner />}>
+            <Arsenal />
+          </Suspense>
+
         </div>
 
-        <div className="absolute inset-0 z-10">
-          <Hero />
-        </div>
-      </section>
-
-      {/* Content Sections with improved performance */}
-      <div className="relative z-20 bg-blue">
-        <Suspense fallback={<LoadingSpinner />}>
-          <Manifesto />
-        </Suspense>
-
-        <Suspense fallback={<LoadingSpinner />}>
-          <Philosophy />
-        </Suspense>
-
-        <Suspense fallback={<LoadingSpinner />}>
-          <Creations randomCount={6} />
-        </Suspense>
-
-        <Suspense fallback={<LoadingSpinner />}>
-          <Arsenal />
-        </Suspense>
-
-      </div>
-
-      <PerformanceDebugger />
-      <PerformanceAnalysis />
-    </main>
+        {/*  <PerformanceDebugger />
+      <PerformanceAnalysis /> */}
+      </main>
+    </PageLoader>
   )
 }
