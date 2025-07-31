@@ -7,7 +7,7 @@ export function Hero() {
     <div className="flex items-center justify-center h-full relative">
       <div className="relative z-10 mx-auto flex w-full flex-col flex-wrap items-center md:flex-row lg:w-4/5">
         {/* Main content matching page.jsx */}
-        <div className="flex w-full flex-col items-start justify-center p-12 text-center md:w-2/5 md:text-left">
+        <div className="flex w-full flex-col items-start justify-center p-12 text-center md:w-2/5 md:text-left bg-gray-900/70 backdrop-blur-md rounded-xl">
           <motion.p
             className="w-full uppercase text-amber-400 font-mono tracking-widest"
             initial={{ opacity: 0, y: 30 }}
@@ -37,8 +37,9 @@ export function Hero() {
         </div>
       </div>
 
-      {/* Subtle gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-white/80 pointer-events-none" />
+      {/* Subtle gradient overlay  */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-gray-900/90 pointer-events-none" />
+
     </div>
   )
 }

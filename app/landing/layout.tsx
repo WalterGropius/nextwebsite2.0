@@ -62,7 +62,7 @@ export default function LandingLayout({
       </head>
       <body
         data-landing="true"
-        className={`${inter.variable} ${cormorant.variable} antialiased min-h-screen bg-white text-gray-100 font-sans`}
+        className={`${inter.variable} ${cormorant.variable} antialiased min-h-screen text-gray-100 font-sans`}
       >
         {children}
 

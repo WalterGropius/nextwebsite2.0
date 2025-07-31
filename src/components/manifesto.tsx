@@ -1,112 +1,143 @@
 "use client"
 
-import { motion } from "framer-motion"
-import { useInView } from "framer-motion"
+import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
+
+const cards = [
+  {
+    title: "with a profound passion",
+    content: (
+      <>
+        for the synergy of
+        <br />
+        <br />
+        <span className="inline-block text-5xl md:text-6xl font-extrabold leading-none uppercase">
+          ART
+        </span>{" "}
+        and{" "}
+        <span className="inline-block text-5xl md:text-6xl font-extrabold leading-none uppercase">
+          TECHNOLOGY
+        </span>
+      </>
+    ),
+  },
+  {
+    title: "bridging creative vision & technical execution",
+    content: (
+      <ul className="space-y-7">
+        <li>
+          whether supporting{" "}
+          <span className="inline-block text-4xl md:text-5xl font-extrabold uppercase">
+            ARTISTS
+          </span>{" "}
+          in making their{" "}
+          <span className="inline-block text-4xl md:text-5xl font-extrabold uppercase">
+            DREAMS
+          </span>{" "}
+          tangible or spicing up a technical query with a fresh idea,
+        </li>
+        <li>
+          my heart lies at the crossroads of{" "}
+          <span className="inline-block text-4xl md:text-5xl font-extrabold uppercase">
+            IMAGINATION
+          </span>{" "}
+          and{" "}
+          <span className="inline-block text-4xl md:text-5xl font-extrabold uppercase">
+            INNOVATION
+          </span>
+          .
+        </li>
+      </ul>
+    ),
+  },
+  {
+    title: "learning from every mind",
+    content: (
+      <>
+        fortunate to work with both artistic and technical minds, continually learning the importance of{" "}
+        <span className="inline-block text-3xl md:text-4xl font-extrabold uppercase">
+          FUNCTIONALITY
+        </span>
+        ,{" "}
+        <span className="inline-block text-3xl md:text-4xl font-extrabold uppercase">
+          AESTHETICS
+        </span>{" "}
+        and{" "}
+        <span className="inline-block text-3xl md:text-4xl font-extrabold uppercase">
+          USER EXPERIENCE
+        </span>
+        .
+      </>
+    ),
+  },
+  {
+    title: "unleashing creativity & technology",
+    content: (
+      <>
+        every collaboration is an opportunity to unleash{" "}
+        <span className="inline-block text-4xl md:text-5xl font-extrabold uppercase">
+          VISIONARY CREATIVITY
+        </span>{" "}
+        and{" "}
+        <span className="inline-block text-4xl md:text-5xl font-extrabold uppercase">
+          STATE OF THE ART TECHNOLOGY
+        </span>
+        .
+      </>
+    ),
+  },
+]
 
 export function Manifesto() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
 
   return (
-    <section id="manifesto" className="py-32 px-6">
-      <div className="relative z-10 mx-auto flex w-full flex-col flex-wrap items-center p-12 md:flex-row lg:w-4/5">
-        <motion.div
-          ref={ref}
-          className="rounded-lg bg-white bg-opacity-50 p-6 backdrop-blur-md"
-          initial={{ opacity: 0, y: 100 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
-          transition={{ duration: 0.8 }}
-        >
-          <motion.h2
-            className="mb-3 text-3xl font-bold leading-none text-gray-800"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            with a profound passion
-          </motion.h2>
+    <section
+      id="manifesto"
+      className="relative py-24 px-4 sm:px-12 md:px-20 overflow-hidden"
+    >
+      {/* Bold, minimal background shapes */}
+      <div className="pointer-events-none absolute -top-40 -left-40 h-[28rem] w-[28rem] rounded-full bg-black/5 blur-2xl" />
+      <div className="pointer-events-none absolute bottom-0 right-0 h-96 w-96 rounded-full bg-black/10 blur-2xl" />
 
-          <motion.p
-            className="mb-8 text-2xl text-black"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
+      <div
+        ref={ref}
+        className="relative z-10 mx-auto grid grid-cols-1 gap-8 md:grid-cols-2 md:grid-rows-2 md:gap-10 w-full max-w-5xl"
+      >
+        {cards.map((card, idx) => (
+          <motion.div
+            key={idx}
+            className="flex flex-col justify-between rounded-2xl bg-white shadow-2xl p-7 md:p-8 border border-black/10 min-h-[320px] transition-all"
+            style={{
+              minWidth: 0,
+              flexBasis: "0",
+              flexGrow: 1,
+              flexShrink: 1,
+              maxWidth: "100%",
+            }}
+            initial={{ opacity: 0, y: 80, scale: 0.98 }}
+            animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 80, scale: 0.98 }}
+            transition={{ duration: 0.7, delay: 0.15 * idx, ease: "easeOut" }}
           >
-            for the synergy of art and technology
-          </motion.p>
-        </motion.div>
-
-        <div className="relative my-12 h-48 w-full py-6 sm:w-1/2 md:mb-40"></div>
-
-        <motion.div
-          className="rounded-lg bg-white bg-opacity-50 p-6 backdrop-blur-md"
-          initial={{ opacity: 0, y: 100 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          <motion.h2
-            className="mb-3 text-3xl font-bold leading-none text-gray-800"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            dedicated to being a bridge between creative vision and technical execution
-          </motion.h2>
-
-          <motion.p
-            className="mb-8 text-lg text-gray-600"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-          >
-            whether supporting <span className="text-2xl font-bold">artists</span> in making their{" "}
-            <span className="text-2xl font-bold">dreams</span> tangible or spicing up a simple technical query with a
-            fresh idea,
-          </motion.p>
-
-          <motion.p
-            className="mb-8 text-lg text-gray-600"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.7 }}
-          >
-            my heart lies at the crossroads of <span className="text-2xl font-bold">imagination</span> and{" "}
-            <span className="text-2xl font-bold">innovation</span>.
-          </motion.p>
-
-          <motion.p
-            className="mb-8 text-lg text-gray-600"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            fortunate to work with both artistic and technical minds, continually learning the importance of
-            <span className="text-2xl font-bold"> functionality</span>,{" "}
-            <span className="text-2xl font-bold">aesthetics</span> and{" "}
-            <span className="text-2xl font-bold">user experience</span>.
-          </motion.p>
-
-          <motion.p
-            className="mb-8 text-lg text-gray-600"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 0.9 }}
-          >
-            every collaboration is an opportunity to unleash{" "}
-            <span className="text-2xl font-bold">visionary creativity</span> and{" "}
-            <span className="text-2xl font-bold">state of the art technology</span>.
-          </motion.p>
-
-          <motion.p
-            className="mb-8 text-lg text-gray-600"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 1.0 }}
-          >
-            lets collaborate and bring new <span className="text-xl font-bold">visions</span> to life together!
-          </motion.p>
-        </motion.div>
+            <motion.h2
+              className="mb-5 text-2xl md:text-2xl lg:text-3xl font-extrabold leading-tight text-black tracking-tight uppercase"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 0.18 * idx + 0.1 }}
+            >
+              {card.title}
+            </motion.h2>
+            <motion.div
+              className="text-lg md:text-lg lg:text-xl font-medium text-black"
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.6, delay: 0.22 * idx + 0.2 }}
+            >
+              {card.content}
+            </motion.div>
+          </motion.div>
+        ))}
       </div>
     </section>
   )

@@ -20,21 +20,22 @@ export default function Home() {
   }, [])
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-white text-gray-100">
+    <main className="min-h-screen overflow-x-hidden text-gray-100">
       <Navigation />
 
       {/* Hero Section with Optimized 3D Background */}
-      <section className="relative h-screen w-full">
+      <section className="relative h-screen w-full bg-[#f2f2f2]">
         <div className="absolute inset-0 z-0" suppressHydrationWarning>
           {mounted ? (
             <Canvas
+              style={{ backgroundColor: "transparent" }}
               camera={{ position: [0, 0, 5], fov: 75 }}
-              className="size-full bg-gradient-to-br from-gray-900 via-black to-gray-800"
+              className="size-full"
               dpr={[1, 2]}
               performance={{ min: 0.5 }}
               gl={{
                 antialias: true,
-                alpha: false,
+                alpha: true,
                 powerPreference: "high-performance"
               }}
             >
@@ -43,7 +44,7 @@ export default function Home() {
               </Suspense>
             </Canvas>
           ) : (
-            <div className="absolute inset-0 z-0 bg-gradient-to-br from-gray-900 via-black to-gray-800" />
+            <div className="absolute inset-0 z-0" />
           )}
         </div>
 
@@ -53,7 +54,7 @@ export default function Home() {
       </section>
 
       {/* Content Sections with improved performance */}
-      <div className="relative z-20 bg-white">
+      <div className="relative z-20 bg-blue">
         <Suspense fallback={<LoadingSpinner />}>
           <Manifesto />
         </Suspense>
