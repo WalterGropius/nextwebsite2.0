@@ -94,7 +94,7 @@ export function Creations() {
                 >
                   <div className="relative w-full aspect-[2/3]">
                     <Image
-                      src={project.image}
+                      src={`https://zenbauhaus.vercel.app/${project.image}`}
                       alt={project.title}
                       fill
                       className="object-cover group-hover:scale-110 transition-transform duration-300"
