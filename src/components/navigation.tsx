@@ -10,14 +10,17 @@ export function Navigation() {
           <Link href="/">zenbauhaus</Link>
         </div>
         <div className="space-x-4">
-          <Link href="#manifesto" className="transition duration-300 text-white hover:font-bold">
-            Manifesto
+          <Link href="/landing" className="transition duration-300 text-white hover:font-bold">
+            About
           </Link>
-          <Link href="#creations" className="transition duration-300 text-white hover:font-bold">
+          <Link href="/portfolio-s" className="transition duration-300 text-white hover:font-bold">
             Creations
           </Link>
-          <Link href="#contact" className="transition duration-300 text-white hover:font-bold">
-            Collaborate
+          <Link href="/sketchfab" className="transition duration-300 text-white hover:font-bold">
+            3D Works
+          </Link>
+          <Link href="/contact" className="transition duration-300 text-white hover:font-bold">
+            Contact
           </Link>
         </div>
       </div>

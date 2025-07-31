@@ -68,22 +68,15 @@ export default function Home() {
         </Suspense>
 
         <Suspense fallback={<LoadingSpinner />}>
-          <Creations />
-        </Suspense>
-
-        <Suspense fallback={<LoadingSpinner />}>
-          <SketchfabEmbed />
+          <Creations randomCount={6} />
         </Suspense>
 
         <Suspense fallback={<LoadingSpinner />}>
           <Arsenal />
         </Suspense>
 
-        <Suspense fallback={<LoadingSpinner />}>
-          <Contact />
-        </Suspense>
       </div>
-      
+
       <PerformanceDebugger />
       <PerformanceAnalysis />
     </main>

@@ -10,17 +10,11 @@ export function Contact() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true)
-        }
+        if (entry.isIntersecting) setIsInView(true)
       },
       { threshold: 0.1, rootMargin: "-100px" }
     )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
+    if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
   }, [])
 
@@ -35,17 +29,15 @@ export function Contact() {
 
           <div className="text-center mb-16">
             <p
-              className={`text-2xl text-gray-300 mb-8 leading-relaxed ${
-                isInView ? "animate-slide-up animation-delay-200" : "opacity-0"
-              }`}
+              className={`text-2xl text-gray-300 mb-8 leading-relaxed ${isInView ? "animate-slide-up animation-delay-200" : "opacity-0"
+                }`}
             >
               lets collaborate and bring new <span className="text-amber-400 font-bold">visions</span> to life together!
             </p>
 
             <p
-              className={`mb-8 text-lg text-gray-400 ${
-                isInView ? "animate-slide-up animation-delay-300" : "opacity-0"
-              }`}
+              className={`mb-8 text-lg text-gray-400 ${isInView ? "animate-slide-up animation-delay-300" : "opacity-0"
+                }`}
             >
               Check out my{" "}
               <a href="/portfolio" className="text-amber-400 hover:text-amber-300 underline transition-colors">
@@ -55,9 +47,8 @@ export function Contact() {
             </p>
 
             <div
-              className={`flex justify-center gap-8 ${
-                isInView ? "animate-slide-up animation-delay-400" : "opacity-0"
-              }`}
+              className={`flex justify-center gap-8 ${isInView ? "animate-slide-up animation-delay-400" : "opacity-0"
+                }`}
             >
               <a
                 href="mailto:zenbauhaus@gmail.com"
@@ -74,22 +65,62 @@ export function Contact() {
           </div>
 
           <div
-            className={`flex justify-center gap-6 mb-16 ${
-              isInView ? "animate-fade-in animation-delay-600" : "opacity-0"
-            }`}
+            className={`flex flex-wrap justify-center gap-6 mb-8 ${isInView ? "animate-fade-in animation-delay-600" : "opacity-0"
+              }`}
           >
-            <a href="#" className="p-3 text-gray-500 hover:text-cyan-400 transition-colors" aria-label="GitHub">
+            <a
+              href="https://github.com/WalterGropius"
+              className="p-3 text-gray-500 hover:text-cyan-400 transition-colors"
+              aria-label="GitHub"
+              target="_blank" rel="noopener noreferrer"
+            >
               <Github size={24} />
             </a>
-            <a href="#" className="p-3 text-gray-500 hover:text-cyan-400 transition-colors" aria-label="LinkedIn">
+            <a
+              href="https://linkedin.com/in/zenbauhaus"
+              className="p-3 text-gray-500 hover:text-cyan-400 transition-colors"
+              aria-label="LinkedIn"
+              target="_blank" rel="noopener noreferrer"
+            >
               <Linkedin size={24} />
+            </a>
+            <a
+              href="https://instagram.com/y4ngyin"
+              className="p-3 text-gray-500 hover:text-pink-400 transition-colors"
+              aria-label="Instagram y4ngyin"
+              target="_blank" rel="noopener noreferrer"
+            >
+              <span className="font-bold">@y4ngyin</span>
+            </a>
+            <a
+              href="https://instagram.com/tra5her_sk8"
+              className="p-3 text-gray-500 hover:text-pink-400 transition-colors"
+              aria-label="Instagram tra5her_sk8"
+              target="_blank" rel="noopener noreferrer"
+            >
+              <span className="font-bold">@tra5her_sk8</span>
+            </a>
+            <a
+              href="https://facebook.com/ezbawa"
+              className="p-3 text-gray-500 hover:text-blue-500 transition-colors"
+              aria-label="Facebook ezbawa"
+              target="_blank" rel="noopener noreferrer"
+            >
+              <span className="font-bold">/ezbawa</span>
+            </a>
+            <a
+              href="https://soundcloud.com/mczenbauhaus"
+              className="p-3 text-gray-500 hover:text-orange-400 transition-colors"
+              aria-label="SoundCloud mczenbauhaus"
+              target="_blank" rel="noopener noreferrer"
+            >
+              <span className="font-bold">/mczenbauhaus</span>
             </a>
           </div>
 
           <div
-            className={`text-center text-sm text-gray-600 ${
-              isInView ? "animate-fade-in animation-delay-800" : "opacity-0"
-            }`}
+            className={`text-center text-sm text-gray-600 ${isInView ? "animate-fade-in animation-delay-800" : "opacity-0"
+              }`}
           >
             Crafted by zenbauhaus. © 2024
           </div>

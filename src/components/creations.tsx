@@ -14,7 +14,16 @@ interface ProjectItem {
   tags: string
 }
 
-export function Creations() {
+function getRandomItems<T>(arr: T[], count: number): T[] {
+  const shuffled = arr.slice().sort(() => 0.5 - Math.random())
+  return shuffled.slice(0, count)
+}
+
+type CreationsProps = {
+  randomCount?: number
+}
+
+export function Creations({ randomCount }: CreationsProps) {
   const ref = useRef<HTMLDivElement | null>(null)
   const [isInView, setIsInView] = useState(false)
   const [projects, setProjects] = useState<ProjectItem[]>([])
@@ -24,17 +33,11 @@ export function Creations() {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsInView(true)
-        }
+        if (entry.isIntersecting) setIsInView(true)
       },
       { threshold: 0.1, rootMargin: "-100px" }
     )
-
-    if (ref.current) {
-      observer.observe(ref.current)
-    }
-
+    if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
   }, [])
 
@@ -52,11 +55,10 @@ export function Creations() {
           setError(null)
         }
       })
-      .catch((err) => {
+      .catch(() => {
         if (!ignore) {
           setError("Failed to load portfolio.")
           setProjects([])
-          // Optionally log error: console.error(err)
         }
       })
       .finally(() => {
@@ -67,6 +69,11 @@ export function Creations() {
     }
   }, [])
 
+  const displayedProjects =
+    typeof randomCount === "number"
+      ? getRandomItems(projects, randomCount)
+      : projects
+
   return (
     <section id="creations" className="py-32 px-6">
       <div className="max-w-6xl mx-auto">
@@ -74,7 +81,8 @@ export function Creations() {
           ref={ref}
           className={isInView ? "animate-fade-in" : "opacity-0"}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">Portfolio</h2>
+          {!randomCount && <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">Portfolio</h2>}
+          {randomCount && <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">Random Works</h2>}
 
           {loading ? (
             <div className="text-center text-gray-400 py-16">Loading...</div>
@@ -82,12 +90,11 @@ export function Creations() {
             <div className="text-center text-red-400 py-16">{error}</div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {projects.map((project, index) => (
+              {displayedProjects.map((project, index) => (
                 <div
                   key={project.id}
-                  className={`group relative rounded-lg overflow-hidden hover:scale-105 transition-all duration-300 ${
-                    isInView ? "animate-slide-up" : "opacity-0"
-                  }`}
+                  className={`group relative rounded-lg overflow-hidden hover:scale-105 transition-all duration-300 ${isInView ? "animate-slide-up" : "opacity-0"
+                    }`}
                   style={{ animationDelay: `${0.1 * index}s` }}
                 >
                   <div className="relative w-full aspect-[2/3]">
@@ -112,9 +119,9 @@ export function Creations() {
                         <span>{project.date}</span>
                       </div>
                       <div className="flex flex-wrap gap-1 mb-4">
-                        {project.tags.split(',').map((tag, index) => (
+                        {project.tags.split(',').map((tag, idx) => (
                           <span
-                            key={index}
+                            key={idx}
                             className="inline-flex items-center gap-1 px-2 py-1 bg-gray-800 text-gray-300 text-xs rounded-full"
                           >
                             <Tag size={8} />
@@ -140,19 +147,19 @@ export function Creations() {
             </div>
           )}
 
-          <div
-            className={`text-center mt-16 ${
-              isInView ? "animate-slide-up animation-delay-800" : "opacity-0"
-            }`}
-          >
-            <p className="mb-8 text-lg text-gray-400">
-              Check out my{" "}
-              <a href="/portfolio" className="text-amber-400 hover:text-amber-300 underline transition-colors">
-                full portfolio
-              </a>{" "}
-              to see more of my work.
-            </p>
-          </div>
+          {randomCount && (
+            <div
+              className={`text-center mt-16 ${isInView ? "animate-slide-up animation-delay-800" : "opacity-0"}`}
+            >
+              <p className="mb-8 text-lg text-gray-400">
+                Check out my{" "}
+                <a href="/portfolio-s" className="text-amber-400 hover:text-amber-300 underline transition-colors">
+                  full portfolio
+                </a>{" "}
+                to see more of my work.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     </section>
