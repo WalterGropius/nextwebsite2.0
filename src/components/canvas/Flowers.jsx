@@ -52,24 +52,69 @@ export default function Flowers() {
           floatIntensity={0.1}
         >
           {!hasError ? (
-            <Splat
-              ref={splatRef}
-              scale={3}
-              rotation={[0, -0.7 * Math.PI, 0]}
-              src="/flowers_white.splat"
-              alphaTest={0.1}
-              transparent
-              onError={() => {
-                console.warn('Failed to load flowers.splat, using fallback')
-                setHasError(true)
-              }}
-            />
+            <>
+              {/* Temporary: Test with simple geometry first */}
+              <mesh ref={splatRef} scale={2}>
+                <icosahedronGeometry args={[1, 2]} />
+                <meshStandardMaterial
+                  color="#ffffff"
+                  transparent
+                  opacity={0.8}
+                  roughness={0.1}
+                  metalness={0.2}
+                  wireframe={false}
+                />
+              </mesh>
+              {/* Uncomment below and comment above to test splat loading */}
+              {/*
+              <Splat
+                ref={splatRef}
+                scale={3}
+                rotation={[0, -0.7 * Math.PI, 0]}
+                src="/flowers_white.splat"
+                alphaTest={0.1}
+                transparent
+                onError={(error) => {
+                  console.error('Splat loading error details:', error)
+                  console.error('Failed to load flowers.splat, using fallback')
+                  setHasError(true)
+                }}
+                onLoad={() => {
+                  console.log('Splat loaded successfully!')
+                }}
+              />
+              */}
+            </>
           ) : (
-            // Fallback: Simple geometric shape when splat fails to load
-            <mesh ref={splatRef} scale={2}>
-              <sphereGeometry args={[1, 32, 32]} />
-              <meshStandardMaterial color="#ffffff" transparent opacity={0.3} />
-            </mesh>
+            // Enhanced fallback: More visually appealing geometric shape
+            <group ref={splatRef} scale={2}>
+              <mesh>
+                <sphereGeometry args={[0.8, 16, 16]} />
+                <meshStandardMaterial
+                  color="#ffffff"
+                  transparent
+                  opacity={0.6}
+                  roughness={0.2}
+                  metalness={0.1}
+                />
+              </mesh>
+              <mesh position={[0.5, 0.5, 0]}>
+                <sphereGeometry args={[0.3, 8, 8]} />
+                <meshStandardMaterial
+                  color="#f0f0f0"
+                  transparent
+                  opacity={0.4}
+                />
+              </mesh>
+              <mesh position={[-0.3, -0.2, 0.4]}>
+                <sphereGeometry args={[0.2, 8, 8]} />
+                <meshStandardMaterial
+                  color="#e0e0e0"
+                  transparent
+                  opacity={0.5}
+                />
+              </mesh>
+            </group>
           )}
         </Float>
       </PresentationControls>
