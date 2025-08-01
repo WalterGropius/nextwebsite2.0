@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { Eye, Download, Mail, Image, Film, BookOpen, User } from "lucide-react"
 
 export function Navigation() {
   return (
@@ -9,24 +10,50 @@ export function Navigation() {
         <div className="text-lg font-bold text-white">
           <Link href="/"><img src="/logo.png" alt="logo" width={64} height={64} className="rounded-full" /></Link>
         </div>
-        <div className="space-x-4">
-          <Link href="/landing" className="transition duration-300 text-white hover:font-bold">
-            About
+        <div className="flex items-center space-x-2 md:space-x-8">
+          <Link
+            href="/landing"
+            className="flex items-center gap-1 md:ml-4 transition duration-300 text-white hover:font-bold"
+          >
+            <span className="hidden md:inline"><User size={18} /></span> About
           </Link>
-          <Link href="/cvBauer.html" download className="transition duration-300 text-white hover:font-bold">
-            CV
+          <Link
+            href="/cvBauer.html"
+            download
+            className="flex items-center gap-1 md:ml-4 transition duration-300 text-white hover:font-bold"
+          >
+            <span className="hidden md:inline"><Download size={18} /></span> CV
           </Link>
-          <Link href="/portfolio-s" className="transition duration-300 text-white hover:font-bold">
-            Portfolio
+          <Link
+            href="/portfolio-s"
+            className="flex items-center gap-1 md:ml-4 transition duration-300 text-white hover:font-bold"
+          >
+            <span className="hidden md:inline"><BookOpen size={18} /></span> Portfolio
           </Link>
-          <Link href="/reel" className="transition duration-300 text-white hover:font-bold">
-            Reel
+          <Link
+            href="/reel"
+            className="flex items-center gap-1 md:ml-4 transition duration-300 text-white hover:font-bold"
+          >
+            <span className="hidden md:inline"><Film size={18} /></span> Reel
           </Link>
-          <Link href="/sketchfab" className="transition duration-300 text-white hover:font-bold">
-            3D
+          <Link
+            href="/sketchfab"
+            className="flex items-center gap-1 md:ml-4 transition duration-300 text-white hover:font-bold"
+          >
+            <span className="hidden md:inline"><Image size={18} /></span> 3D
           </Link>
-          <Link href="/contact" className="transition duration-300 text-white hover:font-bold">
-            Contact
+          <Link
+            href="/artBauer.pdf"
+            download
+            className="flex items-center gap-1 md:ml-4 transition duration-300 text-white hover:font-bold"
+          >
+            <span className="hidden md:inline"><Download size={18} /></span> Art
+          </Link>
+          <Link
+            href="/contact"
+            className="flex items-center gap-1 md:ml-4 transition duration-300 text-white hover:font-bold"
+          >
+            <span className="hidden md:inline"><Mail size={18} /></span> Contact
           </Link>
         </div>
       </div>
