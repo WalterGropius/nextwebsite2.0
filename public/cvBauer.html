@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliáš Bauer - Switchable CV</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Rajdhani:wght@700&family=Roboto:wght@400;700&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 20px;
+            color: #333;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            color: #333;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700;
+        }
+
+        h1 {
+            font-size: 2.5em;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.4em;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+
+        h4 {
+            font-size: 1.1em;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        p {
+            line-height: 1.5em;
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 7px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .job-title {
+            font-weight: bold;
+        }
+
+        .company {
+            font-style: italic;
+        }
+
+        .date {
+            font-size: 0.9em;
+            color: #777;
+            float: right;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .tldr-button-container {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 1em;
+            font-family: 'Roboto', sans-serif;
+            background-color: #eee;
+            color: #333;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        #tldr-content {
+            display: none;
+        }
+
+        #verbose-content {
+            display: block;
+        }
+
+        .contact-info {
+            margin-bottom: 10px;
+            font-size: 0.95em;
+        }
+
+        .contact-info a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        .certifications {
+            margin-top: 10px;
+        }
+
+        .certifications h4 {
+            margin-bottom: 5px;
+        }
+
+        .certifications ul {
+            margin-top: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="tldr-button-container">
+        <button id="tldr-switch-button" onclick="toggleCVVersion()">TLDR/Verbose</button>
+    </div>
+
+    <div id="verbose-content">
+        <section class="section">
+            <h1>Eliáš Bauer</h1>
+            <div class="contact-info">
+                <a href="mailto:zenbauhaus@gmail.com">zenbauhaus@gmail.com</a> | <a href="https://zenbauhaus.vercel.app"
+                    target="_blank">zenbauhaus.vercel.app</a> | +420 739 004 455
+            </div>
+            <p>Art & Tech Polymath | Lifelong Learner | Bridging Creative Vision & Tech Execution to Drive Impactful
+                Innovation.</p>
+        </section>
+
+        <section class="section">
+            <h2>Work Experience</h2>
+
+            <article>
+                <h3 class="job-title">Co-founder & Chief Technology Officer (CTO) <span class="date">May 2024 –
+                        June 2025</span></h3>
+                <h4 class="company">Flipas | GenZ AI Life Accelerator</h4>
+                <ul id="verbose-flipas-points">
+                    <li>Spearheaded the strategic evolution of Flipas' mission, pivoting to empower Gen Z's cognitive
+                        and emotional capacity in the digital age.</li>
+                    <li>Architected and rapidly developed the Minimum Viable Product (MVP) of the Flipas platform using
+                        Firebase and MUI, securing seed funding by demonstrating core value.</li>
+                    <li>Co-conceptualized and architected Sombra AI, the empathetic and proactive conversational AI
+                        mentor at the heart of the Flipas platform.</li>
+                    <li>Built and currently lead a high-performing tech team of 5 engineers, fostering a culture of bold
+                        innovation and continuous learning, mentoring junior developers.</li>
+                    <li>Strategically selected and implemented a cutting-edge tech stack (Next.js, Elysia.js, Prisma,
+                        Gemini 2, Neon PostgreSQL, R2) for performance, scalability, and rapid iteration.</li>
+                    <li>Pioneered a Dynamic UI framework for the Flipas single-screen app, enabling AI-driven,
+                        context-aware user interfaces for enhanced intuitiveness.</li>
+                    <li>As Co-founder & CTO, champion Flipas' core values of Passion, Practicality, Opportunity,
+                        Authenticity, Boldness, and Change-Making in platform development and leadership.</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3 class="job-title">VFX Supervisor #2/Assistant <span class="date">2023</span></h3>
+                <h4 class="company">Wilma Film | Hagen</h4>
+                <ul id="verbose-hagen-points">
+                    <li>Served as VFX Supervisor #2/Assistant on the film Hagen, working closely with Jan Stoltz.</li>
+                    <li>Managed on-set VFX data collection using chrome ball, color chart, and comprehensive shot
+                        tracking.</li>
+                    <li>Coordinated with script supervisors to ensure accurate VFX shot documentation and continuity.
+                    </li>
+                    <li>Gained extensive knowledge of professional film VFX workflows and on-set technical procedures.
+                    </li>
+                </ul>
+            </article>
+
+            <article>
+                <h3 class="job-title">Technical Artist <span class="date">May 2023 – Nov 2023</span></h3>
+                <h4 class="company">Numinos | VR Historical City Recreations</h4>
+                <ul id="verbose-numinos-points">
+                    <li>Pushed real-time rendering boundaries in VR development to create breathtakingly immersive and
+                        historically authentic environments, empowering artistic and historical visions.</li>
+                    <li>Engineered a custom, visually stunning real-time flood simulation for VR, vividly recreating the
+                        Judith Bridge flood with unprecedented realism and visceral impact.</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3 class="job-title">SPIDER (Special Product Integrator, Developer, and Recruiter) <span
+                        class="date">Apr 2018 – Present</span></h3>
+                <h4 class="company">NEW LIFE | Global Innovation Network</h4>
+                <ul id="verbose-newlife-points">
+                    <li>Led product integration, development, and talent acquisition across global innovation projects.
+                    </li>
+                    <li>Collaborated with international teams to deliver cutting-edge solutions in emerging
+                        technologies.</li>
+                    <li>Operated globally across diverse locations and cultures.</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3 class="job-title">AV&IT Support <span class="date">May 2020 – Dec 2020</span></h3>
+                <h4 class="company">OSE Czech Republic | H40</h4>
+                <ul id="verbose-ose-points">
+                    <li>Provided comprehensive audio-visual and IT support for H40 facility.</li>
+                    <li>Managed technical infrastructure and equipment maintenance.</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3 class="job-title">Co-Founder, Team Leader, VR Guru <span class="date">Jan 2017 – May 2018</span>
+                </h3>
+                <h4 class="company">VR MUSASHI | VR Development Studio</h4>
+                <ul id="verbose-vrmusashi-points">
+                    <li>Co-founded and led VR development studio specializing in immersive experiences.</li>
+                    <li>Mentored team members in VR development best practices and emerging technologies.</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3 class="job-title">Partner, Consultant <span class="date">Mar 2017 – Present</span></h3>
+                <h4 class="company">viar.studio | Creative Technology Studio</h4>
+                <ul id="verbose-viar-points">
+                    <li>Provided strategic consulting and technical expertise for creative technology projects.</li>
+                    <li>Collaborated on innovative solutions bridging art and technology.</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3 class="job-title">Head of VR <span class="date">Jun 2016 – Mar 2017</span></h3>
+                <h4 class="company">Buffet Pictures | VR Production Studio</h4>
+                <ul id="verbose-buffet-points">
+                    <li>Oversaw and actively participated in all phases of VR development from concept to final product.
+                    </li>
+                    <li>Led technical direction for immersive storytelling and visual experiences.</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3 class="job-title">Lego Robotics Teacher <span class="date">May 2016 – Dec 2016</span></h3>
+                <h4 class="company">Kiddum | Educational Technology</h4>
+                <ul id="verbose-kiddum-points">
+                    <li>Shared passion for robotics and technology with students, fostering creativity and
+                        problem-solving skills.</li>
+                    <li>Developed engaging curriculum to inspire next generation of innovators.</li>
+                    <li>Gained valuable experience in educational technology and youth mentorship.</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3 class="job-title">Cashier <span class="date">Jan 2016 – Mar 2016</span></h3>
+                <h4 class="company">Loving Hut Hoa Đăng | Vegan Restaurant</h4>
+                <ul id="verbose-lovinghut-points">
+                    <li>Developed strong discipline and organizational skills in fast-paced environment.</li>
+                    <li>Maintained high standards of customer service and operational efficiency.</li>
+                </ul>
+            </article>
+
+            <article>
+                <h3 class="job-title">Intern <span class="date">Jun 2012 – Jul 2012</span></h3>
+                <h4 class="company">Luma Pictures | Visual Effects Studio</h4>
+                <ul id="verbose-luma-points">
+                    <li>Gained valuable experience in professional visual effects production environment.</li>
+                    <li>Learned industry-standard workflows and creative problem-solving approaches.</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2>Education</h2>
+            <ul id="verbose-education-points">
+                <li><strong>BAC Scientifique</strong> - Lycée Français de Prague (LFP) - Prague, Czech Republic - 2013
+                    <br /><em>(French Scientific Baccalaureate - rigorous science-focused curriculum)</em>
+                </li>
+                <li><strong>Self-Taught Expertise</strong> - Continuous, independent learning and mastery in:
+                    <ul>
+                        <li>Software Engineering (Full-Stack Web, VR/AR Development, AI/ML)</li>
+                        <li>Real-time Graphics & Simulation Technologies</li>
+                        <li>Strategic Technology Leadership & Innovation</li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Skills - Technical & Leadership Superpowers</h2>
+            <h3>Technical Expertise</h3>
+            <ul id="verbose-tech-skills-points">
+                <li>VR/AR Development: Unreal Engine, React Three Fiber (@react-three/xr), Blender, Substance Suite,
+                    Houdini, Maya</li>
+                <li>Full-Stack Web Development: Next.js, Elysia.js, Prisma, PostgreSQL, Firebase, MUI, React</li>
+                <li>AI & Conversational AI Architecting: Gemini 2 Integration, Dynamic Context Management, PyTorch,
+                    TensorFlow.js</li>
+                <li>Real-time Simulation & Rendering: Fluid Dynamics, Shader Development, Performance Optimization,
+                    Gaussian Splatting</li>
+                <li>Programming Languages: C++, Python, C#, Java, JavaScript, Assembly, Arduino</li>
+                <li>3D Technologies: 3D Modeling, Visualization, Rendering, Architectural Rendering, Digital Sculpting
+                </li>
+                <li>Creative Technologies: Photography, Graphic Design, Game Design & Development, Art & Film</li>
+                <li>Hardware & Electronics: 3D Printing, Electronics, Rapid Prototyping</li>
+                <li>Reverse & Forward Engineering: Deconstruction, Analysis, Innovation, Rapid Prototyping</li>
+                <li>Machine Learning: YOLOv7/YOLOv8, Custom Model Training, On-device Inference</li>
+            </ul>
+            <h3>Leadership & Personal Strengths</h3>
+            <ul id="verbose-soft-skills-points">
+                <li>Visionary Leadership: Strategic Thinking, Innovation Driver, Mission-Focused, Gen Z Empowerment</li>
+                <li>Bold Innovation & Execution: Pioneering, "No-Impossible" Mindset, Bias for Action</li>
+                <li>Adaptability & Agility: Pivot-Ready, Fast Learner, Thrives in Dynamic Environments</li>
+                <li>Creative Problem-Solving: Analytical & Intuitive, "Thinking Outside the Box"</li>
+                <li>Team Leadership & Mentorship: Building High-Performing Teams, Nurturing Junior Talent</li>
+                <li>Passion & Drive: Lifelong Learner, "Love-Driven" Work Ethic, Resilience (Skateboarding!)</li>
+                <li>Systems Architecture: Complex System Design, Scalability Planning, Technical Strategy</li>
+                <li>Project Management: Agile Methodologies, Resource Optimization, Delivery Excellence</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Certifications</h2>
+            <div class="certifications">
+                <h4>Epic Games</h4>
+                <ul>
+                    <li>Sequencer Training for Cinematic Shot Production in Unreal Engine (November 2019)</li>
+                    <li>Studio Lighting in Unreal Engine (November 2019)</li>
+                </ul>
+                <h4>SoloLearn</h4>
+                <ul>
+                    <li>C++ Course, C# Course, Python Course, Java Course, JavaScript Course</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2>Public Speaking & Workshops</h2>
+            <ul id="verbose-speaking-points">
+                <li>Berlin: Nike with S-X - VR/AR Innovation</li>
+                <li>Fashion Tech Berlin - Creative Technology Integration</li>
+                <li>CVUT: Molab & Architecture - Educational Technology</li>
+                <li>CIIRC - Research & Development</li>
+                <li>CzechVRFest - VR Community Leadership</li>
+                <li>UMPRUM: GDVK - Design & Technology</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Recent Projects & Achievements</h2>
+            <ul id="verbose-projects-points">
+                <li><strong>Collin Stetson AR Filter</strong> (2024) - Innovative AR experience for music artist</li>
+                <li><strong>Eva Burešová Music Video</strong> (2024) - Creative direction and technical execution</li>
+                <li><strong>Burian Music Video - Party People</strong> (2024) - Visual effects and production</li>
+                <li><strong>Trust Perfumes Website</strong> (2023) - R3F perfume mixer for artisanal scent creator</li>
+                <li><strong>2MEDIA 3D Website</strong> (2022) - React Three Fiber implementation</li>
+                <li><strong>HPNOVERSE VFX</strong> (2022) - Satirical commercial with Unreal Engine and DaVinci</li>
+                <li><strong>Kevin Gates MV VFX</strong> (2022) - Realistic jaguar composition in real-time Unreal</li>
+                <li><strong>Cpt. Demo Series</strong> (2021-2022) - Multiple music videos and LP artwork</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Languages</h2>
+            <ul id="verbose-languages-points">
+                <li>English - Fluent Proficiency</li>
+                <li>Czech - Working Knowledge</li>
+                <li>French - Working Knowledge</li>
+                <li>Spanish - Reading Comprehension</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Interests - "Eliáš Magic" Fuel</h2>
+            <ul id="verbose-interests-points">
+                <li>Synergy of Art & Technology: VR/AR, music production, architecture visions.</li>
+                <li>DIY Innovation & Problem-Solving: Hands-on creation, skill mastery, "Flow state".</li>
+                <li>Philosophical & Socio-Economic Inquiry: World complexities, impact-driven tech.</li>
+                <li>Skateboarding: Embodied learning, Resilience, Life Philosophy.</li>
+                <li>Music: Multi-instrumentalist, Producer.</li>
+                <li>DIY Projects: Broad range, Optimism-driven.</li>
+            </ul>
+        </section>
+    </div> <!-- End verbose-content -->
+
+    <div id="tldr-content" style="display:none;">
+        <section class="section">
+            <h1>Eliáš Bauer - TLDR</h1>
+            <div class="contact-info" style="text-align: left;">
+                <a href="mailto:zenbauhaus@gmail.com">zenbauhaus@gmail.com</a> | <a href="https://zenbauhaus.vercel.app"
+                    target="_blank">zenbauhaus.vercel.app</a>
+            </div>
+            <p>CTO & Co-founder | AI Innovation | VR/AR Expert | Full-Stack Leader | Passion-Driven.</p>
+        </section>
+
+        <section class="section">
+            <h2>Work Experience</h2>
+            <article>
+                <h3 class="job-title">Co-founder & CTO <span class="date">May 2024 – Present</span></h3>
+                <h4 class="company">Flipas | GenZ AI Life Accelerator</h4>
+                <ul id="tldr-flipas-points">
+                    <li>Vision: GenZ Empowerment via AI.</li>
+                    <li>MVP Architect: Firebase, MUI - Seed Funding Secured.</li>
+                    <li>Sombra AI: Co-architected core AI Mentor.</li>
+                    <li>Tech Leader: Built & leads 5-person team.</li>
+                    <li>Stack: Next.js, Elysia.js, Prisma, Gemini 2 & Dynamic UI Pioneer.</li>
+                    <li>Values-Driven CTO.</li>
+                </ul>
+            </article>
+            <article>
+                <h3 class="job-title">VFX Supervisor #2 <span class="date">2023</span></h3>
+                <h4 class="company">Wilma Film | Hagen</h4>
+                <ul id="tldr-hagen-points">
+                    <li>On-set VFX data collection with chrome ball, hdri & color chart.</li>
+                    <li>Shot tracking coordination with script supervisors.</li>
+                    <li>Worked with Jan Stoltz on professional film VFX workflows.</li>
+                </ul>
+            </article>
+            <article>
+                <h3 class="job-title">Technical Artist <span class="date">May 2023 – Nov 2023</span></h3>
+                <h4 class="company">Numinos | VR City Recreations</h4>
+                <ul id="tldr-numinos-points">
+                    <li>VR Innovation: Pushed real-time rendering limits.</li>
+                    <li>Judith Bridge Flood Sim: Custom real-time simulation.</li>
+                </ul>
+            </article>
+            <article>
+                <h3 class="job-title">SPIDER <span class="date">Apr 2018 – Present</span></h3>
+                <h4 class="company">NEW LIFE | Global Innovation</h4>
+                <ul id="tldr-newlife-points">
+                    <li>Product Integration & Global Talent Acquisition.</li>
+                </ul>
+            </article>
+            <article>
+                <h3 class="job-title">AV&IT Support <span class="date">May 2020 – Dec 2020</span></h3>
+                <h4 class="company">OSE Czech Republic | H40</h4>
+                <ul id="tldr-ose-points">
+                    <li>Audio-visual & IT infrastructure support.</li>
+                </ul>
+            </article>
+            <article>
+                <h3 class="job-title">Co-Founder, VR Guru <span class="date">Jan 2017 – May 2018</span></h3>
+                <h4 class="company">VR MUSASHI | VR Studio</h4>
+                <ul id="tldr-vrmusashi-points">
+                    <li>Led VR development studio & team mentorship.</li>
+                </ul>
+            </article>
+            <article>
+                <h3 class="job-title">Head of VR <span class="date">Jun 2016 – Mar 2017</span></h3>
+                <h4 class="company">Buffet Pictures | VR Production</h4>
+                <ul id="tldr-buffet-points">
+                    <li>Led VR development from concept to final product.</li>
+                </ul>
+            </article>
+            <article>
+                <h3 class="job-title">Lego Robotics Teacher <span class="date">May 2016 – Dec 2016</span></h3>
+                <h4 class="company">Kiddum | Educational Technology</h4>
+                <ul id="tldr-kiddum-points">
+                    <li>Educational technology & youth mentorship.</li>
+                </ul>
+            </article>
+            <article>
+                <h3 class="job-title">Cashier <span class="date">Jan 2016 – Mar 2016</span></h3>
+                <h4 class="company">Loving Hut Hoa Đăng | Vegan Restaurant</h4>
+                <ul id="tldr-lovinghut-points">
+                    <li>Customer service & operational efficiency.</li>
+                </ul>
+            </article>
+        </section>
+
+        <section class="section">
+            <h2>Education</h2>
+            <ul id="tldr-education-points">
+                <li>BAC Scientifique (Science Baccalaureate)</li>
+                <li>Self-Taught Engineer: Full-Stack, VR/AR, AI Leadership.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Skills - Tech & Leadership Superpowers</h2>
+            <h3>Tech</h3>
+            <ul id="tldr-tech-skills-points">
+                <li>VR/AR: Unreal Engine, React Three Fiber, Blender, Substance Suite, Maya.</li>
+                <li>Full-Stack: Next.js, Elysia.js, Prisma, Firebase, MUI.</li>
+                <li>AI: Gemini 2, Conversational AI, PyTorch, TensorFlow.js, YOLO.</li>
+                <li>Languages: C++, Python, C#, Java, JavaScript, Assembly.</li>
+                <li>3D: Modeling, Visualization, Rendering, Digital Sculpting.</li>
+                <li>Creative: Photography, Graphic Design, Game Development.</li>
+                <li>Hardware: 3D Printing, Electronics, Rapid Prototyping.</li>
+                <li>Real-time Sim & Render Optimization.</li>
+                <li>Reverse & Forward Engineering.</li>
+            </ul>
+            <h3>Leadership</h3>
+            <ul id="tldr-soft-skills-points">
+                <li>Visionary Leader.</li>
+                <li>Bold Innovator.</li>
+                <li>Agile & Adaptable.</li>
+                <li>Creative Problem Solver.</li>
+                <li>Team Builder & Mentor.</li>
+                <li>Passionate & Driven.</li>
+                <li>Systems Architect.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Certifications & Speaking</h2>
+            <ul id="tldr-certifications-points">
+                <li>Epic Games: Unreal Engine Cinematic & Lighting.</li>
+                <li>SoloLearn: C++, C#, Python, Java, JavaScript.</li>
+                <li>Speaking: Nike Berlin, Fashion Tech Berlin, CzechVRFest, CVUT, CIIRC.</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Recent Projects</h2>
+            <ul id="tldr-projects-points">
+                <li>Collin Stetson AR Filter (2024).</li>
+                <li>Eva Burešová Music Video (2024).</li>
+                <li>Trust Perfumes R3F Website (2023).</li>
+                <li>HPNOVERSE VFX Commercial (2022).</li>
+                <li>Kevin Gates MV Real-time VFX (2022).</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Languages</h2>
+            <ul id="tldr-languages-points">
+                <li>English - Fluent</li>
+                <li>Czech/French - Working Knowledge</li>
+                <li>Spanish - Reading</li>
+            </ul>
+        </section>
+
+        <section class="section">
+            <h2>Passions - "Eliáš Magic" Fuel</h2>
+            <ul id="tldr-interests-points">
+                <li>Art & Tech Synergy.</li>
+                <li>DIY Innovation.</li>
+                <li>Philosophy & Impact.</li>
+                <li>Skateboarding (Life Philosophy!).</li>
+            </ul>
+        </section>
+    </div> <!-- End tldr-content -->
+
+    <div class="clear"></div>
+
+    <script>
+        let isTLDR = false;
+
+        function toggleCVVersion() {
+            isTLDR = !isTLDR;
+
+            const verboseContent = document.getElementById('verbose-content');
+            const tldrContent = document.getElementById('tldr-content');
+            const button = document.getElementById('tldr-switch-button');
+
+            if (isTLDR) {
+                verboseContent.style.display = 'none';
+                tldrContent.style.display = 'block';
+                button.textContent = 'Verbose';
+            } else {
+                verboseContent.style.display = 'block';
+                tldrContent.style.display = 'none';
+                button.textContent = 'TLDR/Verbose';
+            }
+        }
+    </script>
+
+</body>
+
+</html>
