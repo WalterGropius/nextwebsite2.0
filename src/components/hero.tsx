@@ -129,7 +129,7 @@ export function Hero() {
             href="mailto:zenbauhaus@gmail.com"
             className="btn-secondary"
           >
-            Let's Collaborate
+            Let&apos;s Collaborate
           </a>
         </div>
 

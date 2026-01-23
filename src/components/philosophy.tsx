@@ -165,8 +165,8 @@ export function Philosophy() {
             className="mx-auto max-w-2xl text-2xl font-medium italic text-gray-300 md:text-3xl"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            "Technology should feel like <span style={{ color: "var(--flax)" }}>magic</span>, 
-            not like work."
+            &ldquo;Technology should feel like <span style={{ color: "var(--flax)" }}>magic</span>, 
+            not like work.&rdquo;
           </blockquote>
         </div>
       </div>

@@ -35,11 +35,11 @@ export function Contact() {
             className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl"
             style={{ fontFamily: "var(--font-display)" }}
           >
-            Let's Build Something <span className="gradient-text">Extraordinary</span>
+            Let&apos;s Build Something <span className="gradient-text">Extraordinary</span>
           </h2>
           
           <p className="mx-auto mb-8 max-w-xl text-gray-400">
-            Whether it's VR, AI, or something entirely new—I'm here to make it happen.
+            Whether it&apos;s VR, AI, or something entirely new—I&apos;m here to make it happen.
           </p>
 
           {/* CTA buttons */}
