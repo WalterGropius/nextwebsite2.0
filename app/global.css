@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -36,8 +36,11 @@
                      radial-gradient(ellipse at 70% 80%, rgba(238, 74, 68, 0.1) 0%, transparent 50%);
     
     /* Typography Scale */
-    --font-display: 'Syne', 'Space Grotesk', sans-serif;
+    --font-display: 'Orbitron', 'Bebas Neue', sans-serif;
     --font-body: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    
+    /* Text shadows */
+    --text-shadow-hero: 0 4px 20px rgba(0, 0, 0, 0.8), 0 8px 40px rgba(0, 0, 0, 0.6), 0 0 80px rgba(0, 0, 0, 0.4);
     
     /* Spacing */
     --section-padding: clamp(4rem, 10vh, 8rem);

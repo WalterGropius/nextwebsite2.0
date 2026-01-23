@@ -66,25 +66,33 @@ export function Hero() {
 
         {/* Main heading */}
         <h1 
-          className={`mb-6 text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl leading-tight-custom ${isVisible ? "animate-blur-in" : "opacity-0"}`}
-          style={{ fontFamily: "var(--font-display)" }}
+          className={`mb-6 text-5xl font-black uppercase tracking-wider sm:text-6xl md:text-7xl lg:text-9xl leading-none ${isVisible ? "animate-blur-in" : "opacity-0"}`}
+          style={{ 
+            fontFamily: "var(--font-display)",
+            textShadow: "0 4px 30px rgba(0, 0, 0, 0.9), 0 8px 60px rgba(0, 0, 0, 0.7), 0 0 120px rgba(0, 0, 0, 0.5)",
+            letterSpacing: "0.05em"
+          }}
         >
-          <span className="block text-white">Eliáš Bauer</span>
+          <span className="block text-white">zenbauhaus</span>
         </h1>
 
         {/* Role rotator */}
         <div 
-          className={`mb-8 h-12 overflow-hidden ${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}
+          className={`mb-8 h-14 overflow-hidden ${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}
         >
           <div 
             className="transition-transform duration-500 ease-out"
-            style={{ transform: `translateY(-${currentRole * 48}px)` }}
+            style={{ transform: `translateY(-${currentRole * 56}px)` }}
           >
             {roles.map((role, idx) => (
               <div 
                 key={idx}
-                className="flex h-12 items-center justify-center text-2xl font-bold sm:text-3xl md:text-4xl"
-                style={{ color: role.color }}
+                className="flex h-14 items-center justify-center text-2xl font-bold uppercase tracking-widest sm:text-3xl md:text-4xl"
+                style={{ 
+                  color: role.color,
+                  fontFamily: "var(--font-display)",
+                  textShadow: "0 2px 20px rgba(0, 0, 0, 0.8), 0 4px 40px rgba(0, 0, 0, 0.6)"
+                }}
               >
                 {role.text}
               </div>
@@ -94,11 +102,15 @@ export function Hero() {
 
         {/* Tagline */}
         <p 
-          className={`mx-auto mb-10 max-w-2xl text-lg text-gray-400 sm:text-xl md:text-2xl ${isVisible ? "animate-fade-in-up animation-delay-500" : "opacity-0"}`}
-          style={{ lineHeight: 1.6 }}
+          className={`mx-auto mb-10 max-w-2xl text-lg sm:text-xl md:text-2xl ${isVisible ? "animate-fade-in-up animation-delay-500" : "opacity-0"}`}
+          style={{ 
+            lineHeight: 1.6,
+            textShadow: "0 2px 20px rgba(0, 0, 0, 0.9), 0 4px 40px rgba(0, 0, 0, 0.7)",
+            color: "rgba(255, 255, 255, 0.85)"
+          }}
         >
-          Bridging <span className="text-white font-semibold">creative vision</span> and{" "}
-          <span className="text-white font-semibold">technical execution</span> to build 
+          Bridging <span className="text-white font-bold">creative vision</span> and{" "}
+          <span className="text-white font-bold">technical execution</span> to build 
           what others say is impossible.
         </p>
 
@@ -132,12 +144,24 @@ export function Hero() {
           ].map((stat, idx) => (
             <div key={idx} className="text-center">
               <div 
-                className="text-2xl font-bold sm:text-3xl md:text-4xl"
-                style={{ color: "var(--vista-blue)" }}
+                className="text-2xl font-black uppercase sm:text-3xl md:text-4xl"
+                style={{ 
+                  color: "var(--vista-blue)",
+                  fontFamily: "var(--font-display)",
+                  textShadow: "0 2px 20px rgba(0, 0, 0, 0.8)"
+                }}
               >
                 {stat.value}
               </div>
-              <div className="text-xs text-gray-500 sm:text-sm">{stat.label}</div>
+              <div 
+                className="text-xs uppercase tracking-wider sm:text-sm"
+                style={{ 
+                  color: "rgba(255, 255, 255, 0.6)",
+                  textShadow: "0 2px 10px rgba(0, 0, 0, 0.8)"
+                }}
+              >
+                {stat.label}
+              </div>
             </div>
           ))}
         </div>

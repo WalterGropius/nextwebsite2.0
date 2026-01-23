@@ -72,7 +72,7 @@ export function Navigation() {
               EB
             </div>
             <span className="hidden font-semibold text-white sm:block" style={{ fontFamily: "var(--font-display)" }}>
-              zenbauhaus
+              Eliáš Bauer
             </span>
           </Link>
 
