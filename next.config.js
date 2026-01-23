@@ -5,16 +5,26 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
 
-  // Bundle analyzer (conditionally enabled)
-  ...(process.env.ANALYZE === 'true' && {
-    webpack: (config, { isServer }) => {
-      if (!isServer) {
-        const { BundleAnalyzerPlugin } = require('@next/bundle-analyzer')()
-        config.plugins.push(new BundleAnalyzerPlugin())
-      }
-      return config
-    },
-  }),
+  // Webpack configuration for Spark and bundle analyzer
+  webpack: (config, { isServer }) => {
+    // Fix for @sparkjsdev/spark WASM URL resolution
+    // See: https://github.com/sparkjsdev/spark-react-r3f
+    config.module.parser = {
+      ...config.module.parser,
+      javascript: {
+        ...config.module.parser?.javascript,
+        url: false, // disable parsing of `new URL()` syntax
+      },
+    }
+
+    // Bundle analyzer (conditionally enabled)
+    if (process.env.ANALYZE === 'true' && !isServer) {
+      const { BundleAnalyzerPlugin } = require('@next/bundle-analyzer')()
+      config.plugins.push(new BundleAnalyzerPlugin())
+    }
+
+    return config
+  },
 
   // Image optimization
   images: {
@@ -57,7 +67,7 @@ const nextConfig = {
   },
 
   // Transpile packages that need it
-  transpilePackages: ['three', '@react-three/fiber', '@react-three/drei'],
+  transpilePackages: ['three', '@react-three/fiber', '@react-three/drei', '@sparkjsdev/spark'],
 
   // Output standalone for better performance
   output: 'standalone',

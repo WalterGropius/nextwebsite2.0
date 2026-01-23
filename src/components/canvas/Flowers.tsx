@@ -1,8 +1,8 @@
 'use client'
-import { Float, Splat } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { useRef, useState, useEffect } from 'react'
 import * as THREE from 'three'
+import { SparkRenderer, SplatMesh } from './spark'
 
 function isMobileDevice() {
   if (typeof window === 'undefined') return false
@@ -10,8 +10,7 @@ function isMobileDevice() {
 }
 
 export function Flowers() {
-  const splatRef = useRef<THREE.Group | null>(null)
-  const [hasError, setHasError] = useState(false)
+  const splatRef = useRef<THREE.Object3D | null>(null)
   const [isClient, setIsClient] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const gyroRef = useRef({ alpha: 0, beta: 0, gamma: 0 })
@@ -54,8 +53,8 @@ export function Flowers() {
     if (isMobile) {
       // Map device orientation to rotation
       const { beta, gamma } = gyroRef.current
-      splatRef.current.rotation.x = THREE.MathUtils.degToRad(beta - 60) * 0.5 // tilt up/down
-      splatRef.current.rotation.y = THREE.MathUtils.degToRad(gamma) * 0.5 // tilt left/right
+      splatRef.current.rotation.x = THREE.MathUtils.degToRad(beta - 60) * 0.5
+      splatRef.current.rotation.y = THREE.MathUtils.degToRad(gamma) * 0.5
     } else {
       // Map mouse to rotation
       splatRef.current.rotation.x = mouseRef.current.y * 0.3
@@ -67,15 +66,14 @@ export function Flowers() {
 
   return (
     <>
-      {!hasError ? (
-        <group ref={splatRef}>
-          <Splat
-            scale={3}
-            rotation={[0, -0.7 * Math.PI, 0]}
-            src="../../flowers_white.splat"
-          />
-        </group>
-      ) : null}
+      <SparkRenderer />
+      <group ref={splatRef}>
+        <SplatMesh
+          url="/flowers_white.sog"
+          scale={3}
+          rotation={[0, -0.7 * Math.PI, 0]}
+        />
+      </group>
     </>
   )
 }

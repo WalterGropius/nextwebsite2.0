@@ -3,16 +3,11 @@ import { PresentationControls, Float } from '@react-three/drei'
 import { useFrame } from '@react-three/fiber'
 import { useRef, useState, useEffect, Suspense } from 'react'
 import * as THREE from 'three'
-import React from 'react'
-
-// Lazy load the Splat component to reduce initial bundle size
-const Splat = React.lazy(() => import('@react-three/drei').then(module => ({ default: module.Splat })))
+import { SparkRenderer, SplatMesh } from './spark'
 
 export function FlowersOptimized() {
   const groupRef = useRef<THREE.Group | null>(null)
-  const [hasError, setHasError] = useState<boolean>(false)
   const [isClient, setIsClient] = useState<boolean>(false)
-  const [isLoaded, setIsLoaded] = useState<boolean>(false)
 
   // Ensure we're client-side before rendering 3D content
   useEffect(() => {
@@ -34,6 +29,8 @@ export function FlowersOptimized() {
 
   return (
     <>
+      <SparkRenderer />
+      
       {/* Simplified lighting setup */}
       <ambientLight intensity={0.6} />
       <directionalLight
@@ -54,18 +51,16 @@ export function FlowersOptimized() {
           floatIntensity={0.05}
         >
           <group ref={groupRef}>
-            {!hasError && (
-              <Suspense fallback={null}>
-                <Splat
-                  scale={2.5}
-                  rotation={[0, -0.5 * Math.PI, 0]}
-                  src="../../flowers_white.splat"
-                />
-              </Suspense>
-            )}
+            <Suspense fallback={null}>
+              <SplatMesh
+                url="/flowers_white.sog"
+                scale={2.5}
+                rotation={[0, -0.5 * Math.PI, 0]}
+              />
+            </Suspense>
           </group>
         </Float>
       </PresentationControls>
     </>
   )
-} 
+}

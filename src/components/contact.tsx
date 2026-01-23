@@ -1,10 +1,18 @@
 "use client"
 
-import { useRef, useEffect, useState } from "react"
-import { Mail, Github, Linkedin, ArrowUpRight } from "lucide-react"
+import { useRef, useState, useEffect } from "react"
+import { Mail, ArrowUpRight, Github, Linkedin, Instagram, Music } from "lucide-react"
+
+const socialLinks = [
+  { name: "GitHub", href: "https://github.com/WalterGropius", icon: Github, color: "var(--thistle)" },
+  { name: "LinkedIn", href: "https://linkedin.com/in/zenbauhaus", icon: Linkedin, color: "var(--cobalt-blue)" },
+  { name: "Instagram", href: "https://instagram.com/y4ngyin", icon: Instagram, color: "var(--salmon-pink)" },
+  { name: "Skate", href: "https://instagram.com/tra5her_sk8", icon: Instagram, color: "var(--lion)" },
+  { name: "Music", href: "https://soundcloud.com/mczenbauhaus", icon: Music, color: "var(--vermilion)" },
+]
 
 export function Contact() {
-  const ref = useRef(null)
+  const ref = useRef<HTMLDivElement>(null)
   const [isInView, setIsInView] = useState(false)
 
   useEffect(() => {
@@ -12,127 +20,81 @@ export function Contact() {
       ([entry]) => {
         if (entry.isIntersecting) setIsInView(true)
       },
-      { threshold: 0.1, rootMargin: "-100px" }
+      { threshold: 0.1 }
     )
     if (ref.current) observer.observe(ref.current)
     return () => observer.disconnect()
   }, [])
 
   return (
-    <section id="contact" className="py-32 px-6">
-      <div className="max-w-4xl mx-auto">
-        <div
-          ref={ref}
-          className={isInView ? "animate-fade-in" : "opacity-0"}
+    <section id="contact" className="relative py-16 sm:py-20">
+      <div ref={ref} className="section-container relative z-10">
+        {/* Main CTA */}
+        <div className={`mx-auto max-w-3xl text-center ${isInView ? "animate-fade-in-up" : "opacity-0"}`}>
+          <h2 
+            className="mb-4 text-3xl font-bold sm:text-4xl md:text-5xl"
+            style={{ fontFamily: "var(--font-display)" }}
+          >
+            Let's Build Something <span className="gradient-text">Extraordinary</span>
+          </h2>
+          
+          <p className="mx-auto mb-8 max-w-xl text-gray-400">
+            Whether it's VR, AI, or something entirely new—I'm here to make it happen.
+          </p>
+
+          {/* CTA buttons */}
+          <div className="mb-8 flex flex-wrap items-center justify-center gap-3">
+            <a href="mailto:zenbauhaus@gmail.com" className="btn-primary group">
+              <Mail size={18} />
+              Get in Touch
+              <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+            <a href="/portfolio-s" className="btn-secondary">
+              View Portfolio
+            </a>
+          </div>
+        </div>
+
+        {/* Social links - compact row */}
+        <div className={`flex flex-wrap items-center justify-center gap-3 ${isInView ? "animate-fade-in animation-delay-300" : "opacity-0"}`}>
+          {socialLinks.map((social) => (
+            <a
+              key={social.name}
+              href={social.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 rounded-full px-3 py-1.5 text-sm transition-all hover:scale-105"
+              style={{ background: "var(--surface-glass)", border: "1px solid var(--border-subtle)" }}
+            >
+              <social.icon size={14} style={{ color: social.color }} />
+              <span className="text-gray-400">{social.name}</span>
+            </a>
+          ))}
+        </div>
+
+        {/* Footer line */}
+        <div 
+          className={`mt-12 flex flex-col items-center gap-3 border-t pt-6 text-xs text-gray-500 sm:flex-row sm:justify-between ${
+            isInView ? "animate-fade-in animation-delay-500" : "opacity-0"
+          }`}
+          style={{ borderColor: "var(--border-subtle)" }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-16 text-center">Collaborate</h2>
-
-          <div className="text-center mb-16">
-            <p
-              className={`text-2xl mb-8 leading-relaxed ${isInView ? "animate-slide-up animation-delay-200" : "opacity-0"
-                }`}
-              style={{ color: 'var(--thistle)' }}
+          <div className="flex items-center gap-2">
+            <div 
+              className="flex h-6 w-6 items-center justify-center rounded text-[10px] font-bold"
+              style={{ background: "var(--gradient-primary)" }}
             >
-              lets collaborate and bring new <span style={{ color: 'var(--flax)', fontWeight: 'bold' }}>visions</span> to life together!
-            </p>
-
-            <p
-              className={`mb-8 text-lg ${isInView ? "animate-slide-up animation-delay-300" : "opacity-0"
-                }`}
-              style={{ color: 'var(--salmon-pink)' }}
-            >
-              Check out my{" "}
-              <a href="/portfolio" style={{ color: 'var(--flax)' }} className="hover:opacity-80 underline transition-colors">
-                portfolio
-              </a>{" "}
-              to see more of my work.
-            </p>
-
-            <div
-              className={`flex justify-center gap-8 ${isInView ? "animate-slide-up animation-delay-400" : "opacity-0"
-                }`}
-            >
-              <a
-                href="mailto:zenbauhaus@gmail.com"
-                className="group flex items-center gap-3 px-6 py-3 rounded-lg font-medium transition-colors"
-                style={{ backgroundColor: 'var(--vermilion)', color: 'white' }}
-              >
-                <Mail size={20} />
-                Get in Touch
-                <ArrowUpRight
-                  size={16}
-                  className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"
-                />
-              </a>
+              EB
             </div>
+            <span>zenbauhaus</span>
           </div>
-
-          <div
-            className={`flex flex-wrap justify-center gap-6 mb-8 ${isInView ? "animate-fade-in animation-delay-600" : "opacity-0"
-              }`}
-          >
-            <a
-              href="https://github.com/WalterGropius"
-              className="p-3 transition-colors"
-              style={{ color: 'var(--salmon-pink)' }}
-              aria-label="GitHub"
-              target="_blank" rel="noopener noreferrer"
-            >
-              <Github size={24} />
-            </a>
-            <a
-              href="https://linkedin.com/in/zenbauhaus"
-              className="p-3 transition-colors"
-              style={{ color: 'var(--vista-blue)' }}
-              aria-label="LinkedIn"
-              target="_blank" rel="noopener noreferrer"
-            >
-              <Linkedin size={24} />
-            </a>
-            <a
-              href="https://instagram.com/y4ngyin"
-              className="p-3 transition-colors"
-              style={{ color: 'var(--pistachio)' }}
-              aria-label="Instagram y4ngyin"
-              target="_blank" rel="noopener noreferrer"
-            >
-              <span className="font-bold">@y4ngyin</span>
-            </a>
-            <a
-              href="https://instagram.com/tra5her_sk8"
-              className="p-3 transition-colors"
-              style={{ color: 'var(--lion)' }}
-              aria-label="Instagram tra5her_sk8"
-              target="_blank" rel="noopener noreferrer"
-            >
-              <span className="font-bold">@tra5her_sk8</span>
-            </a>
-            <a
-              href="https://facebook.com/ezbawa"
-              className="p-3 transition-colors"
-              style={{ color: 'var(--thistle)' }}
-              aria-label="Facebook ezbawa"
-              target="_blank" rel="noopener noreferrer"
-            >
-              <span className="font-bold">/ezbawa</span>
-            </a>
-            <a
-              href="https://soundcloud.com/mczenbauhaus"
-              className="p-3 transition-colors"
-              style={{ color: 'var(--flax)' }}
-              aria-label="SoundCloud mczenbauhaus"
-              target="_blank" rel="noopener noreferrer"
-            >
-              <span className="font-bold">/mczenbauhaus</span>
-            </a>
-          </div>
-
-          <div
-            className={`text-center text-sm ${isInView ? "animate-fade-in animation-delay-800" : "opacity-0"
-              }`}
-            style={{ color: 'var(--fern-green)' }}
-          >
-            Crafted by zenbauhaus. © 2024
+          <div className="flex items-center gap-4">
+            <span>Prague, CZ</span>
+            <span>© {new Date().getFullYear()}</span>
+            <span className="flex items-center gap-1">
+              <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
+              Available
+            </span>
           </div>
         </div>
       </div>
