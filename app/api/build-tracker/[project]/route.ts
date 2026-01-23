@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-// Projects allowed to build
+// Projects allowed to build 
 const ALLOWED_PROJECTS = ['trust']
 
 interface BuildData {
