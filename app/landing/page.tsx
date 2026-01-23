@@ -42,7 +42,6 @@ export default function Home() {
     <PageLoader>
       <main className="min-h-screen overflow-x-hidden">
         <Navigation />
-
         {/* Hero Section with 3D Gaussian Splat Background */}
         <section className="relative min-h-screen w-full">
           {/* 3D Background */}
