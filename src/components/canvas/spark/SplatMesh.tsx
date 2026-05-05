@@ -16,44 +16,49 @@ export const SplatMesh = forwardRef<THREE.Object3D, SplatMeshProps>(
   ({ url, scale = 1, position, rotation, onLoad }, ref) => {
     const groupRef = useRef<THREE.Group>(null!)
     const splatRef = useRef<SplatMeshClass | null>(null)
-    const scene = useThree((state) => state.scene)
-    
+    const onLoadRef = useRef(onLoad)
+    useThree((state) => state.scene)
+
     useImperativeHandle(ref, () => groupRef.current)
 
+    // Keep latest onLoad without triggering effect re-runs
+    useEffect(() => {
+      onLoadRef.current = onLoad
+    }, [onLoad])
+
+    // Create the splat once per URL change. Transforms are applied imperatively
+    // below so prop-reference churn (e.g. parent re-renders) doesn't dispose
+    // and reload the multi-MB asset.
     useEffect(() => {
       const splat = new SplatMeshClass({ url })
       splatRef.current = splat
-
-      // Apply transforms
-      if (scale) {
-        splat.scale.setScalar(scale)
-      }
-      if (position) {
-        splat.position.set(...position)
-      }
-      if (rotation) {
-        splat.rotation.set(...rotation)
-      }
-
-      // Add to parent group
-      if (groupRef.current) {
-        groupRef.current.add(splat as unknown as THREE.Object3D)
-      }
-
-      // Call onLoad when initialized
-      if (onLoad) {
-        splat.initialized.then(() => onLoad(splat))
-      }
+      const group = groupRef.current
+      group?.add(splat as unknown as THREE.Object3D)
+      splat.initialized.then(() => onLoadRef.current?.(splat))
 
       return () => {
-        const group = groupRef.current
-        const splatMesh = splatRef.current
-        if (group && splatMesh) {
-          group.remove(splatMesh as unknown as THREE.Object3D)
-        }
+        group?.remove(splat as unknown as THREE.Object3D)
         splat.dispose?.()
+        splatRef.current = null
       }
-    }, [url, scale, position, rotation, onLoad])
+    }, [url])
+
+    // Apply transforms whenever the value (not the array reference) changes
+    const sx = scale
+    const px = position?.[0] ?? 0
+    const py = position?.[1] ?? 0
+    const pz = position?.[2] ?? 0
+    const rx = rotation?.[0] ?? 0
+    const ry = rotation?.[1] ?? 0
+    const rz = rotation?.[2] ?? 0
+
+    useEffect(() => {
+      const splat = splatRef.current
+      if (!splat) return
+      splat.scale.setScalar(sx)
+      splat.position.set(px, py, pz)
+      splat.rotation.set(rx, ry, rz)
+    }, [sx, px, py, pz, rx, ry, rz])
 
     return <group ref={groupRef} />
   }

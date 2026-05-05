@@ -43,13 +43,12 @@ export function PageLoader({ children }: PageLoaderProps) {
     }
   }, [progress])
 
-  if (!isLoading) return <>{children}</>
-
   return (
     <div className="relative">
       {children}
-      
-      {/* Loader overlay */}
+
+      {/* Loader overlay — kept conditionally so children never unmount */}
+      {isLoading && (
       <div
         className={`fixed inset-0 z-[9999] flex flex-col items-center justify-center transition-all duration-700 ${
           isExiting ? "opacity-0 pointer-events-none" : "opacity-100"
@@ -157,11 +156,12 @@ export function PageLoader({ children }: PageLoaderProps) {
           className="absolute bottom-8 right-8 h-16 w-[1px]"
           style={{ background: "linear-gradient(0deg, var(--vista-blue), transparent)" }}
         />
-        <div 
+        <div
           className="absolute bottom-8 right-8 h-[1px] w-16"
           style={{ background: "linear-gradient(270deg, var(--vista-blue), transparent)" }}
         />
       </div>
+      )}
     </div>
   )
 }
