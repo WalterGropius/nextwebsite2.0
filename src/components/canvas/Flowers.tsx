@@ -4,61 +4,93 @@ import { useRef, useState, useEffect } from 'react'
 import * as THREE from 'three'
 import { SparkRenderer, SplatMesh } from './spark'
 
-function isMobileDevice() {
+type DeviceOrientationEventStatic = typeof DeviceOrientationEvent & {
+  requestPermission?: () => Promise<'granted' | 'denied'>
+}
+
+function hasTouch() {
   if (typeof window === 'undefined') return false
-  return /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent)
+  return 'ontouchstart' in window || navigator.maxTouchPoints > 0
 }
 
 export function Flowers() {
   const splatRef = useRef<THREE.Object3D | null>(null)
   const [isClient, setIsClient] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
-  const gyroRef = useRef({ alpha: 0, beta: 0, gamma: 0 })
+  const pointerRef = useRef({ x: 0, y: 0 })
+  const gyroRef = useRef<{ x: number; y: number } | null>(null)
 
-  // Detect client and device type
   useEffect(() => {
     setIsClient(true)
-    setIsMobile(isMobileDevice())
   }, [])
 
-  // Gyroscope event for mobile
+  // Pointer/mouse parallax — works on every device
   useEffect(() => {
-    if (!isMobile) return
+    if (!isClient) return
+    const handlePointer = (clientX: number, clientY: number) => {
+      pointerRef.current.x = (clientX / window.innerWidth) * 2 - 1
+      pointerRef.current.y = (clientY / window.innerHeight) * 2 - 1
+    }
+    const onMouseMove = (e: MouseEvent) => handlePointer(e.clientX, e.clientY)
+    const onTouchMove = (e: TouchEvent) => {
+      if (e.touches[0]) handlePointer(e.touches[0].clientX, e.touches[0].clientY)
+    }
+    window.addEventListener('mousemove', onMouseMove, { passive: true })
+    window.addEventListener('touchmove', onTouchMove, { passive: true })
+    return () => {
+      window.removeEventListener('mousemove', onMouseMove)
+      window.removeEventListener('touchmove', onTouchMove)
+    }
+  }, [isClient])
+
+  // Device orientation — overrides pointer when available
+  useEffect(() => {
+    if (!isClient || !hasTouch()) return
+
     const handleOrientation = (e: DeviceOrientationEvent) => {
+      if (e.beta == null && e.gamma == null) return
       gyroRef.current = {
-        alpha: e.alpha || 0,
-        beta: e.beta || 0,
-        gamma: e.gamma || 0,
+        x: THREE.MathUtils.degToRad((e.beta ?? 60) - 60) * 0.5,
+        y: THREE.MathUtils.degToRad(e.gamma ?? 0) * 0.5,
       }
     }
-    window.addEventListener('deviceorientation', handleOrientation, true)
-    return () => window.removeEventListener('deviceorientation', handleOrientation)
-  }, [isMobile])
 
-  // Mouse position for desktop
-  const mouseRef = useRef({ x: 0, y: 0 })
-  useEffect(() => {
-    if (isMobile) return
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseRef.current.x = (e.clientX / window.innerWidth) * 2 - 1
-      mouseRef.current.y = (e.clientY / window.innerHeight) * 2 - 1
+    const attach = () => window.addEventListener('deviceorientation', handleOrientation, true)
+    const Ctor = DeviceOrientationEvent as DeviceOrientationEventStatic | undefined
+
+    if (Ctor && typeof Ctor.requestPermission === 'function') {
+      // iOS 13+: permission must be requested from a user gesture.
+      const requestOnGesture = async () => {
+        try {
+          const result = await Ctor.requestPermission!()
+          if (result === 'granted') attach()
+        } catch {
+          /* ignore — fall back to pointer parallax */
+        }
+        window.removeEventListener('touchend', requestOnGesture)
+        window.removeEventListener('click', requestOnGesture)
+      }
+      window.addEventListener('touchend', requestOnGesture, { once: true })
+      window.addEventListener('click', requestOnGesture, { once: true })
+      return () => {
+        window.removeEventListener('touchend', requestOnGesture)
+        window.removeEventListener('click', requestOnGesture)
+        window.removeEventListener('deviceorientation', handleOrientation, true)
+      }
     }
-    window.addEventListener('mousemove', handleMouseMove)
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [isMobile])
 
-  // Animate rotation based on input
+    attach()
+    return () => window.removeEventListener('deviceorientation', handleOrientation, true)
+  }, [isClient])
+
   useFrame(() => {
     if (!splatRef.current) return
-    if (isMobile) {
-      // Map device orientation to rotation
-      const { beta, gamma } = gyroRef.current
-      splatRef.current.rotation.x = THREE.MathUtils.degToRad(beta - 60) * 0.5
-      splatRef.current.rotation.y = THREE.MathUtils.degToRad(gamma) * 0.5
+    const gyro = gyroRef.current
+    if (gyro) {
+      splatRef.current.rotation.x = gyro.x
+      splatRef.current.rotation.y = gyro.y
     } else {
-      // Map mouse to rotation
-      splatRef.current.rotation.x = mouseRef.current.y * 0.3
-      splatRef.current.rotation.y = mouseRef.current.x * 0.5
+      splatRef.current.rotation.x = pointerRef.current.y * 0.3
+      splatRef.current.rotation.y = pointerRef.current.x * 0.5
     }
   })
 
@@ -71,7 +103,7 @@ export function Flowers() {
         <SplatMesh
           url="/flowers_white.sog"
           scale={3}
-          rotation={[0, -0.7 * Math.PI, 0]}
+          rotation={[Math.PI, -0.7 * Math.PI, 0]}
         />
       </group>
     </>
