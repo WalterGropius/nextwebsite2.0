@@ -65,15 +65,15 @@ export function Hero() {
         </div>
 
         {/* Main heading */}
-        <h1 
+        <h1
           className={`mb-6 text-5xl font-black uppercase tracking-wider sm:text-6xl md:text-7xl lg:text-9xl leading-none ${isVisible ? "animate-blur-in" : "opacity-0"}`}
-          style={{ 
+          style={{
             fontFamily: "var(--font-display)",
-            textShadow: "0 4px 30px rgba(0, 0, 0, 0.9), 0 8px 60px rgba(0, 0, 0, 0.7), 0 0 120px rgba(0, 0, 0, 0.5)",
+            textShadow: "0 2px 20px rgba(255, 255, 255, 0.8), 0 4px 40px rgba(247, 245, 240, 0.6)",
             letterSpacing: "0.05em"
           }}
         >
-          <span className="block text-white">zenbauhaus</span>
+          <span className="block">zenbauhaus</span>
         </h1>
 
         {/* Role rotator */}
@@ -88,10 +88,10 @@ export function Hero() {
               <div 
                 key={idx}
                 className="flex h-14 items-center justify-center text-2xl font-bold uppercase tracking-widest sm:text-3xl md:text-4xl"
-                style={{ 
+                style={{
                   color: role.color,
                   fontFamily: "var(--font-display)",
-                  textShadow: "0 2px 20px rgba(0, 0, 0, 0.8), 0 4px 40px rgba(0, 0, 0, 0.6)"
+                  textShadow: "0 2px 20px rgba(255, 255, 255, 0.7)"
                 }}
               >
                 {role.text}
@@ -103,14 +103,14 @@ export function Hero() {
         {/* Tagline */}
         <p 
           className={`mx-auto mb-10 max-w-2xl text-lg sm:text-xl md:text-2xl ${isVisible ? "animate-fade-in-up animation-delay-500" : "opacity-0"}`}
-          style={{ 
+          style={{
             lineHeight: 1.6,
-            textShadow: "0 2px 20px rgba(0, 0, 0, 0.9), 0 4px 40px rgba(0, 0, 0, 0.7)",
-            color: "rgba(255, 255, 255, 0.85)"
+            textShadow: "0 2px 20px rgba(255, 255, 255, 0.7)",
+            color: "rgba(15, 17, 23, 0.75)"
           }}
         >
-          Bridging <span className="text-white font-bold">creative vision</span> and{" "}
-          <span className="text-white font-bold">technical execution</span> to build 
+          Bridging <span className="font-bold" style={{ color: "var(--text-primary)" }}>creative vision</span> and{" "}
+          <span className="font-bold" style={{ color: "var(--text-primary)" }}>technical execution</span> to build
           what others say is impossible.
         </p>
 
@@ -143,21 +143,20 @@ export function Hero() {
             { value: "CTO", label: "Current Role" },
           ].map((stat, idx) => (
             <div key={idx} className="text-center">
-              <div 
+              <div
                 className="text-2xl font-black uppercase sm:text-3xl md:text-4xl"
-                style={{ 
-                  color: "var(--vista-blue)",
+                style={{
+                  color: "var(--cobalt-blue)",
                   fontFamily: "var(--font-display)",
-                  textShadow: "0 2px 20px rgba(0, 0, 0, 0.8)"
+                  textShadow: "0 2px 20px rgba(255, 255, 255, 0.6)"
                 }}
               >
                 {stat.value}
               </div>
-              <div 
+              <div
                 className="text-xs uppercase tracking-wider sm:text-sm"
-                style={{ 
-                  color: "rgba(255, 255, 255, 0.6)",
-                  textShadow: "0 2px 10px rgba(0, 0, 0, 0.8)"
+                style={{
+                  color: "rgba(15, 17, 23, 0.55)"
                 }}
               >
                 {stat.label}

@@ -44,6 +44,15 @@ export default function Home() {
         <Navigation />
         {/* Hero Section with 3D Gaussian Splat Background */}
         <section className="relative min-h-screen w-full">
+          {/* Soft backdrop so the white splat keeps contrast on the light page */}
+          <div
+            className="pointer-events-none absolute inset-0 z-0"
+            style={{
+              background:
+                "radial-gradient(ellipse 70% 60% at 50% 45%, rgba(29, 31, 44, 0.55) 0%, rgba(94, 83, 114, 0.25) 45%, rgba(247, 245, 240, 0) 75%)"
+            }}
+          />
+
           {/* 3D Background */}
           <div ref={canvasRef} className="absolute inset-0 z-0" suppressHydrationWarning>
             {mounted ? (
@@ -64,19 +73,15 @@ export default function Home() {
                   <Flowers />
                 </Suspense>
               </Canvas>
-            ) : (
-              <div className="absolute inset-0" style={{ background: "var(--surface-dark)" }} />
-            )}
+            ) : null}
           </div>
 
-          {/* Gradient overlay for better text readability */}
-          <div 
+          {/* Gradient overlay fading hero into the page */}
+          <div
             className="pointer-events-none absolute inset-0 z-[1]"
             style={{
-              background: `
-                radial-gradient(ellipse at center, transparent 0%, var(--surface-dark) 100%),
-                linear-gradient(180deg, transparent 0%, transparent 60%, var(--surface-dark) 100%)
-              `
+              background:
+                "linear-gradient(180deg, transparent 0%, transparent 65%, var(--surface-dark) 100%)"
             }}
           />
 

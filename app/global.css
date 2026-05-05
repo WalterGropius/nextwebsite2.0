@@ -20,20 +20,22 @@
     --indigo: #5e5372;
     
     /* Extended Palette */
-    --accent-glow: rgba(59, 102, 243, 0.4);
-    --warm-glow: rgba(252, 237, 135, 0.3);
-    --surface-dark: #0f1117;
-    --surface-elevated: #1a1d28;
-    --surface-glass: rgba(255, 255, 255, 0.03);
-    --border-subtle: rgba(255, 255, 255, 0.06);
-    --border-glow: rgba(163, 164, 225, 0.2);
+    --accent-glow: rgba(59, 102, 243, 0.35);
+    --warm-glow: rgba(252, 237, 135, 0.4);
+    --surface-dark: #f7f5f0;
+    --surface-elevated: #ffffff;
+    --surface-glass: rgba(255, 255, 255, 0.6);
+    --border-subtle: rgba(15, 17, 23, 0.08);
+    --border-glow: rgba(59, 102, 243, 0.25);
+    --text-primary: #1a1d28;
+    --text-muted: rgba(15, 17, 23, 0.6);
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, var(--cobalt-blue) 0%, var(--vista-blue) 100%);
     --gradient-warm: linear-gradient(135deg, var(--vermilion) 0%, var(--flax) 100%);
-    --gradient-subtle: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0) 100%);
-    --gradient-hero: radial-gradient(ellipse at 30% 20%, rgba(59, 102, 243, 0.15) 0%, transparent 50%), 
-                     radial-gradient(ellipse at 70% 80%, rgba(238, 74, 68, 0.1) 0%, transparent 50%);
+    --gradient-subtle: linear-gradient(180deg, rgba(15,17,23,0.06) 0%, rgba(15,17,23,0) 100%);
+    --gradient-hero: radial-gradient(ellipse at 30% 20%, rgba(59, 102, 243, 0.10) 0%, transparent 50%),
+                     radial-gradient(ellipse at 70% 80%, rgba(238, 74, 68, 0.07) 0%, transparent 50%);
     
     /* Typography Scale */
     --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
@@ -72,7 +74,7 @@
     padding: 0;
     font-family: var(--font-body);
     background-color: var(--surface-dark);
-    color: #f4f4f5;
+    color: var(--text-primary);
     overflow-x: hidden;
   }
 
@@ -92,7 +94,7 @@
 
   p {
     line-height: 1.7;
-    color: rgba(255, 255, 255, 0.75);
+    color: var(--text-muted);
   }
 
   /* Selection styling */
@@ -124,6 +126,19 @@
   ::-webkit-scrollbar-thumb:hover {
     background: var(--vista-blue);
   }
+
+  /* Light-mode remap of dark-theme text utilities */
+  .text-white,
+  .text-gray-50,
+  .text-gray-100 {
+    color: var(--text-primary);
+  }
+  .text-gray-200 { color: rgba(15, 17, 23, 0.85); }
+  .text-gray-300 { color: rgba(15, 17, 23, 0.75); }
+  .text-gray-400 { color: rgba(15, 17, 23, 0.6); }
+  .text-gray-500 { color: rgba(15, 17, 23, 0.5); }
+  .text-gray-600 { color: rgba(15, 17, 23, 0.4); }
+  .hover\:text-white:hover { color: var(--text-primary); }
 }
 
 @layer components {

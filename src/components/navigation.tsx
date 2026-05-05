@@ -50,7 +50,7 @@ export function Navigation() {
         }`}
         style={{
           background: isScrolled
-            ? "rgba(15, 17, 23, 0.85)"
+            ? "rgba(247, 245, 240, 0.85)"
             : "transparent",
           backdropFilter: isScrolled ? "blur(20px)" : "none",
           borderBottom: isScrolled ? "1px solid var(--border-subtle)" : "none",
@@ -128,7 +128,7 @@ export function Navigation() {
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
         }`}
-        style={{ background: "rgba(15, 17, 23, 0.98)" }}
+        style={{ background: "rgba(247, 245, 240, 0.98)" }}
       >
         <div className="flex h-full flex-col items-center justify-center gap-2 p-8">
           {navLinks.map((link, idx) => (
