@@ -11,7 +11,7 @@ import { Creations } from "@/components/creations"
 import { Highlights } from "@/components/highlights"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { Navigation } from "@/components/navigation"
-import { GeometricScene } from "@/components/canvas/GeometricScene"
+import { Flowers } from "@/components/canvas/Flowers"
 import { PageLoader } from "@/components/page-loader"
 
 export default function Home() {
@@ -61,7 +61,7 @@ export default function Home() {
                 frameloop={canvasVisible ? "always" : "demand"}
               >
                 <Suspense fallback={null}>
-                  <GeometricScene isVisible={canvasVisible} />
+                  <Flowers />
                 </Suspense>
               </Canvas>
             ) : (
