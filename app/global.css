@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 
+@font-face {
+  font-family: 'Zenhand';
+  src: url('/zenhand3.woff') format('woff'),
+       url('/zenhand3.ttf') format('truetype');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -38,7 +47,7 @@
                      radial-gradient(ellipse at 70% 80%, rgba(238, 74, 68, 0.07) 0%, transparent 50%);
     
     /* Typography Scale */
-    --font-display: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --font-display: 'Zenhand', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     
     /* Text shadows */
@@ -126,19 +135,6 @@
   ::-webkit-scrollbar-thumb:hover {
     background: var(--vista-blue);
   }
-
-  /* Light-mode remap of dark-theme text utilities */
-  .text-white,
-  .text-gray-50,
-  .text-gray-100 {
-    color: var(--text-primary);
-  }
-  .text-gray-200 { color: rgba(15, 17, 23, 0.85); }
-  .text-gray-300 { color: rgba(15, 17, 23, 0.75); }
-  .text-gray-400 { color: rgba(15, 17, 23, 0.6); }
-  .text-gray-500 { color: rgba(15, 17, 23, 0.5); }
-  .text-gray-600 { color: rgba(15, 17, 23, 0.4); }
-  .hover\:text-white:hover { color: var(--text-primary); }
 }
 
 @layer components {
@@ -288,6 +284,20 @@
 }
 
 @layer utilities {
+  /* Light-mode remap of dark-theme text utilities (must live in utilities to
+     cascade after Tailwind's own .text-white / .text-gray-* declarations) */
+  .text-white,
+  .text-gray-50,
+  .text-gray-100 {
+    color: var(--text-primary);
+  }
+  .text-gray-200 { color: rgba(15, 17, 23, 0.85); }
+  .text-gray-300 { color: rgba(15, 17, 23, 0.75); }
+  .text-gray-400 { color: rgba(15, 17, 23, 0.6); }
+  .text-gray-500 { color: rgba(15, 17, 23, 0.5); }
+  .text-gray-600 { color: rgba(15, 17, 23, 0.4); }
+  .hover\:text-white:hover { color: var(--text-primary); }
+
   /* Animation Delays */
   .animation-delay-100 { animation-delay: 0.1s; }
   .animation-delay-200 { animation-delay: 0.2s; }

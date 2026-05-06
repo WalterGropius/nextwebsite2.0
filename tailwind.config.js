@@ -5,7 +5,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: ['Cormorant Garamond', 'Georgia', 'Times New Roman', 'serif'],
+        display: ['Zenhand', 'Cormorant Garamond', 'Georgia', 'Times New Roman', 'serif'],
         body: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
         serif: ['Cormorant Garamond', 'Georgia', 'serif'],
         sans: ['Inter', '-apple-system', 'sans-serif'],
