@@ -22,7 +22,7 @@
     /* Extended Palette */
     --accent-glow: rgba(59, 102, 243, 0.35);
     --warm-glow: rgba(252, 237, 135, 0.4);
-    --surface-dark: #f7f5f0;
+    --surface-dark: #f1f2f1;
     --surface-elevated: #ffffff;
     --surface-glass: rgba(255, 255, 255, 0.6);
     --border-subtle: rgba(15, 17, 23, 0.08);
@@ -273,7 +273,7 @@
     gap: 0.5rem;
     padding: 1rem 2rem;
     background: transparent;
-    color: white;
+    color: var(--text-primary);
     font-weight: 500;
     border-radius: 0.75rem;
     border: 1px solid var(--border-glow);

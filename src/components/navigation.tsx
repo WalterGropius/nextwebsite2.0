@@ -50,7 +50,7 @@ export function Navigation() {
         }`}
         style={{
           background: isScrolled
-            ? "rgba(247, 245, 240, 0.85)"
+            ? "rgba(241, 242, 241, 0.85)"
             : "transparent",
           backdropFilter: isScrolled ? "blur(20px)" : "none",
           borderBottom: isScrolled ? "1px solid var(--border-subtle)" : "none",
@@ -62,11 +62,12 @@ export function Navigation() {
             href="/" 
             className="group flex items-center gap-3 transition-transform hover:scale-105"
           >
-            <div 
-              className="flex h-10 w-10 items-center justify-center rounded-xl font-bold text-white transition-all duration-300 group-hover:shadow-lg"
-              style={{ 
+            <div
+              className="flex h-10 w-10 items-center justify-center rounded-xl font-bold transition-all duration-300 group-hover:shadow-lg"
+              style={{
                 background: "var(--gradient-primary)",
-                boxShadow: "0 0 20px -5px var(--accent-glow)"
+                boxShadow: "0 0 20px -5px var(--accent-glow)",
+                color: "#ffffff"
               }}
             >
               EB
@@ -128,7 +129,7 @@ export function Navigation() {
             ? "pointer-events-auto opacity-100"
             : "pointer-events-none opacity-0"
         }`}
-        style={{ background: "rgba(247, 245, 240, 0.98)" }}
+        style={{ background: "rgba(241, 242, 241, 0.98)" }}
       >
         <div className="flex h-full flex-col items-center justify-center gap-2 p-8">
           {navLinks.map((link, idx) => (

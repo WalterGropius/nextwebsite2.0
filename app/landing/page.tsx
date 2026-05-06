@@ -44,15 +44,6 @@ export default function Home() {
         <Navigation />
         {/* Hero Section with 3D Gaussian Splat Background */}
         <section className="relative min-h-screen w-full">
-          {/* Soft backdrop so the white splat keeps contrast on the light page */}
-          <div
-            className="pointer-events-none absolute inset-0 z-0"
-            style={{
-              background:
-                "radial-gradient(ellipse 70% 60% at 50% 45%, rgba(29, 31, 44, 0.55) 0%, rgba(94, 83, 114, 0.25) 45%, rgba(247, 245, 240, 0) 75%)"
-            }}
-          />
-
           {/* 3D Background */}
           <div ref={canvasRef} className="absolute inset-0 z-0" suppressHydrationWarning>
             {mounted ? (
