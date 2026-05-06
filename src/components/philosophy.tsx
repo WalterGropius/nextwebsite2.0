@@ -8,25 +8,25 @@ const pillars = [
     icon: Lightbulb,
     title: "Functionality",
     tagline: "Built to Perform",
-    description: "Solutions that work seamlessly, serving their purpose with unwavering reliability and efficiency. No compromises.",
-    color: "var(--flax)",
-    bgGradient: "linear-gradient(135deg, rgba(252, 237, 135, 0.1) 0%, transparent 100%)",
+    description:
+      "Solutions that work seamlessly, serving their purpose with unwavering reliability and efficiency. No compromises.",
+    color: "var(--lion)",
   },
   {
     icon: Heart,
     title: "Aesthetics",
     tagline: "Beauty in Every Pixel",
-    description: "Creating experiences that inspire and delight. Form and function are inseparable—both must be exceptional.",
+    description:
+      "Creating experiences that inspire and delight. Form and function are inseparable—both must be exceptional.",
     color: "var(--salmon-pink)",
-    bgGradient: "linear-gradient(135deg, rgba(252, 116, 114, 0.1) 0%, transparent 100%)",
   },
   {
     icon: Users,
     title: "Experience",
-    tagline: "Human-Centered Design",
-    description: "Intuitive interactions that empower users, making complex technology accessible and delightful for everyone.",
+    tagline: "Human-Centered",
+    description:
+      "Intuitive interactions that empower users, making complex technology accessible and delightful for everyone.",
     color: "var(--cobalt-blue)",
-    bgGradient: "linear-gradient(135deg, rgba(59, 102, 243, 0.1) 0%, transparent 100%)",
   },
 ]
 
@@ -48,125 +48,114 @@ export function Philosophy() {
 
   return (
     <section className="relative overflow-hidden py-12 sm:py-16">
-      {/* Subtle grid pattern overlay */}
-      <div 
-        className="pointer-events-none absolute inset-0 opacity-[0.02]"
-        style={{
-          backgroundImage: `linear-gradient(var(--border-subtle) 1px, transparent 1px), 
-                           linear-gradient(90deg, var(--border-subtle) 1px, transparent 1px)`,
-          backgroundSize: "60px 60px",
-        }}
-      />
-
       <div ref={ref} className="section-container relative z-10">
         {/* Section header */}
-        <div className={`mb-20 max-w-3xl ${isInView ? "animate-fade-in-up" : "opacity-0"}`}>
-          <div className="accent-line mb-6 animate-line-draw" />
-          <h2 
-            className="mb-6 text-4xl font-bold sm:text-5xl md:text-6xl"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Design <span className="gradient-text">Philosophy</span>
+        <div
+          className={`mb-12 max-w-3xl ${
+            isInView ? "animate-reveal-blur" : "opacity-0"
+          }`}
+        >
+          <span className="section-kicker mb-4">Philosophy</span>
+          <h2 className="section-title mt-3">
+            Design <span style={{ color: "var(--salmon-pink)" }}>philosophy</span>
           </h2>
-          <p className="text-xl text-gray-400 leading-relaxed">
-            Continually balancing the essential pillars that make technology not just functional, 
-            but <span className="text-white">truly meaningful</span>.
+          <p
+            className="mt-5 text-lg leading-relaxed"
+            style={{ color: "var(--text-muted)" }}
+          >
+            Continually balancing the essential pillars that make technology not
+            just functional, but{" "}
+            <span style={{ color: "var(--text-primary)" }}>truly meaningful</span>.
           </p>
         </div>
 
         {/* Pillars */}
-        <div className="grid gap-6 lg:grid-cols-3 lg:gap-8">
+        <div className="grid gap-5 lg:grid-cols-3">
           {pillars.map((pillar, idx) => (
             <div
               key={idx}
-              className={`group relative cursor-pointer ${
-                isInView ? "animate-slide-up" : "opacity-0"
+              className={`glass-card glass-card-hover group relative h-full overflow-hidden p-6 lg:p-8 ${
+                isInView ? "animate-reveal-blur" : "opacity-0"
               }`}
-              style={{ animationDelay: `${0.2 + idx * 0.15}s` }}
+              style={{ animationDelay: `${0.1 + idx * 0.08}s` }}
               onMouseEnter={() => setHoveredIndex(idx)}
               onMouseLeave={() => setHoveredIndex(null)}
             >
-              <div 
-                className="glass-card relative h-full overflow-hidden p-8 transition-all duration-500 lg:p-10"
+              {/* Soft colour wash that brightens on hover */}
+              <div
+                className="pointer-events-none absolute inset-0 opacity-30 transition-opacity duration-500 group-hover:opacity-60"
                 style={{
-                  background: hoveredIndex === idx ? pillar.bgGradient : "var(--surface-glass)",
-                  borderColor: hoveredIndex === idx ? `${pillar.color}40` : "var(--border-subtle)",
-                  transform: hoveredIndex === idx ? "translateY(-8px)" : "translateY(0)",
-                  boxShadow: hoveredIndex === idx 
-                    ? `0 20px 40px -20px rgba(0, 0, 0, 0.5), 0 0 60px -30px ${pillar.color}40`
-                    : "none",
+                  background: `radial-gradient(circle at 100% 0%, ${pillar.color}22, transparent 60%)`,
+                }}
+              />
+
+              {/* Icon */}
+              <div
+                className="icon-chip mb-6 h-14 w-14 transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110"
+                style={{ color: pillar.color }}
+              >
+                <pillar.icon size={28} />
+              </div>
+
+              {/* Content */}
+              <div className="relative space-y-3">
+                <span
+                  className="text-[0.65rem] font-semibold uppercase tracking-[0.28em]"
+                  style={{ color: pillar.color }}
+                >
+                  {pillar.tagline}
+                </span>
+
+                <h3
+                  className="text-2xl lg:text-3xl"
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    color: "var(--text-primary)",
+                  }}
+                >
+                  {pillar.title}
+                </h3>
+
+                <p
+                  className="text-base leading-relaxed"
+                  style={{ color: "var(--text-muted)" }}
+                >
+                  {pillar.description}
+                </p>
+              </div>
+
+              {/* Hover indicator */}
+              <div
+                className="relative mt-5 flex items-center gap-2 text-sm font-medium transition-all duration-300"
+                style={{
+                  color: pillar.color,
+                  opacity: hoveredIndex === idx ? 1 : 0,
+                  transform:
+                    hoveredIndex === idx ? "translateX(0)" : "translateX(-8px)",
                 }}
               >
-                {/* Floating icon */}
-                <div 
-                  className="mb-8 inline-flex h-16 w-16 items-center justify-center rounded-2xl transition-all duration-500"
-                  style={{ 
-                    background: "var(--surface-elevated)",
-                    color: pillar.color,
-                    transform: hoveredIndex === idx ? "scale(1.1) rotate(5deg)" : "scale(1) rotate(0)",
-                  }}
-                >
-                  <pillar.icon size={32} />
-                </div>
-
-                {/* Content */}
-                <div className="space-y-4">
-                  <span 
-                    className="text-xs font-semibold uppercase tracking-widest"
-                    style={{ color: pillar.color }}
-                  >
-                    {pillar.tagline}
-                  </span>
-                  
-                  <h3 
-                    className="text-2xl font-bold text-white lg:text-3xl"
-                    style={{ fontFamily: "var(--font-display)" }}
-                  >
-                    {pillar.title}
-                  </h3>
-                  
-                  <p className="text-base leading-relaxed text-gray-400">
-                    {pillar.description}
-                  </p>
-                </div>
-
-                {/* Hover indicator */}
-                <div 
-                  className="mt-6 flex items-center gap-2 text-sm font-medium transition-all duration-300"
-                  style={{ 
-                    color: pillar.color,
-                    opacity: hoveredIndex === idx ? 1 : 0,
-                    transform: hoveredIndex === idx ? "translateX(0)" : "translateX(-10px)",
-                  }}
-                >
-                  Learn more
-                  <ArrowRight size={16} />
-                </div>
-
-                {/* Corner accent */}
-                <div 
-                  className="absolute -bottom-20 -right-20 h-40 w-40 rounded-full transition-all duration-500"
-                  style={{ 
-                    background: pillar.color,
-                    opacity: hoveredIndex === idx ? 0.1 : 0.03,
-                    transform: hoveredIndex === idx ? "scale(1.5)" : "scale(1)",
-                  }}
-                />
+                Learn more
+                <ArrowRight size={14} />
               </div>
             </div>
           ))}
         </div>
 
         {/* Quote */}
-        <div 
-          className={`mt-20 text-center ${isInView ? "animate-fade-in animation-delay-800" : "opacity-0"}`}
+        <div
+          className={`mt-14 text-center ${
+            isInView ? "animate-fade-in animation-delay-800" : "opacity-0"
+          }`}
         >
-          <blockquote 
-            className="mx-auto max-w-2xl text-2xl font-medium italic text-gray-300 md:text-3xl"
-            style={{ fontFamily: "var(--font-display)" }}
+          <blockquote
+            className="mx-auto max-w-2xl text-2xl italic md:text-3xl"
+            style={{
+              fontFamily: "var(--font-display)",
+              color: "var(--text-muted)",
+            }}
           >
-            &ldquo;Technology should feel like <span style={{ color: "var(--flax)" }}>magic</span>, 
-            not like work.&rdquo;
+            &ldquo;Technology should feel like{" "}
+            <span style={{ color: "var(--lion)" }}>magic</span>, not like work.&rdquo;
           </blockquote>
         </div>
       </div>
