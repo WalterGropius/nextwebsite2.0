@@ -8,7 +8,8 @@ const skillCategories = [
     title: "3D, VFX & XR",
     icon: Zap,
     color: "var(--salmon-pink)",
-    description: "Immersive experiences that blur the line between digital and reality",
+    description:
+      "Immersive experiences that blur the line between digital and reality",
     skills: [
       { name: "Blender", level: 95 },
       { name: "Unreal Engine", level: 90 },
@@ -25,7 +26,7 @@ const skillCategories = [
   {
     title: "Development",
     icon: Code,
-    color: "var(--pistachio)",
+    color: "var(--cobalt-blue)",
     description: "Full-stack mastery from systems to stunning interfaces",
     skills: [
       { name: "TypeScript", level: 95 },
@@ -43,7 +44,7 @@ const skillCategories = [
   {
     title: "AI & Machine Learning",
     icon: Brain,
-    color: "var(--cobalt-blue)",
+    color: "var(--fern-green)",
     description: "Intelligence that augments human creativity",
     skills: [
       { name: "LLMs & Prompting", level: 95 },
@@ -61,9 +62,20 @@ const skillCategories = [
 ]
 
 const additionalSkills = [
-  "DaVinci Resolve", "Adobe CC", "Mocha Pro", "EmberGen", "Matte Painting",
-  "Real-time ICVFX", "ARKit/ARCore", "Spline", "Arduino", "3D Printing",
-  "Photography", "Game Design", "Sound Design", "Music Production"
+  "DaVinci Resolve",
+  "Adobe CC",
+  "Mocha Pro",
+  "EmberGen",
+  "Matte Painting",
+  "Real-time ICVFX",
+  "ARKit/ARCore",
+  "Spline",
+  "Arduino",
+  "3D Printing",
+  "Photography",
+  "Game Design",
+  "Sound Design",
+  "Music Production",
 ]
 
 export function Arsenal() {
@@ -92,114 +104,136 @@ export function Arsenal() {
     return () => clearTimeout(timer)
   }, [activeCategory])
 
+  const active = skillCategories[activeCategory]
+
   return (
     <section id="arsenal" className="relative overflow-hidden py-12 sm:py-16">
-      {/* Background decoration */}
-      <div className="pointer-events-none absolute inset-0">
-        <div 
-          className="absolute left-1/2 top-0 h-[1px] w-[80%] -translate-x-1/2"
-          style={{ background: "linear-gradient(90deg, transparent, var(--border-subtle), transparent)" }}
-        />
-      </div>
-
       <div ref={ref} className="section-container relative z-10">
         {/* Section header */}
-        <div className={`mb-16 text-center ${isInView ? "animate-fade-in-up" : "opacity-0"}`}>
-          <div className="accent-line mx-auto mb-6 animate-line-draw" />
-          <h2 
-            className="mb-4 text-4xl font-bold sm:text-5xl md:text-6xl"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Technical <span className="gradient-text">Arsenal</span>
+        <div
+          className={`mb-10 max-w-2xl ${
+            isInView ? "animate-reveal-blur" : "opacity-0"
+          }`}
+        >
+          <span className="section-kicker mb-4">Arsenal</span>
+          <h2 className="section-title mt-3">
+            Technical{" "}
+            <span style={{ color: "var(--fern-green)" }}>arsenal</span>
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-gray-400">
-            A decade of mastering the tools that bring visions to life
+          <p
+            className="mt-4 text-lg"
+            style={{ color: "var(--text-muted)" }}
+          >
+            A decade of mastering the tools that bring visions to life.
           </p>
         </div>
 
-        {/* Category tabs */}
-        <div 
-          className={`mb-12 flex flex-wrap justify-center gap-3 ${
+        {/* Category tabs — soft pill */}
+        <div
+          className={`mb-8 flex flex-wrap gap-3 ${
             isInView ? "animate-fade-in-up animation-delay-200" : "opacity-0"
           }`}
         >
-          {skillCategories.map((category, idx) => (
-            <button
-              key={idx}
-              onClick={() => setActiveCategory(idx)}
-              className="group flex items-center gap-2 rounded-full px-5 py-3 text-sm font-medium transition-all duration-300"
-              style={{
-                background: activeCategory === idx ? category.color : "var(--surface-glass)",
-                color: activeCategory === idx ? "var(--surface-dark)" : "rgba(255,255,255,0.7)",
-                border: `1px solid ${activeCategory === idx ? category.color : "var(--border-subtle)"}`,
-              }}
-            >
-              <category.icon size={18} />
-              {category.title}
-            </button>
-          ))}
+          {skillCategories.map((category, idx) => {
+            const isActive = activeCategory === idx
+            return (
+              <button
+                key={idx}
+                onClick={() => setActiveCategory(idx)}
+                className="group inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium transition-all duration-300"
+                style={{
+                  background: isActive
+                    ? `linear-gradient(180deg, ${category.color}, ${category.color}c0)`
+                    : "linear-gradient(180deg, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0.35) 100%)",
+                  color: isActive ? "#ffffff" : "var(--text-primary)",
+                  border: `1px solid ${
+                    isActive ? `${category.color}` : "rgba(255,255,255,0.7)"
+                  }`,
+                  borderRadius: "9999px",
+                  boxShadow: isActive
+                    ? `0 14px 30px -14px ${category.color}`
+                    : "0 8px 20px -14px rgba(15,17,23,0.2)",
+                }}
+              >
+                <category.icon size={16} />
+                {category.title}
+              </button>
+            )
+          })}
         </div>
 
         {/* Active category content */}
-        <div 
-          className={`glass-card mx-auto max-w-4xl p-8 lg:p-12 ${
-            isInView ? "animate-scale-in animation-delay-300" : "opacity-0"
+        <div
+          key={activeCategory}
+          className={`glass-card mx-auto max-w-5xl p-6 lg:p-10 ${
+            isInView ? "animate-reveal-blur animation-delay-300" : "opacity-0"
           }`}
         >
+          {/* Soft category wash */}
+          <div
+            className="pointer-events-none absolute -right-32 -top-32 h-72 w-72 rounded-full opacity-40 blur-3xl"
+            style={{ background: active.color }}
+          />
+
           {/* Category header */}
-          <div className="mb-8 flex items-center gap-4">
-            <div 
-              className="flex h-14 w-14 items-center justify-center rounded-xl"
-              style={{ 
-                background: `${skillCategories[activeCategory].color}20`,
-                color: skillCategories[activeCategory].color
-              }}
+          <div className="relative mb-6 flex items-start gap-4">
+            <div
+              className="icon-chip h-14 w-14 shrink-0"
+              style={{ color: active.color }}
             >
-              {(() => {
-                const Icon = skillCategories[activeCategory].icon
-                return <Icon size={28} />
-              })()}
+              <active.icon size={26} />
             </div>
             <div>
-              <h3 
-                className="text-2xl font-bold text-white"
-                style={{ fontFamily: "var(--font-display)" }}
+              <h3
+                className="text-2xl lg:text-3xl"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  color: "var(--text-primary)",
+                }}
               >
-                {skillCategories[activeCategory].title}
+                {active.title}
               </h3>
-              <p className="text-sm text-gray-400">
-                {skillCategories[activeCategory].description}
+              <p
+                className="text-sm"
+                style={{ color: "var(--text-muted)" }}
+              >
+                {active.description}
               </p>
             </div>
           </div>
 
           {/* Skills grid with bars */}
-          <div className="grid gap-4 sm:grid-cols-2">
-            {skillCategories[activeCategory].skills.map((skill, idx) => (
-              <div 
-                key={skill.name}
-                className="group"
-                style={{ animationDelay: `${idx * 50}ms` }}
-              >
-                <div className="mb-2 flex items-center justify-between">
-                  <span className="text-sm font-medium text-gray-300">{skill.name}</span>
-                  <span 
+          <div className="relative grid gap-x-6 gap-y-3 sm:grid-cols-2">
+            {active.skills.map((skill, idx) => (
+              <div key={skill.name} className="group">
+                <div className="mb-1 flex items-center justify-between">
+                  <span
+                    className="text-sm"
+                    style={{ color: "var(--text-primary)" }}
+                  >
+                    {skill.name}
+                  </span>
+                  <span
                     className="text-xs font-semibold"
-                    style={{ color: skillCategories[activeCategory].color }}
+                    style={{ color: active.color }}
                   >
                     {skill.level}%
                   </span>
                 </div>
-                <div 
-                  className="h-2 overflow-hidden rounded-full"
-                  style={{ background: "var(--surface-elevated)" }}
+                <div
+                  className="h-1.5 overflow-hidden"
+                  style={{
+                    background: "rgba(15, 17, 23, 0.07)",
+                    borderRadius: "9999px",
+                  }}
                 >
-                  <div 
-                    className="h-full rounded-full transition-all duration-1000 ease-out"
-                    style={{ 
+                  <div
+                    className="h-full transition-all duration-1000 ease-out"
+                    style={{
                       width: animateSkills ? `${skill.level}%` : "0%",
-                      background: `linear-gradient(90deg, ${skillCategories[activeCategory].color}, ${skillCategories[activeCategory].color}80)`,
-                      transitionDelay: `${idx * 50}ms`
+                      background: `linear-gradient(90deg, ${active.color}, ${active.color}80)`,
+                      transitionDelay: `${idx * 50}ms`,
+                      borderRadius: "9999px",
                     }}
                   />
                 </div>
@@ -209,13 +243,13 @@ export function Arsenal() {
         </div>
 
         {/* Additional skills cloud */}
-        <div 
-          className={`mt-16 text-center ${isInView ? "animate-fade-in animation-delay-600" : "opacity-0"}`}
+        <div
+          className={`mt-12 ${
+            isInView ? "animate-fade-in animation-delay-600" : "opacity-0"
+          }`}
         >
-          <h4 className="mb-6 text-sm font-semibold uppercase tracking-widest text-gray-500">
-            Also Proficient In
-          </h4>
-          <div className="flex flex-wrap justify-center gap-2">
+          <h4 className="section-kicker mb-5">Also Proficient In</h4>
+          <div className="flex flex-wrap gap-2">
             {additionalSkills.map((skill, idx) => (
               <span
                 key={skill}
@@ -229,33 +263,39 @@ export function Arsenal() {
         </div>
 
         {/* Stats row */}
-        <div 
-          className={`mt-16 grid grid-cols-2 gap-6 sm:grid-cols-4 ${
+        <div
+          className={`mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4 ${
             isInView ? "animate-fade-in-up animation-delay-800" : "opacity-0"
           }`}
         >
           {[
-            { value: "50+", label: "Technologies", icon: Layers },
-            { value: "10+", label: "Years Experience", icon: Cpu },
-            { value: "3", label: "Core Domains", icon: Brain },
-            { value: "∞", label: "Curiosity", icon: Palette },
+            { value: "50+", label: "Technologies", icon: Layers, color: "var(--cobalt-blue)" },
+            { value: "10+", label: "Years", icon: Cpu, color: "var(--vermilion)" },
+            { value: "3", label: "Core Domains", icon: Brain, color: "var(--fern-green)" },
+            { value: "∞", label: "Curiosity", icon: Palette, color: "var(--lion)" },
           ].map((stat, idx) => (
-            <div 
+            <div
               key={idx}
-              className="glass-card p-6 text-center transition-all duration-300 hover:border-white/10"
+              className="glass-card glass-card-hover flex flex-col items-center p-5 text-center"
             >
-              <stat.icon 
-                size={24} 
-                className="mx-auto mb-3"
-                style={{ color: "var(--vista-blue)" }}
+              <stat.icon
+                size={20}
+                className="mx-auto mb-2"
+                style={{ color: stat.color }}
               />
-              <div 
-                className="text-3xl font-bold"
-                style={{ color: "var(--flax)", fontFamily: "var(--font-display)" }}
+              <div
+                className="text-2xl"
+                style={{
+                  color: stat.color,
+                  fontFamily: "var(--font-display)",
+                }}
               >
                 {stat.value}
               </div>
-              <div className="text-xs text-gray-500 uppercase tracking-wider">
+              <div
+                className="text-[0.65rem] uppercase tracking-[0.22em]"
+                style={{ color: "var(--text-muted)" }}
+              >
                 {stat.label}
               </div>
             </div>

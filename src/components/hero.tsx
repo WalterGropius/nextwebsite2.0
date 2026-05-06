@@ -14,6 +14,7 @@ const roles = [
 export function Hero() {
   const [currentRole, setCurrentRole] = useState(0)
   const [isVisible, setIsVisible] = useState(false)
+  const [scrollY, setScrollY] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -22,6 +23,21 @@ export function Hero() {
       setCurrentRole((prev) => (prev + 1) % roles.length)
     }, 3000)
     return () => clearInterval(interval)
+  }, [])
+
+  // Subtle scroll parallax — wordmark drifts up, secondary elements drift faster
+  useEffect(() => {
+    let ticking = false
+    const onScroll = () => {
+      if (ticking) return
+      ticking = true
+      requestAnimationFrame(() => {
+        setScrollY(window.scrollY)
+        ticking = false
+      })
+    }
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
   const scrollToContent = () => {
@@ -35,7 +51,13 @@ export function Hero() {
       className="relative flex min-h-screen items-center justify-center overflow-hidden"
     >
       {/* Main content — no shared frame; each text owns its own halo */}
-      <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 text-center">
+      <div
+        className="relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 text-center"
+        style={{
+          transform: `translate3d(0, ${scrollY * -0.08}px, 0)`,
+          opacity: Math.max(0, 1 - scrollY / 600),
+        }}
+      >
         {/* Status badge — already has its own halo built in */}
         <div
           className={`text-aura text-aura-sm inline-flex items-center gap-2 px-4 py-2 ${

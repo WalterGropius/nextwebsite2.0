@@ -7,22 +7,27 @@ const highlights = [
   {
     icon: Building2,
     label: "CTO at Flipas",
-    description: "Leading a team of 5 engineers building AI-powered Gen Z life acceleration",
+    description:
+      "Leading a team of 5 engineers building AI-powered Gen Z life acceleration",
+    color: "var(--cobalt-blue)",
   },
   {
     icon: Award,
     label: "VFX Supervisor",
     description: "Professional film VFX on Hagen with Wilma Film",
+    color: "var(--vermilion)",
   },
   {
     icon: Zap,
     label: "VR Pioneer",
     description: "10+ years pushing boundaries in virtual reality development",
+    color: "var(--fern-green)",
   },
   {
     icon: Sparkles,
     label: "Creative Tech",
     description: "Nike Berlin, Fashion Tech Berlin, CzechVRFest speaker",
+    color: "var(--lion)",
   },
 ]
 
@@ -44,27 +49,37 @@ export function Highlights() {
   return (
     <section className="relative overflow-hidden py-10 sm:py-12">
       <div ref={ref} className="section-container">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {highlights.map((item, idx) => (
             <div
               key={idx}
-              className={`glass-card group flex items-start gap-4 p-5 transition-all duration-300 hover:border-white/10 ${
-                isInView ? "animate-fade-in-up" : "opacity-0"
+              className={`glass-card glass-card-hover group flex items-start gap-3 p-4 ${
+                isInView ? "animate-reveal-blur" : "opacity-0"
               }`}
-              style={{ animationDelay: `${idx * 0.1}s` }}
+              style={{ animationDelay: `${idx * 0.08}s` }}
             >
-              <div 
-                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg transition-transform duration-300 group-hover:scale-110"
-                style={{ 
-                  background: "var(--surface-elevated)",
-                  color: "var(--vista-blue)"
-                }}
+              <div
+                className="icon-chip h-10 w-10 shrink-0 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110"
+                style={{ color: item.color }}
               >
-                <item.icon size={20} />
+                <item.icon size={18} />
               </div>
               <div>
-                <h3 className="mb-1 font-semibold text-white">{item.label}</h3>
-                <p className="text-sm text-gray-400">{item.description}</p>
+                <h3
+                  className="mb-1 text-base"
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    color: "var(--text-primary)",
+                  }}
+                >
+                  {item.label}
+                </h3>
+                <p
+                  className="text-sm leading-snug"
+                  style={{ color: "var(--text-muted)" }}
+                >
+                  {item.description}
+                </p>
               </div>
             </div>
           ))}
