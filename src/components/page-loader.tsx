@@ -104,11 +104,12 @@ export function PageLoader({ children }: PageLoaderProps) {
             <div 
               className="absolute inset-0 flex items-center justify-center"
             >
-              <div 
-                className="flex h-16 w-16 items-center justify-center rounded-xl text-xl font-bold text-white"
-                style={{ 
+              <div
+                className="flex h-16 w-16 items-center justify-center rounded-xl text-xl font-bold"
+                style={{
                   background: "var(--gradient-primary)",
-                  fontFamily: "var(--font-display)"
+                  fontFamily: "var(--font-display)",
+                  color: "#ffffff"
                 }}
               >
                 EB
