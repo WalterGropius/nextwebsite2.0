@@ -27,7 +27,7 @@ export function Contact() {
   }, [])
 
   return (
-    <section id="contact" className="relative py-16 sm:py-20">
+    <section id="contact" className="relative py-10 sm:py-12">
       <div ref={ref} className="section-container relative z-10">
         {/* Main CTA */}
         <div className={`mx-auto max-w-3xl text-center ${isInView ? "animate-fade-in-up" : "opacity-0"}`}>

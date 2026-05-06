@@ -31,11 +31,13 @@
     /* Extended Palette */
     --accent-glow: rgba(59, 102, 243, 0.35);
     --warm-glow: rgba(252, 237, 135, 0.4);
-    --surface-dark: #f1f2f1;
+    --surface-dark: #f6f6f4;
     --surface-elevated: #ffffff;
-    --surface-glass: rgba(255, 255, 255, 0.6);
-    --border-subtle: rgba(15, 17, 23, 0.08);
-    --border-glow: rgba(59, 102, 243, 0.25);
+    --surface-glass: rgba(255, 255, 255, 0.55);
+    --surface-ink: rgba(15, 17, 23, 0.04);
+    --border-subtle: rgba(15, 17, 23, 0.12);
+    --border-strong: rgba(15, 17, 23, 0.6);
+    --border-glow: rgba(59, 102, 243, 0.35);
     --text-primary: #1a1d28;
     --text-muted: rgba(15, 17, 23, 0.6);
     
@@ -54,9 +56,9 @@
     /* Text shadows */
     --text-shadow-hero: 0 4px 20px rgba(0, 0, 0, 0.8), 0 8px 40px rgba(0, 0, 0, 0.6), 0 0 80px rgba(0, 0, 0, 0.4);
     
-    /* Spacing */
-    --section-padding: clamp(4rem, 10vh, 8rem);
-    --content-max-width: 1400px;
+    /* Spacing — tightened so larger type stays compact */
+    --section-padding: clamp(2rem, 6vh, 4.5rem);
+    --content-max-width: 1320px;
     
     /* Transitions */
     --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
@@ -70,6 +72,9 @@
   }
 
   html {
+    /* Roughly double the previous 16px base — fluid so it scales down on
+       narrow viewports without breaking the layout */
+    font-size: clamp(20px, 1.6vw + 14px, 30px);
     scroll-behavior: smooth;
     font-synthesis: none;
     text-rendering: optimizeLegibility;
@@ -153,25 +158,25 @@
 }
 
 @layer components {
-  /* Glass Card */
+  /* Glass Card — squarer and inkier; no generic rounded blob */
   .glass-card {
     background: var(--surface-glass);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--border-subtle);
-    border-radius: 1.5rem;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: 0;
   }
 
   .glass-card-hover {
-    transition: all var(--transition-smooth);
+    transition: transform var(--transition-spring),
+                border-color var(--transition-smooth),
+                box-shadow var(--transition-smooth);
   }
 
   .glass-card-hover:hover {
-    background: rgba(255, 255, 255, 0.06);
-    border-color: var(--border-glow);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.5),
-                0 0 60px -30px var(--accent-glow);
+    border-color: var(--border-strong);
+    transform: translateY(-3px) rotate(-0.2deg);
+    box-shadow: 6px 6px 0 0 var(--border-strong);
   }
 
   /* Glow Effects */
@@ -207,31 +212,34 @@
     padding: var(--section-padding) 1.5rem;
   }
 
-  /* Accent line */
+  /* Accent line — short hand-inked stroke */
   .accent-line {
-    width: 60px;
-    height: 4px;
-    background: var(--gradient-primary);
-    border-radius: 2px;
+    width: 48px;
+    height: 3px;
+    background: var(--text-primary);
+    border-radius: 0;
   }
 
-  /* Tag/Pill styling */
+  /* Tag/Pill styling — chiseled, not pill-shaped */
   .skill-pill {
     display: inline-flex;
     align-items: center;
-    padding: 0.5rem 1rem;
-    background: var(--surface-glass);
-    border: 1px solid var(--border-subtle);
-    border-radius: 9999px;
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.8);
-    transition: all var(--transition-smooth);
+    padding: 0.35rem 0.85rem;
+    background: var(--surface-ink);
+    border: 1.5px solid var(--border-subtle);
+    border-radius: 0;
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    transition: transform var(--transition-spring),
+                border-color var(--transition-smooth),
+                background var(--transition-smooth);
   }
 
   .skill-pill:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: var(--border-glow);
-    transform: scale(1.05);
+    background: var(--surface-elevated);
+    border-color: var(--border-strong);
+    transform: translate(-2px, -2px);
+    box-shadow: 3px 3px 0 0 var(--border-strong);
   }
 
   /* Interactive elements */
@@ -243,58 +251,63 @@
     transform: scale(1.02);
   }
 
-  /* Button styles */
+  /* Button styles — chunky, square, hard offset shadow on hover */
   .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 1rem 2rem;
-    background: var(--gradient-primary);
-    color: white;
+    padding: 0.85rem 1.6rem;
+    background: var(--text-primary);
+    color: var(--surface-dark);
     font-weight: 600;
-    border-radius: 0.75rem;
-    border: none;
+    border-radius: 0;
+    border: 1.5px solid var(--text-primary);
     cursor: pointer;
-    transition: all var(--transition-smooth);
+    transition: transform var(--transition-spring),
+                box-shadow var(--transition-smooth);
     position: relative;
-    overflow: hidden;
-  }
-
-  .btn-primary::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, transparent 50%);
-    opacity: 0;
-    transition: opacity var(--transition-smooth);
-  }
-
-  .btn-primary:hover::before {
-    opacity: 1;
   }
 
   .btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px -10px var(--accent-glow);
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0 0 var(--cobalt-blue);
   }
 
   .btn-secondary {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 1rem 2rem;
+    padding: 0.85rem 1.6rem;
     background: transparent;
     color: var(--text-primary);
     font-weight: 500;
-    border-radius: 0.75rem;
-    border: 1px solid var(--border-glow);
+    border-radius: 0;
+    border: 1.5px solid var(--text-primary);
     cursor: pointer;
-    transition: all var(--transition-smooth);
+    transition: transform var(--transition-spring),
+                box-shadow var(--transition-smooth);
   }
 
   .btn-secondary:hover {
-    background: var(--surface-glass);
-    border-color: var(--vista-blue);
+    transform: translate(-3px, -3px);
+    box-shadow: 6px 6px 0 0 var(--text-primary);
+    background: var(--surface-elevated);
+  }
+
+  /* Hand-drawn ink edge — applied to titles or accent blocks for character */
+  .ink-edge {
+    filter: url(#ink-wobble);
+  }
+
+  /* Hero copy frame — blurs the splat behind the wordmark for legibility */
+  .hero-frame {
+    backdrop-filter: blur(14px) saturate(105%);
+    -webkit-backdrop-filter: blur(14px) saturate(105%);
+    background: linear-gradient(180deg,
+      rgba(246, 246, 244, 0.55) 0%,
+      rgba(246, 246, 244, 0.7) 50%,
+      rgba(246, 246, 244, 0.55) 100%);
+    border-block: 1.5px solid var(--border-subtle);
   }
 }
 
@@ -312,6 +325,56 @@
   .text-gray-500 { color: rgba(15, 17, 23, 0.5); }
   .text-gray-600 { color: rgba(15, 17, 23, 0.4); }
   .hover\:text-white:hover { color: var(--text-primary); }
+
+  /* Squarer edges — flatten Tailwind's larger rounded variants so cards
+     and buttons read inkier instead of generic SaaS-pill */
+  .rounded-lg,
+  .rounded-xl,
+  .rounded-2xl,
+  .rounded-3xl,
+  .sm\:rounded-lg,
+  .md\:rounded-xl,
+  .lg\:rounded-2xl {
+    border-radius: 0;
+  }
+
+  /* Subtle reveal on scroll: blur lifts and content rises a touch */
+  .animate-reveal-blur {
+    animation: revealBlur 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    opacity: 0;
+    filter: blur(14px);
+    transform: translateY(18px);
+    will-change: opacity, filter, transform;
+  }
+  @keyframes revealBlur {
+    to { opacity: 1; filter: blur(0); transform: translateY(0); }
+  }
+
+  /* Mask reveal: clip wipes upward to expose text/content */
+  .animate-mask-reveal {
+    animation: maskReveal 0.9s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+    -webkit-mask-image: linear-gradient(180deg, #000 0 50%, transparent 50% 100%);
+            mask-image: linear-gradient(180deg, #000 0 50%, transparent 50% 100%);
+    -webkit-mask-size: 100% 220%;
+            mask-size: 100% 220%;
+    -webkit-mask-position: 0 100%;
+            mask-position: 0 100%;
+  }
+  @keyframes maskReveal {
+    to {
+      -webkit-mask-position: 0 0;
+              mask-position: 0 0;
+    }
+  }
+
+  /* Tiny floaty drift used on accent blocks */
+  .animate-drift {
+    animation: drift 6s ease-in-out infinite;
+  }
+  @keyframes drift {
+    0%, 100% { transform: translate3d(0, 0, 0) rotate(-0.3deg); }
+    50%      { transform: translate3d(0, -6px, 0) rotate(0.3deg); }
+  }
 
   /* Animation Delays */
   .animation-delay-100 { animation-delay: 0.1s; }

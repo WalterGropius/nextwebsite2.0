@@ -93,7 +93,7 @@ export function Arsenal() {
   }, [activeCategory])
 
   return (
-    <section id="arsenal" className="relative overflow-hidden py-24 sm:py-32">
+    <section id="arsenal" className="relative overflow-hidden py-12 sm:py-16">
       {/* Background decoration */}
       <div className="pointer-events-none absolute inset-0">
         <div 

@@ -47,7 +47,7 @@ export function Philosophy() {
   }, [])
 
   return (
-    <section className="relative overflow-hidden py-24 sm:py-32">
+    <section className="relative overflow-hidden py-12 sm:py-16">
       {/* Subtle grid pattern overlay */}
       <div 
         className="pointer-events-none absolute inset-0 opacity-[0.02]"

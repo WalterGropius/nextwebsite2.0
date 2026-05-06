@@ -42,7 +42,7 @@ export function Highlights() {
   }, [])
 
   return (
-    <section className="relative overflow-hidden py-16 sm:py-20">
+    <section className="relative overflow-hidden py-10 sm:py-12">
       <div ref={ref} className="section-container">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {highlights.map((item, idx) => (
