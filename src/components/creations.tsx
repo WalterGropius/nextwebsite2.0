@@ -168,24 +168,29 @@ export function Creations({ randomCount }: CreationsProps) {
                 href={project.link || "#"}
                 target={project.link ? "_blank" : undefined}
                 rel={project.link ? "noopener noreferrer" : undefined}
-                className={`group block border ${isInView ? "animate-reveal-blur" : "opacity-0"}`}
+                className={`group block overflow-hidden ${isInView ? "animate-reveal-blur" : "opacity-0"}`}
                 style={{
                   animationDelay: `${0.06 * index}s`,
-                  background: "var(--surface-elevated)",
-                  borderColor: "var(--border-subtle)",
-                  borderWidth: "1.5px",
+                  background:
+                    "linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.55) 100%)",
+                  border: "1px solid rgba(255, 255, 255, 0.7)",
+                  borderRadius: "1.5rem",
+                  backdropFilter: "blur(18px) saturate(108%)",
+                  WebkitBackdropFilter: "blur(18px) saturate(108%)",
+                  boxShadow:
+                    "0 1px 0 rgba(255,255,255,0.7) inset, 0 18px 36px -28px rgba(15,17,23,0.18), 0 0 0 1px rgba(15,17,23,0.04)",
                   transition:
-                    "transform 380ms cubic-bezier(0.34,1.56,0.64,1), box-shadow 220ms ease, border-color 220ms ease",
+                    "transform 380ms cubic-bezier(0.34,1.56,0.64,1), box-shadow 260ms ease",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translate(-4px, -4px)"
-                  e.currentTarget.style.boxShadow = "8px 8px 0 0 var(--text-primary)"
-                  e.currentTarget.style.borderColor = "var(--text-primary)"
+                  e.currentTarget.style.transform = "translateY(-6px)"
+                  e.currentTarget.style.boxShadow =
+                    "0 1px 0 rgba(255,255,255,0.85) inset, 0 30px 60px -28px rgba(15,17,23,0.28), 0 0 60px -20px var(--accent-glow)"
                 }}
                 onMouseLeave={(e) => {
                   e.currentTarget.style.transform = ""
-                  e.currentTarget.style.boxShadow = ""
-                  e.currentTarget.style.borderColor = "var(--border-subtle)"
+                  e.currentTarget.style.boxShadow =
+                    "0 1px 0 rgba(255,255,255,0.7) inset, 0 18px 36px -28px rgba(15,17,23,0.18), 0 0 0 1px rgba(15,17,23,0.04)"
                 }}
               >
                 {/* Image */}
@@ -196,13 +201,18 @@ export function Creations({ randomCount }: CreationsProps) {
                     loading="lazy"
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                   />
+                  {/* Soft fade between image and card body */}
+                  <div
+                    className="pointer-events-none absolute inset-x-0 bottom-0 h-16"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 100%)",
+                    }}
+                  />
                 </div>
 
-                {/* Content — light card, dark text, no overlay */}
-                <div
-                  className="space-y-2 p-4"
-                  style={{ borderTop: "1.5px solid var(--border-subtle)" }}
-                >
+                {/* Content — soft, no hard divider */}
+                <div className="space-y-2 p-5">
                   <div
                     className="flex items-center gap-2 text-[0.7rem] uppercase tracking-[0.2em]"
                     style={{ color: "var(--text-muted)" }}
@@ -236,9 +246,11 @@ export function Creations({ randomCount }: CreationsProps) {
                           key={idx}
                           className="px-2 py-0.5 text-[0.65rem] uppercase tracking-wider"
                           style={{
-                            background: "var(--surface-ink)",
+                            background:
+                              "linear-gradient(180deg, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0.35) 100%)",
                             color: "var(--text-primary)",
-                            border: "1px solid var(--border-subtle)",
+                            border: "1px solid rgba(255, 255, 255, 0.7)",
+                            borderRadius: "9999px",
                           }}
                         >
                           {tag.trim()}
