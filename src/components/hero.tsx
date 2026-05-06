@@ -66,11 +66,11 @@ export function Hero() {
 
         {/* Main heading */}
         <h1
-          className={`mb-6 text-5xl font-black uppercase tracking-wider sm:text-6xl md:text-7xl lg:text-9xl leading-none ${isVisible ? "animate-blur-in" : "opacity-0"}`}
+          className={`mb-6 text-5xl font-black tracking-wider sm:text-6xl md:text-7xl lg:text-9xl leading-none lowercase ${isVisible ? "animate-blur-in" : "opacity-0"}`}
           style={{
             fontFamily: "var(--font-display)",
-            textShadow: "0 2px 20px rgba(255, 255, 255, 0.8), 0 4px 40px rgba(247, 245, 240, 0.6)",
-            letterSpacing: "0.05em"
+            textShadow: "0 2px 20px rgba(255, 255, 255, 0.8), 0 4px 40px rgba(241, 242, 241, 0.6)",
+            letterSpacing: "0.02em"
           }}
         >
           <span className="block">zenbauhaus</span>
