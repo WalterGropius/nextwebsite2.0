@@ -158,25 +158,32 @@
 }
 
 @layer components {
-  /* Glass Card — squarer and inkier; no generic rounded blob */
+  /* Glass Card — soft, blurred, no hard edges */
   .glass-card {
-    background: var(--surface-glass);
-    backdrop-filter: blur(18px);
-    -webkit-backdrop-filter: blur(18px);
-    border: 1.5px solid var(--border-subtle);
-    border-radius: 0;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.4) 100%);
+    backdrop-filter: blur(22px) saturate(105%);
+    -webkit-backdrop-filter: blur(22px) saturate(105%);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 1.5rem;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.7) inset,
+      0 24px 48px -28px rgba(15, 17, 23, 0.18),
+      0 0 0 1px rgba(15, 17, 23, 0.04);
   }
 
   .glass-card-hover {
     transition: transform var(--transition-spring),
-                border-color var(--transition-smooth),
-                box-shadow var(--transition-smooth);
+                box-shadow var(--transition-smooth),
+                background var(--transition-smooth);
   }
 
   .glass-card-hover:hover {
-    border-color: var(--border-strong);
-    transform: translateY(-3px) rotate(-0.2deg);
-    box-shadow: 6px 6px 0 0 var(--border-strong);
+    transform: translateY(-4px);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.85) inset,
+      0 30px 60px -28px rgba(15, 17, 23, 0.28),
+      0 0 60px -20px var(--accent-glow);
   }
 
   /* Glow Effects */
@@ -212,34 +219,36 @@
     padding: var(--section-padding) 1.5rem;
   }
 
-  /* Accent line — short hand-inked stroke */
+  /* Accent line — short soft stroke that fades at both ends */
   .accent-line {
-    width: 48px;
+    width: 64px;
     height: 3px;
-    background: var(--text-primary);
-    border-radius: 0;
+    background: linear-gradient(90deg, transparent, var(--cobalt-blue), transparent);
+    border-radius: 9999px;
   }
 
-  /* Tag/Pill styling — chiseled, not pill-shaped */
+  /* Tag/Pill — soft pill, gradient bg */
   .skill-pill {
     display: inline-flex;
     align-items: center;
-    padding: 0.35rem 0.85rem;
-    background: var(--surface-ink);
-    border: 1.5px solid var(--border-subtle);
-    border-radius: 0;
-    font-size: 0.8rem;
+    padding: 0.4rem 0.95rem;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.45) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 9999px;
+    font-size: 0.78rem;
     color: var(--text-primary);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 6px 16px -10px rgba(15, 17, 23, 0.2);
     transition: transform var(--transition-spring),
-                border-color var(--transition-smooth),
-                background var(--transition-smooth);
+                box-shadow var(--transition-smooth);
   }
 
   .skill-pill:hover {
-    background: var(--surface-elevated);
-    border-color: var(--border-strong);
-    transform: translate(-2px, -2px);
-    box-shadow: 3px 3px 0 0 var(--border-strong);
+    transform: translateY(-2px);
+    box-shadow: 0 14px 24px -16px rgba(15, 17, 23, 0.3),
+                0 0 24px -10px var(--accent-glow);
   }
 
   /* Interactive elements */
@@ -251,26 +260,27 @@
     transform: scale(1.02);
   }
 
-  /* Button styles — chunky, square, hard offset shadow on hover */
+  /* Buttons — pill-shaped, gradient, soft glow on hover */
   .btn-primary {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
     padding: 0.85rem 1.6rem;
-    background: var(--text-primary);
-    color: var(--surface-dark);
+    background: var(--gradient-primary);
+    color: #ffffff;
     font-weight: 600;
-    border-radius: 0;
-    border: 1.5px solid var(--text-primary);
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
     cursor: pointer;
     transition: transform var(--transition-spring),
                 box-shadow var(--transition-smooth);
-    position: relative;
+    box-shadow: 0 14px 30px -12px var(--accent-glow);
   }
 
   .btn-primary:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: 6px 6px 0 0 var(--cobalt-blue);
+    transform: translateY(-3px);
+    box-shadow: 0 24px 50px -16px var(--accent-glow),
+                0 0 0 6px rgba(59, 102, 243, 0.08);
   }
 
   .btn-secondary {
@@ -278,20 +288,24 @@
     align-items: center;
     gap: 0.5rem;
     padding: 0.85rem 1.6rem;
-    background: transparent;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.35) 100%);
     color: var(--text-primary);
     font-weight: 500;
-    border-radius: 0;
-    border: 1.5px solid var(--text-primary);
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
     cursor: pointer;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     transition: transform var(--transition-spring),
                 box-shadow var(--transition-smooth);
+    box-shadow: 0 12px 28px -16px rgba(15, 17, 23, 0.25);
   }
 
   .btn-secondary:hover {
-    transform: translate(-3px, -3px);
-    box-shadow: 6px 6px 0 0 var(--text-primary);
-    background: var(--surface-elevated);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 40px -18px rgba(15, 17, 23, 0.3),
+                0 0 0 6px rgba(15, 17, 23, 0.05);
   }
 
   /* Hand-drawn ink edge — applied to titles or accent blocks for character */
@@ -299,15 +313,52 @@
     filter: url(#ink-wobble);
   }
 
-  /* Hero copy frame — blurs the splat behind the wordmark for legibility */
-  .hero-frame {
+  /* Per-text aura — backdrop-blurs the splat directly behind the glyphs
+     and fades smoothly to nothing at the edges via a radial mask. The
+     'big shadow that masks blur' the user asked for. */
+  .text-aura {
+    position: relative;
+    isolation: isolate;
+  }
+  .text-aura::before {
+    content: "";
+    position: absolute;
+    inset: -0.45em -0.85em;
+    z-index: -1;
+    background:
+      radial-gradient(ellipse 75% 70% at 50% 50%,
+        rgba(246, 246, 244, 0.7) 0%,
+        rgba(246, 246, 244, 0.45) 35%,
+        rgba(246, 246, 244, 0.15) 65%,
+        rgba(246, 246, 244, 0) 95%);
+    backdrop-filter: blur(20px) saturate(110%);
+    -webkit-backdrop-filter: blur(20px) saturate(110%);
+    -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 50%,
+      #000 0%, rgba(0, 0, 0, 0.85) 35%, rgba(0, 0, 0, 0.4) 65%, transparent 95%);
+            mask-image: radial-gradient(ellipse 75% 70% at 50% 50%,
+      #000 0%, rgba(0, 0, 0, 0.85) 35%, rgba(0, 0, 0, 0.4) 65%, transparent 95%);
+    pointer-events: none;
+    border-radius: 9999px;
+  }
+
+  /* Larger, softer aura for the hero wordmark */
+  .text-aura-xl::before {
+    inset: -0.4em -0.6em;
+    background:
+      radial-gradient(ellipse 65% 65% at 50% 50%,
+        rgba(246, 246, 244, 0.78) 0%,
+        rgba(246, 246, 244, 0.55) 35%,
+        rgba(246, 246, 244, 0.2) 65%,
+        rgba(246, 246, 244, 0) 95%);
+    backdrop-filter: blur(28px) saturate(115%);
+    -webkit-backdrop-filter: blur(28px) saturate(115%);
+  }
+
+  /* Tighter aura for short labels (badges, small lines) */
+  .text-aura-sm::before {
+    inset: -0.3em -0.7em;
     backdrop-filter: blur(14px) saturate(105%);
     -webkit-backdrop-filter: blur(14px) saturate(105%);
-    background: linear-gradient(180deg,
-      rgba(246, 246, 244, 0.55) 0%,
-      rgba(246, 246, 244, 0.7) 50%,
-      rgba(246, 246, 244, 0.55) 100%);
-    border-block: 1.5px solid var(--border-subtle);
   }
 }
 
@@ -325,18 +376,6 @@
   .text-gray-500 { color: rgba(15, 17, 23, 0.5); }
   .text-gray-600 { color: rgba(15, 17, 23, 0.4); }
   .hover\:text-white:hover { color: var(--text-primary); }
-
-  /* Squarer edges — flatten Tailwind's larger rounded variants so cards
-     and buttons read inkier instead of generic SaaS-pill */
-  .rounded-lg,
-  .rounded-xl,
-  .rounded-2xl,
-  .rounded-3xl,
-  .sm\:rounded-lg,
-  .md\:rounded-xl,
-  .lg\:rounded-2xl {
-    border-radius: 0;
-  }
 
   /* Subtle reveal on scroll: blur lifts and content rises a touch */
   .animate-reveal-blur {

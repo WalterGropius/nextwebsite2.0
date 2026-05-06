@@ -34,21 +34,13 @@ export function Hero() {
       ref={containerRef}
       className="relative flex min-h-screen items-center justify-center overflow-hidden"
     >
-      {/* Hero copy frame — backdrop-blurs the splat behind for legibility */}
-      <div
-        className={`hero-frame relative z-10 mx-4 max-w-4xl px-6 py-10 sm:px-10 sm:py-14 ${
-          isVisible ? "animate-reveal-blur" : "opacity-0"
-        }`}
-      >
-        {/* Status badge */}
+      {/* Main content — no shared frame; each text owns its own halo */}
+      <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center gap-6 px-6 text-center">
+        {/* Status badge — already has its own halo built in */}
         <div
-          className={`mb-5 inline-flex items-center gap-2 border px-3 py-1 ${
+          className={`text-aura text-aura-sm inline-flex items-center gap-2 px-4 py-2 ${
             isVisible ? "animate-fade-in-down" : "opacity-0"
           }`}
-          style={{
-            background: "var(--surface-elevated)",
-            borderColor: "var(--border-strong)",
-          }}
         >
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-60" />
@@ -59,9 +51,9 @@ export function Hero() {
           </span>
         </div>
 
-        {/* Main heading */}
+        {/* Main heading — large, soft halo behind it */}
         <h1
-          className={`mb-3 text-6xl leading-[0.9] sm:text-7xl md:text-8xl lg:text-[9rem] lowercase text-center ${
+          className={`text-aura text-aura-xl text-6xl leading-[0.9] sm:text-7xl md:text-8xl lg:text-[8.5rem] lowercase ${
             isVisible ? "animate-mask-reveal" : ""
           }`}
           style={{
@@ -73,9 +65,9 @@ export function Hero() {
           zenbauhaus
         </h1>
 
-        {/* Role rotator */}
+        {/* Role rotator — single halo wrapping the visible row */}
         <div
-          className={`mb-5 h-12 overflow-hidden text-center ${
+          className={`text-aura inline-block h-12 overflow-hidden px-4 ${
             isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"
           }`}
         >
@@ -95,9 +87,9 @@ export function Hero() {
           </div>
         </div>
 
-        {/* Tagline */}
+        {/* Tagline — its own halo */}
         <p
-          className={`mx-auto mb-7 max-w-2xl text-center text-base sm:text-lg ${
+          className={`text-aura mx-auto max-w-2xl px-3 text-base sm:text-lg ${
             isVisible ? "animate-fade-in-up animation-delay-500" : "opacity-0"
           }`}
           style={{
@@ -105,10 +97,15 @@ export function Hero() {
             color: "var(--text-primary)",
           }}
         >
-          Bridging <em className="not-italic font-semibold" style={{ color: "var(--vermilion)" }}>creative vision</em>
-          {" "}and{" "}
-          <em className="not-italic font-semibold" style={{ color: "var(--cobalt-blue)" }}>technical execution</em>
-          {" "}to build what others say is impossible.
+          Bridging{" "}
+          <em className="not-italic font-semibold" style={{ color: "var(--vermilion)" }}>
+            creative vision
+          </em>{" "}
+          and{" "}
+          <em className="not-italic font-semibold" style={{ color: "var(--cobalt-blue)" }}>
+            technical execution
+          </em>{" "}
+          to build what others say is impossible.
         </p>
 
         {/* CTA buttons */}
@@ -126,9 +123,9 @@ export function Hero() {
           </a>
         </div>
 
-        {/* Quick stats */}
+        {/* Quick stats — each stat its own little halo */}
         <div
-          className={`mt-10 grid grid-cols-3 gap-4 ${
+          className={`mt-4 grid grid-cols-3 gap-3 ${
             isVisible ? "animate-fade-in-up animation-delay-900" : "opacity-0"
           }`}
         >
@@ -139,11 +136,10 @@ export function Hero() {
           ].map((stat, idx) => (
             <div
               key={idx}
-              className="border-t pt-3 text-center"
-              style={{ borderColor: "var(--border-strong)" }}
+              className="text-aura text-aura-sm flex flex-col items-center gap-1 px-4 py-2 text-center"
             >
               <div
-                className="text-xl uppercase sm:text-2xl"
+                className="text-xl sm:text-2xl"
                 style={{
                   color: "var(--cobalt-blue)",
                   fontFamily: "var(--font-display)",
@@ -152,7 +148,7 @@ export function Hero() {
                 {stat.value}
               </div>
               <div
-                className="text-[0.65rem] uppercase tracking-[0.2em]"
+                className="text-[0.6rem] uppercase tracking-[0.22em]"
                 style={{ color: "var(--text-muted)" }}
               >
                 {stat.label}
@@ -165,7 +161,7 @@ export function Hero() {
       {/* Scroll indicator */}
       <button
         onClick={scrollToContent}
-        className={`absolute bottom-6 left-1/2 z-20 -translate-x-1/2 flex flex-col items-center gap-1 transition-colors ${
+        className={`text-aura text-aura-sm absolute bottom-6 left-1/2 z-20 -translate-x-1/2 inline-flex flex-col items-center gap-1 px-3 py-1.5 transition-colors ${
           isVisible ? "animate-fade-in animation-delay-1100" : "opacity-0"
         }`}
         style={{ color: "var(--text-muted)" }}
