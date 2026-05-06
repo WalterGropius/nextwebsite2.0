@@ -86,6 +86,10 @@
     background-color: var(--surface-dark);
     color: var(--text-primary);
     overflow-x: hidden;
+    /* Slight faux-weight for body text so Zenhand reads firmer */
+    -webkit-text-stroke: 0.015em currentColor;
+    paint-order: stroke fill;
+    letter-spacing: 0.04em;
   }
 
   body {
