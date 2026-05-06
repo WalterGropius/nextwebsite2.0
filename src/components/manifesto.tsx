@@ -52,7 +52,7 @@ export function Manifesto() {
   return (
     <section
       id="manifesto"
-      className="relative overflow-hidden py-24 sm:py-32"
+      className="relative overflow-hidden py-12 sm:py-16"
     >
       {/* Background elements */}
       <div className="pointer-events-none absolute inset-0">

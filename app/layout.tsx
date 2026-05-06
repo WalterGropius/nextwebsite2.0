@@ -55,6 +55,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preload" as="font" type="font/woff" href="/zenhand3.woff" crossOrigin="anonymous" />
       </head>
       <body>
+        {/* SVG filter sprite — referenced via filter: url(#ink-wobble) on
+            elements that want a hand-drawn edge */}
+        <svg
+          width="0"
+          height="0"
+          aria-hidden="true"
+          style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }}
+        >
+          <defs>
+            <filter id="ink-wobble" x="-2%" y="-2%" width="104%" height="104%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="3" result="noise" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.4" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+            <filter id="ink-wobble-strong" x="-3%" y="-3%" width="106%" height="106%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="2" seed="5" result="noise" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
+          </defs>
+        </svg>
         <Layout>{children}</Layout>
       </body>
     </html>

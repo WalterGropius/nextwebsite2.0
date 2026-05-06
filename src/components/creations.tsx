@@ -1,7 +1,7 @@
 "use client"
 
 import { useRef, useState, useEffect, useMemo } from "react"
-import { ExternalLink, Calendar, Tag, ArrowRight, Filter } from "lucide-react"
+import { ExternalLink, Calendar, ArrowRight, Filter } from "lucide-react"
 
 interface ProjectItem {
   id: number
@@ -28,7 +28,6 @@ export function Creations({ randomCount }: CreationsProps) {
   const [projects, setProjects] = useState<ProjectItem[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
-  const [hoveredProject, setHoveredProject] = useState<number | null>(null)
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
 
   useEffect(() => {
@@ -70,12 +69,10 @@ export function Creations({ randomCount }: CreationsProps) {
     }
   }, [])
 
-  // Get all unique tags
   const allTags = Array.from(
-    new Set(projects.flatMap(p => p.tags.split(',').map(t => t.trim())))
+    new Set(projects.flatMap((p) => p.tags.split(",").map((t) => t.trim())))
   ).filter(Boolean)
 
-  // Memoize random selection to prevent reshuffling on every render
   const randomizedProjects = useMemo(() => {
     if (typeof randomCount === "number" && projects.length > 0) {
       return getRandomItems(projects, randomCount)
@@ -84,56 +81,55 @@ export function Creations({ randomCount }: CreationsProps) {
   }, [projects, randomCount])
 
   const displayedProjects = selectedTag
-    ? randomizedProjects.filter(p => p.tags.toLowerCase().includes(selectedTag.toLowerCase()))
+    ? randomizedProjects.filter((p) => p.tags.toLowerCase().includes(selectedTag.toLowerCase()))
     : randomizedProjects
 
   return (
-    <section id="creations" className="relative overflow-hidden py-24 sm:py-32">
+    <section id="creations" className="relative overflow-hidden py-16 sm:py-20">
       <div ref={ref} className="section-container">
         {/* Section header */}
-        <div className={`mb-16 text-center ${isInView ? "animate-fade-in-up" : "opacity-0"}`}>
-          <div className="accent-line mx-auto mb-6 animate-line-draw" />
-          <h2 
-            className="mb-4 text-4xl font-bold sm:text-5xl md:text-6xl"
-            style={{ fontFamily: "var(--font-display)" }}
+        <div className={`mb-10 ${isInView ? "animate-reveal-blur" : "opacity-0"}`}>
+          <div className="accent-line mb-4" />
+          <h2
+            className="mb-2 text-4xl sm:text-5xl"
+            style={{ fontFamily: "var(--font-display)", color: "var(--text-primary)" }}
           >
-            {randomCount ? "Featured " : ""}<span className="gradient-text">Works</span>
+            {randomCount ? "Featured " : ""}Works
           </h2>
-          <p className="mx-auto max-w-2xl text-lg text-gray-400">
-            A selection of projects spanning VR, AI, web, and creative technology
+          <p className="max-w-xl text-base" style={{ color: "var(--text-muted)" }}>
+            VR, AI, web, and creative technology — selected pieces.
           </p>
         </div>
 
         {/* Tag filters (only for full portfolio) */}
         {!randomCount && allTags.length > 0 && (
-          <div 
-            className={`mb-12 flex flex-wrap justify-center gap-2 ${
+          <div
+            className={`mb-8 flex flex-wrap gap-2 ${
               isInView ? "animate-fade-in-up animation-delay-200" : "opacity-0"
             }`}
           >
             <button
               onClick={() => setSelectedTag(null)}
-              className="flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-all"
+              className="skill-pill"
               style={{
-                background: !selectedTag ? "var(--gradient-primary)" : "var(--surface-glass)",
-                color: !selectedTag ? "white" : "var(--thistle)",
-                border: "1px solid",
-                borderColor: !selectedTag ? "transparent" : "var(--border-subtle)",
+                background: !selectedTag ? "var(--text-primary)" : "var(--surface-ink)",
+                color: !selectedTag ? "var(--surface-dark)" : "var(--text-primary)",
+                borderColor: !selectedTag ? "var(--text-primary)" : "var(--border-subtle)",
               }}
             >
-              <Filter size={14} />
-              All
+              <Filter size={12} />
+              <span className="ml-1">All</span>
             </button>
             {allTags.slice(0, 8).map((tag) => (
               <button
                 key={tag}
                 onClick={() => setSelectedTag(tag)}
-                className="rounded-full px-4 py-2 text-sm font-medium transition-all"
+                className="skill-pill"
                 style={{
-                  background: selectedTag === tag ? "var(--gradient-primary)" : "var(--surface-glass)",
-                  color: selectedTag === tag ? "white" : "var(--thistle)",
-                  border: "1px solid",
-                  borderColor: selectedTag === tag ? "transparent" : "var(--border-subtle)",
+                  background: selectedTag === tag ? "var(--text-primary)" : "var(--surface-ink)",
+                  color: selectedTag === tag ? "var(--surface-dark)" : "var(--text-primary)",
+                  borderColor:
+                    selectedTag === tag ? "var(--text-primary)" : "var(--border-subtle)",
                 }}
               >
                 {tag}
@@ -143,140 +139,141 @@ export function Creations({ randomCount }: CreationsProps) {
         )}
 
         {loading ? (
-          <div className="flex min-h-[400px] items-center justify-center">
+          <div className="flex min-h-[300px] items-center justify-center">
             <div className="text-center">
-              <div 
-                className="mx-auto mb-4 h-12 w-12 animate-spin rounded-full border-2 border-t-transparent"
-                style={{ borderColor: "var(--vista-blue)", borderTopColor: "transparent" }}
+              <div
+                className="mx-auto mb-3 h-10 w-10 animate-spin border-2"
+                style={{
+                  borderColor: "var(--text-primary)",
+                  borderTopColor: "transparent",
+                }}
               />
-              <p className="text-gray-400">Loading projects...</p>
+              <p style={{ color: "var(--text-muted)" }}>Loading projects…</p>
             </div>
           </div>
         ) : error ? (
-          <div className="flex min-h-[300px] items-center justify-center">
-            <div 
-              className="glass-card p-8 text-center"
-              style={{ borderColor: "var(--vermilion)" }}
+          <div className="flex min-h-[200px] items-center justify-center">
+            <div
+              className="border-2 p-6 text-center"
+              style={{ borderColor: "var(--vermilion)", color: "var(--vermilion)" }}
             >
-              <p className="text-red-400">{error}</p>
+              <p>{error}</p>
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {displayedProjects.map((project, index) => (
-              <div
+              <a
                 key={project.id}
-                className={`group relative overflow-hidden rounded-2xl transition-all duration-500 ${
-                  isInView ? "animate-scale-in" : "opacity-0"
-                }`}
-                style={{ 
-                  animationDelay: `${0.1 * index}s`,
-                  transform: hoveredProject === project.id ? "scale(1.02)" : "scale(1)",
+                href={project.link || "#"}
+                target={project.link ? "_blank" : undefined}
+                rel={project.link ? "noopener noreferrer" : undefined}
+                className={`group block border ${isInView ? "animate-reveal-blur" : "opacity-0"}`}
+                style={{
+                  animationDelay: `${0.06 * index}s`,
+                  background: "var(--surface-elevated)",
+                  borderColor: "var(--border-subtle)",
+                  borderWidth: "1.5px",
+                  transition:
+                    "transform 380ms cubic-bezier(0.34,1.56,0.64,1), box-shadow 220ms ease, border-color 220ms ease",
                 }}
-                onMouseEnter={() => setHoveredProject(project.id)}
-                onMouseLeave={() => setHoveredProject(null)}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translate(-4px, -4px)"
+                  e.currentTarget.style.boxShadow = "8px 8px 0 0 var(--text-primary)"
+                  e.currentTarget.style.borderColor = "var(--text-primary)"
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = ""
+                  e.currentTarget.style.boxShadow = ""
+                  e.currentTarget.style.borderColor = "var(--border-subtle)"
+                }}
               >
                 {/* Image */}
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="h-full w-full object-cover transition-transform duration-700"
-                    style={{
-                      transform: hoveredProject === project.id ? "scale(1.1)" : "scale(1)",
-                    }}
-                  />
-                  
-                  {/* Gradient overlay */}
-                  <div 
-                    className="absolute inset-0 transition-opacity duration-300"
-                    style={{
-                      background: "linear-gradient(180deg, transparent 0%, transparent 40%, rgba(15, 17, 23, 0.95) 100%)",
-                      opacity: hoveredProject === project.id ? 1 : 0.8,
-                    }}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                   />
                 </div>
 
-                {/* Content */}
-                <div className="absolute inset-x-0 bottom-0 p-6">
-                  {/* Date */}
-                  <div className="mb-2 flex items-center gap-2 text-xs text-gray-400">
-                    <Calendar size={12} />
+                {/* Content — light card, dark text, no overlay */}
+                <div
+                  className="space-y-2 p-4"
+                  style={{ borderTop: "1.5px solid var(--border-subtle)" }}
+                >
+                  <div
+                    className="flex items-center gap-2 text-[0.7rem] uppercase tracking-[0.2em]"
+                    style={{ color: "var(--text-muted)" }}
+                  >
+                    <Calendar size={11} />
                     <span>{project.date}</span>
                   </div>
 
-                  {/* Title */}
-                  <h3 
-                    className="mb-2 text-xl font-bold text-white"
-                    style={{ fontFamily: "var(--font-display)" }}
+                  <h3
+                    className="text-lg leading-tight"
+                    style={{ fontFamily: "var(--font-display)", color: "var(--text-primary)" }}
                   >
                     {project.title}
                   </h3>
 
-                  {/* Description - show on hover */}
-                  <p 
-                    className="mb-4 line-clamp-2 text-sm text-gray-300 transition-all duration-300"
-                    style={{
-                      opacity: hoveredProject === project.id ? 1 : 0,
-                      transform: hoveredProject === project.id ? "translateY(0)" : "translateY(10px)",
-                    }}
-                  >
-                    {project.description}
-                  </p>
+                  {project.description && (
+                    <p
+                      className="line-clamp-2 text-sm"
+                      style={{ color: "var(--text-muted)", lineHeight: 1.5 }}
+                    >
+                      {project.description}
+                    </p>
+                  )}
 
-                  {/* Tags */}
-                  <div className="mb-4 flex flex-wrap gap-1">
-                    {project.tags.split(',').slice(0, 3).map((tag, idx) => (
-                      <span
-                        key={idx}
-                        className="rounded-full px-2 py-0.5 text-xs"
-                        style={{ 
-                          background: "var(--surface-glass)", 
-                          color: "var(--vista-blue)",
-                          border: "1px solid var(--border-subtle)"
-                        }}
-                      >
-                        {tag.trim()}
-                      </span>
-                    ))}
+                  <div className="flex flex-wrap gap-1.5 pt-1">
+                    {project.tags
+                      .split(",")
+                      .slice(0, 3)
+                      .map((tag, idx) => (
+                        <span
+                          key={idx}
+                          className="px-2 py-0.5 text-[0.65rem] uppercase tracking-wider"
+                          style={{
+                            background: "var(--surface-ink)",
+                            color: "var(--text-primary)",
+                            border: "1px solid var(--border-subtle)",
+                          }}
+                        >
+                          {tag.trim()}
+                        </span>
+                      ))}
                   </div>
 
-                  {/* Link */}
                   {project.link && (
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-sm font-medium transition-all"
-                      style={{ 
-                        color: "var(--flax)",
-                        opacity: hoveredProject === project.id ? 1 : 0.7,
-                      }}
+                    <div
+                      className="inline-flex items-center gap-1 pt-2 text-xs uppercase tracking-[0.2em]"
+                      style={{ color: "var(--cobalt-blue)" }}
                     >
-                      View Project
-                      <ExternalLink size={14} />
-                    </a>
+                      View
+                      <ExternalLink size={11} />
+                    </div>
                   )}
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         )}
 
         {/* CTA for more */}
         {randomCount && (
-          <div 
-            className={`mt-16 text-center ${isInView ? "animate-fade-in-up animation-delay-800" : "opacity-0"}`}
+          <div
+            className={`mt-10 text-center ${
+              isInView ? "animate-fade-in-up animation-delay-800" : "opacity-0"
+            }`}
           >
-            <a 
+            <a
               href="/portfolio-s"
               className="btn-secondary group inline-flex items-center gap-2"
             >
               View Full Portfolio
-              <ArrowRight 
-                size={18} 
-                className="transition-transform group-hover:translate-x-1"
-              />
+              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </a>
           </div>
         )}

@@ -14,6 +14,19 @@ import { Navigation } from "@/components/navigation"
 import { Flowers } from "@/components/canvas/Flowers"
 import { PageLoader } from "@/components/page-loader"
 
+function Divider() {
+  return (
+    <div
+      className="mx-auto h-px w-full max-w-3xl"
+      style={{
+        background:
+          "linear-gradient(90deg, transparent 0%, var(--border-strong) 50%, transparent 100%)",
+        opacity: 0.4,
+      }}
+    />
+  )
+}
+
 export default function Home() {
   const [mounted, setMounted] = useState(false)
   const [canvasVisible, setCanvasVisible] = useState(true)
@@ -93,55 +106,15 @@ export default function Home() {
           />
 
           <Highlights />
-          
+          <Divider />
           <Manifesto />
-          
-          {/* Divider with glow */}
-          <div className="relative py-8">
-            <div 
-              className="mx-auto h-[1px] max-w-4xl"
-              style={{
-                background: "linear-gradient(90deg, transparent, var(--border-glow), transparent)"
-              }}
-            />
-          </div>
-
+          <Divider />
           <Philosophy />
-          
-          {/* Divider */}
-          <div className="relative py-8">
-            <div 
-              className="mx-auto h-[1px] max-w-4xl"
-              style={{
-                background: "linear-gradient(90deg, transparent, var(--border-glow), transparent)"
-              }}
-            />
-          </div>
-
+          <Divider />
           <Arsenal />
-          
-          {/* Divider */}
-          <div className="relative py-8">
-            <div 
-              className="mx-auto h-[1px] max-w-4xl"
-              style={{
-                background: "linear-gradient(90deg, transparent, var(--border-glow), transparent)"
-              }}
-            />
-          </div>
-
+          <Divider />
           <Creations randomCount={6} />
-          
-          {/* Divider */}
-          <div className="relative py-8">
-            <div 
-              className="mx-auto h-[1px] max-w-4xl"
-              style={{
-                background: "linear-gradient(90deg, transparent, var(--border-glow), transparent)"
-              }}
-            />
-          </div>
-
+          <Divider />
           <Contact />
         </div>
 

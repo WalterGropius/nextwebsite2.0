@@ -6,8 +6,8 @@ import { ArrowDown, Sparkles } from "lucide-react"
 const roles = [
   { text: "Creative Technologist", color: "var(--cobalt-blue)" },
   { text: "CTO & Builder", color: "var(--vermilion)" },
-  { text: "VR/AR Pioneer", color: "var(--pistachio)" },
-  { text: "AI Architect", color: "var(--flax)" },
+  { text: "VR/AR Pioneer", color: "var(--fern-green)" },
+  { text: "AI Architect", color: "var(--lion)" },
   { text: "Visual Artist", color: "var(--salmon-pink)" },
 ]
 
@@ -30,69 +30,64 @@ export function Hero() {
   }
 
   return (
-    <div 
+    <div
       ref={containerRef}
       className="relative flex min-h-screen items-center justify-center overflow-hidden"
     >
-      {/* Ambient glow effects */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div 
-          className="absolute -left-1/4 top-1/4 h-[600px] w-[600px] rounded-full blur-[120px] animate-pulse-slow"
-          style={{ background: "radial-gradient(circle, rgba(59, 102, 243, 0.15) 0%, transparent 70%)" }}
-        />
-        <div 
-          className="absolute -right-1/4 bottom-1/4 h-[500px] w-[500px] rounded-full blur-[100px] animate-pulse-slow animation-delay-500"
-          style={{ background: "radial-gradient(circle, rgba(238, 74, 68, 0.12) 0%, transparent 70%)" }}
-        />
-      </div>
-
-      {/* Main content */}
-      <div className="relative z-10 mx-auto max-w-5xl px-6 text-center">
+      {/* Hero copy frame — backdrop-blurs the splat behind for legibility */}
+      <div
+        className={`hero-frame relative z-10 mx-4 max-w-4xl px-6 py-10 sm:px-10 sm:py-14 ${
+          isVisible ? "animate-reveal-blur" : "opacity-0"
+        }`}
+      >
         {/* Status badge */}
-        <div 
-          className={`mb-8 inline-flex items-center gap-2 rounded-full border px-4 py-2 ${isVisible ? "animate-fade-in-down" : "opacity-0"}`}
-          style={{ 
-            background: "var(--surface-glass)", 
-            borderColor: "var(--border-subtle)",
-            backdropFilter: "blur(10px)"
+        <div
+          className={`mb-5 inline-flex items-center gap-2 border px-3 py-1 ${
+            isVisible ? "animate-fade-in-down" : "opacity-0"
+          }`}
+          style={{
+            background: "var(--surface-elevated)",
+            borderColor: "var(--border-strong)",
           }}
         >
           <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-60" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-green-600" />
           </span>
-          <span className="text-sm font-medium text-gray-300">Available for ambitious projects</span>
+          <span className="text-xs font-medium" style={{ color: "var(--text-primary)" }}>
+            Available for ambitious projects
+          </span>
         </div>
 
         {/* Main heading */}
         <h1
-          className={`mb-6 text-5xl font-black tracking-wider sm:text-6xl md:text-7xl lg:text-9xl leading-none lowercase ${isVisible ? "animate-blur-in" : "opacity-0"}`}
+          className={`mb-3 text-6xl leading-[0.9] sm:text-7xl md:text-8xl lg:text-[9rem] lowercase text-center ${
+            isVisible ? "animate-mask-reveal" : ""
+          }`}
           style={{
             fontFamily: "var(--font-display)",
-            textShadow: "0 2px 20px rgba(255, 255, 255, 0.8), 0 4px 40px rgba(241, 242, 241, 0.6)",
-            letterSpacing: "0.02em"
+            letterSpacing: "-0.02em",
+            color: "var(--text-primary)",
           }}
         >
-          <span className="block">zenbauhaus</span>
+          zenbauhaus
         </h1>
 
         {/* Role rotator */}
-        <div 
-          className={`mb-8 h-14 overflow-hidden ${isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"}`}
+        <div
+          className={`mb-5 h-12 overflow-hidden text-center ${
+            isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"
+          }`}
         >
-          <div 
+          <div
             className="transition-transform duration-500 ease-out"
-            style={{ transform: `translateY(-${currentRole * 56}px)` }}
+            style={{ transform: `translateY(-${currentRole * 3}rem)` }}
           >
             {roles.map((role, idx) => (
-              <div 
+              <div
                 key={idx}
-                className="flex h-14 items-center justify-center text-2xl font-bold uppercase tracking-widest sm:text-3xl md:text-4xl"
-                style={{
-                  color: role.color,
-                  fontFamily: "var(--font-display)",
-                  textShadow: "0 2px 20px rgba(255, 255, 255, 0.7)"
-                }}
+                className="flex h-12 items-center justify-center text-xl uppercase tracking-[0.18em] sm:text-2xl"
+                style={{ color: role.color }}
               >
                 {role.text}
               </div>
@@ -101,63 +96,64 @@ export function Hero() {
         </div>
 
         {/* Tagline */}
-        <p 
-          className={`mx-auto mb-10 max-w-2xl text-lg sm:text-xl md:text-2xl ${isVisible ? "animate-fade-in-up animation-delay-500" : "opacity-0"}`}
+        <p
+          className={`mx-auto mb-7 max-w-2xl text-center text-base sm:text-lg ${
+            isVisible ? "animate-fade-in-up animation-delay-500" : "opacity-0"
+          }`}
           style={{
-            lineHeight: 1.6,
-            textShadow: "0 2px 20px rgba(255, 255, 255, 0.7)",
-            color: "rgba(15, 17, 23, 0.75)"
+            lineHeight: 1.5,
+            color: "var(--text-primary)",
           }}
         >
-          Bridging <span className="font-bold" style={{ color: "var(--text-primary)" }}>creative vision</span> and{" "}
-          <span className="font-bold" style={{ color: "var(--text-primary)" }}>technical execution</span> to build
-          what others say is impossible.
+          Bridging <em className="not-italic font-semibold" style={{ color: "var(--vermilion)" }}>creative vision</em>
+          {" "}and{" "}
+          <em className="not-italic font-semibold" style={{ color: "var(--cobalt-blue)" }}>technical execution</em>
+          {" "}to build what others say is impossible.
         </p>
 
         {/* CTA buttons */}
-        <div 
-          className={`flex flex-col items-center justify-center gap-4 sm:flex-row ${isVisible ? "animate-fade-in-up animation-delay-700" : "opacity-0"}`}
+        <div
+          className={`flex flex-col items-center justify-center gap-3 sm:flex-row ${
+            isVisible ? "animate-fade-in-up animation-delay-700" : "opacity-0"
+          }`}
         >
-          <a 
-            href="/portfolio-s"
-            className="btn-primary group"
-          >
-            <Sparkles size={18} className="transition-transform group-hover:rotate-12" />
+          <a href="/portfolio-s" className="btn-primary group">
+            <Sparkles size={16} className="transition-transform group-hover:rotate-12" />
             Explore My Work
           </a>
-          <a 
-            href="mailto:zenbauhaus@gmail.com"
-            className="btn-secondary"
-          >
+          <a href="mailto:zenbauhaus@gmail.com" className="btn-secondary">
             Let&apos;s Collaborate
           </a>
         </div>
 
         {/* Quick stats */}
-        <div 
-          className={`mt-16 grid grid-cols-3 gap-4 sm:gap-8 ${isVisible ? "animate-fade-in-up animation-delay-900" : "opacity-0"}`}
+        <div
+          className={`mt-10 grid grid-cols-3 gap-4 ${
+            isVisible ? "animate-fade-in-up animation-delay-900" : "opacity-0"
+          }`}
         >
           {[
             { value: "10+", label: "Years Creating" },
             { value: "VR/AI", label: "Specialization" },
             { value: "CTO", label: "Current Role" },
           ].map((stat, idx) => (
-            <div key={idx} className="text-center">
+            <div
+              key={idx}
+              className="border-t pt-3 text-center"
+              style={{ borderColor: "var(--border-strong)" }}
+            >
               <div
-                className="text-2xl font-black uppercase sm:text-3xl md:text-4xl"
+                className="text-xl uppercase sm:text-2xl"
                 style={{
                   color: "var(--cobalt-blue)",
                   fontFamily: "var(--font-display)",
-                  textShadow: "0 2px 20px rgba(255, 255, 255, 0.6)"
                 }}
               >
                 {stat.value}
               </div>
               <div
-                className="text-xs uppercase tracking-wider sm:text-sm"
-                style={{
-                  color: "rgba(15, 17, 23, 0.55)"
-                }}
+                className="text-[0.65rem] uppercase tracking-[0.2em]"
+                style={{ color: "var(--text-muted)" }}
               >
                 {stat.label}
               </div>
@@ -169,11 +165,14 @@ export function Hero() {
       {/* Scroll indicator */}
       <button
         onClick={scrollToContent}
-        className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-gray-500 transition-colors hover:text-white ${isVisible ? "animate-fade-in animation-delay-1100" : "opacity-0"}`}
+        className={`absolute bottom-6 left-1/2 z-20 -translate-x-1/2 flex flex-col items-center gap-1 transition-colors ${
+          isVisible ? "animate-fade-in animation-delay-1100" : "opacity-0"
+        }`}
+        style={{ color: "var(--text-muted)" }}
         aria-label="Scroll to content"
       >
-        <span className="text-xs uppercase tracking-widest">Discover</span>
-        <ArrowDown size={20} className="animate-bounce" />
+        <span className="text-[0.6rem] uppercase tracking-[0.3em]">Discover</span>
+        <ArrowDown size={16} className="animate-bounce" />
       </button>
     </div>
   )
