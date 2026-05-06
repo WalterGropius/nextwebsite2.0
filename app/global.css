@@ -47,8 +47,9 @@
                      radial-gradient(ellipse at 70% 80%, rgba(238, 74, 68, 0.07) 0%, transparent 50%);
     
     /* Typography Scale */
+    /* Typography Scale */
     --font-display: 'Zenhand', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-body: 'Zenhand', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     
     /* Text shadows */
     --text-shadow-hero: 0 4px 20px rgba(0, 0, 0, 0.8), 0 8px 40px rgba(0, 0, 0, 0.6), 0 0 80px rgba(0, 0, 0, 0.4);
@@ -93,12 +94,22 @@
     min-height: 100vh;
   }
 
-  /* Typography Base */
+  /* Typography Base — Zenhand has only one weight, so we fake bold by
+     stroking the glyphs with their own colour and painting the stroke
+     behind the fill. This roughly doubles perceived thickness. */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     font-weight: 700;
     letter-spacing: -0.02em;
     line-height: 1.1;
+    -webkit-text-stroke: 0.04em currentColor;
+    paint-order: stroke fill;
+  }
+
+  /* Allow elements to opt-out of the faux-bold stroke (e.g. logo glyph
+     on a coloured background where currentColor would smudge it) */
+  .no-faux-bold {
+    -webkit-text-stroke: 0;
   }
 
   p {
