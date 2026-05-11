@@ -17,9 +17,18 @@ const downloadLinks = [
   { href: "/artBauer.pdf", label: "Art PDF", icon: Palette },
 ]
 
+const roles = [
+  { text: "Creative Technologist", color: "var(--cobalt-blue)" },
+  { text: "CTO & Builder", color: "var(--vermilion)" },
+  { text: "VR/AR Pioneer", color: "var(--fern-green)" },
+  { text: "AI Architect", color: "var(--lion)" },
+  { text: "Visual Artist", color: "var(--salmon-pink)" },
+]
+
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [roleIndex, setRoleIndex] = useState(0)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,6 +37,15 @@ export function Navigation() {
     window.addEventListener("scroll", handleScroll, { passive: true })
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  // Role rotator — cycles through once, then stops at empty
+  useEffect(() => {
+    if (roleIndex >= roles.length) return
+    const timeout = setTimeout(() => {
+      setRoleIndex((prev) => prev + 1)
+    }, 1800)
+    return () => clearTimeout(timeout)
+  }, [roleIndex])
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -57,15 +75,26 @@ export function Navigation() {
         }}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="group flex items-center gap-3 transition-transform hover:scale-105"
-          >
-            <span className="font-semibold text-white" style={{ fontFamily: "var(--font-display)" }}>
-              zenbauhaus
+          {/* Logo + role rotator */}
+          <div className="flex items-baseline gap-3 min-w-0">
+            <Link
+              href="/"
+              className="group transition-transform hover:scale-105 shrink-0"
+            >
+              <span className="font-semibold text-white" style={{ fontFamily: "var(--font-display)" }}>
+                zenbauhaus
+              </span>
+            </Link>
+            <span
+              className="hidden truncate text-[0.65rem] uppercase tracking-[0.18em] transition-opacity duration-500 sm:inline-block"
+              style={{
+                color: roleIndex < roles.length ? roles[roleIndex].color : "transparent",
+                opacity: roleIndex < roles.length ? 1 : 0,
+              }}
+            >
+              {roleIndex < roles.length ? roles[roleIndex].text : ""}
             </span>
-          </Link>
+          </div>
 
           {/* Desktop Navigation */}
           <div className="hidden items-center gap-1 md:flex">
