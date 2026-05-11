@@ -1,7 +1,8 @@
 "use client"
 
 import { useRef, useEffect, useState } from "react"
-import { Sparkles, Award, Building2, Zap } from "lucide-react"
+import { Sparkles, Award, Building2, Zap, Star } from "lucide-react"
+import { SectionHeader } from "./section-header"
 
 const highlights = [
   {
@@ -49,17 +50,34 @@ export function Highlights() {
   return (
     <section className="relative overflow-hidden py-10 sm:py-12">
       <div ref={ref} className="section-container">
+        <div
+          className={`mb-8 max-w-2xl ${
+            isInView ? "animate-reveal-blur" : "opacity-0"
+          }`}
+        >
+          <SectionHeader
+            icon={Star}
+            title={
+              <>
+                Career{" "}
+                <span style={{ color: "var(--lion)" }}>highlights</span>
+              </>
+            }
+            kicker="Snapshot"
+            color="var(--lion)"
+          />
+        </div>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           {highlights.map((item, idx) => (
             <div
               key={idx}
-              className={`glass-card glass-card-hover group flex items-start gap-3 p-4 ${
+              className={`glass-card glass-card-hover group relative p-4 ${
                 isInView ? "animate-reveal-blur" : "opacity-0"
               }`}
               style={{ animationDelay: `${idx * 0.08}s` }}
             >
               <div
-                className="icon-chip h-10 w-10 shrink-0 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110"
+                className="icon-chip pointer-events-none absolute top-3 right-3 z-10 h-9 w-9 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110"
                 style={{ color: item.color }}
               >
                 <item.icon size={18} />

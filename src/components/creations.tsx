@@ -1,7 +1,8 @@
 "use client"
 
 import { useRef, useState, useEffect, useMemo } from "react"
-import { ExternalLink, Calendar, ArrowRight, Filter } from "lucide-react"
+import { ExternalLink, Calendar, ArrowRight, Filter, Palette } from "lucide-react"
+import { SectionHeader } from "./section-header"
 
 interface ProjectItem {
   id: number
@@ -89,14 +90,13 @@ export function Creations({ randomCount }: CreationsProps) {
       <div ref={ref} className="section-container">
         {/* Section header */}
         <div className={`mb-10 ${isInView ? "animate-reveal-blur" : "opacity-0"}`}>
-          <div className="accent-line mb-4" />
-          <h2
-            className="mb-2 text-4xl sm:text-5xl"
-            style={{ fontFamily: "var(--font-display)", color: "var(--text-primary)" }}
-          >
-            {randomCount ? "Featured " : ""}Works
-          </h2>
-          <p className="max-w-xl text-base" style={{ color: "var(--text-muted)" }}>
+          <SectionHeader
+            icon={Palette}
+            title={<>{randomCount ? "Featured " : ""}Works</>}
+            kicker={randomCount ? "Selected work" : "Full portfolio"}
+            color="var(--cobalt-blue)"
+          />
+          <p className="mt-4 max-w-xl text-base" style={{ color: "var(--text-muted)" }}>
             VR, AI, web, and creative technology — selected pieces.
           </p>
         </div>
