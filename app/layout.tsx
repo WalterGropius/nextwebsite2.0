@@ -3,7 +3,7 @@ import { Layout } from '@/components/dom/Layout'
 import '@/global.css'
 
 export const metadata: Metadata = {
-  title: 'Eliáš Bauer | Art & Tech Polymath',
+  title: 'zenbauhaus | Art & Tech Polymath',
   description: 'CTO & Creative Technologist bridging creative vision and technical execution. Specializing in VR/AR, AI systems, and cutting-edge web development.',
   keywords: [
     'creative technology',
@@ -21,11 +21,11 @@ export const metadata: Metadata = {
     'innovation',
     'Prague',
   ],
-  authors: [{ name: 'Eliáš Bauer', url: 'https://zenbauhaus.vercel.app' }],
-  creator: 'Eliáš Bauer',
+  authors: [{ name: 'zenbauhaus', url: 'https://zenbauhaus.vercel.app' }],
+  creator: 'zenbauhaus',
   robots: 'index, follow',
   openGraph: {
-    title: 'Eliáš Bauer | Art & Tech Polymath',
+    title: 'zenbauhaus | Art & Tech Polymath',
     description: 'CTO & Creative Technologist bridging creative vision and technical execution',
     type: 'website',
     locale: 'en_US',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Eliáš Bauer | Art & Tech Polymath',
+    title: 'zenbauhaus | Art & Tech Polymath',
     description: 'CTO & Creative Technologist bridging creative vision and technical execution',
   },
   generator: 'Next.js',

@@ -108,12 +108,6 @@ export function Contact() {
           }}
         >
           <div className="flex items-center gap-2">
-            <div
-              className="flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold"
-              style={{ background: "var(--gradient-primary)", color: "#ffffff" }}
-            >
-              EB
-            </div>
             <span>zenbauhaus</span>
           </div>
           <div className="flex items-center gap-4">

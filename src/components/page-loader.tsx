@@ -100,20 +100,19 @@ export function PageLoader({ children }: PageLoaderProps) {
               />
             </svg>
             
-            {/* Center logo */}
-            <div 
+            {/* Center wordmark */}
+            <div
               className="absolute inset-0 flex items-center justify-center"
             >
-              <div
-                className="flex h-16 w-16 items-center justify-center rounded-xl text-xl font-bold"
+              <span
+                className="text-sm tracking-wide"
                 style={{
-                  background: "var(--gradient-primary)",
                   fontFamily: "var(--font-display)",
-                  color: "#ffffff"
+                  color: "var(--text-primary)",
                 }}
               >
-                EB
-              </div>
+                zenbauhaus
+              </span>
             </div>
           </div>
 
