@@ -107,13 +107,6 @@ export function Philosophy() {
 
               {/* Content */}
               <div className="relative space-y-3">
-                <span
-                  className="text-[0.65rem] font-semibold uppercase tracking-[0.28em]"
-                  style={{ color: pillar.color }}
-                >
-                  {pillar.tagline}
-                </span>
-
                 <h3
                   className="text-2xl lg:text-3xl"
                   style={{
@@ -123,6 +116,13 @@ export function Philosophy() {
                 >
                   {pillar.title}
                 </h3>
+
+                <span
+                  className="text-[0.65rem] font-semibold uppercase tracking-[0.28em]"
+                  style={{ color: pillar.color }}
+                >
+                  {pillar.tagline}
+                </span>
 
                 <p
                   className="text-base leading-relaxed"
