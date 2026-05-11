@@ -19,34 +19,34 @@ export function SectionHeader({
   align = "left",
   className = "",
 }: SectionHeaderProps) {
-  const alignClasses =
-    align === "center"
-      ? "items-center text-center mx-auto"
-      : "items-start text-left"
+  const justify = align === "center" ? "justify-center" : "justify-start"
+  const textAlign = align === "center" ? "text-center" : "text-left"
 
   return (
-    <div className={`flex flex-col gap-3 ${alignClasses} ${className}`}>
+    <div className={`flex items-start gap-4 ${justify} ${className}`}>
       <div
-        className="icon-chip h-9 w-9 p-0"
+        className="icon-chip h-12 w-12 shrink-0 p-0"
         style={{ color }}
       >
-        <Icon size={22} strokeWidth={1.75} />
+        <Icon size={24} strokeWidth={1.75} />
       </div>
-      <h2
-        className="text-4xl sm:text-5xl lg:text-6xl leading-[0.95]"
-        style={{
-          fontFamily: "var(--font-display)",
-          color: "var(--text-primary)",
-        }}
-      >
-        {title}
-      </h2>
-      <span
-        className="text-[0.65rem] font-semibold uppercase tracking-[0.28em]"
-        style={{ color }}
-      >
-        {kicker}
-      </span>
+      <div className={`flex flex-col gap-1 ${textAlign}`}>
+        <h2
+          className="text-4xl sm:text-5xl lg:text-6xl leading-[0.95]"
+          style={{
+            fontFamily: "var(--font-display)",
+            color: "var(--text-primary)",
+          }}
+        >
+          {title}
+        </h2>
+        <span
+          className="text-[0.65rem] font-semibold uppercase tracking-[0.28em]"
+          style={{ color }}
+        >
+          {kicker}
+        </span>
+      </div>
     </div>
   )
 }
