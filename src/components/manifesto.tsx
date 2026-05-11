@@ -1,7 +1,8 @@
 "use client"
 
 import { useRef, useEffect, useState } from "react"
-import { Zap, Eye, Rocket, Target } from "lucide-react"
+import { Zap, Eye, Rocket, Target, Flame } from "lucide-react"
+import { SectionHeader } from "./section-header"
 
 const manifestoCards = [
   {
@@ -67,11 +68,17 @@ export function Manifesto() {
             isInView ? "animate-reveal-blur" : "opacity-0"
           }`}
         >
-          <span className="section-kicker mb-4">Manifesto</span>
-          <h2 className="section-title mt-3">
-            What I{" "}
-            <span style={{ color: "var(--cobalt-blue)" }}>believe</span>
-          </h2>
+          <SectionHeader
+            icon={Flame}
+            title={
+              <>
+                What I{" "}
+                <span style={{ color: "var(--cobalt-blue)" }}>believe</span>
+              </>
+            }
+            kicker="Manifesto"
+            color="var(--cobalt-blue)"
+          />
         </div>
 
         {/* Cards grid */}

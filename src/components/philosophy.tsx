@@ -1,7 +1,8 @@
 "use client"
 
 import { useRef, useEffect, useState } from "react"
-import { Lightbulb, Heart, Users, ArrowRight } from "lucide-react"
+import { Lightbulb, Heart, Users, ArrowRight, Compass } from "lucide-react"
+import { SectionHeader } from "./section-header"
 
 const pillars = [
   {
@@ -55,10 +56,17 @@ export function Philosophy() {
             isInView ? "animate-reveal-blur" : "opacity-0"
           }`}
         >
-          <span className="section-kicker mb-4">Philosophy</span>
-          <h2 className="section-title mt-3">
-            Design <span style={{ color: "var(--salmon-pink)" }}>philosophy</span>
-          </h2>
+          <SectionHeader
+            icon={Compass}
+            title={
+              <>
+                Design{" "}
+                <span style={{ color: "var(--salmon-pink)" }}>philosophy</span>
+              </>
+            }
+            kicker="Philosophy"
+            color="var(--salmon-pink)"
+          />
           <p
             className="mt-5 text-lg leading-relaxed"
             style={{ color: "var(--text-muted)" }}

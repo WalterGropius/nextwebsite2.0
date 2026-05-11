@@ -1,7 +1,8 @@
 "use client"
 
 import { useRef, useEffect, useState } from "react"
-import { Brain, Zap, Code, Layers, Cpu, Palette } from "lucide-react"
+import { Brain, Zap, Code, Layers, Cpu, Palette, Wrench } from "lucide-react"
+import { SectionHeader } from "./section-header"
 
 const skillCategories = [
   {
@@ -115,11 +116,17 @@ export function Arsenal() {
             isInView ? "animate-reveal-blur" : "opacity-0"
           }`}
         >
-          <span className="section-kicker mb-4">Arsenal</span>
-          <h2 className="section-title mt-3">
-            Technical{" "}
-            <span style={{ color: "var(--fern-green)" }}>arsenal</span>
-          </h2>
+          <SectionHeader
+            icon={Wrench}
+            title={
+              <>
+                Technical{" "}
+                <span style={{ color: "var(--fern-green)" }}>arsenal</span>
+              </>
+            }
+            kicker="Arsenal"
+            color="var(--fern-green)"
+          />
           <p
             className="mt-4 text-lg"
             style={{ color: "var(--text-muted)" }}

@@ -1,7 +1,8 @@
 "use client"
 
 import { useRef, useState, useEffect } from "react"
-import { Mail, ArrowUpRight, Github, Linkedin, Instagram, Music } from "lucide-react"
+import { Mail, ArrowUpRight, Github, Linkedin, Instagram, Music, Send } from "lucide-react"
+import { SectionHeader } from "./section-header"
 
 const socialLinks = [
   { name: "GitHub", href: "https://github.com/WalterGropius", icon: Github, color: "var(--cobalt-blue)" },
@@ -35,11 +36,18 @@ export function Contact() {
             isInView ? "animate-reveal-blur" : "opacity-0"
           }`}
         >
-          <span className="section-kicker mx-auto mb-4">Get in touch</span>
-          <h2 className="section-title mt-4">
-            Let&apos;s build something{" "}
-            <span style={{ color: "var(--vermilion)" }}>extraordinary</span>
-          </h2>
+          <SectionHeader
+            icon={Send}
+            title={
+              <>
+                Let&apos;s build something{" "}
+                <span style={{ color: "var(--vermilion)" }}>extraordinary</span>
+              </>
+            }
+            kicker="Get in touch"
+            color="var(--vermilion)"
+            align="center"
+          />
 
           <p
             className="mx-auto mb-8 mt-5 max-w-xl text-base"
