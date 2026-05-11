@@ -80,7 +80,7 @@ export default function CVPage() {
               className="mb-4 text-5xl font-bold sm:text-6xl md:text-7xl"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              Eliáš <span className="gradient-text">Bauer</span>
+              <span className="gradient-text">zenbauhaus</span>
             </h1>
             <p className="mb-6 text-xl text-gray-400">
               Art & Tech Polymath | CTO | Creative Technologist

@@ -58,22 +58,12 @@ export function Navigation() {
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
           {/* Logo */}
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="group flex items-center gap-3 transition-transform hover:scale-105"
           >
-            <div
-              className="flex h-10 w-10 items-center justify-center rounded-xl font-bold transition-all duration-300 group-hover:shadow-lg"
-              style={{
-                background: "var(--gradient-primary)",
-                boxShadow: "0 0 20px -5px var(--accent-glow)",
-                color: "#ffffff"
-              }}
-            >
-              EB
-            </div>
-            <span className="hidden font-semibold text-white sm:block" style={{ fontFamily: "var(--font-display)" }}>
-              Eliáš Bauer
+            <span className="font-semibold text-white" style={{ fontFamily: "var(--font-display)" }}>
+              zenbauhaus
             </span>
           </Link>
 
