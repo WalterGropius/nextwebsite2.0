@@ -97,33 +97,35 @@ export function Philosophy() {
                 }}
               />
 
-              {/* Icon */}
-              <div
-                className="icon-chip mb-6 h-14 w-14 transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110"
-                style={{ color: pillar.color }}
-              >
-                <pillar.icon size={28} />
-              </div>
-
-              {/* Content */}
-              <div className="relative space-y-3">
-                <h3
-                  className="text-2xl lg:text-3xl"
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    color: "var(--text-primary)",
-                  }}
-                >
-                  {pillar.title}
-                </h3>
-
-                <span
-                  className="text-[0.65rem] font-semibold uppercase tracking-[0.28em]"
+              {/* Header: icon left, title + tagline stacked right */}
+              <div className="relative mb-4 flex items-start gap-4">
+                <div
+                  className="icon-chip h-12 w-12 shrink-0 transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110"
                   style={{ color: pillar.color }}
                 >
-                  {pillar.tagline}
-                </span>
+                  <pillar.icon size={22} />
+                </div>
+                <div className="flex flex-col gap-1">
+                  <h3
+                    className="text-2xl lg:text-3xl leading-[1.05]"
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      color: "var(--text-primary)",
+                    }}
+                  >
+                    {pillar.title}
+                  </h3>
+                  <span
+                    className="text-[0.65rem] font-semibold uppercase tracking-[0.28em]"
+                    style={{ color: pillar.color }}
+                  >
+                    {pillar.tagline}
+                  </span>
+                </div>
+              </div>
 
+              {/* Description */}
+              <div className="relative">
                 <p
                   className="text-base leading-relaxed"
                   style={{ color: "var(--text-muted)" }}
