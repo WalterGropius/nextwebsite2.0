@@ -68,14 +68,14 @@ export function Hero() {
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-60" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-green-600" />
           </span>
-          <span className="text-xs font-medium" style={{ color: "var(--text-primary)" }}>
+          <span className="text-[0.6rem] font-medium" style={{ color: "var(--text-primary)" }}>
             Available for ambitious projects
           </span>
         </div>
 
         {/* Main heading — large, soft halo behind it */}
         <h1
-          className={`text-aura text-aura-xl text-6xl leading-[0.9] sm:text-7xl md:text-8xl lg:text-[8.5rem] lowercase ${
+          className={`text-aura text-aura-xl text-base leading-[0.9] sm:text-lg md:text-xl lg:text-2xl lowercase ${
             isVisible ? "animate-mask-reveal" : ""
           }`}
           style={{
@@ -89,18 +89,18 @@ export function Hero() {
 
         {/* Role rotator — single halo wrapping the visible row */}
         <div
-          className={`text-aura inline-block h-12 overflow-hidden px-4 ${
+          className={`text-aura inline-block h-6 overflow-hidden px-4 ${
             isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"
           }`}
         >
           <div
             className="transition-transform duration-500 ease-out"
-            style={{ transform: `translateY(-${currentRole * 3}rem)` }}
+            style={{ transform: `translateY(-${currentRole * 1.5}rem)` }}
           >
             {roles.map((role, idx) => (
               <div
                 key={idx}
-                className="flex h-12 items-center justify-center text-xl uppercase tracking-[0.18em] sm:text-2xl"
+                className="flex h-6 items-center justify-center text-[0.65rem] uppercase tracking-[0.18em] sm:text-xs"
                 style={{ color: role.color }}
               >
                 {role.text}
@@ -111,7 +111,7 @@ export function Hero() {
 
         {/* Tagline — its own halo */}
         <p
-          className={`text-aura mx-auto max-w-2xl px-3 text-base sm:text-lg ${
+          className={`text-aura mx-auto max-w-2xl px-3 text-[0.7rem] sm:text-xs ${
             isVisible ? "animate-fade-in-up animation-delay-500" : "opacity-0"
           }`}
           style={{
@@ -136,11 +136,11 @@ export function Hero() {
             isVisible ? "animate-fade-in-up animation-delay-700" : "opacity-0"
           }`}
         >
-          <a href="/portfolio-s" className="btn-primary group">
-            <Sparkles size={16} className="transition-transform group-hover:rotate-12" />
+          <a href="/portfolio-s" className="btn-primary group text-[0.65rem]">
+            <Sparkles size={12} className="transition-transform group-hover:rotate-12" />
             Explore My Work
           </a>
-          <a href="mailto:zenbauhaus@gmail.com" className="btn-secondary">
+          <a href="mailto:zenbauhaus@gmail.com" className="btn-secondary text-[0.65rem]">
             Let&apos;s Collaborate
           </a>
         </div>
@@ -161,7 +161,7 @@ export function Hero() {
               className="text-aura text-aura-sm flex flex-col items-center gap-1 px-4 py-2 text-center"
             >
               <div
-                className="text-xl sm:text-2xl"
+                className="text-xs sm:text-sm"
                 style={{
                   color: "var(--cobalt-blue)",
                   fontFamily: "var(--font-display)",
@@ -170,7 +170,7 @@ export function Hero() {
                 {stat.value}
               </div>
               <div
-                className="text-[0.6rem] uppercase tracking-[0.22em]"
+                className="text-[0.5rem] uppercase tracking-[0.22em]"
                 style={{ color: "var(--text-muted)" }}
               >
                 {stat.label}
@@ -189,8 +189,8 @@ export function Hero() {
         style={{ color: "var(--text-muted)" }}
         aria-label="Scroll to content"
       >
-        <span className="text-[0.6rem] uppercase tracking-[0.3em]">Discover</span>
-        <ArrowDown size={16} className="animate-bounce" />
+        <span className="text-[0.5rem] uppercase tracking-[0.3em]">Discover</span>
+        <ArrowDown size={12} className="animate-bounce" />
       </button>
     </div>
   )
