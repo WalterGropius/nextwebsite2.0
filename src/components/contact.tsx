@@ -36,6 +36,19 @@ export function Contact() {
             isInView ? "animate-reveal-blur" : "opacity-0"
           }`}
         >
+          {/* Availability badge */}
+          <div className="mb-6 flex justify-center">
+            <div className="text-aura text-aura-sm inline-flex items-center gap-2 px-4 py-2">
+              <span className="relative flex h-2 w-2">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-60" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-600" />
+              </span>
+              <span className="text-[0.6rem] font-medium" style={{ color: "var(--text-primary)" }}>
+                Available for ambitious projects
+              </span>
+            </div>
+          </div>
+
           <SectionHeader
             icon={Send}
             title={
