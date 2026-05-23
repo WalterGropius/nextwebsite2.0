@@ -2,219 +2,192 @@
 
 import Link from "next/link"
 import { useState, useEffect } from "react"
-import { Menu, X, Download, Mail, Briefcase, Film, Box, Palette, User, ExternalLink } from "lucide-react"
+import { motion, AnimatePresence } from "motion/react"
+import { Menu, X } from "lucide-react"
 
 const navLinks = [
-  { href: "/landing", label: "About", icon: User },
-  { href: "/portfolio-s", label: "Portfolio", icon: Briefcase },
-  { href: "/reel", label: "Reel", icon: Film },
-  { href: "/sketchfab", label: "3D", icon: Box },
-  { href: "/contact", label: "Contact", icon: Mail },
+  { href: "/landing", label: "about" },
+  { href: "/portfolio-s", label: "work" },
+  { href: "/reel", label: "reel" },
+  { href: "/sketchfab", label: "3d" },
+  { href: "mailto:zenbauhaus@gmail.com", label: "contact" },
 ]
 
 const downloadLinks = [
-  { href: "/cvBauer.html", label: "CV", icon: Download },
-  { href: "/artBauer.pdf", label: "Art PDF", icon: Palette },
-]
-
-const roles = [
-  { text: "Creative Technologist", color: "var(--cobalt-blue)" },
-  { text: "CTO & Builder", color: "var(--vermilion)" },
-  { text: "VR/AR Pioneer", color: "var(--fern-green)" },
-  { text: "AI Architect", color: "var(--lion)" },
-  { text: "Visual Artist", color: "var(--salmon-pink)" },
+  { href: "/cvBauer.html", label: "cv" },
+  { href: "/artBauer.pdf", label: "art pdf" },
 ]
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [roleIndex, setRoleIndex] = useState(0)
+  const [isOpen, setIsOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
-    }
-    window.addEventListener("scroll", handleScroll, { passive: true })
-    return () => window.removeEventListener("scroll", handleScroll)
+    const onScroll = () => setIsScrolled(window.scrollY > 40)
+    onScroll()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  // Role rotator — cycles through once, then stops at empty
   useEffect(() => {
-    if (roleIndex >= roles.length) return
-    const timeout = setTimeout(() => {
-      setRoleIndex((prev) => prev + 1)
-    }, 1800)
-    return () => clearTimeout(timeout)
-  }, [roleIndex])
-
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = ""
-    }
+    document.body.style.overflow = isOpen ? "hidden" : ""
     return () => {
       document.body.style.overflow = ""
     }
-  }, [isMobileMenuOpen])
+  }, [isOpen])
 
   return (
     <>
       <nav
-        className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
-          isScrolled
-            ? "py-3"
-            : "py-5"
-        }`}
+        className="fixed inset-x-0 top-0 z-50 transition-all duration-500"
         style={{
-          background: isScrolled
-            ? "rgba(241, 242, 241, 0.85)"
-            : "transparent",
-          backdropFilter: isScrolled ? "blur(20px)" : "none",
-          borderBottom: isScrolled ? "1px solid var(--border-subtle)" : "none",
+          padding: isScrolled ? "0.75rem 0" : "1.25rem 0",
+          background: isScrolled ? "rgba(246, 246, 244, 0.78)" : "transparent",
+          backdropFilter: isScrolled ? "blur(20px) saturate(110%)" : "none",
+          WebkitBackdropFilter: isScrolled ? "blur(20px) saturate(110%)" : "none",
         }}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
-          {/* Logo + role rotator */}
-          <div className="flex items-baseline gap-3 min-w-0">
-            <Link
-              href="/"
-              className="group transition-transform hover:scale-105 shrink-0"
-            >
-              <span className="font-semibold text-white" style={{ fontFamily: "var(--font-display)" }}>
-                zenbauhaus
-              </span>
-            </Link>
-            <span
-              className="hidden truncate text-[0.65rem] uppercase tracking-[0.18em] transition-opacity duration-500 sm:inline-block"
-              style={{
-                color: roleIndex < roles.length ? roles[roleIndex].color : "transparent",
-                opacity: roleIndex < roles.length ? 1 : 0,
-              }}
-            >
-              {roleIndex < roles.length ? roles[roleIndex].text : ""}
-            </span>
-          </div>
-
-          {/* Desktop Navigation */}
-          <div className="hidden items-center gap-1 md:flex">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="group relative px-4 py-2 text-sm font-medium text-gray-300 transition-colors hover:text-white"
-              >
-                <span className="relative z-10">{link.label}</span>
-                <span 
-                  className="absolute inset-0 scale-90 rounded-lg opacity-0 transition-all duration-300 group-hover:scale-100 group-hover:opacity-100"
-                  style={{ background: "var(--surface-glass)" }}
-                />
-              </Link>
-            ))}
-            
-            {/* Divider */}
-            <div className="mx-2 h-5 w-px" style={{ background: "var(--border-subtle)" }} />
-            
-            {/* Download links */}
-            {downloadLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                download
-                className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-gray-400 transition-colors hover:text-white"
-              >
-                <Download size={14} />
-                {link.label}
-              </Link>
-            ))}
-          </div>
-
-          {/* Mobile menu button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg text-white transition-colors md:hidden"
-            style={{ background: "var(--surface-glass)" }}
-            aria-label="Toggle menu"
+          <Link
+            href="/"
+            className="text-base transition-transform hover:-translate-y-0.5"
+            style={{
+              fontFamily: "var(--font-display)",
+              color: "var(--ink)",
+              fontWeight: 600,
+            }}
           >
-            {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            zenbauhaus
+          </Link>
+
+          <div className="hidden items-center gap-6 md:flex">
+            {navLinks.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className="group relative text-sm transition-colors"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  color: "var(--ink)",
+                }}
+              >
+                <span className="ink-underline-hover">{l.label}</span>
+              </Link>
+            ))}
+            <span
+              className="h-4 w-px"
+              style={{ background: "var(--ink)", opacity: 0.3 }}
+            />
+            {downloadLinks.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                download
+                className="text-sm transition-opacity"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  color: "var(--text-muted)",
+                }}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </div>
+
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="flex h-10 w-10 items-center justify-center md:hidden"
+            style={{ color: "var(--ink)" }}
+            aria-label="toggle menu"
+          >
+            {isOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
         </div>
+
+        {/* Inked rule under nav once scrolled */}
+        {isScrolled && (
+          <div
+            className="pointer-events-none absolute inset-x-6 bottom-0 opacity-30"
+            style={{ color: "var(--ink)" }}
+          >
+            <div
+              style={{
+                height: 1.2,
+                background: "currentColor",
+                filter: "url(#ink-wobble)",
+              }}
+            />
+          </div>
+        )}
       </nav>
 
-      {/* Mobile Menu Overlay */}
-      <div
-        className={`fixed inset-0 z-40 transition-all duration-500 md:hidden ${
-          isMobileMenuOpen
-            ? "pointer-events-auto opacity-100"
-            : "pointer-events-none opacity-0"
-        }`}
-        style={{ background: "rgba(241, 242, 241, 0.98)" }}
-      >
-        <div className="flex h-full flex-col items-center justify-center gap-2 p-8">
-          {navLinks.map((link, idx) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setIsMobileMenuOpen(false)}
-              className={`flex items-center gap-4 rounded-xl px-8 py-4 text-2xl font-semibold text-white transition-all hover:scale-105 ${
-                isMobileMenuOpen ? "animate-fade-in-up" : "opacity-0"
-              }`}
-              style={{ 
-                animationDelay: `${idx * 0.1}s`,
-                fontFamily: "var(--font-display)"
-              }}
-            >
-              <link.icon size={24} style={{ color: "var(--vista-blue)" }} />
-              {link.label}
-            </Link>
-          ))}
-          
-          <div 
-            className="my-4 h-px w-32"
-            style={{ background: "var(--border-subtle)" }}
-          />
-          
-          {downloadLinks.map((link, idx) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              download
-              onClick={() => setIsMobileMenuOpen(false)}
-              className={`flex items-center gap-3 px-6 py-3 text-lg text-gray-400 transition-all hover:text-white ${
-                isMobileMenuOpen ? "animate-fade-in-up" : "opacity-0"
-              }`}
-              style={{ animationDelay: `${(navLinks.length + idx) * 0.1}s` }}
-            >
-              <Download size={18} />
-              Download {link.label}
-            </Link>
-          ))}
-
-          {/* Social links in mobile menu */}
-          <div 
-            className={`mt-8 flex gap-4 ${isMobileMenuOpen ? "animate-fade-in animation-delay-700" : "opacity-0"}`}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35 }}
+            className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-1 px-8 md:hidden"
+            style={{ background: "rgba(246, 246, 244, 0.97)" }}
           >
-            <a 
-              href="https://github.com/WalterGropius"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-12 w-12 items-center justify-center rounded-full text-gray-400 transition-colors hover:text-white"
-              style={{ background: "var(--surface-glass)" }}
-            >
-              <ExternalLink size={20} />
-            </a>
-            <a 
-              href="https://linkedin.com/in/zenbauhaus"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-12 w-12 items-center justify-center rounded-full text-gray-400 transition-colors hover:text-white"
-              style={{ background: "var(--surface-glass)" }}
-            >
-              <ExternalLink size={20} />
-            </a>
-          </div>
-        </div>
-      </div>
+            {navLinks.map((l, i) => (
+              <motion.div
+                key={l.href}
+                initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                exit={{ opacity: 0, y: 16 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 200,
+                  damping: 24,
+                  delay: 0.05 + i * 0.06,
+                }}
+              >
+                <Link
+                  href={l.href}
+                  onClick={() => setIsOpen(false)}
+                  className="block py-2 text-5xl"
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    color: "var(--ink)",
+                  }}
+                >
+                  {l.label}
+                </Link>
+              </motion.div>
+            ))}
+            <div
+              className="my-6 h-px w-32"
+              style={{ background: "var(--ink)", opacity: 0.3 }}
+            />
+            {downloadLinks.map((l, i) => (
+              <motion.div
+                key={l.href}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.5,
+                  delay: 0.05 + (navLinks.length + i) * 0.06,
+                }}
+              >
+                <Link
+                  href={l.href}
+                  download
+                  onClick={() => setIsOpen(false)}
+                  className="block py-1 text-lg"
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    color: "var(--text-muted)",
+                  }}
+                >
+                  {l.label}
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   )
 }

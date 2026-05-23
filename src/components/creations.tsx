@@ -1,8 +1,9 @@
 "use client"
 
 import { useRef, useState, useEffect, useMemo } from "react"
-import { ExternalLink, Calendar, ArrowRight, Filter, Palette } from "lucide-react"
-import { SectionHeader } from "./section-header"
+import { motion, useInView } from "motion/react"
+import { MotionText } from "./motion-text"
+import { InkLine } from "./ink-line"
 
 interface ProjectItem {
   id: number
@@ -25,22 +26,11 @@ type CreationsProps = {
 
 export function Creations({ randomCount }: CreationsProps) {
   const ref = useRef<HTMLDivElement | null>(null)
-  const [isInView, setIsInView] = useState(false)
+  const inView = useInView(ref, { once: true, amount: 0.1 })
   const [projects, setProjects] = useState<ProjectItem[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsInView(true)
-      },
-      { threshold: 0.1, rootMargin: "-50px" }
-    )
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [])
 
   useEffect(() => {
     let ignore = false
@@ -58,7 +48,7 @@ export function Creations({ randomCount }: CreationsProps) {
       })
       .catch(() => {
         if (!ignore) {
-          setError("Failed to load portfolio.")
+          setError("couldn't load works.")
           setProjects([])
         }
       })
@@ -82,57 +72,61 @@ export function Creations({ randomCount }: CreationsProps) {
   }, [projects, randomCount])
 
   const displayedProjects = selectedTag
-    ? randomizedProjects.filter((p) => p.tags.toLowerCase().includes(selectedTag.toLowerCase()))
+    ? randomizedProjects.filter((p) =>
+        p.tags.toLowerCase().includes(selectedTag.toLowerCase())
+      )
     : randomizedProjects
 
   return (
-    <section id="creations" className="relative overflow-hidden py-16 sm:py-20">
-      <div ref={ref} className="section-container">
-        {/* Section header */}
-        <div className={`mb-10 ${isInView ? "animate-reveal-blur" : "opacity-0"}`}>
-          <SectionHeader
-            icon={Palette}
-            title={<>{randomCount ? "Featured " : ""}Works</>}
-            kicker={randomCount ? "Selected work" : "Full portfolio"}
-            color="var(--cobalt-blue)"
+    <section id="creations" className="relative py-16 sm:py-24" ref={ref}>
+      <div className="section-container">
+        <h2
+          className="mb-10 text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.92]"
+          style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
+        >
+          <MotionText text="selected" split="word" from="up" />{" "}
+          <MotionText
+            text={randomCount ? "works" : "everything"}
+            split="word"
+            from="up"
+            delay={0.2}
+            className="ink-underline"
           />
-          <p className="mt-4 max-w-xl text-base" style={{ color: "var(--text-muted)" }}>
-            VR, AI, web, and creative technology — selected pieces.
-          </p>
-        </div>
+        </h2>
 
-        {/* Tag filters (only for full portfolio) */}
         {!randomCount && allTags.length > 0 && (
-          <div
-            className={`mb-8 flex flex-wrap gap-2 ${
-              isInView ? "animate-fade-in-up animation-delay-200" : "opacity-0"
-            }`}
-          >
+          <div className="mb-8 flex flex-wrap gap-2">
             <button
               onClick={() => setSelectedTag(null)}
-              className="skill-pill"
+              className="px-3 py-1 text-sm transition-colors"
               style={{
-                background: !selectedTag ? "var(--text-primary)" : "var(--surface-ink)",
-                color: !selectedTag ? "var(--surface-dark)" : "var(--text-primary)",
-                borderColor: !selectedTag ? "var(--text-primary)" : "var(--border-subtle)",
+                fontFamily: "var(--font-display)",
+                color: !selectedTag ? "var(--surface-dark)" : "var(--ink)",
+                background: !selectedTag ? "var(--ink)" : "transparent",
+                border: "1.5px solid var(--ink)",
+                borderRadius: "9999px",
+                filter: "url(#ink-wobble)",
               }}
             >
-              <Filter size={12} />
-              <span className="ml-1">All</span>
+              all
             </button>
             {allTags.slice(0, 8).map((tag) => (
               <button
                 key={tag}
                 onClick={() => setSelectedTag(tag)}
-                className="skill-pill"
+                className="px-3 py-1 text-sm transition-colors"
                 style={{
-                  background: selectedTag === tag ? "var(--text-primary)" : "var(--surface-ink)",
-                  color: selectedTag === tag ? "var(--surface-dark)" : "var(--text-primary)",
-                  borderColor:
-                    selectedTag === tag ? "var(--text-primary)" : "var(--border-subtle)",
+                  fontFamily: "var(--font-display)",
+                  color:
+                    selectedTag === tag ? "var(--surface-dark)" : "var(--ink)",
+                  background:
+                    selectedTag === tag ? "var(--ink)" : "transparent",
+                  border: "1.5px solid var(--ink)",
+                  borderRadius: "9999px",
+                  filter: "url(#ink-wobble)",
                 }}
               >
-                {tag}
+                {tag.toLowerCase()}
               </button>
             ))}
           </div>
@@ -140,152 +134,104 @@ export function Creations({ randomCount }: CreationsProps) {
 
         {loading ? (
           <div className="flex min-h-[300px] items-center justify-center">
-            <div className="text-center">
-              <div
-                className="mx-auto mb-3 h-10 w-10 animate-spin border-2"
-                style={{
-                  borderColor: "var(--text-primary)",
-                  borderTopColor: "transparent",
-                }}
-              />
-              <p style={{ color: "var(--text-muted)" }}>Loading projects…</p>
-            </div>
+            <p
+              style={{
+                color: "var(--text-muted)",
+                fontFamily: "var(--font-display)",
+              }}
+            >
+              loading…
+            </p>
           </div>
         ) : error ? (
-          <div className="flex min-h-[200px] items-center justify-center">
-            <div
-              className="border-2 p-6 text-center"
-              style={{ borderColor: "var(--vermilion)", color: "var(--vermilion)" }}
-            >
-              <p>{error}</p>
-            </div>
-          </div>
+          <p
+            style={{
+              color: "var(--vermilion)",
+              fontFamily: "var(--font-display)",
+            }}
+          >
+            {error}
+          </p>
         ) : (
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {displayedProjects.map((project, index) => (
-              <a
+              <motion.a
                 key={project.id}
                 href={project.link || "#"}
                 target={project.link ? "_blank" : undefined}
                 rel={project.link ? "noopener noreferrer" : undefined}
-                className={`group block overflow-hidden ${isInView ? "animate-reveal-blur" : "opacity-0"}`}
-                style={{
-                  animationDelay: `${0.06 * index}s`,
-                  background:
-                    "linear-gradient(180deg, rgba(255,255,255,0.85) 0%, rgba(255,255,255,0.55) 100%)",
-                  border: "1px solid rgba(255, 255, 255, 0.7)",
-                  borderRadius: "1.5rem",
-                  backdropFilter: "blur(18px) saturate(108%)",
-                  WebkitBackdropFilter: "blur(18px) saturate(108%)",
-                  boxShadow:
-                    "0 1px 0 rgba(255,255,255,0.7) inset, 0 18px 36px -28px rgba(15,17,23,0.18), 0 0 0 1px rgba(15,17,23,0.04)",
-                  transition:
-                    "transform 380ms cubic-bezier(0.34,1.56,0.64,1), box-shadow 260ms ease",
+                initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
+                animate={
+                  inView
+                    ? { opacity: 1, y: 0, filter: "blur(0px)" }
+                    : { opacity: 0, y: 24, filter: "blur(8px)" }
+                }
+                transition={{
+                  type: "spring",
+                  stiffness: 170,
+                  damping: 24,
+                  delay: 0.04 * index,
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-6px)"
-                  e.currentTarget.style.boxShadow =
-                    "0 1px 0 rgba(255,255,255,0.85) inset, 0 30px 60px -28px rgba(15,17,23,0.28), 0 0 60px -20px var(--accent-glow)"
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = ""
-                  e.currentTarget.style.boxShadow =
-                    "0 1px 0 rgba(255,255,255,0.7) inset, 0 18px 36px -28px rgba(15,17,23,0.18), 0 0 0 1px rgba(15,17,23,0.04)"
-                }}
+                whileHover={{ y: -6 }}
+                className="group block"
               >
-                {/* Image */}
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
                     loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                  />
-                  {/* Soft fade between image and card body */}
-                  <div
-                    className="pointer-events-none absolute inset-x-0 bottom-0 h-16"
-                    style={{
-                      background:
-                        "linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 100%)",
-                    }}
+                    className="h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]"
                   />
                 </div>
-
-                {/* Content — soft, no hard divider */}
-                <div className="space-y-2 p-5">
-                  <div
-                    className="flex items-center gap-2 text-[0.7rem] uppercase tracking-[0.2em]"
-                    style={{ color: "var(--text-muted)" }}
-                  >
-                    <Calendar size={11} />
-                    <span>{project.date}</span>
-                  </div>
-
-                  <h3
-                    className="text-lg leading-tight"
-                    style={{ fontFamily: "var(--font-display)", color: "var(--text-primary)" }}
-                  >
-                    {project.title}
-                  </h3>
-
-                  {project.description && (
-                    <p
-                      className="line-clamp-2 text-sm"
-                      style={{ color: "var(--text-muted)", lineHeight: 1.5 }}
+                <div className="mt-3 flex flex-col gap-1">
+                  <div className="flex items-baseline justify-between gap-3">
+                    <h3
+                      className="text-xl sm:text-2xl"
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        color: "var(--ink)",
+                        lineHeight: 1,
+                      }}
                     >
-                      {project.description}
-                    </p>
-                  )}
-
-                  <div className="flex flex-wrap gap-1.5 pt-1">
+                      {project.title.toLowerCase()}
+                    </h3>
+                    <span
+                      className="shrink-0 text-xs"
+                      style={{
+                        color: "var(--text-muted)",
+                        fontFamily: "var(--font-display)",
+                      }}
+                    >
+                      {project.date}
+                    </span>
+                  </div>
+                  <div style={{ color: "var(--ink)", opacity: 0.5 }}>
+                    <InkLine fade={false} thickness={0.9} />
+                  </div>
+                  <p
+                    className="text-sm"
+                    style={{
+                      color: "var(--text-muted)",
+                      fontFamily: "var(--font-display)",
+                    }}
+                  >
                     {project.tags
                       .split(",")
                       .slice(0, 3)
-                      .map((tag, idx) => (
-                        <span
-                          key={idx}
-                          className="px-2 py-0.5 text-[0.65rem] uppercase tracking-wider"
-                          style={{
-                            background:
-                              "linear-gradient(180deg, rgba(255,255,255,0.65) 0%, rgba(255,255,255,0.35) 100%)",
-                            color: "var(--text-primary)",
-                            border: "1px solid rgba(255, 255, 255, 0.7)",
-                            borderRadius: "9999px",
-                          }}
-                        >
-                          {tag.trim()}
-                        </span>
-                      ))}
-                  </div>
-
-                  {project.link && (
-                    <div
-                      className="inline-flex items-center gap-1 pt-2 text-xs uppercase tracking-[0.2em]"
-                      style={{ color: "var(--cobalt-blue)" }}
-                    >
-                      View
-                      <ExternalLink size={11} />
-                    </div>
-                  )}
+                      .map((t) => t.trim().toLowerCase())
+                      .join(" · ")}
+                  </p>
                 </div>
-              </a>
+              </motion.a>
             ))}
           </div>
         )}
 
-        {/* CTA for more */}
         {randomCount && (
-          <div
-            className={`mt-10 text-center ${
-              isInView ? "animate-fade-in-up animation-delay-800" : "opacity-0"
-            }`}
-          >
-            <a
-              href="/portfolio-s"
-              className="btn-secondary group inline-flex items-center gap-2"
-            >
-              View Full Portfolio
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+          <div className="mt-12 text-center">
+            <a href="/portfolio-s" className="btn-secondary">
+              <span>everything</span>
+              <span aria-hidden>→</span>
             </a>
           </div>
         )}

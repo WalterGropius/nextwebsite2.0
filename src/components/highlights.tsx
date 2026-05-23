@@ -1,106 +1,89 @@
 "use client"
 
-import { useRef, useEffect, useState } from "react"
-import { Sparkles, Award, Building2, Zap, Star } from "lucide-react"
-import { SectionHeader } from "./section-header"
+import { motion, useInView } from "motion/react"
+import { useRef } from "react"
+import { MotionText } from "./motion-text"
+import { InkLine } from "./ink-line"
 
-const highlights = [
-  {
-    icon: Building2,
-    label: "CTO at Flipas",
-    description:
-      "Leading a team of 5 engineers building AI-powered Gen Z life acceleration",
-    color: "var(--cobalt-blue)",
-  },
-  {
-    icon: Award,
-    label: "VFX Supervisor",
-    description: "Professional film VFX on Hagen with Wilma Film",
-    color: "var(--vermilion)",
-  },
-  {
-    icon: Zap,
-    label: "VR Pioneer",
-    description: "10+ years pushing boundaries in virtual reality development",
-    color: "var(--fern-green)",
-  },
-  {
-    icon: Sparkles,
-    label: "Creative Tech",
-    description: "Nike Berlin, Fashion Tech Berlin, CzechVRFest speaker",
-    color: "var(--lion)",
-  },
+const credits = [
+  { role: "cto", at: "flipas" },
+  { role: "vfx supervisor", at: "wilma film · hagen" },
+  { role: "creative tech", at: "nike berlin · fashion tech berlin" },
+  { role: "speaker", at: "czechvrfest" },
+  { role: "vr / xr", at: "ten years deep" },
 ]
 
 export function Highlights() {
   const ref = useRef<HTMLDivElement>(null)
-  const [isInView, setIsInView] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsInView(true)
-      },
-      { threshold: 0.1, rootMargin: "-50px" }
-    )
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [])
+  const inView = useInView(ref, { once: true, amount: 0.25 })
 
   return (
-    <section className="relative overflow-hidden py-10 sm:py-12">
-      <div ref={ref} className="section-container">
-        <div
-          className={`mb-8 max-w-2xl ${
-            isInView ? "animate-reveal-blur" : "opacity-0"
-          }`}
-        >
-          <SectionHeader
-            icon={Star}
-            title={
-              <>
-                Career{" "}
-                <span style={{ color: "var(--lion)" }}>highlights</span>
-              </>
-            }
-            kicker="Snapshot"
-            color="var(--lion)"
-          />
-        </div>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-          {highlights.map((item, idx) => (
-            <div
-              key={idx}
-              className={`glass-card glass-card-hover group relative p-4 ${
-                isInView ? "animate-reveal-blur" : "opacity-0"
-              }`}
-              style={{ animationDelay: `${idx * 0.08}s` }}
+    <section className="relative py-16 sm:py-24" ref={ref}>
+      <div className="section-container">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_2fr] md:gap-16">
+          <div>
+            <h2
+              className="text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.92]"
+              style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
             >
-              <div
-                className="icon-chip pointer-events-none absolute top-3 right-3 z-10 h-9 w-9 transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110"
-                style={{ color: item.color }}
+              <MotionText text="some of" split="word" from="up" />
+              <br />
+              <MotionText
+                text="the work"
+                split="word"
+                from="up"
+                delay={0.2}
+                className="ink-underline"
+              />
+            </h2>
+          </div>
+
+          <ul className="flex flex-col" style={{ color: "var(--ink)" }}>
+            <div className="opacity-60">
+              <InkLine fade={false} thickness={1.1} />
+            </div>
+            {credits.map((c, i) => (
+              <motion.li
+                key={c.role}
+                initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
+                animate={
+                  inView
+                    ? { opacity: 1, y: 0, filter: "blur(0px)" }
+                    : { opacity: 0, y: 16, filter: "blur(8px)" }
+                }
+                transition={{
+                  type: "spring",
+                  stiffness: 180,
+                  damping: 24,
+                  delay: 0.1 + i * 0.09,
+                }}
+                className="flex flex-col gap-0.5 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
               >
-                <item.icon size={18} />
-              </div>
-              <div>
-                <h3
-                  className="mb-1 text-base"
+                <span
+                  className="text-2xl sm:text-3xl"
                   style={{
                     fontFamily: "var(--font-display)",
-                    color: "var(--text-primary)",
+                    color: "var(--ink)",
+                    lineHeight: 1,
                   }}
                 >
-                  {item.label}
-                </h3>
-                <p
-                  className="text-sm leading-snug"
-                  style={{ color: "var(--text-muted)" }}
+                  {c.role}
+                </span>
+                <span
+                  className="text-sm sm:text-base"
+                  style={{
+                    color: "var(--text-muted)",
+                    fontFamily: "var(--font-display)",
+                  }}
                 >
-                  {item.description}
-                </p>
-              </div>
+                  {c.at}
+                </span>
+              </motion.li>
+            ))}
+            <div className="opacity-60">
+              <InkLine fade={false} thickness={1.1} />
             </div>
-          ))}
+          </ul>
         </div>
       </div>
     </section>

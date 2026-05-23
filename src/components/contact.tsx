@@ -1,135 +1,128 @@
 "use client"
 
-import { useRef, useState, useEffect } from "react"
-import { Mail, ArrowUpRight, Github, Linkedin, Instagram, Music, Send } from "lucide-react"
-import { SectionHeader } from "./section-header"
+import { useRef } from "react"
+import { motion, useInView } from "motion/react"
+import { Github, Linkedin, Instagram, Music } from "lucide-react"
+import { MotionText } from "./motion-text"
+import { InkLine } from "./ink-line"
 
-const socialLinks = [
-  { name: "GitHub", href: "https://github.com/WalterGropius", icon: Github, color: "var(--cobalt-blue)" },
-  { name: "LinkedIn", href: "https://linkedin.com/in/zenbauhaus", icon: Linkedin, color: "var(--cobalt-blue)" },
-  { name: "Instagram", href: "https://instagram.com/y4ngyin", icon: Instagram, color: "var(--salmon-pink)" },
-  { name: "Skate", href: "https://instagram.com/tra5her_sk8", icon: Instagram, color: "var(--lion)" },
-  { name: "Music", href: "https://soundcloud.com/mczenbauhaus", icon: Music, color: "var(--vermilion)" },
+const socials = [
+  { name: "github", href: "https://github.com/WalterGropius", icon: Github },
+  { name: "linkedin", href: "https://linkedin.com/in/zenbauhaus", icon: Linkedin },
+  { name: "instagram", href: "https://instagram.com/y4ngyin", icon: Instagram },
+  { name: "soundcloud", href: "https://soundcloud.com/mczenbauhaus", icon: Music },
 ]
 
 export function Contact() {
   const ref = useRef<HTMLDivElement>(null)
-  const [isInView, setIsInView] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsInView(true)
-      },
-      { threshold: 0.1 }
-    )
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [])
+  const inView = useInView(ref, { once: true, amount: 0.3 })
 
   return (
-    <section id="contact" className="relative py-12 sm:py-16">
-      <div ref={ref} className="section-container relative z-10">
-        {/* Main CTA */}
-        <div
-          className={`mx-auto max-w-3xl text-center ${
-            isInView ? "animate-reveal-blur" : "opacity-0"
-          }`}
-        >
-          {/* Availability badge */}
-          <div className="mb-6 flex justify-center">
-            <div className="text-aura text-aura-sm inline-flex items-center gap-2 px-4 py-2">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-60" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-600" />
-              </span>
-              <span className="text-[0.6rem] font-medium" style={{ color: "var(--text-primary)" }}>
-                Available for ambitious projects
-              </span>
-            </div>
-          </div>
-
-          <SectionHeader
-            icon={Send}
-            title={
-              <>
-                Let&apos;s build something{" "}
-                <span style={{ color: "var(--vermilion)" }}>extraordinary</span>
-              </>
-            }
-            kicker="Get in touch"
-            color="var(--vermilion)"
-            align="center"
-          />
-
-          <p
-            className="mx-auto mb-8 mt-5 max-w-xl text-base"
+    <section id="contact" className="relative py-24 sm:py-32" ref={ref}>
+      <div className="section-container">
+        <div className="mx-auto max-w-4xl">
+          {/* Status */}
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
+            transition={{ duration: 0.7 }}
+            className="mb-8 inline-flex items-center gap-3 text-[0.7rem] uppercase tracking-[0.35em]"
             style={{ color: "var(--text-muted)" }}
           >
-            Whether it&apos;s VR, AI, or something entirely new — I&apos;m here to make
-            it happen.
-          </p>
-
-          {/* CTA buttons */}
-          <div className="mb-10 flex flex-wrap items-center justify-center gap-3">
-            <a href="mailto:zenbauhaus@gmail.com" className="btn-primary group">
-              <Mail size={16} />
-              Get in Touch
-              <ArrowUpRight
-                size={14}
-                className="transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-              />
-            </a>
-            <a href="/portfolio-s" className="btn-secondary">
-              View Portfolio
-            </a>
-          </div>
-        </div>
-
-        {/* Social pills */}
-        <div
-          className={`flex flex-wrap items-center justify-center gap-2 ${
-            isInView ? "animate-fade-in animation-delay-300" : "opacity-0"
-          }`}
-        >
-          {socialLinks.map((social) => (
-            <a
-              key={social.name}
-              href={social.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="skill-pill group"
-            >
-              <social.icon
-                size={13}
-                style={{ color: social.color }}
-                className="mr-1.5 transition-transform duration-300 group-hover:scale-110"
-              />
-              <span style={{ color: "var(--text-primary)" }}>{social.name}</span>
-            </a>
-          ))}
-        </div>
-
-        {/* Footer line */}
-        <div
-          className={`mt-12 flex flex-col items-center gap-3 pt-6 text-xs sm:flex-row sm:justify-between ${
-            isInView ? "animate-fade-in animation-delay-500" : "opacity-0"
-          }`}
-          style={{
-            borderTop: "1px solid rgba(15, 17, 23, 0.08)",
-            color: "var(--text-muted)",
-          }}
-        >
-          <div className="flex items-center gap-2">
-            <span>zenbauhaus</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span>Prague, CZ</span>
-            <span>© {new Date().getFullYear()}</span>
-            <span className="flex items-center gap-1">
-              <span className="h-1.5 w-1.5 rounded-full bg-green-500" />
-              Available
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-500 opacity-60" />
+              <span className="relative inline-flex h-2 w-2 rounded-full bg-green-600" />
             </span>
+            <span>taking on work · 2026</span>
+          </motion.div>
+
+          {/* Email as the headline */}
+          <h2
+            className="text-[clamp(2rem,7vw,5.5rem)] leading-[0.95]"
+            style={{
+              fontFamily: "var(--font-display)",
+              color: "var(--ink)",
+              letterSpacing: "-0.01em",
+            }}
+          >
+            <a
+              href="mailto:zenbauhaus@gmail.com"
+              className="ink-underline inline-block transition-transform hover:-translate-y-1"
+              style={{ color: "var(--ink)" }}
+            >
+              <MotionText
+                text="zenbauhaus@gmail.com"
+                split="char"
+                from="up"
+                stagger={0.025}
+                duration={0.9}
+              />
+            </a>
+          </h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 12 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+            transition={{ duration: 0.9, delay: 0.6 }}
+            className="mt-8 max-w-xl text-lg sm:text-xl"
+            style={{
+              color: "var(--text-muted)",
+              fontFamily: "var(--font-display)",
+              lineHeight: 1.5,
+            }}
+          >
+            websites, vr, ai, film. tell me what you&apos;re trying to build.
+          </motion.p>
+
+          {/* Wobbled rule */}
+          <motion.div
+            initial={{ opacity: 0, scaleX: 0.5 }}
+            animate={
+              inView ? { opacity: 0.6, scaleX: 1 } : { opacity: 0, scaleX: 0.5 }
+            }
+            transition={{ duration: 1.2, delay: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="my-14 origin-left"
+            style={{ color: "var(--ink)" }}
+          >
+            <InkLine fade={false} thickness={1.2} />
+          </motion.div>
+
+          {/* Socials */}
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
+            {socials.map((s, i) => (
+              <motion.a
+                key={s.name}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, y: 10 }}
+                animate={
+                  inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }
+                }
+                transition={{
+                  duration: 0.6,
+                  delay: 1 + i * 0.08,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="group inline-flex items-center gap-2 text-base sm:text-lg"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  color: "var(--ink)",
+                }}
+              >
+                <s.icon size={16} />
+                <span className="ink-underline">{s.name}</span>
+              </motion.a>
+            ))}
+          </div>
+
+          {/* Footer */}
+          <div
+            className="mt-20 flex flex-col items-baseline justify-between gap-2 text-xs sm:flex-row"
+            style={{ color: "var(--text-muted)" }}
+          >
+            <span>zenbauhaus · prague</span>
+            <span>© {new Date().getFullYear()}</span>
           </div>
         </div>
       </div>
