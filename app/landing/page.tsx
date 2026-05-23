@@ -13,17 +13,17 @@ import { ScrollToTop } from "@/components/scroll-to-top"
 import { Navigation } from "@/components/navigation"
 import { Flowers } from "@/components/canvas/Flowers"
 import { PageLoader } from "@/components/page-loader"
+import { MotionPermission } from "@/components/motion-permission"
+import { InkLine } from "@/components/ink-line"
 
 function Divider() {
   return (
     <div
-      className="mx-auto h-px w-full max-w-3xl"
-      style={{
-        background:
-          "linear-gradient(90deg, transparent 0%, var(--border-strong) 50%, transparent 100%)",
-        opacity: 0.4,
-      }}
-    />
+      className="mx-auto w-full max-w-3xl px-6 opacity-40"
+      style={{ color: "var(--ink)" }}
+    >
+      <InkLine fade thickness={1} />
+    </div>
   )
 }
 
@@ -36,17 +36,12 @@ export default function Home() {
     setMounted(true)
   }, [])
 
-  // Pause animations when canvas is not visible
   useEffect(() => {
     if (!canvasRef.current) return
-    
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        setCanvasVisible(entry.isIntersecting)
-      },
+      ([entry]) => setCanvasVisible(entry.isIntersecting),
       { threshold: 0.1 }
     )
-    
     observer.observe(canvasRef.current)
     return () => observer.disconnect()
   }, [mounted])
@@ -55,10 +50,13 @@ export default function Home() {
     <PageLoader>
       <main className="min-h-screen overflow-x-hidden">
         <Navigation />
-        {/* Hero Section with 3D Gaussian Splat Background */}
+        {/* Hero with 3D splat background */}
         <section className="relative min-h-screen w-full">
-          {/* 3D Background */}
-          <div ref={canvasRef} className="absolute inset-0 z-0" suppressHydrationWarning>
+          <div
+            ref={canvasRef}
+            className="absolute inset-0 z-0"
+            suppressHydrationWarning
+          >
             {mounted ? (
               <Canvas
                 style={{ backgroundColor: "transparent" }}
@@ -69,7 +67,7 @@ export default function Home() {
                 gl={{
                   antialias: true,
                   alpha: true,
-                  powerPreference: "high-performance"
+                  powerPreference: "high-performance",
                 }}
                 frameloop={canvasVisible ? "always" : "demand"}
               >
@@ -85,29 +83,31 @@ export default function Home() {
             className="pointer-events-none absolute inset-0 z-[1]"
             style={{
               background:
-                "linear-gradient(180deg, transparent 0%, transparent 65%, var(--surface-dark) 100%)"
+                "linear-gradient(180deg, transparent 0%, transparent 65%, var(--surface-dark) 100%)",
             }}
           />
 
-          {/* Hero content */}
           <div className="absolute inset-0 z-10">
             <Hero />
           </div>
         </section>
 
-        {/* Content sections */}
-        <div className="relative z-20" style={{ background: "var(--surface-dark)" }}>
-          {/* Transition gradient from hero */}
-          <div 
+        {/* Content */}
+        <div
+          className="relative z-20"
+          style={{ background: "var(--surface-dark)" }}
+        >
+          <div
             className="pointer-events-none absolute -top-40 left-0 right-0 h-40"
             style={{
-              background: "linear-gradient(180deg, transparent 0%, var(--surface-dark) 100%)"
+              background:
+                "linear-gradient(180deg, transparent 0%, var(--surface-dark) 100%)",
             }}
           />
 
-          <Highlights />
-          <Divider />
           <Manifesto />
+          <Divider />
+          <Highlights />
           <Divider />
           <Philosophy />
           <Divider />
@@ -119,6 +119,7 @@ export default function Home() {
         </div>
 
         <ScrollToTop />
+        <MotionPermission />
       </main>
     </PageLoader>
   )

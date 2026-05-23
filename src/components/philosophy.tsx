@@ -1,172 +1,98 @@
 "use client"
 
-import { useRef, useEffect, useState } from "react"
-import { Lightbulb, Heart, Users, ArrowRight, Compass } from "lucide-react"
-import { SectionHeader } from "./section-header"
+import { motion, useInView } from "motion/react"
+import { useRef } from "react"
+import { MotionText } from "./motion-text"
+import { InkLine } from "./ink-line"
 
 const pillars = [
   {
-    icon: Lightbulb,
-    title: "Functionality",
-    tagline: "Built to Perform",
-    description:
-      "Solutions that work seamlessly, serving their purpose with unwavering reliability and efficiency. No compromises.",
-    color: "var(--lion)",
+    n: "01",
+    title: "function",
+    body: "if it doesn't work, nothing else matters. ship things that hold up.",
   },
   {
-    icon: Heart,
-    title: "Aesthetics",
-    tagline: "Beauty in Every Pixel",
-    description:
-      "Creating experiences that inspire and delight. Form and function are inseparable—both must be exceptional.",
-    color: "var(--salmon-pink)",
+    n: "02",
+    title: "form",
+    body: "beauty isn't decoration. it's the proof you cared about the work.",
   },
   {
-    icon: Users,
-    title: "Experience",
-    tagline: "Human-Centered",
-    description:
-      "Intuitive interactions that empower users, making complex technology accessible and delightful for everyone.",
-    color: "var(--cobalt-blue)",
+    n: "03",
+    title: "feel",
+    body: "the moment a person uses it, it should feel obvious — and a little bit magic.",
   },
 ]
 
 export function Philosophy() {
   const ref = useRef<HTMLDivElement>(null)
-  const [isInView, setIsInView] = useState(false)
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsInView(true)
-      },
-      { threshold: 0.1, rootMargin: "-50px" }
-    )
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [])
+  const inView = useInView(ref, { once: true, amount: 0.2 })
 
   return (
-    <section className="relative overflow-hidden py-12 sm:py-16">
-      <div ref={ref} className="section-container relative z-10">
-        {/* Section header */}
-        <div
-          className={`mb-12 max-w-3xl ${
-            isInView ? "animate-reveal-blur" : "opacity-0"
-          }`}
+    <section className="relative py-16 sm:py-24" ref={ref}>
+      <div className="section-container">
+        <h2
+          className="mb-12 text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.92]"
+          style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
         >
-          <SectionHeader
-            icon={Compass}
-            title={
-              <>
-                Design{" "}
-                <span style={{ color: "var(--salmon-pink)" }}>philosophy</span>
-              </>
-            }
-            kicker="Philosophy"
-            color="var(--salmon-pink)"
+          <MotionText text="how i" split="word" from="up" />{" "}
+          <MotionText
+            text="work"
+            split="word"
+            from="up"
+            delay={0.2}
+            className="ink-underline"
           />
-          <p
-            className="mt-5 text-lg leading-relaxed"
-            style={{ color: "var(--text-muted)" }}
-          >
-            Continually balancing the essential pillars that make technology not
-            just functional, but{" "}
-            <span style={{ color: "var(--text-primary)" }}>truly meaningful</span>.
-          </p>
-        </div>
+        </h2>
 
-        {/* Pillars */}
-        <div className="grid gap-5 lg:grid-cols-3">
-          {pillars.map((pillar, idx) => (
-            <div
-              key={idx}
-              className={`glass-card glass-card-hover group relative h-full overflow-hidden p-6 lg:p-8 ${
-                isInView ? "animate-reveal-blur" : "opacity-0"
-              }`}
-              style={{ animationDelay: `${0.1 + idx * 0.08}s` }}
-              onMouseEnter={() => setHoveredIndex(idx)}
-              onMouseLeave={() => setHoveredIndex(null)}
+        <div className="grid gap-12 md:grid-cols-3">
+          {pillars.map((p, i) => (
+            <motion.div
+              key={p.title}
+              initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
+              animate={
+                inView
+                  ? { opacity: 1, y: 0, filter: "blur(0px)" }
+                  : { opacity: 0, y: 30, filter: "blur(10px)" }
+              }
+              transition={{
+                type: "spring",
+                stiffness: 160,
+                damping: 22,
+                delay: 0.15 + i * 0.12,
+              }}
+              className="flex flex-col gap-4"
             >
-              {/* Soft colour wash that brightens on hover */}
               <div
-                className="pointer-events-none absolute inset-0 opacity-30 transition-opacity duration-500 group-hover:opacity-60"
-                style={{
-                  background: `radial-gradient(circle at 100% 0%, ${pillar.color}22, transparent 60%)`,
-                }}
-              />
-
-              {/* Header: icon left, title + tagline stacked right */}
-              <div className="relative mb-4 flex items-start gap-4">
-                <div
-                  className="icon-chip h-12 w-12 shrink-0 transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110"
-                  style={{ color: pillar.color }}
-                >
-                  <pillar.icon size={22} />
-                </div>
-                <div className="flex flex-col gap-1">
-                  <h3
-                    className="text-2xl lg:text-3xl leading-[1.05]"
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      color: "var(--text-primary)",
-                    }}
-                  >
-                    {pillar.title}
-                  </h3>
-                  <span
-                    className="text-[0.65rem] font-semibold uppercase tracking-[0.28em]"
-                    style={{ color: pillar.color }}
-                  >
-                    {pillar.tagline}
-                  </span>
+                className="flex items-baseline gap-3 text-sm uppercase tracking-[0.3em]"
+                style={{ color: "var(--text-muted)" }}
+              >
+                <span>{p.n}</span>
+                <div className="flex-1" style={{ color: "var(--ink)" }}>
+                  <InkLine fade={false} thickness={1} />
                 </div>
               </div>
-
-              {/* Description */}
-              <div className="relative">
-                <p
-                  className="text-base leading-relaxed"
-                  style={{ color: "var(--text-muted)" }}
-                >
-                  {pillar.description}
-                </p>
-              </div>
-
-              {/* Hover indicator */}
-              <div
-                className="relative mt-5 flex items-center gap-2 text-sm font-medium transition-all duration-300"
+              <h3
+                className="text-3xl sm:text-4xl"
                 style={{
-                  color: pillar.color,
-                  opacity: hoveredIndex === idx ? 1 : 0,
-                  transform:
-                    hoveredIndex === idx ? "translateX(0)" : "translateX(-8px)",
+                  fontFamily: "var(--font-display)",
+                  color: "var(--ink)",
+                  lineHeight: 1,
                 }}
               >
-                Learn more
-                <ArrowRight size={14} />
-              </div>
-            </div>
+                {p.title}
+              </h3>
+              <p
+                className="text-base sm:text-lg"
+                style={{
+                  color: "var(--text-muted)",
+                  fontFamily: "var(--font-display)",
+                  lineHeight: 1.55,
+                }}
+              >
+                {p.body}
+              </p>
+            </motion.div>
           ))}
-        </div>
-
-        {/* Quote */}
-        <div
-          className={`mt-14 text-center ${
-            isInView ? "animate-fade-in animation-delay-800" : "opacity-0"
-          }`}
-        >
-          <blockquote
-            className="mx-auto max-w-2xl text-2xl italic md:text-3xl"
-            style={{
-              fontFamily: "var(--font-display)",
-              color: "var(--text-muted)",
-            }}
-          >
-            &ldquo;Technology should feel like{" "}
-            <span style={{ color: "var(--lion)" }}>magic</span>, not like work.&rdquo;
-          </blockquote>
         </div>
       </div>
     </section>

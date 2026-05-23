@@ -40,6 +40,7 @@
     --border-glow: rgba(59, 102, 243, 0.35);
     --text-primary: #1a1d28;
     --text-muted: rgba(15, 17, 23, 0.6);
+    --ink: #1a1d28;
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, var(--cobalt-blue) 0%, var(--vista-blue) 100%);
@@ -99,14 +100,13 @@
 
   body {
     background:
-      radial-gradient(ellipse 60% 55% at 18% 22%, rgba(59, 102, 243, 0.13), transparent 65%),
-      radial-gradient(ellipse 55% 45% at 85% 70%, rgba(238, 74, 68, 0.10), transparent 65%),
-      radial-gradient(ellipse 50% 40% at 50% 110%, rgba(89, 156, 42, 0.09), transparent 65%),
+      radial-gradient(ellipse 60% 55% at 18% 22%, rgba(59, 102, 243, 0.08), transparent 65%),
+      radial-gradient(ellipse 55% 45% at 85% 70%, rgba(238, 74, 68, 0.06), transparent 65%),
       var(--surface-dark);
-    background-size: 220% 220%, 220% 220%, 220% 220%, 100% 100%;
+    background-size: 220% 220%, 220% 220%, 100% 100%;
     background-attachment: fixed;
-    background-position: 0% 0%, 100% 100%, 50% 100%, 0 0;
-    animation: auroraDrift 36s ease-in-out infinite;
+    background-position: 0% 0%, 100% 100%, 0 0;
+    animation: auroraDrift 60s ease-in-out infinite;
     min-height: 100vh;
   }
 
@@ -117,17 +117,17 @@
     inset: 0;
     pointer-events: none;
     z-index: 1;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.4 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    opacity: 0.45;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    opacity: 0.25;
     mix-blend-mode: multiply;
   }
 
   @keyframes auroraDrift {
     0%, 100% {
-      background-position: 0% 0%, 100% 100%, 50% 100%, 0 0;
+      background-position: 0% 0%, 100% 100%, 0 0;
     }
     50% {
-      background-position: 25% 35%, 70% 55%, 60% 75%, 0 0;
+      background-position: 25% 35%, 70% 55%, 0 0;
     }
   }
 
@@ -137,10 +137,16 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     font-weight: 700;
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-    -webkit-text-stroke: 0.04em currentColor;
+    letter-spacing: -0.015em;
+    line-height: 1.02;
+    -webkit-text-stroke: 0.035em currentColor;
     paint-order: stroke fill;
+  }
+
+  /* Style emphasis as second-color handwritten accents */
+  em {
+    font-style: normal;
+    color: var(--ink);
   }
 
   /* Allow elements to opt-out of the faux-bold stroke (e.g. logo glyph
@@ -288,57 +294,127 @@
     transform: scale(1.02);
   }
 
-  /* Buttons — pill-shaped, gradient, soft glow on hover */
+  /* Buttons — inked outline, handwritten, confident */
   .btn-primary {
+    position: relative;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.85rem 1.6rem;
-    background: var(--gradient-primary);
-    color: #ffffff;
+    padding: 0.7rem 1.4rem;
+    background: var(--ink);
+    color: var(--surface-dark);
+    font-family: var(--font-display);
     font-weight: 600;
+    letter-spacing: 0.02em;
+    border: none;
     border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.4);
     cursor: pointer;
-    transition: transform var(--transition-spring),
-                box-shadow var(--transition-smooth);
-    box-shadow: 0 14px 30px -12px var(--accent-glow);
+    transition: transform var(--transition-spring), filter var(--transition-smooth);
   }
-
-  .btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 24px 50px -16px var(--accent-glow),
-                0 0 0 6px rgba(59, 102, 243, 0.08);
+  .btn-primary::before {
+    content: "";
+    position: absolute;
+    inset: -3px;
+    border: 1.5px solid var(--ink);
+    border-radius: 9999px;
+    filter: url(#ink-wobble);
+    opacity: 0;
+    transition: opacity var(--transition-smooth);
+    pointer-events: none;
   }
+  .btn-primary:hover { transform: translateY(-2px); }
+  .btn-primary:hover::before { opacity: 0.5; }
 
   .btn-secondary {
+    position: relative;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    padding: 0.85rem 1.6rem;
-    background:
-      linear-gradient(180deg, rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.35) 100%);
-    color: var(--text-primary);
+    padding: 0.7rem 1.4rem;
+    background: transparent;
+    color: var(--ink);
+    font-family: var(--font-display);
     font-weight: 500;
+    letter-spacing: 0.02em;
+    border: 1.5px solid var(--ink);
     border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.7);
     cursor: pointer;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    transition: transform var(--transition-spring),
-                box-shadow var(--transition-smooth);
-    box-shadow: 0 12px 28px -16px rgba(15, 17, 23, 0.25);
+    filter: url(#ink-wobble);
+    transition: transform var(--transition-spring), background var(--transition-smooth);
   }
-
   .btn-secondary:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 20px 40px -18px rgba(15, 17, 23, 0.3),
-                0 0 0 6px rgba(15, 17, 23, 0.05);
+    transform: translateY(-2px);
+    background: rgba(15, 17, 23, 0.04);
   }
 
   /* Hand-drawn ink edge — applied to titles or accent blocks for character */
   .ink-edge {
     filter: url(#ink-wobble);
+  }
+  .ink-edge-strong {
+    filter: url(#ink-wobble-strong);
+  }
+
+  /* Hand-drawn rule — wraps any straight line with the wobble filter so
+     dividers, underlines and borders feel inked rather than vector-perfect */
+  .ink-rule {
+    display: block;
+    width: 100%;
+    height: 1.4px;
+    background: currentColor;
+    filter: url(#ink-wobble);
+    opacity: 0.7;
+    border-radius: 9999px;
+  }
+  .ink-rule-strong {
+    height: 2.2px;
+    filter: url(#ink-wobble-strong);
+    opacity: 0.9;
+  }
+
+  /* Underline that wobbles like a marker stroke under a word */
+  .ink-underline {
+    position: relative;
+    display: inline-block;
+  }
+  .ink-underline::after {
+    content: "";
+    position: absolute;
+    left: -0.05em;
+    right: -0.05em;
+    bottom: -0.12em;
+    height: 0.12em;
+    background: currentColor;
+    filter: url(#ink-wobble);
+    opacity: 0.75;
+    border-radius: 9999px;
+  }
+
+  /* Same shape but only paints on hover/focus — for nav links */
+  .ink-underline-hover {
+    position: relative;
+    display: inline-block;
+  }
+  .ink-underline-hover::after {
+    content: "";
+    position: absolute;
+    left: -0.05em;
+    right: -0.05em;
+    bottom: -0.12em;
+    height: 0.1em;
+    background: currentColor;
+    filter: url(#ink-wobble);
+    border-radius: 9999px;
+    opacity: 0;
+    transform: scaleX(0.4);
+    transform-origin: left center;
+    transition: opacity 240ms ease, transform 280ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .ink-underline-hover:hover::after,
+  a:hover > .ink-underline-hover::after,
+  .group:hover .ink-underline-hover::after {
+    opacity: 0.8;
+    transform: scaleX(1);
   }
 
   /* Per-text aura — backdrop-blurs the splat directly behind the glyphs

@@ -1,87 +1,132 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { Sparkles } from "lucide-react"
+import { motion, AnimatePresence, useScroll, useTransform } from "motion/react"
+import { ArrowDown } from "lucide-react"
+import { MotionText } from "./motion-text"
+
+const roles = [
+  "creative technologist",
+  "vr / ar pioneer",
+  "ai architect",
+  "visual artist",
+  "builder of impossible things",
+]
 
 export function Hero() {
-  const [isVisible, setIsVisible] = useState(false)
-  const [scrollY, setScrollY] = useState(0)
   const containerRef = useRef<HTMLDivElement>(null)
+  const { scrollY } = useScroll()
+  const y = useTransform(scrollY, [0, 600], [0, -80])
+  const opacity = useTransform(scrollY, [0, 500], [1, 0])
 
+  const [roleIdx, setRoleIdx] = useState(0)
   useEffect(() => {
-    setIsVisible(true)
-  }, [])
-
-  useEffect(() => {
-    let ticking = false
-    const onScroll = () => {
-      if (ticking) return
-      ticking = true
-      requestAnimationFrame(() => {
-        setScrollY(window.scrollY)
-        ticking = false
-      })
-    }
-    window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
+    const t = setInterval(() => setRoleIdx((i) => (i + 1) % roles.length), 2400)
+    return () => clearInterval(t)
   }, [])
 
   return (
     <div
       ref={containerRef}
-      className="relative flex min-h-screen flex-col overflow-hidden"
+      className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-6"
     >
-      {/* Tagline pinned just under the nav */}
-      <div
-        className="relative z-10 mx-auto w-full max-w-3xl px-6 pt-24 sm:pt-28 text-center"
-        style={{
-          transform: `translate3d(0, ${scrollY * -0.08}px, 0)`,
-          opacity: Math.max(0, 1 - scrollY / 600),
-        }}
+      <motion.div
+        style={{ y, opacity }}
+        className="relative z-10 flex w-full max-w-5xl flex-col items-center text-center"
       >
-        <p
-          className={`text-aura mx-auto max-w-2xl px-3 text-[0.7rem] sm:text-xs ${
-            isVisible ? "animate-fade-in-up" : "opacity-0"
-          }`}
+        {/* Year stamp */}
+        <motion.span
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.1 }}
+          className="text-aura text-aura-sm mb-6 inline-flex items-center gap-3 px-3 py-1 text-[0.65rem] uppercase tracking-[0.4em]"
+          style={{ color: "var(--text-muted)" }}
+        >
+          <span>prague</span>
+          <span aria-hidden style={{ opacity: 0.4 }}>·</span>
+          <span>2026</span>
+        </motion.span>
+
+        {/* Wordmark — the only thing that matters */}
+        <h1
+          className="leading-[0.85] text-[clamp(3.5rem,14vw,11rem)]"
           style={{
-            lineHeight: 1.5,
-            color: "var(--text-primary)",
+            fontFamily: "var(--font-display)",
+            color: "var(--ink)",
+            margin: 0,
           }}
         >
-          Bridging{" "}
-          <em className="not-italic font-semibold" style={{ color: "var(--vermilion)" }}>
-            creative vision
-          </em>{" "}
-          and{" "}
-          <em className="not-italic font-semibold" style={{ color: "var(--cobalt-blue)" }}>
-            technical execution
-          </em>{" "}
-          to build what others say is impossible.
-        </p>
-      </div>
+          <MotionText
+            text="zenbauhaus"
+            split="char"
+            from="up"
+            stagger={0.045}
+            delay={0.2}
+            duration={1.2}
+          />
+        </h1>
 
-      {/* CTA buttons centered in remaining hero space */}
-      <div
-        className="relative z-10 flex flex-1 items-center justify-center px-6"
-        style={{
-          transform: `translate3d(0, ${scrollY * -0.08}px, 0)`,
-          opacity: Math.max(0, 1 - scrollY / 600),
-        }}
-      >
+        {/* Rotating role — quiet, single line */}
         <div
-          className={`flex flex-row items-center justify-center gap-3 ${
-            isVisible ? "animate-fade-in-up animation-delay-300" : "opacity-0"
-          }`}
+          className="relative mt-6 flex h-[1.6em] items-center overflow-hidden text-[0.95rem] sm:text-base"
+          aria-live="polite"
         >
-          <a href="/portfolio-s" className="btn-primary group text-[0.65rem]">
-            <Sparkles size={12} className="transition-transform group-hover:rotate-12" />
-            Explore My Work
-          </a>
-          <a href="mailto:zenbauhaus@gmail.com" className="btn-secondary text-[0.65rem]">
-            Let&apos;s Collaborate
-          </a>
+          <AnimatePresence mode="popLayout" initial={false}>
+            <motion.span
+              key={roleIdx}
+              initial={{ y: "110%", opacity: 0, filter: "blur(8px)" }}
+              animate={{ y: "0%", opacity: 1, filter: "blur(0px)" }}
+              exit={{ y: "-110%", opacity: 0, filter: "blur(8px)" }}
+              transition={{ type: "spring", stiffness: 180, damping: 22 }}
+              className="inline-block"
+              style={{
+                fontFamily: "var(--font-display)",
+                color: "var(--text-muted)",
+                letterSpacing: "0.12em",
+              }}
+            >
+              {roles[roleIdx]}
+            </motion.span>
+          </AnimatePresence>
         </div>
-      </div>
+
+        {/* Single CTA — confident, no choices */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-12"
+        >
+          <a href="mailto:zenbauhaus@gmail.com" className="btn-primary group">
+            <span>work with me</span>
+            <span
+              aria-hidden
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            >
+              →
+            </span>
+          </a>
+        </motion.div>
+      </motion.div>
+
+      {/* Scroll cue */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2, duration: 0.8 }}
+        style={{ opacity }}
+        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-[0.6rem] uppercase tracking-[0.35em]"
+      >
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="flex flex-col items-center gap-2"
+          style={{ color: "var(--text-muted)" }}
+        >
+          <span>scroll</span>
+          <ArrowDown size={12} />
+        </motion.div>
+      </motion.div>
     </div>
   )
 }

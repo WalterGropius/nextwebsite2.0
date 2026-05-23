@@ -64,13 +64,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           style={{ position: 'absolute', width: 0, height: 0, overflow: 'hidden' }}
         >
           <defs>
-            <filter id="ink-wobble" x="-2%" y="-2%" width="104%" height="104%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="3" result="noise" />
-              <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.4" xChannelSelector="R" yChannelSelector="G" />
+            <filter id="ink-wobble" x="-4%" y="-50%" width="108%" height="200%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="2" seed="3" result="noise" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="3.2" xChannelSelector="R" yChannelSelector="G" />
             </filter>
-            <filter id="ink-wobble-strong" x="-3%" y="-3%" width="106%" height="106%">
-              <feTurbulence type="fractalNoise" baseFrequency="0.022" numOctaves="2" seed="5" result="noise" />
-              <feDisplacementMap in="SourceGraphic" in2="noise" scale="4" xChannelSelector="R" yChannelSelector="G" />
+            <filter id="ink-wobble-strong" x="-6%" y="-50%" width="112%" height="200%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="3" seed="5" result="noise" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="5.5" xChannelSelector="R" yChannelSelector="G" />
             </filter>
           </defs>
         </svg>

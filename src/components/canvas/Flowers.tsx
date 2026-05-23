@@ -27,7 +27,6 @@ export function Flowers() {
     setIsClient(true)
   }, [])
 
-  // Pointer/mouse parallax — works on every device, used as the fallback
   useEffect(() => {
     if (!isClient) return
     const handlePointer = (clientX: number, clientY: number) => {
@@ -46,7 +45,6 @@ export function Flowers() {
     }
   }, [isClient])
 
-  // Track screen orientation so gyro mapping stays correct in landscape mode
   useEffect(() => {
     if (!isClient) return
     const update = () => {
@@ -61,16 +59,13 @@ export function Flowers() {
     }
   }, [isClient])
 
-  // Device orientation — runs on any device that fires the event
   useEffect(() => {
     if (!isClient) return
 
     const handleOrientation = (e: DeviceOrientationEvent) => {
       if (e.beta == null && e.gamma == null) return
-      // Beta = front/back tilt (-180..180), Gamma = left/right tilt (-90..90)
       const betaRad = THREE.MathUtils.degToRad((e.beta ?? 60) - 60) * 0.5
       const gammaRad = THREE.MathUtils.degToRad(e.gamma ?? 0) * 0.5
-      // Compensate for device rotation so the splat tracks gravity, not the screen frame.
       switch (screenAngleRef.current) {
         case 90:
           gyroRef.current = { x: -gammaRad, y: betaRad }
@@ -87,33 +82,38 @@ export function Flowers() {
       }
     }
 
-    const attach = () => window.addEventListener('deviceorientation', handleOrientation, true)
-    const Ctor = DeviceOrientationEvent as DeviceOrientationEventStatic | undefined
-
-    if (Ctor && typeof Ctor.requestPermission === 'function') {
-      // iOS 13+: permission must be requested from a user gesture
-      const requestOnGesture = async () => {
-        try {
-          const result = await Ctor.requestPermission!()
-          if (result === 'granted') attach()
-        } catch {
-          /* ignore — pointer parallax keeps working */
-        }
-        window.removeEventListener('touchend', requestOnGesture)
-        window.removeEventListener('click', requestOnGesture)
-      }
-      window.addEventListener('touchend', requestOnGesture, { once: true })
-      window.addEventListener('click', requestOnGesture, { once: true })
-      return () => {
-        window.removeEventListener('touchend', requestOnGesture)
-        window.removeEventListener('click', requestOnGesture)
-        window.removeEventListener('deviceorientation', handleOrientation, true)
-      }
+    let attached = false
+    const attach = () => {
+      if (attached) return
+      window.addEventListener('deviceorientation', handleOrientation, true)
+      attached = true
+    }
+    const detach = () => {
+      if (!attached) return
+      window.removeEventListener('deviceorientation', handleOrientation, true)
+      attached = false
     }
 
-    // Desktops with motion sensors and Android browsers fire the event without prompting
-    attach()
-    return () => window.removeEventListener('deviceorientation', handleOrientation, true)
+    const Ctor = DeviceOrientationEvent as DeviceOrientationEventStatic | undefined
+    const needsPermission =
+      Ctor && typeof Ctor.requestPermission === 'function'
+
+    if (!needsPermission) {
+      // Android/desktops with motion sensors fire the event without prompting
+      attach()
+      return detach
+    }
+
+    // iOS 13+: the explicit prompt component owns the gesture-bound
+    // requestPermission call. We only attach the listener once it tells
+    // us permission has been granted.
+    const onGranted = () => attach()
+    window.addEventListener('motion-permission-granted', onGranted)
+
+    return () => {
+      window.removeEventListener('motion-permission-granted', onGranted)
+      detach()
+    }
   }, [isClient])
 
   useFrame(() => {
