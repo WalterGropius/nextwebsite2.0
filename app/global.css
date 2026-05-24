@@ -508,8 +508,15 @@
   .hero-light-text,
   .hero-light-text * {
     color: #fdfdfb;
-    -webkit-text-stroke: 0.045em var(--ink);
+    -webkit-text-stroke: 0.08em var(--ink);
     paint-order: stroke fill;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  }
+  /* Bigger headline gets a heavier stroke so it carries weight at scale */
+  .hero-light-text p,
+  .hero-light-text h1,
+  .hero-light-text h2 {
+    -webkit-text-stroke: 0.06em var(--ink);
   }
 
   /* Apply the ink-wobble displacement to any inline svg icon. Use
