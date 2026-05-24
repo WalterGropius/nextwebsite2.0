@@ -55,7 +55,6 @@ export function Contact() {
                 split="char"
                 from="up"
                 stagger={0.025}
-                duration={0.9}
               />
             </a>
           </h2>
@@ -71,7 +70,8 @@ export function Contact() {
               lineHeight: 1.5,
             }}
           >
-            websites, vr, ai, film. tell me what you&apos;re trying to build.
+            open to interesting problems. ai, spatial computing, zero-to-one
+            product — or just system architecture talk.
           </motion.p>
 
           {/* Wobbled rule */}
@@ -104,7 +104,7 @@ export function Contact() {
                   delay: 1 + i * 0.08,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="group inline-flex items-center gap-2 text-base sm:text-lg"
+                className="group ink-icons inline-flex items-center gap-2 text-base sm:text-lg"
                 style={{
                   fontFamily: "var(--font-display)",
                   color: "var(--ink)",

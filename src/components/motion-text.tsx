@@ -1,7 +1,6 @@
 "use client"
 
-import { motion, useInView, type Variants } from "motion/react"
-import { useRef } from "react"
+import { motion, type Variants } from "motion/react"
 
 type SplitMode = "char" | "word" | "line"
 
@@ -13,23 +12,13 @@ interface MotionTextProps {
   style?: React.CSSProperties
   delay?: number
   stagger?: number
-  duration?: number
   once?: boolean
   amount?: number
   from?: "up" | "down" | "blur" | "scale"
 }
 
-const buildVariants = (
-  from: NonNullable<MotionTextProps["from"]>,
-  duration: number
-): Variants => {
-  const transition = {
-    type: "spring" as const,
-    stiffness: 220,
-    damping: 22,
-    mass: 0.6,
-    duration,
-  }
+const itemFor = (from: NonNullable<MotionTextProps["from"]>): Variants => {
+  const transition = { type: "spring" as const, stiffness: 220, damping: 22, mass: 0.6 }
   switch (from) {
     case "down":
       return {
@@ -63,14 +52,10 @@ export function MotionText({
   style,
   delay = 0,
   stagger = 0.04,
-  duration = 0.9,
   once = true,
-  amount = 0.4,
+  amount = 0.3,
   from = "up",
 }: MotionTextProps) {
-  const ref = useRef<HTMLElement>(null)
-  const inView = useInView(ref, { once, amount })
-
   const parts =
     split === "char"
       ? Array.from(text)
@@ -78,19 +63,24 @@ export function MotionText({
       ? text.split("\n")
       : text.split(/(\s+)/)
 
-  const itemVariants = buildVariants(from, duration)
+  const itemVariants = itemFor(from)
+  const containerVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: stagger, delayChildren: delay },
+    },
+  }
 
   const Container = motion[as as keyof typeof motion] as typeof motion.span
 
   return (
     <Container
-      ref={ref as never}
       className={className}
       style={{ display: "inline-block", ...style }}
       initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      transition={{ staggerChildren: stagger, delayChildren: delay }}
-      variants={{ hidden: {}, visible: {} }}
+      whileInView="visible"
+      viewport={{ once, amount }}
+      variants={containerVariants}
       aria-label={text}
     >
       {parts.map((part, i) => {

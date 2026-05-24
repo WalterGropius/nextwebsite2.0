@@ -47,14 +47,17 @@ export function Manifesto() {
             initial={{ opacity: 0, y: 14 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
             transition={{ duration: 0.9, delay: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="mt-10 max-w-xl text-lg sm:text-xl"
+            className="mt-10 max-w-2xl text-lg sm:text-xl"
             style={{
+              fontFamily: "var(--font-display)",
               color: "var(--text-muted)",
               lineHeight: 1.55,
             }}
           >
-            vr, ai, web, film. one person, one mind, one studio. obsessive about
-            craft. allergic to mediocre.
+            no rigid title. some days that&apos;s leading a team scaling a
+            startup zero-to-one. others it&apos;s wiring agentic ai, building
+            spatial interfaces in unreal, or tearing apart hardware just to
+            understand it.
           </motion.p>
         </div>
       </div>
