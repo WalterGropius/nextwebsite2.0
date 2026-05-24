@@ -27,31 +27,28 @@ export function Hero() {
   return (
     <div
       ref={containerRef}
-      className="relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden px-6"
+      className="relative flex min-h-screen w-full flex-col items-center overflow-hidden px-6 pt-24 sm:pt-28"
     >
       <motion.div
         style={{ y, opacity }}
-        className="hero-ink-text relative z-10 flex w-full max-w-3xl flex-col items-center text-center"
+        className="relative z-10 flex w-full max-w-4xl flex-col items-center text-center"
       >
-        {/* Grounded intro — single confident line, big enough to carry the hero */}
+        {/* Headline — plain black ink with a black stroke painted under
+            the fill (paint-order:stroke fill) so the glyph thickens.
+            No halo, no shadow — just bold ink right under the nav. */}
         <motion.p
           initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto max-w-4xl text-[clamp(1.9rem,4.6vw,3.4rem)]"
-          style={{
-            fontFamily: "var(--font-display)",
-            lineHeight: 1.12,
-            letterSpacing: "-0.005em",
-          }}
+          className="hero-headline mx-auto max-w-4xl text-[clamp(1.9rem,4.6vw,3.4rem)]"
         >
           i <strong>build</strong> systems, <span className="humph">untangle</span>{" "}
           <em>messy</em> problems, and <strong>write code</strong>.
         </motion.p>
 
-        {/* Rotating role — quiet, slot under the headline */}
+        {/* Rotating role */}
         <div
-          className="relative mt-8 flex h-[1.6em] items-center overflow-hidden text-base sm:text-lg"
+          className="relative mt-6 flex h-[1.6em] items-center overflow-hidden text-base sm:text-lg"
           aria-live="polite"
         >
           <AnimatePresence mode="popLayout" initial={false}>
@@ -64,8 +61,9 @@ export function Hero() {
               className="inline-block"
               style={{
                 fontFamily: "var(--font-display)",
+                color: "var(--ink)",
                 letterSpacing: "0.16em",
-                opacity: 0.85,
+                opacity: 0.7,
               }}
             >
               {roles[roleIdx]}
@@ -78,7 +76,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-12"
+          className="mt-10"
         >
           <a href="mailto:zenbauhaus@gmail.com" className="btn-primary group">
             <span>work with me</span>
@@ -92,18 +90,19 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll cue */}
+      {/* Scroll cue — pinned to the bottom of the (still full-height) canvas */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.8 }}
         style={{ opacity }}
-        className="hero-ink-text absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-[0.7rem] uppercase tracking-[0.35em]"
+        className="absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-[0.7rem] uppercase tracking-[0.35em]"
       >
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="flex flex-col items-center gap-2"
+          style={{ color: "var(--ink)", opacity: 0.6 }}
         >
           <span>scroll</span>
           <ArrowDown size={12} className="ink-icon" />
