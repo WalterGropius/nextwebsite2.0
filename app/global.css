@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 
+/* Zenhand v4 — source ships as OTF; we serve WOFF2 first (best
+   compression, all evergreen browsers), then WOFF for legacy, and
+   finally the raw OTF as a safety net. The WOFF2/WOFF files are
+   generated from the OTF by `python3 scripts/convert-font.py
+   public/zenhand4.otf`. */
 @font-face {
   font-family: 'Zenhand';
-  src: url('/zenhand3.woff') format('woff'),
-       url('/zenhand3.ttf') format('truetype');
+  src: url('/zenhand4.woff2') format('woff2'),
+       url('/zenhand4.woff')  format('woff'),
+       url('/zenhand4.otf')   format('opentype');
   font-weight: 400 700;
   font-style: normal;
   font-display: swap;
