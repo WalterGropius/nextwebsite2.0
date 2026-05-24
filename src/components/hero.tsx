@@ -62,7 +62,6 @@ export function Hero() {
             from="up"
             stagger={0.045}
             delay={0.2}
-            duration={1.2}
           />
         </h1>
 
@@ -90,12 +89,27 @@ export function Hero() {
           </AnimatePresence>
         </div>
 
+        {/* Grounded intro — one line, no buzzwords */}
+        <motion.p
+          initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 1, delay: 1, ease: [0.16, 1, 0.3, 1] }}
+          className="mx-auto mt-8 max-w-xl text-base sm:text-lg"
+          style={{
+            fontFamily: "var(--font-display)",
+            color: "var(--text-muted)",
+            lineHeight: 1.5,
+          }}
+        >
+          i build systems, untangle messy problems, and write code.
+        </motion.p>
+
         {/* Single CTA — confident, no choices */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1.4, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-12"
+          transition={{ duration: 0.9, delay: 1.6, ease: [0.16, 1, 0.3, 1] }}
+          className="mt-10"
         >
           <a href="mailto:zenbauhaus@gmail.com" className="btn-primary group">
             <span>work with me</span>

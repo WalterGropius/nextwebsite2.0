@@ -8,18 +8,18 @@ import { InkLine } from "./ink-line"
 const pillars = [
   {
     n: "01",
-    title: "function",
-    body: "if it doesn't work, nothing else matters. ship things that hold up.",
+    title: "pragmatism over purity",
+    body: "the best code ships, scales, and the next person can read it. right tool for the job — typescript, c++, python, doesn't matter.",
   },
   {
     n: "02",
-    title: "form",
-    body: "beauty isn't decoration. it's the proof you cared about the work.",
+    title: "the black box protocol",
+    body: "i'm drawn to systems i don't understand yet. break them down to parts, find the edges, rebuild. fastest way to learn any domain.",
   },
   {
     n: "03",
-    title: "feel",
-    body: "the moment a person uses it, it should feel obvious — and a little bit magic.",
+    title: "agentic execution",
+    body: "point me at a fuzzy, structurally hard problem and walk away. high-ambiguity is where i'm most useful.",
   },
 ]
 
@@ -36,7 +36,7 @@ export function Philosophy() {
         >
           <MotionText text="how i" split="word" from="up" />{" "}
           <MotionText
-            text="work"
+            text="build"
             split="word"
             from="up"
             delay={0.2}

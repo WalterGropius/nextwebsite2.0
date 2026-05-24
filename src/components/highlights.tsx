@@ -6,10 +6,11 @@ import { MotionText } from "./motion-text"
 import { InkLine } from "./ink-line"
 
 const credits = [
-  { role: "cto", at: "flipas" },
+  { role: "founder", at: "sombra os · proactive cognitive partner" },
+  { role: "cto · 0 → 1", at: "flipas · lucid" },
+  { role: "spatial computing", at: "revizor · unreal · osint" },
   { role: "vfx supervisor", at: "wilma film · hagen" },
-  { role: "creative tech", at: "nike berlin · fashion tech berlin" },
-  { role: "speaker", at: "czechvrfest" },
+  { role: "speaker", at: "nike berlin · czechvrfest" },
   { role: "vr / xr", at: "ten years deep" },
 ]
 

@@ -747,6 +747,55 @@
     100% { background-position: 1000px 0; }
   }
 
+  /* Print — used by /cv "save as pdf" button. Strip chrome, force ink
+     on paper, kill animations and filters so print preview is crisp. */
+  @media print {
+    @page {
+      size: A4;
+      margin: 18mm 16mm;
+    }
+    html, body {
+      background: #ffffff !important;
+      color: #111 !important;
+      -webkit-text-stroke: 0 !important;
+    }
+    body::before { display: none !important; }
+    nav, .no-print, [data-no-print] {
+      display: none !important;
+    }
+    main { padding-top: 0 !important; }
+    .section-container {
+      padding: 0 !important;
+      max-width: 100% !important;
+    }
+    /* Big handwritten heading would eat a whole page on A4 — clamp it */
+    #cv-print h1 {
+      font-size: 3rem !important;
+      line-height: 1 !important;
+      -webkit-text-stroke: 0.02em currentColor !important;
+    }
+    #cv-print h2 {
+      font-size: 1.4rem !important;
+      -webkit-text-stroke: 0.02em currentColor !important;
+    }
+    /* Force every element inside the printable CV to be fully visible —
+       motion sets inline opacity:0 / blur / translateY for animations,
+       which would otherwise leave blank space in the PDF. */
+    #cv-print, #cv-print *, #cv-print *::before, #cv-print *::after {
+      opacity: 1 !important;
+      filter: none !important;
+      transform: none !important;
+      animation: none !important;
+      transition: none !important;
+    }
+    .ink-underline::after,
+    .ink-underline-hover::after {
+      filter: none !important;
+    }
+    img { break-inside: avoid; }
+    section, header { break-inside: avoid; }
+  }
+
   /* Stagger children animation helper */
   .stagger-children > * {
     opacity: 0;

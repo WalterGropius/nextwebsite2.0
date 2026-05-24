@@ -55,7 +55,6 @@ export function Contact() {
                 split="char"
                 from="up"
                 stagger={0.025}
-                duration={0.9}
               />
             </a>
           </h2>
@@ -71,7 +70,8 @@ export function Contact() {
               lineHeight: 1.5,
             }}
           >
-            websites, vr, ai, film. tell me what you&apos;re trying to build.
+            open to interesting problems. ai, spatial computing, zero-to-one
+            product — or just system architecture talk.
           </motion.p>
 
           {/* Wobbled rule */}
