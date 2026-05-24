@@ -452,50 +452,26 @@
     transition: transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
-  /* Hero text — two simulated outlines stacked on the glyph:
-     1) the -webkit-text-stroke paints a BLACK outline UNDER the fill
-        via paint-order:stroke fill, effectively thickening the glyph
-     2) a text-shadow stack of WHITE 0-blur duplicates at small offsets
-        paints a thick WHITE halo around that thickened glyph.
-     The result is a properly fat black mark with a chunky white halo
-     that holds up over the splat AND the surface-dark fade. The shadows
-     here are outline-simulations (no blur), not drop shadows. */
-  .hero-ink-text,
-  .hero-ink-text * {
+  /* Hero headline — plain black ink with the stroke painted UNDER
+     the fill (paint-order:stroke fill) at the same colour, so the
+     visible glyph thickens. No white halo, no shadow — just bold
+     handwriting that lives directly on whatever's behind it. */
+  .hero-headline {
     color: var(--ink);
-    -webkit-text-stroke: 0.08em var(--ink);
+    -webkit-text-stroke: 0.12em var(--ink);
     paint-order: stroke fill;
-    text-shadow:
-      0.06em 0 0 #fdfdfb, -0.06em 0 0 #fdfdfb,
-      0 0.06em 0 #fdfdfb, 0 -0.06em 0 #fdfdfb,
-      0.05em 0.05em 0 #fdfdfb, -0.05em 0.05em 0 #fdfdfb,
-      0.05em -0.05em 0 #fdfdfb, -0.05em -0.05em 0 #fdfdfb,
-      0.09em 0 0 #fdfdfb, -0.09em 0 0 #fdfdfb,
-      0 0.09em 0 #fdfdfb, 0 -0.09em 0 #fdfdfb,
-      0.08em 0.04em 0 #fdfdfb, -0.08em 0.04em 0 #fdfdfb,
-      0.08em -0.04em 0 #fdfdfb, -0.08em -0.04em 0 #fdfdfb;
-  }
-  .hero-ink-text p,
-  .hero-ink-text h1,
-  .hero-ink-text h2 {
-    -webkit-text-stroke: 0.11em var(--ink);
+    font-family: var(--font-display);
     font-weight: 800;
-    text-shadow:
-      0.07em 0 0 #fdfdfb, -0.07em 0 0 #fdfdfb,
-      0 0.07em 0 #fdfdfb, 0 -0.07em 0 #fdfdfb,
-      0.06em 0.06em 0 #fdfdfb, -0.06em 0.06em 0 #fdfdfb,
-      0.06em -0.06em 0 #fdfdfb, -0.06em -0.06em 0 #fdfdfb,
-      0.11em 0 0 #fdfdfb, -0.11em 0 0 #fdfdfb,
-      0 0.11em 0 #fdfdfb, 0 -0.11em 0 #fdfdfb,
-      0.1em 0.05em 0 #fdfdfb, -0.1em 0.05em 0 #fdfdfb,
-      0.1em -0.05em 0 #fdfdfb, -0.1em -0.05em 0 #fdfdfb,
-      0.14em 0 0 #fdfdfb, -0.14em 0 0 #fdfdfb,
-      0 0.14em 0 #fdfdfb, 0 -0.14em 0 #fdfdfb;
+    line-height: 1.12;
+    letter-spacing: -0.005em;
   }
-  .hero-ink-text strong,
-  .hero-ink-text b {
-    -webkit-text-stroke: 0.13em var(--ink);
+  .hero-headline strong,
+  .hero-headline b {
+    -webkit-text-stroke: 0.16em var(--ink);
     font-weight: 900;
+  }
+  .hero-headline em {
+    font-style: italic;
   }
 
   /* Humph — italic accent with a real skew. Zenhand has no italic
