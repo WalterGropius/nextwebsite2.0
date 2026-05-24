@@ -54,10 +54,10 @@ export function Manifesto() {
               lineHeight: 1.55,
             }}
           >
-            no rigid title. some days that&apos;s leading a team scaling a
-            startup zero-to-one. others it&apos;s wiring agentic ai, building
-            spatial interfaces in unreal, or tearing apart hardware just to
-            understand it.
+            <strong>no rigid title.</strong> some days that&apos;s leading a
+            team scaling a startup <em>zero-to-one</em>. others it&apos;s
+            wiring agentic ai, building spatial interfaces in{" "}
+            <em>unreal</em>, or tearing apart hardware just to understand it.
           </motion.p>
         </div>
       </div>

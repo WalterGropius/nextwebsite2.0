@@ -31,25 +31,13 @@ export function Hero() {
     >
       <motion.div
         style={{ y, opacity }}
-        className="hero-light-text relative z-10 flex w-full max-w-3xl flex-col items-center text-center"
+        className="hero-ink-text relative z-10 flex w-full max-w-3xl flex-col items-center text-center"
       >
-        {/* Year stamp */}
-        <motion.span
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.15 }}
-          className="mb-10 inline-flex items-center gap-3 text-[0.7rem] uppercase tracking-[0.4em]"
-        >
-          <span>prague</span>
-          <span aria-hidden style={{ opacity: 0.5 }}>·</span>
-          <span>2026</span>
-        </motion.span>
-
         {/* Grounded intro — single confident line, big enough to carry the hero */}
         <motion.p
           initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{ duration: 1.1, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="mx-auto max-w-3xl text-[clamp(1.6rem,4vw,2.8rem)]"
           style={{
             fontFamily: "var(--font-display)",
@@ -57,7 +45,8 @@ export function Hero() {
             letterSpacing: "-0.005em",
           }}
         >
-          i build systems, untangle messy problems, and write code.
+          i <strong>build</strong> systems, <span className="humph">untangle</span>{" "}
+          <em>messy</em> problems, and <strong>write code</strong>.
         </motion.p>
 
         {/* Rotating role — quiet, slot under the headline */}
@@ -88,7 +77,7 @@ export function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 1.1, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.9, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
           className="mt-12"
         >
           <a href="mailto:zenbauhaus@gmail.com" className="btn-primary group">
@@ -107,9 +96,9 @@ export function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.6, duration: 0.8 }}
+        transition={{ delay: 1.5, duration: 0.8 }}
         style={{ opacity }}
-        className="hero-light-text absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-[0.6rem] uppercase tracking-[0.35em]"
+        className="hero-ink-text absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-[0.6rem] uppercase tracking-[0.35em]"
       >
         <motion.div
           animate={{ y: [0, 6, 0] }}

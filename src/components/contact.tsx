@@ -121,7 +121,12 @@ export function Contact() {
             className="mt-20 flex flex-col items-baseline justify-between gap-2 text-xs sm:flex-row"
             style={{ color: "var(--text-muted)" }}
           >
-            <span>zenbauhaus · prague</span>
+            <span>
+              <strong>zenbauhaus</strong> · prague
+            </span>
+            <span className="og-note" title="for the ones who know">
+              <em>y4ngyin</em> · <em>tra5her</em> · mc zenbauhaus
+            </span>
             <span>© {new Date().getFullYear()}</span>
           </div>
         </div>
