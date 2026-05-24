@@ -452,27 +452,6 @@
     transition: transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
-  /* Hero headline — plain black ink with the stroke painted UNDER
-     the fill (paint-order:stroke fill) at the same colour, so the
-     visible glyph thickens. No white halo, no shadow — just bold
-     handwriting that lives directly on whatever's behind it. */
-  .hero-headline {
-    color: var(--ink);
-    -webkit-text-stroke: 0.12em var(--ink);
-    paint-order: stroke fill;
-    font-family: var(--font-display);
-    font-weight: 800;
-    line-height: 1.12;
-    letter-spacing: -0.005em;
-  }
-  .hero-headline strong,
-  .hero-headline b {
-    -webkit-text-stroke: 0.16em var(--ink);
-    font-weight: 900;
-  }
-  .hero-headline em {
-    font-style: italic;
-  }
 
   /* Humph — italic accent with a real skew. Zenhand has no italic
      glyphs and its synth-italic is too subtle to read in a sentence,

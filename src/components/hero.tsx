@@ -33,18 +33,19 @@ export function Hero() {
         style={{ y, opacity }}
         className="relative z-10 flex w-full max-w-4xl flex-col items-center text-center"
       >
-        {/* Headline — plain black ink with a black stroke painted under
-            the fill (paint-order:stroke fill) so the glyph thickens.
-            No halo, no shadow — just bold ink right under the nav. */}
-        <motion.p
+        {/* Headline — same treatment as the "some of the work" h2,
+            just without the underline. Base heading stroke does the
+            handwriting weight; humph / strong / em keep the asides. */}
+        <motion.h2
           initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="hero-headline mx-auto max-w-4xl text-[clamp(1.9rem,4.6vw,3.4rem)]"
+          className="mx-auto max-w-5xl text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.92]"
+          style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
         >
           i <strong>build</strong> systems, <span className="humph">untangle</span>{" "}
           <em>messy</em> problems, and <strong>write code</strong>.
-        </motion.p>
+        </motion.h2>
 
         {/* Rotating role */}
         <div
