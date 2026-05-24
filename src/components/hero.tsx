@@ -3,26 +3,31 @@
 import { useEffect, useRef, useState } from "react"
 import { motion, AnimatePresence, useScroll, useTransform } from "motion/react"
 import { ArrowDown } from "lucide-react"
-
-const roles = [
-  "creative technologist",
-  "vr / ar pioneer",
-  "ai architect",
-  "visual artist",
-  "builder of impossible things",
-]
+import { useT } from "@/lib/i18n/provider"
 
 export function Hero() {
   const containerRef = useRef<HTMLDivElement>(null)
   const { scrollY } = useScroll()
   const y = useTransform(scrollY, [0, 600], [0, -80])
   const opacity = useTransform(scrollY, [0, 500], [1, 0])
+  const t = useT()
+
+  const roles = [
+    t("hero.role.0"),
+    t("hero.role.1"),
+    t("hero.role.2"),
+    t("hero.role.3"),
+    t("hero.role.4"),
+  ]
 
   const [roleIdx, setRoleIdx] = useState(0)
   useEffect(() => {
-    const t = setInterval(() => setRoleIdx((i) => (i + 1) % roles.length), 2400)
-    return () => clearInterval(t)
-  }, [])
+    const i = setInterval(
+      () => setRoleIdx((n) => (n + 1) % roles.length),
+      2400,
+    )
+    return () => clearInterval(i)
+  }, [roles.length])
 
   return (
     <div
@@ -33,9 +38,6 @@ export function Hero() {
         style={{ y, opacity }}
         className="relative z-10 flex w-full max-w-4xl flex-col items-center text-center"
       >
-        {/* Headline — same treatment as the "some of the work" h2,
-            just without the underline. Base heading stroke does the
-            handwriting weight; humph / strong / em keep the asides. */}
         <motion.h2
           initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -43,11 +45,14 @@ export function Hero() {
           className="mx-auto max-w-5xl text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.92]"
           style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
         >
-          i <strong>build</strong> systems, <span className="humph">untangle</span>{" "}
-          <em>messy</em> problems, and <strong>write code</strong>.
+          {t("hero.headline.i")} <strong>{t("hero.headline.build")}</strong>{" "}
+          {t("hero.headline.systems")}{" "}
+          <span className="humph">{t("hero.headline.untangle")}</span>{" "}
+          <em>{t("hero.headline.messy")}</em> {t("hero.headline.problems")}{" "}
+          <strong>{t("hero.headline.writeCode")}</strong>
+          {t("hero.headline.dot")}
         </motion.h2>
 
-        {/* Rotating role */}
         <div
           className="relative mt-6 flex h-[1.6em] items-center overflow-hidden text-base sm:text-lg"
           aria-live="polite"
@@ -72,7 +77,6 @@ export function Hero() {
           </AnimatePresence>
         </div>
 
-        {/* Single CTA */}
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
@@ -80,7 +84,7 @@ export function Hero() {
           className="mt-10"
         >
           <a href="mailto:zenbauhaus@gmail.com" className="btn-primary group">
-            <span>work with me</span>
+            <span>{t("hero.cta")}</span>
             <span
               aria-hidden
               className="transition-transform duration-300 group-hover:translate-x-1"
@@ -91,7 +95,6 @@ export function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* Scroll cue — pinned to the bottom of the (still full-height) canvas */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -105,7 +108,7 @@ export function Hero() {
           className="flex flex-col items-center gap-2"
           style={{ color: "var(--ink)", opacity: 0.6 }}
         >
-          <span>scroll</span>
+          <span>{t("hero.scroll")}</span>
           <ArrowDown size={12} className="ink-icon" />
         </motion.div>
       </motion.div>

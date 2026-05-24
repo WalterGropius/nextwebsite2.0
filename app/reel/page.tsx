@@ -7,12 +7,14 @@ import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
 import { MotionText } from "@/components/motion-text"
 import { InkLine } from "@/components/ink-line"
+import { useT } from "@/lib/i18n/provider"
 
 export default function Reel() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isMuted, setIsMuted] = useState(true)
   const [isPlaying, setIsPlaying] = useState(true)
   const [isLoaded, setIsLoaded] = useState(false)
+  const t = useT()
 
   useEffect(() => {
     videoRef.current?.play().catch(() => {})
@@ -47,9 +49,9 @@ export default function Reel() {
                 color: "var(--ink)",
               }}
             >
-              <MotionText text="show" split="char" from="up" stagger={0.045} />
+              <MotionText text={t("reel.title.0")} split="char" from="up" stagger={0.045} />
               <MotionText
-                text="reel"
+                text={t("reel.title.1")}
                 split="char"
                 from="up"
                 delay={0.15}
@@ -67,7 +69,7 @@ export default function Reel() {
                 fontFamily: "var(--font-display)",
               }}
             >
-              vfx, 3d, creative tech — selected motion work.
+              {t("reel.descriptor")}
             </motion.p>
           </div>
 
@@ -111,7 +113,7 @@ export default function Reel() {
                     fontFamily: "var(--font-display)",
                   }}
                 >
-                  loading…
+                  {t("reel.loading")}
                 </p>
               </div>
             )}
@@ -124,7 +126,7 @@ export default function Reel() {
                   color: "var(--ink)",
                   border: "1.5px solid var(--ink)",
                 }}
-                aria-label={isPlaying ? "pause" : "play"}
+                aria-label={t(isPlaying ? "reel.pause" : "reel.play")}
               >
                 {isPlaying ? (
                   <span className="flex gap-1">
@@ -149,7 +151,7 @@ export default function Reel() {
                   color: "var(--ink)",
                   border: "1.5px solid var(--ink)",
                 }}
-                aria-label={isMuted ? "unmute" : "mute"}
+                aria-label={t(isMuted ? "reel.unmute" : "reel.mute")}
               >
                 {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
               </button>

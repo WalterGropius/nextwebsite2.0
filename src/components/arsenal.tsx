@@ -4,10 +4,13 @@ import { motion, useInView } from "motion/react"
 import { useRef } from "react"
 import { MotionText } from "./motion-text"
 import { InkLine } from "./ink-line"
+import { useT } from "@/lib/i18n/provider"
 
+// Tool / brand names stay English — translating them would just break the
+// signal. Only the group label and the section heading are translated.
 const groups = [
   {
-    label: "3d · vfx · xr",
+    labelKey: "arsenal.group.0",
     items: [
       "blender",
       "unreal engine",
@@ -22,7 +25,7 @@ const groups = [
     ],
   },
   {
-    label: "engineering",
+    labelKey: "arsenal.group.1",
     items: [
       "typescript",
       "react · next.js",
@@ -37,7 +40,7 @@ const groups = [
     ],
   },
   {
-    label: "ai",
+    labelKey: "arsenal.group.2",
     items: [
       "llms · prompting",
       "agentic systems",
@@ -56,6 +59,7 @@ const groups = [
 export function Arsenal() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, amount: 0.15 })
+  const t = useT()
 
   return (
     <section id="arsenal" className="relative py-16 sm:py-24" ref={ref}>
@@ -64,9 +68,9 @@ export function Arsenal() {
           className="mb-12 text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.92]"
           style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
         >
-          <MotionText text="the" split="word" from="up" />{" "}
+          <MotionText text={t("arsenal.title.0")} split="word" from="up" />{" "}
           <MotionText
-            text="toolkit"
+            text={t("arsenal.title.1")}
             split="word"
             from="up"
             delay={0.2}
@@ -76,7 +80,7 @@ export function Arsenal() {
 
         <div className="grid gap-12 md:grid-cols-3 md:gap-10">
           {groups.map((g, gi) => (
-            <div key={g.label} className="flex flex-col">
+            <div key={g.labelKey} className="flex flex-col">
               <div className="mb-4 flex items-baseline gap-3">
                 <span
                   className="text-[0.7rem] uppercase tracking-[0.3em]"
@@ -91,7 +95,7 @@ export function Arsenal() {
                     color: "var(--ink)",
                   }}
                 >
-                  {g.label}
+                  {t(g.labelKey)}
                 </span>
               </div>
               <div className="mb-5" style={{ color: "var(--ink)" }}>

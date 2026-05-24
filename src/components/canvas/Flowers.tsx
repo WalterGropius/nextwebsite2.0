@@ -2,7 +2,9 @@
 import { useFrame } from '@react-three/fiber'
 import { useRef, useState, useEffect } from 'react'
 import * as THREE from 'three'
+import { Stars } from '@react-three/drei'
 import { SparkRenderer, SplatMesh } from './spark'
+import { Nebula } from './Nebula'
 
 type DeviceOrientationEventStatic = typeof DeviceOrientationEvent & {
   requestPermission?: () => Promise<'granted' | 'denied'>
@@ -16,7 +18,7 @@ function getScreenAngle(): number {
   return typeof legacy === 'number' ? legacy : 0
 }
 
-export function Flowers() {
+export function Flowers({ dark = false }: { dark?: boolean }) {
   const splatRef = useRef<THREE.Object3D | null>(null)
   const [isClient, setIsClient] = useState(false)
   const pointerRef = useRef({ x: 0, y: 0 })
@@ -99,14 +101,10 @@ export function Flowers() {
       Ctor && typeof Ctor.requestPermission === 'function'
 
     if (!needsPermission) {
-      // Android/desktops with motion sensors fire the event without prompting
       attach()
       return detach
     }
 
-    // iOS 13+: the explicit prompt component owns the gesture-bound
-    // requestPermission call. We only attach the listener once it tells
-    // us permission has been granted.
     const onGranted = () => attach()
     window.addEventListener('motion-permission-granted', onGranted)
 
@@ -130,10 +128,31 @@ export function Flowers() {
 
   if (!isClient) return null
 
+  if (dark) {
+    // Dark mode: drei stars with saturation + a procedural Spark nebula
+    return (
+      <>
+        <SparkRenderer />
+        <Stars
+          radius={120}
+          depth={50}
+          count={6000}
+          factor={4}
+          saturation={1}
+          fade
+          speed={0.6}
+        />
+        <group ref={splatRef as React.RefObject<THREE.Group>}>
+          <Nebula count={4500} radius={9} position={[0, 0, -6]} spin={0.02} />
+        </group>
+      </>
+    )
+  }
+
   return (
     <>
       <SparkRenderer />
-      <group ref={splatRef}>
+      <group ref={splatRef as React.RefObject<THREE.Group>}>
         <SplatMesh
           url="/flowers_white.sog"
           scale={3}
