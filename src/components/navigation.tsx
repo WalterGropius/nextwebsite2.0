@@ -10,13 +10,10 @@ const navLinks = [
   { href: "/portfolio-s", label: "work" },
   { href: "/reel", label: "reel" },
   { href: "/sketchfab", label: "3d" },
-  { href: "mailto:zenbauhaus@gmail.com", label: "contact" },
+  { href: "/cv", label: "cv" },
+  { href: "/contact", label: "contact" },
 ]
 
-const downloadLinks = [
-  { href: "/cvBauer.html", label: "cv" },
-  { href: "/artBauer.pdf", label: "art pdf" },
-]
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -60,36 +57,19 @@ export function Navigation() {
             zenbauhaus
           </Link>
 
-          <div className="hidden items-center gap-6 md:flex">
+          <div className="hidden items-center gap-7 md:flex">
             {navLinks.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className="group relative text-sm transition-colors"
+                className="group relative text-base transition-transform hover:-translate-y-0.5"
                 style={{
                   fontFamily: "var(--font-display)",
                   color: "var(--ink)",
+                  fontWeight: 600,
                 }}
               >
-                <span className="ink-underline-hover">{l.label}</span>
-              </Link>
-            ))}
-            <span
-              className="h-4 w-px"
-              style={{ background: "var(--ink)", opacity: 0.3 }}
-            />
-            {downloadLinks.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                download
-                className="text-sm transition-opacity"
-                style={{
-                  fontFamily: "var(--font-display)",
-                  color: "var(--text-muted)",
-                }}
-              >
-                {l.label}
+                <span className="ink-underline">{l.label}</span>
               </Link>
             ))}
           </div>
@@ -165,39 +145,7 @@ export function Navigation() {
                     color: "var(--ink)",
                   }}
                 >
-                  <span className="ink-underline">{l.label}</span>
-                </Link>
-              </motion.div>
-            ))}
-            <div
-              className="my-6 w-32 opacity-50"
-              style={{
-                height: 1.4,
-                background: "var(--ink)",
-                filter: "url(#ink-wobble)",
-              }}
-            />
-            {downloadLinks.map((l, i) => (
-              <motion.div
-                key={l.href}
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.5,
-                  delay: 0.05 + (navLinks.length + i) * 0.06,
-                }}
-              >
-                <Link
-                  href={l.href}
-                  download
-                  onClick={() => setIsOpen(false)}
-                  className="block py-1 text-2xl"
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    color: "var(--text-muted)",
-                  }}
-                >
-                  <span className="ink-underline">{l.label}</span>
+                  {l.label}
                 </Link>
               </motion.div>
             ))}
@@ -206,7 +154,7 @@ export function Navigation() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.55 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="og-note mt-10"
+              className="og-note mt-12"
             >
               skate. rap. ship.
             </motion.span>

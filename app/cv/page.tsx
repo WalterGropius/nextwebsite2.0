@@ -8,7 +8,7 @@ import { motion } from "motion/react"
 import { Download, FileText, Printer } from "lucide-react"
 
 const intro =
-  "i build systems, untangle messy problems, and write code. no rigid title — sometimes that's leading a team scaling a startup zero-to-one, sometimes wiring agentic ai, building spatial interfaces in unreal, or tearing apart hardware just to understand it."
+  "i build systems, untangle messy problems, and write code. no rigid title — sometimes that's leading a team scaling a startup zero-to-one, sometimes wiring agentic ai, building spatial interfaces in unreal, or tearing apart hardware just to understand it. the more impossible, the more interesting."
 
 const experience = [
   {
@@ -23,7 +23,14 @@ const experience = [
     company: "sombra os",
     period: "2024 — ongoing",
     blurb:
-      "local-first cognitive partner. semantic tree-search rag, knowledge distillation, automation pipelines. a living sandbox for collaborating with ai without the ui getting in the way.",
+      "local-first cognitive partner. semantic tree-search rag, knowledge distillation, automation pipelines. a cognitive prosthetic for the polymath's time debt — collaborating with ai without the ui getting in the way.",
+  },
+  {
+    title: "co-founder",
+    company: "lucid solution designers",
+    period: "ongoing",
+    blurb:
+      "inverted incubator. instead of one product, a platform that can generate many — designed to absorb the kinds of ambiguous, structurally-hard briefs most studios refuse.",
   },
   {
     title: "creator",
@@ -99,6 +106,17 @@ const capabilities = [
       "nlp",
       "langchain",
       "embeddings",
+    ],
+  },
+  {
+    label: "hardware",
+    items: [
+      "esp32 · arduino",
+      "pcb design",
+      "3d printing",
+      "rapid prototyping",
+      "real-time fluid sim",
+      "shader pipeline",
     ],
   },
 ]
@@ -269,7 +287,7 @@ export default function CVPage() {
           {/* Capabilities */}
           <section className="mb-16">
             <SectionTitle>capabilities</SectionTitle>
-            <div className="grid gap-12 md:grid-cols-3 md:gap-10">
+            <div className="grid gap-12 sm:grid-cols-2 md:gap-10 lg:grid-cols-4">
               {capabilities.map((g, gi) => (
                 <div key={g.label}>
                   <div className="mb-4 flex items-baseline gap-3">

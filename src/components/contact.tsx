@@ -70,8 +70,10 @@ export function Contact() {
               lineHeight: 1.5,
             }}
           >
-            open to interesting problems. ai, spatial computing, zero-to-one
-            product — or just system architecture talk.
+            open to interesting problems. <strong>ai</strong>, <strong>spatial
+            computing</strong>, <em>zero-to-one</em> product — or just system
+            architecture talk. <span className="humph">if it&apos;s nearly
+            impossible, even better.</span>
           </motion.p>
 
           {/* Wobbled rule */}

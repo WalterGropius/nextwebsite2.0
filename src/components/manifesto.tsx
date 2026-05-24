@@ -57,7 +57,8 @@ export function Manifesto() {
             <strong>no rigid title.</strong> some days that&apos;s leading a
             team scaling a startup <em>zero-to-one</em>. others it&apos;s
             wiring agentic ai, building spatial interfaces in{" "}
-            <em>unreal</em>, or tearing apart hardware just to understand it.
+            <em>unreal</em>, or tearing apart hardware just to understand it.{" "}
+            <span className="humph">the more impossible, the more interesting.</span>
           </motion.p>
         </div>
       </div>
