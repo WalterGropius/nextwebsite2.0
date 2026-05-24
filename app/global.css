@@ -232,8 +232,10 @@
     transform: scale(1.02);
   }
 
-  /* Buttons — solid ink fill (white text) with a wobbled outline
-     drawn just outside the pill, always visible. No drop shadows. */
+  /* Buttons — solid ink fill, plain white text. The wobbled outline
+     sits ON the pill edge with a thick enough border to overlap (and
+     hide) the smooth pill outline underneath, so all that reads is
+     a handwritten inked stroke. */
   .btn-primary {
     position: relative;
     display: inline-flex;
@@ -241,7 +243,7 @@
     gap: 0.55rem;
     padding: 0.8rem 1.6rem;
     background: var(--ink);
-    color: var(--surface-dark);
+    color: #ffffff;
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 1rem;
@@ -254,16 +256,15 @@
   .btn-primary::before {
     content: "";
     position: absolute;
-    inset: -6px;
-    border: 2px solid var(--ink);
+    inset: -2px;
+    border: 6px solid var(--ink);
     border-radius: 9999px;
     filter: url(#ink-wobble-strong);
-    opacity: 0.75;
     pointer-events: none;
-    transition: inset var(--transition-spring), opacity var(--transition-smooth);
+    transition: inset var(--transition-spring);
   }
   .btn-primary:hover { transform: translateY(-2px); }
-  .btn-primary:hover::before { inset: -9px; opacity: 1; }
+  .btn-primary:hover::before { inset: -5px; }
 
   .btn-secondary {
     position: relative;
@@ -285,8 +286,8 @@
   .btn-secondary::before {
     content: "";
     position: absolute;
-    inset: 0;
-    border: 2px solid var(--ink);
+    inset: -2px;
+    border: 5px solid var(--ink);
     border-radius: 9999px;
     filter: url(#ink-wobble);
     pointer-events: none;
@@ -451,26 +452,49 @@
     transition: transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
-  /* Hero text — heavier ink. Black fill with a chunky white halo
-     painted UNDER the glyph via paint-order:stroke fill. No drop
-     shadows — the stroke itself is the halo. */
+  /* Hero text — two simulated outlines stacked on the glyph:
+     1) the -webkit-text-stroke paints a BLACK outline UNDER the fill
+        via paint-order:stroke fill, effectively thickening the glyph
+     2) a text-shadow stack of WHITE 0-blur duplicates at small offsets
+        paints a thick WHITE halo around that thickened glyph.
+     The result is a properly fat black mark with a chunky white halo
+     that holds up over the splat AND the surface-dark fade. The shadows
+     here are outline-simulations (no blur), not drop shadows. */
   .hero-ink-text,
   .hero-ink-text * {
     color: var(--ink);
-    -webkit-text-stroke: 0.16em #fdfdfb;
+    -webkit-text-stroke: 0.08em var(--ink);
     paint-order: stroke fill;
+    text-shadow:
+      0.06em 0 0 #fdfdfb, -0.06em 0 0 #fdfdfb,
+      0 0.06em 0 #fdfdfb, 0 -0.06em 0 #fdfdfb,
+      0.05em 0.05em 0 #fdfdfb, -0.05em 0.05em 0 #fdfdfb,
+      0.05em -0.05em 0 #fdfdfb, -0.05em -0.05em 0 #fdfdfb,
+      0.09em 0 0 #fdfdfb, -0.09em 0 0 #fdfdfb,
+      0 0.09em 0 #fdfdfb, 0 -0.09em 0 #fdfdfb,
+      0.08em 0.04em 0 #fdfdfb, -0.08em 0.04em 0 #fdfdfb,
+      0.08em -0.04em 0 #fdfdfb, -0.08em -0.04em 0 #fdfdfb;
   }
   .hero-ink-text p,
   .hero-ink-text h1,
   .hero-ink-text h2 {
-    -webkit-text-stroke: 0.22em #fdfdfb;
+    -webkit-text-stroke: 0.11em var(--ink);
     font-weight: 800;
+    text-shadow:
+      0.07em 0 0 #fdfdfb, -0.07em 0 0 #fdfdfb,
+      0 0.07em 0 #fdfdfb, 0 -0.07em 0 #fdfdfb,
+      0.06em 0.06em 0 #fdfdfb, -0.06em 0.06em 0 #fdfdfb,
+      0.06em -0.06em 0 #fdfdfb, -0.06em -0.06em 0 #fdfdfb,
+      0.11em 0 0 #fdfdfb, -0.11em 0 0 #fdfdfb,
+      0 0.11em 0 #fdfdfb, 0 -0.11em 0 #fdfdfb,
+      0.1em 0.05em 0 #fdfdfb, -0.1em 0.05em 0 #fdfdfb,
+      0.1em -0.05em 0 #fdfdfb, -0.1em -0.05em 0 #fdfdfb,
+      0.14em 0 0 #fdfdfb, -0.14em 0 0 #fdfdfb,
+      0 0.14em 0 #fdfdfb, 0 -0.14em 0 #fdfdfb;
   }
-  /* Inner ink — a second layer painted on top of the white halo with
-     a thicker dark stroke gives the glyph real handwritten weight. */
   .hero-ink-text strong,
   .hero-ink-text b {
-    -webkit-text-stroke: 0.26em #fdfdfb;
+    -webkit-text-stroke: 0.13em var(--ink);
     font-weight: 900;
   }
 
