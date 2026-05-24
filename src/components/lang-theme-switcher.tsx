@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
-import { Globe, Moon, Sun } from "lucide-react"
+import { Check, Globe, Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useI18n } from "@/lib/i18n/provider"
 
@@ -61,15 +61,15 @@ export function LangThemeSwitcher({
         )}
       </button>
 
-      {/* Language menu trigger */}
+      {/* Language menu trigger — globe icon alone, no code label */}
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
         aria-haspopup="listbox"
         aria-expanded={open}
-        aria-label={t("nav.language")}
+        aria-label={`${t("nav.language")} (${lang.toUpperCase()})`}
         title={t("nav.language")}
-        className="flex h-9 items-center gap-1 px-1 transition-transform hover:-translate-y-0.5"
+        className="flex h-9 w-9 items-center justify-center transition-transform hover:-translate-y-0.5"
         style={{ color: "var(--ink)" }}
       >
         <Globe
@@ -77,12 +77,6 @@ export function LangThemeSwitcher({
           strokeWidth={2.2}
           style={{ filter: "url(#ink-wobble)" }}
         />
-        <span
-          className="text-xs uppercase tracking-[0.25em]"
-          style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
-        >
-          {lang}
-        </span>
       </button>
 
       <AnimatePresence>
@@ -122,7 +116,18 @@ export function LangThemeSwitcher({
                     background: active ? "rgba(15, 17, 23, 0.08)" : "transparent",
                   }}
                 >
-                  <span>{opt.label}</span>
+                  <span className="flex items-center gap-2">
+                    {active && (
+                      <Check
+                        size={13}
+                        strokeWidth={2.6}
+                        style={{ filter: "url(#ink-wobble)" }}
+                      />
+                    )}
+                    <span style={{ fontWeight: active ? 700 : 500 }}>
+                      {opt.label}
+                    </span>
+                  </span>
                   <span
                     className="text-[0.6rem] uppercase tracking-[0.3em]"
                     style={{

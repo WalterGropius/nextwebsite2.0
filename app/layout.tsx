@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Layout } from '@/components/dom/Layout'
 import { ThemeProvider } from '@/components/theme-provider'
 import { I18nProvider } from '@/lib/i18n/provider'
+import { PaperBackdrop } from '@/components/paper-backdrop'
 import '@/global.css'
 
 export const metadata: Metadata = {
@@ -54,7 +55,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link rel="preload" as="fetch" href="/flowers_white.sog" crossOrigin="anonymous" />
-        <link rel="preload" as="font" type="font/woff" href="/zenhand3.woff" crossOrigin="anonymous" />
+        <link rel="preload" as="font" type="font/woff2" href="/zenhand4.woff2" crossOrigin="anonymous" />
       </head>
       <body>
         {/* SVG filter sprite — referenced via filter: url(#ink-wobble) on
@@ -83,6 +84,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           disableTransitionOnChange={false}
         >
           <I18nProvider>
+            <PaperBackdrop />
             <Layout>{children}</Layout>
           </I18nProvider>
         </ThemeProvider>

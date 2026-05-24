@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap');
 
+/* Zenhand v4 — source ships as OTF; we serve WOFF2 first (best
+   compression, all evergreen browsers), then WOFF for legacy, and
+   finally the raw OTF as a safety net. The WOFF2/WOFF files are
+   generated from the OTF by `python3 scripts/convert-font.py
+   public/zenhand4.otf`. */
 @font-face {
   font-family: 'Zenhand';
-  src: url('/zenhand3.woff') format('woff'),
-       url('/zenhand3.ttf') format('truetype');
+  src: url('/zenhand4.woff2') format('woff2'),
+       url('/zenhand4.woff')  format('woff'),
+       url('/zenhand4.otf')   format('opentype');
   font-weight: 400 700;
   font-style: normal;
   font-display: swap;
@@ -133,17 +139,9 @@
     min-height: 100vh;
   }
 
-  /* Subtle paper grain that ties the gradient bg to a tactile feel */
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    opacity: var(--grain-opacity);
-    mix-blend-mode: var(--grain-blend);
-  }
+  /* Paper grain + millimeter grid now rendered by <PaperBackdrop /> mounted
+     in the root layout — gives us a procedural shader and an inked-grid
+     overlay tilted 6° that contrasts with the handwritten typography. */
 
   /* Smooth theme transition — scoped to the root so we don't fight motion's
      inline transforms / filters elsewhere on the page. */

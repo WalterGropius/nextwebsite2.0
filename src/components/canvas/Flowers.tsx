@@ -114,33 +114,49 @@ export function Flowers({ dark = false }: { dark?: boolean }) {
     }
   }, [isClient])
 
-  useFrame(() => {
+  useFrame((_, delta) => {
     if (!splatRef.current) return
     const gyro = gyroRef.current
-    if (gyro) {
-      splatRef.current.rotation.x = gyro.x
-      splatRef.current.rotation.y = gyro.y
-    } else {
-      splatRef.current.rotation.x = pointerRef.current.y * 0.3
-      splatRef.current.rotation.y = pointerRef.current.x * 0.5
-    }
+    const targetX = gyro ? gyro.x : pointerRef.current.y * 0.3
+    const targetY = gyro ? gyro.y : pointerRef.current.x * 0.5
+    // Critically-damped lerp — small step every frame so the splat
+    // glides toward the target rather than snapping. Frame-rate
+    // independent via 1 - exp(-k * dt).
+    const k = 3.2
+    const a = 1 - Math.exp(-k * Math.min(delta, 0.1))
+    splatRef.current.rotation.x += (targetX - splatRef.current.rotation.x) * a
+    splatRef.current.rotation.y += (targetY - splatRef.current.rotation.y) * a
   })
 
   if (!isClient) return null
 
   if (dark) {
-    // Dark mode: drei stars with saturation + a procedural Spark nebula
+    // Dark mode: a foreground field of bright white stars, a deeper
+    // colour-saturated star layer further out, and a procedural Spark
+    // nebula behind both. Stars sit in front of the nebula at +z so
+    // they aren't fully obscured by dense splats.
     return (
       <>
         <SparkRenderer />
+        <group position={[0, 0, 4]}>
+          <Stars
+            radius={80}
+            depth={40}
+            count={9000}
+            factor={6}
+            saturation={0}
+            fade
+            speed={0.8}
+          />
+        </group>
         <Stars
-          radius={120}
-          depth={50}
-          count={6000}
-          factor={4}
+          radius={140}
+          depth={60}
+          count={4500}
+          factor={3.5}
           saturation={1}
           fade
-          speed={0.6}
+          speed={0.4}
         />
         <group ref={splatRef as React.RefObject<THREE.Group>}>
           <Nebula count={4500} radius={9} position={[0, 0, -6]} spin={0.02} />

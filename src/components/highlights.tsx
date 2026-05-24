@@ -1,6 +1,6 @@
 "use client"
 
-import { motion, useInView } from "motion/react"
+import { motion, useInView, useScroll, useSpring, useTransform } from "motion/react"
 import { useRef } from "react"
 import { MotionText } from "./motion-text"
 import { InkLine } from "./ink-line"
@@ -16,11 +16,28 @@ export function Highlights() {
     at: t(`highlights.${i}.at`),
   }))
 
+  // Each row gets its own scroll-progress-derived y so the list reads
+  // like a flickbook — odd rows drag, even rows race past.
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  })
+  const smooth = useSpring(scrollYProgress, {
+    stiffness: 90,
+    damping: 24,
+    mass: 0.35,
+  })
+  const stickyY = useTransform(smooth, [0, 1], [-20, 90])
+  const stickyRot = useTransform(smooth, [0, 0.5, 1], [-1.5, 0, 1.5])
+
   return (
-    <section className="relative py-16 sm:py-24" ref={ref}>
+    <section className="relative py-20 sm:py-32" ref={ref}>
       <div className="section-container">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-[1fr_2fr] md:gap-16">
-          <div>
+          <motion.div
+            className="md:sticky md:top-32 md:self-start"
+            style={{ y: stickyY, rotate: stickyRot, transformOrigin: "0 50%" }}
+          >
             <h2
               className="text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.92]"
               style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
@@ -35,50 +52,29 @@ export function Highlights() {
                 className="ink-underline"
               />
             </h2>
-          </div>
+          </motion.div>
 
           <ul className="flex flex-col" style={{ color: "var(--ink)" }}>
             <div className="opacity-60">
               <InkLine fade={false} thickness={1.1} />
             </div>
-            {credits.map((c, i) => (
-              <motion.li
-                key={i}
-                initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
-                animate={
-                  inView
-                    ? { opacity: 1, y: 0, filter: "blur(0px)" }
-                    : { opacity: 0, y: 16, filter: "blur(8px)" }
-                }
-                transition={{
-                  type: "spring",
-                  stiffness: 180,
-                  damping: 24,
-                  delay: 0.1 + i * 0.09,
-                }}
-                className="flex flex-col gap-0.5 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
-              >
-                <span
-                  className="text-2xl sm:text-3xl"
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    color: "var(--ink)",
-                    lineHeight: 1,
-                  }}
-                >
-                  {c.role}
-                </span>
-                <span
-                  className="text-sm sm:text-base"
-                  style={{
-                    color: "var(--text-muted)",
-                    fontFamily: "var(--font-display)",
-                  }}
-                >
-                  {c.at}
-                </span>
-              </motion.li>
-            ))}
+            {credits.map((c, i) => {
+              // alternating drag/race + tiny rotational sway so rows
+              // don't all glide identically.
+              const dir = i % 2 === 0 ? -1 : 1
+              const amp = 40 + (i % 3) * 18
+              return (
+                <HighlightRow
+                  key={i}
+                  c={c}
+                  i={i}
+                  inView={inView}
+                  smooth={smooth}
+                  dir={dir}
+                  amp={amp}
+                />
+              )
+            })}
             <div className="opacity-60">
               <InkLine fade={false} thickness={1.1} />
             </div>
@@ -86,5 +82,63 @@ export function Highlights() {
         </div>
       </div>
     </section>
+  )
+}
+
+import type { MotionValue } from "motion/react"
+
+function HighlightRow({
+  c,
+  i,
+  inView,
+  smooth,
+  dir,
+  amp,
+}: {
+  c: { role: string; at: string }
+  i: number
+  inView: boolean
+  smooth: MotionValue<number>
+  dir: number
+  amp: number
+}) {
+  const rowY = useTransform(smooth, [0, 1], [amp * dir, -amp * dir])
+  return (
+    <motion.li
+      initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
+      animate={
+        inView
+          ? { opacity: 1, y: 0, filter: "blur(0px)" }
+          : { opacity: 0, y: 16, filter: "blur(8px)" }
+      }
+      transition={{
+        type: "spring",
+        stiffness: 180,
+        damping: 24,
+        delay: 0.1 + i * 0.09,
+      }}
+      style={{ y: rowY }}
+      className="flex flex-col gap-0.5 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+    >
+      <span
+        className="text-2xl sm:text-3xl"
+        style={{
+          fontFamily: "var(--font-display)",
+          color: "var(--ink)",
+          lineHeight: 1,
+        }}
+      >
+        {c.role}
+      </span>
+      <span
+        className="text-sm sm:text-base"
+        style={{
+          color: "var(--text-muted)",
+          fontFamily: "var(--font-display)",
+        }}
+      >
+        {c.at}
+      </span>
+    </motion.li>
   )
 }
