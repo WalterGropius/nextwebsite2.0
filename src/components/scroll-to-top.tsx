@@ -7,35 +7,30 @@ export function ScrollToTop() {
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
-    const toggleVisibility = () => {
-      setIsVisible(window.scrollY > 500)
-    }
-    window.addEventListener("scroll", toggleVisibility, { passive: true })
-    return () => window.removeEventListener("scroll", toggleVisibility)
+    const onScroll = () => setIsVisible(window.scrollY > 500)
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    })
-  }
+  const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" })
 
   return (
     <button
       onClick={scrollToTop}
-      className={`fixed bottom-8 right-8 z-50 flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300 ${
+      className={`ink-icons fixed bottom-6 right-6 z-50 flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300 ${
         isVisible
           ? "translate-y-0 opacity-100"
-          : "translate-y-4 opacity-0 pointer-events-none"
+          : "pointer-events-none translate-y-4 opacity-0"
       }`}
       style={{
-        background: "var(--gradient-primary)",
-        boxShadow: "0 4px 20px -4px var(--accent-glow)",
+        background: "var(--surface-dark)",
+        color: "var(--ink)",
+        border: "1.5px solid var(--ink)",
+        filter: "url(#ink-wobble)",
       }}
-      aria-label="Scroll to top"
+      aria-label="scroll to top"
     >
-      <ArrowUp size={20} className="text-white" />
+      <ArrowUp size={18} />
     </button>
   )
 }

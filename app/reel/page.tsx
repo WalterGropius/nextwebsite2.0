@@ -1,9 +1,12 @@
 "use client"
 
+import { useState, useRef, useEffect } from "react"
+import { motion } from "motion/react"
+import { Play, Volume2, VolumeX } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
-import { Play, Volume2, VolumeX } from "lucide-react"
-import { useState, useRef, useEffect } from "react"
+import { MotionText } from "@/components/motion-text"
+import { InkLine } from "@/components/ink-line"
 
 export default function Reel() {
   const videoRef = useRef<HTMLVideoElement>(null)
@@ -12,55 +15,76 @@ export default function Reel() {
   const [isLoaded, setIsLoaded] = useState(false)
 
   useEffect(() => {
-    if (videoRef.current) {
-      videoRef.current.play()
-    }
+    videoRef.current?.play().catch(() => {})
   }, [])
 
   const toggleMute = () => {
-    if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted
-      setIsMuted(!isMuted)
-    }
+    if (!videoRef.current) return
+    videoRef.current.muted = !videoRef.current.muted
+    setIsMuted(videoRef.current.muted)
   }
-
   const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause()
-      } else {
-        videoRef.current.play()
-      }
-      setIsPlaying(!isPlaying)
-    }
+    if (!videoRef.current) return
+    if (isPlaying) videoRef.current.pause()
+    else videoRef.current.play()
+    setIsPlaying(!isPlaying)
   }
 
   return (
     <PageLoader>
-      <main 
-        className="relative min-h-screen flex flex-col"
+      <main
+        className="relative min-h-screen"
         style={{ background: "var(--surface-dark)" }}
       >
         <Navigation />
-        
-        <div className="flex flex-1 flex-col items-center justify-center px-4 pt-20 pb-8">
-          {/* Header */}
-          <div className="mb-8 text-center">
-            <div className="accent-line mx-auto mb-4" />
-            <h1 
-              className="text-4xl font-bold sm:text-5xl md:text-6xl"
-              style={{ fontFamily: "var(--font-display)" }}
+
+        <section className="section-container pb-16 pt-28 sm:pt-32">
+          <div className="mb-8 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+            <h1
+              className="text-[clamp(2.6rem,6vw,5rem)] leading-[0.9]"
+              style={{
+                fontFamily: "var(--font-display)",
+                color: "var(--ink)",
+              }}
             >
-              <span className="gradient-text">Showreel</span>
+              <MotionText text="show" split="char" from="up" stagger={0.045} />
+              <MotionText
+                text="reel"
+                split="char"
+                from="up"
+                delay={0.15}
+                stagger={0.04}
+                className="ink-underline"
+              />
             </h1>
-            <p className="mt-4 text-gray-400">
-              A curated collection of VFX, 3D, and creative technology work
-            </p>
+            <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.9, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="max-w-md text-base"
+              style={{
+                color: "var(--text-muted)",
+                fontFamily: "var(--font-display)",
+              }}
+            >
+              vfx, 3d, creative tech — selected motion work.
+            </motion.p>
           </div>
 
-          {/* Video container */}
-          <div className="relative w-full max-w-5xl overflow-hidden rounded-2xl">
-            {/* Video */}
+          <div className="mb-6" style={{ color: "var(--ink)", opacity: 0.6 }}>
+            <InkLine fade={false} thickness={1.2} />
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="relative mx-auto w-full overflow-hidden"
+            style={{
+              border: "1.5px solid var(--ink)",
+              filter: "url(#ink-wobble)",
+            }}
+          >
             <video
               ref={videoRef}
               src="/reel_sm.mp4"
@@ -69,67 +93,69 @@ export default function Reel() {
               muted={isMuted}
               playsInline
               onLoadedData={() => setIsLoaded(true)}
-              className="w-full rounded-2xl"
+              className="block w-full"
               style={{
-                maxHeight: "70vh",
+                maxHeight: "72vh",
                 objectFit: "contain",
-                background: "var(--surface-elevated)",
+                background: "var(--surface-dark)",
               }}
             />
-
-            {/* Loading state */}
             {!isLoaded && (
-              <div 
-                className="absolute inset-0 flex items-center justify-center rounded-2xl"
-                style={{ background: "var(--surface-elevated)" }}
+              <div
+                className="pointer-events-none absolute inset-0 flex items-center justify-center"
+                style={{ background: "var(--surface-dark)" }}
               >
-                <div 
-                  className="h-12 w-12 animate-spin rounded-full border-2 border-t-transparent"
-                  style={{ borderColor: "var(--vista-blue)", borderTopColor: "transparent" }}
-                />
+                <p
+                  style={{
+                    color: "var(--text-muted)",
+                    fontFamily: "var(--font-display)",
+                  }}
+                >
+                  loading…
+                </p>
               </div>
             )}
-
-            {/* Controls overlay */}
-            <div className="absolute bottom-4 right-4 flex gap-2">
+            <div className="ink-icons absolute bottom-4 right-4 flex gap-2">
               <button
                 onClick={togglePlay}
-                className="glass-card flex h-10 w-10 items-center justify-center rounded-full transition-all hover:scale-110"
-                aria-label={isPlaying ? "Pause" : "Play"}
+                className="flex h-10 w-10 items-center justify-center rounded-full"
+                style={{
+                  background: "var(--surface-dark)",
+                  color: "var(--ink)",
+                  border: "1.5px solid var(--ink)",
+                }}
+                aria-label={isPlaying ? "pause" : "play"}
               >
                 {isPlaying ? (
-                  <div className="flex gap-1">
-                    <span className="h-3 w-1 rounded-full bg-white" />
-                    <span className="h-3 w-1 rounded-full bg-white" />
-                  </div>
+                  <span className="flex gap-1">
+                    <span
+                      className="h-3 w-1 rounded-full"
+                      style={{ background: "var(--ink)" }}
+                    />
+                    <span
+                      className="h-3 w-1 rounded-full"
+                      style={{ background: "var(--ink)" }}
+                    />
+                  </span>
                 ) : (
-                  <Play size={16} className="ml-1 text-white" fill="white" />
+                  <Play size={14} fill="currentColor" />
                 )}
               </button>
               <button
                 onClick={toggleMute}
-                className="glass-card flex h-10 w-10 items-center justify-center rounded-full transition-all hover:scale-110"
-                aria-label={isMuted ? "Unmute" : "Mute"}
+                className="flex h-10 w-10 items-center justify-center rounded-full"
+                style={{
+                  background: "var(--surface-dark)",
+                  color: "var(--ink)",
+                  border: "1.5px solid var(--ink)",
+                }}
+                aria-label={isMuted ? "unmute" : "mute"}
               >
-                {isMuted ? (
-                  <VolumeX size={18} className="text-white" />
-                ) : (
-                  <Volume2 size={18} className="text-white" />
-                )}
+                {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
               </button>
             </div>
-          </div>
-
-          {/* CTA */}
-          <div className="mt-8 flex gap-4">
-            <a href="/portfolio-s" className="btn-secondary">
-              View Portfolio
-            </a>
-            <a href="mailto:zenbauhaus@gmail.com" className="btn-primary">
-              Get in Touch
-            </a>
-          </div>
-        </div>
+          </motion.div>
+        </section>
       </main>
     </PageLoader>
   )

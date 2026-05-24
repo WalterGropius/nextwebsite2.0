@@ -184,7 +184,7 @@ export default function CVPage() {
             </motion.p>
 
             {/* Download row */}
-            <div className="no-print mt-10 flex flex-wrap items-center gap-3">
+            <div className="no-print ink-icons mt-10 flex flex-wrap items-center gap-3">
               <a href="/cvBauer.html" download className="btn-secondary">
                 <Download size={14} />
                 <span>html</span>

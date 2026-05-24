@@ -104,7 +104,7 @@ export function Contact() {
                   delay: 1 + i * 0.08,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="group inline-flex items-center gap-2 text-base sm:text-lg"
+                className="group ink-icons inline-flex items-center gap-2 text-base sm:text-lg"
                 style={{
                   fontFamily: "var(--font-display)",
                   color: "var(--ink)",

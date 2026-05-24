@@ -96,7 +96,7 @@ export function Navigation() {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="flex h-10 w-10 items-center justify-center md:hidden"
+            className="ink-icons flex h-10 w-10 items-center justify-center md:hidden"
             style={{ color: "var(--ink)" }}
             aria-label="toggle menu"
           >
