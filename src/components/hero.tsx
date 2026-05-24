@@ -38,10 +38,10 @@ export function Hero() {
           initial={{ opacity: 0, y: 18, filter: "blur(8px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto max-w-3xl text-[clamp(1.6rem,4vw,2.8rem)]"
+          className="mx-auto max-w-4xl text-[clamp(1.9rem,4.6vw,3.4rem)]"
           style={{
             fontFamily: "var(--font-display)",
-            lineHeight: 1.15,
+            lineHeight: 1.12,
             letterSpacing: "-0.005em",
           }}
         >
@@ -51,7 +51,7 @@ export function Hero() {
 
         {/* Rotating role — quiet, slot under the headline */}
         <div
-          className="relative mt-7 flex h-[1.6em] items-center overflow-hidden text-[0.95rem] sm:text-base"
+          className="relative mt-8 flex h-[1.6em] items-center overflow-hidden text-base sm:text-lg"
           aria-live="polite"
         >
           <AnimatePresence mode="popLayout" initial={false}>
@@ -98,7 +98,7 @@ export function Hero() {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 0.8 }}
         style={{ opacity }}
-        className="hero-ink-text absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-[0.6rem] uppercase tracking-[0.35em]"
+        className="hero-ink-text absolute bottom-8 left-1/2 z-10 -translate-x-1/2 text-[0.7rem] uppercase tracking-[0.35em]"
       >
         <motion.div
           animate={{ y: [0, 6, 0] }}
