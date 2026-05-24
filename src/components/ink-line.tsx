@@ -9,77 +9,55 @@ interface InkLineProps {
   filter?: "soft" | "strong"
 }
 
+// Renders a wobbled rule. Uses a thin background div instead of an SVG
+// stroke — sub-pixel SVG strokes plus a displacement-map filter render
+// inconsistently across browsers, but a solid div with filter:url() is
+// rock-solid and the displacement gives it the same hand-drawn quality.
 export function InkLine({
   orientation = "horizontal",
   className = "",
-  color = "var(--ink)",
-  thickness = 1.4,
+  color = "currentColor",
+  thickness = 1.6,
   fade = true,
   filter = "soft",
 }: InkLineProps) {
   const filterId = filter === "strong" ? "ink-wobble-strong" : "ink-wobble"
 
   if (orientation === "vertical") {
+    const fadeMask =
+      "linear-gradient(180deg, transparent 0%, #000 20%, #000 80%, transparent 100%)"
     return (
-      <svg
+      <div
         aria-hidden
         className={className}
-        preserveAspectRatio="none"
-        viewBox="0 0 4 100"
-        style={{ display: "block", width: thickness * 2, height: "100%" }}
-      >
-        <defs>
-          {fade && (
-            <linearGradient id={`vfade-${filterId}`} x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor={color} stopOpacity="0" />
-              <stop offset="20%" stopColor={color} stopOpacity="1" />
-              <stop offset="80%" stopColor={color} stopOpacity="1" />
-              <stop offset="100%" stopColor={color} stopOpacity="0" />
-            </linearGradient>
-          )}
-        </defs>
-        <line
-          x1="2"
-          y1="0"
-          x2="2"
-          y2="100"
-          stroke={fade ? `url(#vfade-${filterId})` : color}
-          strokeWidth={thickness}
-          strokeLinecap="round"
-          filter={`url(#${filterId})`}
-        />
-      </svg>
+        style={{
+          width: thickness,
+          height: "100%",
+          background: color,
+          filter: `url(#${filterId})`,
+          WebkitMaskImage: fade ? fadeMask : undefined,
+          maskImage: fade ? fadeMask : undefined,
+          borderRadius: 9999,
+        }}
+      />
     )
   }
 
+  const fadeMask =
+    "linear-gradient(90deg, transparent 0%, #000 15%, #000 85%, transparent 100%)"
   return (
-    <svg
+    <div
       aria-hidden
       className={className}
-      preserveAspectRatio="none"
-      viewBox="0 0 1000 6"
-      style={{ display: "block", width: "100%", height: thickness * 3 }}
-    >
-      <defs>
-        {fade && (
-          <linearGradient id={`hfade-${filterId}`} x1="0" y1="0" x2="1" y2="0">
-            <stop offset="0%" stopColor={color} stopOpacity="0" />
-            <stop offset="15%" stopColor={color} stopOpacity="1" />
-            <stop offset="85%" stopColor={color} stopOpacity="1" />
-            <stop offset="100%" stopColor={color} stopOpacity="0" />
-          </linearGradient>
-        )}
-      </defs>
-      <line
-        x1="0"
-        y1="3"
-        x2="1000"
-        y2="3"
-        stroke={fade ? `url(#hfade-${filterId})` : color}
-        strokeWidth={thickness}
-        strokeLinecap="round"
-        filter={`url(#${filterId})`}
-      />
-    </svg>
+      style={{
+        width: "100%",
+        height: thickness,
+        background: color,
+        filter: `url(#${filterId})`,
+        WebkitMaskImage: fade ? fadeMask : undefined,
+        maskImage: fade ? fadeMask : undefined,
+        borderRadius: 9999,
+      }}
+    />
   )
 }
