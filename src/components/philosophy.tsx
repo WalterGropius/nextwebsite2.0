@@ -9,17 +9,35 @@ const pillars = [
   {
     n: "01",
     title: "pragmatism over purity",
-    body: "the best code ships, scales, and the next person can read it. right tool for the job — typescript, c++, python, doesn't matter.",
+    body: (
+      <>
+        the best code <strong>ships</strong>, scales, and the next person
+        can read it. right tool for the job —{" "}
+        <em>typescript, c++, python</em>, doesn&apos;t matter.
+      </>
+    ),
   },
   {
     n: "02",
     title: "the black box protocol",
-    body: "i'm drawn to systems i don't understand yet. break them down to parts, find the edges, rebuild. fastest way to learn any domain.",
+    body: (
+      <>
+        i&apos;m drawn to systems i <em>don&apos;t</em> understand yet.
+        break them to parts, find the edges, rebuild.{" "}
+        <strong>fastest way to learn any domain.</strong>
+      </>
+    ),
   },
   {
     n: "03",
     title: "agentic execution",
-    body: "point me at a fuzzy, structurally hard problem and walk away. high-ambiguity is where i'm most useful.",
+    body: (
+      <>
+        point me at a <em>fuzzy</em>, structurally hard problem and walk
+        away. high-ambiguity is where i&apos;m{" "}
+        <strong>most useful</strong>.
+      </>
+    ),
   },
 ]
 

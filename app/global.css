@@ -143,10 +143,16 @@
     paint-order: stroke fill;
   }
 
-  /* Style emphasis as second-color handwritten accents */
+  /* em stays italic — Zenhand has no italic glyphs, so we synthesize
+     a light skew for the slant. Acts like an aside in the author's
+     own hand. strong gets the heaviest weight in the variable axis. */
   em {
-    font-style: normal;
-    color: var(--ink);
+    font-style: italic;
+    color: inherit;
+  }
+  strong, b {
+    font-weight: 800;
+    -webkit-text-stroke: 0.025em currentColor;
   }
 
   /* Allow elements to opt-out of the faux-bold stroke (e.g. logo glyph
@@ -502,22 +508,51 @@
     transition: transform 240ms cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
-  /* Hero text — white fill with inked black outline. Reads on top of
-     the splat AND when the gradient fades to surface-dark. Stroke is
-     painted behind the fill so the white core stays clean. */
-  .hero-light-text,
-  .hero-light-text * {
-    color: #fdfdfb;
-    -webkit-text-stroke: 0.08em var(--ink);
+  /* Hero text — black inked fill with a soft white halo for legibility
+     against the white splat. The stroke is intentionally thin (it sits
+     UNDER the fill via paint-order:stroke fill, so it only shows as a
+     halo around the glyph edges) and a wider text-shadow does the rest
+     of the cushioning when the background gets busy. */
+  .hero-ink-text,
+  .hero-ink-text * {
+    color: var(--ink);
+    -webkit-text-stroke: 0.012em #fdfdfb;
     paint-order: stroke fill;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+    text-shadow:
+      0 0 0.04em #fdfdfb,
+      0 0 0.18em rgba(253, 253, 251, 0.95),
+      0 0 0.45em rgba(253, 253, 251, 0.7);
   }
-  /* Bigger headline gets a heavier stroke so it carries weight at scale */
-  .hero-light-text p,
-  .hero-light-text h1,
-  .hero-light-text h2 {
-    -webkit-text-stroke: 0.06em var(--ink);
+  .hero-ink-text p,
+  .hero-ink-text h1,
+  .hero-ink-text h2 {
+    -webkit-text-stroke: 0.018em #fdfdfb;
+    text-shadow:
+      0 0 0.06em #fdfdfb,
+      0 0 0.22em rgba(253, 253, 251, 0.95),
+      0 0 0.55em rgba(253, 253, 251, 0.75);
   }
+
+  /* Humph — italic accent with a real skew. Zenhand has no italic
+     glyphs and its synth-italic is too subtle to read in a sentence,
+     so we shove a -7deg lean on top to make the aside obvious. */
+  .humph {
+    font-style: italic;
+    transform: skewX(-7deg);
+    display: inline-block;
+    font-weight: 700;
+  }
+  /* Tiny note that's only really for the OGs — handwritten, low
+     priority, hover ramps it up so the curious can spot it. */
+  .og-note {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
+    opacity: 0.55;
+    transition: opacity 240ms ease;
+  }
+  .og-note:hover { opacity: 1; }
 
   /* Apply the ink-wobble displacement to any inline svg icon. Use
      `.ink-icon` on individual icons or `.ink-icons *` on a wrapper to

@@ -96,11 +96,23 @@ export function Navigation() {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="ink-icons flex h-10 w-10 items-center justify-center md:hidden"
+            className="relative z-[60] flex h-10 w-10 items-center justify-center md:hidden"
             style={{ color: "var(--ink)" }}
             aria-label="toggle menu"
           >
-            {isOpen ? <X size={22} /> : <Menu size={22} />}
+            {isOpen ? (
+              <X
+                size={30}
+                strokeWidth={2.6}
+                style={{ filter: "url(#ink-wobble-strong)" }}
+              />
+            ) : (
+              <Menu
+                size={30}
+                strokeWidth={2.6}
+                style={{ filter: "url(#ink-wobble-strong)" }}
+              />
+            )}
           </button>
         </div>
 
@@ -153,13 +165,17 @@ export function Navigation() {
                     color: "var(--ink)",
                   }}
                 >
-                  {l.label}
+                  <span className="ink-underline">{l.label}</span>
                 </Link>
               </motion.div>
             ))}
             <div
-              className="my-6 h-px w-32"
-              style={{ background: "var(--ink)", opacity: 0.3 }}
+              className="my-6 w-32 opacity-50"
+              style={{
+                height: 1.4,
+                background: "var(--ink)",
+                filter: "url(#ink-wobble)",
+              }}
             />
             {downloadLinks.map((l, i) => (
               <motion.div
@@ -175,16 +191,25 @@ export function Navigation() {
                   href={l.href}
                   download
                   onClick={() => setIsOpen(false)}
-                  className="block py-1 text-lg"
+                  className="block py-1 text-2xl"
                   style={{
                     fontFamily: "var(--font-display)",
                     color: "var(--text-muted)",
                   }}
                 >
-                  {l.label}
+                  <span className="ink-underline">{l.label}</span>
                 </Link>
               </motion.div>
             ))}
+            {/* Tiny aside — only the curious notice it */}
+            <motion.span
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.55 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              className="og-note mt-10"
+            >
+              skate. rap. ship.
+            </motion.span>
           </motion.div>
         )}
       </AnimatePresence>
