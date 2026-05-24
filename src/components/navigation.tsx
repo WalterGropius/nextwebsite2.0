@@ -4,20 +4,23 @@ import Link from "next/link"
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { Menu, X } from "lucide-react"
+import { useT } from "@/lib/i18n/provider"
+import { LangThemeSwitcher } from "./lang-theme-switcher"
 
 const navLinks = [
-  { href: "/landing", label: "about" },
-  { href: "/portfolio-s", label: "work" },
-  { href: "/reel", label: "reel" },
-  { href: "/sketchfab", label: "3d" },
-  { href: "/cv", label: "cv" },
-  { href: "/contact", label: "contact" },
+  { href: "/landing", key: "nav.about" },
+  { href: "/portfolio-s", key: "nav.work" },
+  { href: "/reel", key: "nav.reel" },
+  { href: "/sketchfab", key: "nav.3d" },
+  { href: "/cv", key: "nav.cv" },
+  { href: "/contact", key: "nav.contact" },
 ]
 
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
+  const t = useT()
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 40)
@@ -39,7 +42,9 @@ export function Navigation() {
         className="fixed inset-x-0 top-0 z-50 transition-all duration-500"
         style={{
           padding: isScrolled ? "0.75rem 0" : "1.25rem 0",
-          background: isScrolled ? "rgba(246, 246, 244, 0.78)" : "transparent",
+          background: isScrolled
+            ? "color-mix(in srgb, var(--surface-dark) 78%, transparent)"
+            : "transparent",
           backdropFilter: isScrolled ? "blur(20px) saturate(110%)" : "none",
           WebkitBackdropFilter: isScrolled ? "blur(20px) saturate(110%)" : "none",
         }}
@@ -69,31 +74,35 @@ export function Navigation() {
                   fontWeight: 600,
                 }}
               >
-                <span className="ink-underline">{l.label}</span>
+                <span className="ink-underline">{t(l.key)}</span>
               </Link>
             ))}
+            <LangThemeSwitcher />
           </div>
 
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="relative z-[60] flex h-10 w-10 items-center justify-center md:hidden"
-            style={{ color: "var(--ink)" }}
-            aria-label="toggle menu"
-          >
-            {isOpen ? (
-              <X
-                size={30}
-                strokeWidth={2.6}
-                style={{ filter: "url(#ink-wobble-strong)" }}
-              />
-            ) : (
-              <Menu
-                size={30}
-                strokeWidth={2.6}
-                style={{ filter: "url(#ink-wobble-strong)" }}
-              />
-            )}
-          </button>
+          <div className="flex items-center gap-1 md:hidden">
+            <LangThemeSwitcher compact />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="relative z-[60] flex h-10 w-10 items-center justify-center"
+              style={{ color: "var(--ink)" }}
+              aria-label={t("nav.toggleMenu")}
+            >
+              {isOpen ? (
+                <X
+                  size={30}
+                  strokeWidth={2.6}
+                  style={{ filter: "url(#ink-wobble-strong)" }}
+                />
+              ) : (
+                <Menu
+                  size={30}
+                  strokeWidth={2.6}
+                  style={{ filter: "url(#ink-wobble-strong)" }}
+                />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Inked rule under nav once scrolled */}
@@ -121,7 +130,10 @@ export function Navigation() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
             className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-1 px-8 md:hidden"
-            style={{ background: "rgba(246, 246, 244, 0.97)" }}
+            style={{
+              background:
+                "color-mix(in srgb, var(--surface-dark) 97%, transparent)",
+            }}
           >
             {navLinks.map((l, i) => (
               <motion.div
@@ -145,7 +157,7 @@ export function Navigation() {
                     color: "var(--ink)",
                   }}
                 >
-                  {l.label}
+                  {t(l.key)}
                 </Link>
               </motion.div>
             ))}
@@ -156,7 +168,7 @@ export function Navigation() {
               transition={{ delay: 0.6, duration: 0.8 }}
               className="og-note mt-12"
             >
-              skate. rap. ship.
+              {t("nav.mobile.easter")}
             </motion.span>
           </motion.div>
         )}

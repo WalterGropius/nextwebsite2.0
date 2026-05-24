@@ -5,9 +5,11 @@ import { motion } from "motion/react"
 import { ExternalLink } from "lucide-react"
 import { MotionText } from "./motion-text"
 import { InkLine } from "./ink-line"
+import { useT } from "@/lib/i18n/provider"
 
 export function SketchfabEmbed() {
   const [isLoaded, setIsLoaded] = useState(false)
+  const t = useT()
 
   return (
     <section className="relative py-16 sm:py-24">
@@ -18,9 +20,9 @@ export function SketchfabEmbed() {
             className="text-[clamp(2.6rem,6vw,5rem)] leading-[0.9]"
             style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
           >
-            <MotionText text="3d" split="char" from="up" stagger={0.05} />{" "}
+            <MotionText text={t("sketchfab.title.0")} split="char" from="up" stagger={0.05} />{" "}
             <MotionText
-              text="works"
+              text={t("sketchfab.title.1")}
               split="char"
               from="up"
               delay={0.15}
@@ -38,7 +40,7 @@ export function SketchfabEmbed() {
               fontFamily: "var(--font-display)",
             }}
           >
-            interactive models and sculptures. drag to spin, scroll to zoom.
+            {t("sketchfab.descriptor")}
           </motion.p>
         </div>
 
@@ -68,7 +70,7 @@ export function SketchfabEmbed() {
                   color: "var(--text-muted)",
                 }}
               >
-                loading…
+                {t("sketchfab.loading")}
               </p>
             </div>
           )}
@@ -97,7 +99,7 @@ export function SketchfabEmbed() {
               color: "var(--ink)",
             }}
           >
-            <span className="ink-underline">all on sketchfab</span>
+            <span className="ink-underline">{t("sketchfab.cta")}</span>
             <ExternalLink size={14} />
           </a>
         </div>

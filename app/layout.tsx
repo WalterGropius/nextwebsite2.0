@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Layout } from '@/components/dom/Layout'
+import { ThemeProvider } from '@/components/theme-provider'
+import { I18nProvider } from '@/lib/i18n/provider'
 import '@/global.css'
 
 export const metadata: Metadata = {
@@ -47,7 +49,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="antialiased">
+    <html lang="en" className="antialiased" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -74,7 +76,16 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             </filter>
           </defs>
         </svg>
-        <Layout>{children}</Layout>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange={false}
+        >
+          <I18nProvider>
+            <Layout>{children}</Layout>
+          </I18nProvider>
+        </ThemeProvider>
       </body>
     </html>
   )

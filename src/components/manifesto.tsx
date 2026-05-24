@@ -3,10 +3,12 @@
 import { motion, useInView } from "motion/react"
 import { useRef } from "react"
 import { MotionText } from "./motion-text"
+import { useT } from "@/lib/i18n/provider"
 
 export function Manifesto() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, amount: 0.4 })
+  const t = useT()
 
   return (
     <section
@@ -24,18 +26,18 @@ export function Manifesto() {
               letterSpacing: "-0.01em",
             }}
           >
-            <MotionText text="i make things" split="word" from="up" />{" "}
+            <MotionText text={t("manifesto.line1")} split="word" from="up" />{" "}
             <MotionText
-              text="that shouldn't be"
+              text={t("manifesto.line2")}
               split="word"
               from="up"
               delay={0.3}
             />{" "}
             <span style={{ color: "var(--text-muted)" }}>
-              <MotionText text="possible —" split="word" from="up" delay={0.6} />
+              <MotionText text={t("manifesto.line3")} split="word" from="up" delay={0.6} />
             </span>{" "}
             <MotionText
-              text="and ship them."
+              text={t("manifesto.line4")}
               split="word"
               from="up"
               delay={0.9}
@@ -54,11 +56,12 @@ export function Manifesto() {
               lineHeight: 1.55,
             }}
           >
-            <strong>no rigid title.</strong> some days that&apos;s leading a
-            team scaling a startup <em>zero-to-one</em>. others it&apos;s
-            wiring agentic ai, building spatial interfaces in{" "}
-            <em>unreal</em>, or tearing apart hardware just to understand it.{" "}
-            <span className="humph">the more impossible, the more interesting.</span>
+            <strong>{t("manifesto.body.0")}</strong> {t("manifesto.body.1")}{" "}
+            <em>{t("manifesto.body.2")}</em>
+            {t("manifesto.body.3")}{" "}
+            <em>{t("manifesto.body.4")}</em>
+            {t("manifesto.body.5")}{" "}
+            <span className="humph">{t("manifesto.body.tag")}</span>
           </motion.p>
         </div>
       </div>

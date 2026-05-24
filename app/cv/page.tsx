@@ -6,65 +6,16 @@ import { InkLine } from "@/components/ink-line"
 import { MotionText } from "@/components/motion-text"
 import { motion } from "motion/react"
 import { Download, FileText, Printer } from "lucide-react"
+import { useT } from "@/lib/i18n/provider"
 
-const intro =
-  "i build systems, untangle messy problems, and write code. no rigid title — sometimes that's leading a team scaling a startup zero-to-one, sometimes wiring agentic ai, building spatial interfaces in unreal, or tearing apart hardware just to understand it. the more impossible, the more interesting."
+const EXPERIENCE_COUNT = 7
+const EDUCATION_COUNT = 2
+const LANGUAGE_COUNT = 4
 
-const experience = [
+// Tool / brand lists — stay English; only the group label is translated.
+const capabilityItems: Array<{ labelKey: string; items: string[] }> = [
   {
-    title: "co-founder · cto",
-    company: "flipas",
-    period: "2024 — 2025",
-    blurb:
-      "gen z ai life accelerator. architected the mvp, secured seed funding, led a team of five engineers. co-designed sombra — the empathetic conversational mentor. pioneered a dynamic ui framework for ai-driven, context-aware interfaces.",
-  },
-  {
-    title: "founder · creator",
-    company: "sombra os",
-    period: "2024 — ongoing",
-    blurb:
-      "local-first cognitive partner. semantic tree-search rag, knowledge distillation, automation pipelines. a cognitive prosthetic for the polymath's time debt — collaborating with ai without the ui getting in the way.",
-  },
-  {
-    title: "co-founder",
-    company: "lucid solution designers",
-    period: "ongoing",
-    blurb:
-      "inverted incubator. instead of one product, a platform that can generate many — designed to absorb the kinds of ambiguous, structurally-hard briefs most studios refuse.",
-  },
-  {
-    title: "creator",
-    company: "revizor",
-    period: "ongoing",
-    blurb:
-      "spatial computing in unreal 5. open-source intelligence threaded into real-time 3d. procedural generation, complex c++, visual systems that make impossibly dense information legible fast.",
-  },
-  {
-    title: "vfx supervisor #2",
-    company: "wilma film · hagen",
-    period: "2023",
-    blurb:
-      "on-set vfx data collection — chrome ball, color chart, hdri pipeline. coordinated with script supervisors for accurate vfx documentation.",
-  },
-  {
-    title: "technical artist",
-    company: "numinos · vr historical recreations",
-    period: "2023",
-    blurb:
-      "pushed real-time rendering boundaries for vr. engineered custom real-time flood simulation. immersive recreations of historical cities.",
-  },
-  {
-    title: "spider",
-    company: "new life · global innovation",
-    period: "2018 — ongoing",
-    blurb:
-      "product integration, development, talent acquisition. international teams, emerging tech.",
-  },
-]
-
-const capabilities = [
-  {
-    label: "3d · vfx · xr",
+    labelKey: "cv.cap.0.label",
     items: [
       "unreal engine",
       "blender",
@@ -79,7 +30,7 @@ const capabilities = [
     ],
   },
   {
-    label: "engineering",
+    labelKey: "cv.cap.1.label",
     items: [
       "typescript",
       "next.js · react",
@@ -94,7 +45,7 @@ const capabilities = [
     ],
   },
   {
-    label: "ai",
+    labelKey: "cv.cap.2.label",
     items: [
       "llms · prompting",
       "agentic systems",
@@ -109,7 +60,7 @@ const capabilities = [
     ],
   },
   {
-    label: "hardware",
+    labelKey: "cv.cap.3.label",
     items: [
       "esp32 · arduino",
       "pcb design",
@@ -119,18 +70,6 @@ const capabilities = [
       "shader pipeline",
     ],
   },
-]
-
-const education = [
-  { what: "bac scientifique", where: "lycée français de prague", when: "2013" },
-  { what: "self-taught", where: "full-stack · vr/ar · ai/ml · real-time graphics", when: "ongoing" },
-]
-
-const languages = [
-  { l: "english", v: "fluent" },
-  { l: "czech", v: "working" },
-  { l: "french", v: "working" },
-  { l: "spanish", v: "reading" },
 ]
 
 const speaking = [
@@ -156,6 +95,26 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 }
 
 export default function CVPage() {
+  const t = useT()
+
+  const experience = Array.from({ length: EXPERIENCE_COUNT }, (_, i) => ({
+    title: t(`cv.exp.${i}.title`),
+    company: t(`cv.exp.${i}.company`),
+    period: t(`cv.exp.${i}.period`),
+    blurb: t(`cv.exp.${i}.blurb`),
+  }))
+
+  const education = Array.from({ length: EDUCATION_COUNT }, (_, i) => ({
+    what: t(`cv.edu.${i}.what`),
+    where: t(`cv.edu.${i}.where`),
+    when: t(`cv.edu.${i}.when`),
+  }))
+
+  const languages = Array.from({ length: LANGUAGE_COUNT }, (_, i) => ({
+    l: t(`cv.lang.${i}.l`),
+    v: t(`cv.lang.${i}.v`),
+  }))
+
   return (
     <PageLoader>
       <main
@@ -165,7 +124,6 @@ export default function CVPage() {
         <Navigation />
 
         <article className="section-container pb-24 pt-28 sm:pt-32" id="cv-print">
-          {/* Header */}
           <header className="mb-16">
             <h1
               className="text-[clamp(3rem,10vw,7rem)] leading-[0.9]"
@@ -180,7 +138,7 @@ export default function CVPage() {
               className="mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-sm uppercase tracking-[0.3em]"
               style={{ color: "var(--text-muted)" }}
             >
-              <span>prague · cz</span>
+              <span>{t("cv.location")}</span>
               <span aria-hidden style={{ opacity: 0.4 }}>·</span>
               <a href="mailto:zenbauhaus@gmail.com" className="ink-underline-hover">
                 zenbauhaus@gmail.com
@@ -198,14 +156,13 @@ export default function CVPage() {
                 lineHeight: 1.55,
               }}
             >
-              {intro}
+              {t("cv.intro")}
             </motion.p>
 
-            {/* Download row */}
             <div className="no-print ink-icons mt-10 flex flex-wrap items-center gap-3">
               <a href="/cvBauer.html" download className="btn-secondary">
                 <Download size={14} />
-                <span>html</span>
+                <span>{t("cv.downloads.html")}</span>
               </a>
               <button
                 type="button"
@@ -213,11 +170,11 @@ export default function CVPage() {
                 className="btn-secondary"
               >
                 <Printer size={14} />
-                <span>pdf</span>
+                <span>{t("cv.downloads.pdf")}</span>
               </button>
               <a href="/artBauer.pdf" download className="btn-secondary">
                 <FileText size={14} />
-                <span>art pdf</span>
+                <span>{t("cv.downloads.artPdf")}</span>
               </a>
             </div>
           </header>
@@ -226,12 +183,11 @@ export default function CVPage() {
             <InkLine fade={false} thickness={1.4} />
           </div>
 
-          {/* Experience */}
           <section className="mb-16">
-            <SectionTitle>experience</SectionTitle>
+            <SectionTitle>{t("cv.section.experience")}</SectionTitle>
             <div className="flex flex-col">
               {experience.map((job, i) => (
-                <div key={job.company} className="py-6">
+                <div key={i} className="py-6">
                   <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6">
                     <div className="flex flex-col">
                       <span
@@ -284,12 +240,11 @@ export default function CVPage() {
             </div>
           </section>
 
-          {/* Capabilities */}
           <section className="mb-16">
-            <SectionTitle>capabilities</SectionTitle>
+            <SectionTitle>{t("cv.section.capabilities")}</SectionTitle>
             <div className="grid gap-12 sm:grid-cols-2 md:gap-10 lg:grid-cols-4">
-              {capabilities.map((g, gi) => (
-                <div key={g.label}>
+              {capabilityItems.map((g, gi) => (
+                <div key={g.labelKey}>
                   <div className="mb-4 flex items-baseline gap-3">
                     <span
                       className="text-[0.7rem] uppercase tracking-[0.3em]"
@@ -304,7 +259,7 @@ export default function CVPage() {
                         color: "var(--ink)",
                       }}
                     >
-                      {g.label}
+                      {t(g.labelKey)}
                     </span>
                   </div>
                   <div className="mb-4" style={{ color: "var(--ink)" }}>
@@ -329,16 +284,15 @@ export default function CVPage() {
             </div>
           </section>
 
-          {/* Education + Languages */}
           <section className="mb-16 grid gap-12 md:grid-cols-2">
             <div>
-              <SectionTitle>education</SectionTitle>
+              <SectionTitle>{t("cv.section.education")}</SectionTitle>
               <div className="flex flex-col">
-                {education.map((e) => (
+                {education.map((e, i) => (
                   <div
-                    key={e.what}
+                    key={i}
                     className="flex flex-col gap-0.5 border-b py-4 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
-                    style={{ borderColor: "rgba(15,17,23,0.08)" }}
+                    style={{ borderColor: "var(--border-subtle)" }}
                   >
                     <div className="flex flex-col">
                       <span
@@ -372,13 +326,13 @@ export default function CVPage() {
             </div>
 
             <div>
-              <SectionTitle>languages</SectionTitle>
+              <SectionTitle>{t("cv.section.languages")}</SectionTitle>
               <div className="flex flex-col">
-                {languages.map((l) => (
+                {languages.map((l, i) => (
                   <div
-                    key={l.l}
+                    key={i}
                     className="flex items-baseline justify-between border-b py-4"
-                    style={{ borderColor: "rgba(15,17,23,0.08)" }}
+                    style={{ borderColor: "var(--border-subtle)" }}
                   >
                     <span
                       className="text-lg"
@@ -401,9 +355,8 @@ export default function CVPage() {
             </div>
           </section>
 
-          {/* Speaking */}
           <section className="mb-16">
-            <SectionTitle>speaking</SectionTitle>
+            <SectionTitle>{t("cv.section.speaking")}</SectionTitle>
             <ul
               className="flex flex-wrap gap-x-6 gap-y-2 text-lg"
               style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
@@ -419,7 +372,6 @@ export default function CVPage() {
             </ul>
           </section>
 
-          {/* CTA */}
           <section className="no-print">
             <div
               className="my-10"
@@ -442,7 +394,7 @@ export default function CVPage() {
                 className="text-xs uppercase tracking-[0.3em]"
                 style={{ color: "var(--text-muted)" }}
               >
-                taking on work · 2026
+                {t("cv.cta.taking")}
               </span>
             </div>
           </section>

@@ -4,19 +4,17 @@ import { motion, useInView } from "motion/react"
 import { useRef } from "react"
 import { MotionText } from "./motion-text"
 import { InkLine } from "./ink-line"
-
-const credits = [
-  { role: "founder", at: "sombra os · proactive cognitive partner" },
-  { role: "cto · 0 → 1", at: "flipas · lucid" },
-  { role: "spatial computing", at: "revizor · unreal · osint" },
-  { role: "vfx supervisor", at: "wilma film · hagen" },
-  { role: "speaker", at: "nike berlin · czechvrfest" },
-  { role: "vr / xr", at: "ten years deep" },
-]
+import { useT } from "@/lib/i18n/provider"
 
 export function Highlights() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, amount: 0.25 })
+  const t = useT()
+
+  const credits = Array.from({ length: 6 }, (_, i) => ({
+    role: t(`highlights.${i}.role`),
+    at: t(`highlights.${i}.at`),
+  }))
 
   return (
     <section className="relative py-16 sm:py-24" ref={ref}>
@@ -27,10 +25,10 @@ export function Highlights() {
               className="text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.92]"
               style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
             >
-              <MotionText text="some of" split="word" from="up" />
+              <MotionText text={t("highlights.title.0")} split="word" from="up" />
               <br />
               <MotionText
-                text="the work"
+                text={t("highlights.title.1")}
                 split="word"
                 from="up"
                 delay={0.2}
@@ -45,7 +43,7 @@ export function Highlights() {
             </div>
             {credits.map((c, i) => (
               <motion.li
-                key={c.role}
+                key={i}
                 initial={{ opacity: 0, y: 16, filter: "blur(8px)" }}
                 animate={
                   inView

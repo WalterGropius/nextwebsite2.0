@@ -2,6 +2,7 @@
 
 import { Suspense, useState, useEffect, useRef } from "react"
 import { Canvas } from "@react-three/fiber"
+import { useTheme } from "next-themes"
 import { Hero } from "@/components/hero"
 import { Manifesto } from "@/components/manifesto"
 import { Arsenal } from "@/components/arsenal"
@@ -31,6 +32,8 @@ export default function Home() {
   const [mounted, setMounted] = useState(false)
   const [canvasVisible, setCanvasVisible] = useState(true)
   const canvasRef = useRef<HTMLDivElement>(null)
+  const { resolvedTheme } = useTheme()
+  const dark = mounted && resolvedTheme === "dark"
 
   useEffect(() => {
     setMounted(true)
@@ -72,7 +75,7 @@ export default function Home() {
                 frameloop={canvasVisible ? "always" : "demand"}
               >
                 <Suspense fallback={null}>
-                  <Flowers />
+                  <Flowers dark={dark} />
                 </Suspense>
               </Canvas>
             ) : null}

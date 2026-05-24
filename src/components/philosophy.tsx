@@ -4,46 +4,48 @@ import { motion, useInView } from "motion/react"
 import { useRef } from "react"
 import { MotionText } from "./motion-text"
 import { InkLine } from "./ink-line"
-
-const pillars = [
-  {
-    n: "01",
-    title: "pragmatism over purity",
-    body: (
-      <>
-        the best code <strong>ships</strong>, scales, and the next person
-        can read it. right tool for the job —{" "}
-        <em>typescript, c++, python</em>, doesn&apos;t matter.
-      </>
-    ),
-  },
-  {
-    n: "02",
-    title: "the black box protocol",
-    body: (
-      <>
-        i&apos;m drawn to systems i <em>don&apos;t</em> understand yet.
-        break them to parts, find the edges, rebuild.{" "}
-        <strong>fastest way to learn any domain.</strong>
-      </>
-    ),
-  },
-  {
-    n: "03",
-    title: "agentic execution",
-    body: (
-      <>
-        point me at a <em>fuzzy</em>, structurally hard problem and walk
-        away. high-ambiguity is where i&apos;m{" "}
-        <strong>most useful</strong>.
-      </>
-    ),
-  },
-]
+import { useT } from "@/lib/i18n/provider"
 
 export function Philosophy() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, amount: 0.2 })
+  const t = useT()
+
+  const pillars = [
+    {
+      n: "01",
+      title: t("philosophy.0.title"),
+      body: (
+        <>
+          {t("philosophy.0.body.0")} <strong>{t("philosophy.0.body.1")}</strong>
+          {t("philosophy.0.body.2")} <em>{t("philosophy.0.body.3")}</em>
+          {t("philosophy.0.body.4")}
+        </>
+      ),
+    },
+    {
+      n: "02",
+      title: t("philosophy.1.title"),
+      body: (
+        <>
+          {t("philosophy.1.body.0")} <em>{t("philosophy.1.body.1")}</em>{" "}
+          {t("philosophy.1.body.2")}{" "}
+          <strong>{t("philosophy.1.body.3")}</strong>
+        </>
+      ),
+    },
+    {
+      n: "03",
+      title: t("philosophy.2.title"),
+      body: (
+        <>
+          {t("philosophy.2.body.0")} <em>{t("philosophy.2.body.1")}</em>
+          {t("philosophy.2.body.2")} <strong>{t("philosophy.2.body.3")}</strong>
+          {t("philosophy.2.body.4")}
+        </>
+      ),
+    },
+  ]
 
   return (
     <section className="relative py-16 sm:py-24" ref={ref}>
@@ -52,9 +54,9 @@ export function Philosophy() {
           className="mb-12 text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.92]"
           style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
         >
-          <MotionText text="how i" split="word" from="up" />{" "}
+          <MotionText text={t("philosophy.title.0")} split="word" from="up" />{" "}
           <MotionText
-            text="build"
+            text={t("philosophy.title.1")}
             split="word"
             from="up"
             delay={0.2}
@@ -65,7 +67,7 @@ export function Philosophy() {
         <div className="grid gap-12 md:grid-cols-3">
           {pillars.map((p, i) => (
             <motion.div
-              key={p.title}
+              key={p.n}
               initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
               animate={
                 inView

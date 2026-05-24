@@ -27,7 +27,17 @@
     --delft-blue: #1d1f2c;
     --cobalt-blue: #3b66f3;
     --indigo: #5e5372;
-    
+
+    /* Paper grain inversion factors — flipped in dark mode so the
+       overlay reads as light dust rather than dark dust. */
+    --grain-opacity: 0.25;
+    --grain-blend: multiply;
+
+    /* Surface alpha used inside the text-aura mask (light cream) */
+    --aura-r: 246;
+    --aura-g: 246;
+    --aura-b: 244;
+
     /* Extended Palette */
     --surface-dark: #f6f6f4;
     --surface-elevated: #ffffff;
@@ -38,7 +48,10 @@
     --text-primary: #1a1d28;
     --text-muted: rgba(15, 17, 23, 0.6);
     --ink: #1a1d28;
-    
+    /* Colour that contrasts with --ink — used for text drawn on top of an
+       ink-filled surface (e.g. the primary CTA button) */
+    --ink-inverse: #ffffff;
+
     /* Typography Scale */
     --font-display: 'Zenhand', 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
     --font-body: 'Zenhand', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -53,6 +66,38 @@
     --transition-spring: 500ms cubic-bezier(0.34, 1.56, 0.64, 1);
     --transition-slow: 800ms cubic-bezier(0.4, 0, 0.2, 1);
   }
+
+  /* Dark mode — full repaint. next-themes sets `class="dark"` on the
+     <html> element when `attribute="class"`. The same custom-property
+     names are reused so existing components don't need restyling. */
+  html.dark {
+    --surface-dark: #0c0d12;
+    --surface-elevated: #15171f;
+    --surface-glass: rgba(20, 22, 32, 0.55);
+    --surface-ink: rgba(238, 235, 226, 0.06);
+    --border-subtle: rgba(238, 235, 226, 0.16);
+    --border-strong: rgba(238, 235, 226, 0.65);
+    --text-primary: #ecead4;
+    --text-muted: rgba(236, 234, 212, 0.6);
+    --ink: #ecead4;
+    --ink-inverse: #0c0d12;
+
+    /* Grain inverts so the dust reads as a faint warm haze, not a smudge */
+    --grain-opacity: 0.18;
+    --grain-blend: screen;
+
+    /* Aura colour matches the dark background so text-aura wells stay invisible */
+    --aura-r: 12;
+    --aura-g: 13;
+    --aura-b: 18;
+  }
+  html.dark body {
+    background: var(--surface-dark);
+    color: var(--text-primary);
+  }
+  html.dark ::-webkit-scrollbar-track { background: var(--surface-dark); }
+  html.dark ::-webkit-scrollbar-thumb { background: rgba(236, 234, 212, 0.18); }
+  html.dark ::-webkit-scrollbar-thumb:hover { background: rgba(236, 234, 212, 0.32); }
 
   * {
     box-sizing: border-box;
@@ -96,8 +141,14 @@
     pointer-events: none;
     z-index: 1;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.35 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    opacity: 0.25;
-    mix-blend-mode: multiply;
+    opacity: var(--grain-opacity);
+    mix-blend-mode: var(--grain-blend);
+  }
+
+  /* Smooth theme transition — scoped to the root so we don't fight motion's
+     inline transforms / filters elsewhere on the page. */
+  html, body {
+    transition: background-color 320ms ease, color 320ms ease;
   }
 
 
@@ -243,7 +294,7 @@
     gap: 0.55rem;
     padding: 0.8rem 1.6rem;
     background: var(--ink);
-    color: #ffffff;
+    color: var(--ink-inverse);
     font-family: var(--font-display);
     font-weight: 700;
     font-size: 1rem;
@@ -381,10 +432,10 @@
     z-index: -1;
     background:
       radial-gradient(ellipse 75% 70% at 50% 50%,
-        rgba(246, 246, 244, 0.7) 0%,
-        rgba(246, 246, 244, 0.45) 35%,
-        rgba(246, 246, 244, 0.15) 65%,
-        rgba(246, 246, 244, 0) 95%);
+        rgba(var(--aura-r), var(--aura-g), var(--aura-b), 0.7) 0%,
+        rgba(var(--aura-r), var(--aura-g), var(--aura-b), 0.45) 35%,
+        rgba(var(--aura-r), var(--aura-g), var(--aura-b), 0.15) 65%,
+        rgba(var(--aura-r), var(--aura-g), var(--aura-b), 0) 95%);
     backdrop-filter: blur(20px) saturate(110%);
     -webkit-backdrop-filter: blur(20px) saturate(110%);
     -webkit-mask-image: radial-gradient(ellipse 75% 70% at 50% 50%,
@@ -400,10 +451,10 @@
     inset: -0.4em -0.6em;
     background:
       radial-gradient(ellipse 65% 65% at 50% 50%,
-        rgba(246, 246, 244, 0.78) 0%,
-        rgba(246, 246, 244, 0.55) 35%,
-        rgba(246, 246, 244, 0.2) 65%,
-        rgba(246, 246, 244, 0) 95%);
+        rgba(var(--aura-r), var(--aura-g), var(--aura-b), 0.78) 0%,
+        rgba(var(--aura-r), var(--aura-g), var(--aura-b), 0.55) 35%,
+        rgba(var(--aura-r), var(--aura-g), var(--aura-b), 0.2) 65%,
+        rgba(var(--aura-r), var(--aura-g), var(--aura-b), 0) 95%);
     backdrop-filter: blur(28px) saturate(115%);
     -webkit-backdrop-filter: blur(28px) saturate(115%);
   }

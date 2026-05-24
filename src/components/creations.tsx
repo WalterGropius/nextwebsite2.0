@@ -4,6 +4,7 @@ import { useRef, useState, useEffect, useMemo } from "react"
 import { motion, useInView } from "motion/react"
 import { MotionText } from "./motion-text"
 import { InkLine } from "./ink-line"
+import { useT } from "@/lib/i18n/provider"
 
 interface ProjectItem {
   id: number
@@ -31,6 +32,7 @@ export function Creations({ randomCount }: CreationsProps) {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
+  const t = useT()
 
   useEffect(() => {
     let ignore = false
@@ -48,7 +50,7 @@ export function Creations({ randomCount }: CreationsProps) {
       })
       .catch(() => {
         if (!ignore) {
-          setError("couldn't load works.")
+          setError(t("creations.error"))
           setProjects([])
         }
       })
@@ -84,9 +86,9 @@ export function Creations({ randomCount }: CreationsProps) {
           className="mb-10 text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.92]"
           style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
         >
-          <MotionText text="selected" split="word" from="up" />{" "}
+          <MotionText text={t("creations.title.0")} split="word" from="up" />{" "}
           <MotionText
-            text={randomCount ? "works" : "everything"}
+            text={t(randomCount ? "creations.title.works" : "creations.title.everything")}
             split="word"
             from="up"
             delay={0.2}
@@ -108,7 +110,7 @@ export function Creations({ randomCount }: CreationsProps) {
                 filter: "url(#ink-wobble)",
               }}
             >
-              all
+              {t("creations.filter.all")}
             </button>
             {allTags.slice(0, 8).map((tag) => (
               <button
@@ -140,7 +142,7 @@ export function Creations({ randomCount }: CreationsProps) {
                 fontFamily: "var(--font-display)",
               }}
             >
-              loading…
+              {t("creations.loading")}
             </p>
           </div>
         ) : error ? (
@@ -230,7 +232,7 @@ export function Creations({ randomCount }: CreationsProps) {
         {randomCount && (
           <div className="mt-12 text-center">
             <a href="/portfolio-s" className="btn-secondary">
-              <span>everything</span>
+              <span>{t("creations.viewAll")}</span>
               <span aria-hidden>→</span>
             </a>
           </div>
