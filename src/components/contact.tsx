@@ -149,10 +149,10 @@ export function Contact() {
             style={{ color: "var(--text-muted)" }}
           >
             <span>
-              <strong>{t("contact.footer.brand")}</strong> · {t("contact.footer.city")}
+              <strong>{t("contact.footer.brand")}</strong> * {t("contact.footer.city")}
             </span>
             <span className="og-note" title={t("contact.footer.og")}>
-              <em>y4ngyin</em> · <em>tra5her</em> · mc zenbauhaus
+              <em>y4ngyin</em> * <em>tra5her</em> * mc zenbauhaus
             </span>
             <span>© {new Date().getFullYear()}</span>
           </div>

@@ -136,7 +136,7 @@ export function LangThemeSwitcher({
                     }}
                   >
                     {opt.code}
-                    {!opt.native ? " · auto" : ""}
+                    {!opt.native ? " * auto" : ""}
                   </span>
                 </button>
               )

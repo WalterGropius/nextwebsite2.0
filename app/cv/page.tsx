@@ -20,8 +20,8 @@ const capabilityItems: Array<{ labelKey: string; items: string[] }> = [
       "unreal engine",
       "blender",
       "houdini",
-      "three.js · r3f",
-      "webgl · webgpu",
+      "three.js * r3f",
+      "webgl * webgpu",
       "unity",
       "substance",
       "webxr",
@@ -33,23 +33,23 @@ const capabilityItems: Array<{ labelKey: string; items: string[] }> = [
     labelKey: "cv.cap.1.label",
     items: [
       "typescript",
-      "next.js · react",
+      "next.js * react",
       "node.js",
       "python",
       "postgres",
       "docker",
-      "c++ · c#",
+      "c++ * c#",
       "graphql",
-      "aws · gcp",
+      "aws * gcp",
       "systems design",
     ],
   },
   {
     labelKey: "cv.cap.2.label",
     items: [
-      "llms · prompting",
+      "llms * prompting",
       "agentic systems",
-      "rag · semantic search",
+      "rag * semantic search",
       "computer vision",
       "pytorch",
       "tensorflow.js",
@@ -62,7 +62,7 @@ const capabilityItems: Array<{ labelKey: string; items: string[] }> = [
   {
     labelKey: "cv.cap.3.label",
     items: [
-      "esp32 · arduino",
+      "esp32 * arduino",
       "pcb design",
       "3d printing",
       "rapid prototyping",
@@ -139,7 +139,7 @@ export default function CVPage() {
               style={{ color: "var(--text-muted)" }}
             >
               <span>{t("cv.location")}</span>
-              <span aria-hidden style={{ opacity: 0.4 }}>·</span>
+              <span aria-hidden style={{ opacity: 0.4 }}>*</span>
               <a href="mailto:zenbauhaus@gmail.com" className="ink-underline-hover">
                 zenbauhaus@gmail.com
               </a>
@@ -365,7 +365,7 @@ export default function CVPage() {
                 <li key={s} className="flex items-baseline gap-6">
                   <span>{s}</span>
                   {i < speaking.length - 1 && (
-                    <span aria-hidden style={{ opacity: 0.4 }}>·</span>
+                    <span aria-hidden style={{ opacity: 0.4 }}>*</span>
                   )}
                 </li>
               ))}
