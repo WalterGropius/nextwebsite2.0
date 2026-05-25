@@ -56,15 +56,15 @@ export const en: Dict = {
   "highlights.title.0": "some of",
   "highlights.title.1": "the work",
   "highlights.0.role": "founder",
-  "highlights.0.at": "sombra os · proactive cognitive partner",
-  "highlights.1.role": "cto · 0 → 1",
-  "highlights.1.at": "flipas · lucid",
+  "highlights.0.at": "sombra os * proactive cognitive partner",
+  "highlights.1.role": "cto * 0 → 1",
+  "highlights.1.at": "flipas * lucid",
   "highlights.2.role": "spatial computing",
-  "highlights.2.at": "revizor · unreal · osint",
+  "highlights.2.at": "revizor * unreal * osint",
   "highlights.3.role": "vfx supervisor",
-  "highlights.3.at": "wilma film · hagen",
+  "highlights.3.at": "wilma film * hagen",
   "highlights.4.role": "speaker",
-  "highlights.4.at": "nike berlin · czechvrfest",
+  "highlights.4.at": "nike berlin * czechvrfest",
   "highlights.5.role": "vr / xr",
   "highlights.5.at": "ten years deep",
 
@@ -92,7 +92,7 @@ export const en: Dict = {
   // arsenal — group labels translated. Brand / tool names stay as-is.
   "arsenal.title.0": "the",
   "arsenal.title.1": "toolkit",
-  "arsenal.group.0": "3d · vfx · xr",
+  "arsenal.group.0": "3d * vfx * xr",
   "arsenal.group.1": "engineering",
   "arsenal.group.2": "ai",
 
@@ -106,7 +106,7 @@ export const en: Dict = {
   "creations.viewAll": "everything",
 
   // contact
-  "contact.status": "taking on work · 2026",
+  "contact.status": "taking on work * 2026",
   "contact.body.0": "open to interesting problems.",
   "contact.body.ai": "ai",
   "contact.body.1": ",",
@@ -151,16 +151,16 @@ export const en: Dict = {
   "cv.downloads.html": "html",
   "cv.downloads.pdf": "pdf",
   "cv.downloads.artPdf": "art pdf",
-  "cv.location": "prague · cz",
-  "cv.cta.taking": "taking on work · 2026",
+  "cv.location": "prague * cz",
+  "cv.cta.taking": "taking on work * 2026",
 
   // cv experience blurbs
-  "cv.exp.0.title": "co-founder · cto",
+  "cv.exp.0.title": "co-founder * cto",
   "cv.exp.0.company": "flipas",
   "cv.exp.0.period": "2024 — 2025",
   "cv.exp.0.blurb":
     "gen z ai life accelerator. architected the mvp, secured seed funding, led a team of five engineers. co-designed sombra — the empathetic conversational mentor. pioneered a dynamic ui framework for ai-driven, context-aware interfaces.",
-  "cv.exp.1.title": "founder · creator",
+  "cv.exp.1.title": "founder * creator",
   "cv.exp.1.company": "sombra os",
   "cv.exp.1.period": "2024 — ongoing",
   "cv.exp.1.blurb":
@@ -176,22 +176,22 @@ export const en: Dict = {
   "cv.exp.3.blurb":
     "spatial computing in unreal 5. open-source intelligence threaded into real-time 3d. procedural generation, complex c++, visual systems that make impossibly dense information legible fast.",
   "cv.exp.4.title": "vfx supervisor #2",
-  "cv.exp.4.company": "wilma film · hagen",
+  "cv.exp.4.company": "wilma film * hagen",
   "cv.exp.4.period": "2023",
   "cv.exp.4.blurb":
     "on-set vfx data collection — chrome ball, color chart, hdri pipeline. coordinated with script supervisors for accurate vfx documentation.",
   "cv.exp.5.title": "technical artist",
-  "cv.exp.5.company": "numinos · vr historical recreations",
+  "cv.exp.5.company": "numinos * vr historical recreations",
   "cv.exp.5.period": "2023",
   "cv.exp.5.blurb":
     "pushed real-time rendering boundaries for vr. engineered custom real-time flood simulation. immersive recreations of historical cities.",
   "cv.exp.6.title": "spider",
-  "cv.exp.6.company": "new life · global innovation",
+  "cv.exp.6.company": "new life * global innovation",
   "cv.exp.6.period": "2018 — ongoing",
   "cv.exp.6.blurb":
     "product integration, development, talent acquisition. international teams, emerging tech.",
 
-  "cv.cap.0.label": "3d · vfx · xr",
+  "cv.cap.0.label": "3d * vfx * xr",
   "cv.cap.1.label": "engineering",
   "cv.cap.2.label": "ai",
   "cv.cap.3.label": "hardware",
@@ -200,7 +200,7 @@ export const en: Dict = {
   "cv.edu.0.where": "lycée français de prague",
   "cv.edu.0.when": "2013",
   "cv.edu.1.what": "self-taught",
-  "cv.edu.1.where": "full-stack · vr/ar · ai/ml · real-time graphics",
+  "cv.edu.1.where": "full-stack * vr/ar * ai/ml * real-time graphics",
   "cv.edu.1.when": "ongoing",
 
   "cv.lang.0.l": "english",
@@ -262,15 +262,15 @@ export const cs: Dict = {
   "highlights.title.0": "něco",
   "highlights.title.1": "z práce",
   "highlights.0.role": "zakladatel",
-  "highlights.0.at": "sombra os · proaktivní kognitivní partner",
-  "highlights.1.role": "cto · 0 → 1",
-  "highlights.1.at": "flipas · lucid",
+  "highlights.0.at": "sombra os * proaktivní kognitivní partner",
+  "highlights.1.role": "cto * 0 → 1",
+  "highlights.1.at": "flipas * lucid",
   "highlights.2.role": "prostorové výpočty",
-  "highlights.2.at": "revizor · unreal · osint",
+  "highlights.2.at": "revizor * unreal * osint",
   "highlights.3.role": "vfx supervisor",
-  "highlights.3.at": "wilma film · hagen",
+  "highlights.3.at": "wilma film * hagen",
   "highlights.4.role": "řečník",
-  "highlights.4.at": "nike berlin · czechvrfest",
+  "highlights.4.at": "nike berlin * czechvrfest",
   "highlights.5.role": "vr / xr",
   "highlights.5.at": "deset let do hloubky",
 
@@ -296,7 +296,7 @@ export const cs: Dict = {
 
   "arsenal.title.0": "moje",
   "arsenal.title.1": "výbava",
-  "arsenal.group.0": "3d · vfx · xr",
+  "arsenal.group.0": "3d * vfx * xr",
   "arsenal.group.1": "inženýrství",
   "arsenal.group.2": "ai",
 
@@ -308,7 +308,7 @@ export const cs: Dict = {
   "creations.error": "práce se nepodařilo načíst.",
   "creations.viewAll": "všechno",
 
-  "contact.status": "beru zakázky · 2026",
+  "contact.status": "beru zakázky * 2026",
   "contact.body.0": "otevřený zajímavým problémům.",
   "contact.body.ai": "ai",
   "contact.body.1": ",",
@@ -350,15 +350,15 @@ export const cs: Dict = {
   "cv.downloads.html": "html",
   "cv.downloads.pdf": "pdf",
   "cv.downloads.artPdf": "umělecké pdf",
-  "cv.location": "praha · cz",
-  "cv.cta.taking": "beru zakázky · 2026",
+  "cv.location": "praha * cz",
+  "cv.cta.taking": "beru zakázky * 2026",
 
-  "cv.exp.0.title": "spoluzakladatel · cto",
+  "cv.exp.0.title": "spoluzakladatel * cto",
   "cv.exp.0.company": "flipas",
   "cv.exp.0.period": "2024 — 2025",
   "cv.exp.0.blurb":
     "ai life accelerator pro gen z. navrhl jsem mvp, zajistil seed financování, vedl tým pěti inženýrů. spolu jsme designovali sombru — empatického konverzačního mentora. průkopnictví v dynamickém ui frameworku pro ai řízená, kontextově aware rozhraní.",
-  "cv.exp.1.title": "zakladatel · tvůrce",
+  "cv.exp.1.title": "zakladatel * tvůrce",
   "cv.exp.1.company": "sombra os",
   "cv.exp.1.period": "2024 — pokračuje",
   "cv.exp.1.blurb":
@@ -374,22 +374,22 @@ export const cs: Dict = {
   "cv.exp.3.blurb":
     "prostorové výpočty v unrealu 5. open-source intelligence vetkaná do real-time 3d. procedurální generace, komplexní c++, vizuální systémy, které dělají nemožně hustá data rychle čitelnými.",
   "cv.exp.4.title": "vfx supervisor #2",
-  "cv.exp.4.company": "wilma film · hagen",
+  "cv.exp.4.company": "wilma film * hagen",
   "cv.exp.4.period": "2023",
   "cv.exp.4.blurb":
     "on-set sběr vfx dat — chrome ball, color chart, hdri pipeline. koordinace se script supervisory pro přesnou vfx dokumentaci.",
   "cv.exp.5.title": "technical artist",
-  "cv.exp.5.company": "numinos · vr historické rekonstrukce",
+  "cv.exp.5.company": "numinos * vr historické rekonstrukce",
   "cv.exp.5.period": "2023",
   "cv.exp.5.blurb":
     "posouvání hranic real-time renderování pro vr. inženýrství custom real-time simulace povodně. imersivní rekonstrukce historických měst.",
   "cv.exp.6.title": "spider",
-  "cv.exp.6.company": "new life · global innovation",
+  "cv.exp.6.company": "new life * global innovation",
   "cv.exp.6.period": "2018 — pokračuje",
   "cv.exp.6.blurb":
     "produktová integrace, vývoj, talent acquisition. mezinárodní týmy, emerging tech.",
 
-  "cv.cap.0.label": "3d · vfx · xr",
+  "cv.cap.0.label": "3d * vfx * xr",
   "cv.cap.1.label": "inženýrství",
   "cv.cap.2.label": "ai",
   "cv.cap.3.label": "hardware",
@@ -398,7 +398,7 @@ export const cs: Dict = {
   "cv.edu.0.where": "francouzské lyceum v praze",
   "cv.edu.0.when": "2013",
   "cv.edu.1.what": "samouk",
-  "cv.edu.1.where": "full-stack · vr/ar · ai/ml · real-time grafika",
+  "cv.edu.1.where": "full-stack * vr/ar * ai/ml * real-time grafika",
   "cv.edu.1.when": "pokračuje",
 
   "cv.lang.0.l": "angličtina",
@@ -459,15 +459,15 @@ export const fr: Dict = {
   "highlights.title.0": "quelques",
   "highlights.title.1": "travaux",
   "highlights.0.role": "fondateur",
-  "highlights.0.at": "sombra os · partenaire cognitif proactif",
-  "highlights.1.role": "cto · 0 → 1",
-  "highlights.1.at": "flipas · lucid",
+  "highlights.0.at": "sombra os * partenaire cognitif proactif",
+  "highlights.1.role": "cto * 0 → 1",
+  "highlights.1.at": "flipas * lucid",
   "highlights.2.role": "informatique spatiale",
-  "highlights.2.at": "revizor · unreal · osint",
+  "highlights.2.at": "revizor * unreal * osint",
   "highlights.3.role": "superviseur vfx",
-  "highlights.3.at": "wilma film · hagen",
+  "highlights.3.at": "wilma film * hagen",
   "highlights.4.role": "orateur",
-  "highlights.4.at": "nike berlin · czechvrfest",
+  "highlights.4.at": "nike berlin * czechvrfest",
   "highlights.5.role": "vr / xr",
   "highlights.5.at": "dix ans dedans",
 
@@ -493,7 +493,7 @@ export const fr: Dict = {
 
   "arsenal.title.0": "la",
   "arsenal.title.1": "boîte à outils",
-  "arsenal.group.0": "3d · vfx · xr",
+  "arsenal.group.0": "3d * vfx * xr",
   "arsenal.group.1": "ingénierie",
   "arsenal.group.2": "ia",
 
@@ -505,7 +505,7 @@ export const fr: Dict = {
   "creations.error": "impossible de charger les travaux.",
   "creations.viewAll": "tout voir",
 
-  "contact.status": "j'accepte du travail · 2026",
+  "contact.status": "j'accepte du travail * 2026",
   "contact.body.0": "ouvert aux problèmes intéressants.",
   "contact.body.ai": "ia",
   "contact.body.1": ",",
@@ -547,15 +547,15 @@ export const fr: Dict = {
   "cv.downloads.html": "html",
   "cv.downloads.pdf": "pdf",
   "cv.downloads.artPdf": "pdf art",
-  "cv.location": "prague · cz",
-  "cv.cta.taking": "j'accepte du travail · 2026",
+  "cv.location": "prague * cz",
+  "cv.cta.taking": "j'accepte du travail * 2026",
 
-  "cv.exp.0.title": "co-fondateur · cto",
+  "cv.exp.0.title": "co-fondateur * cto",
   "cv.exp.0.company": "flipas",
   "cv.exp.0.period": "2024 — 2025",
   "cv.exp.0.blurb":
     "accélérateur de vie ia pour la gen z. j'ai architecturé le mvp, sécurisé le seed, dirigé une équipe de cinq ingénieurs. j'ai co-conçu sombra — le mentor conversationnel empathique. pionnier d'un framework ui dynamique pour interfaces pilotées par ia, context-aware.",
-  "cv.exp.1.title": "fondateur · créateur",
+  "cv.exp.1.title": "fondateur * créateur",
   "cv.exp.1.company": "sombra os",
   "cv.exp.1.period": "2024 — en cours",
   "cv.exp.1.blurb":
@@ -571,22 +571,22 @@ export const fr: Dict = {
   "cv.exp.3.blurb":
     "informatique spatiale dans unreal 5. open-source intelligence tissée dans le 3d temps réel. génération procédurale, c++ complexe, systèmes visuels qui rendent rapidement lisibles des informations impossiblement denses.",
   "cv.exp.4.title": "superviseur vfx #2",
-  "cv.exp.4.company": "wilma film · hagen",
+  "cv.exp.4.company": "wilma film * hagen",
   "cv.exp.4.period": "2023",
   "cv.exp.4.blurb":
     "collecte de données vfx sur plateau — chrome ball, color chart, pipeline hdri. coordination avec les scripts pour une documentation vfx précise.",
   "cv.exp.5.title": "artiste technique",
-  "cv.exp.5.company": "numinos · reconstitutions vr historiques",
+  "cv.exp.5.company": "numinos * reconstitutions vr historiques",
   "cv.exp.5.period": "2023",
   "cv.exp.5.blurb":
     "j'ai poussé les limites du rendu temps réel pour la vr. j'ai ingénié une simulation d'inondation temps réel custom. reconstitutions immersives de villes historiques.",
   "cv.exp.6.title": "spider",
-  "cv.exp.6.company": "new life · global innovation",
+  "cv.exp.6.company": "new life * global innovation",
   "cv.exp.6.period": "2018 — en cours",
   "cv.exp.6.blurb":
     "intégration produit, développement, recrutement de talents. équipes internationales, technologies émergentes.",
 
-  "cv.cap.0.label": "3d · vfx · xr",
+  "cv.cap.0.label": "3d * vfx * xr",
   "cv.cap.1.label": "ingénierie",
   "cv.cap.2.label": "ia",
   "cv.cap.3.label": "hardware",
@@ -595,7 +595,7 @@ export const fr: Dict = {
   "cv.edu.0.where": "lycée français de prague",
   "cv.edu.0.when": "2013",
   "cv.edu.1.what": "autodidacte",
-  "cv.edu.1.where": "full-stack · vr/ar · ia/ml · graphiques temps réel",
+  "cv.edu.1.where": "full-stack * vr/ar * ia/ml * graphiques temps réel",
   "cv.edu.1.when": "en cours",
 
   "cv.lang.0.l": "anglais",

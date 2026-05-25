@@ -221,7 +221,7 @@ export function Creations({ randomCount }: CreationsProps) {
                       .split(",")
                       .slice(0, 3)
                       .map((t) => t.trim().toLowerCase())
-                      .join(" · ")}
+                      .join(" * ")}
                   </p>
                 </div>
               </motion.a>

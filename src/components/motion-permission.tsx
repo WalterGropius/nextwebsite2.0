@@ -79,7 +79,7 @@ export function MotionPermission() {
             className="text-sm"
             style={{ color: "var(--ink)", lineHeight: 1.3 }}
           >
-            tilt to move it · enable motion?
+            tilt to move it * enable motion?
           </span>
           <div className="flex shrink-0 items-center gap-2">
             <button
