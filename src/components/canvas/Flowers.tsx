@@ -158,7 +158,7 @@ export function Flowers({ dark = false }: { dark?: boolean }) {
           fade
           speed={0.4}
         />
-        <group ref={splatRef as React.RefObject<THREE.Group>}>
+        <group ref={splatRef as unknown as React.RefObject<THREE.Group>}>
           <Nebula count={16000} radius={26} position={[0, 0, -28]} spin={0.008} />
         </group>
       </>
@@ -168,7 +168,7 @@ export function Flowers({ dark = false }: { dark?: boolean }) {
   return (
     <>
       <SparkRenderer />
-      <group ref={splatRef as React.RefObject<THREE.Group>}>
+      <group ref={splatRef as unknown as React.RefObject<THREE.Group>}>
         <SplatMesh
           url="/flowers_white.sog"
           scale={3}

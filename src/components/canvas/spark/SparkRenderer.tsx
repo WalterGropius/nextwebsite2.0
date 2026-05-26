@@ -13,10 +13,12 @@ export function SparkRenderer() {
     // Create SparkRenderer and add to scene
     const spark = new SparkRendererClass({ renderer: gl })
     sparkRef.current = spark
-    scene.add(spark as unknown as THREE.Object3D)
+    // eslint-disable-next-line
+    const s = scene as any
+    s.add(spark)
 
     return () => {
-      scene.remove(spark as unknown as THREE.Object3D)
+      s.remove(spark)
       // @ts-expect-error dispose may not exist on SparkRenderer type
       spark.dispose?.()
     }

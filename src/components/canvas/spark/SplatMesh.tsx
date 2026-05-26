@@ -19,7 +19,8 @@ export const SplatMesh = forwardRef<THREE.Object3D, SplatMeshProps>(
     const onLoadRef = useRef(onLoad)
     useThree((state) => state.scene)
 
-    useImperativeHandle(ref, () => groupRef.current)
+    // eslint-disable-next-line
+    useImperativeHandle(ref, () => groupRef.current as any)
 
     // Keep latest onLoad without triggering effect re-runs
     useEffect(() => {
@@ -32,12 +33,13 @@ export const SplatMesh = forwardRef<THREE.Object3D, SplatMeshProps>(
     useEffect(() => {
       const splat = new SplatMeshClass({ url })
       splatRef.current = splat
-      const group = groupRef.current
-      group?.add(splat as unknown as THREE.Object3D)
+      // eslint-disable-next-line
+      const group = groupRef.current as any
+      group?.add(splat)
       splat.initialized.then(() => onLoadRef.current?.(splat))
 
       return () => {
-        group?.remove(splat as unknown as THREE.Object3D)
+        group?.remove(splat)
         splat.dispose?.()
         splatRef.current = null
       }

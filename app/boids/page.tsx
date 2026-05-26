@@ -1,29 +1,76 @@
-'use client'
+"use client"
 
-import { Canvas } from '@react-three/fiber'
-import { OrbitControls } from '@react-three/drei'
-import { useControls } from 'leva'
-import Boids from './Boids'
-const Scene = () => {
-  const { backgroundColor } = useControls({
-    backgroundColor: '#000000',
-  })
+// /boids was double-mounting Canvas (Boids.tsx already ships its own
+// <Canvas>) which crashed R3F with "Canvas is not part of the THREE
+// namespace". Now we just render the scene directly and dress it with
+// the site's navigation + a short header.
 
-  return (
-    <Canvas>
-      <color attach='background' args={[backgroundColor]} />
-      <OrbitControls />
-      <Boids />
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} />
-    </Canvas>
-  )
-}
+import dynamic from "next/dynamic"
+import Link from "next/link"
+import { ArrowLeft } from "lucide-react"
+import { Navigation } from "@/components/navigation"
+import { PageLoader } from "@/components/page-loader"
+
+// Boids pulls in three/examples + leva; dynamic import keeps it out
+// of the shared bundle and avoids SSR for the WebGL bits.
+const Boids = dynamic(() => import("./Boids"), { ssr: false })
 
 export default function BoidsPage() {
   return (
-    <div style={{ width: '100vw', height: '100vh' }}>
-      <Scene />
-    </div>
+    <PageLoader>
+      <main
+        className="relative min-h-screen"
+        style={{ background: "var(--surface-dark)" }}
+      >
+        <Navigation />
+
+        <header
+          className="section-container relative pb-6 pt-28 sm:pt-32"
+          style={{ zIndex: 35 }}
+        >
+          <Link
+            href="/more"
+            className="mb-6 inline-flex items-center gap-2 text-sm uppercase tracking-[0.3em]"
+            style={{
+              color: "var(--text-muted)",
+              fontFamily: "var(--font-display)",
+            }}
+          >
+            <ArrowLeft size={14} className="ink-icon" />
+            <span className="ink-underline-hover">back</span>
+          </Link>
+          <h1
+            className="text-[clamp(2.4rem,6vw,5rem)] leading-[0.9]"
+            style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
+          >
+            boids
+          </h1>
+          <p
+            className="mt-3 max-w-xl text-sm sm:text-base"
+            style={{
+              color: "var(--text-muted)",
+              fontFamily: "var(--font-display)",
+            }}
+          >
+            three rules — separation, alignment, cohesion — and the flock
+            emerges. drag to orbit, scroll to zoom, tweak the parameters
+            from the panel.
+          </p>
+        </header>
+
+        <div
+          className="relative mx-auto w-full"
+          style={{
+            height: "min(78vh, 720px)",
+            border: "1.5px solid var(--ink)",
+            filter: "url(#ink-wobble)",
+            maxWidth: "min(1400px, 96vw)",
+            zIndex: 35,
+          }}
+        >
+          <Boids />
+        </div>
+      </main>
+    </PageLoader>
   )
 }
