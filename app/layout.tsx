@@ -75,6 +75,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <feTurbulence type="fractalNoise" baseFrequency="0.028" numOctaves="3" seed="5" result="noise" />
               <feDisplacementMap in="SourceGraphic" in2="noise" scale="5.5" xChannelSelector="R" yChannelSelector="G" />
             </filter>
+            {/* Heavier wobble for photos — larger displacement at a
+                lower base frequency so the edges read as torn/inked
+                paper rather than vector-clean rectangles. */}
+            <filter id="ink-wobble-photo" x="-8%" y="-8%" width="116%" height="116%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves="3" seed="11" result="noise" />
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="14" xChannelSelector="R" yChannelSelector="G" />
+            </filter>
           </defs>
         </svg>
         <ThemeProvider

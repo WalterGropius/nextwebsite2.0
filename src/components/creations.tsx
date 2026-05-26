@@ -189,7 +189,7 @@ export function Creations({ randomCount }: CreationsProps) {
                       src={project.image}
                       alt={project.title}
                       loading="lazy"
-                      className="ink-edge h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]"
+                      className="ink-photo h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]"
                     />
                   </div>
                   <div className="mt-3 flex flex-col gap-1">
