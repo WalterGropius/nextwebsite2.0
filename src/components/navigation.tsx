@@ -21,13 +21,13 @@ const navLinks = [
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
-  const [pastHero, setPastHero] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const t = useT()
   const pathname = usePathname()
-  // The hero on /landing has three CTAs. We hide the desktop nav
-  // links until those CTAs scroll out of view so the hero reads
-  // as the single decision surface. Other pages always show links.
+  // On /landing the desktop nav links are hidden while the user is
+  // still on the hero. As soon as the bar turns translucent
+  // (isScrolled === true ~40px down) the links fade in to the left
+  // of the LangThemeSwitcher.
   const isLanding = pathname === "/landing" || pathname === "/"
 
   const roles = [
@@ -50,16 +50,10 @@ export function Navigation() {
     const onScroll = () => {
       const y = window.scrollY
       setIsScrolled(y > 40)
-      // ~70% of the viewport — enough that hero CTAs are off-screen
-      setPastHero(y > window.innerHeight * 0.7)
     }
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
-    window.addEventListener("resize", onScroll, { passive: true })
-    return () => {
-      window.removeEventListener("scroll", onScroll)
-      window.removeEventListener("resize", onScroll)
-    }
+    return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
   useEffect(() => {
@@ -69,7 +63,7 @@ export function Navigation() {
     }
   }, [isOpen])
 
-  const showLinks = !isLanding || pastHero
+  const showLinks = !isLanding || isScrolled
 
   return (
     <>

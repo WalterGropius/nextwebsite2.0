@@ -10,9 +10,10 @@ import { useEffect, useMemo, useState, type ReactNode } from "react"
 // randomised within a band on mount so reloads vary slightly.
 
 // half-width of the centred content column (--content-max-width:
-// 1320px → 660px) + a small gutter. Doodles sit *just* past this.
-const CONTENT_HALF = 660
-const GUTTER = 28
+// 1320px → 660px). Gutter tightened — doodles sit closer to the
+// text column without colliding, more "marginalia" than "billboard".
+const CONTENT_HALF = 580
+const GUTTER = 8
 
 // ---- Coffee stains (deterministic) ------------------------------
 
@@ -1241,6 +1242,173 @@ const DOODLES: Doodle[] = [
       <text x="6" y="206" fontFamily="var(--font-display)" fontSize="10" fill="currentColor" stroke="none" opacity="0.6">organic madness, cartesian cage.</text>
     </svg>
   ) },
+
+  // === EXTRAS — keep stretching the catalog ========================
+
+  // Confession tape — backwards camcorder
+  { id: "confession-tape", baseVh: 3120, side: "left", rotate: -4, render: () => (
+    <svg width="260" height="180" viewBox="0 0 260 180" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+      <text x="6" y="22" fontFamily="var(--font-display)" fontSize="14" fill="currentColor" stroke="none">confession tape</text>
+      {/* camcorder body */}
+      <rect x="40" y="70" width="120" height="60" />
+      {/* viewfinder */}
+      <rect x="40" y="60" width="22" height="14" />
+      {/* lens facing operator (backwards) */}
+      <circle cx="60" cy="100" r="14" />
+      <circle cx="60" cy="100" r="6" />
+      {/* exposed circuitry */}
+      <rect x="100" y="80" width="50" height="40" strokeDasharray="2 3" />
+      <path d="M105 90 L145 90 M105 100 L145 100 M105 110 L145 110" opacity="0.5" />
+      {/* operator silhouette behind camera */}
+      <g transform="translate(200 80)">
+        <circle cx="0" cy="-10" r="10" />
+        <path d="M-12 0 L12 0 L8 40 L-8 40 Z" />
+      </g>
+      {/* line of sight reversed */}
+      <path d="M75 100 L186 100" strokeDasharray="2 3" opacity="0.6" />
+      <text x="6" y="170" fontFamily="var(--font-display)" fontSize="10" fill="currentColor" stroke="none" opacity="0.6">the lens always finds itself.</text>
+    </svg>
+  ) },
+
+  // Hilbert curve — fractal locality
+  { id: "hilbert", baseVh: 3170, side: "right", rotate: 3, render: () => (
+    <svg width="220" height="220" viewBox="0 0 220 220" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+      <text x="6" y="20" fontFamily="var(--font-display)" fontSize="14" fill="currentColor" stroke="none">hilbert curve — locality</text>
+      {/* simplified order-3 hilbert */}
+      <path d="M30 40 L30 60 L50 60 L50 40 L70 40 L90 40 L90 60 L70 60 L70 80 L90 80 L90 100 L70 100 L50 100 L30 100 L30 80 L50 80 L50 120 L30 120 L30 140 L50 140 L50 160 L30 160 L30 180 L50 180 L70 180 L70 160 L90 160 L90 180 L110 180 L130 180 L130 160 L150 160 L150 180 L170 180 L190 180 L190 160 L170 160 L170 140 L190 140 L190 120 L170 120 L150 120 L130 120 L130 140 L150 140 L150 100 L170 100 L170 80 L150 80 L150 60 L170 60 L190 60 L190 40 L170 40 L150 40 L130 40 L130 60 L110 60 L110 80 L130 80 L130 100 L110 100 L110 120 L90 120 L90 140 L110 140 L110 160 L90 160" />
+      <text x="6" y="206" fontFamily="var(--font-display)" fontSize="10" fill="currentColor" stroke="none" opacity="0.6">neighbours stay neighbours.</text>
+    </svg>
+  ) },
+
+  // Conway's Game of Life — glider
+  { id: "conway", baseVh: 3220, side: "left", rotate: -5, render: () => (
+    <svg width="240" height="220" viewBox="0 0 240 220" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+      <text x="6" y="20" fontFamily="var(--font-display)" fontSize="14" fill="currentColor" stroke="none">conway — glider</text>
+      {/* 10x10 grid */}
+      {Array.from({ length: 11 }).map((_, i) => (
+        <path key={`h${i}`} d={`M30 ${36 + i*16} L190 ${36 + i*16}`} opacity="0.25" />
+      ))}
+      {Array.from({ length: 11 }).map((_, i) => (
+        <path key={`v${i}`} d={`M${30 + i*16} 36 L${30 + i*16} 196`} opacity="0.25" />
+      ))}
+      {/* glider (5 cells) at three time steps */}
+      {[
+        [2,1],[3,2],[1,3],[2,3],[3,3], // t0
+      ].map(([x,y], i) => (
+        <rect key={`g${i}`} x={30 + x*16} y={36 + y*16} width="16" height="16" fill="currentColor" opacity="0.85" />
+      ))}
+      {[
+        [5,2],[6,3],[4,4],[5,4],[6,4], // t1
+      ].map(([x,y], i) => (
+        <rect key={`g1-${i}`} x={30 + x*16} y={36 + y*16} width="16" height="16" fill="currentColor" opacity="0.55" />
+      ))}
+      {[
+        [8,3],[9,4],[7,5],[8,5],[9,5], // t2
+      ].map(([x,y], i) => (
+        <rect key={`g2-${i}`} x={30 + x*16} y={36 + y*16} width="16" height="16" fill="currentColor" opacity="0.35" />
+      ))}
+      <path d="M70 70 L160 100" strokeDasharray="2 3" opacity="0.6" />
+      <text x="6" y="216" fontFamily="var(--font-display)" fontSize="10" fill="currentColor" stroke="none" opacity="0.6">4 rules, infinite zoo.</text>
+    </svg>
+  ) },
+
+  // DNA helix — life as code
+  { id: "dna-helix", baseVh: 3270, side: "right", rotate: 4, render: () => (
+    <svg width="180" height="240" viewBox="0 0 180 240" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+      <text x="6" y="20" fontFamily="var(--font-display)" fontSize="14" fill="currentColor" stroke="none">dna — code in carbon</text>
+      {/* two sinusoid strands */}
+      <path d="M50 40 Q 130 70, 50 100 T 50 160 T 50 220" />
+      <path d="M130 40 Q 50 70, 130 100 T 130 160 T 130 220" />
+      {/* rungs */}
+      {Array.from({ length: 10 }).map((_, i) => {
+        const y = 50 + i * 18
+        const t = (i % 2 === 0 ? 0.3 : 0.7)
+        return <path key={i} d={`M${50 + t*80} ${y} L${130 - t*80} ${y}`} opacity={0.7} />
+      })}
+      {/* base-pair labels */}
+      <text x="6" y="226" fontFamily="var(--font-display)" fontSize="10" fill="currentColor" stroke="none" opacity="0.6">a · t · g · c</text>
+    </svg>
+  ) },
+
+  // Mandelbrot — the boundary
+  { id: "mandelbrot", baseVh: 3320, side: "left", rotate: -3, render: () => (
+    <svg width="240" height="200" viewBox="0 0 240 200" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+      <text x="6" y="20" fontFamily="var(--font-display)" fontSize="14" fill="currentColor" stroke="none">mandelbrot — z² + c</text>
+      {/* cardioid */}
+      <path d="M130 100 Q 60 50, 60 100 Q 60 150, 130 100" strokeWidth="1.6" />
+      {/* main bulb */}
+      <circle cx="40" cy="100" r="22" />
+      {/* tinier bulbs */}
+      <circle cx="22" cy="100" r="10" />
+      <circle cx="14" cy="100" r="5" />
+      <circle cx="10" cy="100" r="2.5" />
+      {/* upper/lower bulbs */}
+      <circle cx="78" cy="68" r="8" />
+      <circle cx="78" cy="132" r="8" />
+      {/* labels */}
+      <text x="160" y="60" fontFamily="var(--font-display)" fontSize="10" fill="currentColor" stroke="none" opacity="0.7">the boundary</text>
+      <text x="160" y="76" fontFamily="var(--font-display)" fontSize="10" fill="currentColor" stroke="none" opacity="0.7">is the message.</text>
+      <path d="M155 70 L100 90" strokeDasharray="2 3" opacity="0.5" />
+    </svg>
+  ) },
+
+  // Roomba path — robot mapping
+  { id: "roomba", baseVh: 3370, side: "right", rotate: 3, render: () => (
+    <svg width="240" height="180" viewBox="0 0 240 180" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+      <text x="6" y="20" fontFamily="var(--font-display)" fontSize="14" fill="currentColor" stroke="none">slam — robot dreams a floor</text>
+      {/* room outline */}
+      <rect x="30" y="40" width="180" height="120" />
+      {/* furniture */}
+      <rect x="56" y="60" width="30" height="20" />
+      <circle cx="170" cy="100" r="14" />
+      <rect x="120" y="130" width="50" height="14" />
+      {/* path */}
+      <path d="M40 50 L200 50 L200 70 L40 70 L40 90 L200 90 L200 110 L40 110 L40 130 L100 130" strokeDasharray="3 3" opacity="0.7" />
+      {/* roomba */}
+      <circle cx="100" cy="130" r="7" fill="currentColor" />
+      <text x="6" y="172" fontFamily="var(--font-display)" fontSize="10" fill="currentColor" stroke="none" opacity="0.6">map = belief × evidence.</text>
+    </svg>
+  ) },
+
+  // Lever / Archimedes — give me a place to stand
+  { id: "lever", baseVh: 3420, side: "left", rotate: -4, render: () => (
+    <svg width="260" height="200" viewBox="0 0 260 200" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+      <text x="6" y="20" fontFamily="var(--font-display)" fontSize="14" fill="currentColor" stroke="none">archimedes — give me leverage</text>
+      {/* fulcrum */}
+      <path d="M130 150 L100 190 L160 190 Z" />
+      {/* lever bar tilted */}
+      <path d="M30 134 L240 166" strokeWidth="2" />
+      {/* weight (the world) */}
+      <circle cx="220" cy="158" r="20" />
+      <path d="M210 152 q 10 6 20 0" opacity="0.6" />
+      {/* small finger pressing left end */}
+      <path d="M30 130 L26 116 L34 116 Z" />
+      {/* label */}
+      <text x="6" y="194" fontFamily="var(--font-display)" fontSize="10" fill="currentColor" stroke="none" opacity="0.6">…and i shall move the world.</text>
+    </svg>
+  ) },
+
+  // Cargo container of context — Sombra OS metaphor
+  { id: "context-container", baseVh: 3470, side: "right", rotate: 3, render: () => (
+    <svg width="280" height="180" viewBox="0 0 280 180" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+      <text x="6" y="20" fontFamily="var(--font-display)" fontSize="14" fill="currentColor" stroke="none">context window — ship it</text>
+      {/* container */}
+      <path d="M30 60 L240 60 L240 140 L30 140 Z" />
+      {/* corrugations */}
+      {Array.from({ length: 18 }).map((_, i) => (
+        <path key={i} d={`M${30 + i*12} 60 L${30 + i*12} 140`} opacity="0.45" />
+      ))}
+      {/* doors */}
+      <path d="M30 60 L30 140" strokeWidth="2" />
+      <path d="M150 60 L150 140" strokeWidth="2" />
+      {/* label */}
+      <rect x="170" y="78" width="60" height="20" />
+      <text x="178" y="92" fontFamily="var(--font-display)" fontSize="10" fill="currentColor" stroke="none">SOMBRA · OS</text>
+      {/* hook overhead */}
+      <path d="M135 60 L135 30 Q 135 22, 130 22 Q 125 22, 125 30" />
+      <text x="6" y="170" fontFamily="var(--font-display)" fontSize="10" fill="currentColor" stroke="none" opacity="0.6">128k tokens. one shipment.</text>
+    </svg>
+  ) },
 ]
 
 // ---- Layout: place doodles with random jitter around their baseVh
@@ -1271,24 +1439,22 @@ function DoodleLayer({ items }: { items: Placed[] }) {
           aria-hidden
           data-side={d.side}
           className="doodle"
-          style={{
-            position: "absolute",
-            top: `${d.topVh}vh`,
-            // Wide screens: doodle sits *outside* the centred content
-            // column on its preferred side. Narrow viewports override
-            // via the .doodle CSS below to put everything in the
-            // right margin at a smaller scale.
-            [d.side]: `calc(50% + ${CONTENT_HALF + GUTTER}px)`,
-            // Rotation lives on a custom property so the media-query
-            // overrides can compose it with `scale()`.
-            ["--r" as string]: `${d.rotate}deg`,
-            opacity: d.opacity ?? 0.55,
-            pointerEvents: "none",
-            zIndex: 26,
-            color: "var(--ink)",
-            fontFamily: "var(--font-display)",
-            filter: "url(#ink-wobble)",
-          }}
+          style={
+            {
+              position: "absolute",
+              top: `${d.topVh}vh`,
+              // No `left`/`right` inline — placement comes from the
+              // CSS via [data-side="..."] so the mobile media query
+              // can override without specificity wars.
+              "--r": `${d.rotate}deg`,
+              opacity: d.opacity ?? 0.55,
+              pointerEvents: "none",
+              zIndex: 26,
+              color: "var(--ink)",
+              fontFamily: "var(--font-display)",
+              filter: "url(#ink-wobble)",
+            } as React.CSSProperties
+          }
         >
           {d.render()}
         </div>
@@ -1329,6 +1495,59 @@ function MarginStar({ top, side, offset, rotate = 0, size = 18, opacity = 0.5 }:
   )
 }
 
+// ---- Centred between-sections doodles ---------------------------
+
+// One bigger sketch sits in the gap between each pair of content
+// blocks on the landing page. We reuse renderers from the main
+// catalog rather than redrawing them, just at a larger scale and
+// horizontally centred.
+const CENTER_PICKS: Array<{ id: string; topVh: number; rotate: number; opacity?: number }> = [
+  { id: "boids",     topVh: 215, rotate: -2, opacity: 0.45 }, // manifesto ↔ highlights
+  { id: "ouroboros", topVh: 375, rotate: 3,  opacity: 0.4 },  // highlights ↔ philosophy
+  { id: "cymatics",  topVh: 545, rotate: -2, opacity: 0.4 },  // philosophy ↔ arsenal
+  { id: "node-graph",topVh: 715, rotate: 2,  opacity: 0.4 },  // arsenal ↔ creations
+  { id: "dmn",       topVh: 935, rotate: -3, opacity: 0.4 },  // creations ↔ contact
+]
+
+function CenterDoodles() {
+  // Look up each pick's renderer from the main catalog. If a pick
+  // references an unknown id we just skip it (safer than crashing).
+  const picks = useMemo(
+    () =>
+      CENTER_PICKS.map((p) => {
+        const found = DOODLES.find((d) => d.id === p.id)
+        return found ? { ...p, render: found.render } : null
+      }).filter((x): x is { id: string; topVh: number; rotate: number; opacity?: number; render: () => ReactNode } => x !== null),
+    [],
+  )
+  return (
+    <>
+      {picks.map((p) => (
+        <div
+          key={`c-${p.id}`}
+          aria-hidden
+          className="doodle-center"
+          style={
+            {
+              position: "absolute",
+              top: `${p.topVh}vh`,
+              "--r": `${p.rotate}deg`,
+              opacity: p.opacity ?? 0.4,
+              pointerEvents: "none",
+              zIndex: 26,
+              color: "var(--ink)",
+              fontFamily: "var(--font-display)",
+              filter: "url(#ink-wobble)",
+            } as React.CSSProperties
+          }
+        >
+          {p.render()}
+        </div>
+      ))}
+    </>
+  )
+}
+
 // ---- Root --------------------------------------------------------
 
 export function PaperDecorations() {
@@ -1359,41 +1578,55 @@ export function PaperDecorations() {
 
   return (
     <>
-      {/* Doodle sizing + positioning. Three tiers:
-          - wide desktop: outside the centred content column, +15%
-          - tablet / narrow desktop: forced into the right margin
-            (content is mostly left-aligned on smaller layouts), 70%
-          - phone: scaled to ~55% so they read as marginalia, not
-            paper-tape. Rotation is composed with scale through a
-            --r custom property set inline on each doodle. */}
+      {/* Doodle sizing + positioning. All placement lives in CSS
+          here so the mobile media query can override the desktop
+          rules without inline-style specificity wars.
+            - wide desktop: doodle on its preferred side, just past
+              the centred content column, scaled to 115%
+            - tablet / narrow desktop: every doodle into the right
+              margin (content is left-aligned at that width), 75%
+            - phone: same right margin, 60%, slightly more faded. */}
       <style>{`
         .doodle {
           transform: rotate(var(--r, 0deg));
           transform-origin: 50% 50%;
           will-change: transform;
         }
+        /* desktop placement: doodle sits just past the centred
+           content column on its preferred side */
         @media (min-width: 1400px) {
-          .doodle {
-            transform: rotate(var(--r, 0deg)) scale(1.15);
-          }
+          .doodle[data-side="left"]  { right: calc(50% + ${CONTENT_HALF + GUTTER}px); left: auto; }
+          .doodle[data-side="right"] { left:  calc(50% + ${CONTENT_HALF + GUTTER}px); right: auto; }
+          .doodle { transform: rotate(var(--r, 0deg)) scale(1.15); }
         }
+        /* narrow layouts: collapse everything to the right margin */
         @media (max-width: 1399px) {
-          .doodle[data-side="left"],
-          .doodle[data-side="right"] {
+          .doodle {
             left: auto;
             right: 1vw;
-          }
-          .doodle {
-            transform: rotate(var(--r, 0deg)) scale(0.7);
+            transform: rotate(var(--r, 0deg)) scale(0.75);
             transform-origin: 100% 50%;
             opacity: 0.5;
           }
         }
         @media (max-width: 640px) {
           .doodle {
-            transform: rotate(var(--r, 0deg)) scale(0.55);
+            transform: rotate(var(--r, 0deg)) scale(0.6);
             opacity: 0.45;
+            right: 0.5vw;
           }
+        }
+
+        /* Centred-between-sections doodles — a bigger sketch sits in
+           the gap between each pair of content blocks, full-page
+           centred. Hidden on phones to keep the column tidy. */
+        .doodle-center {
+          left: 50%;
+          transform: translateX(-50%) rotate(var(--r, 0deg)) scale(1.25);
+          transform-origin: 50% 50%;
+        }
+        @media (max-width: 640px) {
+          .doodle-center { display: none; }
         }
       `}</style>
       <div
@@ -1408,6 +1641,7 @@ export function PaperDecorations() {
       >
         <CoffeeStains />
         {items && <DoodleLayer items={items} />}
+        <CenterDoodles />
         {stars.map((s, i) => (
           <MarginStar key={i} {...s} opacity={0.45} />
         ))}
