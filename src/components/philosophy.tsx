@@ -11,6 +11,7 @@ import {
 import { useRef } from "react"
 import { MotionText } from "./motion-text"
 import { InkLine } from "./ink-line"
+import { TiltCard } from "./tilt-card"
 import { useT } from "@/lib/i18n/provider"
 
 export function Philosophy() {
@@ -141,38 +142,45 @@ function Pillar({
         damping: 22,
         delay: 0.15 + i * 0.12,
       }}
-      style={{ y, rotate: r, transformOrigin: "50% 0%" }}
-      className="flex flex-col gap-4"
+      style={{
+        y,
+        rotate: r,
+        transformOrigin: "50% 0%",
+        perspective: 1000,
+      }}
+      className="flex flex-col"
     >
-      <div
-        className="flex items-baseline gap-3 text-sm uppercase tracking-[0.3em]"
-        style={{ color: "var(--text-muted)" }}
-      >
-        <span>{p.n}</span>
-        <div className="flex-1" style={{ color: "var(--ink)" }}>
-          <InkLine fade={false} thickness={1} />
+      <TiltCard max={7} lift={4} className="flex flex-col gap-4 p-1">
+        <div
+          className="flex items-baseline gap-3 text-sm uppercase tracking-[0.3em]"
+          style={{ color: "var(--text-muted)" }}
+        >
+          <span>{p.n}</span>
+          <div className="flex-1" style={{ color: "var(--ink)" }}>
+            <InkLine fade={false} thickness={1} />
+          </div>
         </div>
-      </div>
-      <h3
-        className="text-3xl sm:text-4xl"
-        style={{
-          fontFamily: "var(--font-display)",
-          color: "var(--ink)",
-          lineHeight: 1,
-        }}
-      >
-        {p.title}
-      </h3>
-      <p
-        className="text-base sm:text-lg"
-        style={{
-          color: "var(--text-muted)",
-          fontFamily: "var(--font-display)",
-          lineHeight: 1.55,
-        }}
-      >
-        {p.body}
-      </p>
+        <h3
+          className="text-3xl sm:text-4xl"
+          style={{
+            fontFamily: "var(--font-display)",
+            color: "var(--ink)",
+            lineHeight: 1,
+          }}
+        >
+          {p.title}
+        </h3>
+        <p
+          className="text-base sm:text-lg"
+          style={{
+            color: "var(--text-muted)",
+            fontFamily: "var(--font-display)",
+            lineHeight: 1.55,
+          }}
+        >
+          {p.body}
+        </p>
+      </TiltCard>
     </motion.div>
   )
 }

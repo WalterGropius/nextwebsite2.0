@@ -65,11 +65,11 @@ export function Navigation() {
           WebkitBackdropFilter: isScrolled ? "blur(20px) saturate(110%)" : "none",
         }}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
-          <div className="flex items-baseline gap-3 min-w-0">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6">
+          <div className="flex min-w-0 flex-1 items-baseline gap-3">
             <Link
               href="/"
-              className="text-base shrink-0 transition-transform hover:-translate-y-0.5"
+              className="shrink-0 text-base transition-transform hover:-translate-y-0.5"
               style={{
                 fontFamily: "var(--font-display)",
                 color: "var(--ink)",
@@ -78,11 +78,19 @@ export function Navigation() {
             >
               zenbauhaus
             </Link>
-            {/* Cycling role — hand-written aside next to the wordmark */}
+            {/* Cycling role — hand-written aside next to the wordmark.
+                Shrinks into the available space between the logo and
+                the nav links, with a soft fade-out mask on the trailing
+                edge so a long role just clips gracefully. */}
             <div
-              className="relative hidden h-[1.2em] items-center overflow-hidden text-xs sm:flex sm:text-sm"
+              className="relative hidden h-[1.2em] min-w-0 flex-1 items-center overflow-hidden text-xs sm:flex sm:text-sm"
               aria-live="polite"
-              style={{ minWidth: 0 }}
+              style={{
+                WebkitMaskImage:
+                  "linear-gradient(90deg, #000 0, #000 calc(100% - 28px), transparent 100%)",
+                maskImage:
+                  "linear-gradient(90deg, #000 0, #000 calc(100% - 28px), transparent 100%)",
+              }}
             >
               <span
                 aria-hidden

@@ -4,6 +4,7 @@ import { useRef, useState, useEffect, useMemo } from "react"
 import { motion, useInView } from "motion/react"
 import { MotionText } from "./motion-text"
 import { InkLine } from "./ink-line"
+import { TiltCard } from "./tilt-card"
 import { useT } from "@/lib/i18n/provider"
 
 interface ProjectItem {
@@ -174,56 +175,63 @@ export function Creations({ randomCount }: CreationsProps) {
                   damping: 24,
                   delay: 0.04 * index,
                 }}
-                whileHover={{ y: -6 }}
                 className="group block"
+                style={{ perspective: 900 }}
               >
-                <div className="relative aspect-[4/5] overflow-hidden">
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]"
-                  />
-                </div>
-                <div className="mt-3 flex flex-col gap-1">
-                  <div className="flex items-baseline justify-between gap-3">
-                    <h3
-                      className="text-xl sm:text-2xl"
-                      style={{
-                        fontFamily: "var(--font-display)",
-                        color: "var(--ink)",
-                        lineHeight: 1,
-                      }}
-                    >
-                      {project.title.toLowerCase()}
-                    </h3>
-                    <span
-                      className="shrink-0 text-xs"
+                <TiltCard
+                  max={9}
+                  lift={6}
+                  className="relative block"
+                  style={{ borderRadius: 0 }}
+                >
+                  <div className="relative aspect-[4/5] overflow-hidden">
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      loading="lazy"
+                      className="ink-edge h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]"
+                    />
+                  </div>
+                  <div className="mt-3 flex flex-col gap-1">
+                    <div className="flex items-baseline justify-between gap-3">
+                      <h3
+                        className="text-xl sm:text-2xl"
+                        style={{
+                          fontFamily: "var(--font-display)",
+                          color: "var(--ink)",
+                          lineHeight: 1,
+                        }}
+                      >
+                        {project.title.toLowerCase()}
+                      </h3>
+                      <span
+                        className="shrink-0 text-xs"
+                        style={{
+                          color: "var(--text-muted)",
+                          fontFamily: "var(--font-display)",
+                        }}
+                      >
+                        {project.date}
+                      </span>
+                    </div>
+                    <div style={{ color: "var(--ink)", opacity: 0.5 }}>
+                      <InkLine fade={false} thickness={0.9} />
+                    </div>
+                    <p
+                      className="text-sm"
                       style={{
                         color: "var(--text-muted)",
                         fontFamily: "var(--font-display)",
                       }}
                     >
-                      {project.date}
-                    </span>
+                      {project.tags
+                        .split(",")
+                        .slice(0, 3)
+                        .map((t) => t.trim().toLowerCase())
+                        .join(" * ")}
+                    </p>
                   </div>
-                  <div style={{ color: "var(--ink)", opacity: 0.5 }}>
-                    <InkLine fade={false} thickness={0.9} />
-                  </div>
-                  <p
-                    className="text-sm"
-                    style={{
-                      color: "var(--text-muted)",
-                      fontFamily: "var(--font-display)",
-                    }}
-                  >
-                    {project.tags
-                      .split(",")
-                      .slice(0, 3)
-                      .map((t) => t.trim().toLowerCase())
-                      .join(" * ")}
-                  </p>
-                </div>
+                </TiltCard>
               </motion.a>
             ))}
           </div>
