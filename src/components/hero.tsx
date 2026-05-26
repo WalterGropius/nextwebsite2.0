@@ -61,8 +61,23 @@ export function Hero() {
           className="mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4"
           style={{ y: ctaY }}
         >
-          {/* Primary: scroll to the contact section further down the
-              same page. Secondary: works and cv as quick jumps. */}
+          {/* Order: works → cv → contact. The two secondaries sit on
+              a white surface so they read as material chips next to
+              the ink-filled primary on the right. */}
+          <Link
+            href="/portfolio-s"
+            className="btn-secondary"
+            style={{ background: "var(--surface-elevated)" }}
+          >
+            <span>{t("hero.cta.works")}</span>
+          </Link>
+          <Link
+            href="/cv"
+            className="btn-secondary"
+            style={{ background: "var(--surface-elevated)" }}
+          >
+            <span>{t("hero.cta.info")}</span>
+          </Link>
           <a href="#contact" className="btn-primary group">
             <span>{t("hero.cta")}</span>
             <span
@@ -73,12 +88,6 @@ export function Hero() {
               →
             </span>
           </a>
-          <Link href="/portfolio-s" className="btn-secondary">
-            <span>{t("hero.cta.works")}</span>
-          </Link>
-          <Link href="/cv" className="btn-secondary">
-            <span>{t("hero.cta.info")}</span>
-          </Link>
         </motion.div>
       </motion.div>
 
