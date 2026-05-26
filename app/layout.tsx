@@ -3,6 +3,7 @@ import { Layout } from '@/components/dom/Layout'
 import { ThemeProvider } from '@/components/theme-provider'
 import { I18nProvider } from '@/lib/i18n/provider'
 import { PaperBackdrop } from '@/components/paper-backdrop'
+import { PaperDecorations } from '@/components/paper-decorations'
 import '@/global.css'
 
 export const metadata: Metadata = {
@@ -92,6 +93,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           <I18nProvider>
             <PaperBackdrop />
+            <PaperDecorations />
             <Layout>{children}</Layout>
           </I18nProvider>
         </ThemeProvider>

@@ -11,6 +11,7 @@ import {
 import { Github, Linkedin, Instagram, Music } from "lucide-react"
 import { MotionText } from "./motion-text"
 import { InkLine } from "./ink-line"
+import { ContactRadar } from "./contact-radar"
 import { useT } from "@/lib/i18n/provider"
 
 const socials = [
@@ -111,6 +112,17 @@ export function Contact() {
             style={{ color: "var(--ink)", scaleX: lineScale }}
           >
             <InkLine fade={false} thickness={1.2} />
+          </motion.div>
+
+          {/* radar contact game — play on the word "contact": tag a
+              blip as the sweep passes it to score. */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+            transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
+            className="my-16"
+          >
+            <ContactRadar />
           </motion.div>
 
           <motion.div

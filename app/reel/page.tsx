@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react"
 import { motion } from "motion/react"
-import { Play, Volume2, VolumeX } from "lucide-react"
+import { Maximize2, Play, Volume2, VolumeX } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
 import { MotionText } from "@/components/motion-text"
@@ -30,6 +30,23 @@ export default function Reel() {
     if (isPlaying) videoRef.current.pause()
     else videoRef.current.play()
     setIsPlaying(!isPlaying)
+  }
+  const toggleFullscreen = () => {
+    const el = videoRef.current
+    if (!el) return
+    // Standard + WebKit fallback for iOS Safari, which only exposes
+    // the per-video webkitEnterFullscreen API.
+    type WebkitFullscreen = HTMLVideoElement & {
+      webkitEnterFullscreen?: () => void
+    }
+    if (document.fullscreenElement) {
+      document.exitFullscreen().catch(() => {})
+    } else if (el.requestFullscreen) {
+      el.requestFullscreen().catch(() => {})
+    } else {
+      const wk = el as WebkitFullscreen
+      wk.webkitEnterFullscreen?.()
+    }
   }
 
   return (
@@ -85,6 +102,7 @@ export default function Reel() {
             style={{
               border: "1.5px solid var(--ink)",
               filter: "url(#ink-wobble)",
+              zIndex: 35,
             }}
           >
             <video
@@ -154,6 +172,18 @@ export default function Reel() {
                 aria-label={t(isMuted ? "reel.unmute" : "reel.mute")}
               >
                 {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+              </button>
+              <button
+                onClick={toggleFullscreen}
+                className="flex h-10 w-10 items-center justify-center rounded-full"
+                style={{
+                  background: "var(--surface-dark)",
+                  color: "var(--ink)",
+                  border: "1.5px solid var(--ink)",
+                }}
+                aria-label={t("reel.fullscreen")}
+              >
+                <Maximize2 size={15} />
               </button>
             </div>
           </motion.div>

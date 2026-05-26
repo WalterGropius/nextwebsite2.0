@@ -203,24 +203,33 @@ function PaperGrain({ dark }: { dark: boolean }) {
 }
 
 function MillimeterGrid({ dark }: { dark: boolean }) {
-  // Lines: saturated deep spruce on cream paper, near-white on dark.
-  const lineColor = dark ? "#ffffff" : "#1f4a2b"
+  // Lines: deeply saturated spruce on cream, near-white on the dark
+  // blueprint paper.
+  const lineColor = dark ? "#ffffff" : "#0e3a1d"
   return (
     <div
       aria-hidden
       data-paper-grid
       style={{
-        position: "fixed",
-        inset: "-12vmax",
+        // Absolute, not fixed — the grid takes up the full scrollable
+        // height of the document so the lines scroll past with the
+        // content like a real sheet of paper, rather than slipping
+        // under it. Body is set to `position: relative` so this
+        // resolves to body bounds.
+        position: "absolute",
+        top: "-12vmax",
+        left: "-12vmax",
+        right: "-12vmax",
+        bottom: "-12vmax",
         pointerEvents: "none",
         // Above the page-level content backgrounds (z-20) so the grid
         // reads on top of every section, but below the navigation
-        // (z-50) and below the hero/canvas section (which sets z-[60]
+        // (z-50) and below the hero/canvas section (which sets z-[40]
         // on the landing page to mask the grid out from the 3D view).
         zIndex: 30,
         transform: "rotate(-6deg)",
         transformOrigin: "50% 50%",
-        opacity: dark ? 0.42 : 0.42,
+        opacity: dark ? 0.45 : 0.72,
         color: lineColor,
         mixBlendMode: dark ? "screen" : "multiply",
       }}
