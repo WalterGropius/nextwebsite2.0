@@ -1,6 +1,7 @@
 "use client"
 
 import { useRef } from "react"
+import Link from "next/link"
 import {
   motion,
   useScroll,
@@ -57,10 +58,12 @@ export function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.9, delay: 1.0, ease: [0.16, 1, 0.3, 1] }}
-          className="mt-10"
+          className="mt-10 flex flex-wrap items-center justify-center gap-3 sm:gap-4"
           style={{ y: ctaY }}
         >
-          <a href="mailto:zenbauhaus@gmail.com" className="btn-primary group">
+          {/* Primary: scroll to the contact section further down the
+              same page. Secondary: works and cv as quick jumps. */}
+          <a href="#contact" className="btn-primary group">
             <span>{t("hero.cta")}</span>
             <span
               aria-hidden
@@ -70,6 +73,12 @@ export function Hero() {
               →
             </span>
           </a>
+          <Link href="/portfolio-s" className="btn-secondary">
+            <span>{t("hero.cta.works")}</span>
+          </Link>
+          <Link href="/cv" className="btn-secondary">
+            <span>{t("hero.cta.info")}</span>
+          </Link>
         </motion.div>
       </motion.div>
 

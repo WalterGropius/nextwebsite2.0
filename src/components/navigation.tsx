@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 import { useState, useEffect } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { Menu, X } from "lucide-react"
@@ -20,8 +21,14 @@ const navLinks = [
 
 export function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [pastHero, setPastHero] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
   const t = useT()
+  const pathname = usePathname()
+  // The hero on /landing has three CTAs. We hide the desktop nav
+  // links until those CTAs scroll out of view so the hero reads
+  // as the single decision surface. Other pages always show links.
+  const isLanding = pathname === "/landing" || pathname === "/"
 
   const roles = [
     t("hero.role.0"),
@@ -40,10 +47,19 @@ export function Navigation() {
   }, [roles.length])
 
   useEffect(() => {
-    const onScroll = () => setIsScrolled(window.scrollY > 40)
+    const onScroll = () => {
+      const y = window.scrollY
+      setIsScrolled(y > 40)
+      // ~70% of the viewport — enough that hero CTAs are off-screen
+      setPastHero(y > window.innerHeight * 0.7)
+    }
     onScroll()
     window.addEventListener("scroll", onScroll, { passive: true })
-    return () => window.removeEventListener("scroll", onScroll)
+    window.addEventListener("resize", onScroll, { passive: true })
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+      window.removeEventListener("resize", onScroll)
+    }
   }, [])
 
   useEffect(() => {
@@ -53,10 +69,14 @@ export function Navigation() {
     }
   }, [isOpen])
 
+  const showLinks = !isLanding || pastHero
+
   return (
     <>
       <nav
-        className="fixed inset-x-0 top-0 z-50 transition-all duration-500"
+        // z-[60] so the bar (and its close X) always sits above the
+        // mobile menu overlay (z-[55]) and the landing hero (z-40).
+        className="fixed inset-x-0 top-0 z-[60] transition-all duration-500"
         style={{
           padding: isScrolled ? "0.75rem 0" : "1.25rem 0",
           background: isScrolled
@@ -123,22 +143,37 @@ export function Navigation() {
 
           {/* gap-4 is shared with the icon switcher inside
               LangThemeSwitcher so the rhythm between every right-side
-              element is the same. */}
+              element is the same. On /landing the links are hidden
+              until the user scrolls past the hero CTAs — they fade
+              in to the left of the always-visible switcher. */}
           <div className="hidden items-center gap-4 md:flex">
-            {navLinks.map((l) => (
-              <Link
-                key={l.href}
-                href={l.href}
-                className="relative text-base transition-transform hover:-translate-y-0.5"
-                style={{
-                  fontFamily: "var(--font-display)",
-                  color: "var(--ink)",
-                  fontWeight: 600,
-                }}
-              >
-                {t(l.key)}
-              </Link>
-            ))}
+            <AnimatePresence initial={false}>
+              {showLinks && (
+                <motion.div
+                  key="nav-links"
+                  initial={{ opacity: 0, x: 12, filter: "blur(6px)" }}
+                  animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+                  exit={{ opacity: 0, x: 12, filter: "blur(6px)" }}
+                  transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex items-center gap-4"
+                >
+                  {navLinks.map((l) => (
+                    <Link
+                      key={l.href}
+                      href={l.href}
+                      className="relative text-base transition-transform hover:-translate-y-0.5"
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        color: "var(--ink)",
+                        fontWeight: 600,
+                      }}
+                    >
+                      {t(l.key)}
+                    </Link>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
             <LangThemeSwitcher />
           </div>
 
@@ -191,7 +226,10 @@ export function Navigation() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
-            className="fixed inset-0 z-40 flex flex-col items-center justify-center gap-1 px-8 md:hidden"
+            // z-[55] — above the landing-page hero (z-40), but below
+            // the fixed <nav> bar itself (z-50) so the close (X)
+            // button on top stays clickable.
+            className="fixed inset-0 z-[55] flex flex-col items-center justify-center gap-1 px-8 md:hidden"
             style={{
               background:
                 "color-mix(in srgb, var(--surface-dark) 97%, transparent)",

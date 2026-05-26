@@ -44,7 +44,18 @@ export function Contact({ withRadar = false }: { withRadar?: boolean }) {
   const socialsY = useTransform(smooth, [0, 1], [60, -20])
 
   return (
-    <section id="contact" className="relative py-28 sm:py-40" ref={ref}>
+    <section
+      id="contact"
+      // When the radar is up top, kill the huge top padding so the
+      // dish doesn't sit ~240px below the nav. Bottom padding stays
+      // full so the footer breathes.
+      className={
+        withRadar
+          ? "relative pb-28 pt-6 sm:pb-40 sm:pt-10"
+          : "relative py-28 sm:py-40"
+      }
+      ref={ref}
+    >
       <div className="section-container">
         <div className="mx-auto max-w-4xl">
           {/* radar contact game lives at the top of the dedicated
