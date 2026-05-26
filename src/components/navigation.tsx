@@ -7,8 +7,9 @@ import { Menu, X } from "lucide-react"
 import { useT } from "@/lib/i18n/provider"
 import { LangThemeSwitcher } from "./lang-theme-switcher"
 
+// "o mně" lives at /landing, which is already the brand-mark
+// destination — keeping it as a separate link is redundant.
 const navLinks = [
-  { href: "/landing", key: "nav.about" },
   { href: "/portfolio-s", key: "nav.work" },
   { href: "/reel", key: "nav.reel" },
   { href: "/sketchfab", key: "nav.3d" },
@@ -120,19 +121,22 @@ export function Navigation() {
             </div>
           </div>
 
-          <div className="hidden items-center gap-7 md:flex">
+          {/* gap-4 is shared with the icon switcher inside
+              LangThemeSwitcher so the rhythm between every right-side
+              element is the same. */}
+          <div className="hidden items-center gap-4 md:flex">
             {navLinks.map((l) => (
               <Link
                 key={l.href}
                 href={l.href}
-                className="group relative text-base transition-transform hover:-translate-y-0.5"
+                className="relative text-base transition-transform hover:-translate-y-0.5"
                 style={{
                   fontFamily: "var(--font-display)",
                   color: "var(--ink)",
                   fontWeight: 600,
                 }}
               >
-                <span className="ink-underline">{t(l.key)}</span>
+                {t(l.key)}
               </Link>
             ))}
             <LangThemeSwitcher />

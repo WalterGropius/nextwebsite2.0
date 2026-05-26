@@ -42,7 +42,7 @@ export function LangThemeSwitcher({
   return (
     <div
       ref={wrapRef}
-      className="relative flex items-center gap-2"
+      className="relative flex items-center gap-4"
       style={{ color: "var(--ink)" }}
     >
       {/* Theme toggle */}

@@ -353,6 +353,13 @@
   .ink-edge-strong {
     filter: url(#ink-wobble-strong);
   }
+  /* Pronounced ink edge for photos — wraps a photo so its boundary
+     reads as torn/inked paper rather than a vector rectangle.
+     Pixel interior gets a slight painterly displacement too, which
+     matches the rest of the hand-drawn aesthetic. */
+  .ink-photo {
+    filter: url(#ink-wobble-photo);
+  }
 
   /* Hand-drawn rule — wraps any straight line with the wobble filter so
      dividers, underlines and borders feel inked rather than vector-perfect */
