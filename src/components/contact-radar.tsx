@@ -69,23 +69,29 @@ export function ContactRadar() {
       canvas.style.width = `${w}px`
       canvas.style.height = `${h}px`
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+      // Half-dish: centre anchored to the bottom edge, radius
+      // determined by whichever bound is tighter. Reads as a
+      // widescreen radar viewport.
       cx = w / 2
-      cy = h / 2
-      radius = Math.min(w, h) * 0.45
+      cy = h
+      radius = Math.min(w / 2, h) * 0.95
     }
     resize()
     const onResize = () => resize()
     window.addEventListener("resize", onResize)
 
-    // Pre-seed blips around the dish
+    // Pre-seed blips inside the upper half-dish only.
     const blips: Blip[] = []
     const spawnBlip = () => {
-      const ang = Math.random() * Math.PI * 2
-      const r = radius * (0.2 + Math.random() * 0.75)
+      // Upper half: angle in [-PI, 0] (sin <= 0)
+      const ang = -Math.PI + Math.random() * Math.PI
+      const r = radius * (0.18 + Math.random() * 0.78)
       const x = cx + Math.cos(ang) * r
       const y = cy + Math.sin(ang) * r
-      const speed = 12 + Math.random() * 22
-      const dir = Math.random() * Math.PI * 2
+      const speed = 14 + Math.random() * 22
+      // Aim each blip into the upper half too so it doesn't
+      // immediately slam into the floor.
+      const dir = -Math.PI + Math.random() * Math.PI
       blips.push({
         x, y,
         vx: Math.cos(dir) * speed,
@@ -95,11 +101,14 @@ export function ContactRadar() {
         ttl: 5 + Math.random() * 4,
       })
     }
-    for (let i = 0; i < 5; i++) spawnBlip()
+    for (let i = 0; i < 6; i++) spawnBlip()
 
     const ripples: Ripple[] = []
-    let sweepAngle = -Math.PI / 2
-    const sweepSpeed = (Math.PI * 2) / 5 // one revolution in 5s
+    // Half-dish sweep: rotate from -PI (left edge) to 0 (right edge),
+    // then wrap back. One sweep every ~3s reads as a recognisable
+    // search-radar cadence.
+    let sweepAngle = -Math.PI
+    const sweepSpeed = Math.PI / 3
     let raf = 0
     let last = performance.now()
     let visibilityActive = true
@@ -157,24 +166,31 @@ export function ContactRadar() {
         return
       }
 
-      sweepAngle = (sweepAngle + sweepSpeed * dt) % (Math.PI * 2)
-      // physics step
+      // Sweep marches left → right across the upper half, wraps back.
+      sweepAngle += sweepSpeed * dt
+      if (sweepAngle > 0) sweepAngle = -Math.PI
+      // physics step — blips bounce off the half-dish (curved top and
+      // the horizontal floor at cy).
       for (const b of blips) {
         b.ttl -= dt
         b.x += b.vx * dt
         b.y += b.vy * dt
-        // soft elastic boundary inside the dish
+        // curved arc boundary
         const dx = b.x - cx
         const dy = b.y - cy
         const d = Math.hypot(dx, dy)
         if (d > radius - 6) {
           const nx = dx / d, ny = dy / d
-          // reflect
           const vd = b.vx * nx + b.vy * ny
           b.vx -= 2 * vd * nx
           b.vy -= 2 * vd * ny
           b.x = cx + nx * (radius - 7)
           b.y = cy + ny * (radius - 7)
+        }
+        // horizontal floor (the diameter line at the bottom)
+        if (b.y > cy - 6) {
+          b.y = cy - 6
+          if (b.vy > 0) b.vy = -b.vy
         }
         // gentle drag
         b.vx *= 0.995
@@ -193,33 +209,45 @@ export function ContactRadar() {
       ctx.clearRect(0, 0, w, h)
       ctx.save()
 
-      // dish background (subtle inner fill)
+      // dish background (subtle inner fill) — upper half only
       ctx.beginPath()
-      ctx.arc(cx, cy, radius, 0, Math.PI * 2)
+      ctx.arc(cx, cy, radius, Math.PI, 0, false)
+      ctx.closePath()
       ctx.fillStyle = "rgba(127,127,127,0.04)"
       ctx.fill()
 
-      // concentric range rings
+      // concentric half-rings
       ctx.strokeStyle = inkColor
       ctx.globalAlpha = 0.18
       ctx.lineWidth = 1
       for (let i = 1; i <= 4; i++) {
         ctx.beginPath()
-        ctx.arc(cx, cy, (radius * i) / 4, 0, Math.PI * 2)
+        ctx.arc(cx, cy, (radius * i) / 4, Math.PI, 0, false)
         ctx.stroke()
       }
-      // crosshairs
+      // baseline (diameter) + vertical zenith
       ctx.beginPath()
       ctx.moveTo(cx - radius, cy)
       ctx.lineTo(cx + radius, cy)
-      ctx.moveTo(cx, cy - radius)
-      ctx.lineTo(cx, cy + radius)
+      ctx.moveTo(cx, cy)
+      ctx.lineTo(cx, cy - radius)
       ctx.stroke()
-      // outer ring (bold)
-      ctx.globalAlpha = 0.55
+      // tick marks at 30°/60° on either side, like a real instrument
+      ctx.globalAlpha = 0.35
+      for (const a of [-150, -120, -60, -30]) {
+        const r = (a * Math.PI) / 180
+        const r1 = radius
+        const r2 = radius - 10
+        ctx.beginPath()
+        ctx.moveTo(cx + Math.cos(r) * r2, cy + Math.sin(r) * r2)
+        ctx.lineTo(cx + Math.cos(r) * r1, cy + Math.sin(r) * r1)
+        ctx.stroke()
+      }
+      // outer arc (bold)
+      ctx.globalAlpha = 0.6
       ctx.lineWidth = 1.8
       ctx.beginPath()
-      ctx.arc(cx, cy, radius, 0, Math.PI * 2)
+      ctx.arc(cx, cy, radius, Math.PI, 0, false)
       ctx.stroke()
 
       // sweep cone — gradient from centre to the rim, narrow wedge
@@ -302,15 +330,16 @@ export function ContactRadar() {
   return (
     <div
       className="relative mx-auto w-full"
-      style={{ maxWidth: 420, aspectRatio: "1 / 1", zIndex: 35 }}
+      style={{ maxWidth: 960, aspectRatio: "2 / 1", zIndex: 35 }}
     >
       <div
         ref={wrapRef}
         className="relative h-full w-full overflow-hidden"
         style={{
-          border: "1.5px solid var(--ink)",
+          // Half-dish frame: top border is the curved arc (drawn by
+          // canvas), bottom is the flat instrument base.
+          borderBottom: "1.5px solid var(--ink)",
           filter: "url(#ink-wobble)",
-          borderRadius: "50%",
           cursor: "crosshair",
         }}
       >

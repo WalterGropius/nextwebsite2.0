@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
 import { InkLine } from "@/components/ink-line"
@@ -85,52 +85,176 @@ const speaking = [
 // Two portraits stacked: the second wipes in from the left over the
 // first on hover, snaps back on leave. No-print so it stays out of
 // the PDF export.
+//
+// Important: faces deform under a heavy displacement filter, so the
+// portraits do NOT use .ink-photo. Instead we wrap the photo in a
+// frame that gets the wobble (the *edges* are inked, the face stays
+// intact). The frame is a positioned wrapper with an SVG-filter
+// border, so the wobble survives the hover state too.
 function CVPortrait() {
   const [hover, setHover] = useState(false)
   return (
     <div
-      className="no-print relative mx-auto w-full max-w-[20rem] overflow-hidden"
+      className="no-print relative mx-auto w-full max-w-[20rem]"
       style={{ aspectRatio: "4 / 5", zIndex: 35 }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      <img
-        src="/eli1.webp"
-        alt="eliáš bauer"
-        className="ink-photo absolute inset-0 h-full w-full object-cover"
-        style={{
-          transition:
-            "transform 800ms cubic-bezier(0.16, 1, 0.3, 1), filter 600ms ease-out",
-          transform: hover ? "scale(1.04)" : "scale(1)",
-          filter: hover
-            ? "url(#ink-wobble-photo) saturate(0.85) contrast(0.95)"
-            : "url(#ink-wobble-photo)",
-        }}
-      />
-      <img
-        src="/eli2.webp"
-        alt=""
-        aria-hidden
-        className="ink-photo absolute inset-0 h-full w-full object-cover"
-        style={{
-          transition: "clip-path 700ms cubic-bezier(0.16, 1, 0.3, 1)",
-          clipPath: hover ? "inset(0 0 0 0)" : "inset(0 100% 0 0)",
-        }}
-      />
-      {/* hand-written caption that swaps on hover */}
+      {/* Inked frame — wobble lives here, not on the photo, so faces
+          don't deform and the edge effect survives the hover state. */}
       <div
-        className="absolute bottom-2 left-2 text-xs uppercase tracking-[0.25em]"
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
         style={{
-          color: "var(--ink)",
-          opacity: 0.55,
-          fontFamily: "var(--font-display)",
-          background: "color-mix(in srgb, var(--surface-dark) 70%, transparent)",
-          padding: "2px 6px",
+          border: "2px solid var(--ink)",
+          filter: "url(#ink-wobble-strong)",
+          zIndex: 2,
         }}
-      >
-        {hover ? "* studio" : "* outside"}
+      />
+      <div className="relative h-full w-full overflow-hidden">
+        <img
+          src="/eli1.webp"
+          alt="eliáš bauer"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{
+            transition:
+              "transform 800ms cubic-bezier(0.16, 1, 0.3, 1), filter 600ms ease-out",
+            transform: hover ? "scale(1.04)" : "scale(1)",
+            filter: hover ? "saturate(0.9) contrast(0.96)" : "none",
+          }}
+        />
+        <img
+          src="/eli2.webp"
+          alt=""
+          aria-hidden
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{
+            transition: "clip-path 700ms cubic-bezier(0.16, 1, 0.3, 1)",
+            clipPath: hover ? "inset(0 0 0 0)" : "inset(0 100% 0 0)",
+          }}
+        />
+        {/* hand-written caption that swaps on hover */}
+        <div
+          className="absolute bottom-2 left-2 text-xs uppercase tracking-[0.25em]"
+          style={{
+            color: "var(--ink)",
+            opacity: 0.55,
+            fontFamily: "var(--font-display)",
+            background: "color-mix(in srgb, var(--surface-dark) 70%, transparent)",
+            padding: "2px 6px",
+            zIndex: 3,
+          }}
+        >
+          {hover ? "* studio" : "* outside"}
+        </div>
       </div>
     </div>
+  )
+}
+
+// Both download buttons share a single source: /cvBauer.html.
+// - HTML button: fetch as a blob and click a synthetic anchor so the
+//   browser actually downloads it instead of opening it inline.
+// - PDF button: render the same html in a hidden iframe, then run
+//   html2pdf on the iframe body — direct download, no print dialog.
+function CVDownloads() {
+  const [busy, setBusy] = useState<"none" | "html" | "pdf">("none")
+  const iframeRef = useRef<HTMLIFrameElement | null>(null)
+  const t = useT()
+
+  const downloadHtml = async () => {
+    if (busy !== "none") return
+    setBusy("html")
+    try {
+      const res = await fetch("/cvBauer.html", { cache: "no-store" })
+      const blob = await res.blob()
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement("a")
+      a.href = url
+      a.download = "elias-bauer-cv.html"
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      URL.revokeObjectURL(url)
+    } finally {
+      setBusy("none")
+    }
+  }
+
+  const downloadPdf = async () => {
+    if (busy !== "none") return
+    setBusy("pdf")
+    let frame: HTMLIFrameElement | null = null
+    try {
+      // 1) load cvBauer.html into an offscreen iframe (the &pdf=1
+      //    flag suppresses its own download buttons + the autoprint
+      //    redirect so we own the rendering).
+      frame = document.createElement("iframe")
+      frame.style.position = "fixed"
+      frame.style.left = "-9999px"
+      frame.style.top = "0"
+      frame.style.width = "210mm"
+      frame.style.height = "297mm"
+      frame.src = "/cvBauer.html?pdf=1"
+      iframeRef.current = frame
+      document.body.appendChild(frame)
+      await new Promise<void>((resolve) => {
+        if (!frame) return resolve()
+        frame.addEventListener("load", () => resolve(), { once: true })
+      })
+      // give the in-page font + photos a moment to settle
+      const doc = frame.contentDocument
+      if (doc?.fonts?.ready) {
+        await doc.fonts.ready.catch(() => {})
+      }
+      await new Promise((r) => setTimeout(r, 350))
+
+      // 2) html2pdf renders the iframe body to PDF and downloads it.
+      const html2pdf = (await import("html2pdf.js")).default
+      const target = doc?.body
+      if (!target) throw new Error("iframe body missing")
+      await html2pdf()
+        .set({
+          margin: [10, 10, 10, 10],
+          filename: "elias-bauer-cv.pdf",
+          image: { type: "jpeg", quality: 0.96 },
+          html2canvas: {
+            scale: 2,
+            useCORS: true,
+            backgroundColor: "#f6f6f4",
+          },
+          jsPDF: { unit: "mm", format: "a4", orientation: "portrait" },
+        })
+        .from(target)
+        .save()
+    } finally {
+      if (frame && frame.parentNode) frame.parentNode.removeChild(frame)
+      iframeRef.current = null
+      setBusy("none")
+    }
+  }
+
+  return (
+    <>
+      <button
+        type="button"
+        onClick={downloadHtml}
+        disabled={busy !== "none"}
+        className="btn-secondary"
+      >
+        <Download size={14} />
+        <span>{busy === "html" ? "…" : t("cv.downloads.html")}</span>
+      </button>
+      <button
+        type="button"
+        onClick={downloadPdf}
+        disabled={busy !== "none"}
+        className="btn-secondary"
+      >
+        <Printer size={14} />
+        <span>{busy === "pdf" ? "…" : t("cv.downloads.pdf")}</span>
+      </button>
+    </>
   )
 }
 
@@ -214,22 +338,7 @@ export default function CVPage() {
               </motion.p>
 
               <div className="no-print ink-icons mt-10 flex flex-wrap items-center gap-3">
-                <a href="/cvBauer.html" target="_blank" rel="noopener noreferrer" className="btn-secondary">
-                  <Download size={14} />
-                  <span>{t("cv.downloads.html")}</span>
-                </a>
-                {/* PDF = the same HTML CV opened with ?print=1, which
-                    triggers the browser's print-to-PDF on load. One
-                    source of truth, no second static file. */}
-                <a
-                  href="/cvBauer.html?print=1"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-secondary"
-                >
-                  <Printer size={14} />
-                  <span>{t("cv.downloads.pdf")}</span>
-                </a>
+                <CVDownloads />
               </div>
             </div>
 

@@ -21,7 +21,7 @@ const socials = [
   { key: "contact.social.soundcloud", href: "https://soundcloud.com/mczenbauhaus", icon: Music },
 ]
 
-export function Contact() {
+export function Contact({ withRadar = false }: { withRadar?: boolean }) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, amount: 0.3 })
   const t = useT()
@@ -114,16 +114,19 @@ export function Contact() {
             <InkLine fade={false} thickness={1.2} />
           </motion.div>
 
-          {/* radar contact game — play on the word "contact": tag a
-              blip as the sweep passes it to score. */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-            transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
-            className="my-16"
-          >
-            <ContactRadar />
-          </motion.div>
+          {/* radar contact game — only mounted on the dedicated
+              /contact page (withRadar=true), not in the landing
+              page's contact section. */}
+          {withRadar && (
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+              transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
+              className="my-16"
+            >
+              <ContactRadar />
+            </motion.div>
+          )}
 
           <motion.div
             className="flex flex-wrap items-center gap-x-6 gap-y-3"

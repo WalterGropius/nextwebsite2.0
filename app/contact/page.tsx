@@ -10,7 +10,7 @@ export default function ContactPage() {
       <main className="min-h-screen" style={{ background: "var(--surface-dark)" }}>
         <Navigation />
         <div className="pt-20">
-          <Contact />
+          <Contact withRadar />
         </div>
       </main>
     </PageLoader>
