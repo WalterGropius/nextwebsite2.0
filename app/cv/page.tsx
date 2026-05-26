@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
 import { InkLine } from "@/components/ink-line"
@@ -92,13 +92,33 @@ const speaking = [
 // intact). The frame is a positioned wrapper with an SVG-filter
 // border, so the wobble survives the hover state too.
 function CVPortrait() {
+  // `hover` is the toggle state, regardless of input type.
+  // On mouse-capable devices we drive it via enter/leave so it
+  // feels like a real hover. On touch-only devices we wire it to
+  // click so tap = toggle. (hover: none) detects coarse pointers.
   const [hover, setHover] = useState(false)
+  const [isTouch, setIsTouch] = useState(false)
+  useEffect(() => {
+    if (typeof window === "undefined") return
+    setIsTouch(window.matchMedia("(hover: none)").matches)
+  }, [])
   return (
     <div
       className="no-print relative mx-auto w-full max-w-[20rem]"
-      style={{ aspectRatio: "4 / 5", zIndex: 35 }}
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
+      style={{ aspectRatio: "4 / 5", zIndex: 35, cursor: "pointer" }}
+      onMouseEnter={isTouch ? undefined : () => setHover(true)}
+      onMouseLeave={isTouch ? undefined : () => setHover(false)}
+      onClick={isTouch ? () => setHover((h) => !h) : undefined}
+      role="button"
+      tabIndex={0}
+      aria-pressed={hover}
+      aria-label="toggle portrait"
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault()
+          setHover((h) => !h)
+        }
+      }}
     >
       {/* Inked frame — wobble lives here, not on the photo, so faces
           don't deform and the edge effect survives the hover state. */}
