@@ -89,7 +89,7 @@ export function Navigation() {
                 className="mr-2 select-none"
                 style={{ color: "var(--ink)", opacity: 0.35 }}
               >
-                /
+                *
               </span>
               <AnimatePresence mode="popLayout" initial={false}>
                 <motion.span

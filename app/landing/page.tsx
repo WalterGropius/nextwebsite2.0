@@ -40,13 +40,32 @@ export default function Home() {
   }, [])
 
   useEffect(() => {
-    if (!canvasRef.current) return
-    const observer = new IntersectionObserver(
-      ([entry]) => setCanvasVisible(entry.isIntersecting),
-      { threshold: 0.1 }
-    )
-    observer.observe(canvasRef.current)
-    return () => observer.disconnect()
+    // Pause R3F's render loop once the user has scrolled past the
+    // first third of the hero canvas. The Three.js scene stays
+    // mounted (snapping back up resumes it instantly) but the GPU
+    // and main-thread cost drops to zero, leaving headroom for the
+    // Framer Motion scroll animations on the content below.
+    let raf = 0
+    const update = () => {
+      raf = 0
+      const el = canvasRef.current
+      if (!el) return
+      const rect = el.getBoundingClientRect()
+      const threshold = rect.height / 3
+      setCanvasVisible(-rect.top < threshold)
+    }
+    const onScroll = () => {
+      if (raf) return
+      raf = requestAnimationFrame(update)
+    }
+    update()
+    window.addEventListener("scroll", onScroll, { passive: true })
+    window.addEventListener("resize", onScroll, { passive: true })
+    return () => {
+      window.removeEventListener("scroll", onScroll)
+      window.removeEventListener("resize", onScroll)
+      if (raf) cancelAnimationFrame(raf)
+    }
   }, [mounted])
 
   return (
