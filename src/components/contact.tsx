@@ -47,6 +47,20 @@ export function Contact({ withRadar = false }: { withRadar?: boolean }) {
     <section id="contact" className="relative py-28 sm:py-40" ref={ref}>
       <div className="section-container">
         <div className="mx-auto max-w-4xl">
+          {/* radar contact game lives at the top of the dedicated
+              /contact page — first thing visitors see, sets the tone
+              before the wall of text. Skipped on the landing page. */}
+          {withRadar && (
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
+              transition={{ duration: 0.9, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="mb-16"
+            >
+              <ContactRadar />
+            </motion.div>
+          )}
+
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 8 }}
@@ -113,20 +127,6 @@ export function Contact({ withRadar = false }: { withRadar?: boolean }) {
           >
             <InkLine fade={false} thickness={1.2} />
           </motion.div>
-
-          {/* radar contact game — only mounted on the dedicated
-              /contact page (withRadar=true), not in the landing
-              page's contact section. */}
-          {withRadar && (
-            <motion.div
-              initial={{ opacity: 0, y: 24 }}
-              animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 24 }}
-              transition={{ duration: 0.9, delay: 0.9, ease: [0.16, 1, 0.3, 1] }}
-              className="my-16"
-            >
-              <ContactRadar />
-            </motion.div>
-          )}
 
           <motion.div
             className="flex flex-wrap items-center gap-x-6 gap-y-3"
