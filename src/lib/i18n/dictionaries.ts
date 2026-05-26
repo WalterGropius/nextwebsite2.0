@@ -37,6 +37,8 @@ export const en: Dict = {
   "hero.role.3": "visual artist",
   "hero.role.4": "builder of impossible things",
   "hero.cta": "work with me",
+  "hero.cta.works": "my works",
+  "hero.cta.info": "info",
   "hero.scroll": "scroll",
 
   // manifesto
@@ -246,6 +248,8 @@ export const cs: Dict = {
   "hero.role.3": "vizuální umělec",
   "hero.role.4": "stavitel nemožného",
   "hero.cta": "ozvi se",
+  "hero.cta.works": "moje práce",
+  "hero.cta.info": "info",
   "hero.scroll": "scroll",
 
   "manifesto.line1": "dělám věci,",
@@ -444,6 +448,8 @@ export const fr: Dict = {
   "hero.role.3": "artiste visuel",
   "hero.role.4": "bâtisseur d'impossibles",
   "hero.cta": "travaillons ensemble",
+  "hero.cta.works": "mes travaux",
+  "hero.cta.info": "info",
   "hero.scroll": "scroll",
 
   "manifesto.line1": "je fais des choses",

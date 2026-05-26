@@ -1269,12 +1269,19 @@ function DoodleLayer({ items }: { items: Placed[] }) {
         <div
           key={d.id}
           aria-hidden
+          data-side={d.side}
+          className="doodle"
           style={{
             position: "absolute",
             top: `${d.topVh}vh`,
+            // Wide screens: doodle sits *outside* the centred content
+            // column on its preferred side. Narrow viewports override
+            // via the .doodle CSS below to put everything in the
+            // right margin at a smaller scale.
             [d.side]: `calc(50% + ${CONTENT_HALF + GUTTER}px)`,
-            transform: `rotate(${d.rotate}deg)`,
-            transformOrigin: "50% 50%",
+            // Rotation lives on a custom property so the media-query
+            // overrides can compose it with `scale()`.
+            ["--r" as string]: `${d.rotate}deg`,
             opacity: d.opacity ?? 0.55,
             pointerEvents: "none",
             zIndex: 26,
@@ -1352,13 +1359,41 @@ export function PaperDecorations() {
 
   return (
     <>
-      {/* Doodles only render when the viewport actually has room
-          beside the centred content column. Below 1400px the content
-          fills the screen and stamping doodles over text reads bad. */}
+      {/* Doodle sizing + positioning. Three tiers:
+          - wide desktop: outside the centred content column, +15%
+          - tablet / narrow desktop: forced into the right margin
+            (content is mostly left-aligned on smaller layouts), 70%
+          - phone: scaled to ~55% so they read as marginalia, not
+            paper-tape. Rotation is composed with scale through a
+            --r custom property set inline on each doodle. */}
       <style>{`
-        .doodle-layer { display: block; }
-        @media (max-width: 1400px) {
-          .doodle-layer { display: none; }
+        .doodle {
+          transform: rotate(var(--r, 0deg));
+          transform-origin: 50% 50%;
+          will-change: transform;
+        }
+        @media (min-width: 1400px) {
+          .doodle {
+            transform: rotate(var(--r, 0deg)) scale(1.15);
+          }
+        }
+        @media (max-width: 1399px) {
+          .doodle[data-side="left"],
+          .doodle[data-side="right"] {
+            left: auto;
+            right: 1vw;
+          }
+          .doodle {
+            transform: rotate(var(--r, 0deg)) scale(0.7);
+            transform-origin: 100% 50%;
+            opacity: 0.5;
+          }
+        }
+        @media (max-width: 640px) {
+          .doodle {
+            transform: rotate(var(--r, 0deg)) scale(0.55);
+            opacity: 0.45;
+          }
         }
       `}</style>
       <div
@@ -1372,12 +1407,10 @@ export function PaperDecorations() {
         }}
       >
         <CoffeeStains />
-        <div className="doodle-layer">
-          {items && <DoodleLayer items={items} />}
-          {stars.map((s, i) => (
-            <MarginStar key={i} {...s} opacity={0.45} />
-          ))}
-        </div>
+        {items && <DoodleLayer items={items} />}
+        {stars.map((s, i) => (
+          <MarginStar key={i} {...s} opacity={0.45} />
+        ))}
       </div>
     </>
   )
