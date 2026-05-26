@@ -4,10 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>eliáš bauer — cv</title>
-  <!-- Same Zenhand face as the live site so the printed/exported
-       CV reads in the author's handwritten voice. WOFF2 first,
-       WOFF fallback, OTF as a safety net. -->
   <style>
+    /* Same Zenhand face as the live site so the html and pdf reads
+       in the author's handwritten voice. Note: when this file is
+       opened directly from the filesystem the absolute paths still
+       work as long as the file lives next to the rest of /public. */
     @font-face {
       font-family: 'Zenhand';
       src: url('/zenhand4.woff2') format('woff2'),
@@ -23,6 +24,7 @@
       --muted: rgba(15, 17, 23, 0.6);
       --paper: #f6f6f4;
       --rule: rgba(15, 17, 23, 0.15);
+      --accent: #0e3a1d;
     }
 
     * { box-sizing: border-box; }
@@ -40,13 +42,54 @@
       line-height: 1.5;
     }
 
+    a { color: var(--ink); }
+    a:hover { color: var(--accent); }
+
     .page {
       max-width: 880px;
       margin: 0 auto;
       padding: 56px 40px;
     }
 
-    header {
+    /* === top controls — html-only, hidden in pdf */
+    .controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .controls .left,
+    .controls .right {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .meta-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      border: 1.5px solid var(--ink);
+      border-radius: 9999px;
+      background: transparent;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: background 200ms ease, transform 200ms ease;
+    }
+    .pill:hover { background: rgba(15,17,23,0.06); transform: translateY(-1px); }
+    .pill[aria-pressed="true"] {
+      background: var(--ink);
+      color: var(--paper);
+    }
+
+    header.top {
       display: grid;
       grid-template-columns: 1.6fr 1fr;
       gap: 32px;
@@ -68,7 +111,10 @@
       text-transform: uppercase;
       color: var(--muted);
     }
-    .meta a { color: inherit; text-decoration: none; border-bottom: 1px solid currentColor; }
+    .meta a {
+      color: inherit; text-decoration: none;
+      border-bottom: 1px solid currentColor;
+    }
 
     .intro {
       margin-top: 18px;
@@ -77,16 +123,51 @@
       max-width: 60ch;
     }
 
+    /* === portrait — two photos swap on hover via clip-path */
     .portrait {
+      position: relative;
       aspect-ratio: 4 / 5;
       width: 100%;
       max-width: 220px;
       justify-self: end;
       overflow: hidden;
       background: rgba(15, 17, 23, 0.04);
+      cursor: pointer;
     }
     .portrait img {
-      width: 100%; height: 100%; object-fit: cover; display: block;
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition:
+        clip-path 700ms cubic-bezier(0.16, 1, 0.3, 1),
+        transform 800ms cubic-bezier(0.16, 1, 0.3, 1),
+        filter 600ms ease;
+    }
+    .portrait .top-img {
+      z-index: 1;
+    }
+    .portrait .swap-img {
+      clip-path: inset(0 100% 0 0);
+      z-index: 2;
+    }
+    .portrait:hover .top-img {
+      transform: scale(1.04);
+      filter: saturate(0.9) contrast(0.96);
+    }
+    .portrait:hover .swap-img {
+      clip-path: inset(0 0 0 0);
+    }
+    .portrait .caption {
+      position: absolute;
+      bottom: 6px; left: 6px;
+      z-index: 3;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ink);
+      opacity: 0.6;
+      background: rgba(246, 246, 244, 0.75);
+      padding: 2px 6px;
     }
 
     hr {
@@ -110,9 +191,9 @@
       padding: 12px 0;
       border-bottom: 1px solid var(--rule);
     }
-    .job:last-child, .edu-item:last-child, .lang-item:last-child {
-      border-bottom: 0;
-    }
+    .job:last-child,
+    .edu-item:last-child,
+    .lang-item:last-child { border-bottom: 0; }
 
     .job-head, .edu-head, .lang-row {
       display: flex;
@@ -123,6 +204,7 @@
     }
     .role { font-size: 1.15rem; }
     .at   { color: var(--muted); font-size: 0.95rem; }
+    .at a { color: inherit; text-decoration: none; border-bottom: 1px dotted currentColor; }
     .when {
       font-size: 0.65rem;
       letter-spacing: 0.3em;
@@ -131,6 +213,17 @@
       white-space: nowrap;
     }
     .blurb { color: var(--muted); margin: 8px 0 0 0; max-width: 65ch; font-size: 0.95rem; }
+    .tldr  { color: var(--muted); margin: 6px 0 0 0; font-size: 0.95rem; font-style: italic; }
+
+    /* tldr/verbose toggle — visibility flips by data-mode on <body> */
+    body[data-mode="tldr"] .verbose-only { display: none; }
+    body[data-mode="verbose"] .tldr-only { display: none; }
+    /* in tldr we hide the deepest blurbs so the cv reads as one
+       skim-friendly page */
+    body[data-mode="tldr"] .blurb { display: none; }
+    body[data-mode="tldr"] .job   { padding: 6px 0; }
+    body[data-mode="tldr"] h1     { font-size: 3.4rem; }
+    body[data-mode="tldr"] .intro { font-size: 1rem; }
 
     .caps {
       display: grid;
@@ -181,23 +274,47 @@
     em   { font-style: italic; }
     strong { font-weight: 800; -webkit-text-stroke: 0.025em currentColor; }
 
+    /* When this html is rendered by html2pdf into a hidden iframe
+       (?pdf=1) we hide the html-only chrome so the export only shows
+       the document, not the controls. */
+    body.pdf-mode .controls { display: none !important; }
+    body.pdf-mode .portrait { pointer-events: none; }
+
     @media print {
       @page { size: A4; margin: 14mm 14mm; }
       html, body { background: #fff !important; }
+      .controls { display: none; }
       .page { padding: 0; max-width: 100%; }
-      header { gap: 18px; margin-bottom: 14px; }
+      header.top { gap: 18px; margin-bottom: 14px; }
       h1 { font-size: 3.2rem; }
       .intro { font-size: 1rem; }
       .portrait { max-width: 150px; }
       section { margin-bottom: 18px; }
       hr { margin: 16px 0; }
-      a { color: inherit; text-decoration: none; border-bottom: 1px solid currentColor; }
+      a {
+        color: inherit; text-decoration: none;
+        border-bottom: 1px solid currentColor;
+      }
     }
   </style>
 </head>
-<body>
+<body data-mode="verbose">
   <main class="page">
-    <header>
+    <div class="controls" id="controls">
+      <div class="left">
+        <span class="meta-tag">cv * eliáš bauer</span>
+      </div>
+      <div class="right">
+        <button class="pill" id="mode-toggle" aria-pressed="false" title="toggle verbose / tldr">
+          <span id="mode-label">verbose</span>
+        </button>
+        <a class="pill" href="https://zenbauhaus.vercel.app" target="_blank" rel="noopener">
+          live site →
+        </a>
+      </div>
+    </div>
+
+    <header class="top">
       <div>
         <h1>eliáš bauer</h1>
         <div class="meta">
@@ -205,13 +322,22 @@
           <a href="mailto:zenbauhaus@gmail.com">zenbauhaus@gmail.com</a>
           &nbsp;*&nbsp;
           <a href="https://zenbauhaus.vercel.app">zenbauhaus.vercel.app</a>
+          &nbsp;*&nbsp;
+          <a href="https://github.com/WalterGropius">github</a>
+          &nbsp;*&nbsp;
+          <a href="https://linkedin.com/in/zenbauhaus">linkedin</a>
         </div>
-        <p class="intro">
+        <p class="intro verbose-only">
           i build systems, untangle messy problems, and write code. no rigid title — sometimes that's leading a team scaling a startup zero-to-one, sometimes wiring agentic ai, building spatial interfaces in unreal, or tearing apart hardware just to understand it. the more impossible, the more interesting.
         </p>
+        <p class="intro tldr-only">
+          cto, creative technologist, builder. xr / ai / hardware. prague.
+        </p>
       </div>
-      <div class="portrait">
-        <img src="/eli1.webp" alt="eliáš bauer" />
+      <div class="portrait" title="hover">
+        <img class="top-img"  src="/eli1.webp" alt="eliáš bauer" />
+        <img class="swap-img" src="/eli2.webp" alt="" aria-hidden="true" />
+        <span class="caption">* hover</span>
       </div>
     </header>
 
@@ -228,18 +354,20 @@
           </div>
           <div class="when">2024 — 2025</div>
         </div>
-        <p class="blurb">gen z ai life accelerator. architected the mvp, secured seed funding, led a team of five engineers. co-designed sombra — the empathetic conversational mentor. pioneered a dynamic ui framework for ai-driven, context-aware interfaces.</p>
+        <p class="tldr tldr-only">cto of a gen z ai accelerator. mvp + seed + 5 engineers.</p>
+        <p class="blurb verbose-only">gen z ai life accelerator. architected the mvp, secured seed funding, led a team of five engineers. co-designed sombra — the empathetic conversational mentor. pioneered a dynamic ui framework for ai-driven, context-aware interfaces.</p>
       </div>
 
       <div class="job">
         <div class="job-head">
           <div>
             <div class="role">founder * creator</div>
-            <div class="at">sombra os</div>
+            <div class="at"><a href="https://sombra.os" target="_blank" rel="noopener">sombra os</a></div>
           </div>
           <div class="when">2024 — ongoing</div>
         </div>
-        <p class="blurb">local-first cognitive partner. semantic tree-search rag, knowledge distillation, automation pipelines. a cognitive prosthetic for the polymath's time debt — collaborating with ai without the ui getting in the way.</p>
+        <p class="tldr tldr-only">local-first cognitive partner. rag, distillation, automation.</p>
+        <p class="blurb verbose-only">local-first cognitive partner. semantic tree-search rag, knowledge distillation, automation pipelines. a cognitive prosthetic for the polymath's time debt — collaborating with ai without the ui getting in the way.</p>
       </div>
 
       <div class="job">
@@ -250,7 +378,8 @@
           </div>
           <div class="when">ongoing</div>
         </div>
-        <p class="blurb">inverted incubator. instead of one product, a platform that can generate many — designed to absorb the kinds of ambiguous, structurally-hard briefs most studios refuse.</p>
+        <p class="tldr tldr-only">inverted incubator — a platform that generates products.</p>
+        <p class="blurb verbose-only">inverted incubator. instead of one product, a platform that can generate many — designed to absorb the kinds of ambiguous, structurally-hard briefs most studios refuse.</p>
       </div>
 
       <div class="job">
@@ -261,7 +390,8 @@
           </div>
           <div class="when">ongoing</div>
         </div>
-        <p class="blurb">spatial computing in unreal 5. open-source intelligence threaded into real-time 3d. procedural generation, complex c++, visual systems that make impossibly dense information legible fast.</p>
+        <p class="tldr tldr-only">osint inside unreal 5. real-time 3d for dense data.</p>
+        <p class="blurb verbose-only">spatial computing in unreal 5. open-source intelligence threaded into real-time 3d. procedural generation, complex c++, visual systems that make impossibly dense information legible fast.</p>
       </div>
 
       <div class="job">
@@ -272,7 +402,8 @@
           </div>
           <div class="when">2023</div>
         </div>
-        <p class="blurb">on-set vfx data collection — chrome ball, color chart, hdri pipeline. coordinated with script supervisors for accurate vfx documentation.</p>
+        <p class="tldr tldr-only">on-set vfx data capture for feature delivery.</p>
+        <p class="blurb verbose-only">on-set vfx data collection — chrome ball, color chart, hdri pipeline. coordinated with script supervisors for accurate vfx documentation.</p>
       </div>
 
       <div class="job">
@@ -283,7 +414,8 @@
           </div>
           <div class="when">2023</div>
         </div>
-        <p class="blurb">pushed real-time rendering boundaries for vr. engineered custom real-time flood simulation. immersive recreations of historical cities.</p>
+        <p class="tldr tldr-only">real-time rendering boundaries for vr. flood sim.</p>
+        <p class="blurb verbose-only">pushed real-time rendering boundaries for vr. engineered custom real-time flood simulation. immersive recreations of historical cities.</p>
       </div>
 
       <div class="job">
@@ -294,7 +426,8 @@
           </div>
           <div class="when">2018 — ongoing</div>
         </div>
-        <p class="blurb">product integration, development, talent acquisition. international teams, emerging tech.</p>
+        <p class="tldr tldr-only">int'l product integration, dev, talent.</p>
+        <p class="blurb verbose-only">product integration, development, talent acquisition. international teams, emerging tech.</p>
       </div>
     </section>
 
@@ -391,13 +524,37 @@
   </main>
 
   <script>
-    // ?print=1 → auto-launch the print dialog so the same html
-    // doubles as a downloadable PDF source.
-    if (new URLSearchParams(location.search).has('print')) {
-      window.addEventListener('load', () => {
-        setTimeout(() => window.print(), 350);
-      });
-    }
+    (function () {
+      var params = new URLSearchParams(location.search);
+
+      // verbose / tldr toggle persists per-session, defaulting to
+      // verbose (the document opens "long").
+      var btn = document.getElementById('mode-toggle');
+      var lbl = document.getElementById('mode-label');
+      function setMode(mode) {
+        document.body.setAttribute('data-mode', mode);
+        if (lbl) lbl.textContent = mode === 'tldr' ? 'tldr' : 'verbose';
+        if (btn) btn.setAttribute('aria-pressed', String(mode === 'tldr'));
+        try { sessionStorage.setItem('cv-mode', mode); } catch (e) {}
+      }
+      var stored = (function () { try { return sessionStorage.getItem('cv-mode'); } catch (e) { return null; } })();
+      setMode(stored === 'tldr' ? 'tldr' : 'verbose');
+      if (btn) {
+        btn.addEventListener('click', function () {
+          var current = document.body.getAttribute('data-mode');
+          setMode(current === 'tldr' ? 'verbose' : 'tldr');
+        });
+      }
+
+      // When the main site renders this page inside a hidden iframe
+      // for PDF export it appends ?pdf=1. We hide the controls and
+      // skip the verbose/tldr toggle so the export shows the doc
+      // exactly as designed.
+      if (params.has('pdf')) {
+        document.body.classList.add('pdf-mode');
+        setMode('verbose');
+      }
+    })();
   </script>
 </body>
 </html>
