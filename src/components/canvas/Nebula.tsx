@@ -76,19 +76,36 @@ function lerpColor(out: THREE.Color, a: THREE.Color, b: THREE.Color, t: number) 
 }
 
 export function Nebula({
-  count = 4500,
-  radius = 9,
-  position = [0, 0, -6],
-  spin = 0.015,
+  count = 12000,
+  radius = 16,
+  position = [0, 0, -14],
+  spin = 0.012,
 }: NebulaProps) {
   const groupRef = useRef<THREE.Group>(null!)
   const splatRef = useRef<SplatMeshClass | null>(null)
 
   const construct = useMemo(() => {
-    // Stable palette — three stops along the cloud
+    // Five stops along the cloud — adds a deep indigo backbone and a
+    // hot pink hotspot between core and mid so the gradient feels less
+    // like a two-stop ramp.
+    const deep = new THREE.Color('#2a1a6e')
     const core = new THREE.Color('#7a4dff')
-    const mid = new THREE.Color('#ff4f88')
-    const edge = new THREE.Color('#ffb066')
+    const hot = new THREE.Color('#ff3da0')
+    const mid = new THREE.Color('#ff7a55')
+    const edge = new THREE.Color('#ffd2a0')
+
+    // Sample the 5-stop ramp at t in [0,1]
+    const sampleRamp = (out: THREE.Color, t: number) => {
+      if (t < 0.18) {
+        lerpColor(out, deep, core, t / 0.18)
+      } else if (t < 0.45) {
+        lerpColor(out, core, hot, (t - 0.18) / 0.27)
+      } else if (t < 0.72) {
+        lerpColor(out, hot, mid, (t - 0.45) / 0.27)
+      } else {
+        lerpColor(out, mid, edge, (t - 0.72) / 0.28)
+      }
+    }
 
     return (splats: import('@sparkjsdev/spark').PackedSplats) => {
       const center = new THREE.Vector3()
@@ -98,9 +115,15 @@ export function Nebula({
       const tmpA = new THREE.Color()
       const tmpB = new THREE.Color()
 
+      // ~15% of the budget goes to a fine dust halo well outside the
+      // main cloud — gives the nebula a soft glow at the edges and
+      // helps it read as "zoomed out" rather than just "bigger".
+      const haloBudget = Math.floor(count * 0.15)
+      const cloudBudget = count - haloBudget
+
       let placed = 0
       let guard = 0
-      while (placed < count && guard < count * 12) {
+      while (placed < cloudBudget && guard < cloudBudget * 12) {
         guard++
         // Sample within a unit sphere
         const u = Math.random() * 2 - 1
@@ -108,41 +131,80 @@ export function Nebula({
         const r = Math.cbrt(Math.random())
         const s = Math.sqrt(1 - u * u)
         const px = r * s * Math.cos(theta)
-        const py = r * s * Math.sin(theta) * 0.6 // squash vertically
+        const py = r * s * Math.sin(theta) * 0.55 // squash vertically
         const pz = r * u
 
-        // Density via fbm — only keep points where the noise is dense.
-        // Bias core: density falls off with radius from origin.
+        // Density via 6-octave fbm + a counter-rotated fbm whose product
+        // carves filament-like veins through the cloud instead of a
+        // smooth fog. Bias core: density falls off with radius.
         const distFalloff = 1 - r
-        const n = fbm(px * 2.2, py * 2.2, pz * 2.2, 5)
-        const density = n * 0.65 + distFalloff * 0.45
-        if (density < 0.55) continue
+        const n1 = fbm(px * 2.4, py * 2.4, pz * 2.4, 6)
+        const n2 = fbm(px * 4.8 + 13.7, py * 4.8 - 9.1, pz * 4.8 + 5.5, 5)
+        const veins = Math.pow(n1 * n2 * 4.0, 0.85)
+        const density = veins * 0.55 + distFalloff * 0.45
+        if (density < 0.48) continue
 
         center.set(px * radius, py * radius, pz * radius)
 
-        // Splat size — bigger soft puffs in the core, tighter on the edges
-        const size = 0.18 + (1 - r) * 0.45 + Math.random() * 0.25
+        // Splat size — bigger soft puffs in the core, tighter on the
+        // edges. Dust grains around 0.08 keep the cloud detailed when
+        // zoomed in.
+        const sizeRoll = Math.random()
+        const size =
+          sizeRoll < 0.55
+            ? 0.08 + sizeRoll * 0.18
+            : 0.22 + (1 - r) * 0.55 + Math.random() * 0.3
         scales.set(size, size, size)
         quat.set(0, 0, 0, 1)
 
-        // Colour ramp: r in [0,1] maps core→mid→edge
-        if (r < 0.5) {
-          lerpColor(color, core, mid, r * 2)
-        } else {
-          lerpColor(color, mid, edge, (r - 0.5) * 2)
-        }
+        sampleRamp(color, r)
         // Punch up saturation in the densest knots
         if (density > 0.85) {
           tmpA.copy(color)
-          tmpB.copy(color).offsetHSL(0, 0.25, 0.1)
+          tmpB.copy(color).offsetHSL(0, 0.3, 0.12)
           color.lerpColors(tmpA, tmpB, 0.6)
         }
 
-        // Soft alpha — denser = more opaque
-        const opacity = THREE.MathUtils.clamp((density - 0.55) * 1.5 + 0.25, 0.18, 0.95)
+        // Soft alpha — denser = more opaque, fine dust stays translucent
+        const baseAlpha = size < 0.2 ? 0.18 : 0.28
+        const opacity = THREE.MathUtils.clamp(
+          (density - 0.48) * 1.5 + baseAlpha,
+          0.12,
+          0.95,
+        )
 
         splats.pushSplat(center, scales, quat, opacity, color)
         placed++
+      }
+
+      // Halo — a sparse shell of tiny dust grains around the cloud.
+      // Larger radius, near-uniform spread, very low opacity.
+      let halo = 0
+      let haloGuard = 0
+      while (halo < haloBudget && haloGuard < haloBudget * 8) {
+        haloGuard++
+        const u = Math.random() * 2 - 1
+        const theta = Math.random() * Math.PI * 2
+        // Bias toward the outer shell
+        const r = 0.85 + Math.random() * 0.5
+        const s = Math.sqrt(1 - u * u)
+        const px = r * s * Math.cos(theta)
+        const py = r * s * Math.sin(theta) * 0.55
+        const pz = r * u
+
+        const n = fbm(px * 1.3, py * 1.3, pz * 1.3, 4)
+        if (n < 0.42) continue
+
+        center.set(px * radius * 1.35, py * radius * 1.35, pz * radius * 1.35)
+
+        const size = 0.06 + Math.random() * 0.12
+        scales.set(size, size, size)
+        quat.set(0, 0, 0, 1)
+
+        sampleRamp(color, Math.min(0.95, r))
+        const opacity = 0.08 + n * 0.18
+        splats.pushSplat(center, scales, quat, opacity, color)
+        halo++
       }
     }
   }, [count, radius])

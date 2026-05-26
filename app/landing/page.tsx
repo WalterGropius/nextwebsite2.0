@@ -53,8 +53,14 @@ export default function Home() {
     <PageLoader>
       <main className="min-h-screen overflow-x-hidden">
         <Navigation />
-        {/* Hero with 3D splat background */}
-        <section className="relative min-h-screen w-full">
+        {/* Hero with 3D splat background. The section lifts above the
+            global paper backdrop (z-30) and carries an opaque
+            surface-dark fill so the millimeter grid does not bleed
+            through the transparent 3D canvas. */}
+        <section
+          className="relative z-[40] min-h-screen w-full"
+          style={{ background: "var(--surface-dark)" }}
+        >
           <div
             ref={canvasRef}
             className="absolute inset-0 z-0"

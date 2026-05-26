@@ -22,6 +22,22 @@ export function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const t = useT()
 
+  const roles = [
+    t("hero.role.0"),
+    t("hero.role.1"),
+    t("hero.role.2"),
+    t("hero.role.3"),
+    t("hero.role.4"),
+  ]
+  const [roleIdx, setRoleIdx] = useState(0)
+  useEffect(() => {
+    const i = setInterval(
+      () => setRoleIdx((n) => (n + 1) % roles.length),
+      2400,
+    )
+    return () => clearInterval(i)
+  }, [roles.length])
+
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 40)
     onScroll()
@@ -50,17 +66,51 @@ export function Navigation() {
         }}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6">
-          <Link
-            href="/"
-            className="text-base transition-transform hover:-translate-y-0.5"
-            style={{
-              fontFamily: "var(--font-display)",
-              color: "var(--ink)",
-              fontWeight: 600,
-            }}
-          >
-            zenbauhaus
-          </Link>
+          <div className="flex items-baseline gap-3 min-w-0">
+            <Link
+              href="/"
+              className="text-base shrink-0 transition-transform hover:-translate-y-0.5"
+              style={{
+                fontFamily: "var(--font-display)",
+                color: "var(--ink)",
+                fontWeight: 600,
+              }}
+            >
+              zenbauhaus
+            </Link>
+            {/* Cycling role — hand-written aside next to the wordmark */}
+            <div
+              className="relative hidden h-[1.2em] items-center overflow-hidden text-xs sm:flex sm:text-sm"
+              aria-live="polite"
+              style={{ minWidth: 0 }}
+            >
+              <span
+                aria-hidden
+                className="mr-2 select-none"
+                style={{ color: "var(--ink)", opacity: 0.35 }}
+              >
+                /
+              </span>
+              <AnimatePresence mode="popLayout" initial={false}>
+                <motion.span
+                  key={roleIdx}
+                  initial={{ y: "110%", opacity: 0, filter: "blur(6px)" }}
+                  animate={{ y: "0%", opacity: 1, filter: "blur(0px)" }}
+                  exit={{ y: "-110%", opacity: 0, filter: "blur(6px)" }}
+                  transition={{ type: "spring", stiffness: 180, damping: 22 }}
+                  className="inline-block whitespace-nowrap"
+                  style={{
+                    fontFamily: "var(--font-display)",
+                    color: "var(--ink)",
+                    letterSpacing: "0.12em",
+                    opacity: 0.7,
+                  }}
+                >
+                  {roles[roleIdx]}
+                </motion.span>
+              </AnimatePresence>
+            </div>
+          </div>
 
           <div className="hidden items-center gap-7 md:flex">
             {navLinks.map((l) => (

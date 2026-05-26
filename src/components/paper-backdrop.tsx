@@ -184,13 +184,17 @@ function PaperGrain({ dark }: { dark: boolean }) {
     <canvas
       ref={canvasRef}
       aria-hidden
+      data-paper-grain
       style={{
         position: "fixed",
         inset: 0,
         width: "100vw",
         height: "100vh",
         pointerEvents: "none",
-        zIndex: 1,
+        // Same stack as the millimeter grid so paper texture reads
+        // over every section. Hero section lifts itself above this to
+        // mask the texture out from the 3D canvas.
+        zIndex: 30,
         mixBlendMode: dark ? "screen" : "multiply",
         opacity: dark ? 0.9 : 1,
       }}
@@ -199,18 +203,25 @@ function PaperGrain({ dark }: { dark: boolean }) {
 }
 
 function MillimeterGrid({ dark }: { dark: boolean }) {
+  // Lines: spruce green on cream paper, soft light grey on dark paper.
+  const lineColor = dark ? "#cfcfcf" : "#2f5d3b"
   return (
     <div
       aria-hidden
+      data-paper-grid
       style={{
         position: "fixed",
         inset: "-12vmax",
         pointerEvents: "none",
-        zIndex: 1,
+        // Above the page-level content backgrounds (z-20) so the grid
+        // reads on top of every section, but below the navigation
+        // (z-50) and below the hero/canvas section (which sets z-[60]
+        // on the landing page to mask the grid out from the 3D view).
+        zIndex: 30,
         transform: "rotate(-6deg)",
         transformOrigin: "50% 50%",
-        opacity: dark ? 0.085 : 0.1,
-        color: "var(--ink)",
+        opacity: dark ? 0.22 : 0.32,
+        color: lineColor,
         mixBlendMode: dark ? "screen" : "multiply",
       }}
     >

@@ -159,7 +159,7 @@ export function Flowers({ dark = false }: { dark?: boolean }) {
           speed={0.4}
         />
         <group ref={splatRef as React.RefObject<THREE.Group>}>
-          <Nebula count={4500} radius={9} position={[0, 0, -6]} spin={0.02} />
+          <Nebula count={12000} radius={16} position={[0, 0, -14]} spin={0.012} />
         </group>
       </>
     )

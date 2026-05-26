@@ -1,9 +1,8 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useRef } from "react"
 import {
   motion,
-  AnimatePresence,
   useScroll,
   useSpring,
   useTransform,
@@ -22,27 +21,9 @@ export function Hero() {
     mass: 0.6,
   })
   const headlineY = useTransform(smoothY, [0, 800], [0, -160])
-  const roleY = useTransform(smoothY, [0, 800], [0, -90])
   const ctaY = useTransform(smoothY, [0, 800], [0, -40])
   const opacity = useTransform(scrollY, [0, 500], [1, 0])
   const t = useT()
-
-  const roles = [
-    t("hero.role.0"),
-    t("hero.role.1"),
-    t("hero.role.2"),
-    t("hero.role.3"),
-    t("hero.role.4"),
-  ]
-
-  const [roleIdx, setRoleIdx] = useState(0)
-  useEffect(() => {
-    const i = setInterval(
-      () => setRoleIdx((n) => (n + 1) % roles.length),
-      2400,
-    )
-    return () => clearInterval(i)
-  }, [roles.length])
 
   return (
     <div
@@ -71,31 +52,6 @@ export function Hero() {
           <strong>{t("hero.headline.writeCode")}</strong>
           {t("hero.headline.dot")}
         </motion.h2>
-
-        <motion.div
-          className="relative mt-6 flex h-[1.6em] items-center overflow-hidden text-base sm:text-lg"
-          aria-live="polite"
-          style={{ y: roleY }}
-        >
-          <AnimatePresence mode="popLayout" initial={false}>
-            <motion.span
-              key={roleIdx}
-              initial={{ y: "110%", opacity: 0, filter: "blur(8px)" }}
-              animate={{ y: "0%", opacity: 1, filter: "blur(0px)" }}
-              exit={{ y: "-110%", opacity: 0, filter: "blur(8px)" }}
-              transition={{ type: "spring", stiffness: 180, damping: 22 }}
-              className="inline-block"
-              style={{
-                fontFamily: "var(--font-display)",
-                color: "var(--ink)",
-                letterSpacing: "0.16em",
-                opacity: 0.7,
-              }}
-            >
-              {roles[roleIdx]}
-            </motion.span>
-          </AnimatePresence>
-        </motion.div>
 
         <motion.div
           initial={{ opacity: 0 }}
