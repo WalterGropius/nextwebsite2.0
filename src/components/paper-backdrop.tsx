@@ -203,8 +203,8 @@ function PaperGrain({ dark }: { dark: boolean }) {
 }
 
 function MillimeterGrid({ dark }: { dark: boolean }) {
-  // Lines: spruce green on cream paper, soft light grey on dark paper.
-  const lineColor = dark ? "#cfcfcf" : "#2f5d3b"
+  // Lines: saturated deep spruce on cream paper, near-white on dark.
+  const lineColor = dark ? "#ffffff" : "#1f4a2b"
   return (
     <div
       aria-hidden
@@ -220,7 +220,7 @@ function MillimeterGrid({ dark }: { dark: boolean }) {
         zIndex: 30,
         transform: "rotate(-6deg)",
         transformOrigin: "50% 50%",
-        opacity: dark ? 0.22 : 0.32,
+        opacity: dark ? 0.42 : 0.42,
         color: lineColor,
         mixBlendMode: dark ? "screen" : "multiply",
       }}
