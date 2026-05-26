@@ -132,6 +132,7 @@ export const en: Dict = {
   "reel.pause": "pause",
   "reel.mute": "mute",
   "reel.unmute": "unmute",
+  "reel.fullscreen": "fullscreen",
 
   // sketchfab / 3d
   "sketchfab.title.0": "3d",
@@ -333,6 +334,7 @@ export const cs: Dict = {
   "reel.pause": "pauza",
   "reel.mute": "ztlumit",
   "reel.unmute": "zesílit",
+  "reel.fullscreen": "celá obrazovka",
 
   "sketchfab.title.0": "3d",
   "sketchfab.title.1": "práce",
@@ -530,6 +532,7 @@ export const fr: Dict = {
   "reel.pause": "pause",
   "reel.mute": "couper",
   "reel.unmute": "remettre le son",
+  "reel.fullscreen": "plein écran",
 
   "sketchfab.title.0": "3d",
   "sketchfab.title.1": "travaux",

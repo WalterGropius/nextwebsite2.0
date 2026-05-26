@@ -1,11 +1,12 @@
 "use client"
 
+import { useState } from "react"
 import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
 import { InkLine } from "@/components/ink-line"
 import { MotionText } from "@/components/motion-text"
 import { motion } from "motion/react"
-import { Download, FileText, Printer } from "lucide-react"
+import { Download, Printer } from "lucide-react"
 import { useT } from "@/lib/i18n/provider"
 
 const EXPERIENCE_COUNT = 7
@@ -81,6 +82,58 @@ const speaking = [
   "umprum",
 ]
 
+// Two portraits stacked: the second wipes in from the left over the
+// first on hover, snaps back on leave. No-print so it stays out of
+// the PDF export.
+function CVPortrait() {
+  const [hover, setHover] = useState(false)
+  return (
+    <div
+      className="no-print relative mx-auto w-full max-w-[20rem] overflow-hidden"
+      style={{ aspectRatio: "4 / 5", zIndex: 35 }}
+      onMouseEnter={() => setHover(true)}
+      onMouseLeave={() => setHover(false)}
+    >
+      <img
+        src="/eli1.webp"
+        alt="eliáš bauer"
+        className="ink-photo absolute inset-0 h-full w-full object-cover"
+        style={{
+          transition:
+            "transform 800ms cubic-bezier(0.16, 1, 0.3, 1), filter 600ms ease-out",
+          transform: hover ? "scale(1.04)" : "scale(1)",
+          filter: hover
+            ? "url(#ink-wobble-photo) saturate(0.85) contrast(0.95)"
+            : "url(#ink-wobble-photo)",
+        }}
+      />
+      <img
+        src="/eli2.webp"
+        alt=""
+        aria-hidden
+        className="ink-photo absolute inset-0 h-full w-full object-cover"
+        style={{
+          transition: "clip-path 700ms cubic-bezier(0.16, 1, 0.3, 1)",
+          clipPath: hover ? "inset(0 0 0 0)" : "inset(0 100% 0 0)",
+        }}
+      />
+      {/* hand-written caption that swaps on hover */}
+      <div
+        className="absolute bottom-2 left-2 text-xs uppercase tracking-[0.25em]"
+        style={{
+          color: "var(--ink)",
+          opacity: 0.55,
+          fontFamily: "var(--font-display)",
+          background: "color-mix(in srgb, var(--surface-dark) 70%, transparent)",
+          padding: "2px 6px",
+        }}
+      >
+        {hover ? "* studio" : "* outside"}
+      </div>
+    </div>
+  )
+}
+
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
     <div className="mb-6">
@@ -124,59 +177,63 @@ export default function CVPage() {
         <Navigation />
 
         <article className="section-container pb-24 pt-28 sm:pt-32" id="cv-print">
-          <header className="mb-16">
-            <h1
-              className="text-[clamp(3rem,10vw,7rem)] leading-[0.9]"
-              style={{
-                fontFamily: "var(--font-display)",
-                color: "var(--ink)",
-              }}
-            >
-              <MotionText text="eliáš bauer" split="char" stagger={0.04} />
-            </h1>
-            <div
-              className="mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-sm uppercase tracking-[0.3em]"
-              style={{ color: "var(--text-muted)" }}
-            >
-              <span>{t("cv.location")}</span>
-              <span aria-hidden style={{ opacity: 0.4 }}>*</span>
-              <a href="mailto:zenbauhaus@gmail.com" className="ink-underline-hover">
-                zenbauhaus@gmail.com
-              </a>
-            </div>
-
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-8 max-w-3xl text-lg sm:text-xl"
-              style={{
-                fontFamily: "var(--font-display)",
-                color: "var(--text-muted)",
-                lineHeight: 1.55,
-              }}
-            >
-              {t("cv.intro")}
-            </motion.p>
-
-            <div className="no-print ink-icons mt-10 flex flex-wrap items-center gap-3">
-              <a href="/cvBauer.html" download className="btn-secondary">
-                <Download size={14} />
-                <span>{t("cv.downloads.html")}</span>
-              </a>
-              <button
-                type="button"
-                onClick={() => window.print()}
-                className="btn-secondary"
+          <header className="mb-16 grid items-end gap-10 md:grid-cols-[1.5fr_1fr]">
+            <div>
+              <h1
+                className="text-[clamp(3rem,10vw,7rem)] leading-[0.9]"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  color: "var(--ink)",
+                }}
               >
-                <Printer size={14} />
-                <span>{t("cv.downloads.pdf")}</span>
-              </button>
-              <a href="/artBauer.pdf" download className="btn-secondary">
-                <FileText size={14} />
-                <span>{t("cv.downloads.artPdf")}</span>
-              </a>
+                <MotionText text="eliáš bauer" split="char" stagger={0.04} />
+              </h1>
+              <div
+                className="mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-sm uppercase tracking-[0.3em]"
+                style={{ color: "var(--text-muted)" }}
+              >
+                <span>{t("cv.location")}</span>
+                <span aria-hidden style={{ opacity: 0.4 }}>*</span>
+                <a href="mailto:zenbauhaus@gmail.com" className="ink-underline-hover">
+                  zenbauhaus@gmail.com
+                </a>
+              </div>
+
+              <motion.p
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-8 max-w-3xl text-lg sm:text-xl"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  color: "var(--text-muted)",
+                  lineHeight: 1.55,
+                }}
+              >
+                {t("cv.intro")}
+              </motion.p>
+
+              <div className="no-print ink-icons mt-10 flex flex-wrap items-center gap-3">
+                <a href="/cvBauer.html" target="_blank" rel="noopener noreferrer" className="btn-secondary">
+                  <Download size={14} />
+                  <span>{t("cv.downloads.html")}</span>
+                </a>
+                {/* PDF = the same HTML CV opened with ?print=1, which
+                    triggers the browser's print-to-PDF on load. One
+                    source of truth, no second static file. */}
+                <a
+                  href="/cvBauer.html?print=1"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary"
+                >
+                  <Printer size={14} />
+                  <span>{t("cv.downloads.pdf")}</span>
+                </a>
+              </div>
             </div>
+
+            <CVPortrait />
           </header>
 
           <div className="my-12" style={{ color: "var(--ink)", opacity: 0.5 }}>

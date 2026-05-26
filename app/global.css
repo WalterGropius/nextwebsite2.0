@@ -74,28 +74,30 @@
   }
 
   /* Dark mode — full repaint. next-themes sets `class="dark"` on the
-     <html> element when `attribute="class"`. The same custom-property
-     names are reused so existing components don't need restyling. */
+     <html> element when `attribute="class"`. Dark surface reads as a
+     dark blueprint paper rather than pure black so the millimeter
+     grid and the rest of the inked elements feel like they sit on
+     drafting paper, not a void. */
   html.dark {
-    --surface-dark: #0c0d12;
-    --surface-elevated: #15171f;
-    --surface-glass: rgba(20, 22, 32, 0.55);
-    --surface-ink: rgba(238, 235, 226, 0.06);
-    --border-subtle: rgba(238, 235, 226, 0.16);
-    --border-strong: rgba(238, 235, 226, 0.65);
-    --text-primary: #ecead4;
-    --text-muted: rgba(236, 234, 212, 0.6);
-    --ink: #ecead4;
-    --ink-inverse: #0c0d12;
+    --surface-dark: #0a1626;
+    --surface-elevated: #122035;
+    --surface-glass: rgba(20, 36, 60, 0.55);
+    --surface-ink: rgba(220, 232, 255, 0.06);
+    --border-subtle: rgba(220, 232, 255, 0.16);
+    --border-strong: rgba(220, 232, 255, 0.65);
+    --text-primary: #e3ecf6;
+    --text-muted: rgba(227, 236, 246, 0.6);
+    --ink: #e3ecf6;
+    --ink-inverse: #0a1626;
 
     /* Grain inverts so the dust reads as a faint warm haze, not a smudge */
     --grain-opacity: 0.18;
     --grain-blend: screen;
 
     /* Aura colour matches the dark background so text-aura wells stay invisible */
-    --aura-r: 12;
-    --aura-g: 13;
-    --aura-b: 18;
+    --aura-r: 10;
+    --aura-g: 22;
+    --aura-b: 38;
   }
   html.dark body {
     background: var(--surface-dark);
@@ -137,6 +139,9 @@
   body {
     background: var(--surface-dark);
     min-height: 100vh;
+    /* PaperBackdrop's millimeter grid is position:absolute so it
+       resolves to body bounds and scrolls with the page. */
+    position: relative;
   }
 
   /* Paper grain + millimeter grid now rendered by <PaperBackdrop /> mounted

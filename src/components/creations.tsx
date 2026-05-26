@@ -160,9 +160,7 @@ export function Creations({ randomCount }: CreationsProps) {
             {displayedProjects.map((project, index) => (
               <motion.a
                 key={project.id}
-                href={project.link || "#"}
-                target={project.link ? "_blank" : undefined}
-                rel={project.link ? "noopener noreferrer" : undefined}
+                href={`/work/${project.id}`}
                 initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
                 animate={
                   inView
@@ -184,7 +182,13 @@ export function Creations({ randomCount }: CreationsProps) {
                   className="relative block"
                   style={{ borderRadius: 0 }}
                 >
-                  <div className="relative aspect-[4/5] overflow-hidden">
+                  {/* Lifted above the paper grid (z-30) so the photo
+                      reads at full opacity instead of being muted by
+                      the multiply/screen blend overlay. */}
+                  <div
+                    className="relative aspect-[4/5] overflow-hidden"
+                    style={{ zIndex: 35 }}
+                  >
                     <img
                       src={project.image}
                       alt={project.title}

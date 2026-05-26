@@ -48,7 +48,8 @@ export function SketchfabEmbed() {
           <InkLine fade={false} thickness={1.2} />
         </div>
 
-        {/* Embed */}
+        {/* Embed — lifted above the paper grid (z-30) so the 3d view
+            reads at full opacity, not dimmed by the texture overlay. */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -57,6 +58,7 @@ export function SketchfabEmbed() {
           style={{
             border: "1.5px solid var(--ink)",
             filter: "url(#ink-wobble)",
+            zIndex: 35,
           }}
         >
           {!isLoaded && (
