@@ -31,37 +31,37 @@ const AESTHETIC: Item[] = [
   {
     name: "Bauhaus",
     href: "https://en.wikipedia.org/wiki/Bauhaus",
-    note: "The school where art and engineering finally agreed to share a kitchen. My git handle is Walter Gropius for a reason.",
+    note: "Walter Gropius opens the school in 1919, post-war, to argue that craft and engineering should be the same discipline. A century later it's still the cleanest version of that argument. (My git handle is not a coincidence.)",
   },
   {
     name: "Wabi-sabi",
     href: "https://en.wikipedia.org/wiki/Wabi-sabi",
-    note: "Asymmetry, austerity, the acceptance of the dent in the bowl. A permission slip to stop polishing past the point of return.",
+    note: "Leonard Koren's small book is the only design treatise I keep on the shelf. The dent in the bowl is the bowl.",
   },
   {
     name: "Dieter Rams",
-    href: "https://en.wikipedia.org/wiki/Dieter_Rams",
-    note: "Ten principles, one ethic — less, but better. Every prototype on my desk earns its right to exist or it goes back to the box.",
+    href: "https://www.vitsoe.com/eu/about/good-design",
+    note: "Ten principles. The discipline is asking would Rams approve before adding the second feature, and stopping when the answer is no.",
   },
   {
     name: "Caspar David Friedrich",
-    href: "https://en.wikipedia.org/wiki/Caspar_David_Friedrich",
-    note: "The Wanderer Above the Sea of Fog is the closest a painting has come to describing what it feels like to ship a product.",
+    href: "https://en.wikipedia.org/wiki/Wanderer_above_the_Sea_of_Fog",
+    note: "Wanderer above the Sea of Fog hangs in the Kunsthalle Hamburg. I've stood in front of it twice. The second visit is the real one.",
   },
   {
     name: "František Kupka",
     href: "https://en.wikipedia.org/wiki/Franti%C5%A1ek_Kupka",
-    note: "Czech, abstract before everyone else, painted music before painting music was a thing. Patron saint of Prague colour-theory.",
+    note: "First abstract painter, depending who you ask, depending who's Czech enough to claim him. The Amorpha series is a manual for leaving realism without losing structure.",
   },
   {
     name: "Tony Garnier",
     href: "https://en.wikipedia.org/wiki/Tony_Garnier_(architect)",
-    note: "Cité Industrielle — a city, drawn in 1904, on the assumption that every worker would get a bathroom and a swimming pool. Social housing is a design problem.",
+    note: "Cité Industrielle, 1904 — a worker's city blueprint where every household gets a bathroom and a swimming pool. He had no idea how to actually build it. He drew it anyway.",
   },
   {
     name: "Zen",
     href: "https://en.wikipedia.org/wiki/Zen",
-    note: "Less a religion than a method. Sit, watch the thinking, notice it isn't you. The only mental discipline that has held up under more than a decade of stress-testing.",
+    note: "Less a religion than a method. Sit, watch the thinking, notice it isn't you. Cost: 12 minutes a day. Yield: nothing measurable, but everything actually.",
   },
 ]
 
@@ -69,27 +69,27 @@ const MUSIC: Item[] = [
   {
     name: "Tom Waits",
     href: "https://www.youtube.com/watch?v=PCmZBeNVy7g",
-    note: "The voice of every American I never got to be. Carnival junk-yard piano. Start with Hold On.",
+    note: "I keep Bone Machine on the shelf next to a claw hammer. Same purpose. Start with Hold On.",
   },
   {
     name: "Iron Maiden",
     href: "https://www.youtube.com/watch?v=NCceAA0fIm0",
-    note: "Eddie has been on duty for fifty years. Steve Harris writes long-form rock the way Tolstoy writes novels — Hallowed Be Thy Name is a short story.",
+    note: "Saw them at O2 in 2018. Worth the tickets, worth the queue, worth a half-deaf left ear for a week. Hallowed Be Thy Name is a short story.",
   },
   {
     name: "Black Sabbath",
     href: "https://www.youtube.com/watch?v=0lkir-mvjqI",
-    note: "Iommi's missing fingertips are why metal exists. The single most copied riff catalogue in popular music.",
+    note: "Tony Iommi loses two fingertips in a factory press at 17 and goes on to hand-build an entire genre with what's left. Disability into discipline into industry.",
   },
   {
     name: "Frank Zappa",
     href: "https://www.youtube.com/watch?v=u05PVbbI_zo",
-    note: "The punk who could actually read music. An instruction in how to be productive without being polite. Watermelon in Easter Hay is the closer.",
+    note: "Watermelon in Easter Hay is the cleanest goodbye anyone ever played on a guitar — he knew it was his last solo. You can hear it.",
   },
   {
     name: "Mick Jenkins",
     href: "https://open.spotify.com/album/2GuJOMaxJpvgDM5MgKZUF8",
-    note: "The Water[s] is the rare hip-hop record where the conceit (drink more water) is also a structural device and a discipline. Easily the most-replayed album of my last decade.",
+    note: "The Water[s] saved me about a year of therapy in 2014. Still on the shortlist, still about hydration.",
   },
 ]
 
@@ -97,47 +97,47 @@ const FILM: Item[] = [
   {
     name: "David Lynch",
     href: "https://en.wikipedia.org/wiki/David_Lynch",
-    note: "Weather report every morning for eighteen years, transcendental meditation, Mulholland Drive in my top three. RIP. The closest the medium got to dreaming on purpose.",
+    note: "RIP. Mulholland Drive in the top three for me. The weather report was a fifteen-year piece of conceptual art and most people thought it was a hobby.",
   },
 ]
 
 const SKATE: Item[] = [
   {
     name: "Skateboarding",
-    note: "The only sport that taught me what physics actually felt like — and the only one where failing more than landing is the entire point.",
+    note: "23 years on a board. Two broken bones (left wrist, right knee), neither during a trick. I am physically incapable of walking past curbs without seeing lines.",
   },
   {
     name: "Andy Anderson",
     href: "https://www.instagram.com/andyandersonsk8",
-    note: "Switchstance everything. Helmet on always. Teaches kids. Living proof that the discipline can age cleanly.",
+    note: "Helmet on. Switchstance everything. Old Friends Skateboards. The proof that the lifestyle is a discipline you can age into without losing it.",
   },
 ]
 
 const CODE: Item[] = [
   {
     name: "John Carmack",
-    href: "https://github.com/id-Software",
-    note: "Doom, Quake, the .plan files. The proof that one person who refuses to stop working can drag an industry forward.",
+    href: "https://github.com/ESWAT/john-carmack-plan-archive",
+    note: "The .plan files from 1996 are still the cleanest writing about programming I've read. The man works the way I'd like to work for the rest of my life.",
   },
   {
     name: "Linus Torvalds",
     href: "https://www.kernel.org/",
-    note: "Linux, git, the bluntness. Wrote the version-control system the rest of us are still using, and didn't ask permission first.",
+    note: "Linux + git, both written out of disgust at the alternatives. Best ratio of words-typed-on-a-mailing-list to dollars-of-software-shipped that anyone has ever achieved.",
   },
   {
     name: "Procedural generation",
     href: "https://en.wikipedia.org/wiki/Procedural_generation",
-    note: "Rules + randomness + iteration. Nature's API. Maps, music, mesh, narrative — every domain rewards a generator.",
+    note: "Rules + randomness + iteration. Maps, music, mesh, narrative. The generator is always cheaper to maintain than the asset.",
   },
   {
     name: "Garry's Mod",
     href: "https://gmod.facepunch.com/",
-    note: "The physics sandbox that taught a whole generation of nerds to think with constraints. Probably the most important game ever shipped.",
+    note: "First place I felt powerful as a kid. The physics sandbox where bad ideas were free. Pretty sure half the engineers in my cohort can trace their interest back to wiring a thruster to a chair.",
   },
   {
     name: "Hacking",
     href: "https://en.wikipedia.org/wiki/Hacker_culture",
-    note: "The discipline of finding the edge in a thing nobody built for that edge. Equal parts curiosity and impatience.",
+    note: "Finding the edge in a thing nobody built for that edge. Most of my favourite programmers are also locksmiths, in spirit if not in fact.",
   },
 ]
 
@@ -145,19 +145,19 @@ const MIND: Item[] = [
   {
     name: "Computational neuroscience",
     href: "https://en.wikipedia.org/wiki/Computational_neuroscience",
-    note: "The field that's currently mapping the cache architecture of the human brain. Probably the closest we'll get to debugging ourselves.",
+    note: "The field currently mapping the cache architecture of the human brain. We will know more about ourselves in twenty years than we have in two hundred thousand.",
   },
   {
     name: "Science × art collision",
-    note: "The productive friction between rigour and intuition. The best engineers I know also draw. The best painters I know also debug.",
+    note: "The friction between rigour and intuition is where the work lives. Every painter I trust also reads papers. Every researcher I trust also draws.",
   },
   {
     name: "Education",
-    note: "The highest-leverage thing a society can do, and most of the time we settle for a building with a roof on it.",
+    note: "Highest-leverage civic investment available. We are currently performing it badly on purpose. (Yes, I'm picking that fight.)",
   },
   {
     name: "Research",
-    note: "The slow accumulation of usable truth. The opposite of news.",
+    note: "Slow accumulation of usable truth. The opposite of news. Most decent ideas I've had came from somebody else's footnote.",
   },
   {
     name: "Learning",
@@ -169,22 +169,22 @@ const PRACTICE: Item[] = [
   {
     name: "Shaolin method",
     href: "https://en.wikipedia.org/wiki/Shaolin_kung_fu",
-    note: "20,000 hours, one form, one form, one form. The model for any practice worth taking seriously.",
+    note: "20,000 hours, one form, one form, one form. Less than 1% of practitioners reach the level you'd recognise on film. Worth thinking about before you start anything serious.",
   },
   {
     name: "Ryōkan",
     href: "https://en.wikipedia.org/wiki/Ry%C5%8Dkan",
-    note: "Eighteenth-century wandering monk-poet. Wrote about playing temari with the village kids when he wasn't on the mountain. Patron saint of doing one thing well and ignoring the noise.",
+    note: "18th-century wandering monk. Wrote poems on rice paper, played temari with the village kids, refused to teach formally. Patron saint of doing the thing well and ignoring the credentials.",
   },
   {
     name: "Chess",
     href: "https://lichess.org/",
-    note: "The cleanest closed system humans ever built. Perfect information, no luck, just position. You find out a lot about yourself by losing a few hundred times.",
+    note: "Cleanest closed system humans ever built — perfect information, no luck, just position. I sit around 1850 on lichess, which is to say I lose 60% of the games I want to win, which is to say that's the point.",
   },
   {
     name: "80,000 Hours",
     href: "https://80000hours.org/",
-    note: "Back-of-envelope claim: your career is the single biggest lever you have, with the math to back it up. Worth a slow read.",
+    note: "Career is the single biggest lever you have, with the back-of-envelope math to back it up. Read once a year and adjust accordingly.",
   },
 ]
 
@@ -192,20 +192,20 @@ const PEOPLE: Item[] = [
   {
     name: "Sammy Obeid",
     href: "https://sammyobeid.com/",
-    note: "Stand-up + math degree. Did 1,001 consecutive nights of comedy. The work-rate of a serious craftsman, dressed up as a clown.",
+    note: "Stand-up + math degree. Did 1,001 consecutive nights of comedy. The work-rate of a serious craftsman dressed up as a clown.",
   },
   {
     name: "Ian Carroll",
     href: "https://www.youtube.com/@IanCarrollshow",
-    note: "The independent journalist who keeps pulling on the threads everyone else is paid to ignore. A model for what media without permission can look like.",
+    note: "Independent journalist. Keeps pulling threads everyone else is paid to ignore. Model for what media without permission can look like.",
   },
   {
     name: "Zdislava Pokorná",
-    note: "Personal. Someone whose taste quietly corrects mine when I drift.",
+    note: "Personal. Quietly corrects my taste when I drift. Anything good on this site is partly her fault.",
   },
   {
     name: "Jan Špaček",
-    note: "Personal. One of the few who shows up with the right questions, not the obvious ones.",
+    note: "Personal. Shows up with the right questions, not the obvious ones. The friend you actually phone when the prototype's on fire.",
   },
 ]
 
@@ -216,8 +216,88 @@ const MISC: Item[] = [
   },
   {
     name: "Coconuts",
-    note: "Self-contained system: water, fat, fibre, shell, fuel. The only ingredient I'd happily take to a desert island.",
+    note: "Self-contained system: water, fat, fibre, shell, fuel. Try and argue against.",
   },
+]
+
+// ============= "what i'm into right now" — hand-edited, current =====
+
+interface NowEntry {
+  k: string
+  v: string
+}
+
+const NOW: NowEntry[] = [
+  { k: "reading",     v: "Pirsig — Zen and the Art of Motorcycle Maintenance. Third pass. Lands differently at 33." },
+  { k: "building",    v: "the Sombra OS memory layer. Local works. Cloud doesn't, yet." },
+  { k: "listening",   v: "Tom Waits, Bone Machine · Mick Jenkins, The Patience · Iron Maiden, Senjutsu." },
+  { k: "learning",    v: "to weld. Badly. On purpose." },
+  { k: "keeping",     v: "a strength routine I've held for six weeks. Knees thank you." },
+  { k: "annoyed by",  v: "consultants who use the word \"vision\" without a number attached." },
+]
+
+// ============= "not great at" — anti-list, also true ================
+
+const NOT_GREAT: string[] = [
+  "sleeping before midnight",
+  "finishing personal projects (this site notwithstanding)",
+  "saying no when interested",
+  "small talk past ninety seconds",
+  "knees, after thirty",
+  "coriander",
+]
+
+// ============= "what i'm fighting" — cultural irritations ============
+// Drawn from the personal-blueprint sketches (firehose of falsehood,
+// gerontocracy, software-engineer LARPer void, bullshit jobs, etc.).
+// These are not pet peeves; they're the things I think it's worth
+// spending career time pushing against.
+
+const FIGHTING: string[] = [
+  "the LARP economy — engineers who tweet more than they ship. The thing the work was supposed to be a defence against.",
+  "the firehose of falsehood. Propaganda model where volume is the message and truth is a luxury good.",
+  "the gerontocracy. Same hands running the same hands.",
+  "bullshit jobs. Read Graeber. Then audit the calendar.",
+  "consultants saying “vision” without a number attached.",
+  "the LinkedIn AI parade — people pretending the box wrote the post.",
+  "surveillance capitalism. Kompromat for everyone, by default.",
+  "nostalgia industries. Prague tourists with the Kafka tote bag, never read a page.",
+  "the podcaster gold-pan economy. Microphones in the river, prospecting for status.",
+  "institutional capture. The web of red tape and routing numbers nobody notices.",
+  "IKEA-manual relationships. Step three is always rebuilding the wrong thing.",
+  "the slow erosion of attention. Mine first.",
+]
+
+// ============= "what bums me out" — the quieter weight ===============
+// Personal, not political. The stuff a friend would only hear in
+// the second half of a conversation.
+
+const BUMS: string[] = [
+  "watching my grandmother forget my face, one Sunday at a time.",
+  "the time debt. Every fragment I didn’t ship, compounding.",
+  "the silence after a release that didn’t land — worse, the silence when nobody noticed.",
+  "my Czech rusting and not having time to sharpen it.",
+  "the inverse correlation between meetings and work done.",
+  "knowing the next prodigy is six years old and going to lap me.",
+  "december.",
+]
+
+// ============= "what keeps me going" — the antidotes ================
+// The list a friend would actually want to know.
+
+const KEEPS: string[] = [
+  "the studio before 7am with the door locked.",
+  "the build going green, the test suite shutting up.",
+  "my wife’s text: “u eat lunch?”",
+  "the dog at the door when I get home.",
+  "coffee made the slow way.",
+  "the next skater landing the line I bailed on — proof it was possible.",
+  "Sombra OS pulling a note from 2021 I’d forgotten saying.",
+  "finishing one thing. Even small.",
+  "music with riffs that don’t tire.",
+  "the kid I used to be, asking nicely.",
+  "a chord change you didn’t see coming.",
+  "my mother’s quiet “že jo” — the Czech tag that ends an argument.",
 ]
 
 const ANCHORS: Array<{ k: string; v: string }> = [
@@ -248,6 +328,12 @@ interface BlogPost {
 
 export default function MorePage() {
   const [posts, setPosts] = useState<BlogPost[]>([])
+  // The "updated YYYY · MM" label is computed in an effect so SSR
+  // renders an empty string and the client fills it in after mount.
+  // Doing it in render with `new Date()` would diverge between the
+  // server build time and the visitor's clock (timezone, midnight,
+  // month-boundary) and trip React's hydration check.
+  const [updatedLabel, setUpdatedLabel] = useState("")
   useEffect(() => {
     fetch("/blogs.json")
       .then((r) => r.json())
@@ -256,6 +342,10 @@ export default function MorePage() {
         setPosts(data.slice().sort((a, b) => (a.date < b.date ? 1 : -1)).slice(0, 3))
       })
       .catch(() => {})
+    const d = new Date()
+    setUpdatedLabel(
+      `updated · ${d.getFullYear()} · ${String(d.getMonth() + 1).padStart(2, "0")}`,
+    )
   }, [])
 
   const fmtDate = (s: string) => {
@@ -291,12 +381,72 @@ export default function MorePage() {
                 lineHeight: 1.55,
               }}
             >
-              Not a site map — the nav already has those. A catalogue of inputs instead: the work, the thinkers, the records, the disciplines that have left fingerprints on how I build.
+              Not a site map. The nav has those. This is the human page — what i&rsquo;m into right now, the catalogue of inputs that shaped me, the things i&rsquo;m fighting, the ones i&rsquo;m not great at, the quieter weights, and the antidotes that keep the work moving. Scroll like you would a friend&rsquo;s notebook.
             </motion.p>
           </header>
 
           <div className="my-10 opacity-50" style={{ color: "var(--ink)" }}>
             <InkLine fade={false} thickness={1.4} />
+          </div>
+
+          {/* ===== NOW — hand-edited; pull request when stale ===== */}
+          <section className="mb-20">
+            <div className="mb-5 flex items-baseline gap-3">
+              <h2
+                className="text-2xl uppercase tracking-[0.3em] sm:text-3xl"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  color: "var(--ink)",
+                }}
+              >
+                — now
+              </h2>
+              <span
+                className="text-xs uppercase tracking-[0.3em]"
+                style={{ color: "var(--text-muted)" }}
+              >
+                {updatedLabel}
+              </span>
+            </div>
+            <dl
+              className="grid gap-3 sm:gap-4 md:grid-cols-2"
+              style={{ color: "var(--ink)" }}
+            >
+              {NOW.map((n) => (
+                <div
+                  key={n.k}
+                  className="border-l-2 py-1.5 pl-4"
+                  style={{ borderColor: "var(--border-strong)" }}
+                >
+                  <dt
+                    className="mb-0.5 text-[0.65rem] uppercase tracking-[0.3em]"
+                    style={{ color: "var(--text-muted)" }}
+                  >
+                    {n.k}
+                  </dt>
+                  <dd
+                    className="text-base sm:text-lg"
+                    style={{
+                      fontFamily: "var(--font-display)",
+                      color: "var(--ink)",
+                      lineHeight: 1.45,
+                    }}
+                  >
+                    {n.v}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+            <p
+              className="mt-4 text-xs uppercase tracking-[0.3em]"
+              style={{ color: "var(--text-muted)" }}
+            >
+              * hand-edited, not a feed. if it&rsquo;s stale by more than a season i&rsquo;ve probably ghosted the site.
+            </p>
+          </section>
+
+          <div className="my-10 opacity-30" style={{ color: "var(--ink)" }}>
+            <InkLine fade thickness={1} />
           </div>
 
           {/* ===== STUFF I LOVE ===== */}
@@ -338,6 +488,58 @@ export default function MorePage() {
             <Sub title="people" items={PEOPLE} mark={<PinMark />} />
             <Sub title="misc" items={MISC} mark={<CoconutMark />} />
           </section>
+
+          <div className="my-10 opacity-30" style={{ color: "var(--ink)" }}>
+            <InkLine fade thickness={1} />
+          </div>
+
+          {/* ===== WHAT I’M FIGHTING — the cultural/political weights I want to push against ===== */}
+          <MarkedList
+            title="what i’m fighting"
+            items={FIGHTING}
+            glyph="▲"
+            label="things i am pushing against"
+            note="* these are the things I want to leave a dent in. nothing personal — except all of it."
+          />
+
+          <div className="my-10 opacity-30" style={{ color: "var(--ink)" }}>
+            <InkLine fade thickness={1} />
+          </div>
+
+          {/* ===== NOT GREAT AT — the honest anti-list ===== */}
+          <MarkedList
+            title="not great at"
+            items={NOT_GREAT}
+            glyph="✕"
+            label="things i am not great at"
+            note="* the more useful list. anybody who doesn’t have one is lying about something else."
+          />
+
+          <div className="my-10 opacity-30" style={{ color: "var(--ink)" }}>
+            <InkLine fade thickness={1} />
+          </div>
+
+          {/* ===== WHAT BUMS ME OUT — the quieter weight ===== */}
+          <MarkedList
+            title="what bums me out"
+            items={BUMS}
+            glyph="↓"
+            label="what weighs on me"
+            note="* the page wouldn’t be honest without it. these are not asks for sympathy; they’re the friction the work pushes against."
+          />
+
+          <div className="my-10 opacity-30" style={{ color: "var(--ink)" }}>
+            <InkLine fade thickness={1} />
+          </div>
+
+          {/* ===== WHAT KEEPS ME GOING — the antidotes ===== */}
+          <MarkedList
+            title="what keeps me going"
+            items={KEEPS}
+            glyph="↑"
+            label="what keeps me going"
+            note="* the receipts. when the bums list gets long, this is what gets re-read."
+          />
 
           <div className="my-10 opacity-30" style={{ color: "var(--ink)" }}>
             <InkLine fade thickness={1} />
@@ -585,6 +787,71 @@ function Entry({ item }: { item: Item }) {
         {item.note}
       </p>
     </div>
+  )
+}
+
+// MarkedList — the lightweight section pattern for the four
+// stream-of-consciousness rails (fighting / not-great / bums /
+// keeps). Each item is keyed by index+content so future duplicates
+// don't collide, and the glyph carries an aria-hidden so AT users
+// hear the text alone, framed by the list's aria-label.
+function MarkedList({
+  title,
+  items,
+  glyph,
+  label,
+  note,
+}: {
+  title: string
+  items: string[]
+  glyph: string
+  label: string
+  note?: string
+}) {
+  return (
+    <section className="mb-20">
+      <div className="mb-5 flex items-baseline gap-3">
+        <h2
+          className="text-2xl uppercase tracking-[0.3em] sm:text-3xl"
+          style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
+        >
+          — {title}
+        </h2>
+      </div>
+      <ul
+        aria-label={label}
+        className="flex flex-col gap-1.5"
+        style={{
+          fontFamily: "var(--font-display)",
+          color: "var(--ink)",
+          lineHeight: 1.5,
+        }}
+      >
+        {items.map((line, i) => (
+          <li
+            key={`${i}-${line}`}
+            className="flex items-baseline gap-3 text-base sm:text-lg"
+          >
+            <span
+              aria-hidden
+              className="shrink-0 text-xs uppercase tracking-[0.3em]"
+              style={{ color: "var(--text-muted)" }}
+            >
+              {glyph}
+            </span>
+            <span>{line}</span>
+          </li>
+        ))}
+      </ul>
+      {note && (
+        <p
+          className="mt-4 max-w-2xl text-xs uppercase tracking-[0.3em]"
+          style={{ color: "var(--text-muted)" }}
+        >
+          {note}
+        </p>
+      )}
+    </section>
   )
 }
 
