@@ -1409,6 +1409,208 @@ const DOODLES: Doodle[] = [
       <text x="6" y="170" fontFamily="var(--font-display)" fontSize="10" fill="currentColor" stroke="none" opacity="0.6">128k tokens. one shipment.</text>
     </svg>
   ) },
+
+  // ====== blueprint completions ======
+
+  // Concrete-filled 3D print — brittle lattice + monolith interior
+  { id: "concrete-print", baseVh: 3520, side: "left", rotate: -4, render: () => (
+    <svg width="260" height="220" viewBox="0 0 260 220" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+      <text x="6" y="20" fontFamily="var(--font-display)" fontSize="14" fill="currentColor" stroke="none">printed lattice, poured stone</text>
+      {/* outer skin */}
+      <path d="M50 60 L210 60 L200 180 L60 180 Z" />
+      {/* hex / lattice cells — flatten the nested map so React
+          sees a single keyed list instead of arrays-of-arrays */}
+      {Array.from({ length: 4 }).flatMap((_, r) =>
+        Array.from({ length: 5 }).map((_, c) => {
+          const x = 62 + c * 28
+          const y = 76 + r * 26 + (c % 2 === 0 ? 0 : 13)
+          return (
+            <path key={`${r}-${c}`} d={`M${x} ${y} l 10 -8 l 10 8 l 0 14 l -10 8 l -10 -8 z`} opacity="0.65" />
+          )
+        }),
+      )}
+      {/* concrete fill — dense dotted core */}
+      {Array.from({ length: 80 }).map((_, i) => {
+        const x = 70 + ((i * 13) % 130)
+        const y = 80 + (((i * 17) + (i * 11)) % 90)
+        return <circle key={i} cx={x} cy={y} r="0.9" fill="currentColor" opacity={0.45} />
+      })}
+      {/* base */}
+      <path d="M40 180 L220 180" strokeWidth="2" />
+      <text x="6" y="206" fontFamily="var(--font-display)" fontSize="10" fill="currentColor" stroke="none" opacity="0.6">brittle skin · ancient mass</text>
+    </svg>
+  ) },
+
+  // Utility belt — modular grid of conceptual frameworks
+  { id: "utility-belt", baseVh: 3570, side: "right", rotate: 3, render: () => (
+    <svg width="300" height="160" viewBox="0 0 300 160" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+      <text x="6" y="18" fontFamily="var(--font-display)" fontSize="14" fill="currentColor" stroke="none">utility belt — frameworks, not gadgets</text>
+      {/* belt strap */}
+      <path d="M10 80 L290 80" strokeWidth="3" />
+      <path d="M10 100 L290 100" strokeWidth="3" />
+      {/* compartments */}
+      {Array.from({ length: 7 }).map((_, i) => {
+        const x = 22 + i * 38
+        return (
+          <g key={i}>
+            <rect x={x} y="62" width="28" height="56" />
+            <path d={`M${x + 6} 76 L${x + 22} 76`} opacity="0.55" />
+            <path d={`M${x + 6} 88 L${x + 22} 88`} opacity="0.55" />
+            <path d={`M${x + 6} 100 L${x + 22} 100`} opacity="0.55" />
+            <path d={`M${x + 6} 112 L${x + 22} 112`} opacity="0.55" />
+          </g>
+        )
+      })}
+      {/* labels inside */}
+      {["why","loop","scope","ship","cut","ask","wait"].map((label, i) => (
+        <text key={label} x={28 + i * 38} y="138" fontFamily="var(--font-display)" fontSize="9" fill="currentColor" stroke="none" opacity="0.7">{label}</text>
+      ))}
+    </svg>
+  ) },
+
+  // Steamed Hams aurora — oven cross-section + cosmic phenomenon
+  { id: "steamed-hams", baseVh: 3620, side: "left", rotate: -3, render: () => (
+    <svg width="260" height="220" viewBox="0 0 260 220" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+      <text x="6" y="18" fontFamily="var(--font-display)" fontSize="14" fill="currentColor" stroke="none">aurora borealis (in the kitchen)</text>
+      {/* oven body */}
+      <rect x="40" y="80" width="180" height="120" />
+      <path d="M40 100 L220 100" />
+      {/* door window */}
+      <rect x="60" y="120" width="140" height="60" />
+      <circle cx="200" cy="110" r="3" fill="currentColor" />
+      <circle cx="190" cy="110" r="3" fill="currentColor" />
+      <circle cx="180" cy="110" r="3" fill="currentColor" />
+      {/* vent on top */}
+      <path d="M110 80 L150 80 L150 70 L110 70 Z" />
+      {/* aurora ribbons rising from the vent, caught in a faint grid */}
+      <path d="M120 70 q -10 -30 10 -50 q 30 -10 30 -40" />
+      <path d="M130 70 q 6 -30 -8 -50 q -20 -16 -6 -36" opacity="0.7" />
+      <path d="M140 70 q 18 -20 0 -44 q -10 -16 14 -32" opacity="0.7" />
+      {/* grid behind the ribbons */}
+      {Array.from({ length: 4 }).map((_, i) => (
+        <path key={`gh${i}`} d={`M70 ${10 + i * 16} L210 ${10 + i * 16}`} opacity="0.2" />
+      ))}
+      {Array.from({ length: 8 }).map((_, i) => (
+        <path key={`gv${i}`} d={`M${70 + i * 20} 4 L${70 + i * 20} 60`} opacity="0.2" />
+      ))}
+      <text x="6" y="216" fontFamily="var(--font-display)" fontSize="10" fill="currentColor" stroke="none" opacity="0.6">localised entirely within this kitchen.</text>
+    </svg>
+  ) },
+
+  // Chemistry of Ego — Erlenmeyer + black mass + meth structural formula
+  { id: "chemistry-of-ego", baseVh: 3670, side: "right", rotate: 4, render: () => (
+    <svg width="260" height="220" viewBox="0 0 260 220" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+      <text x="6" y="18" fontFamily="var(--font-display)" fontSize="14" fill="currentColor" stroke="none">chemistry of ego</text>
+      {/* flask */}
+      <path d="M110 36 L150 36 L150 70 L200 180 L60 180 L110 70 Z" />
+      {/* black mass inside */}
+      <path d="M70 170 L190 170 L170 130 Q 130 110 90 130 Z" fill="currentColor" opacity="0.85" />
+      {/* bubbles */}
+      <circle cx="100" cy="148" r="3" fill="var(--surface-dark, #f6f6f4)" />
+      <circle cx="130" cy="138" r="2" fill="var(--surface-dark, #f6f6f4)" />
+      <circle cx="155" cy="146" r="2.5" fill="var(--surface-dark, #f6f6f4)" />
+      {/* structural formula floating above, fracturing */}
+      <g transform="translate(160 24)">
+        <path d="M0 14 L8 0 L16 14 L24 0 L32 14" />
+        <text x="0"  y="26" fontFamily="var(--font-display)" fontSize="8" fill="currentColor" stroke="none">CH3</text>
+        <text x="11" y="26" fontFamily="var(--font-display)" fontSize="8" fill="currentColor" stroke="none">NH</text>
+        <text x="22" y="26" fontFamily="var(--font-display)" fontSize="8" fill="currentColor" stroke="none">Ph</text>
+        {/* fracture line */}
+        <path d="M16 -6 L18 30" strokeDasharray="2 3" />
+      </g>
+      <text x="6" y="206" fontFamily="var(--font-display)" fontSize="10" fill="currentColor" stroke="none" opacity="0.6">say my name.</text>
+    </svg>
+  ) },
+
+  // Babylon Hanksta — hazmat mask entangled with organic roots
+  { id: "babylon-hanksta", baseVh: 3720, side: "left", rotate: -3, render: () => (
+    <svg width="240" height="220" viewBox="0 0 240 220" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+      <text x="6" y="18" fontFamily="var(--font-display)" fontSize="14" fill="currentColor" stroke="none">jah-sse irie · cartel dub</text>
+      {/* hazmat hood */}
+      <path d="M70 60 q 0 -40 50 -40 q 50 0 50 40 q 0 18 -10 30 l 8 16 l -16 4 l 4 14 l -36 4 l -36 -4 l 4 -14 l -16 -4 l 8 -16 q -10 -12 -10 -30 z" />
+      {/* visor */}
+      <ellipse cx="120" cy="60" rx="32" ry="14" fill="currentColor" opacity="0.85" />
+      {/* breathing filters */}
+      <circle cx="84" cy="100" r="8" />
+      <circle cx="156" cy="100" r="8" />
+      {/* dread/vine roots growing out the top + sides */}
+      <path d="M86 22 q -8 -16 4 -28" />
+      <path d="M120 18 q -2 -22 14 -32" />
+      <path d="M152 22 q 10 -18 -2 -30" />
+      <path d="M170 60 q 30 -8 36 -32" />
+      <path d="M70 60 q -30 -8 -36 -32" />
+      {/* vine leaves */}
+      {[[90,-10],[136,-22],[150,-12],[208,18],[34,18]].map(([x,y], i) => (
+        <ellipse key={i} cx={x} cy={y + 30} rx="6" ry="3" />
+      ))}
+      <text x="6" y="208" fontFamily="var(--font-display)" fontSize="10" fill="currentColor" stroke="none" opacity="0.6">respirator on, sound system louder.</text>
+    </svg>
+  ) },
+
+  // Dieter Rams' nightmare — Braun phonograph invaded by Memphis-era neon shapes
+  { id: "rams-nightmare", baseVh: 3770, side: "right", rotate: 3, render: () => (
+    <svg width="280" height="200" viewBox="0 0 280 200" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+      <text x="6" y="18" fontFamily="var(--font-display)" fontSize="14" fill="currentColor" stroke="none">dieter rams&rsquo; nightmare</text>
+      {/* the perfect Braun box */}
+      <rect x="30" y="60" width="160" height="100" />
+      <circle cx="90" cy="110" r="34" />
+      <circle cx="90" cy="110" r="3" fill="currentColor" />
+      <path d="M140 70 L114 102" />
+      <circle cx="140" cy="70" r="4" />
+      <circle cx="170" cy="78" r="5" />
+      <circle cx="170" cy="98" r="5" />
+      {/* invaders — postmodern junk crashing through */}
+      <path d="M190 50 L230 50 L210 90 Z" strokeDasharray="3 3" />
+      <rect x="200" y="100" width="60" height="14" transform="rotate(-12 230 107)" strokeDasharray="3 3" />
+      <path d="M220 130 q 30 -10 50 10 q -20 18 -50 -10 z" strokeDasharray="3 3" />
+      <circle cx="248" cy="170" r="12" strokeDasharray="3 3" />
+      <text x="200" y="184" fontFamily="var(--font-display)" fontSize="10" fill="currentColor" stroke="none" opacity="0.55">↑ memphis · gehry · sottsass</text>
+    </svg>
+  ) },
+
+  // Industrial monoliths — Burtynsky-style fractal quarry, moiré
+  { id: "industrial-monoliths", baseVh: 3820, side: "left", rotate: -4, render: () => (
+    <svg width="280" height="220" viewBox="0 0 280 220" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+      <text x="6" y="18" fontFamily="var(--font-display)" fontSize="14" fill="currentColor" stroke="none">industrial monoliths · burtynsky</text>
+      {/* concentric terraces — quarry seen from above */}
+      {Array.from({ length: 10 }).map((_, i) => {
+        const r = 14 + i * 9
+        return (
+          <ellipse key={i} cx="140" cy="120" rx={r * 1.4} ry={r} opacity={0.7 - i * 0.04} />
+        )
+      })}
+      {/* haul roads cutting through */}
+      <path d="M40 80 Q 140 120 240 80" opacity="0.55" />
+      <path d="M30 160 Q 140 120 250 160" opacity="0.55" />
+      {/* tiny trucks for scale */}
+      <rect x="100" y="118" width="6" height="3" fill="currentColor" />
+      <rect x="172" y="122" width="6" height="3" fill="currentColor" />
+      <rect x="138" y="100" width="6" height="3" fill="currentColor" />
+      <text x="6" y="214" fontFamily="var(--font-display)" fontSize="10" fill="currentColor" stroke="none" opacity="0.6">extraction at scale = a fractal.</text>
+    </svg>
+  ) },
+
+  // The creative spot — skating physics, brutalist staircase
+  { id: "creative-spot", baseVh: 3870, side: "right", rotate: 3, render: () => (
+    <svg width="280" height="200" viewBox="0 0 280 200" fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+      <text x="6" y="18" fontFamily="var(--font-display)" fontSize="14" fill="currentColor" stroke="none">the creative spot</text>
+      {/* staircase profile */}
+      <path d="M30 170 L60 170 L60 150 L90 150 L90 130 L120 130 L120 110 L150 110 L150 90 L180 90 L180 70 L260 70" />
+      {/* concrete shading */}
+      {Array.from({ length: 6 }).map((_, i) => (
+        <path key={i} d={`M${60 + i * 30} ${170 - i * 20} l 0 ${20}`} opacity="0.4" />
+      ))}
+      {/* parabolic arc — the trick path */}
+      <path d="M50 175 Q 130 50, 220 110" strokeDasharray="3 4" />
+      {/* take-off + landing markers */}
+      <circle cx="50" cy="175" r="3" fill="currentColor" />
+      <circle cx="220" cy="110" r="3" fill="currentColor" />
+      {/* velocity vector */}
+      <path d="M50 175 L74 152" strokeWidth="2" />
+      <path d="M68 154 L74 152 L72 158" strokeWidth="2" />
+      <text x="6" y="194" fontFamily="var(--font-display)" fontSize="10" fill="currentColor" stroke="none" opacity="0.6">architecture as a fulcrum, not a cage.</text>
+    </svg>
+  ) },
 ]
 
 // ---- Layout: place doodles with random jitter around their baseVh

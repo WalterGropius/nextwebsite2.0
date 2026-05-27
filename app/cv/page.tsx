@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
 import { InkLine } from "@/components/ink-line"
@@ -82,46 +82,19 @@ const speaking = [
   "umprum",
 ]
 
-// Two portraits stacked: the second wipes in from the left over the
-// first on hover, snaps back on leave. No-print so it stays out of
-// the PDF export.
-//
-// Important: faces deform under a heavy displacement filter, so the
-// portraits do NOT use .ink-photo. Instead we wrap the photo in a
-// frame that gets the wobble (the *edges* are inked, the face stays
-// intact). The frame is a positioned wrapper with an SVG-filter
-// border, so the wobble survives the hover state too.
+// Single portrait — the studio shot — inside a wobbled ink frame.
+// Faces deform under a heavy displacement filter, so the frame
+// (not the photo) carries the wobble; the face stays sharp. The
+// outer div is no-print so the portrait stays out of the PDF
+// export.
 function CVPortrait() {
-  // `hover` is the toggle state, regardless of input type.
-  // On mouse-capable devices we drive it via enter/leave so it
-  // feels like a real hover. On touch-only devices we wire it to
-  // click so tap = toggle. (hover: none) detects coarse pointers.
-  const [hover, setHover] = useState(false)
-  const [isTouch, setIsTouch] = useState(false)
-  useEffect(() => {
-    if (typeof window === "undefined") return
-    setIsTouch(window.matchMedia("(hover: none)").matches)
-  }, [])
   return (
     <div
       className="no-print relative mx-auto w-full max-w-[20rem]"
-      style={{ aspectRatio: "4 / 5", zIndex: 35, cursor: "pointer" }}
-      onMouseEnter={isTouch ? undefined : () => setHover(true)}
-      onMouseLeave={isTouch ? undefined : () => setHover(false)}
-      onClick={isTouch ? () => setHover((h) => !h) : undefined}
-      role="button"
-      tabIndex={0}
-      aria-pressed={hover}
-      aria-label="toggle portrait"
-      onKeyDown={(e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault()
-          setHover((h) => !h)
-        }
-      }}
+      style={{ aspectRatio: "4 / 5", zIndex: 35 }}
     >
-      {/* Inked frame — wobble lives here, not on the photo, so faces
-          don't deform and the edge effect survives the hover state. */}
+      {/* Inked frame — wobble lives here, not on the photo, so the
+          face stays sharp. */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -132,42 +105,11 @@ function CVPortrait() {
         }}
       />
       <div className="relative h-full w-full overflow-hidden">
-        {/* Default = eli2 (studio); eli1 (outside) wipes in on hover. */}
         <img
           src="/eli2.webp"
           alt="eliáš bauer"
           className="absolute inset-0 h-full w-full object-cover"
-          style={{
-            transition:
-              "transform 800ms cubic-bezier(0.16, 1, 0.3, 1), filter 600ms ease-out",
-            transform: hover ? "scale(1.04)" : "scale(1)",
-            filter: hover ? "saturate(0.9) contrast(0.96)" : "none",
-          }}
         />
-        <img
-          src="/eli1.webp"
-          alt=""
-          aria-hidden
-          className="absolute inset-0 h-full w-full object-cover"
-          style={{
-            transition: "clip-path 700ms cubic-bezier(0.16, 1, 0.3, 1)",
-            clipPath: hover ? "inset(0 0 0 0)" : "inset(0 100% 0 0)",
-          }}
-        />
-        {/* hand-written caption that swaps on hover */}
-        <div
-          className="absolute bottom-2 left-2 text-xs uppercase tracking-[0.25em]"
-          style={{
-            color: "var(--ink)",
-            opacity: 0.55,
-            fontFamily: "var(--font-display)",
-            background: "color-mix(in srgb, var(--surface-dark) 70%, transparent)",
-            padding: "2px 6px",
-            zIndex: 3,
-          }}
-        >
-          {hover ? "* outside" : "* studio"}
-        </div>
       </div>
     </div>
   )
@@ -331,7 +273,10 @@ export default function CVPage() {
                   color: "var(--ink)",
                 }}
               >
-                <MotionText text="eliáš bauer" split="char" stagger={0.04} />
+                {/* split="word" so a narrow column wraps "eliáš
+                    bauer" to two lines on the inter-word space —
+                    never mid-letter. */}
+                <MotionText text="eliáš bauer" split="word" stagger={0.08} />
               </h1>
               <div
                 className="mt-4 flex flex-wrap items-baseline gap-x-4 gap-y-1 text-sm uppercase tracking-[0.3em]"
