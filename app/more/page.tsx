@@ -165,7 +165,7 @@ export default function MorePage() {
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     className="group block"
                   >
-                    <TiltCard max={8} lift={5} className="relative block">
+                    <TiltCard max={8} lift={5} className="relative block" style={{ zIndex: 36 }}>
                       <div className="relative aspect-[4/5] overflow-hidden" style={{ zIndex: 35 }}>
                         <img
                           src={p.image}

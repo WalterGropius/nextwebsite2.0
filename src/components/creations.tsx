@@ -180,7 +180,11 @@ export function Creations({ randomCount }: CreationsProps) {
                   max={9}
                   lift={6}
                   className="relative block"
-                  style={{ borderRadius: 0 }}
+                  // z-36 lifts the entire card above the paper grid
+                  // (z-30) so the inked lines no longer crawl over
+                  // the photos. Stays well below the mobile menu
+                  // modal (z-55) and the nav bar (z-60).
+                  style={{ borderRadius: 0, zIndex: 36 }}
                 >
                   {/* Photo + hover description overlay. Photo stays
                       fully opaque (no .ink-photo on the <img>); the
