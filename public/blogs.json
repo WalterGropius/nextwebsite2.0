@@ -1,0 +1,56 @@
+[
+  {
+    "id": "polymath-time-debt",
+    "title": "the polymath's time debt is the only debt that compounds for free",
+    "date": "2026-04-10",
+    "excerpt": "Most ideas you have you won't ship. Sombra OS is the cache.",
+    "tags": "sombra, methodology",
+    "image": null,
+    "body": "The reason I built **Sombra OS** is brutally simple: I had run out of disk for ideas.\n\nThe polymath's bargain is that you get to be interested in everything. The polymath's tax is that the half-life of an idea in your head is somewhere between forty minutes and three days. By the time you've done the dishes you've already forgotten what you wanted to build on Tuesday.\n\n## the cache analogy\n\nEvery working programmer learns that the **L1 cache is small and the L3 cache is slow**. The trick of a fast system is to keep the right things hot.\n\nThe trick of a productive *life* is the same. Your foreground attention is L1 — tiny, fast, lossy. Your written notes are L2 — bigger, slower, lossy in different ways. Long-form essays, prototypes and shipped code are L3 — slow to fill, slow to read, but durable.\n\nSombra OS lives between L1 and L2. It is the **paste-everywhere capture surface** that catches the seven-second thought before it falls out of your head, then keeps catching the next seven-second thought until you've accidentally accumulated thirty minutes of one coherent argument.\n\n## the dividend\n\nThe clever bit isn't the capture; it's the **retrieval**.\n\nEvery fragment you paste becomes findable by every fragment you've ever pasted, because the agent that searches your notes also reads them at index time and indexes them by what they're *about*, not what they *say*. Six months from now, when you're prototyping the next thing, the agent quietly retrieves the four notes from last June that you didn't remember writing but which exactly describe the problem.\n\nThat's the time-debt dividend. Past-you stops being a stranger. Future-you stops re-doing past-you's work. The interest compounds, and you didn't borrow anything to earn it.\n\n> bonus: the system also catches its own bugs, because you start using it for the meta-notes too.\n\nThe first month feels like overhead. The second month feels like a habit. The third month you notice you can't think without it."
+  },
+  {
+    "id": "agents-that-ship",
+    "title": "agents that ship",
+    "date": "2026-03-22",
+    "excerpt": "An agent worth running isn't smart — it's stubborn.",
+    "tags": "ai, methodology",
+    "image": null,
+    "body": "Most demos of LLM agents show the model writing a poem about its plan and then doing the wrong thing. The error isn't that the model is dumb. The error is that the **harness around the model** has no spine.\n\nA useful agent loop looks like this:\n\n```\ngoal:   describe what done looks like, in one sentence.\nplan:   propose 3-7 steps.\nloop:\n  pick the next step.\n  run a tool.\n  inspect the result.\n  if the result advances the goal: continue.\n  if not: replan from the new state.\n  if the same failure repeats twice: abort that branch.\n```\n\nNotice what's missing: the model never gets to declare victory unilaterally. It also never gets to ramble. Every loop iteration costs a tool call, which costs a measurable thing — money, time, latency — and produces a measurable thing — a state change.\n\n## three failure modes\n\nMost agent harnesses fail one of these three ways:\n\n1. **Confidence ≠ progress.** The model insists the task is done; the tool log says nothing changed. The harness must trust the log, not the model.\n2. **Loop without check.** The model retries the same broken call ten times in a row. The harness must detect repeated failure and break out.\n3. **Single-tool tunnel vision.** The model only knows about one tool, so it tries to solve everything with that tool. Give it three or four well-named tools and the failure rate halves.\n\nThe model is a creative writer. The harness is the editor. If you publish the creative writer's first draft you publish nonsense; if you publish what the editor signs off on you publish a deliverable.\n\n## what to copy\n\nTake the loop above and the three failure modes. Don't add anything. The most boring agent that *ships* will outperform the most interesting agent that *doesn't*. We learned this with humans long before we tried it with models."
+  },
+  {
+    "id": "blackbox-protocol",
+    "title": "blackbox protocol",
+    "date": "2026-02-14",
+    "excerpt": "I draw every new domain as if for a patent. The boxes I can't fill are the work.",
+    "tags": "methodology",
+    "image": null,
+    "body": "I have a notebook habit I call the **blackbox protocol**. Whenever I touch a domain I don't understand — a synthesiser internals doc, a new robotics platform, somebody else's codebase — I draw it as if for a patent application. Boxes, arrows, labels. The boxes are subsystems; the arrows are the data, energy, or control that moves between them.\n\nThe point of the exercise is **not** to produce a correct diagram. The point is that **you can't draw a system you don't understand**. As soon as you start drawing you hit boxes you can't fill, arrows you can't label, and feedback loops you didn't know existed. Those are the unknown unknowns turning into known unknowns. From there they're tractable.\n\n## the rule\n\nThe rule is that every arrow must have a noun on it: what is actually moving? Volts, packets, intent, tokens, sandwich? If you can't name what's on the arrow you don't understand the connection — and you shouldn't pretend you do.\n\n## the dividend\n\nThe diagram you draw on day one is usually wrong on day three. That's fine. The wrongness is what teaches you the system. On day seven you redraw it from memory and notice the boxes are different shapes; on day twenty-one the diagram has collapsed into one paragraph of plain text that an outsider can actually read, and at that point you understand the thing well enough to **build the next one**.\n\nMost fields are this. Most \"I'm not technical\" people are technical; they just never inherited the diagram habit."
+  },
+  {
+    "id": "taste-is-a-feature",
+    "title": "your taste is a feature, not a bug",
+    "date": "2025-12-04",
+    "excerpt": "When you build with AI long enough, the bottleneck is taste, not throughput.",
+    "tags": "ai, craft",
+    "image": null,
+    "body": "Generative models flipped the relative cost of two things you can do as a maker: **producing variations** and **picking the right one**. Production used to be the expensive bit. Now it's almost free.\n\nWhat's left is taste.\n\n## taste is the picking\n\nTaste is the function that says *yes this one, no the other seven*. It's evaluative, not creative — and that's exactly what models are bad at. They will happily generate the seven; you have to pick.\n\nIf you can articulate what makes a good thing good — in a domain you care about, with specificity — you have something the model doesn't, and the *whole job* is to bolt that articulation onto the model.\n\n## how to sharpen it\n\nYou sharpen taste the same way Olympic divers sharpen the inward triple: **deliberate practice**. Pick the best one out of seven, ten times in a row, then write down *why*. Then pick the best one out of fifty. Then pick the best minute of the best draft of the best chapter of someone else's book and write down what makes that minute work.\n\nThere is no shortcut. The model can produce the variations all day. Only you can pick.\n\n## the implication for the work\n\nYour most valuable skill in the next five years is going to be **calibrated taste in a niche you've chosen on purpose**. The niche needs to be small enough that you can actually become unfair at it, and big enough that someone is willing to pay for the picking. Find that intersection and your scarcity is permanent."
+  },
+  {
+    "id": "hardware-as-grammar",
+    "title": "hardware is a grammar",
+    "date": "2025-10-19",
+    "excerpt": "Soldering an ESP32 to anything teaches you what software cannot.",
+    "tags": "hardware, craft",
+    "image": null,
+    "body": "I keep going back to the workbench because hardware fixes my software brain.\n\nSoftware is forgiving. You can hold a wrong mental model for *years* and the compiler will quietly pretend nothing is wrong, as long as your tests pass. Hardware is unforgiving in the literal sense: voltage doesn't lie, current doesn't lie, the magic smoke doesn't lie.\n\nThe first time you wire an ESP32 backward and watch a $4 chip turn into $4 of decorative carbon, you learn a grammar lesson that no amount of TypeScript can teach you: **the laws are not negotiable**.\n\n## what carries over\n\n- **Tolerance budgets.** Software ignores them. Hardware can't.\n- **Calibration.** Software has units; hardware enforces them.\n- **Bring-up sequencing.** Power before signal, ground before everything, clock before data. Software has the same dependencies — your IDE just hides them.\n- **The smell test.** Burning epoxy. Hot regulators. A coil whining at audio frequencies. Hardware tells you in three senses what software only tells you through a logfile.\n\n## practical recipe\n\nBuy one cheap dev board. Buy a multimeter you actually understand. Buy a soldering iron with a temperature dial. Wire an LED to a button to a microcontroller; flash some firmware; then make it do one useless physical thing. The act of producing one *real-world side-effect* re-grounds the abstraction stack. Everything you do at a keyboard tomorrow is sharper for it."
+  },
+  {
+    "id": "spatial-is-the-default",
+    "title": "spatial computing is going to be the default, not the niche",
+    "date": "2025-08-02",
+    "excerpt": "Mobile felt like a sideshow until it ate everything. Spatial is at the same point now.",
+    "tags": "xr, future",
+    "image": null,
+    "body": "The conventional take is that VR / AR / XR is a niche that will stay a niche until headsets become as comfortable as eyeglasses. I think the conventional take has the causality backwards.\n\nSpatial computing isn't waiting for the hardware to get good enough for *consumers*. It's waiting for the **content tools** to get good enough that designers and developers can stop reinventing the wheel every project. As soon as the tools are commodity, the headsets are along for the ride.\n\n## what changed in 2024-25\n\n- **WebXR** is now a real platform, not a flag.\n- **Gaussian splatting** turned a phone into a 3D scanner.\n- **Unreal 5 + Niagara** can hit headset frame budgets without rewriting your gameplay code.\n- **Apple Vision Pro** shipped an actually-good gaze + pinch interaction model and most of the industry copied it within months.\n\nEach of those is a tool-chain improvement that compounds. None of them are end-user features.\n\n## what happens next\n\nWhen the tooling is commodity, the new gen of designers will spend their first ten years thinking spatially the same way the mobile gen spent their first ten years thinking touch-first. Both moves were obvious in hindsight; both took everyone by surprise; both ate every adjacent surface within five years.\n\nThe work I'm betting on now is the tooling, not the headsets. If you make the picks-and-shovels for spatial today, you sell to the gold-rush in 2028."
+  }
+]

@@ -6,7 +6,36 @@
     "description": "I made this EP cover with GIMP it was the beginning of a long and beautiful collaboration with Cpt. Demo",
     "date": "October 2021",
     "link": "https://open.spotify.com/album/1V3m6SMvu8Bodq4scdqD3o",
-    "tags": "Graphic Design"
+    "tags": "Graphic Design",
+    "media": [
+      {
+        "type": "image",
+        "src": "/image14.jpg",
+        "alt": "EP cover",
+        "caption": "The final cover, exported at 3000×3000 for streaming + print."
+      },
+      {
+        "type": "embed",
+        "html": "<iframe style=\"border-radius:0\" src=\"https://open.spotify.com/embed/album/1V3m6SMvu8Bodq4scdqD3o?utm_source=generator\" width=\"100%\" height=\"352\" frameborder=\"0\" allowfullscreen allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
+        "caption": "Stream the full EP."
+      },
+      {
+        "type": "video",
+        "src": "/reel_sm.mp4",
+        "caption": "Process clip — sketches I cut into the master reel."
+      }
+    ],
+    "links": [
+      {
+        "label": "spotify",
+        "href": "https://open.spotify.com/album/1V3m6SMvu8Bodq4scdqD3o"
+      },
+      {
+        "label": "cpt. demo",
+        "href": "https://soundcloud.com/cpt-demo"
+      }
+    ],
+    "body": "First commission for **Cpt. Demo** — a friend whose taste taught me half of what I know about beats. The EP needed a cover that lived equally well as a 64×64 thumbnail in Spotify and as a 30×30 cm vinyl sleeve, and we wanted the same image to do both jobs without compromise.\n\n## the brief\n\n> \"make it feel like a basement in 2003 but make it last forever\"\n\nThat meant **deliberately limited palette**, almost zero gradients, and high-contrast type that survives the worst chroma subsampling Apple Music does to album art.\n\n## process\n\nStarted in **GIMP** because that's what I had open. Built the type by hand from the rapper's tag — every glyph traced from his own marker strokes so the name owns the artefacts.\n\n- One pass for type\n- One pass for grain\n- One pass for the printed-edge offset\n\nThe vinyl press wanted CMYK with bleed; the streaming services wanted sRGB at 3000². Same source file, different export profiles. Nothing harder than that, but the discipline of treating the digital and physical deliveries with equal weight was the lesson.\n\n## what stuck\n\nThe cover got picked up by a couple of beat-tape blogs. More importantly it was the start of a five-year collaboration with Cpt. Demo — every release since carries the same vocabulary, scaled up."
   },
   {
     "id": 11,
@@ -15,7 +44,36 @@
     "description": "I made a 3d model in blender based on mockups and technical drawings to preview a sculpture and prepare it for cnc milling",
     "date": "July 2020",
     "link": "https://sketchfab.com/models/e136d0a11db84dddb65485134a39ffbb",
-    "tags": "3D, r&d"
+    "tags": "3D, r&d",
+    "media": [
+      {
+        "type": "image",
+        "src": "/image27.jpg",
+        "alt": "3D preview of the sculpture",
+        "caption": "3D preview matched to the original technical drawings."
+      },
+      {
+        "type": "embed",
+        "html": "<div class=\"sketchfab-embed-wrapper\"><iframe title=\"Jan Kalab Sculpture\" frameborder=\"0\" allowfullscreen mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" allow=\"autoplay; fullscreen; xr-spatial-tracking\" width=\"100%\" height=\"480\" src=\"https://sketchfab.com/models/e136d0a11db84dddb65485134a39ffbb/embed?autostart=0\"></iframe></div>",
+        "caption": "Interactive turntable — drag to orbit, scroll to zoom."
+      },
+      {
+        "type": "video",
+        "src": "/reel_sm.mp4",
+        "caption": "Final reel cut."
+      }
+    ],
+    "links": [
+      {
+        "label": "sketchfab",
+        "href": "https://sketchfab.com/models/e136d0a11db84dddb65485134a39ffbb"
+      },
+      {
+        "label": "jan kaláb",
+        "href": "https://www.jankalab.com/"
+      }
+    ],
+    "body": "Jan Kaláb is a Czech painter who'd started moving his canvases into the third dimension. He had the sculpture as a paper maquette and a stack of pencil-on-tracing-paper dimensions; he needed a digital twin he could send to a CNC shop and a render he could send to galleries before the milling bill came due.\n\n## the request\n\nTake the maquette + drawings, build a **clean parametric model**, and produce:\n\n1. A render the gallery can put in their newsletter.\n2. A file the CNC shop can mill from a block of foam without surprises.\n\n## modeling\n\nBuilt in Blender. The shape was a stack of swept revolution surfaces with a couple of boolean cuts; nothing fancy, but the tolerance had to be tight enough that the CNC operator didn't have to second-guess any edge.\n\n- Modeled to scale (working units = mm)\n- Topology cleaned for subdivision (no triangles on the visible faces)\n- Manifold check before export\n- Exported as **STEP** for the mill, **GLB** for the web\n\n## what made it hard\n\nThe hardest part wasn't the geometry — it was the *measurement reconciliation*. The pencil drawings disagreed with each other by a few millimetres in places. I went back to Jan with a list of conflicts and we picked the canonical number for each one before any model lifted off the ground. That conversation saved a week of CNC re-cuts."
   },
   {
     "id": 9,
@@ -24,7 +82,10 @@
     "description": "I made an NFT replica of a sculpture for Epos 257",
     "date": "June 2020",
     "link": "https://sketchfab.com/models/829cdf10a68e4b2d80ee3d53ffc0a75d",
-    "tags": "3D,NFT"
+    "tags": "3D,NFT",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 12,
@@ -33,7 +94,10 @@
     "description": "VR gallery exposition of A gap by J. Mančuška for Viktor Takač with viewer analytics",
     "date": "June 2021",
     "link": "http://blokmagazine.com/a-gap-by-jan-mancuska-at-hunt-kastner-gallery/",
-    "tags": "VR,r&d"
+    "tags": "VR,r&d",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 14,
@@ -42,7 +106,10 @@
     "description": "VFX/VP commerical i made with oldrich.rocks",
     "date": "July 2021",
     "link": "https://photos.app.goo.gl/PBZs6EegBARX3aPa7",
-    "tags": "VFX,VP,r&d"
+    "tags": "VFX,VP,r&d",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 15,
@@ -51,7 +118,10 @@
     "description": "Virtual production using gargantuous LED panels on czech feature film with VFXR",
     "date": "July 2021",
     "link": "https://www.youtube.com/watch?v=kpt_ltLziek",
-    "tags": "VFX,VP,r&d"
+    "tags": "VFX,VP,r&d",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 13,
@@ -60,7 +130,10 @@
     "description": "playful collaboration with my student of Game Design, crowd system ai made from scratch",
     "date": "June 2021",
     "link": "",
-    "tags": "Game Design,VR,r&d"
+    "tags": "Game Design,VR,r&d",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 21,
@@ -69,7 +142,10 @@
     "description": "realistic jaguar comped in realtime in Unreal using reprojected and relit geometry + Mocha pro facetrack",
     "date": "March 2022",
     "link": "https://www.youtube.com/watch?v=noh6BYgtTxQ&ab_channel=kevingatesTV",
-    "tags": "VFX,VP,r&d"
+    "tags": "VFX,VP,r&d",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 10,
@@ -78,7 +154,10 @@
     "description": "spotify artwork made with blender,ue and substance",
     "date": "June 2020",
     "link": "",
-    "tags": "Graphic Design"
+    "tags": "Graphic Design",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 18,
@@ -87,7 +166,10 @@
     "description": "made another EP cover for čardáš in GIMP",
     "date": "November 2021",
     "link": "",
-    "tags": "Graphic Design"
+    "tags": "Graphic Design",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 25,
@@ -96,7 +178,10 @@
     "description": "2media 3d website using playcanvas, polygon.js and finally settling on react-three-fiber",
     "date": "October 2022",
     "link": "/test",
-    "tags": "3D, r&d, Web Design"
+    "tags": "3D, r&d, Web Design",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 17,
@@ -105,7 +190,10 @@
     "description": "Nobel Prize replica LP cover",
     "date": "November 2021",
     "link": "https://open.spotify.com/album/7K2miboa6cK7WwTFmFAc8n",
-    "tags": "3D, r&d,Graphic Design"
+    "tags": "3D, r&d,Graphic Design",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 23,
@@ -114,7 +202,10 @@
     "description": "cover artwork design for upcoming Burian LP",
     "date": "July 2022",
     "link": "",
-    "tags": "Graphic Design"
+    "tags": "Graphic Design",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 24,
@@ -123,7 +214,10 @@
     "description": "Color grading and digital talking horse VFX",
     "date": "August 2022",
     "link": "https://www.youtube.com/watch?v=LT275WZoh1E&ab_channel=JohnnyMajestic",
-    "tags": "VFX,grading"
+    "tags": "VFX,grading",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 19,
@@ -132,7 +226,10 @@
     "description": "I made a bunch of unreal scenes, a bttf-style car entry, a lightsabre streetfight a flying car and hand animated bullets (including their reflection on dat windshield",
     "date": "December 2021",
     "link": "https://www.youtube.com/watch?v=aJgvE-T5WQU&ab_channel=DemoCrew",
-    "tags": "VFX,VP,r&d"
+    "tags": "VFX,VP,r&d",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 20,
@@ -141,7 +238,10 @@
     "description": "Unreal VP for CNN Prima SHOWTIME reportage about Cpt. Demo",
     "date": "January 2022",
     "link": "",
-    "tags": "VFX"
+    "tags": "VFX",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 22,
@@ -150,7 +250,10 @@
     "description": "I made a satirical booze commercial come to life with unreal and DaVinci",
     "date": "July 2022",
     "link": "https://www.prnewswire.com/news-releases/iconic-liqueur-brand-hpnotiq-invites-consumers-to-enter-the-hpnoverse-with-exclusive-nft-collection--augmented-reality-experience-301627385.html",
-    "tags": "VFX,VP,r&d"
+    "tags": "VFX,VP,r&d",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 5,
@@ -159,7 +262,10 @@
     "description": "http://ciexpo.cz",
     "date": "February 2018",
     "link": "http://www.ciexpo.cz/",
-    "tags": "3D, AR, Game Design, r&d , VR"
+    "tags": "3D, AR, Game Design, r&d , VR",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 7,
@@ -168,7 +274,10 @@
     "description": "Custom branded teambuidling VR archery game featuring boids programmed from scratch",
     "date": "February 2018",
     "link": "",
-    "tags": "3D, Game Design, VR"
+    "tags": "3D, Game Design, VR",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 4,
@@ -177,7 +286,10 @@
     "description": "Educational VR game for kids about the life of a bee",
     "date": "January 19, 2018",
     "link": "",
-    "tags": "3D, Game Design, VR"
+    "tags": "3D, Game Design, VR",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 8,
@@ -186,7 +298,10 @@
     "description": "case study for VR and AR in real estate",
     "date": "January 2019",
     "link": "https://svoboda-williams.com/realitni-zpravy/232-rozsirena-realita-jako-novy-zpusob-prezentace-nemovitosti",
-    "tags": "3D modeling, Game Design, VR, Video"
+    "tags": "3D modeling, Game Design, VR, Video",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 1,
@@ -195,7 +310,10 @@
     "description": "first virtual gallery in central Europe :D ",
     "date": "April 2015",
     "link": "",
-    "tags": "VR"
+    "tags": "VR",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 2,
@@ -204,7 +322,10 @@
     "description": "VR+AR Military factory presentation for Indonesian Gvt.",
     "date": "February 2017",
     "link": "",
-    "tags": "3D modeling, AR, VR, Video"
+    "tags": "3D modeling, AR, VR, Video",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 6,
@@ -213,7 +334,10 @@
     "description": "early Unity tests with Lucas Saidl",
     "date": "February 2018",
     "link": "",
-    "tags": "AR"
+    "tags": "AR",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 3,
@@ -222,7 +346,10 @@
     "description": "Unreal, BLender, Substance",
     "date": "June 2017",
     "link": "",
-    "tags": "3D, VR,r&d"
+    "tags": "3D, VR,r&d",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 26,
@@ -231,7 +358,10 @@
     "description": "r3f perfume mixer for artisanal scent creator",
     "date": "March 2023",
     "link": "",
-    "tags": "3D, Graphic Design, Web Design"
+    "tags": "3D, Graphic Design, Web Design",
+    "media": [],
+    "links": [],
+    "body": null
   },
   {
     "id": 27,
@@ -240,6 +370,9 @@
     "description": "varied work for Numinos VR timetravel as Tech artist, RnD dev, Render in Unreal Engine",
     "date": "March 2023",
     "link": "http://numinos.one/",
-    "tags": "r&d,3D , Game Design, Rendering, VR"
+    "tags": "r&d,3D , Game Design, Rendering, VR",
+    "media": [],
+    "links": [],
+    "body": null
   }
 ]

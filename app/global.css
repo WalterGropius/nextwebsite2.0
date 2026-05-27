@@ -554,6 +554,71 @@
     border: 1px solid rgba(255, 255, 255, 0.7);
     border-radius: 9999px;
   }
+
+  /* Project card hover overlay — fades in over the photo to reveal
+     the description. Background tint flips with the theme so text is
+     always readable: light surface + dark ink in light mode, dark
+     surface + light ink in dark mode. */
+  .card-overlay {
+    background: color-mix(in srgb, var(--surface-elevated) 90%, transparent);
+    /* a soft fade from the top so the title is the first visible
+       glyph and the text below settles in */
+    -webkit-mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, #000 35%);
+            mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, #000 35%);
+  }
+  .card-overlay-text {
+    color: var(--ink);
+  }
+
+  /* Markdown body inside /work/[id] and /blog/[slug]. Tightens the
+     react-markdown defaults so headings, lists and blockquotes feel
+     in step with the Zenhand handwriting. */
+  .prose-md h2 {
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    line-height: 1.05;
+    margin: 1.6em 0 0.4em;
+    -webkit-text-stroke: 0.03em currentColor;
+  }
+  .prose-md h3 {
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    line-height: 1.1;
+    margin: 1.2em 0 0.3em;
+  }
+  .prose-md p { margin: 0.6em 0; }
+  .prose-md strong { color: var(--ink); }
+  .prose-md em { color: var(--ink); opacity: 0.85; }
+  .prose-md ul, .prose-md ol {
+    margin: 0.5em 0 0.5em 1.4em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+  }
+  .prose-md ul { list-style: square; }
+  .prose-md ol { list-style: decimal; }
+  .prose-md blockquote {
+    margin: 0.8em 0;
+    padding: 0.4em 0.9em;
+    border-left: 2px solid var(--border-strong);
+    color: var(--ink);
+    font-style: italic;
+    opacity: 0.9;
+  }
+  .prose-md a {
+    color: var(--ink);
+    border-bottom: 1px solid currentColor;
+    text-decoration: none;
+  }
+  .prose-md code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.9em;
+    background: color-mix(in srgb, var(--ink) 8%, transparent);
+    padding: 1px 5px;
+    border-radius: 2px;
+  }
 }
 
 @layer utilities {
