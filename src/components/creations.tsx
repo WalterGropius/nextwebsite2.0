@@ -174,17 +174,20 @@ export function Creations({ randomCount }: CreationsProps) {
                   delay: 0.04 * index,
                 }}
                 className="group block"
-                style={{ perspective: 900 }}
+                // The z-index has to live on motion.a — Framer
+                // animates `filter: blur(...)` and `y` on it, both of
+                // which create a stacking context. Without z-index
+                // *here*, every child's z resolves inside motion.a's
+                // z-auto layer and the paper grid (z-30) wins again.
+                // 36: above grid (30), below menu modal (55) and
+                // nav bar (60), as requested.
+                style={{ perspective: 900, position: "relative", zIndex: 36 }}
               >
                 <TiltCard
                   max={9}
                   lift={6}
                   className="relative block"
-                  // z-36 lifts the entire card above the paper grid
-                  // (z-30) so the inked lines no longer crawl over
-                  // the photos. Stays well below the mobile menu
-                  // modal (z-55) and the nav bar (z-60).
-                  style={{ borderRadius: 0, zIndex: 36 }}
+                  style={{ borderRadius: 0 }}
                 >
                   {/* Photo + hover description overlay. Photo stays
                       fully opaque (no .ink-photo on the <img>); the
