@@ -182,9 +182,10 @@ export function Creations({ randomCount }: CreationsProps) {
                   className="relative block"
                   style={{ borderRadius: 0 }}
                 >
-                  {/* Lifted above the paper grid (z-30) so the photo
-                      reads at full opacity instead of being muted by
-                      the multiply/screen blend overlay. */}
+                  {/* Photo + hover description overlay. Photo stays
+                      fully opaque (no .ink-photo on the <img>); the
+                      inked edge lives on a separate frame element so
+                      faces / colours never get washed out. */}
                   <div
                     className="relative aspect-[4/5] overflow-hidden"
                     style={{ zIndex: 35 }}
@@ -193,8 +194,39 @@ export function Creations({ randomCount }: CreationsProps) {
                       src={project.image}
                       alt={project.title}
                       loading="lazy"
-                      className="ink-photo h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]"
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]"
                     />
+                    {/* Inked frame around the photo */}
+                    <div
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0"
+                      style={{
+                        border: "2px solid var(--ink)",
+                        filter: "url(#ink-wobble-strong)",
+                        zIndex: 2,
+                      }}
+                    />
+                    {/* Description overlay — fades in on hover; tint
+                        flips by theme so text is always readable. */}
+                    <div
+                      className="card-overlay pointer-events-none absolute inset-0 flex flex-col justify-end p-4 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100"
+                      style={{ zIndex: 3 }}
+                    >
+                      <p
+                        className="card-overlay-text text-sm leading-snug sm:text-base"
+                        style={{
+                          fontFamily: "var(--font-display)",
+                          // line-clamp keeps the description from
+                          // overflowing the frame, with "…" ending.
+                          display: "-webkit-box",
+                          WebkitLineClamp: 5,
+                          WebkitBoxOrient: "vertical",
+                          overflow: "hidden",
+                        }}
+                      >
+                        {project.description}
+                      </p>
+                    </div>
                   </div>
                   <div className="mt-3 flex flex-col gap-1">
                     <div className="flex items-baseline justify-between gap-3">

@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 import Link from "next/link"
 import { motion } from "motion/react"
 import { ExternalLink, Github, ArrowRight, Heart } from "lucide-react"
@@ -17,6 +17,7 @@ const SITE_LINKS: Array<{ href: string; title: string; sub: string }> = [
   { href: "/reel",        title: "reel",        sub: "video work, in motion" },
   { href: "/sketchfab",   title: "3d",          sub: "interactive models" },
   { href: "/cv",          title: "cv",          sub: "the long résumé" },
+  { href: "/blog",        title: "blog",        sub: "loose notes" },
   { href: "/contact",     title: "contact",     sub: "say hi" },
   { href: "/games/proportion", title: "eye trainer · proportion", sub: "guess the aspect ratio" },
   { href: "/games/angles",     title: "eye trainer · angles",     sub: "trace the shape" },
@@ -37,29 +38,16 @@ const OUT_LINKS: Array<{ href: string; title: string; sub?: string }> = [
   { href: "https://open.spotify.com/album/1V3m6SMvu8Bodq4scdqD3o", title: "cpt. demo ep", sub: "cover by me" },
 ]
 
-// Stream-of-consciousness "blog" entries. Static content for now.
-const BLOG: Array<{ date: string; title: string; body: string }> = [
-  {
-    date: "2026 · 04",
-    title: "the polymath's time debt is the only debt that compounds for free",
-    body: "Most ideas you have you won't ship. Sombra OS is the cache. Every fragment lands here, gets re-found, gets re-used. The tax is making yourself paste — but the dividend is that future-you stops re-doing past-you.",
-  },
-  {
-    date: "2026 · 03",
-    title: "agents that ship",
-    body: "An agent worth running isn't smart — it's stubborn. The trick isn't the model; it's the harness that re-runs the failing branch, swaps the bad tool, and never loses the goal. Most agent frameworks ship the eloquence and skip the harness.",
-  },
-  {
-    date: "2026 · 02",
-    title: "blueprint protocol",
-    body: "Whenever I touch a new domain I sketch the system as if for a patent. The act of drawing the boxes forces me to admit which ones I can't fill. The unknown unknowns become known unknowns. Then they become known knowns.",
-  },
-  {
-    date: "2025 · 12",
-    title: "your taste is a feature, not a bug",
-    body: "When you build with AI long enough you realise the bottleneck is taste, not throughput. The model can write ten thousand variations; you pick the one. That picking is the job. Sharpen it.",
-  },
-]
+// Blog excerpts now live in /public/blogs.json and are loaded at
+// mount. We surface the three most recent here with links into the
+// full /blog index + per-post pages.
+interface BlogPost {
+  id: string
+  title: string
+  date: string
+  excerpt: string
+  tags?: string
+}
 
 // The "personal anchors" rail — short notes on the things that come
 // up enough to matter.
@@ -94,6 +82,7 @@ function shuffle<T>(arr: T[]): T[] {
 
 export default function MorePage() {
   const [picks, setPicks] = useState<ProjectItem[]>([])
+  const [posts, setPosts] = useState<BlogPost[]>([])
 
   useEffect(() => {
     fetch("/portfolio.json")
@@ -102,14 +91,24 @@ export default function MorePage() {
         if (Array.isArray(data)) setPicks(shuffle(data).slice(0, 4))
       })
       .catch(() => {})
+    fetch("/blogs.json")
+      .then((r) => r.json())
+      .then((data: BlogPost[]) => {
+        if (!Array.isArray(data)) return
+        const sorted = data
+          .slice()
+          .sort((a, b) => (a.date < b.date ? 1 : -1))
+          .slice(0, 3)
+        setPosts(sorted)
+      })
+      .catch(() => {})
   }, [])
 
-  // Sort blog newest first by date string (lexicographic works for
-  // YYYY · MM format).
-  const posts = useMemo(
-    () => BLOG.slice().sort((a, b) => (a.date < b.date ? 1 : -1)),
-    [],
-  )
+  const fmtDate = (s: string) => {
+    const d = new Date(s)
+    if (Number.isNaN(d.getTime())) return s.toLowerCase()
+    return `${d.getFullYear()} · ${String(d.getMonth() + 1).padStart(2, "0")}`
+  }
 
   return (
     <PageLoader>
@@ -297,40 +296,57 @@ export default function MorePage() {
             <InkLine fade thickness={1} />
           </div>
 
-          {/* ===== Blog ===== */}
+          {/* ===== Blog (latest three, full posts live in /blog) ===== */}
           <section className="mb-20">
             <SectionTitle>blog · loose notes</SectionTitle>
-            <div className="flex flex-col gap-10">
-              {posts.map((p) => (
-                <article key={p.title}>
-                  <div
-                    className="mb-2 text-xs uppercase tracking-[0.3em]"
-                    style={{ color: "var(--text-muted)" }}
-                  >
-                    {p.date}
-                  </div>
-                  <h3
-                    className="text-2xl sm:text-3xl"
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      color: "var(--ink)",
-                      lineHeight: 1.1,
-                    }}
-                  >
-                    {p.title}
-                  </h3>
-                  <p
-                    className="mt-3 max-w-3xl"
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      color: "var(--text-muted)",
-                      lineHeight: 1.55,
-                    }}
-                  >
-                    {p.body}
-                  </p>
-                </article>
-              ))}
+            <div className="flex flex-col gap-8">
+              {posts.length === 0 ? (
+                <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}>loading…</p>
+              ) : (
+                posts.map((p) => (
+                  <article key={p.id}>
+                    <div
+                      className="mb-2 text-xs uppercase tracking-[0.3em]"
+                      style={{ color: "var(--text-muted)" }}
+                    >
+                      {fmtDate(p.date)}
+                      {p.tags && <>&nbsp;*&nbsp;{p.tags}</>}
+                    </div>
+                    <Link href={`/blog/${p.id}`} className="group block">
+                      <h3
+                        className="text-2xl sm:text-3xl"
+                        style={{
+                          fontFamily: "var(--font-display)",
+                          color: "var(--ink)",
+                          lineHeight: 1.1,
+                        }}
+                      >
+                        <span className="ink-underline-hover">{p.title}</span>
+                      </h3>
+                    </Link>
+                    <p
+                      className="mt-3 max-w-3xl"
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        color: "var(--text-muted)",
+                        lineHeight: 1.55,
+                      }}
+                    >
+                      {p.excerpt}
+                    </p>
+                  </article>
+                ))
+              )}
+            </div>
+            <div className="mt-6">
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.3em]"
+                style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}
+              >
+                <span className="ink-underline-hover">all posts</span>
+                <ArrowRight size={14} className="ink-icon" />
+              </Link>
             </div>
           </section>
 
