@@ -164,6 +164,10 @@ export default function MorePage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                     className="group block"
+                    // z-index on motion.a — Framer's animated `y`
+                    // creates a stacking context, so the lift has
+                    // to live on the outermost element.
+                    style={{ position: "relative", zIndex: 36 }}
                   >
                     <TiltCard max={8} lift={5} className="relative block">
                       <div className="relative aspect-[4/5] overflow-hidden" style={{ zIndex: 35 }}>

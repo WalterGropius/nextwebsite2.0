@@ -120,9 +120,13 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Content */}
+        {/* Content. `relative` only — no z-index — so this div is
+            *not* a stacking context. Children with their own
+            z-index resolve in the document root, which lets the
+            project cards (z-36) sit above the paper grid (z-30)
+            without dragging every text section along with them. */}
         <div
-          className="relative z-20"
+          className="relative"
           style={{ background: "var(--surface-dark)" }}
         >
           <div
