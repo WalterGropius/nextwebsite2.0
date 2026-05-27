@@ -132,8 +132,9 @@ function CVPortrait() {
         }}
       />
       <div className="relative h-full w-full overflow-hidden">
+        {/* Default = eli2 (studio); eli1 (outside) wipes in on hover. */}
         <img
-          src="/eli1.webp"
+          src="/eli2.webp"
           alt="eliáš bauer"
           className="absolute inset-0 h-full w-full object-cover"
           style={{
@@ -144,7 +145,7 @@ function CVPortrait() {
           }}
         />
         <img
-          src="/eli2.webp"
+          src="/eli1.webp"
           alt=""
           aria-hidden
           className="absolute inset-0 h-full w-full object-cover"
@@ -165,7 +166,7 @@ function CVPortrait() {
             zIndex: 3,
           }}
         >
-          {hover ? "* studio" : "* outside"}
+          {hover ? "* outside" : "* studio"}
         </div>
       </div>
     </div>
@@ -321,7 +322,7 @@ export default function CVPage() {
         <Navigation />
 
         <article className="section-container pb-24 pt-28 sm:pt-32" id="cv-print">
-          <header className="mb-16 grid items-end gap-10 md:grid-cols-[1.5fr_1fr]">
+          <header className="mb-16 grid items-start gap-10 md:grid-cols-[1.5fr_1fr]">
             <div>
               <h1
                 className="text-[clamp(3rem,10vw,7rem)] leading-[0.9]"

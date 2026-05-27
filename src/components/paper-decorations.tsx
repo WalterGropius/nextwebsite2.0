@@ -1551,8 +1551,15 @@ function CenterDoodles() {
 // ---- Root --------------------------------------------------------
 
 export function PaperDecorations() {
+  // Mount-gate everything. The SVG paths inside the doodles use
+  // Math.sin/Math.cos to build coordinates and the trig results
+  // serialise to ever-so-slightly different strings server vs.
+  // client, which trips React's hydration check. Rendering nothing
+  // on the server side avoids the mismatch entirely.
+  const [mounted, setMounted] = useState(false)
   const [items, setItems] = useState<Placed[] | null>(null)
   useEffect(() => {
+    setMounted(true)
     setItems(place(DOODLES))
   }, [])
 
@@ -1575,6 +1582,8 @@ export function PaperDecorations() {
     ],
     [],
   )
+
+  if (!mounted) return null
 
   return (
     <>

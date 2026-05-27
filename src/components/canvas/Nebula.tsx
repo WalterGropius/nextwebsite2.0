@@ -271,11 +271,12 @@ export function Nebula({
       constructSplats: construct,
     })
     splatRef.current = mesh
-    const group = groupRef.current
-    group?.add(mesh as unknown as THREE.Object3D)
+    // eslint-disable-next-line
+    const group = groupRef.current as any
+    group?.add(mesh)
     mesh.position.set(px, py, pz)
     return () => {
-      group?.remove(mesh as unknown as THREE.Object3D)
+      group?.remove(mesh)
       mesh.dispose?.()
       splatRef.current = null
     }
