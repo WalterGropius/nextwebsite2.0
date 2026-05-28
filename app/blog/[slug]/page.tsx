@@ -11,15 +11,17 @@ import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
 import { MotionText } from "@/components/motion-text"
 import { InkLine } from "@/components/ink-line"
+import { useI18n } from "@/lib/i18n/provider"
+import { pick, type Localized } from "@/lib/i18n/localize"
 
 interface Post {
   id: string
-  title: string
+  title: Localized
   date: string
-  excerpt: string
-  tags?: string
+  excerpt: Localized
+  tags?: Localized
   image?: string | null
-  body: string
+  body: Localized
 }
 
 function formatDate(s: string) {
@@ -33,6 +35,7 @@ export default function BlogPostPage() {
   const slug = String(params?.slug ?? "")
   const [posts, setPosts] = useState<Post[]>([])
   const [loading, setLoading] = useState(true)
+  const { lang } = useI18n()
 
   useEffect(() => {
     fetch("/blogs.json")
@@ -80,14 +83,14 @@ export default function BlogPostPage() {
                 >
                   {formatDate(post.date)}
                   {post.tags && (
-                    <>&nbsp;*&nbsp;<span>{post.tags}</span></>
+                    <>&nbsp;*&nbsp;<span>{pick(post.tags, lang)}</span></>
                   )}
                 </div>
                 <h1
                   className="text-[clamp(2.4rem,5.5vw,4.4rem)] leading-[1.02]"
                   style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
                 >
-                  <MotionText text={post.title} split="word" stagger={0.04} from="up" />
+                  <MotionText text={pick(post.title, lang)} split="word" stagger={0.04} from="up" />
                 </h1>
                 <motion.p
                   initial={{ opacity: 0, y: 12 }}
@@ -100,7 +103,7 @@ export default function BlogPostPage() {
                     lineHeight: 1.55,
                   }}
                 >
-                  {post.excerpt}
+                  {pick(post.excerpt, lang)}
                 </motion.p>
               </header>
 
@@ -116,7 +119,7 @@ export default function BlogPostPage() {
                   lineHeight: 1.65,
                 }}
               >
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>{post.body}</ReactMarkdown>
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>{pick(post.body, lang)}</ReactMarkdown>
               </section>
 
               {next && (
@@ -136,7 +139,7 @@ export default function BlogPostPage() {
                       lineHeight: 1.1,
                     }}
                   >
-                    <span className="ink-underline-hover">{next.title}</span>
+                    <span className="ink-underline-hover">{pick(next.title, lang)}</span>
                   </Link>
                 </div>
               )}

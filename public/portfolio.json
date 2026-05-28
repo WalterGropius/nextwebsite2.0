@@ -2,87 +2,179 @@
   {
     "id": 16,
     "image": "/image14.jpg",
-    "title": "Cpt. Demo EP",
-    "description": "I made this EP cover with GIMP it was the beginning of a long and beautiful collaboration with Cpt. Demo",
+    "title": {
+      "en": "Cpt. Demo EP",
+      "cs": "Cpt. Demo EP",
+      "fr": "Cpt. Demo EP"
+    },
+    "description": {
+      "en": "I made this EP cover with GIMP it was the beginning of a long and beautiful collaboration with Cpt. Demo",
+      "cs": "Obal tohoto EP jsem udělal v GIMPu — byl to začátek dlouhé a krásné spolupráce s Cpt. Demo.",
+      "fr": "J'ai réalisé cette pochette d'EP avec GIMP — ce fut le début d'une longue et belle collaboration avec Cpt. Demo."
+    },
     "date": "October 2021",
     "link": "https://open.spotify.com/album/1V3m6SMvu8Bodq4scdqD3o",
-    "tags": "Graphic Design",
+    "tags": {
+      "en": "Graphic Design",
+      "cs": "grafický design",
+      "fr": "design graphique"
+    },
     "media": [
       {
         "type": "image",
         "src": "/image14.jpg",
-        "alt": "EP cover",
-        "caption": "The final cover, exported at 3000×3000 for streaming + print."
+        "alt": {
+          "en": "EP cover",
+          "cs": "Obal EP",
+          "fr": "Pochette d'EP"
+        },
+        "caption": {
+          "en": "The final cover, exported at 3000×3000 for streaming + print.",
+          "cs": "Finální obal, vyexportovaný v 3000×3000 pro streaming i tisk.",
+          "fr": "La pochette finale, exportée en 3000×3000 pour le streaming et l'impression."
+        }
       },
       {
         "type": "embed",
         "html": "<iframe style=\"border-radius:0\" src=\"https://open.spotify.com/embed/album/1V3m6SMvu8Bodq4scdqD3o?utm_source=generator\" width=\"100%\" height=\"352\" frameborder=\"0\" allowfullscreen allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
-        "caption": "Stream the full EP."
+        "caption": {
+          "en": "Stream the full EP.",
+          "cs": "Pusť si celé EP.",
+          "fr": "Écoute l'EP en entier."
+        }
       },
       {
         "type": "video",
         "src": "/reel_720.mp4",
-        "caption": "Process clip — sketches I cut into the master reel."
+        "caption": {
+          "en": "Process clip — sketches I cut into the master reel.",
+          "cs": "Klip z procesu — skici, které jsem sestříhal do master reelu.",
+          "fr": "Clip de process — des esquisses montées dans le reel principal."
+        }
       }
     ],
     "links": [
       {
-        "label": "spotify",
+        "label": {
+          "en": "spotify",
+          "cs": "spotify",
+          "fr": "spotify"
+        },
         "href": "https://open.spotify.com/album/1V3m6SMvu8Bodq4scdqD3o"
       },
       {
-        "label": "cpt. demo",
+        "label": {
+          "en": "cpt. demo",
+          "cs": "cpt. demo",
+          "fr": "cpt. demo"
+        },
         "href": "https://soundcloud.com/cpt-demo"
       }
     ],
-    "body": "First commission for **Cpt. Demo** — a friend whose taste taught me half of what I know about beats. The EP needed a cover that lived equally well as a 64×64 thumbnail in Spotify and as a 30×30 cm vinyl sleeve, and we wanted the same image to do both jobs without compromise.\n\n## the brief\n\n> \"make it feel like a basement in 2003 but make it last forever\"\n\nThat meant **deliberately limited palette**, almost zero gradients, and high-contrast type that survives the worst chroma subsampling Apple Music does to album art.\n\n## process\n\nStarted in **GIMP** because that's what I had open. Built the type by hand from the rapper's tag — every glyph traced from his own marker strokes so the name owns the artefacts.\n\n- One pass for type\n- One pass for grain\n- One pass for the printed-edge offset\n\nThe vinyl press wanted CMYK with bleed; the streaming services wanted sRGB at 3000². Same source file, different export profiles. Nothing harder than that, but the discipline of treating the digital and physical deliveries with equal weight was the lesson.\n\n## what stuck\n\nThe cover got picked up by a couple of beat-tape blogs. More importantly it was the start of a five-year collaboration with Cpt. Demo — every release since carries the same vocabulary, scaled up."
+    "body": {
+      "en": "First commission for **Cpt. Demo** — a friend whose taste taught me half of what I know about beats. The EP needed a cover that lived equally well as a 64×64 thumbnail in Spotify and as a 30×30 cm vinyl sleeve, and we wanted the same image to do both jobs without compromise.\n\n## the brief\n\n> \"make it feel like a basement in 2003 but make it last forever\"\n\nThat meant **deliberately limited palette**, almost zero gradients, and high-contrast type that survives the worst chroma subsampling Apple Music does to album art.\n\n## process\n\nStarted in **GIMP** because that's what I had open. Built the type by hand from the rapper's tag — every glyph traced from his own marker strokes so the name owns the artefacts.\n\n- One pass for type\n- One pass for grain\n- One pass for the printed-edge offset\n\nThe vinyl press wanted CMYK with bleed; the streaming services wanted sRGB at 3000². Same source file, different export profiles. Nothing harder than that, but the discipline of treating the digital and physical deliveries with equal weight was the lesson.\n\n## what stuck\n\nThe cover got picked up by a couple of beat-tape blogs. More importantly it was the start of a five-year collaboration with Cpt. Demo — every release since carries the same vocabulary, scaled up.",
+      "cs": "První zakázka pro **Cpt. Demo** — kamaráda, jehož vkus mě naučil polovinu toho, co o beatech vím. EP potřebovalo obal, který bude stejně dobře fungovat jako náhled 64×64 ve Spotify i jako vinylový obal 30×30 cm, a chtěli jsme, aby tentýž obraz zvládl obojí bez kompromisu.\n\n## brief\n\n> „ať to působí jako sklep v roce 2003, ale ať to vydrží navěky“\n\nTo znamenalo **záměrně omezenou paletu**, skoro žádné přechody a vysoce kontrastní typografii, která přežije i nejhorší chroma subsampling, jaký album artu provede Apple Music.\n\n## proces\n\nZačal jsem v **GIMPu**, protože jsem ho měl zrovna otevřený. Typografii jsem postavil ručně z rapperova tagu — každý glyf obkreslený z jeho vlastních tahů fixou, aby jméno vlastnilo i ty artefakty.\n\n- Jeden průchod na typografii\n- Jeden na zrno\n- Jeden na offset tištěné hrany\n\nLisovna vinylu chtěla CMYK se spadávkou; streamovací služby sRGB v 3000². Stejný zdrojový soubor, jiné exportní profily. Nic těžšího než to, ale lekce byla v disciplíně — brát digitální i fyzický výstup se stejnou vahou.\n\n## co zůstalo\n\nObal zachytilo pár blogů o beat-tapech. Důležitější ale bylo, že to byl začátek pětileté spolupráce s Cpt. Demo — každé další vydání nese stejný slovník, jen ve větším měřítku.",
+      "fr": "Première commande pour **Cpt. Demo** — un ami dont le goût m'a appris la moitié de ce que je sais sur les beats. L'EP avait besoin d'une pochette qui fonctionne aussi bien en vignette 64×64 sur Spotify qu'en pochette vinyle de 30×30 cm, et nous voulions que la même image fasse les deux sans compromis.\n\n## le brief\n\n> « qu'on dirait une cave en 2003, mais que ça dure pour toujours »\n\nCela impliquait une **palette délibérément limitée**, presque aucun dégradé et une typographie très contrastée qui survit au pire sous-échantillonnage chroma qu'Apple Music inflige aux pochettes.\n\n## le process\n\nJ'ai commencé sous **GIMP**, parce que c'était ce que j'avais d'ouvert. J'ai construit la typo à la main à partir du tag du rappeur — chaque glyphe décalqué de ses propres traits de marqueur, pour que le nom possède jusqu'à ses artefacts.\n\n- Une passe pour la typo\n- Une passe pour le grain\n- Une passe pour le décalage du bord imprimé\n\nLe pressage vinyle voulait du CMJN avec fond perdu ; le streaming voulait du sRGB en 3000². Même fichier source, profils d'export différents. Rien de plus difficile que ça, mais la leçon était la discipline : traiter la livraison numérique et physique avec le même soin.\n\n## ce qui est resté\n\nLa pochette a été reprise par quelques blogs de beat-tapes. Plus important encore, ce fut le début d'une collaboration de cinq ans avec Cpt. Demo — chaque sortie depuis porte le même vocabulaire, à plus grande échelle."
+    }
   },
   {
     "id": 11,
     "image": "/image27.jpg",
-    "title": "Jan Kaláb sculpture",
-    "description": "I made a 3d model in blender based on mockups and technical drawings to preview a sculpture and prepare it for cnc milling",
+    "title": {
+      "en": "Jan Kaláb sculpture",
+      "cs": "Socha Jana Kalába",
+      "fr": "Sculpture de Jan Kaláb"
+    },
+    "description": {
+      "en": "I made a 3d model in blender based on mockups and technical drawings to preview a sculpture and prepare it for cnc milling",
+      "cs": "V Blenderu jsem podle modelů a technických výkresů udělal 3D model, abych nasimuloval sochu a připravil ji pro CNC frézování.",
+      "fr": "Sous Blender, j'ai créé un modèle 3D à partir de maquettes et de plans techniques pour prévisualiser une sculpture et la préparer au fraisage CNC."
+    },
     "date": "July 2020",
     "link": "https://sketchfab.com/models/e136d0a11db84dddb65485134a39ffbb",
-    "tags": "3D, r&d",
+    "tags": {
+      "en": "3D, r&d",
+      "cs": "3D, r&d",
+      "fr": "3D, r&d"
+    },
     "media": [
       {
         "type": "image",
         "src": "/image27.jpg",
-        "alt": "3D preview of the sculpture",
-        "caption": "3D preview matched to the original technical drawings."
+        "alt": {
+          "en": "3D preview of the sculpture",
+          "cs": "3D náhled sochy",
+          "fr": "Aperçu 3D de la sculpture"
+        },
+        "caption": {
+          "en": "3D preview matched to the original technical drawings.",
+          "cs": "3D náhled odpovídající původním technickým výkresům.",
+          "fr": "Aperçu 3D fidèle aux plans techniques d'origine."
+        }
       },
       {
         "type": "embed",
         "html": "<div class=\"sketchfab-embed-wrapper\"><iframe title=\"Jan Kalab Sculpture\" frameborder=\"0\" allowfullscreen mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" allow=\"autoplay; fullscreen; xr-spatial-tracking\" width=\"100%\" height=\"480\" src=\"https://sketchfab.com/models/e136d0a11db84dddb65485134a39ffbb/embed?autostart=0\"></iframe></div>",
-        "caption": "Interactive turntable — drag to orbit, scroll to zoom."
+        "caption": {
+          "en": "Interactive turntable — drag to orbit, scroll to zoom.",
+          "cs": "Interaktivní otočna — tažením otáčej, kolečkem přibliž.",
+          "fr": "Plateau tournant interactif — glissez pour orbiter, molette pour zoomer."
+        }
       },
       {
         "type": "video",
         "src": "/reel_720.mp4",
-        "caption": "Final reel cut."
+        "caption": {
+          "en": "Final reel cut.",
+          "cs": "Finální střih reelu.",
+          "fr": "Montage final du reel."
+        }
       }
     ],
     "links": [
       {
-        "label": "sketchfab",
+        "label": {
+          "en": "sketchfab",
+          "cs": "sketchfab",
+          "fr": "sketchfab"
+        },
         "href": "https://sketchfab.com/models/e136d0a11db84dddb65485134a39ffbb"
       },
       {
-        "label": "jan kaláb",
+        "label": {
+          "en": "jan kaláb",
+          "cs": "jan kaláb",
+          "fr": "jan kaláb"
+        },
         "href": "https://www.jankalab.com/"
       }
     ],
-    "body": "Jan Kaláb is a Czech painter who'd started moving his canvases into the third dimension. He had the sculpture as a paper maquette and a stack of pencil-on-tracing-paper dimensions; he needed a digital twin he could send to a CNC shop and a render he could send to galleries before the milling bill came due.\n\n## the request\n\nTake the maquette + drawings, build a **clean parametric model**, and produce:\n\n1. A render the gallery can put in their newsletter.\n2. A file the CNC shop can mill from a block of foam without surprises.\n\n## modeling\n\nBuilt in Blender. The shape was a stack of swept revolution surfaces with a couple of boolean cuts; nothing fancy, but the tolerance had to be tight enough that the CNC operator didn't have to second-guess any edge.\n\n- Modeled to scale (working units = mm)\n- Topology cleaned for subdivision (no triangles on the visible faces)\n- Manifold check before export\n- Exported as **STEP** for the mill, **GLB** for the web\n\n## what made it hard\n\nThe hardest part wasn't the geometry — it was the *measurement reconciliation*. The pencil drawings disagreed with each other by a few millimetres in places. I went back to Jan with a list of conflicts and we picked the canonical number for each one before any model lifted off the ground. That conversation saved a week of CNC re-cuts."
+    "body": {
+      "en": "Jan Kaláb is a Czech painter who'd started moving his canvases into the third dimension. He had the sculpture as a paper maquette and a stack of pencil-on-tracing-paper dimensions; he needed a digital twin he could send to a CNC shop and a render he could send to galleries before the milling bill came due.\n\n## the request\n\nTake the maquette + drawings, build a **clean parametric model**, and produce:\n\n1. A render the gallery can put in their newsletter.\n2. A file the CNC shop can mill from a block of foam without surprises.\n\n## modeling\n\nBuilt in Blender. The shape was a stack of swept revolution surfaces with a couple of boolean cuts; nothing fancy, but the tolerance had to be tight enough that the CNC operator didn't have to second-guess any edge.\n\n- Modeled to scale (working units = mm)\n- Topology cleaned for subdivision (no triangles on the visible faces)\n- Manifold check before export\n- Exported as **STEP** for the mill, **GLB** for the web\n\n## what made it hard\n\nThe hardest part wasn't the geometry — it was the *measurement reconciliation*. The pencil drawings disagreed with each other by a few millimetres in places. I went back to Jan with a list of conflicts and we picked the canonical number for each one before any model lifted off the ground. That conversation saved a week of CNC re-cuts.",
+      "cs": "Jan Kaláb je český malíř, který začal posouvat svá plátna do třetího rozměru. Sochu měl jako papírovou maketu a štos rozměrů tužkou na pauzovacím papíře; potřeboval digitální dvojče, které pošle do CNC dílny, a render, který pošle galeriím dřív, než přijde účet za frézování.\n\n## zadání\n\nVzít maketu a výkresy, postavit **čistý parametrický model** a dodat:\n\n1. Render, který galerie dá do newsletteru.\n2. Soubor, který CNC dílna vyfrézuje z bloku pěny bez překvapení.\n\n## modelování\n\nPostaveno v Blenderu. Tvar byl stoh rotačních ploch s pár booleovskými řezy; nic složitého, ale tolerance musela být tak těsná, aby operátor CNC nemusel u žádné hrany váhat.\n\n- Modelováno v měřítku (pracovní jednotky = mm)\n- Topologie vyčištěná pro subdivision (na viditelných plochách žádné trojúhelníky)\n- Kontrola manifoldnosti před exportem\n- Export jako **STEP** pro frézu, **GLB** pro web\n\n## co bylo těžké\n\nNejtěžší nebyla geometrie — bylo to *sjednocení měr*. Tužkové výkresy si na pár místech navzájem odporovaly o pár milimetrů. Vrátil jsem se za Janem se seznamem rozporů a u každého jsme vybrali kanonické číslo dřív, než se model vůbec zvedl ze země. Ten rozhovor ušetřil týden re-frézování.",
+      "fr": "Jan Kaláb est un peintre tchèque qui avait commencé à faire passer ses toiles dans la troisième dimension. Il avait la sculpture sous forme de maquette en papier et une pile de cotes au crayon sur papier-calque ; il lui fallait un jumeau numérique à envoyer à un atelier CNC et un rendu à envoyer aux galeries avant que la facture du fraisage ne tombe.\n\n## la demande\n\nPrendre la maquette et les plans, construire un **modèle paramétrique propre** et produire :\n\n1. Un rendu que la galerie peut mettre dans sa newsletter.\n2. Un fichier que l'atelier CNC peut fraiser dans un bloc de mousse sans surprise.\n\n## modélisation\n\nRéalisé sous Blender. La forme était un empilement de surfaces de révolution balayées avec quelques découpes booléennes ; rien de sorcier, mais la tolérance devait être assez serrée pour que l'opérateur CNC n'ait à hésiter sur aucune arête.\n\n- Modélisé à l'échelle (unités de travail = mm)\n- Topologie nettoyée pour la subdivision (aucun triangle sur les faces visibles)\n- Vérification de la variété (manifold) avant export\n- Exporté en **STEP** pour la fraise, en **GLB** pour le web\n\n## ce qui l'a rendu difficile\n\nLe plus dur n'était pas la géométrie — c'était la *réconciliation des mesures*. Les plans au crayon se contredisaient de quelques millimètres par endroits. Je suis retourné voir Jan avec une liste de conflits et nous avons choisi le chiffre canonique pour chacun avant que le moindre modèle ne décolle. Cette conversation a évité une semaine de re-fraisage CNC."
+    }
   },
   {
     "id": 9,
     "image": "/image17.jpg",
-    "title": "Epos 257 - Vanitas",
-    "description": "I made an NFT replica of a sculpture for Epos 257",
+    "title": {
+      "en": "Epos 257 - Vanitas",
+      "cs": "Epos 257 – Vanitas",
+      "fr": "Epos 257 – Vanitas"
+    },
+    "description": {
+      "en": "I made an NFT replica of a sculpture for Epos 257",
+      "cs": "Vytvořil jsem NFT repliku sochy pro Epos 257.",
+      "fr": "J'ai réalisé une réplique NFT d'une sculpture pour Epos 257."
+    },
     "date": "June 2020",
     "link": "https://sketchfab.com/models/829cdf10a68e4b2d80ee3d53ffc0a75d",
-    "tags": "3D,NFT",
+    "tags": {
+      "en": "3D, NFT",
+      "cs": "3D, NFT",
+      "fr": "3D, NFT"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -90,11 +182,23 @@
   {
     "id": 12,
     "image": "/image34.jpg",
-    "title": "Mancuska VR exhibit",
-    "description": "VR gallery exposition of A gap by J. Mančuška for Viktor Takač with viewer analytics",
+    "title": {
+      "en": "Mancuska VR exhibit",
+      "cs": "VR výstava Mančuška",
+      "fr": "Exposition VR Mančuška"
+    },
+    "description": {
+      "en": "VR gallery exposition of A gap by J. Mančuška for Viktor Takač with viewer analytics",
+      "cs": "VR galerijní expozice díla „Mezera“ J. Mančušky pro Viktora Takače, včetně analytiky diváků.",
+      "fr": "Exposition de galerie en VR de « A gap » de J. Mančuška pour Viktor Takač, avec analyse des spectateurs."
+    },
     "date": "June 2021",
     "link": "http://blokmagazine.com/a-gap-by-jan-mancuska-at-hunt-kastner-gallery/",
-    "tags": "VR,r&d",
+    "tags": {
+      "en": "VR, r&d",
+      "cs": "VR, r&d",
+      "fr": "VR, r&d"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -102,11 +206,23 @@
   {
     "id": 14,
     "image": "/image02.jpg",
-    "title": "Adrex advertisement",
-    "description": "VFX/VP commerical i made with oldrich.rocks",
+    "title": {
+      "en": "Adrex advertisement",
+      "cs": "Reklama Adrex",
+      "fr": "Publicité Adrex"
+    },
+    "description": {
+      "en": "VFX/VP commerical i made with oldrich.rocks",
+      "cs": "VFX/VP reklama, kterou jsem dělal s oldrich.rocks.",
+      "fr": "Publicité VFX/VP réalisée avec oldrich.rocks."
+    },
     "date": "July 2021",
     "link": "https://photos.app.goo.gl/PBZs6EegBARX3aPa7",
-    "tags": "VFX,VP,r&d",
+    "tags": {
+      "en": "VFX, VP, r&d",
+      "cs": "VFX, VP, r&d",
+      "fr": "VFX, VP, r&d"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -114,11 +230,23 @@
   {
     "id": 15,
     "image": "/image37.jpg",
-    "title": "Vlak LED screen UE4 support",
-    "description": "Virtual production using gargantuous LED panels on czech feature film with VFXR",
+    "title": {
+      "en": "Vlak LED screen UE4 support",
+      "cs": "Vlak – LED stěna, podpora UE4",
+      "fr": "Vlak – mur LED, support UE4"
+    },
+    "description": {
+      "en": "Virtual production using gargantuous LED panels on czech feature film with VFXR",
+      "cs": "Virtuální produkce na obřích LED panelech pro český celovečerní film, s VFXR.",
+      "fr": "Production virtuelle sur d'immenses panneaux LED pour un long-métrage tchèque, avec VFXR."
+    },
     "date": "July 2021",
     "link": "https://www.youtube.com/watch?v=kpt_ltLziek",
-    "tags": "VFX,VP,r&d",
+    "tags": {
+      "en": "VFX, VP, r&d",
+      "cs": "VFX, VP, r&d",
+      "fr": "VFX, VP, r&d"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -126,11 +254,23 @@
   {
     "id": 13,
     "image": "/image19.jpg",
-    "title": "Hotdog Shooter",
-    "description": "playful collaboration with my student of Game Design, crowd system ai made from scratch",
+    "title": {
+      "en": "Hotdog Shooter",
+      "cs": "Hotdog Shooter",
+      "fr": "Hotdog Shooter"
+    },
+    "description": {
+      "en": "playful collaboration with my student of Game Design, crowd system ai made from scratch",
+      "cs": "Hravá spolupráce s mým studentem herního designu; systém davu (AI) napsaný od nuly.",
+      "fr": "Collaboration ludique avec mon étudiant en game design ; système de foule (IA) écrit de zéro."
+    },
     "date": "June 2021",
     "link": "",
-    "tags": "Game Design,VR,r&d",
+    "tags": {
+      "en": "Game Design, VR, r&d",
+      "cs": "herní design, VR, r&d",
+      "fr": "game design, VR, r&d"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -138,11 +278,23 @@
   {
     "id": 21,
     "image": "/image31.jpg",
-    "title": "Kevin Gates mv VFX",
-    "description": "realistic jaguar comped in realtime in Unreal using reprojected and relit geometry + Mocha pro facetrack",
+    "title": {
+      "en": "Kevin Gates mv VFX",
+      "cs": "Kevin Gates – VFX klipu",
+      "fr": "Kevin Gates – VFX du clip"
+    },
+    "description": {
+      "en": "realistic jaguar comped in realtime in Unreal using reprojected and relit geometry + Mocha pro facetrack",
+      "cs": "Realistický jaguár kompozitovaný v reálném čase v Unrealu pomocí reprojektované a nově nasvícené geometrie + facetrack v Mocha Pro.",
+      "fr": "Jaguar réaliste composité en temps réel dans Unreal via une géométrie reprojetée et ré-éclairée + facetrack Mocha Pro."
+    },
     "date": "March 2022",
     "link": "https://www.youtube.com/watch?v=noh6BYgtTxQ&ab_channel=kevingatesTV",
-    "tags": "VFX,VP,r&d",
+    "tags": {
+      "en": "VFX, VP, r&d",
+      "cs": "VFX, VP, r&d",
+      "fr": "VFX, VP, r&d"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -150,11 +302,23 @@
   {
     "id": 10,
     "image": "/image03.jpg",
-    "title": "ALIENDIESEL EP",
-    "description": "spotify artwork made with blender,ue and substance",
+    "title": {
+      "en": "ALIENDIESEL EP",
+      "cs": "ALIENDIESEL EP",
+      "fr": "ALIENDIESEL EP"
+    },
+    "description": {
+      "en": "spotify artwork made with blender,ue and substance",
+      "cs": "Spotify artwork vytvořený v Blenderu, UE a Substance.",
+      "fr": "Artwork Spotify réalisé avec Blender, UE et Substance."
+    },
     "date": "June 2020",
     "link": "",
-    "tags": "Graphic Design",
+    "tags": {
+      "en": "Graphic Design",
+      "cs": "grafický design",
+      "fr": "design graphique"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -162,11 +326,23 @@
   {
     "id": 18,
     "image": "/image13.jpg",
-    "title": "Cpt. Demo EP",
-    "description": "made another EP cover for čardáš in GIMP",
+    "title": {
+      "en": "Cpt. Demo EP",
+      "cs": "Cpt. Demo EP",
+      "fr": "Cpt. Demo EP"
+    },
+    "description": {
+      "en": "made another EP cover for čardáš in GIMP",
+      "cs": "Další obal EP pro čardáš, opět v GIMPu.",
+      "fr": "Une autre pochette d'EP pour čardáš, encore sous GIMP."
+    },
     "date": "November 2021",
     "link": "",
-    "tags": "Graphic Design",
+    "tags": {
+      "en": "Graphic Design",
+      "cs": "grafický design",
+      "fr": "design graphique"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -174,11 +350,23 @@
   {
     "id": 25,
     "image": "/image01.jpg",
-    "title": "2MEDIA website",
-    "description": "2media 3d website using playcanvas, polygon.js and finally settling on react-three-fiber",
+    "title": {
+      "en": "2MEDIA website",
+      "cs": "Web 2MEDIA",
+      "fr": "Site web 2MEDIA"
+    },
+    "description": {
+      "en": "2media 3d website using playcanvas, polygon.js and finally settling on react-three-fiber",
+      "cs": "3D web pro 2media — přes PlayCanvas a polygon.js jsme nakonec zakotvili u react-three-fiber.",
+      "fr": "Site web 3D pour 2media — après PlayCanvas et polygon.js, on s'est finalement fixé sur react-three-fiber."
+    },
     "date": "October 2022",
     "link": "/test",
-    "tags": "3D, r&d, Web Design",
+    "tags": {
+      "en": "3D, r&d, Web Design",
+      "cs": "3D, r&d, webdesign",
+      "fr": "3D, r&d, design web"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -186,11 +374,23 @@
   {
     "id": 17,
     "image": "/image15.jpg",
-    "title": "Cpt. Demo LP",
-    "description": "Nobel Prize replica LP cover",
+    "title": {
+      "en": "Cpt. Demo LP",
+      "cs": "Cpt. Demo LP",
+      "fr": "Cpt. Demo LP"
+    },
+    "description": {
+      "en": "Nobel Prize replica LP cover",
+      "cs": "Obal LP — replika Nobelovy ceny.",
+      "fr": "Pochette de LP — réplique du prix Nobel."
+    },
     "date": "November 2021",
     "link": "https://open.spotify.com/album/7K2miboa6cK7WwTFmFAc8n",
-    "tags": "3D, r&d,Graphic Design",
+    "tags": {
+      "en": "3D, r&d, Graphic Design",
+      "cs": "3D, r&d, grafický design",
+      "fr": "3D, r&d, design graphique"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -198,11 +398,23 @@
   {
     "id": 23,
     "image": "/image08.jpg",
-    "title": "Burian LP GFX",
-    "description": "cover artwork design for upcoming Burian LP",
+    "title": {
+      "en": "Burian LP GFX",
+      "cs": "Burian LP – grafika",
+      "fr": "Burian LP – graphisme"
+    },
+    "description": {
+      "en": "cover artwork design for upcoming Burian LP",
+      "cs": "Návrh obalu pro chystané LP Buriana.",
+      "fr": "Conception de la pochette pour le futur LP de Burian."
+    },
     "date": "July 2022",
     "link": "",
-    "tags": "Graphic Design",
+    "tags": {
+      "en": "Graphic Design",
+      "cs": "grafický design",
+      "fr": "design graphique"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -210,11 +422,23 @@
   {
     "id": 24,
     "image": "/image28.jpg",
-    "title": "Johnny Majestic mv",
-    "description": "Color grading and digital talking horse VFX",
+    "title": {
+      "en": "Johnny Majestic mv",
+      "cs": "Johnny Majestic – klip",
+      "fr": "Johnny Majestic – clip"
+    },
+    "description": {
+      "en": "Color grading and digital talking horse VFX",
+      "cs": "Barevné korekce a VFX digitálního mluvícího koně.",
+      "fr": "Étalonnage et VFX d'un cheval parlant numérique."
+    },
     "date": "August 2022",
     "link": "https://www.youtube.com/watch?v=LT275WZoh1E&ab_channel=JohnnyMajestic",
-    "tags": "VFX,grading",
+    "tags": {
+      "en": "VFX, grading",
+      "cs": "VFX, barevné korekce",
+      "fr": "VFX, étalonnage"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -222,11 +446,23 @@
   {
     "id": 19,
     "image": "/image16.jpg",
-    "title": "Cpt. Demo mv VFX",
-    "description": "I made a bunch of unreal scenes, a bttf-style car entry, a lightsabre streetfight a flying car and hand animated bullets (including their reflection on dat windshield",
+    "title": {
+      "en": "Cpt. Demo mv VFX",
+      "cs": "Cpt. Demo – VFX klipu",
+      "fr": "Cpt. Demo – VFX du clip"
+    },
+    "description": {
+      "en": "I made a bunch of unreal scenes, a bttf-style car entry, a lightsabre streetfight a flying car and hand animated bullets (including their reflection on dat windshield",
+      "cs": "Udělal jsem řadu scén v Unrealu — příjezd auta ve stylu Návratu do budoucnosti, souboj se světelnými meči, létající auto a ručně animované kulky (včetně jejich odrazu na čelním skle).",
+      "fr": "J'ai créé une série de scènes Unreal — une arrivée de voiture façon Retour vers le futur, un combat au sabre laser, une voiture volante et des balles animées à la main (reflet sur le pare-brise compris)."
+    },
     "date": "December 2021",
     "link": "https://www.youtube.com/watch?v=aJgvE-T5WQU&ab_channel=DemoCrew",
-    "tags": "VFX,VP,r&d",
+    "tags": {
+      "en": "VFX, VP, r&d",
+      "cs": "VFX, VP, r&d",
+      "fr": "VFX, VP, r&d"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -234,11 +470,23 @@
   {
     "id": 20,
     "image": "/image10.jpg",
-    "title": "CPT. Demo CNN reportage",
-    "description": "Unreal VP for CNN Prima SHOWTIME reportage about Cpt. Demo",
+    "title": {
+      "en": "CPT. Demo CNN reportage",
+      "cs": "Cpt. Demo – reportáž CNN",
+      "fr": "Cpt. Demo – reportage CNN"
+    },
+    "description": {
+      "en": "Unreal VP for CNN Prima SHOWTIME reportage about Cpt. Demo",
+      "cs": "Unreal VP pro reportáž CNN Prima SHOWTIME o Cpt. Demo.",
+      "fr": "VP Unreal pour le reportage CNN Prima SHOWTIME sur Cpt. Demo."
+    },
     "date": "January 2022",
     "link": "",
-    "tags": "VFX",
+    "tags": {
+      "en": "VFX",
+      "cs": "VFX",
+      "fr": "VFX"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -246,11 +494,23 @@
   {
     "id": 22,
     "image": "/image26.jpg",
-    "title": "HPNOVERSE VFX",
-    "description": "I made a satirical booze commercial come to life with unreal and DaVinci",
+    "title": {
+      "en": "HPNOVERSE VFX",
+      "cs": "HPNOVERSE VFX",
+      "fr": "HPNOVERSE VFX"
+    },
+    "description": {
+      "en": "I made a satirical booze commercial come to life with unreal and DaVinci",
+      "cs": "Satirickou reklamu na chlast jsem oživil pomocí Unrealu a DaVinci.",
+      "fr": "J'ai donné vie à une publicité satirique sur l'alcool avec Unreal et DaVinci."
+    },
     "date": "July 2022",
     "link": "https://www.prnewswire.com/news-releases/iconic-liqueur-brand-hpnotiq-invites-consumers-to-enter-the-hpnoverse-with-exclusive-nft-collection--augmented-reality-experience-301627385.html",
-    "tags": "VFX,VP,r&d",
+    "tags": {
+      "en": "VFX, VP, r&d",
+      "cs": "VFX, VP, r&d",
+      "fr": "VFX, VP, r&d"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -258,11 +518,23 @@
   {
     "id": 5,
     "image": "/image09.jpg",
-    "title": "CIEXPO",
-    "description": "http://ciexpo.cz",
+    "title": {
+      "en": "CIEXPO",
+      "cs": "CIEXPO",
+      "fr": "CIEXPO"
+    },
+    "description": {
+      "en": "http://ciexpo.cz",
+      "cs": "http://ciexpo.cz",
+      "fr": "http://ciexpo.cz"
+    },
     "date": "February 2018",
     "link": "http://www.ciexpo.cz/",
-    "tags": "3D, AR, Game Design, r&d , VR",
+    "tags": {
+      "en": "3D, AR, Game Design, r&d, VR",
+      "cs": "3D, AR, herní design, r&d, VR",
+      "fr": "3D, AR, game design, r&d, VR"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -270,11 +542,23 @@
   {
     "id": 7,
     "image": "/image04.jpg",
-    "title": "ARROW",
-    "description": "Custom branded teambuidling VR archery game featuring boids programmed from scratch",
+    "title": {
+      "en": "ARROW",
+      "cs": "ARROW",
+      "fr": "ARROW"
+    },
+    "description": {
+      "en": "Custom branded teambuidling VR archery game featuring boids programmed from scratch",
+      "cs": "Brandovaná teambuildingová VR lukostřelba s hejny (boids) naprogramovanými od nuly.",
+      "fr": "Jeu de tir à l'arc VR de team-building en marque blanche, avec des boids programmés de zéro."
+    },
     "date": "February 2018",
     "link": "",
-    "tags": "3D, Game Design, VR",
+    "tags": {
+      "en": "3D, Game Design, VR",
+      "cs": "3D, herní design, VR",
+      "fr": "3D, game design, VR"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -282,11 +566,23 @@
   {
     "id": 4,
     "image": "/image06.jpg",
-    "title": "Bee Game",
-    "description": "Educational VR game for kids about the life of a bee",
+    "title": {
+      "en": "Bee Game",
+      "cs": "Včelí hra",
+      "fr": "Le jeu de l'abeille"
+    },
+    "description": {
+      "en": "Educational VR game for kids about the life of a bee",
+      "cs": "Vzdělávací VR hra pro děti o životě včely.",
+      "fr": "Jeu VR éducatif pour enfants sur la vie d'une abeille."
+    },
     "date": "January 19, 2018",
     "link": "",
-    "tags": "3D, Game Design, VR",
+    "tags": {
+      "en": "3D, Game Design, VR",
+      "cs": "3D, herní design, VR",
+      "fr": "3D, game design, VR"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -294,11 +590,23 @@
   {
     "id": 8,
     "image": "/image38.jpg",
-    "title": "VR and AR for Svoboda Williams",
-    "description": "case study for VR and AR in real estate",
+    "title": {
+      "en": "VR and AR for Svoboda Williams",
+      "cs": "VR a AR pro Svoboda Williams",
+      "fr": "VR et AR pour Svoboda Williams"
+    },
+    "description": {
+      "en": "case study for VR and AR in real estate",
+      "cs": "Případová studie VR a AR v realitách.",
+      "fr": "Étude de cas sur la VR et l'AR dans l'immobilier."
+    },
     "date": "January 2019",
     "link": "https://svoboda-williams.com/realitni-zpravy/232-rozsirena-realita-jako-novy-zpusob-prezentace-nemovitosti",
-    "tags": "3D modeling, Game Design, VR, Video",
+    "tags": {
+      "en": "3D modeling, Game Design, VR, Video",
+      "cs": "3D modelování, herní design, VR, video",
+      "fr": "modélisation 3D, game design, VR, vidéo"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -306,11 +614,23 @@
   {
     "id": 1,
     "image": "/image41.jpg",
-    "title": "ŽIDLICKÝ VR gallery",
-    "description": "first virtual gallery in central Europe :D ",
+    "title": {
+      "en": "ŽIDLICKÝ VR gallery",
+      "cs": "VR galerie ŽIDLICKÝ",
+      "fr": "Galerie VR ŽIDLICKÝ"
+    },
+    "description": {
+      "en": "first virtual gallery in central Europe :D ",
+      "cs": "první virtuální galerie ve střední Evropě :D",
+      "fr": "première galerie virtuelle d'Europe centrale :D"
+    },
     "date": "April 2015",
     "link": "",
-    "tags": "VR",
+    "tags": {
+      "en": "VR",
+      "cs": "VR",
+      "fr": "VR"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -318,11 +638,23 @@
   {
     "id": 2,
     "image": "/image35.jpg",
-    "title": "Excalibur military",
-    "description": "VR+AR Military factory presentation for Indonesian Gvt.",
+    "title": {
+      "en": "Excalibur military",
+      "cs": "Excalibur – armáda",
+      "fr": "Excalibur – militaire"
+    },
+    "description": {
+      "en": "VR+AR Military factory presentation for Indonesian Gvt.",
+      "cs": "VR+AR prezentace vojenské továrny pro indonéskou vládu.",
+      "fr": "Présentation VR+AR d'une usine militaire pour le gouvernement indonésien."
+    },
     "date": "February 2017",
     "link": "",
-    "tags": "3D modeling, AR, VR, Video",
+    "tags": {
+      "en": "3D modeling, AR, VR, Video",
+      "cs": "3D modelování, AR, VR, video",
+      "fr": "modélisation 3D, AR, VR, vidéo"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -330,11 +662,23 @@
   {
     "id": 6,
     "image": "/image18.jpg",
-    "title": "old fancy AR tests",
-    "description": "early Unity tests with Lucas Saidl",
+    "title": {
+      "en": "old fancy AR tests",
+      "cs": "staré parádní AR testy",
+      "fr": "anciens tests AR stylés"
+    },
+    "description": {
+      "en": "early Unity tests with Lucas Saidl",
+      "cs": "rané testy v Unity s Lucasem Saidlem.",
+      "fr": "premiers tests Unity avec Lucas Saidl."
+    },
     "date": "February 2018",
     "link": "",
-    "tags": "AR",
+    "tags": {
+      "en": "AR",
+      "cs": "AR",
+      "fr": "AR"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -342,11 +686,23 @@
   {
     "id": 3,
     "image": "/image05.jpg",
-    "title": "BANK renders and VR",
-    "description": "Unreal, BLender, Substance",
+    "title": {
+      "en": "BANK renders and VR",
+      "cs": "BANK – rendery a VR",
+      "fr": "BANK – rendus et VR"
+    },
+    "description": {
+      "en": "Unreal, BLender, Substance",
+      "cs": "Unreal, Blender, Substance",
+      "fr": "Unreal, Blender, Substance"
+    },
     "date": "June 2017",
     "link": "",
-    "tags": "3D, VR,r&d",
+    "tags": {
+      "en": "3D, VR, r&d",
+      "cs": "3D, VR, r&d",
+      "fr": "3D, VR, r&d"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -354,11 +710,23 @@
   {
     "id": 26,
     "image": "/image39.jpg",
-    "title": "WIP trust perfumes website",
-    "description": "r3f perfume mixer for artisanal scent creator",
+    "title": {
+      "en": "WIP trust perfumes website",
+      "cs": "Web trust perfumes (WIP)",
+      "fr": "Site trust perfumes (WIP)"
+    },
+    "description": {
+      "en": "r3f perfume mixer for artisanal scent creator",
+      "cs": "r3f mixér parfémů pro řemeslného tvůrce vůní.",
+      "fr": "Mélangeur de parfums r3f pour un créateur de senteurs artisanal."
+    },
     "date": "March 2023",
     "link": "",
-    "tags": "3D, Graphic Design, Web Design",
+    "tags": {
+      "en": "3D, Graphic Design, Web Design",
+      "cs": "3D, grafický design, webdesign",
+      "fr": "3D, design graphique, design web"
+    },
     "media": [],
     "links": [],
     "body": null
@@ -366,11 +734,23 @@
   {
     "id": 27,
     "image": "/image36.jpg",
-    "title": "numinos VR timetravel",
-    "description": "varied work for Numinos VR timetravel as Tech artist, RnD dev, Render in Unreal Engine",
+    "title": {
+      "en": "numinos VR timetravel",
+      "cs": "numinos – cestování časem ve VR",
+      "fr": "numinos – voyage temporel en VR"
+    },
+    "description": {
+      "en": "varied work for Numinos VR timetravel as Tech artist, RnD dev, Render in Unreal Engine",
+      "cs": "Různorodá práce na Numinos VR timetravel — tech artist, RnD vývoj, render v Unreal Enginu.",
+      "fr": "Travaux variés pour Numinos VR timetravel — tech artist, dev R&D, rendu sous Unreal Engine."
+    },
     "date": "March 2023",
     "link": "http://numinos.one/",
-    "tags": "r&d,3D , Game Design, Rendering, VR",
+    "tags": {
+      "en": "r&d, 3D, Game Design, Rendering, VR",
+      "cs": "r&d, 3D, herní design, rendering, VR",
+      "fr": "r&d, 3D, game design, rendu, VR"
+    },
     "media": [],
     "links": [],
     "body": null

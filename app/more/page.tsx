@@ -8,6 +8,8 @@ import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
 import { MotionText } from "@/components/motion-text"
 import { InkLine } from "@/components/ink-line"
+import { useI18n } from "@/lib/i18n/provider"
+import { pick, type Localized } from "@/lib/i18n/localize"
 
 // /more is no longer a site map — nav already has every internal
 // page, and the hero CTAs cover the rest. Now it's a single-page
@@ -320,13 +322,14 @@ const OUT_LINKS: Array<{ href: string; title: string; sub?: string }> = [
 
 interface BlogPost {
   id: string
-  title: string
+  title: Localized
   date: string
-  excerpt: string
-  tags?: string
+  excerpt: Localized
+  tags?: Localized
 }
 
 export default function MorePage() {
+  const { lang } = useI18n()
   const [posts, setPosts] = useState<BlogPost[]>([])
   // The "updated YYYY · MM" label is computed in an effect so SSR
   // renders an empty string and the client fills it in after mount.
@@ -381,7 +384,7 @@ export default function MorePage() {
                 lineHeight: 1.55,
               }}
             >
-              Not a site map. The nav has those. This is the human page — what i&rsquo;m into right now, the catalogue of inputs that shaped me, the things i&rsquo;m fighting, the ones i&rsquo;m not great at, the quieter weights, and the antidotes that keep the work moving. Scroll like you would a friend&rsquo;s notebook.
+              Not a site map — the nav has those. This is the off-the-record half: what i&rsquo;m into right now, the catalogue of inputs that shaped the work, the things i&rsquo;m fighting, the ones i&rsquo;m not great at, the quieter weights, and the antidotes that keep it moving. Scroll it like a friend&rsquo;s notebook.
             </motion.p>
           </header>
 
@@ -609,7 +612,7 @@ export default function MorePage() {
                       style={{ color: "var(--text-muted)" }}
                     >
                       {fmtDate(p.date)}
-                      {p.tags && <>&nbsp;*&nbsp;{p.tags}</>}
+                      {p.tags && <>&nbsp;*&nbsp;{pick(p.tags, lang)}</>}
                     </div>
                     <Link href={`/blog/${p.id}`} className="group block">
                       <h3
@@ -620,7 +623,7 @@ export default function MorePage() {
                           lineHeight: 1.1,
                         }}
                       >
-                        <span className="ink-underline-hover">{p.title}</span>
+                        <span className="ink-underline-hover">{pick(p.title, lang)}</span>
                       </h3>
                     </Link>
                     <p
@@ -631,7 +634,7 @@ export default function MorePage() {
                         lineHeight: 1.55,
                       }}
                     >
-                      {p.excerpt}
+                      {pick(p.excerpt, lang)}
                     </p>
                   </article>
                 ))

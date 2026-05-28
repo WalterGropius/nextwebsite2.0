@@ -6,16 +6,17 @@ import { motion, useInView } from "motion/react"
 import { MotionText } from "./motion-text"
 import { InkLine } from "./ink-line"
 import { TiltCard } from "./tilt-card"
-import { useT } from "@/lib/i18n/provider"
+import { useT, useI18n } from "@/lib/i18n/provider"
+import { pick, type Localized } from "@/lib/i18n/localize"
 
 interface ProjectItem {
   id: number
   image: string
-  title: string
-  description: string
+  title: Localized
+  description: Localized
   date: string
   link: string
-  tags: string
+  tags: Localized
 }
 
 function getRandomItems<T>(arr: T[], count: number): T[] {
@@ -35,6 +36,7 @@ export function Creations({ randomCount }: CreationsProps) {
   const [error, setError] = useState<string | null>(null)
   const [selectedTag, setSelectedTag] = useState<string | null>(null)
   const t = useT()
+  const { lang } = useI18n()
 
   useEffect(() => {
     let ignore = false
@@ -65,7 +67,7 @@ export function Creations({ randomCount }: CreationsProps) {
   }, [])
 
   const allTags = Array.from(
-    new Set(projects.flatMap((p) => p.tags.split(",").map((t) => t.trim())))
+    new Set(projects.flatMap((p) => pick(p.tags, lang).split(",").map((t) => t.trim())))
   ).filter(Boolean)
 
   const randomizedProjects = useMemo(() => {
@@ -77,7 +79,7 @@ export function Creations({ randomCount }: CreationsProps) {
 
   const displayedProjects = selectedTag
     ? randomizedProjects.filter((p) =>
-        p.tags.toLowerCase().includes(selectedTag.toLowerCase())
+        pick(p.tags, lang).toLowerCase().includes(selectedTag.toLowerCase())
       )
     : randomizedProjects
 
@@ -200,7 +202,7 @@ export function Creations({ randomCount }: CreationsProps) {
                   >
                     <Image
                       src={project.image}
-                      alt={project.title}
+                      alt={pick(project.title, lang)}
                       fill
                       sizes="(min-width: 1024px) 33vw, 50vw"
                       className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]"
@@ -233,7 +235,7 @@ export function Creations({ randomCount }: CreationsProps) {
                           overflow: "hidden",
                         }}
                       >
-                        {project.description}
+                        {pick(project.description, lang)}
                       </p>
                     </div>
                   </div>
@@ -247,7 +249,7 @@ export function Creations({ randomCount }: CreationsProps) {
                           lineHeight: 1,
                         }}
                       >
-                        {project.title.toLowerCase()}
+                        {pick(project.title, lang).toLowerCase()}
                       </h3>
                       <span
                         className="shrink-0 text-xs"
@@ -269,7 +271,7 @@ export function Creations({ randomCount }: CreationsProps) {
                         fontFamily: "var(--font-display)",
                       }}
                     >
-                      {project.tags
+                      {pick(project.tags, lang)
                         .split(",")
                         .slice(0, 3)
                         .map((t) => t.trim().toLowerCase())
