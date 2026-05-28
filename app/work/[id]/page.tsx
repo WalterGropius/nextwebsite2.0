@@ -183,6 +183,8 @@ function ProjectArticle({ project, related }: { project: ProjectItem; related: P
         <img
           src={project.image}
           alt={project.title}
+          decoding="async"
+          fetchPriority="high"
           className="block w-full"
           style={{ maxHeight: "70vh", objectFit: "cover" }}
         />

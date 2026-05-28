@@ -107,11 +107,12 @@ export default function Reel() {
           >
             <video
               ref={videoRef}
-              src="/reel_sm.mp4"
+              poster="/reel-poster.webp"
               autoPlay
               loop
               muted={isMuted}
               playsInline
+              preload="metadata"
               onLoadedData={() => setIsLoaded(true)}
               className="block w-full"
               style={{
@@ -119,7 +120,13 @@ export default function Reel() {
                 objectFit: "contain",
                 background: "var(--surface-dark)",
               }}
-            />
+            >
+              {/* H.264 baseline — plays in every browser. The old
+                  reel_sm.mp4 was HEVC, which Chrome and Firefox cannot
+                  decode, so the reel was silently blank for most
+                  visitors. */}
+              <source src="/reel_720.mp4" type="video/mp4" />
+            </video>
             {!isLoaded && (
               <div
                 className="pointer-events-none absolute inset-0 flex items-center justify-center"
@@ -187,6 +194,54 @@ export default function Reel() {
               </button>
             </div>
           </motion.div>
+
+          {/* Related — keep visitors moving through the work instead of
+              dead-ending on the player. */}
+          <div className="mt-16">
+            <h2
+              className="mb-6 text-2xl sm:text-3xl"
+              style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
+            >
+              {t("reel.more")}
+            </h2>
+            <div className="grid gap-6 sm:grid-cols-3">
+              {[
+                { href: "/portfolio", label: t("nav.work"), blurb: t("reel.more.work") },
+                { href: "/sketchfab", label: t("nav.3d"), blurb: t("reel.more.3d") },
+                { href: "/art", label: t("reel.more.art.label"), blurb: t("reel.more.art") },
+              ].map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className="group block p-5"
+                  style={{ border: "1.5px solid var(--ink)", filter: "url(#ink-wobble)" }}
+                >
+                  <div className="flex items-baseline justify-between gap-3">
+                    <h3
+                      className="text-xl sm:text-2xl"
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        color: "var(--ink)",
+                        lineHeight: 1,
+                      }}
+                    >
+                      {item.label}
+                    </h3>
+                    <span aria-hidden style={{ color: "var(--ink)" }}>→</span>
+                  </div>
+                  <p
+                    className="mt-3 text-sm"
+                    style={{
+                      color: "var(--text-muted)",
+                      fontFamily: "var(--font-display)",
+                    }}
+                  >
+                    {item.blurb}
+                  </p>
+                </a>
+              ))}
+            </div>
+          </div>
         </section>
       </main>
     </PageLoader>

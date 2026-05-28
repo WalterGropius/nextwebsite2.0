@@ -80,6 +80,7 @@ export function SketchfabEmbed() {
             src="https://sketchfab.com/playlists/embed?collection=ff58263bbe42472fb3d657a709d71d81&autostart=1"
             title="3d works"
             frameBorder="0"
+            loading="lazy"
             allow="autoplay; fullscreen; xr-spatial-tracking"
             onLoad={() => setIsLoaded(true)}
             className="block w-full"

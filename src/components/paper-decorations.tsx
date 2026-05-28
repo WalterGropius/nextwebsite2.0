@@ -26,15 +26,15 @@ const COFFEE_STAINS: Array<{
   rotate: number
   opacity: number
 }> = [
-  { src: "/coffee2.png", top: "85vh",   side: "right", offset: "-3vw",  size: 360, rotate: -14, opacity: 0.22 },
-  { src: "/coffee1.png", top: "190vh",  side: "left",  offset: "-4vw",  size: 420, rotate: 22,  opacity: 0.18 },
-  { src: "/coffee4.png", top: "310vh",  side: "right", offset: "2vw",   size: 300, rotate: -38, opacity: 0.2  },
-  { src: "/coffee3.png", top: "440vh",  side: "left",  offset: "6vw",   size: 260, rotate: 9,   opacity: 0.16 },
-  { src: "/coffee1.png", top: "580vh",  side: "right", offset: "-2vw",  size: 360, rotate: 47,  opacity: 0.19 },
-  { src: "/coffee2.png", top: "720vh",  side: "left",  offset: "-3vw",  size: 300, rotate: 18,  opacity: 0.17 },
-  { src: "/coffee4.png", top: "880vh",  side: "right", offset: "0vw",   size: 280, rotate: -22, opacity: 0.18 },
-  { src: "/coffee3.png", top: "1080vh", side: "left",  offset: "4vw",   size: 320, rotate: 35,  opacity: 0.16 },
-  { src: "/coffee1.png", top: "1280vh", side: "right", offset: "-3vw",  size: 340, rotate: -19, opacity: 0.18 },
+  { src: "/coffee2.webp", top: "85vh",   side: "right", offset: "-3vw",  size: 360, rotate: -14, opacity: 0.22 },
+  { src: "/coffee1.webp", top: "190vh",  side: "left",  offset: "-4vw",  size: 420, rotate: 22,  opacity: 0.18 },
+  { src: "/coffee4.webp", top: "310vh",  side: "right", offset: "2vw",   size: 300, rotate: -38, opacity: 0.2  },
+  { src: "/coffee3.webp", top: "440vh",  side: "left",  offset: "6vw",   size: 260, rotate: 9,   opacity: 0.16 },
+  { src: "/coffee1.webp", top: "580vh",  side: "right", offset: "-2vw",  size: 360, rotate: 47,  opacity: 0.19 },
+  { src: "/coffee2.webp", top: "720vh",  side: "left",  offset: "-3vw",  size: 300, rotate: 18,  opacity: 0.17 },
+  { src: "/coffee4.webp", top: "880vh",  side: "right", offset: "0vw",   size: 280, rotate: -22, opacity: 0.18 },
+  { src: "/coffee3.webp", top: "1080vh", side: "left",  offset: "4vw",   size: 320, rotate: 35,  opacity: 0.16 },
+  { src: "/coffee1.webp", top: "1280vh", side: "right", offset: "-3vw",  size: 340, rotate: -19, opacity: 0.18 },
 ]
 
 function CoffeeStains() {
@@ -46,6 +46,8 @@ function CoffeeStains() {
           src={s.src}
           aria-hidden
           alt=""
+          loading="lazy"
+          decoding="async"
           style={{
             position: "absolute",
             top: s.top,

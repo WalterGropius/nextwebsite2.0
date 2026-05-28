@@ -136,6 +136,12 @@ export const en: Dict = {
   "reel.mute": "mute",
   "reel.unmute": "unmute",
   "reel.fullscreen": "fullscreen",
+  "reel.more": "more to see",
+  "reel.more.reel": "vfx, 3d and creative-technology motion work, cut to music.",
+  "reel.more.work": "the full archive — design, code, 3d and installations.",
+  "reel.more.3d": "interactive 3d models and gaussian splats you can spin.",
+  "reel.more.art.label": "art",
+  "reel.more.art": "paintings, prints and physical work, collected as a book.",
 
   // sketchfab / 3d
   "sketchfab.title.0": "3d",

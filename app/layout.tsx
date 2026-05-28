@@ -7,8 +7,23 @@ import { PaperDecorations } from '@/components/paper-decorations'
 import '@/global.css'
 
 export const metadata: Metadata = {
-  title: 'zenbauhaus | Art & Tech Polymath',
+  metadataBase: new URL('https://zenbauhaus.vercel.app'),
+  title: {
+    default: 'zenbauhaus | Art & Tech Polymath',
+    template: '%s | zenbauhaus',
+  },
   description: 'CTO & Creative Technologist bridging creative vision and technical execution. Specializing in VR/AR, AI systems, and cutting-edge web development.',
+  manifest: '/manifest.json',
+  alternates: { canonical: '/' },
+  icons: {
+    icon: [
+      { url: '/icons/favicon-32x32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icons/favicon-16x16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/icon.svg', type: 'image/svg+xml' },
+    ],
+    apple: '/icons/apple-touch-icon.png',
+    shortcut: '/icons/favicon.ico',
+  },
   keywords: [
     'creative technology',
     'VR development',
@@ -34,11 +49,14 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     siteName: 'zenbauhaus',
+    url: 'https://zenbauhaus.vercel.app',
+    images: [{ url: '/icons/share.png', width: 800, height: 800, alt: 'zenbauhaus' }],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'zenbauhaus | Art & Tech Polymath',
     description: 'CTO & Creative Technologist bridging creative vision and technical execution',
+    images: ['/icons/share.png'],
   },
   generator: 'Next.js',
 }
