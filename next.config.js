@@ -5,6 +5,29 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
 
+  // Drop the `x-powered-by: Next.js` header — no need to advertise the stack.
+  poweredByHeader: false,
+
+  // Tree-shake heavy barrel imports so only the icons / motion primitives
+  // actually used get bundled instead of the whole package.
+  experimental: {
+    optimizePackageImports: [
+      'lucide-react',
+      'motion',
+      '@react-three/drei',
+      'three-stdlib',
+    ],
+  },
+
+  // `/` only ever bounced to `/landing` via a client-side effect, which
+  // shipped a JS bundle just to navigate. A permanent server redirect is
+  // free, instant, and SEO-correct.
+  async redirects() {
+    return [
+      { source: '/', destination: '/landing', permanent: true },
+    ]
+  },
+
   // Webpack configuration for Spark and bundle analyzer
   webpack: (config, { isServer }) => {
     // Fix for @sparkjsdev/spark WASM URL resolution
@@ -31,6 +54,9 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // Cache optimized images aggressively — source art is content-hashed
+    // by path, so a long TTL is safe.
+    minimumCacheTTL: 31536000,
   },
 
   // Headers for performance
@@ -45,11 +71,11 @@ const nextConfig = {
           },
           {
             key: 'X-Frame-Options',
-            value: 'DENY',
+            value: 'SAMEORIGIN',
           },
           {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block',
+            key: 'Referrer-Policy',
+            value: 'strict-origin-when-cross-origin',
           },
         ],
       },
@@ -62,7 +88,16 @@ const nextConfig = {
           },
         ],
       },
-
+      // Long-lived caching for the heavy, never-changing media in /public.
+      {
+        source: '/(.*).(mp4|webm|webp|woff2|sog|glb|hdr)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+        ],
+      },
     ]
   },
 

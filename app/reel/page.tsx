@@ -107,11 +107,12 @@ export default function Reel() {
           >
             <video
               ref={videoRef}
-              src="/reel_sm.mp4"
+              poster="/reel-poster.webp"
               autoPlay
               loop
               muted={isMuted}
               playsInline
+              preload="metadata"
               onLoadedData={() => setIsLoaded(true)}
               className="block w-full"
               style={{
@@ -119,7 +120,13 @@ export default function Reel() {
                 objectFit: "contain",
                 background: "var(--surface-dark)",
               }}
-            />
+            >
+              {/* H.264 baseline — plays in every browser. The old
+                  reel_sm.mp4 was HEVC, which Chrome and Firefox cannot
+                  decode, so the reel was silently blank for most
+                  visitors. */}
+              <source src="/reel_720.mp4" type="video/mp4" />
+            </video>
             {!isLoaded && (
               <div
                 className="pointer-events-none absolute inset-0 flex items-center justify-center"

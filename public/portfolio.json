@@ -21,7 +21,7 @@
       },
       {
         "type": "video",
-        "src": "/reel_sm.mp4",
+        "src": "/reel_720.mp4",
         "caption": "Process clip — sketches I cut into the master reel."
       }
     ],
@@ -59,7 +59,7 @@
       },
       {
         "type": "video",
-        "src": "/reel_sm.mp4",
+        "src": "/reel_720.mp4",
         "caption": "Final reel cut."
       }
     ],

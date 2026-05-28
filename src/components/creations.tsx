@@ -1,6 +1,7 @@
 "use client"
 
 import { useRef, useState, useEffect, useMemo } from "react"
+import Image from "next/image"
 import { motion, useInView } from "motion/react"
 import { MotionText } from "./motion-text"
 import { InkLine } from "./ink-line"
@@ -197,11 +198,12 @@ export function Creations({ randomCount }: CreationsProps) {
                     className="relative aspect-[4/5] overflow-hidden"
                     style={{ zIndex: 35 }}
                   >
-                    <img
+                    <Image
                       src={project.image}
                       alt={project.title}
-                      loading="lazy"
-                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]"
+                      fill
+                      sizes="(min-width: 1024px) 33vw, 50vw"
+                      className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-[1.04]"
                     />
                     {/* Inked frame around the photo */}
                     <div

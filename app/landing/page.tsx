@@ -1,7 +1,7 @@
 "use client"
 
-import { Suspense, useState, useEffect, useRef } from "react"
-import { Canvas } from "@react-three/fiber"
+import { useState, useEffect, useRef } from "react"
+import dynamic from "next/dynamic"
 import { useTheme } from "next-themes"
 import { Hero } from "@/components/hero"
 import { Manifesto } from "@/components/manifesto"
@@ -12,10 +12,15 @@ import { Creations } from "@/components/creations"
 import { Highlights } from "@/components/highlights"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { Navigation } from "@/components/navigation"
-import { Flowers } from "@/components/canvas/Flowers"
 import { PageLoader } from "@/components/page-loader"
 import { MotionPermission } from "@/components/motion-permission"
 import { InkLine } from "@/components/ink-line"
+
+// Three.js + the splat loader are pulled in only after the page mounts,
+// so they stay out of the initial JS bundle for the landing route.
+const HeroCanvas = dynamic(() => import("@/components/canvas/HeroCanvas"), {
+  ssr: false,
+})
 
 function Divider() {
   return (
@@ -86,23 +91,7 @@ export default function Home() {
             suppressHydrationWarning
           >
             {mounted ? (
-              <Canvas
-                style={{ backgroundColor: "transparent" }}
-                camera={{ position: [0, 0, 5], fov: 60 }}
-                className="size-full"
-                dpr={[1, 1.5]}
-                performance={{ min: 0.5 }}
-                gl={{
-                  antialias: true,
-                  alpha: true,
-                  powerPreference: "high-performance",
-                }}
-                frameloop={canvasVisible ? "always" : "demand"}
-              >
-                <Suspense fallback={null}>
-                  <Flowers dark={dark} />
-                </Suspense>
-              </Canvas>
+              <HeroCanvas dark={dark} active={canvasVisible} />
             ) : null}
           </div>
 
