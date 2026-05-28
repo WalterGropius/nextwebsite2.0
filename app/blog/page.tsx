@@ -8,15 +8,17 @@ import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
 import { MotionText } from "@/components/motion-text"
 import { InkLine } from "@/components/ink-line"
+import { useI18n } from "@/lib/i18n/provider"
+import { pick, type Localized } from "@/lib/i18n/localize"
 
 interface Post {
   id: string
-  title: string
+  title: Localized
   date: string
-  excerpt: string
-  tags?: string
+  excerpt: Localized
+  tags?: Localized
   image?: string | null
-  body: string
+  body: Localized
 }
 
 function formatDate(s: string) {
@@ -29,6 +31,7 @@ function formatDate(s: string) {
 export default function BlogIndex() {
   const [posts, setPosts] = useState<Post[]>([])
   const [loading, setLoading] = useState(true)
+  const { lang } = useI18n()
 
   useEffect(() => {
     fetch("/blogs.json")
@@ -109,7 +112,7 @@ export default function BlogIndex() {
                       {formatDate(p.date)}
                       {p.tags && (
                         <>
-                          &nbsp;*&nbsp;<span>{p.tags}</span>
+                          &nbsp;*&nbsp;<span>{pick(p.tags, lang)}</span>
                         </>
                       )}
                     </div>
@@ -121,7 +124,7 @@ export default function BlogIndex() {
                         lineHeight: 1.05,
                       }}
                     >
-                      <span className="ink-underline-hover">{p.title}</span>
+                      <span className="ink-underline-hover">{pick(p.title, lang)}</span>
                     </h2>
                     <p
                       className="mt-3 max-w-3xl text-base sm:text-lg"
@@ -131,7 +134,7 @@ export default function BlogIndex() {
                         lineHeight: 1.55,
                       }}
                     >
-                      {p.excerpt}
+                      {pick(p.excerpt, lang)}
                     </p>
                   </Link>
                 </motion.li>

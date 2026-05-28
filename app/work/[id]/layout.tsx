@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import { readFileSync } from 'fs'
 import { join } from 'path'
+import { pick, type Localized } from '@/lib/i18n/localize'
 
 type Project = {
   id: number | string
-  title?: string
-  description?: string
+  title?: Localized
+  description?: Localized
   image?: string
 }
 
@@ -29,8 +30,8 @@ export async function generateMetadata({
   if (!project) {
     return { title: 'Work' }
   }
-  const title = project.title ?? 'Work'
-  const description = project.description?.slice(0, 200)
+  const title = pick(project.title, 'en') || 'Work'
+  const description = pick(project.description, 'en').slice(0, 200)
   const image = project.image ?? '/icons/share.png'
   return {
     title,
