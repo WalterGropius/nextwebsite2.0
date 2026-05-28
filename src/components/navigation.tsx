@@ -14,6 +14,7 @@ const navLinks = [
   { href: "/portfolio-s", key: "nav.work" },
   { href: "/reel", key: "nav.reel" },
   { href: "/sketchfab", key: "nav.3d" },
+  { href: "/art", key: "nav.art" },
   { href: "/cv", key: "nav.cv" },
   { href: "/more", key: "nav.more" },
   { href: "/contact", key: "nav.contact" },
