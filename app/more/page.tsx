@@ -392,6 +392,9 @@ export default function MorePage() {
             <InkLine fade={false} thickness={1.4} />
           </div>
 
+          {/* ===== Sketchbook strip — real work, links to /art ===== */}
+          <Sketchbook />
+
           {/* ===== NOW — hand-edited; pull request when stale ===== */}
           <section className="mb-20">
             <div className="mb-5 flex items-baseline gap-3">
@@ -481,7 +484,7 @@ export default function MorePage() {
               title="music"
               items={MUSIC}
               mark={<TuningFork />}
-              afterBlock={<TomWaitsEmbed />}
+              afterBlock={<MusicMedia />}
             />
             <Sub title="film" items={FILM} mark={<EyeMark />} />
             <Sub title="skating" items={SKATE} mark={<HillBombMark />} />
@@ -910,6 +913,160 @@ function TomWaitsEmbed() {
         * Tom Waits — Hold On. The reason to keep the radio on.
       </figcaption>
     </figure>
+  )
+}
+
+// =====================================================================
+//  Sketchbook strip — a row of real images from the art book, linking
+//  to /art. Pre-optimized WebP, lazy below the first card, so it adds
+//  texture without weight.
+// =====================================================================
+
+const SKETCHBOOK = [
+  "/art/img-001.webp",
+  "/art/img-009.webp",
+  "/art/img-019.webp",
+  "/art/img-031.webp",
+  "/art/img-041.webp",
+  "/art/img-052.webp",
+]
+
+function Sketchbook() {
+  return (
+    <section className="mb-16" style={{ position: "relative", zIndex: 36 }}>
+      <div className="mb-4 flex items-baseline justify-between gap-3">
+        <h2
+          className="text-xl uppercase tracking-[0.3em] sm:text-2xl"
+          style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
+        >
+          — from the sketchbook
+        </h2>
+        <Link
+          href="/art"
+          className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em]"
+          style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}
+        >
+          <span className="ink-underline-hover">all of it</span>
+          <ArrowRight size={13} className="ink-icon" />
+        </Link>
+      </div>
+      {/* horizontal scroll on phones, full grid on desktop */}
+      <div className="-mx-1 flex snap-x gap-3 overflow-x-auto pb-2 sm:grid sm:grid-cols-6 sm:overflow-visible">
+        {SKETCHBOOK.map((src, i) => (
+          <Link
+            key={src}
+            href="/art"
+            className="group relative aspect-[3/4] w-40 shrink-0 snap-start overflow-hidden sm:w-auto"
+          >
+            <img
+              src={src}
+              alt=""
+              aria-hidden
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+            />
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{ border: "1.5px solid var(--ink)", filter: "url(#ink-wobble)" }}
+            />
+          </Link>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+// =====================================================================
+//  Music media — a wall of video cards (thumbnail + link, cheap) plus a
+//  couple of real embedded players. Everything below the fold is
+//  lazy-loaded so the iframes never block paint.
+// =====================================================================
+
+const WATCH: Array<{ id: string; title: string }> = [
+  { id: "PCmZBeNVy7g", title: "Tom Waits — Hold On" },
+  { id: "NCceAA0fIm0", title: "Iron Maiden — Hallowed Be Thy Name" },
+  { id: "0lkir-mvjqI", title: "Black Sabbath — Black Sabbath" },
+  { id: "u05PVbbI_zo", title: "Zappa — Watermelon in Easter Hay" },
+]
+
+function MusicMedia() {
+  return (
+    <div className="mt-8 flex flex-col gap-10">
+      {/* thumbnail wall — images + links, no third-party JS */}
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {WATCH.map((v) => (
+          <a
+            key={v.id}
+            href={`https://www.youtube.com/watch?v=${v.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative block aspect-video overflow-hidden"
+            title={v.title}
+          >
+            <img
+              src={`https://i.ytimg.com/vi/${v.id}/hqdefault.jpg`}
+              alt={v.title}
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+            />
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{ border: "1.5px solid var(--ink)", filter: "url(#ink-wobble)" }}
+            />
+            <span
+              className="absolute bottom-0 left-0 right-0 px-2 py-1 text-[0.6rem] uppercase tracking-[0.2em] opacity-0 transition-opacity group-hover:opacity-100"
+              style={{ background: "var(--surface-dark)", color: "var(--ink)", fontFamily: "var(--font-display)" }}
+            >
+              {v.title}
+            </span>
+          </a>
+        ))}
+      </div>
+
+      {/* the one full player worth autoloading the chrome for */}
+      <TomWaitsEmbed />
+
+      {/* streaming embeds — one i listen to, one i made */}
+      <div className="grid gap-6 md:grid-cols-2">
+        <figure>
+          <iframe
+            title="Mick Jenkins — The Water[s]"
+            src="https://open.spotify.com/embed/album/2GuJOMaxJpvgDM5MgKZUF8?utm_source=generator"
+            loading="lazy"
+            width="100%"
+            height="352"
+            frameBorder="0"
+            allow="encrypted-media"
+            className="block"
+            style={{ border: "1.5px solid var(--ink)", filter: "url(#ink-wobble)" }}
+          />
+          <figcaption className="mt-2 text-xs italic" style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}>
+            * Mick Jenkins — The Water[s]. Still on the shortlist.
+          </figcaption>
+        </figure>
+        <figure>
+          <iframe
+            title="mc zenbauhaus on SoundCloud"
+            src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/mczenbauhaus&color=%23ee4a44&hide_related=true&show_comments=false&show_reposts=false&show_teaser=false"
+            loading="lazy"
+            width="100%"
+            height="352"
+            frameBorder="0"
+            allow="autoplay"
+            scrolling="no"
+            className="block"
+            style={{ border: "1.5px solid var(--ink)", filter: "url(#ink-wobble)" }}
+          />
+          <figcaption className="mt-2 text-xs italic" style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}>
+            * mc zenbauhaus — the other side of the desk.
+          </figcaption>
+        </figure>
+      </div>
+    </div>
   )
 }
 
