@@ -11,28 +11,30 @@ import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
 import { MotionText } from "@/components/motion-text"
 import { InkLine } from "@/components/ink-line"
+import { useI18n } from "@/lib/i18n/provider"
+import { pick, type Localized } from "@/lib/i18n/localize"
 
 type Media =
-  | { type: "image"; src: string; alt?: string; caption?: string }
-  | { type: "video"; src: string; poster?: string; caption?: string }
-  | { type: "embed"; html: string; caption?: string }
+  | { type: "image"; src: string; alt?: Localized; caption?: Localized }
+  | { type: "video"; src: string; poster?: string; caption?: Localized }
+  | { type: "embed"; html: string; caption?: Localized }
 
 interface ProjectLink {
-  label: string
+  label: Localized
   href: string
 }
 
 interface ProjectItem {
   id: number
   image: string
-  title: string
-  description: string
+  title: Localized
+  description: Localized
   date: string
   link?: string
-  tags: string
+  tags: Localized
   media?: Media[]
   links?: ProjectLink[]
-  body?: string | null
+  body?: Localized | null
 }
 
 // Tag-driven fallback paragraphs — only used when a project doesn't
@@ -61,7 +63,8 @@ function findProject(list: ProjectItem[], id: string): ProjectItem | null {
     if (p) return p
   }
   const slugify = (s: string) => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")
-  return list.find((p) => slugify(p.title) === id) ?? null
+  // Slugs are language-independent: always derive from the English title.
+  return list.find((p) => slugify(pick(p.title, "en")) === id) ?? null
 }
 
 export default function WorkPage() {
@@ -82,10 +85,11 @@ export default function WorkPage() {
         const p = findProject(list, id)
         setProject(p)
         if (p) {
-          const tags = p.tags.split(",").map((t) => t.trim()).filter(Boolean)
+          // Match on the stable English tag set, regardless of UI language.
+          const tags = pick(p.tags, "en").split(",").map((t) => t.trim()).filter(Boolean)
           setRelated(
             list
-              .filter((q) => q.id !== p.id && q.tags.split(",").some((t) => tags.includes(t.trim())))
+              .filter((q) => q.id !== p.id && pick(q.tags, "en").split(",").some((t) => tags.includes(t.trim())))
               .slice(0, 4),
           )
         } else {
@@ -128,7 +132,11 @@ export default function WorkPage() {
 }
 
 function ProjectArticle({ project, related }: { project: ProjectItem; related: ProjectItem[] }) {
-  const tags = project.tags.split(",").map((t) => t.trim()).filter(Boolean)
+  const { lang } = useI18n()
+  // Display tags follow the UI language; the English set drives the
+  // TAG_NOTES fallback lookup (its keys are English).
+  const tags = pick(project.tags, lang).split(",").map((t) => t.trim()).filter(Boolean)
+  const enTags = pick(project.tags, "en").split(",").map((t) => t.trim()).filter(Boolean)
   // Merge the legacy single `link` field into the new `links` array
   // so we have one rendering path.
   const allLinks: ProjectLink[] = [
@@ -155,7 +163,7 @@ function ProjectArticle({ project, related }: { project: ProjectItem; related: P
           className="text-[clamp(2.6rem,7vw,5.4rem)] leading-[0.92]"
           style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
         >
-          <MotionText text={project.title.toLowerCase()} split="char" stagger={0.025} />
+          <MotionText text={pick(project.title, lang).toLowerCase()} split="char" stagger={0.025} />
         </h1>
 
         <motion.p
@@ -169,7 +177,7 @@ function ProjectArticle({ project, related }: { project: ProjectItem; related: P
             lineHeight: 1.55,
           }}
         >
-          {project.description}
+          {pick(project.description, lang)}
         </motion.p>
       </header>
 
@@ -182,7 +190,7 @@ function ProjectArticle({ project, related }: { project: ProjectItem; related: P
       >
         <img
           src={project.image}
-          alt={project.title}
+          alt={pick(project.title, lang)}
           decoding="async"
           fetchPriority="high"
           className="block w-full"
@@ -208,9 +216,9 @@ function ProjectArticle({ project, related }: { project: ProjectItem; related: P
           {/* Body — either the project's own markdown, or the legacy
               tag-driven fallback. */}
           {project.body ? (
-            <BodyMarkdown body={project.body} />
+            <BodyMarkdown body={pick(project.body, lang)} />
           ) : (
-            <FallbackBody project={project} tags={tags} />
+            <FallbackBody project={project} tags={enTags} lang={lang} />
           )}
 
           {/* Media gallery — images, videos, and embeds, in the order
@@ -251,7 +259,7 @@ function ProjectArticle({ project, related }: { project: ProjectItem; related: P
                     style={{ background: "var(--surface-elevated)" }}
                   >
                     <ExternalLink size={14} className="ink-icon" />
-                    <span>{l.label}</span>
+                    <span>{pick(l.label, lang)}</span>
                   </a>
                 ))}
               </div>
@@ -294,7 +302,7 @@ function ProjectArticle({ project, related }: { project: ProjectItem; related: P
                         className="text-base"
                         style={{ color: "var(--ink)", fontFamily: "var(--font-display)" }}
                       >
-                        <span className="ink-underline-hover">{r.title.toLowerCase()}</span>
+                        <span className="ink-underline-hover">{pick(r.title, lang).toLowerCase()}</span>
                       </span>
                     </Link>
                   </li>
@@ -323,12 +331,12 @@ function BodyMarkdown({ body }: { body: string }) {
   )
 }
 
-function FallbackBody({ project, tags }: { project: ProjectItem; tags: string[] }) {
+function FallbackBody({ project, tags, lang }: { project: ProjectItem; tags: string[]; lang: string }) {
   return (
     <>
       <Block title="context">
         <p>
-          {project.description} It started in {project.date.toLowerCase()} and grew into
+          {pick(project.description, lang)} It started in {project.date.toLowerCase()} and grew into
           the version you see above. The thing I keep coming back to is what the
           constraints did to the final shape — every tradeoff is visible if you know
           where to look.
@@ -366,13 +374,14 @@ function FallbackBody({ project, tags }: { project: ProjectItem; tags: string[] 
 }
 
 function MediaBlock({ media }: { media: Media }) {
+  const { lang } = useI18n()
   if (media.type === "image") {
     return (
       <figure className="relative">
         <div className="relative overflow-hidden" style={{ zIndex: 35 }}>
           <img
             src={media.src}
-            alt={media.alt ?? ""}
+            alt={pick(media.alt, lang)}
             loading="lazy"
             className="block w-full"
             style={{ maxHeight: "75vh", objectFit: "cover" }}
@@ -383,7 +392,7 @@ function MediaBlock({ media }: { media: Media }) {
             style={{ border: "2px solid var(--ink)", filter: "url(#ink-wobble-strong)" }}
           />
         </div>
-        {media.caption && <Caption>{media.caption}</Caption>}
+        {media.caption && <Caption>{pick(media.caption, lang)}</Caption>}
       </figure>
     )
   }
@@ -405,7 +414,7 @@ function MediaBlock({ media }: { media: Media }) {
             style={{ border: "2px solid var(--ink)", filter: "url(#ink-wobble-strong)" }}
           />
         </div>
-        {media.caption && <Caption>{media.caption}</Caption>}
+        {media.caption && <Caption>{pick(media.caption, lang)}</Caption>}
       </figure>
     )
   }
@@ -417,7 +426,7 @@ function MediaBlock({ media }: { media: Media }) {
         style={{ zIndex: 35 }}
         dangerouslySetInnerHTML={{ __html: media.html }}
       />
-      {media.caption && <Caption>{media.caption}</Caption>}
+      {media.caption && <Caption>{pick(media.caption, lang)}</Caption>}
     </figure>
   )
 }

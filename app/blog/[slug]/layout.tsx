@@ -1,11 +1,12 @@
 import type { Metadata } from 'next'
 import { readFileSync } from 'fs'
 import { join } from 'path'
+import { pick, type Localized } from '@/lib/i18n/localize'
 
 type Post = {
   id: string
-  title?: string
-  excerpt?: string
+  title?: Localized
+  excerpt?: Localized
 }
 
 function getPost(slug: string): Post | null {
@@ -28,13 +29,15 @@ export async function generateMetadata({
   if (!post) {
     return { title: 'Writing' }
   }
+  const title = pick(post.title, 'en') || 'Writing'
+  const description = pick(post.excerpt, 'en')
   return {
-    title: post.title ?? 'Writing',
-    description: post.excerpt,
+    title,
+    description,
     alternates: { canonical: `/blog/${slug}` },
     openGraph: {
-      title: `${post.title ?? 'Writing'} | zenbauhaus`,
-      description: post.excerpt,
+      title: `${title} | zenbauhaus`,
+      description,
       url: `https://zenbauhaus.vercel.app/blog/${slug}`,
       type: 'article',
     },

@@ -22,6 +22,8 @@ import { suspend } from 'suspend-react'
 import { easing, geometry } from 'maath'
 import portfolioData from '../../public/portfolio.json'
 import { RoundedBox } from '@react-three/drei'
+import { useI18n } from '@/lib/i18n/provider'
+import { pick } from '@/lib/i18n/localize'
 
 extend(geometry)
 extend({ PlaneGeometry })
@@ -172,6 +174,7 @@ export default function Page() {
 
   function ActiveCard({ hovered, selected, setSelected, isModalBig, setIsModalBig, onClickAway, ...props }) {
     const ref = useRef()
+    const { lang } = useI18n()
     const [hoveredImage, setHoveredImage] = useState(false)
     const handleClickAway = () => {
       setIsModalBig(false)
@@ -207,7 +210,7 @@ export default function Page() {
               outlineBlur={0.7}
               outlineWidth={0.02}
             >
-              {selected.description}
+              {pick(selected.description, lang)}
             </Text>
             {selected.link && (
               <Text
@@ -243,7 +246,7 @@ export default function Page() {
                 scale={[7, 7, 1]}
                 url={selected.image || ''}
                 side={THREE.DoubleSide}
-                alt={selected.title}
+                alt={pick(selected.title, lang)}
                 onPointerEnter={() => setHoveredImage(true)}
                 onPointerLeave={() => setHoveredImage(false)}
               />
@@ -283,7 +286,7 @@ export default function Page() {
               color='white'
               maxWidth={5} // Set maxWidth to control text wrapping
             >
-              {hovered.title}
+              {pick(hovered.title, lang)}
             </Text>
             <Image
               transparent
@@ -292,7 +295,7 @@ export default function Page() {
               scale={[3, 3, 1]}
               url={hovered.image || ''}
               side={THREE.DoubleSide}
-              alt={hovered.title}
+              alt={pick(hovered.title, lang)}
               onClick={handleClick}
             />
           </>
