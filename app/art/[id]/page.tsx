@@ -1,6 +1,5 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
 import { motion } from "motion/react"
@@ -10,6 +9,7 @@ import { PageLoader } from "@/components/page-loader"
 import { InkLine } from "@/components/ink-line"
 import { useI18n } from "@/lib/i18n/provider"
 import { pick, type Localized } from "@/lib/i18n/localize"
+import artData from "../../../public/art.json"
 
 interface SeriesLink {
   label: Localized
@@ -26,28 +26,15 @@ interface Series {
   links?: SeriesLink[]
 }
 
+// Bundled at build time — no runtime fetch that can fail or come back empty.
+const ALL = artData as unknown as Series[]
+
 export default function ArtSeriesPage() {
   const { lang } = useI18n()
   const params = useParams()
   const id = String(params?.id ?? "")
-  const [all, setAll] = useState<Series[]>([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    let ignore = false
-    fetch("/art.json")
-      .then((r) => r.json())
-      .then((d) => {
-        if (!ignore) setAll(Array.isArray(d) ? d : [])
-      })
-      .catch(() => {})
-      .finally(() => {
-        if (!ignore) setLoading(false)
-      })
-    return () => {
-      ignore = true
-    }
-  }, [])
+  const all = ALL
+  const loading = false
 
   const index = all.findIndex((s) => s.id === id)
   const series = index >= 0 ? all[index] : null

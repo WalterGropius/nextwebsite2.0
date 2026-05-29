@@ -1,15 +1,14 @@
 "use client"
 
-import { useEffect, useState } from "react"
 import Link from "next/link"
-import { motion, useInView } from "motion/react"
-import { useRef } from "react"
+import { motion } from "motion/react"
 import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
 import { MotionText } from "@/components/motion-text"
 import { InkLine } from "@/components/ink-line"
 import { useI18n } from "@/lib/i18n/provider"
 import { pick, type Localized } from "@/lib/i18n/localize"
+import artData from "../../public/art.json"
 
 interface Series {
   id: string
@@ -21,28 +20,13 @@ interface Series {
   images: string[]
 }
 
+// Bundled at build time (not fetched) so the grid can never render empty
+// because of a runtime fetch failure or a stale CDN copy.
+const SERIES = artData as unknown as Series[]
+
 export default function ArtPage() {
   const { lang } = useI18n()
-  const [series, setSeries] = useState<Series[]>([])
-  const [loading, setLoading] = useState(true)
-  const ref = useRef<HTMLDivElement | null>(null)
-  const inView = useInView(ref, { once: true, amount: 0.05 })
-
-  useEffect(() => {
-    let ignore = false
-    fetch("/art.json")
-      .then((r) => r.json())
-      .then((d) => {
-        if (!ignore) setSeries(Array.isArray(d) ? d : [])
-      })
-      .catch(() => {})
-      .finally(() => {
-        if (!ignore) setLoading(false)
-      })
-    return () => {
-      ignore = true
-    }
-  }, [])
+  const series = SERIES
 
   return (
     <PageLoader>
@@ -76,18 +60,14 @@ export default function ArtPage() {
             <InkLine fade={false} thickness={1.2} />
           </div>
 
-          {loading ? (
-            <p className="py-20 text-center" style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}>
-              …
-            </p>
-          ) : (
-            <div ref={ref} className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 lg:grid-cols-3">
               {series.map((s, i) => (
                 <motion.div
                   key={s.id}
                   initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
-                  animate={inView ? { opacity: 1, y: 0, filter: "blur(0px)" } : {}}
-                  transition={{ type: "spring", stiffness: 170, damping: 24, delay: 0.04 * i }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  viewport={{ once: true, amount: 0.05, margin: "0px 0px -10% 0px" }}
+                  transition={{ type: "spring", stiffness: 170, damping: 24, delay: 0.03 * (i % 6) }}
                   style={{ position: "relative", zIndex: 36 }}
                 >
                   <Link href={`/art/${s.id}`} className="group block">
@@ -127,8 +107,7 @@ export default function ArtPage() {
                   </Link>
                 </motion.div>
               ))}
-            </div>
-          )}
+          </div>
 
           <div className="mt-12 flex flex-wrap gap-4">
             <a href="/artBauer.pdf" target="_blank" rel="noopener noreferrer" className="btn-secondary">
