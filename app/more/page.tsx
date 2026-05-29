@@ -390,26 +390,74 @@ export default function MorePage() {
           className="section-container pb-24 pt-28 sm:pt-32"
           style={{ position: "relative", zIndex: 35 }}
         >
-          <header className="mb-16">
-            <h1
-              className="text-[clamp(3rem,8vw,6rem)] leading-[0.9]"
-              style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
+          <header className="mb-16 grid items-end gap-8 md:grid-cols-[1.4fr_1fr]">
+            <div>
+              <h1
+                className="text-[clamp(3rem,8vw,6rem)] leading-[0.9]"
+                style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
+              >
+                <MotionText text="more" split="char" stagger={0.05} />
+              </h1>
+              <motion.p
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.9, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="mt-4 max-w-2xl text-lg sm:text-xl"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  color: "var(--text-muted)",
+                  lineHeight: 1.55,
+                }}
+              >
+                Not a site map — the nav has those. This is the off-the-record half: what i&rsquo;m into now, the inputs that shaped the work, the things i&rsquo;m pushing against, the ones i&rsquo;m bad at, the quiet weights and the antidotes. Read it like a friend&rsquo;s notebook, not a CV.
+              </motion.p>
+            </div>
+            {/* two overlapping frames, tipped opposite ways — a small
+                collage so the masthead opens on work, not whitespace. */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.96 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="relative mx-auto hidden h-56 w-full max-w-sm md:block"
+              style={{ position: "relative", zIndex: 36 }}
             >
-              <MotionText text="more" split="char" stagger={0.05} />
-            </h1>
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="mt-4 max-w-2xl text-lg sm:text-xl"
-              style={{
-                fontFamily: "var(--font-display)",
-                color: "var(--text-muted)",
-                lineHeight: 1.55,
-              }}
-            >
-              Not a site map — the nav has those. This is the off-the-record half: what i&rsquo;m into now, the inputs that shaped the work, the things i&rsquo;m pushing against, the ones i&rsquo;m bad at, the quiet weights and the antidotes. Read it like a friend&rsquo;s notebook, not a CV.
-            </motion.p>
+              <span
+                className="absolute left-2 top-0 block w-2/5 overflow-hidden"
+                style={{
+                  aspectRatio: "3 / 4",
+                  border: "1.5px solid var(--ink)",
+                  filter: "url(#ink-wobble)",
+                  transform: "rotate(-3deg)",
+                }}
+              >
+                <img
+                  src="/art/surfaces/030.webp"
+                  alt=""
+                  aria-hidden
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 size-full object-cover"
+                />
+              </span>
+              <span
+                className="absolute right-0 top-8 block w-1/2 overflow-hidden"
+                style={{
+                  aspectRatio: "4 / 3",
+                  border: "1.5px solid var(--ink)",
+                  filter: "url(#ink-wobble)",
+                  transform: "rotate(2.4deg)",
+                }}
+              >
+                <img
+                  src="/art/weird/060.webp"
+                  alt=""
+                  aria-hidden
+                  loading="lazy"
+                  decoding="async"
+                  className="absolute inset-0 size-full object-cover"
+                />
+              </span>
+            </motion.div>
           </header>
 
           <div className="my-10 opacity-50" style={{ color: "var(--ink)" }}>
@@ -439,28 +487,31 @@ export default function MorePage() {
               className="grid gap-3 sm:gap-4 md:grid-cols-2"
               style={{ color: "var(--ink)" }}
             >
-              {NOW.map((n) => (
+              {NOW.map((n, i) => (
                 <div
                   key={n.k}
-                  className="border-l-2 py-1.5 pl-4"
+                  className="flex items-start gap-4 border-l-2 py-1.5 pl-4"
                   style={{ borderColor: "var(--border-strong)" }}
                 >
-                  <dt
-                    className="mb-0.5 text-[0.65rem] uppercase tracking-[0.3em]"
-                    style={{ color: "var(--text-muted)" }}
-                  >
-                    {n.k}
-                  </dt>
-                  <dd
-                    className="text-base sm:text-lg"
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      color: "var(--ink)",
-                      lineHeight: 1.45,
-                    }}
-                  >
-                    {n.v}
-                  </dd>
+                  <Thumb seed={n.k} offset={i} className="w-16 sm:w-20" />
+                  <div>
+                    <dt
+                      className="mb-0.5 text-[0.65rem] uppercase tracking-[0.3em]"
+                      style={{ color: "var(--text-muted)" }}
+                    >
+                      {n.k}
+                    </dt>
+                    <dd
+                      className="text-base sm:text-lg"
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        color: "var(--ink)",
+                        lineHeight: 1.45,
+                      }}
+                    >
+                      {n.v}
+                    </dd>
+                  </div>
                 </div>
               ))}
             </dl>
@@ -604,37 +655,49 @@ export default function MorePage() {
                   loading…
                 </p>
               ) : (
-                posts.map((p) => (
-                  <article key={p.id}>
-                    <div
-                      className="mb-2 text-xs uppercase tracking-[0.3em]"
-                      style={{ color: "var(--text-muted)" }}
-                    >
-                      {fmtDate(p.date)}
-                      {p.tags && <>&nbsp;*&nbsp;{pick(p.tags, lang)}</>}
-                    </div>
-                    <Link href={`/blog/${p.id}`} className="group block">
-                      <h3
-                        className="text-2xl sm:text-3xl"
+                posts.map((p, i) => (
+                  <article key={p.id} className="flex items-start gap-5">
+                    <Thumb
+                      seed={p.id}
+                      href={`/blog/${p.id}`}
+                      internal
+                      offset={i * 5}
+                      className="w-24 sm:w-32"
+                    />
+                    <div>
+                      <div
+                        className="mb-2 text-xs uppercase tracking-[0.3em]"
+                        style={{ color: "var(--text-muted)" }}
+                      >
+                        {fmtDate(p.date)}
+                        {p.tags && <>&nbsp;*&nbsp;{pick(p.tags, lang)}</>}
+                      </div>
+                      <Link href={`/blog/${p.id}`} className="group block">
+                        <h3
+                          className="text-2xl sm:text-3xl"
+                          style={{
+                            fontFamily: "var(--font-display)",
+                            color: "var(--ink)",
+                            lineHeight: 1.1,
+                          }}
+                        >
+                          <span className="ink-underline-hover">{pick(p.title, lang)}</span>
+                        </h3>
+                      </Link>
+                      <p
+                        className="mt-3 max-w-3xl"
                         style={{
                           fontFamily: "var(--font-display)",
-                          color: "var(--ink)",
-                          lineHeight: 1.1,
+                          color: "var(--text-muted)",
+                          lineHeight: 1.55,
                         }}
                       >
-                        <span className="ink-underline-hover">{pick(p.title, lang)}</span>
-                      </h3>
-                    </Link>
-                    <p
-                      className="mt-3 max-w-3xl"
-                      style={{
-                        fontFamily: "var(--font-display)",
-                        color: "var(--text-muted)",
-                        lineHeight: 1.55,
-                      }}
-                    >
-                      {pick(p.excerpt, lang)}
-                    </p>
+                        {pick(p.excerpt, lang)}
+                      </p>
+                      <div className="mt-3">
+                        <CtaButton href={`/blog/${p.id}`} label="read it" internal />
+                      </div>
+                    </div>
                   </article>
                 ))
               )}
@@ -655,28 +718,31 @@ export default function MorePage() {
               className="grid gap-4 sm:gap-6 md:grid-cols-2"
               style={{ color: "var(--ink)" }}
             >
-              {ANCHORS.map((a) => (
+              {ANCHORS.map((a, i) => (
                 <div
                   key={a.k}
-                  className="border-l-2 py-2 pl-4"
+                  className="flex items-start gap-4 border-l-2 py-2 pl-4"
                   style={{ borderColor: "var(--border-strong)" }}
                 >
-                  <dt
-                    className="mb-1 text-xs uppercase tracking-[0.3em]"
-                    style={{ color: "var(--text-muted)" }}
-                  >
-                    {a.k}
-                  </dt>
-                  <dd
-                    className="text-base sm:text-lg"
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      color: "var(--ink)",
-                      lineHeight: 1.55,
-                    }}
-                  >
-                    {a.v}
-                  </dd>
+                  <Thumb seed={a.k} offset={i * 3} className="w-20 sm:w-24" />
+                  <div>
+                    <dt
+                      className="mb-1 text-xs uppercase tracking-[0.3em]"
+                      style={{ color: "var(--text-muted)" }}
+                    >
+                      {a.k}
+                    </dt>
+                    <dd
+                      className="text-base sm:text-lg"
+                      style={{
+                        fontFamily: "var(--font-display)",
+                        color: "var(--ink)",
+                        lineHeight: 1.55,
+                      }}
+                    >
+                      {a.v}
+                    </dd>
+                  </div>
                 </div>
               ))}
             </dl>
@@ -755,6 +821,101 @@ function CtaButton({
   ) : (
     <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
       {inner}
+    </a>
+  )
+}
+
+// =====================================================================
+//  Thumb — a deterministic scrap of real work for any list item that
+//  would otherwise be text-only. The label is hashed to a stable frame,
+//  ratio and tilt from the archive, so every line carries an image
+//  without a hydration-tripping random or a hand-assigned path per item.
+// =====================================================================
+
+const THUMB_POOL: string[] = [
+  "/art/surfaces/008.webp", "/art/weird/014.webp", "/art/landscape/021.webp",
+  "/art/decay/006.webp", "/art/reflections/018.webp", "/art/stalking/011.webp",
+  "/art/acrylic/003.webp", "/art/surfaces/077.webp", "/art/weird/045.webp",
+  "/art/landscape/099.webp", "/art/decay/028.webp", "/art/reflections/041.webp",
+  "/art/stalking/072.webp", "/art/acrylic/019.webp", "/art/surfaces/150.webp",
+  "/art/weird/180.webp", "/art/landscape/133.webp", "/art/decay/055.webp",
+  "/art/reflections/063.webp", "/art/stalking/100.webp", "/art/surfaces/210.webp",
+  "/art/weird/220.webp", "/art/landscape/058.webp", "/art/acrylic/025.webp",
+  "/art/surfaces/260.webp", "/art/weird/099.webp",
+]
+const THUMB_RATIOS = ["1 / 1", "3 / 4", "4 / 3", "4 / 5", "5 / 4", "2 / 3"]
+const THUMB_TILTS = ["-2.4deg", "1.8deg", "-1.2deg", "2.2deg", "-1.8deg", "1.4deg"]
+
+function hashSeed(s: string): number {
+  let h = 0
+  for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0
+  return h
+}
+
+// A sensible three-word-max CTA from the link's flavour, so a list of
+// destinations doesn't read "open it" twenty times. Explicit item.cta
+// always wins.
+function defaultCta(href: string): string {
+  if (/youtube|youtu\.be|spotify|soundcloud/.test(href)) return "hear it"
+  if (/wikipedia/.test(href)) return "read it"
+  if (/github/.test(href)) return "see code"
+  if (/instagram/.test(href)) return "follow"
+  if (/lichess/.test(href)) return "play me"
+  return "open it"
+}
+
+function Thumb({
+  seed,
+  href,
+  internal = false,
+  offset = 0,
+  className = "w-20 sm:w-24",
+}: {
+  seed: string
+  href?: string
+  internal?: boolean
+  // nudge into a different slice of the pool so neighbouring lines don't
+  // land on the same frame.
+  offset?: number
+  className?: string
+}) {
+  const h = hashSeed(seed) + offset
+  const src = THUMB_POOL[h % THUMB_POOL.length]
+  const ratio = THUMB_RATIOS[h % THUMB_RATIOS.length]
+  const tilt = THUMB_TILTS[h % THUMB_TILTS.length]
+  const frame = (
+    <span
+      className={`relative block shrink-0 overflow-hidden transition-transform duration-500 ease-out group-hover/thumb:!rotate-0 ${className}`}
+      style={{ aspectRatio: ratio, transform: `rotate(${tilt})` }}
+    >
+      <img
+        src={src}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        decoding="async"
+        className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-out group-hover/thumb:scale-[1.06]"
+      />
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{ border: "1.5px solid var(--ink)", filter: "url(#ink-wobble)" }}
+      />
+    </span>
+  )
+  if (!href) return <span className="group/thumb block shrink-0">{frame}</span>
+  return internal ? (
+    <Link href={href} className="group/thumb block shrink-0">
+      {frame}
+    </Link>
+  ) : (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group/thumb block shrink-0"
+    >
+      {frame}
     </a>
   )
 }
@@ -895,7 +1056,7 @@ function ZigFeature({ item, side }: { item: Item; side: "left" | "right" }) {
         </p>
         {item.href && (
           <div className="mt-4">
-            <CtaButton href={item.href} label={item.cta ?? "open it"} />
+            <CtaButton href={item.href} label={item.cta ?? defaultCta(item.href)} />
           </div>
         )}
       </div>
@@ -903,17 +1064,18 @@ function ZigFeature({ item, side }: { item: Item; side: "left" | "right" }) {
   )
 }
 
+// Compact entry: a small framed scrap of work on the left, then title,
+// note and — for anything that links out — a clear CTA button. So even
+// the densest list reads as image + words + a way in, never bare text.
 function Entry({ item }: { item: Item }) {
   const TitleEl = item.href ? (
     <a
       href={item.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="inline-flex items-baseline gap-1.5"
       style={{ color: "var(--ink)", fontFamily: "var(--font-display)" }}
     >
       <span className="ink-underline-hover">{item.name}</span>
-      <ExternalLink size={12} className="ink-icon translate-y-[1px] opacity-60" />
     </a>
   ) : (
     <span style={{ color: "var(--ink)", fontFamily: "var(--font-display)" }}>
@@ -922,20 +1084,28 @@ function Entry({ item }: { item: Item }) {
   )
 
   return (
-    <div className="flex flex-col gap-1">
-      <div className="text-lg sm:text-xl" style={{ lineHeight: 1.1 }}>
-        {TitleEl}
+    <div className="flex items-start gap-4">
+      <Thumb seed={item.name} href={item.href} />
+      <div className="flex flex-col gap-1.5">
+        <div className="text-lg sm:text-xl" style={{ lineHeight: 1.1 }}>
+          {TitleEl}
+        </div>
+        <p
+          className="text-sm sm:text-base"
+          style={{
+            color: "var(--text-muted)",
+            fontFamily: "var(--font-display)",
+            lineHeight: 1.5,
+          }}
+        >
+          {item.note}
+        </p>
+        {item.href && (
+          <div className="mt-1">
+            <CtaButton href={item.href} label={item.cta ?? defaultCta(item.href)} />
+          </div>
+        )}
       </div>
-      <p
-        className="text-sm sm:text-base"
-        style={{
-          color: "var(--text-muted)",
-          fontFamily: "var(--font-display)",
-          lineHeight: 1.5,
-        }}
-      >
-        {item.note}
-      </p>
     </div>
   )
 }
@@ -1035,22 +1205,47 @@ function TagList({
           — {title}
         </h2>
       </div>
-      <ul className="flex flex-wrap gap-3" aria-label={title}>
-        {items.map((line, i) => (
-          <li
-            key={`${i}-${line.slice(0, 12)}`}
-            className="px-4 py-2 text-sm sm:text-base"
+      <div className="grid items-start gap-6 sm:gap-8 md:grid-cols-[1fr_2fr]">
+        <figure
+          className="md:sticky md:top-28"
+          style={{ position: "relative", zIndex: 36 }}
+        >
+          <div
+            className="relative overflow-hidden transition-transform duration-500 ease-out hover:!rotate-0"
             style={{
-              fontFamily: "var(--font-display)",
-              color: "var(--ink)",
+              aspectRatio: "4 / 5",
               border: "1.5px solid var(--ink)",
               filter: "url(#ink-wobble)",
+              transform: "rotate(-1.6deg)",
             }}
           >
-            ✕&nbsp;&nbsp;{line}
-          </li>
-        ))}
-      </ul>
+            <img
+              src="/art/decay/041.webp"
+              alt=""
+              aria-hidden
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 size-full object-cover"
+            />
+          </div>
+        </figure>
+        <ul className="flex flex-wrap content-start gap-3" aria-label={title}>
+          {items.map((line, i) => (
+            <li
+              key={`${i}-${line.slice(0, 12)}`}
+              className="px-4 py-2 text-sm sm:text-base"
+              style={{
+                fontFamily: "var(--font-display)",
+                color: "var(--ink)",
+                border: "1.5px solid var(--ink)",
+                filter: "url(#ink-wobble)",
+              }}
+            >
+              ✕&nbsp;&nbsp;{line}
+            </li>
+          ))}
+        </ul>
+      </div>
       {note && (
         <p
           className="mt-5 max-w-2xl text-xs uppercase tracking-[0.3em]"
