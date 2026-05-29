@@ -15,6 +15,10 @@ interface SeriesLink {
   label: Localized
   href: string
 }
+interface SeriesEmbed {
+  type: "youtube" | "sketchfab"
+  id: string
+}
 interface Series {
   id: string
   title: Localized
@@ -24,6 +28,13 @@ interface Series {
   cover: string
   images: string[]
   links?: SeriesLink[]
+  embeds?: SeriesEmbed[]
+}
+
+function embedSrc(e: SeriesEmbed): string {
+  return e.type === "youtube"
+    ? `https://www.youtube.com/embed/${e.id}?rel=0`
+    : `https://sketchfab.com/playlists/embed?collection=${e.id}&autostart=0`
 }
 
 // Bundled at build time — no runtime fetch that can fail or come back empty.
@@ -105,6 +116,37 @@ export default function ArtSeriesPage() {
               <div className="my-8 opacity-50" style={{ color: "var(--ink)" }}>
                 <InkLine fade={false} thickness={1.2} />
               </div>
+
+              {/* The actual media — video / 3d — leads the page when present.
+                  Lifted above the paper grid (z-35) so it reads at full opacity. */}
+              {series.embeds && series.embeds.length > 0 && (
+                <div className="mb-10 flex flex-col gap-6">
+                  {series.embeds.map((e) => (
+                    <motion.div
+                      key={`${e.type}-${e.id}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                      className="relative overflow-hidden"
+                      style={{ border: "1.5px solid var(--ink)", filter: "url(#ink-wobble)", zIndex: 35 }}
+                    >
+                      <iframe
+                        src={embedSrc(e)}
+                        title={`${pick(series.title, lang)} — ${e.type}`}
+                        loading="lazy"
+                        allow="autoplay; fullscreen; xr-spatial-tracking"
+                        allowFullScreen
+                        className="block w-full"
+                        style={
+                          e.type === "youtube"
+                            ? { aspectRatio: "16 / 9", background: "var(--surface-dark)" }
+                            : { height: "clamp(440px, 65vh, 760px)", background: "var(--surface-dark)" }
+                        }
+                      />
+                    </motion.div>
+                  ))}
+                </div>
+              )}
 
               {/* Image gallery — true aspect, single column on phones,
                   two up on wider screens. The book is the content. */}
