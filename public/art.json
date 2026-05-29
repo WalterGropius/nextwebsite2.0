@@ -1296,42 +1296,27 @@
       "fr": "Pietà"
     },
     "medium": {
-      "cs": "video · 3D sken",
-      "en": "video · 3D scan",
-      "fr": "vidéo · scan 3D"
+      "cs": "video",
+      "en": "video",
+      "fr": "vidéo"
     },
     "home": {
-      "cs": "3D kolekce na Sketchfabu · video na YouTube",
-      "en": "3D collection on Sketchfab · video on YouTube",
-      "fr": "collection 3D sur Sketchfab · vidéo sur YouTube"
+      "cs": "video na cloudu",
+      "en": "video in the cloud",
+      "fr": "vidéo dans le cloud"
     },
     "statement": {
       "cs": "Toto je vážné video s vážnou hudbou. Stylisticky atypické a vymezené skejtové video natočené na památníku, který byl zničen, nahrazen a zapomenut. Pieta za mramorové obklady, které skončily v drtiči sutin — a za spot, který skončil na smetišti dějin.",
       "en": "This is a serious video, with serious music. A stylistically atypical, deliberately bounded skate video shot on a memorial that was destroyed, replaced and forgotten. A requiem for the marble cladding that ended up in a rubble crusher — and for a spot that ended up on the scrapheap of history.",
       "fr": "Ceci est une vidéo sérieuse, avec une musique sérieuse. Une vidéo de skate stylistiquement atypique et volontairement circonscrite, tournée sur un monument détruit, remplacé et oublié. Un requiem pour les plaques de marbre finies au concasseur de gravats — et pour un spot fini sur le tas de rebut de l'Histoire."
     },
-    "images": [
-      "/art/img-050.webp",
-      "/art/img-052.webp",
-      "/art/img-054.webp",
-      "/art/img-056.webp",
-      "/art/img-058.webp"
-    ],
-    "links": [
-      {
-        "label": {
-          "cs": "3D kolekce",
-          "en": "3D collection",
-          "fr": "collection 3D"
-        },
-        "href": "https://sketchfab.com/zenbauhaus"
-      }
-    ],
+    "images": [],
     "cover": "/art/img-050.webp",
     "embeds": [
       {
-        "type": "sketchfab",
-        "id": "ff58263bbe42472fb3d657a709d71d81"
+        "type": "video",
+        "src": "/art/requiem/pieta.mp4",
+        "poster": "/art/img-050.webp"
       }
     ]
   },

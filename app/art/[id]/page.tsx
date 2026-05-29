@@ -1,9 +1,10 @@
 "use client"
 
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { useParams } from "next/navigation"
-import { motion } from "motion/react"
-import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react"
+import { motion, AnimatePresence } from "motion/react"
+import { ArrowLeft, ArrowRight, ExternalLink, X } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
 import { InkLine } from "@/components/ink-line"
@@ -16,8 +17,10 @@ interface SeriesLink {
   href: string
 }
 interface SeriesEmbed {
-  type: "youtube" | "sketchfab"
-  id: string
+  type: "youtube" | "sketchfab" | "video"
+  id?: string
+  src?: string
+  poster?: string
 }
 interface Series {
   id: string
@@ -31,7 +34,7 @@ interface Series {
   embeds?: SeriesEmbed[]
 }
 
-function embedSrc(e: SeriesEmbed): string {
+function iframeSrc(e: SeriesEmbed): string {
   return e.type === "youtube"
     ? `https://www.youtube.com/embed/${e.id}?rel=0`
     : `https://sketchfab.com/playlists/embed?collection=${e.id}&autostart=0`
@@ -50,6 +53,19 @@ export default function ArtSeriesPage() {
   const index = all.findIndex((s) => s.id === id)
   const series = index >= 0 ? all[index] : null
   const next = all.length ? all[(index + 1) % all.length] : null
+
+  const [lightbox, setLightbox] = useState<string | null>(null)
+  useEffect(() => {
+    if (!lightbox) return
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setLightbox(null)
+    window.addEventListener("keydown", onKey)
+    const prev = document.body.style.overflow
+    document.body.style.overflow = "hidden"
+    return () => {
+      window.removeEventListener("keydown", onKey)
+      document.body.style.overflow = prev
+    }
+  }, [lightbox])
 
   return (
     <PageLoader>
@@ -121,28 +137,40 @@ export default function ArtSeriesPage() {
                   Lifted above the paper grid (z-35) so it reads at full opacity. */}
               {series.embeds && series.embeds.length > 0 && (
                 <div className="mb-10 flex flex-col gap-6">
-                  {series.embeds.map((e) => (
+                  {series.embeds.map((e, ei) => (
                     <motion.div
-                      key={`${e.type}-${e.id}`}
+                      key={`${e.type}-${e.id ?? e.src ?? ei}`}
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
                       className="relative overflow-hidden"
                       style={{ border: "1.5px solid var(--ink)", filter: "url(#ink-wobble)", zIndex: 35 }}
                     >
-                      <iframe
-                        src={embedSrc(e)}
-                        title={`${pick(series.title, lang)} — ${e.type}`}
-                        loading="lazy"
-                        allow="autoplay; fullscreen; xr-spatial-tracking"
-                        allowFullScreen
-                        className="block w-full"
-                        style={
-                          e.type === "youtube"
-                            ? { aspectRatio: "16 / 9", background: "var(--surface-dark)" }
-                            : { height: "clamp(440px, 65vh, 760px)", background: "var(--surface-dark)" }
-                        }
-                      />
+                      {e.type === "video" ? (
+                        <video
+                          src={e.src}
+                          poster={e.poster}
+                          controls
+                          playsInline
+                          preload="metadata"
+                          className="block w-full"
+                          style={{ background: "var(--surface-dark)", maxHeight: "80vh" }}
+                        />
+                      ) : (
+                        <iframe
+                          src={iframeSrc(e)}
+                          title={`${pick(series.title, lang)} — ${e.type}`}
+                          loading="lazy"
+                          allow="autoplay; fullscreen; xr-spatial-tracking"
+                          allowFullScreen
+                          className="block w-full"
+                          style={
+                            e.type === "youtube"
+                              ? { aspectRatio: "16 / 9", background: "var(--surface-dark)" }
+                              : { height: "clamp(440px, 65vh, 760px)", background: "var(--surface-dark)" }
+                          }
+                        />
+                      )}
                     </motion.div>
                   ))}
                 </div>
@@ -153,13 +181,20 @@ export default function ArtSeriesPage() {
               <div className="columns-1 gap-5 sm:columns-2 [&>figure]:mb-5">
                 {series.images.map((src, i) => (
                   <figure key={src} className="relative break-inside-avoid overflow-hidden" style={{ zIndex: 35 }}>
-                    <img
-                      src={src}
-                      alt={`${pick(series.title, lang)} — ${i + 1}`}
-                      loading={i < 2 ? "eager" : "lazy"}
-                      decoding="async"
-                      className="block w-full"
-                    />
+                    <button
+                      type="button"
+                      onClick={() => setLightbox(src)}
+                      className="block w-full cursor-zoom-in"
+                      aria-label={`${pick(series.title, lang)} — ${i + 1}`}
+                    >
+                      <img
+                        src={src}
+                        alt={`${pick(series.title, lang)} — ${i + 1}`}
+                        loading={i < 2 ? "eager" : "lazy"}
+                        decoding="async"
+                        className="block w-full"
+                      />
+                    </button>
                     <div
                       aria-hidden
                       className="pointer-events-none absolute inset-0"
@@ -189,6 +224,44 @@ export default function ArtSeriesPage() {
             </>
           )}
         </article>
+
+        <AnimatePresence>
+          {lightbox && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={() => setLightbox(null)}
+              className="fixed inset-0 flex items-center justify-center p-4 sm:p-8"
+              style={{ zIndex: 100, background: "rgba(20,18,15,0.92)", cursor: "zoom-out" }}
+              role="dialog"
+              aria-modal="true"
+            >
+              <button
+                type="button"
+                onClick={() => setLightbox(null)}
+                aria-label="close"
+                className="ink-icons absolute right-5 top-5"
+                style={{ color: "var(--paper, #f5f1e8)", zIndex: 101 }}
+              >
+                <X size={28} />
+              </button>
+              <motion.img
+                key={lightbox}
+                src={lightbox}
+                alt=""
+                initial={{ scale: 0.96, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.96, opacity: 0 }}
+                transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                onClick={(ev) => ev.stopPropagation()}
+                className="block max-h-[90vh] max-w-[92vw] object-contain"
+                style={{ cursor: "default" }}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </main>
     </PageLoader>
   )
