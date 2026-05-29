@@ -10,6 +10,7 @@ import { Philosophy } from "@/components/philosophy"
 import { Contact } from "@/components/contact"
 import { Creations } from "@/components/creations"
 import { Highlights } from "@/components/highlights"
+import { Testimonials } from "@/components/testimonials"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
@@ -127,6 +128,8 @@ export default function Home() {
           />
 
           <Manifesto />
+          <Divider />
+          <Testimonials />
           <Divider />
           <Highlights />
           <Divider />
