@@ -22,10 +22,15 @@ type Item = {
   name: string
   href?: string
   note: string
-  // featured items carry an image and break to their own row,
-  // alternating which side they hug.
+  // featured items carry an image (or a self-hosted video) and break
+  // to their own row, alternating which side they hug. Ratios vary on
+  // purpose so the column never settles into a tidy strip.
   img?: string
+  video?: string
   ratio?: string
+  // every outbound/featured link gets a plain-spoken CTA, three words
+  // max — a real button, not a hairline arrow you have to hunt for.
+  cta?: string
 }
 
 const AESTHETIC: Item[] = [
@@ -35,6 +40,7 @@ const AESTHETIC: Item[] = [
     note: "Wanderer above the Sea of Fog, in the Kunsthalle Hamburg. I've stood in front of it twice. The second time was the real one.",
     img: "/more/wanderer.jpg",
     ratio: "4 / 5",
+    cta: "read it",
   },
   {
     name: "František Kupka",
@@ -42,6 +48,7 @@ const AESTHETIC: Item[] = [
     note: "First abstract painter, if you ask a Czech. Amorpha, Fugue in Two Colors is a manual for leaving realism without losing structure.",
     img: "/more/kupka-amorpha.jpg",
     ratio: "1 / 1",
+    cta: "the painter",
   },
   {
     name: "Bauhaus",
@@ -85,6 +92,9 @@ const MUSIC: Item[] = [
     name: "Black Sabbath",
     href: "https://www.youtube.com/watch?v=0lkir-mvjqI",
     note: "Iommi lost two fingertips in a factory press at seventeen and built a genre with what was left. Disability into discipline into industry.",
+    img: "/art/decay/021.webp",
+    ratio: "4 / 5",
+    cta: "play it",
   },
   {
     name: "Frank Zappa",
@@ -103,6 +113,9 @@ const FILM: Item[] = [
     name: "David Lynch",
     href: "https://en.wikipedia.org/wiki/David_Lynch",
     note: "RIP. Mulholland Drive, top three. The daily weather report was a fifteen-year piece of conceptual art most people filed under hobby.",
+    img: "/art/reflections/012.webp",
+    ratio: "21 / 9",
+    cta: "the man",
   },
 ]
 
@@ -110,11 +123,14 @@ const SKATE: Item[] = [
   {
     name: "Skateboarding",
     note: "Twenty-three years on a board. Two broken bones, neither on a trick. I can't walk past a curb without reading the line.",
+    img: "/art/landscape/044.webp",
+    ratio: "3 / 2",
   },
   {
     name: "Andy Anderson",
     href: "https://www.instagram.com/andyandersonsk8",
     note: "Helmet on, switch everything, Old Friends Skateboards. Proof the lifestyle is a discipline you age into, not out of.",
+    cta: "follow",
   },
 ]
 
@@ -133,6 +149,9 @@ const CODE: Item[] = [
     name: "Procedural generation",
     href: "https://en.wikipedia.org/wiki/Procedural_generation",
     note: "Rules plus randomness plus iteration — maps, music, mesh, narrative. The generator is always cheaper to keep than the asset.",
+    img: "/art/weird/088.webp",
+    ratio: "1 / 1",
+    cta: "read it",
   },
   {
     name: "Garry's Mod",
@@ -151,6 +170,9 @@ const MIND: Item[] = [
     name: "Computational neuroscience",
     href: "https://en.wikipedia.org/wiki/Computational_neuroscience",
     note: "Currently mapping the cache architecture of the brain. We'll know more about ourselves in twenty years than in the last two hundred thousand.",
+    img: "/art/surfaces/120.webp",
+    ratio: "4 / 3",
+    cta: "read it",
   },
   {
     name: "Science × art",
@@ -175,6 +197,9 @@ const PRACTICE: Item[] = [
     name: "Shaolin method",
     href: "https://en.wikipedia.org/wiki/Shaolin_kung_fu",
     note: "Twenty thousand hours, one form. Under 1% reach the level you'd recognise on film. Worth knowing before you start anything serious.",
+    img: "/art/decay/033.webp",
+    ratio: "3 / 4",
+    cta: "read it",
   },
   {
     name: "Ryōkan",
@@ -198,11 +223,13 @@ const PEOPLE: Item[] = [
     name: "Sammy Obeid",
     href: "https://sammyobeid.com/",
     note: "Stand-up plus a maths degree, 1,001 consecutive nights. A serious craftsman dressed as a clown.",
+    cta: "the act",
   },
   {
     name: "Ian Carroll",
     href: "https://www.youtube.com/@IanCarrollshow",
     note: "Independent journalist who keeps pulling the threads everyone else is paid to leave alone.",
+    cta: "the show",
   },
   {
     name: "Zdislava Pokorná",
@@ -308,14 +335,14 @@ const ANCHORS: Array<{ k: string; v: string }> = [
   { k: "my values",     v: "honesty over politeness. shipping over polish. craft over speed. people over performance." },
 ]
 
-const OUT_LINKS: Array<{ href: string; title: string; sub?: string }> = [
-  { href: "https://laifea.app",                                    title: "laifea.app",   sub: "where i ship the real ones" },
-  { href: "https://github.com/WalterGropius",                      title: "github" },
-  { href: "https://linkedin.com/in/zenbauhaus",                    title: "linkedin" },
-  { href: "https://instagram.com/y4ngyin",                         title: "instagram" },
-  { href: "https://soundcloud.com/mczenbauhaus",                   title: "soundcloud",   sub: "mc zenbauhaus" },
-  { href: "https://sketchfab.com/zenbauhaus",                      title: "sketchfab" },
-  { href: "https://open.spotify.com/album/1V3m6SMvu8Bodq4scdqD3o", title: "cpt. demo ep", sub: "cover by me" },
+const OUT_LINKS: Array<{ href: string; title: string; sub?: string; cta: string }> = [
+  { href: "https://laifea.app",                                    title: "laifea.app",   sub: "where i ship the real ones", cta: "open it" },
+  { href: "https://github.com/WalterGropius",                      title: "github",                                         cta: "see code" },
+  { href: "https://linkedin.com/in/zenbauhaus",                    title: "linkedin",                                       cta: "connect" },
+  { href: "https://instagram.com/y4ngyin",                         title: "instagram",                                      cta: "follow" },
+  { href: "https://soundcloud.com/mczenbauhaus",                   title: "soundcloud",   sub: "mc zenbauhaus",             cta: "listen" },
+  { href: "https://sketchfab.com/zenbauhaus",                      title: "sketchfab",                                      cta: "explore" },
+  { href: "https://open.spotify.com/album/1V3m6SMvu8Bodq4scdqD3o", title: "cpt. demo ep", sub: "cover by me",              cta: "listen" },
 ]
 
 interface BlogPost {
@@ -493,6 +520,13 @@ export default function MorePage() {
             <InkLine fade thickness={1} />
           </div>
 
+          {/* ===== REQUIEM — the one big self-hosted video ===== */}
+          <RequiemVideo />
+
+          <div className="my-10 opacity-30" style={{ color: "var(--ink)" }}>
+            <InkLine fade thickness={1} />
+          </div>
+
           {/* ===== WHAT I'M FIGHTING — image to one side, numbered rail ===== */}
           <Fighting />
 
@@ -506,6 +540,13 @@ export default function MorePage() {
             items={NOT_GREAT}
             note="* the more useful list. anybody without one is lying about something else."
           />
+
+          <div className="my-10 opacity-30" style={{ color: "var(--ink)" }}>
+            <InkLine fade thickness={1} />
+          </div>
+
+          {/* ===== OFF THE WALL — organic painting scatter, breaks the grid ===== */}
+          <ArtScatter />
 
           <div className="my-10 opacity-30" style={{ color: "var(--ink)" }}>
             <InkLine fade thickness={1} />
@@ -525,29 +566,26 @@ export default function MorePage() {
               {OUT_LINKS.map((l) => (
                 <li
                   key={l.href}
-                  className="border-b py-3"
+                  className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 border-b py-4"
                   style={{ borderColor: "var(--border-subtle)" }}
                 >
-                  <a
-                    href={l.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-baseline justify-between gap-4"
-                  >
+                  <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
                     <span
                       className="text-lg sm:text-xl"
                       style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
                     >
-                      <span className="ink-underline-hover">{l.title}</span>
+                      {l.title}
                     </span>
-                    <span
-                      className="inline-flex items-baseline gap-2 text-xs sm:text-sm"
-                      style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}
-                    >
-                      {l.sub}
-                      <ExternalLink size={12} className="ink-icon" />
-                    </span>
-                  </a>
+                    {l.sub && (
+                      <span
+                        className="text-xs sm:text-sm"
+                        style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}
+                      >
+                        {l.sub}
+                      </span>
+                    )}
+                  </span>
+                  <CtaButton href={l.href} label={l.cta} />
                 </li>
               ))}
             </ul>
@@ -601,15 +639,8 @@ export default function MorePage() {
                 ))
               )}
             </div>
-            <div className="mt-6">
-              <Link
-                href="/blog"
-                className="inline-flex items-center gap-2 text-sm uppercase tracking-[0.3em]"
-                style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}
-              >
-                <span className="ink-underline-hover">all posts</span>
-                <ArrowRight size={14} className="ink-icon" />
-              </Link>
+            <div className="mt-7">
+              <CtaButton href="/blog" label="all posts" internal />
             </div>
           </section>
 
@@ -674,6 +705,61 @@ export default function MorePage() {
 }
 
 // =====================================================================
+//  CtaButton — the page's one link primitive. A wobbled ink box with a
+//  plain, three-word-max label and an arrow that nudges on hover, so a
+//  destination always reads as "go here", never a faint glyph. `internal`
+//  routes through next/link and swaps the out-arrow for a forward one.
+// =====================================================================
+
+function CtaButton({
+  href,
+  label,
+  internal = false,
+  className = "",
+}: {
+  href: string
+  label: string
+  internal?: boolean
+  className?: string
+}) {
+  const inner = (
+    <span
+      className="relative inline-flex items-center gap-2 px-4 py-2 text-xs uppercase tracking-[0.25em] transition-colors duration-300 sm:text-sm"
+      style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
+    >
+      <span
+        aria-hidden
+        className="pointer-events-none absolute inset-0 transition-[background] duration-300 group-hover/cta:bg-[rgba(15,17,23,0.05)]"
+        style={{ border: "1.5px solid var(--ink)", filter: "url(#ink-wobble)" }}
+      />
+      <span className="relative">{label}</span>
+      {internal ? (
+        <ArrowRight
+          size={15}
+          className="ink-icon relative transition-transform duration-300 group-hover/cta:translate-x-1"
+        />
+      ) : (
+        <ExternalLink
+          size={14}
+          className="ink-icon relative transition-transform duration-300 group-hover/cta:-translate-y-0.5"
+        />
+      )}
+    </span>
+  )
+
+  const cls = `group/cta inline-flex w-fit ${className}`
+  return internal ? (
+    <Link href={href} className={cls}>
+      {inner}
+    </Link>
+  ) : (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={cls}>
+      {inner}
+    </a>
+  )
+}
+
+// =====================================================================
 //  Sub-section: featured items (with an image) break to their own
 //  alternating row; the rest collapse into a compact two-column grid.
 // =====================================================================
@@ -733,59 +819,69 @@ function Sub({
   )
 }
 
-// A featured row: framed image on one side, title + note on the other.
-// `side` decides which edge the image hugs on desktop; on mobile the
-// image always sits on top.
+// A featured row: a framed image (or self-hosted video) on one side,
+// title + note + CTA on the other. `side` decides which edge the media
+// hugs on desktop; on mobile it always sits on top. The columns are
+// deliberately uneven and the frame is tipped a degree or two — the row
+// should look set down by hand, not snapped to a grid.
 function ZigFeature({ item, side }: { item: Item; side: "left" | "right" }) {
-  const imageRight = side === "right"
+  const mediaRight = side === "right"
+  // alternate the lean and the column split so no two featured rows
+  // share the same geometry — this is what keeps the page from reading
+  // as a tidy zig-zag template.
+  const tilt = mediaRight ? "rotate(1.3deg)" : "rotate(-1.4deg)"
+  const cols = mediaRight
+    ? "md:grid-cols-[0.92fr_1.08fr]"
+    : "md:grid-cols-[1.08fr_0.92fr]"
   return (
     <motion.div
       initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
       whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ type: "spring", stiffness: 140, damping: 24 }}
-      className="mb-10 grid items-center gap-5 sm:gap-8 md:grid-cols-2"
+      className={`mb-12 grid items-center gap-5 sm:gap-9 ${cols}`}
     >
       <figure
-        className={imageRight ? "md:order-2" : ""}
+        className={mediaRight ? "md:order-2" : ""}
         style={{ position: "relative", zIndex: 36 }}
       >
         <div
-          className="relative overflow-hidden"
+          className="relative overflow-hidden transition-transform duration-500 ease-out hover:!rotate-0"
           style={{
             aspectRatio: item.ratio ?? "4 / 3",
             border: "1.5px solid var(--ink)",
             filter: "url(#ink-wobble)",
+            transform: tilt,
           }}
         >
-          <img
-            src={item.img}
-            alt={item.name}
-            loading="lazy"
-            decoding="async"
-            className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-out hover:scale-[1.04]"
-          />
+          {item.video ? (
+            <video
+              src={item.video}
+              poster={item.img}
+              controls
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              className="absolute inset-0 size-full object-cover"
+            />
+          ) : (
+            <img
+              src={item.img}
+              alt={item.name}
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-out hover:scale-[1.04]"
+            />
+          )}
         </div>
       </figure>
 
-      <div className={imageRight ? "md:order-1" : ""}>
+      <div className={mediaRight ? "md:order-1" : ""}>
         <div className="mb-2 text-2xl sm:text-3xl" style={{ lineHeight: 1.05 }}>
-          {item.href ? (
-            <a
-              href={item.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-baseline gap-2"
-              style={{ color: "var(--ink)", fontFamily: "var(--font-display)" }}
-            >
-              <span className="ink-underline-hover">{item.name}</span>
-              <ExternalLink size={14} className="ink-icon translate-y-[1px] opacity-60" />
-            </a>
-          ) : (
-            <span style={{ color: "var(--ink)", fontFamily: "var(--font-display)" }}>
-              {item.name}
-            </span>
-          )}
+          <span style={{ color: "var(--ink)", fontFamily: "var(--font-display)" }}>
+            {item.name}
+          </span>
         </div>
         <p
           className="max-w-md text-base sm:text-lg"
@@ -797,6 +893,11 @@ function ZigFeature({ item, side }: { item: Item; side: "left" | "right" }) {
         >
           {item.note}
         </p>
+        {item.href && (
+          <div className="mt-4">
+            <CtaButton href={item.href} label={item.cta ?? "open it"} />
+          </div>
+        )}
       </div>
     </motion.div>
   )
@@ -1124,44 +1225,151 @@ function TomWaitsEmbed() {
 //  texture without weight.
 // =====================================================================
 
-const SKETCHBOOK = [
-  "/art/img-001.webp",
-  "/art/img-009.webp",
-  "/art/img-019.webp",
-  "/art/img-031.webp",
-  "/art/img-041.webp",
-  "/art/img-052.webp",
+// Each tile carries its own aspect, lean and vertical nudge so the row
+// reads as paintings laid out on a table, not thumbnails in a grid.
+const SKETCHBOOK: Array<{ src: string; ratio: string; tilt: string; shift: string }> = [
+  { src: "/art/img-001.webp", ratio: "3 / 4", tilt: "-2.2deg", shift: "sm:mt-0" },
+  { src: "/art/img-009.webp", ratio: "1 / 1", tilt: "1.6deg",  shift: "sm:mt-8" },
+  { src: "/art/img-019.webp", ratio: "4 / 5", tilt: "-1.1deg", shift: "sm:mt-2" },
+  { src: "/art/img-031.webp", ratio: "3 / 4", tilt: "2.4deg",  shift: "sm:mt-10" },
+  { src: "/art/img-041.webp", ratio: "2 / 3", tilt: "-1.8deg", shift: "sm:mt-1" },
+  { src: "/art/img-052.webp", ratio: "1 / 1", tilt: "1.2deg",  shift: "sm:mt-7" },
 ]
 
 function Sketchbook() {
   return (
     <section className="mb-16" style={{ position: "relative", zIndex: 36 }}>
-      <div className="mb-4 flex items-baseline justify-between gap-3">
+      <div className="mb-5 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-3">
         <h2
           className="text-xl uppercase tracking-[0.3em] sm:text-2xl"
           style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
         >
           — from the sketchbook
         </h2>
-        <Link
-          href="/art"
-          className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em]"
-          style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}
-        >
-          <span className="ink-underline-hover">all of it</span>
-          <ArrowRight size={13} className="ink-icon" />
-        </Link>
+        <CtaButton href="/art" label="see the work" internal />
       </div>
-      {/* horizontal scroll on phones, full grid on desktop */}
-      <div className="-mx-1 flex snap-x gap-3 overflow-x-auto pb-2 sm:grid sm:grid-cols-6 sm:overflow-visible">
-        {SKETCHBOOK.map((src) => (
+      {/* horizontal scroll on phones; an off-baseline scatter on desktop */}
+      <div className="-mx-1 flex snap-x items-start gap-3 overflow-x-auto pb-2 sm:grid sm:grid-cols-6 sm:gap-4 sm:overflow-visible">
+        {SKETCHBOOK.map((tile) => (
           <Link
-            key={src}
+            key={tile.src}
             href="/art"
-            className="group relative aspect-[3/4] w-40 shrink-0 snap-start overflow-hidden sm:w-auto"
+            className={`group relative w-40 shrink-0 snap-start overflow-hidden transition-transform duration-500 ease-out hover:!rotate-0 sm:w-auto ${tile.shift}`}
+            style={{ aspectRatio: tile.ratio, transform: `rotate(${tile.tilt})` }}
           >
             <img
-              src={src}
+              src={tile.src}
+              alt=""
+              aria-hidden
+              loading="lazy"
+              decoding="async"
+              className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+            />
+            <span
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{ border: "1.5px solid var(--ink)", filter: "url(#ink-wobble)" }}
+            />
+          </Link>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+// =====================================================================
+//  Requiem — a self-hosted moving piece (Pietà). The page's one big
+//  video: it bleeds a little past the column on desktop and sits at a
+//  slight angle so it lands as a centerpiece, not an embed in a box.
+// =====================================================================
+
+function RequiemVideo() {
+  return (
+    <section
+      className="mb-20"
+      style={{ position: "relative", zIndex: 36 }}
+    >
+      <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-3">
+        <h2
+          className="text-2xl uppercase tracking-[0.3em] sm:text-3xl"
+          style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
+        >
+          — requiem
+        </h2>
+        <CtaButton href="/art" label="more work" internal />
+      </div>
+      <figure className="sm:-mx-6 lg:-mx-16">
+        <motion.div
+          initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true, amount: 0.25 }}
+          transition={{ type: "spring", stiffness: 130, damping: 24 }}
+          className="relative overflow-hidden transition-transform duration-500 ease-out hover:!rotate-0"
+          style={{
+            aspectRatio: "16 / 9",
+            border: "1.5px solid var(--ink)",
+            filter: "url(#ink-wobble)",
+            transform: "rotate(-0.8deg)",
+          }}
+        >
+          <video
+            src="/art/requiem/pieta.mp4"
+            poster="/art/decay/050.webp"
+            controls
+            muted
+            loop
+            playsInline
+            preload="none"
+            className="absolute inset-0 size-full object-cover"
+          />
+        </motion.div>
+        <figcaption
+          className="mt-3 text-xs italic sm:text-sm"
+          style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}
+        >
+          * Pietà — a moving piece of mine. Sound optional; the loop does the talking.
+        </figcaption>
+      </figure>
+    </section>
+  )
+}
+
+// =====================================================================
+//  Art scatter — a deliberately un-gridded cluster of paintings at
+//  mixed sizes, angles and baselines, two of them bleeding past the
+//  column edge. Breaks up the text-heavy lower half and points at /art.
+// =====================================================================
+
+const SCATTER: Array<{ src: string; span: string; ratio: string; tilt: string; extra: string }> = [
+  { src: "/art/surfaces/045.webp",   span: "sm:col-span-7", ratio: "3 / 2", tilt: "-1.6deg", extra: "sm:-ml-6 lg:-ml-14 sm:mt-0" },
+  { src: "/art/weird/120.webp",      span: "sm:col-span-5", ratio: "4 / 5", tilt: "2deg",    extra: "sm:mt-12" },
+  { src: "/art/landscape/077.webp",  span: "sm:col-span-4", ratio: "1 / 1", tilt: "-2.2deg", extra: "sm:mt-3" },
+  { src: "/art/reflections/030.webp",span: "sm:col-span-5", ratio: "3 / 2", tilt: "1.4deg",  extra: "sm:mt-0" },
+  { src: "/art/stalking/060.webp",   span: "sm:col-span-3", ratio: "2 / 3", tilt: "-1deg",   extra: "sm:-mr-6 lg:-mr-14 sm:mt-9" },
+]
+
+function ArtScatter() {
+  return (
+    <section className="mb-20" style={{ position: "relative", zIndex: 36 }}>
+      <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-3">
+        <h2
+          className="text-xl uppercase tracking-[0.3em] sm:text-2xl"
+          style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
+        >
+          — off the wall
+        </h2>
+        <CtaButton href="/art" label="the whole wall" internal />
+      </div>
+      <div className="grid grid-cols-2 items-start gap-3 sm:grid-cols-12 sm:gap-5">
+        {SCATTER.map((tile) => (
+          <Link
+            key={tile.src}
+            href="/art"
+            className={`group relative block overflow-hidden transition-transform duration-500 ease-out hover:!rotate-0 ${tile.span} ${tile.extra}`}
+            style={{ aspectRatio: tile.ratio, transform: `rotate(${tile.tilt})` }}
+          >
+            <img
+              src={tile.src}
               alt=""
               aria-hidden
               loading="lazy"
