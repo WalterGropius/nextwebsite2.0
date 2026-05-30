@@ -129,7 +129,13 @@
     font-family: var(--font-body);
     background-color: var(--surface-dark);
     color: var(--text-primary);
-    overflow-x: hidden;
+    /* `overflow-x: hidden` would coerce the *other* axis to `auto` (per the
+       CSS overflow spec), turning the body into its own vertical scroll
+       container nested inside the viewport scroll — the "scroll within scroll"
+       seen on every page. `clip` still suppresses horizontal overflow but
+       establishes no scroll container, so the page scrolls only on the
+       viewport. */
+    overflow-x: clip;
     /* Slight faux-weight for body text so Zenhand reads firmer */
     -webkit-text-stroke: 0.025em currentColor;
     paint-order: stroke fill;
