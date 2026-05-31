@@ -269,7 +269,7 @@ export const cs: Dict = {
   "manifesto.line1": "dělám věci,",
   "manifesto.line2": "co by neměly",
   "manifesto.line3": "jít —",
-  "manifesto.line4": "a pustím je do světa.",
+  "manifesto.line4": "a pouštím je do světa.",
   "manifesto.body.0": "žádná škatulka.",
   "manifesto.body.1": "jednou vedu tým, co staví startup",
   "manifesto.body.2": "od nuly",
@@ -309,7 +309,7 @@ export const cs: Dict = {
   "philosophy.2.title": "samostatní agenti",
   "philosophy.2.body.0": "hoď mi",
   "philosophy.2.body.1": "vágní",
-  "philosophy.2.body.2": ", strukturálně náročný problém a odejdi. v chaosu jsem",
+  "philosophy.2.body.2": ", strukturálně náročný problém a nech mě pracovat. v chaosu jsem",
   "philosophy.2.body.3": "nejužitečnější",
   "philosophy.2.body.4": ".",
 
