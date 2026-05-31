@@ -20,8 +20,12 @@ import { pick, type Localized } from "@/lib/i18n/localize"
 
 type Item = {
   name: string
+  // stable English `name` doubles as React key + Thumb seed. `label`
+  // carries a translated display name for the concept items (Chess,
+  // Paint…); proper nouns leave it unset and display `name`.
+  label?: Localized
   href?: string
-  note: string
+  note: Localized
   // featured items carry an image (or a self-hosted video) and break
   // to their own row, alternating which side they hug. Ratios vary on
   // purpose so the column never settles into a tidy strip.
@@ -30,50 +34,92 @@ type Item = {
   ratio?: string
   // every outbound/featured link gets a plain-spoken CTA, three words
   // max — a real button, not a hairline arrow you have to hunt for.
-  cta?: string
+  cta?: Localized
 }
+
+// Shared three-word CTAs and section labels, hand-translated. The soft-n
+// glyph is avoided everywhere — the display font carries no glyph for it.
+const CTA = {
+  read: { en: "read it", cs: "přečti si", fr: "à lire" },
+  hear: { en: "hear it", cs: "poslechni", fr: "à écouter" },
+  see: { en: "see code", cs: "kód", fr: "le code" },
+  follow: { en: "follow", cs: "sleduj", fr: "suivre" },
+  play: { en: "play me", cs: "zahraj si", fr: "jouer" },
+  open: { en: "open it", cs: "otevři", fr: "ouvrir" },
+  listen: { en: "listen", cs: "poslechni", fr: "écouter" },
+  explore: { en: "explore", cs: "prozkoumej", fr: "explorer" },
+  connect: { en: "connect", cs: "spoj se", fr: "connecter" },
+} satisfies Record<string, Localized>
 
 const AESTHETIC: Item[] = [
   {
     name: "Caspar David Friedrich",
     href: "https://en.wikipedia.org/wiki/Wanderer_above_the_Sea_of_Fog",
-    note: "Wanderer above the Sea of Fog, in the Kunsthalle Hamburg. I've stood in front of it twice. The second time was the real one.",
+    note: {
+      en: "Wanderer above the Sea of Fog, in the Kunsthalle Hamburg. I've stood in front of it twice. The second time was the real one.",
+      cs: "Poutník nad mořem mlhy, v hamburské Kunsthalle. Stál jsem před ním dvakrát. Podruhé to bylo doopravdy.",
+      fr: "Le Voyageur au-dessus de la mer de nuages, à la Kunsthalle de Hambourg. Je suis resté devant deux fois. La deuxième était la vraie.",
+    },
     img: "/more/wanderer.jpg",
     ratio: "4 / 5",
-    cta: "read it",
+    cta: { en: "read it", cs: "přečti si", fr: "à lire" },
   },
   {
     name: "František Kupka",
     href: "https://en.wikipedia.org/wiki/Franti%C5%A1ek_Kupka",
-    note: "First abstract painter, if you ask a Czech. Amorpha, Fugue in Two Colors is a manual for leaving realism without losing structure.",
+    note: {
+      en: "First abstract painter, if you ask a Czech. Amorpha, Fugue in Two Colors is a manual for leaving realism without losing structure.",
+      cs: "První abstraktní malíř, když se zeptáš Čecha. Amorfa, fuga dvou barev je návod, jak opustit realismus, a neztratit přitom strukturu.",
+      fr: "Le premier peintre abstrait, si tu demandes à un Tchèque. Amorpha, fugue à deux couleurs est un manuel pour quitter le réalisme sans perdre la structure.",
+    },
     img: "/more/kupka-amorpha.jpg",
     ratio: "1 / 1",
-    cta: "the painter",
+    cta: { en: "the painter", cs: "ten malíř", fr: "le peintre" },
   },
   {
     name: "Bauhaus",
     href: "https://en.wikipedia.org/wiki/Bauhaus",
-    note: "Gropius opened the school in 1919 to argue that craft and engineering are one discipline. Still the cleanest version of that argument. My git handle isn't a coincidence.",
+    note: {
+      en: "Gropius opened the school in 1919 to argue that craft and engineering are one discipline. Still the cleanest version of that argument. My git handle isn't a coincidence.",
+      cs: "Gropius otevřel školu v roce 1919, aby ukázal, že řemeslo a inženýrství jsou jedna disciplína. Pořád nejčistší verze toho argumentu. Můj git handle není náhoda.",
+      fr: "Gropius a ouvert l'école en 1919 pour défendre l'idée que l'artisanat et l'ingénierie sont une seule discipline. Toujours la version la plus nette de cet argument. Mon pseudo git n'est pas un hasard.",
+    },
   },
   {
     name: "Wabi-sabi",
     href: "https://en.wikipedia.org/wiki/Wabi-sabi",
-    note: "Koren's small book is the only design treatise I keep on the shelf. The dent in the bowl is the bowl.",
+    note: {
+      en: "Koren's small book is the only design treatise I keep on the shelf. The dent in the bowl is the bowl.",
+      cs: "Korenova tenká knížka je jediný designový traktát, co mám na polici. Promáčklina v misce je ta miska.",
+      fr: "Le petit livre de Koren est le seul traité de design que je garde sur l'étagère. La bosse dans le bol, c'est le bol.",
+    },
   },
   {
     name: "Dieter Rams",
     href: "https://www.vitsoe.com/eu/about/good-design",
-    note: "Ten principles. The discipline is asking would Rams keep it before adding the second feature — and stopping when the answer is no.",
+    note: {
+      en: "Ten principles. The discipline is asking would Rams keep it before adding the second feature — and stopping when the answer is no.",
+      cs: "Deset principů. Disciplína je ptát se nechal by to Rams? dřív, než přidáš druhou funkci — a přestat, když je odpověď ne.",
+      fr: "Dix principes. La discipline, c'est de se demander Rams le garderait-il ? avant d'ajouter la deuxième fonction — et de s'arrêter quand la réponse est non.",
+    },
   },
   {
     name: "Tony Garnier",
     href: "https://en.wikipedia.org/wiki/Tony_Garnier_(architect)",
-    note: "Cité Industrielle, 1904 — a workers' city where every home gets a bathroom and a pool. He had no idea how to build it. He drew it anyway.",
+    note: {
+      en: "Cité Industrielle, 1904 — a workers' city where every home gets a bathroom and a pool. He had no idea how to build it. He drew it anyway.",
+      cs: "Cité Industrielle, 1904 — dělnické město, kde každý dům má koupelnu a bazén. Neměl tušení, jak to postavit. Nakreslil to stejně.",
+      fr: "Cité Industrielle, 1904 — une cité ouvrière où chaque logement a une salle de bain et une piscine. Il n'avait aucune idée de comment la bâtir. Il l'a dessinée quand même.",
+    },
   },
   {
     name: "Zen",
     href: "https://en.wikipedia.org/wiki/Zen",
-    note: "Less a religion than a method. Sit, watch the thinking, notice it isn't you. Twelve minutes a day, nothing measurable, everything changed.",
+    note: {
+      en: "Less a religion than a method. Sit, watch the thinking, notice it isn't you. Twelve minutes a day, nothing measurable, everything changed.",
+      cs: "Spíš metoda než náboženství. Sedni si, sleduj myšlení, všimni si, že to nejsi ty. Dvanáct minut denně, nic měřitelného, a všechno jinak.",
+      fr: "Moins une religion qu'une méthode. Assieds-toi, observe la pensée, remarque que ce n'est pas toi. Douze minutes par jour, rien de mesurable, et tout a changé.",
+    },
   },
 ]
 
@@ -81,30 +127,50 @@ const MUSIC: Item[] = [
   {
     name: "Tom Waits",
     href: "https://www.youtube.com/watch?v=PCmZBeNVy7g",
-    note: "Bone Machine lives next to the claw hammer. Same job. Start with Hold On.",
+    note: {
+      en: "Bone Machine lives next to the claw hammer. Same job. Start with Hold On.",
+      cs: "Bone Machine leží vedle palice. Stejná práce. Začni u Hold On.",
+      fr: "Bone Machine est posé à côté du marteau. Même boulot. Commence par Hold On.",
+    },
   },
   {
     name: "Iron Maiden",
     href: "https://www.youtube.com/watch?v=NCceAA0fIm0",
-    note: "O2, 2018 — worth the queue and a week of half-deaf left ear. Hallowed Be Thy Name is a short story.",
+    note: {
+      en: "O2, 2018 — worth the queue and a week of half-deaf left ear. Hallowed Be Thy Name is a short story.",
+      cs: "O2, 2018 — stálo to za frontu i za týden poloohluchého levého ucha. Hallowed Be Thy Name je povídka.",
+      fr: "O2, 2018 — valait la file et une semaine d'oreille gauche à moitié sourde. Hallowed Be Thy Name est une nouvelle.",
+    },
   },
   {
     name: "Black Sabbath",
     href: "https://www.youtube.com/watch?v=0lkir-mvjqI",
-    note: "Iommi lost two fingertips in a factory press at seventeen and built a genre with what was left. Disability into discipline into industry.",
+    note: {
+      en: "Iommi lost two fingertips in a factory press at seventeen and built a genre with what was left. Disability into discipline into industry.",
+      cs: "Iommi přišel v sedmnácti v továrním lisu o dvě bříška prstů a z toho, co zbylo, postavil žánr. Z postižení disciplína, z disciplíny průmysl.",
+      fr: "Iommi a perdu deux bouts de doigts dans une presse d'usine à dix-sept ans et a bâti un genre avec ce qui restait. Du handicap à la discipline, de la discipline à une industrie.",
+    },
     img: "/art/decay/021.webp",
     ratio: "4 / 5",
-    cta: "play it",
+    cta: { en: "play it", cs: "pusť si", fr: "à écouter" },
   },
   {
     name: "Frank Zappa",
     href: "https://www.youtube.com/watch?v=u05PVbbI_zo",
-    note: "Watermelon in Easter Hay — he knew it was his last solo, and you can hear it. The cleanest goodbye anyone played on a guitar.",
+    note: {
+      en: "Watermelon in Easter Hay — he knew it was his last solo, and you can hear it. The cleanest goodbye anyone played on a guitar.",
+      cs: "Watermelon in Easter Hay — věděl, že je to jeho poslední sólo, a je to slyšet. Nejčistší rozloučení, co kdo zahrál na kytaru.",
+      fr: "Watermelon in Easter Hay — il savait que c'était son dernier solo, et ça s'entend. Le plus bel adieu jamais joué à la guitare.",
+    },
   },
   {
     name: "Mick Jenkins",
     href: "https://open.spotify.com/album/2GuJOMaxJpvgDM5MgKZUF8",
-    note: "The Water[s] saved me about a year of therapy in 2014. Still on the list, still about hydration.",
+    note: {
+      en: "The Water[s] saved me about a year of therapy in 2014. Still on the list, still about hydration.",
+      cs: "The Water[s] mi v roce 2014 ušetřilo asi rok terapie. Pořád na seznamu, pořád o pití vody.",
+      fr: "The Water[s] m'a épargné environ un an de thérapie en 2014. Toujours sur la liste, toujours une histoire d'hydratation.",
+    },
   },
 ]
 
@@ -112,25 +178,38 @@ const FILM: Item[] = [
   {
     name: "David Lynch",
     href: "https://en.wikipedia.org/wiki/David_Lynch",
-    note: "RIP. Mulholland Drive, top three. The daily weather report was a fifteen-year piece of conceptual art most people filed under hobby.",
+    note: {
+      en: "RIP. Mulholland Drive, top three. The daily weather report was a fifteen-year piece of conceptual art most people filed under hobby.",
+      cs: "RIP. Mulholland Drive, do první trojky. Jeho denní předpověď počasí bylo patnáctileté konceptuální dílo, co si většina lidí zaškatulkovala jako koníček.",
+      fr: "RIP. Mulholland Drive, dans mon top trois. Son bulletin météo quotidien était une œuvre conceptuelle de quinze ans que la plupart classaient comme un hobby.",
+    },
     img: "/art/reflections/012.webp",
     ratio: "21 / 9",
-    cta: "the man",
+    cta: { en: "the man", cs: "ten člověk", fr: "l'homme" },
   },
 ]
 
 const SKATE: Item[] = [
   {
     name: "Skateboarding",
-    note: "Twenty-three years on a board. Two broken bones, neither on a trick. I can't walk past a curb without reading the line.",
+    label: { en: "Skateboarding", cs: "skejtování", fr: "le skate" },
+    note: {
+      en: "Twenty-three years on a board. Two broken bones, neither on a trick. I can't walk past a curb without reading the line.",
+      cs: "Třiadvacet let na prkně. Dvě zlomeniny, ani jedna na triku. Neumím projít kolem obrubníku, abych nečetl lajnu.",
+      fr: "Vingt-trois ans sur une planche. Deux fractures, aucune sur un trick. Je ne passe pas devant un trottoir sans en lire la ligne.",
+    },
     img: "/art/landscape/044.webp",
     ratio: "3 / 2",
   },
   {
     name: "Andy Anderson",
     href: "https://www.instagram.com/andyandersonsk8",
-    note: "Helmet on, switch everything, Old Friends Skateboards. Proof the lifestyle is a discipline you age into, not out of.",
-    cta: "follow",
+    note: {
+      en: "Helmet on, switch everything, Old Friends Skateboards. Proof the lifestyle is a discipline you age into, not out of.",
+      cs: "Helma na hlavě, všechno switch, Old Friends Skateboards. Důkaz, že ten životní styl je disciplína, do které dorosteš, ne ze které vyrosteš.",
+      fr: "Casque vissé, tout en switch, Old Friends Skateboards. La preuve que ce mode de vie est une discipline dans laquelle on vieillit, pas dont on sort.",
+    },
+    cta: { en: "follow", cs: "sleduj", fr: "suivre" },
   },
 ]
 
@@ -138,83 +217,148 @@ const CODE: Item[] = [
   {
     name: "John Carmack",
     href: "https://github.com/ESWAT/john-carmack-plan-archive",
-    note: ".plan files from 1996, still the cleanest writing about programming I've read. He works the way I'd like to work for the rest of my life.",
+    note: {
+      en: ".plan files from 1996, still the cleanest writing about programming I've read. He works the way I'd like to work for the rest of my life.",
+      cs: ".plan soubory z roku 1996, pořád nejčistší psaní o programování, co jsem četl. Pracuje tak, jak bych chtěl pracovat do konce života.",
+      fr: "Les fichiers .plan de 1996, toujours le texte le plus net sur la programmation que j'aie lu. Il travaille comme j'aimerais travailler le reste de ma vie.",
+    },
   },
   {
     name: "Linus Torvalds",
     href: "https://www.kernel.org/",
-    note: "Linux and git, both written out of disgust at the alternatives. Best ratio of mailing-list words to shipped software anyone's managed.",
+    note: {
+      en: "Linux and git, both written out of disgust at the alternatives. Best ratio of mailing-list words to shipped software anyone's managed.",
+      cs: "Linux a git, obojí napsané z odporu k alternativám. Nejlepší poměr slov v mailing listu k dodanému softwaru, jaký kdo dokázal.",
+      fr: "Linux et git, tous deux écrits par dégoût des alternatives. Le meilleur ratio mots-de-mailing-list / logiciel livré que quiconque ait atteint.",
+    },
   },
   {
     name: "Procedural generation",
+    label: { en: "Procedural generation", cs: "procedurální generování", fr: "génération procédurale" },
     href: "https://en.wikipedia.org/wiki/Procedural_generation",
-    note: "Rules plus randomness plus iteration — maps, music, mesh, narrative. The generator is always cheaper to keep than the asset.",
+    note: {
+      en: "Rules plus randomness plus iteration — maps, music, mesh, narrative. The generator is always cheaper to keep than the asset.",
+      cs: "Pravidla plus náhoda plus iterace — mapy, hudba, mesh, příběh. Generátor se vždycky vyplatí držet víc než hotový asset.",
+      fr: "Des règles plus du hasard plus de l'itération — cartes, musique, mesh, récit. Le générateur coûte toujours moins cher à garder que l'asset.",
+    },
     img: "/art/weird/088.webp",
     ratio: "1 / 1",
-    cta: "read it",
+    cta: { en: "read it", cs: "přečti si", fr: "à lire" },
   },
   {
     name: "Garry's Mod",
     href: "https://gmod.facepunch.com/",
-    note: "First place I felt powerful as a kid. A physics sandbox where bad ideas were free. Half my cohort traces back to wiring a thruster to a chair.",
+    note: {
+      en: "First place I felt powerful as a kid. A physics sandbox where bad ideas were free. Half my cohort traces back to wiring a thruster to a chair.",
+      cs: "První místo, kde jsem se jako dítě cítil mocný. Fyzikální pískoviště, kde špatné nápady nic nestály. Půlka mojí generace se dá vystopovat k přidrátování trysky k židli.",
+      fr: "Le premier endroit où je me suis senti puissant, gamin. Un bac à sable physique où les mauvaises idées étaient gratuites. La moitié de ma génération remonte au branchement d'un propulseur sur une chaise.",
+    },
   },
   {
     name: "Hacking",
+    label: { en: "Hacking", cs: "hackování", fr: "le hacking" },
     href: "https://en.wikipedia.org/wiki/Hacker_culture",
-    note: "Finding the edge in a thing nobody built for that edge. Most programmers I trust are locksmiths in spirit, if not in fact.",
+    note: {
+      en: "Finding the edge in a thing nobody built for that edge. Most programmers I trust are locksmiths in spirit, if not in fact.",
+      cs: "Najít skulinu ve věci, kterou na tu skulinu nikdo nestavěl. Většina programátorů, kterým věřím, jsou duší zámečníci, když ne ve skutečnosti.",
+      fr: "Trouver la faille dans un truc que personne n'a conçu pour cette faille. La plupart des programmeurs en qui j'ai confiance sont serruriers dans l'âme, sinon en fait.",
+    },
   },
 ]
 
 const MIND: Item[] = [
   {
     name: "Computational neuroscience",
+    label: { en: "Computational neuroscience", cs: "výpočetní neurověda", fr: "neurosciences computationnelles" },
     href: "https://en.wikipedia.org/wiki/Computational_neuroscience",
-    note: "Currently mapping the cache architecture of the brain. We'll know more about ourselves in twenty years than in the last two hundred thousand.",
+    note: {
+      en: "Currently mapping the cache architecture of the brain. We'll know more about ourselves in twenty years than in the last two hundred thousand.",
+      cs: "Zrovna mapuju cache architekturu mozku. Za dvacet let o sobě budeme vědět víc než za posledních dvě stě tisíc let.",
+      fr: "En ce moment je cartographie l'architecture cache du cerveau. Dans vingt ans on en saura plus sur nous-mêmes que durant les deux cent mille dernières années.",
+    },
     img: "/art/surfaces/120.webp",
     ratio: "4 / 3",
-    cta: "read it",
+    cta: { en: "read it", cs: "přečti si", fr: "à lire" },
   },
   {
     name: "Science × art",
-    note: "The friction between rigour and intuition is where the work lives. Every painter I trust reads papers; every researcher I trust draws.",
+    label: { en: "Science × art", cs: "věda × umění", fr: "science × art" },
+    note: {
+      en: "The friction between rigour and intuition is where the work lives. Every painter I trust reads papers; every researcher I trust draws.",
+      cs: "Tření mezi přesností a intuicí, tam práce žije. Každý malíř, kterému věřím, čte studie; každý vědec, kterému věřím, kreslí.",
+      fr: "La friction entre rigueur et intuition, c'est là que vit le travail. Chaque peintre en qui j'ai confiance lit des articles ; chaque chercheur en qui j'ai confiance dessine.",
+    },
   },
   {
     name: "Education",
-    note: "The highest-leverage civic investment we have, performed badly on purpose. Yes, that's a fight I'll pick.",
+    label: { en: "Education", cs: "vzdělávání", fr: "l'éducation" },
+    note: {
+      en: "The highest-leverage civic investment we have, performed badly on purpose. Yes, that's a fight I'll pick.",
+      cs: "Občanská investice s největší pákou, jakou máme, schválně odbytá. Ano, do téhle bitvy se pustím.",
+      fr: "L'investissement civique au plus fort levier que l'on ait, bâclé exprès. Oui, c'est un combat que je choisis.",
+    },
   },
   {
     name: "Research",
-    note: "Slow accumulation of usable truth — the opposite of news. Most decent ideas I've had came from someone else's footnote.",
+    label: { en: "Research", cs: "výzkum", fr: "la recherche" },
+    note: {
+      en: "Slow accumulation of usable truth — the opposite of news. Most decent ideas I've had came from someone else's footnote.",
+      cs: "Pomalé hromadění použitelné pravdy — opak zpráv. Většina slušných nápadů, co jsem měl, přišla z cizí poznámky pod čarou.",
+      fr: "Lente accumulation de vérité utilisable — le contraire de l'actualité. La plupart de mes idées correctes viennent de la note de bas de page d'un autre.",
+    },
   },
   {
     name: "Learning",
-    note: "The only durable skill. Everything else gets automated, deprecated, or out-aged.",
+    label: { en: "Learning", cs: "učení", fr: "l'apprentissage" },
+    note: {
+      en: "The only durable skill. Everything else gets automated, deprecated, or out-aged.",
+      cs: "Jediná trvanlivá dovednost. Všechno ostatní se zautomatizuje, zastará, nebo to věkem předběhnou.",
+      fr: "La seule compétence durable. Tout le reste finit automatisé, déprécié ou dépassé par l'âge.",
+    },
   },
 ]
 
 const PRACTICE: Item[] = [
   {
     name: "Shaolin method",
+    label: { en: "Shaolin method", cs: "shaolinská metoda", fr: "la méthode Shaolin" },
     href: "https://en.wikipedia.org/wiki/Shaolin_kung_fu",
-    note: "Twenty thousand hours, one form. Under 1% reach the level you'd recognise on film. Worth knowing before you start anything serious.",
+    note: {
+      en: "Twenty thousand hours, one form. Under 1% reach the level you'd recognise on film. Worth knowing before you start anything serious.",
+      cs: "Dvacet tisíc hodin, jedna forma. Pod 1 % se dostane tak daleko, že bys to poznal z filmu. Dobré vědět, než se pustíš do čehokoli vážného.",
+      fr: "Vingt mille heures, une seule forme. Moins de 1 % atteignent le niveau qu'on reconnaîtrait au cinéma. Bon à savoir avant de se lancer dans quoi que ce soit de sérieux.",
+    },
     img: "/art/decay/033.webp",
     ratio: "3 / 4",
-    cta: "read it",
+    cta: { en: "read it", cs: "přečti si", fr: "à lire" },
   },
   {
     name: "Ryōkan",
     href: "https://en.wikipedia.org/wiki/Ry%C5%8Dkan",
-    note: "Wandering monk, eighteenth century. Wrote on rice paper, played ball with the village kids, refused to teach formally. Patron saint of doing it well and ignoring the credential.",
+    note: {
+      en: "Wandering monk, eighteenth century. Wrote on rice paper, played ball with the village kids, refused to teach formally. Patron saint of doing it well and ignoring the credential.",
+      cs: "Potulný mnich, osmnácté století. Psal na rýžový papír, hrál s vesnickými dětmi na míč, odmítal formálně učit. Patron toho dělat věci dobře a kašlat na papíry.",
+      fr: "Moine errant, dix-huitième siècle. Écrivait sur du papier de riz, jouait au ballon avec les enfants du village, refusait d'enseigner formellement. Saint patron du bien-faire en ignorant le diplôme.",
+    },
   },
   {
     name: "Chess",
+    label: { en: "Chess", cs: "šachy", fr: "les échecs" },
     href: "https://lichess.org/",
-    note: "The cleanest closed system we ever built — perfect information, no luck, just position. About 1850 on lichess, which means I lose 60% of the games I want. That's the point.",
+    note: {
+      en: "The cleanest closed system we ever built — perfect information, no luck, just position. About 1850 on lichess, which means I lose 60% of the games I want. That's the point.",
+      cs: "Nejčistší uzavřený systém, jaký jsme kdy postavili — úplná informace, žádné štěstí, jen pozice. Na lichess kolem 1850, což znamená, že prohraju 60 % partií, které chci. O to právě jde.",
+      fr: "Le système clos le plus net qu'on ait jamais bâti — information parfaite, aucune chance, juste la position. Environ 1850 sur lichess, ce qui veut dire que je perds 60 % des parties qui m'importent. C'est tout l'intérêt.",
+    },
   },
   {
     name: "80,000 Hours",
     href: "https://80000hours.org/",
-    note: "Career is the biggest lever you have, with the math to prove it. Read once a year, adjust.",
+    note: {
+      en: "Career is the biggest lever you have, with the math to prove it. Read once a year, adjust.",
+      cs: "Kariéra je největší páka, jakou máš, a je na to matika. Přečti jednou za rok, uprav kurz.",
+      fr: "La carrière est le plus grand levier que tu aies, avec les maths pour le prouver. À lire une fois par an, puis ajuster.",
+    },
   },
 ]
 
@@ -222,35 +366,61 @@ const PEOPLE: Item[] = [
   {
     name: "Sammy Obeid",
     href: "https://sammyobeid.com/",
-    note: "Stand-up plus a maths degree, 1,001 consecutive nights. A serious craftsman dressed as a clown.",
-    cta: "the act",
+    note: {
+      en: "Stand-up plus a maths degree, 1,001 consecutive nights. A serious craftsman dressed as a clown.",
+      cs: "Stand-up plus titul z matematiky, 1001 večerů v řadě. Vážný řemeslník převlečený za klauna.",
+      fr: "Du stand-up plus un diplôme de maths, 1001 soirs d'affilée. Un artisan sérieux déguisé en clown.",
+    },
+    cta: { en: "the act", cs: "to číslo", fr: "le numéro" },
   },
   {
     name: "Ian Carroll",
     href: "https://www.youtube.com/@IanCarrollshow",
-    note: "Independent journalist who keeps pulling the threads everyone else is paid to leave alone.",
-    cta: "the show",
+    note: {
+      en: "Independent journalist who keeps pulling the threads everyone else is paid to leave alone.",
+      cs: "Nezávislý novinář, co pořád tahá za nitky, které jsou ostatní placení nechat být.",
+      fr: "Journaliste indépendant qui n'arrête pas de tirer les fils que tous les autres sont payés pour laisser tranquilles.",
+    },
+    cta: { en: "the show", cs: "ten pořad", fr: "l'émission" },
   },
   {
     name: "Zdislava Pokorná",
-    note: "Personal. Quietly corrects my taste when I drift. Anything good here is partly her doing.",
+    note: {
+      en: "Personal. Quietly corrects my taste when I drift. Anything good here is partly her doing.",
+      cs: "Osobní. Tiše mi koriguje vkus, když ujíždím. Cokoli je tu dobré, je zčásti její zásluha.",
+      fr: "Personnel. Corrige discrètement mon goût quand je dérive. Tout ce qui est bon ici, c'est en partie grâce à elle.",
+    },
   },
   {
     name: "Jan Špaček",
-    note: "Personal. Shows up with the right question, not the obvious one. The one you phone when the prototype's on fire.",
+    note: {
+      en: "Personal. Shows up with the right question, not the obvious one. The one you phone when the prototype's on fire.",
+      cs: "Osobní. Přijde se správnou otázkou, ne tou očividnou. Ten, komu voláš, když prototyp hoří.",
+      fr: "Personnel. Arrive avec la bonne question, pas l'évidente. Celui qu'on appelle quand le prototype est en feu.",
+    },
   },
 ]
 
 const MISC: Item[] = [
   {
     name: "Paint",
-    note: "The medium that won't lie about effort. You can see where the brush hesitated.",
+    label: { en: "Paint", cs: "barva", fr: "la peinture" },
+    note: {
+      en: "The medium that won't lie about effort. You can see where the brush hesitated.",
+      cs: "Médium, co o vynaloženém úsilí nelže. Je vidět, kde štětec zaváhal.",
+      fr: "Le médium qui ne ment pas sur l'effort. On voit où le pinceau a hésité.",
+    },
     img: "/art/acrylic/006.webp",
     ratio: "4 / 3",
   },
   {
     name: "Coconuts",
-    note: "A self-contained system — water, fat, fibre, shell, fuel. Try and argue against it.",
+    label: { en: "Coconuts", cs: "kokosy", fr: "les noix de coco" },
+    note: {
+      en: "A self-contained system — water, fat, fibre, shell, fuel. Try and argue against it.",
+      cs: "Soběstačný systém — voda, tuk, vláknina, skořápka, palivo. Zkus proti tomu něco namítnout.",
+      fr: "Un système autosuffisant — eau, gras, fibre, coque, carburant. Essaie un peu d'argumenter contre.",
+    },
     img: "/more/coconut.jpg",
     ratio: "2 / 3",
   },
@@ -260,90 +430,383 @@ const MISC: Item[] = [
 
 interface NowEntry {
   k: string
-  v: string
+  kl: Localized
+  v: Localized
 }
 
 const NOW: NowEntry[] = [
-  { k: "reading",    v: "Pirsig — Zen and the Art of Motorcycle Maintenance. Third pass; lands differently at 33." },
-  { k: "building",   v: "the Sombra OS memory layer. Local works. Cloud doesn't — yet." },
-  { k: "listening",  v: "Tom Waits, Bone Machine · Mick Jenkins, The Patience · Iron Maiden, Senjutsu." },
-  { k: "learning",   v: "to weld. Badly, on purpose." },
-  { k: "keeping",    v: "a strength routine, six weeks in. Knees grateful." },
-  { k: "annoyed by", v: "the word “vision” with no number attached to it." },
+  {
+    k: "reading",
+    kl: { en: "reading", cs: "čtu", fr: "je lis" },
+    v: {
+      en: "Pirsig — Zen and the Art of Motorcycle Maintenance. Third pass; lands differently at 33.",
+      cs: "Pirsig — Zen a umění údržby motocyklu. Potřetí; ve třiatřiceti dopadá jinak.",
+      fr: "Pirsig — Traité du zen et de l'entretien des motocyclettes. Troisième lecture ; à 33 ans, ça résonne autrement.",
+    },
+  },
+  {
+    k: "building",
+    kl: { en: "building", cs: "stavím", fr: "je construis" },
+    v: {
+      en: "the Sombra OS memory layer. Local works. Cloud doesn't — yet.",
+      cs: "paměťovou vrstvu Sombra OS. Lokálně to jede. V cloudu zatím ne.",
+      fr: "la couche mémoire de Sombra OS. En local ça marche. Dans le cloud, pas encore.",
+    },
+  },
+  {
+    k: "listening",
+    kl: { en: "listening", cs: "poslouchám", fr: "j'écoute" },
+    v: {
+      en: "Tom Waits, Bone Machine · Mick Jenkins, The Patience · Iron Maiden, Senjutsu.",
+      cs: "Tom Waits, Bone Machine · Mick Jenkins, The Patience · Iron Maiden, Senjutsu.",
+      fr: "Tom Waits, Bone Machine · Mick Jenkins, The Patience · Iron Maiden, Senjutsu.",
+    },
+  },
+  {
+    k: "learning",
+    kl: { en: "learning", cs: "učím se", fr: "j'apprends" },
+    v: {
+      en: "to weld. Badly, on purpose.",
+      cs: "svařovat. Špatně, schválně.",
+      fr: "à souder. Mal, exprès.",
+    },
+  },
+  {
+    k: "keeping",
+    kl: { en: "keeping", cs: "držím", fr: "je tiens" },
+    v: {
+      en: "a strength routine, six weeks in. Knees grateful.",
+      cs: "silový trénink, šestý týden. Kolena děkují.",
+      fr: "une routine de force, six semaines au compteur. Les genoux disent merci.",
+    },
+  },
+  {
+    k: "annoyed by",
+    kl: { en: "annoyed by", cs: "štve mě", fr: "ça m'agace" },
+    v: {
+      en: "the word “vision” with no number attached to it.",
+      cs: "slovo „vize“ bez jediného čísla u sebe.",
+      fr: "le mot « vision » sans le moindre chiffre derrière.",
+    },
+  },
 ]
 
 // ============= "not great at" — anti-list, also true ================
 
-const NOT_GREAT: string[] = [
-  "sleeping before midnight",
-  "finishing personal projects (present company excepted)",
-  "saying no when I'm interested",
-  "small talk past ninety seconds",
-  "knees, after thirty",
-  "coriander",
+const NOT_GREAT: Localized[] = [
+  { en: "sleeping before midnight", cs: "usnout před půlnocí", fr: "dormir avant minuit" },
+  {
+    en: "finishing personal projects (present company excepted)",
+    cs: "dotahovat vlastní projekty (tenhle web čestná výjimka)",
+    fr: "finir mes projets perso (la présente exception mise à part)",
+  },
+  { en: "saying no when I'm interested", cs: "říct ne, když mě to zajímá", fr: "dire non quand ça m'intéresse" },
+  {
+    en: "small talk past ninety seconds",
+    cs: "tlachání po devadesáti vteřinách",
+    fr: "le small talk au-delà de quatre-vingt-dix secondes",
+  },
+  { en: "knees, after thirty", cs: "kolena po třicítce", fr: "les genoux, après trente ans" },
+  { en: "coriander", cs: "koriandr", fr: "la coriandre" },
 ]
 
 // ============= "what i'm fighting" — cultural irritations ============
 
-const FIGHTING: string[] = [
-  "the LARP economy — engineers who tweet more than they ship. The thing the work was meant to be a defence against.",
-  "the firehose of falsehood — volume as the message, truth priced like a luxury.",
-  "the gerontocracy: the same hands on the same levers.",
-  "bullshit jobs. Read Graeber, then audit the calendar.",
-  "“vision” decks with no number in them.",
-  "the LinkedIn AI parade — people pretending the box didn't write the post.",
-  "surveillance capitalism: kompromat on everyone, by default.",
-  "nostalgia industries — the Kafka tote bag, never a page read.",
-  "the podcast gold rush — microphones in the river, panning for status.",
-  "institutional capture: the quiet web of red tape and routing numbers.",
-  "flat-pack relationships, where step three is always rebuilding the wrong thing.",
-  "the slow erosion of attention. Mine first.",
+const FIGHTING: Localized[] = [
+  {
+    en: "the LARP economy — engineers who tweet more than they ship. The thing the work was meant to be a defence against.",
+    cs: "LARP ekonomika — inženýři, co víc tweetují, než dodávají. Přesně to, proti čemu měla být práce obranou.",
+    fr: "l'économie du LARP — des ingénieurs qui tweetent plus qu'ils ne livrent. Exactement ce contre quoi le travail devait être un rempart.",
+  },
+  {
+    en: "the firehose of falsehood — volume as the message, truth priced like a luxury.",
+    cs: "hadice lží — objem jako sdělení, pravda za cenu luxusu.",
+    fr: "le canon à mensonges — le volume comme message, la vérité au prix du luxe.",
+  },
+  {
+    en: "the gerontocracy: the same hands on the same levers.",
+    cs: "gerontokracie: pořád tytéž ruce na týchž pákách.",
+    fr: "la gérontocratie : les mêmes mains sur les mêmes leviers.",
+  },
+  {
+    en: "bullshit jobs. Read Graeber, then audit the calendar.",
+    cs: "bullshit joby. Přečti si Graebera, pak si proklepni kalendář.",
+    fr: "les jobs à la con. Lis Graeber, puis audite ton agenda.",
+  },
+  {
+    en: "“vision” decks with no number in them.",
+    cs: "„vizionářské“ prezentace bez jediného čísla.",
+    fr: "les decks « vision » sans un seul chiffre.",
+  },
+  {
+    en: "the LinkedIn AI parade — people pretending the box didn't write the post.",
+    cs: "linkedinová ai přehlídka — lidi, co dělají, že ten příspěvek nenapsala mašina.",
+    fr: "la parade IA de LinkedIn — des gens qui font comme si la machine n'avait pas écrit le post.",
+  },
+  {
+    en: "surveillance capitalism: kompromat on everyone, by default.",
+    cs: "kapitalismus dohledu: kompromitující materiál na každého, automaticky.",
+    fr: "le capitalisme de surveillance : du kompromat sur tout le monde, par défaut.",
+  },
+  {
+    en: "nostalgia industries — the Kafka tote bag, never a page read.",
+    cs: "průmysl nostalgie — plátěná taška s Kafkou, ani stránka přečtená.",
+    fr: "les industries de la nostalgie — le tote bag Kafka, jamais une page lue.",
+  },
+  {
+    en: "the podcast gold rush — microphones in the river, panning for status.",
+    cs: "podcastová zlatá horečka — mikrofony v řece, rýžování statusu.",
+    fr: "la ruée vers l'or du podcast — des micros dans la rivière, à orpailler du statut.",
+  },
+  {
+    en: "institutional capture: the quiet web of red tape and routing numbers.",
+    cs: "ovládnutí institucí: tichá síť byrokracie a čísel účtů.",
+    fr: "la capture institutionnelle : la toile discrète de paperasse et de numéros de compte.",
+  },
+  {
+    en: "flat-pack relationships, where step three is always rebuilding the wrong thing.",
+    cs: "vztahy ze stavebnice, kde třetí krok je vždycky stavět špatnou věc znovu.",
+    fr: "les relations en kit, où l'étape trois consiste toujours à reconstruire la mauvaise chose.",
+  },
+  {
+    en: "the slow erosion of attention. Mine first.",
+    cs: "pomalá eroze pozornosti. Té mojí jako první.",
+    fr: "l'érosion lente de l'attention. La mienne d'abord.",
+  },
 ]
 
 // ============= bums / keeps — the quieter weight and its antidote ====
 
-const BUMS: string[] = [
-  "my grandmother forgetting my face, one Sunday at a time.",
-  "the time debt — every fragment I didn't ship, compounding.",
-  "the silence after a release that didn't land. Worse: the silence when no one noticed.",
-  "my Czech rusting with no time to sharpen it.",
-  "the inverse curve between meetings and work done.",
-  "knowing the next prodigy is six and about to lap me.",
-  "December.",
+const BUMS: Localized[] = [
+  {
+    en: "my grandmother forgetting my face, one Sunday at a time.",
+    cs: "babička, co zapomíná moji tvář, neděli po neděli.",
+    fr: "ma grand-mère qui oublie mon visage, un dimanche après l'autre.",
+  },
+  {
+    en: "the time debt — every fragment I didn't ship, compounding.",
+    cs: "časový dluh — každý kousek, co jsem nedodal, se nabaluje.",
+    fr: "la dette de temps — chaque fragment non livré, qui compose.",
+  },
+  {
+    en: "the silence after a release that didn't land. Worse: the silence when no one noticed.",
+    cs: "ticho po vydání, co nedopadlo. Horší: ticho, když si nikdo nevšiml.",
+    fr: "le silence après une sortie qui n'a pas pris. Pire : le silence quand personne n'a remarqué.",
+  },
+  {
+    en: "my Czech rusting with no time to sharpen it.",
+    cs: "moje čeština, co rezaví bez času ji brousit.",
+    fr: "mon tchèque qui rouille, sans le temps de l'affûter.",
+  },
+  {
+    en: "the inverse curve between meetings and work done.",
+    cs: "nepřímá úměra mezi schůzemi a hotovou prací.",
+    fr: "la courbe inverse entre les réunions et le travail fait.",
+  },
+  {
+    en: "knowing the next prodigy is six and about to lap me.",
+    cs: "vědomí, že dalšímu zázračnému dítěti je šest a co chvíli mě předjede.",
+    fr: "savoir que le prochain prodige a six ans et s'apprête à me doubler.",
+  },
+  { en: "December.", cs: "Prosinec.", fr: "Décembre." },
 ]
 
-const KEEPS: string[] = [
-  "the studio before 7am, door locked.",
-  "the build going green, the test suite finally quiet.",
-  "my wife's text: “u eat lunch?”",
-  "the dog at the door when I get home.",
-  "coffee made the slow way.",
-  "the next skater landing the line I bailed — proof it was possible.",
-  "Sombra pulling a note from 2021 I'd forgotten writing.",
-  "finishing one thing, even a small one.",
-  "riffs that don't tire.",
-  "the kid I was, asking nicely.",
-  "a chord change I didn't see coming.",
-  "my mother's quiet “že jo” — the Czech tag that ends an argument.",
+const KEEPS: Localized[] = [
+  {
+    en: "the studio before 7am, door locked.",
+    cs: "ateliér před sedmou ráno, zamčené dveře.",
+    fr: "l'atelier avant 7h, porte fermée à clé.",
+  },
+  {
+    en: "the build going green, the test suite finally quiet.",
+    cs: "build naskočí zeleně, testy konečně ticho.",
+    fr: "le build qui passe au vert, la suite de tests enfin silencieuse.",
+  },
+  {
+    en: "my wife's text: “u eat lunch?”",
+    cs: "esemeska od ženy: „dal sis oběd?“",
+    fr: "le sms de ma femme : « t'as mangé ? »",
+  },
+  {
+    en: "the dog at the door when I get home.",
+    cs: "pes u dveří, když dorazím domů.",
+    fr: "le chien à la porte quand je rentre.",
+  },
+  { en: "coffee made the slow way.", cs: "káva dělaná pomalu.", fr: "le café fait lentement." },
+  {
+    en: "the next skater landing the line I bailed — proof it was possible.",
+    cs: "další skejťák dá lajnu, co jsem položil — důkaz, že to šlo.",
+    fr: "le skateur d'après qui passe la ligne que j'ai ratée — la preuve que c'était possible.",
+  },
+  {
+    en: "Sombra pulling a note from 2021 I'd forgotten writing.",
+    cs: "Sombra vytáhne poznámku z 2021, o které jsem nevěděl, že jsem ji psal.",
+    fr: "Sombra qui ressort une note de 2021 que j'avais oublié avoir écrite.",
+  },
+  {
+    en: "finishing one thing, even a small one.",
+    cs: "dotáhnout jednu věc, i malou.",
+    fr: "finir une chose, même petite.",
+  },
+  { en: "riffs that don't tire.", cs: "riffy, co neomrzí.", fr: "des riffs qui ne lassent pas." },
+  {
+    en: "the kid I was, asking nicely.",
+    cs: "kluk, kterým jsem byl, hezky prosí.",
+    fr: "le gamin que j'étais, qui demande gentiment.",
+  },
+  {
+    en: "a chord change I didn't see coming.",
+    cs: "změna akordu, co jsem nečekal.",
+    fr: "un changement d'accord que je n'ai pas vu venir.",
+  },
+  {
+    en: "my mother's quiet “že jo” — the Czech tag that ends an argument.",
+    cs: "tiché „že jo“ od mámy — to české koncové slovíčko, co ukončí hádku.",
+    fr: "le « že jo » tranquille de ma mère — la petite formule tchèque qui clôt une dispute.",
+  },
 ]
 
-const ANCHORS: Array<{ k: string; v: string }> = [
-  { k: "my dog",        v: "a small menace who tested every prototype with her teeth." },
-  { k: "my wife",       v: "the keel — quiet, patient, corrects my pitch when I drift." },
-  { k: "my mother",     v: "taught me to read drawings before I could read words." },
-  { k: "my skateboard", v: "an old indy-trucked deck. Taught me commitment before any boss did." },
-  { k: "my values",     v: "honesty over politeness. shipping over polish. craft over speed. people over performance." },
+const ANCHORS: Array<{ k: string; kl: Localized; v: Localized }> = [
+  {
+    k: "my dog",
+    kl: { en: "my dog", cs: "můj pes", fr: "mon chien" },
+    v: {
+      en: "a small menace who tested every prototype with her teeth.",
+      cs: "malá potvora, co každý prototyp otestovala zubama.",
+      fr: "une petite peste qui a testé chaque prototype avec ses dents.",
+    },
+  },
+  {
+    k: "my wife",
+    kl: { en: "my wife", cs: "moje žena", fr: "ma femme" },
+    v: {
+      en: "the keel — quiet, patient, corrects my pitch when I drift.",
+      cs: "kýl — tichá, trpělivá, srovná mě, když ztrácím směr.",
+      fr: "la quille — calme, patiente, corrige mon cap quand je dérive.",
+    },
+  },
+  {
+    k: "my mother",
+    kl: { en: "my mother", cs: "moje máma", fr: "ma mère" },
+    v: {
+      en: "taught me to read drawings before I could read words.",
+      cs: "naučila mě číst výkresy dřív, než jsem uměl slova.",
+      fr: "m'a appris à lire les plans avant les mots.",
+    },
+  },
+  {
+    k: "my skateboard",
+    kl: { en: "my skateboard", cs: "můj skejt", fr: "ma planche" },
+    v: {
+      en: "an old indy-trucked deck. Taught me commitment before any boss did.",
+      cs: "stará deska s indy truckama. Naučila mě nasazení dřív než kterýkoli šéf.",
+      fr: "une vieille planche montée en Indy. M'a appris l'engagement avant n'importe quel patron.",
+    },
+  },
+  {
+    k: "my values",
+    kl: { en: "my values", cs: "moje hodnoty", fr: "mes valeurs" },
+    v: {
+      en: "honesty over politeness. shipping over polish. craft over speed. people over performance.",
+      cs: "poctivost nad zdvořilost. dodat nad vyleštit. řemeslo nad rychlost. lidi nad výkon.",
+      fr: "l'honnêteté avant la politesse. livrer avant peaufiner. l'artisanat avant la vitesse. les gens avant la performance.",
+    },
+  },
 ]
 
-const OUT_LINKS: Array<{ href: string; title: string; sub?: string; cta: string }> = [
-  { href: "https://laifea.app",                                    title: "laifea.app",   sub: "where i ship the real ones", cta: "open it" },
-  { href: "https://github.com/WalterGropius",                      title: "github",                                         cta: "see code" },
-  { href: "https://linkedin.com/in/zenbauhaus",                    title: "linkedin",                                       cta: "connect" },
-  { href: "https://instagram.com/y4ngyin",                         title: "instagram",                                      cta: "follow" },
-  { href: "https://soundcloud.com/mczenbauhaus",                   title: "soundcloud",   sub: "mc zenbauhaus",             cta: "listen" },
-  { href: "https://sketchfab.com/zenbauhaus",                      title: "sketchfab",                                      cta: "explore" },
-  { href: "https://open.spotify.com/album/1V3m6SMvu8Bodq4scdqD3o", title: "cpt. demo ep", sub: "cover by me",              cta: "listen" },
+const OUT_LINKS: Array<{ href: string; title: string; sub?: Localized; cta: Localized }> = [
+  { href: "https://laifea.app", title: "laifea.app", sub: { en: "where i ship the real ones", cs: "kde dodávám ty opravdové", fr: "là où je livre les vrais" }, cta: { en: "open it", cs: "otevři", fr: "ouvrir" } },
+  { href: "https://github.com/WalterGropius", title: "github", cta: { en: "see code", cs: "kód", fr: "le code" } },
+  { href: "https://linkedin.com/in/zenbauhaus", title: "linkedin", cta: { en: "connect", cs: "spoj se", fr: "connecter" } },
+  { href: "https://instagram.com/y4ngyin", title: "instagram", cta: { en: "follow", cs: "sleduj", fr: "suivre" } },
+  { href: "https://soundcloud.com/mczenbauhaus", title: "soundcloud", sub: { en: "mc zenbauhaus", cs: "mc zenbauhaus", fr: "mc zenbauhaus" }, cta: { en: "listen", cs: "poslechni", fr: "écouter" } },
+  { href: "https://sketchfab.com/zenbauhaus", title: "sketchfab", cta: { en: "explore", cs: "prozkoumej", fr: "explorer" } },
+  { href: "https://open.spotify.com/album/1V3m6SMvu8Bodq4scdqD3o", title: "cpt. demo ep", sub: { en: "cover by me", cs: "obal ode mě", fr: "pochette de moi" }, cta: { en: "listen", cs: "poslechni", fr: "écouter" } },
 ]
+
+// Page chrome — headings, intro and captions, hand-translated.
+const UI = {
+  title: { en: "more", cs: "víc", fr: "plus" },
+  intro: {
+    en: "Not a site map — the nav has those. This is the off-the-record half: what i'm into now, the inputs that shaped the work, the things i'm pushing against, the ones i'm bad at, the quiet weights and the antidotes. Read it like a friend's notebook, not a CV.",
+    cs: "Tohle není mapa webu — tu má v sobě menu. Tohle je ta neoficiální půlka: co mě zrovna baví, vstupy, co utvářely moji práci, věci, proti kterým jdu, ty, co mi nejdou, tiché zátěže a jejich protijedy. Čti to jako kamarádův zápisník, ne jako životopis.",
+    fr: "Ce n'est pas un plan du site — le menu s'en charge. C'est la moitié officieuse : ce qui me passionne en ce moment, les influences qui ont façonné le travail, ce contre quoi je lutte, ce que je fais mal, les poids silencieux et leurs antidotes. À lire comme le carnet d'un ami, pas comme un CV.",
+  },
+  updated: { en: "updated", cs: "aktualizováno", fr: "mis à jour" },
+  now: { en: "now", cs: "teď", fr: "maintenant" },
+  nowNote: {
+    en: "* hand-edited, not a feed. if it's stale by more than a season i've probably ghosted the site.",
+    cs: "* psané ručně, není to feed. jestli je to neaktuální víc než sezónu, nejspíš jsem web nechal ležet.",
+    fr: "* édité à la main, pas un flux. si c'est périmé de plus d'une saison, j'ai sans doute déserté le site.",
+  },
+  loveTitle: { en: "stuff i love", cs: "co mám rád", fr: "ce que j'aime" },
+  loveIntro: {
+    en: "The shortlist of people, movements, objects and disciplines I keep reaching for — in conversation and in code. Not a taste-dump; only the ones that actually shifted the work.",
+    cs: "Užší výběr lidí, směrů, věcí a disciplín, ke kterým se pořád vracím — v řeči i v kódu. Není to výlev vkusu; jen to, co s prací opravdu pohnulo.",
+    fr: "La liste courte des gens, mouvements, objets et disciplines vers lesquels je reviens sans cesse — en parole comme en code. Pas un étalage de goût ; seulement ce qui a vraiment fait bouger le travail.",
+  },
+  subAesthetic: { en: "aesthetic & design", cs: "estetika a design", fr: "esthétique & design" },
+  subMusic: { en: "music", cs: "hudba", fr: "musique" },
+  subFilm: { en: "film", cs: "film", fr: "cinéma" },
+  subSkating: { en: "skating", cs: "skate", fr: "skate" },
+  subCode: { en: "code & tools", cs: "kód a nástroje", fr: "code & outils" },
+  subMind: { en: "mind & science", cs: "mysl a věda", fr: "esprit & science" },
+  subPractice: { en: "discipline & practice", cs: "disciplína a praxe", fr: "discipline & pratique" },
+  subPeople: { en: "people", cs: "lidi", fr: "gens" },
+  subMisc: { en: "misc", cs: "různé", fr: "divers" },
+  fighting: { en: "what i'm fighting", cs: "proti čemu jdu", fr: "ce contre quoi je me bats" },
+  fightingCap: {
+    en: "* the things I want to leave a dent in. nothing personal — except all of it.",
+    cs: "* věci, do kterých chci nechat ďolík. nic osobního — kromě úplně všeho.",
+    fr: "* les choses où je veux laisser une marque. rien de personnel — sauf tout.",
+  },
+  notGreat: { en: "not great at", cs: "v čem nejsem dobrý", fr: "pas doué pour" },
+  notGreatNote: {
+    en: "* the more useful list. anybody without one is lying about something else.",
+    cs: "* užitečnější seznam. kdo žádný nemá, lže o něčem jiném.",
+    fr: "* la liste la plus utile. quiconque n'en a pas ment sur autre chose.",
+  },
+  weightTitle: { en: "weight & antidote", cs: "zátěž a protijed", fr: "le poids & l'antidote" },
+  bumsHeading: { en: "what bums me out", cs: "co mě sráží", fr: "ce qui me plombe" },
+  keepsHeading: { en: "what keeps me going", cs: "co mě drží", fr: "ce qui me porte" },
+  weightNote: {
+    en: "* not asks for sympathy — the friction the work pushes against, and the receipts that get re-read when the left column gets long.",
+    cs: "* žádné prosby o soucit — tření, proti kterému práce tlačí, a doklady, co si přečtu znova, když levý sloupec narůstá.",
+    fr: "* pas un appel à la pitié — la friction contre laquelle le travail pousse, et les preuves qu'on relit quand la colonne de gauche s'allonge.",
+  },
+  elsewhere: { en: "elsewhere", cs: "jinde", fr: "ailleurs" },
+  blog: { en: "blog · loose notes", cs: "blog · volné zápisky", fr: "blog · notes libres" },
+  blogRead: { en: "read it", cs: "přečti si", fr: "à lire" },
+  allPosts: { en: "all posts", cs: "všechny zápisky", fr: "tous les billets" },
+  anchors: { en: "anchors", cs: "kotvy", fr: "ancres" },
+  openSource: { en: "open-source me", cs: "jsem open source", fr: "open-source moi" },
+  sketchbook: { en: "from the sketchbook", cs: "ze skicáku", fr: "du carnet" },
+  seeWork: { en: "see the work", cs: "mrkni na práci", fr: "voir le travail" },
+  requiem: { en: "requiem", cs: "rekviem", fr: "requiem" },
+  moreWork: { en: "more work", cs: "víc práce", fr: "plus de travail" },
+  requiemCap: {
+    en: "* Pietà — a moving piece of mine. Sound optional; the loop does the talking.",
+    cs: "* Pieta — moje pohyblivé dílo. Zvuk dobrovolný; mluví ta smyčka.",
+    fr: "* Pietà — une pièce animée de moi. Le son est optionnel ; c'est la boucle qui parle.",
+  },
+  offWall: { en: "off the wall", cs: "ze zdi", fr: "hors cadre" },
+  wholeWall: { en: "the whole wall", cs: "celá zeď", fr: "tout le mur" },
+  waitsCap: {
+    en: "* Tom Waits — Hold On. The reason to keep the radio on.",
+    cs: "* Tom Waits — Hold On. Důvod, proč nechat rádio hrát.",
+    fr: "* Tom Waits — Hold On. La raison de laisser la radio allumée.",
+  },
+  jenkinsCap: {
+    en: "* Mick Jenkins — The Water[s]. Still on the shortlist.",
+    cs: "* Mick Jenkins — The Water[s]. Pořád v užším výběru.",
+    fr: "* Mick Jenkins — The Water[s]. Toujours dans la liste courte.",
+  },
+  zenbauhausCap: {
+    en: "* mc zenbauhaus — the other side of the desk.",
+    cs: "* mc zenbauhaus — druhá strana stolu.",
+    fr: "* mc zenbauhaus — l'autre côté du bureau.",
+  },
+} satisfies Record<string, Localized>
 
 interface BlogPost {
   id: string
@@ -354,7 +817,8 @@ interface BlogPost {
 }
 
 export default function MorePage() {
-  const { lang } = useI18n()
+  const { lang, t } = useI18n()
+  const tr = (v: Localized) => pick(v, lang)
   const [posts, setPosts] = useState<BlogPost[]>([])
   // The "updated YYYY · MM" label is computed in an effect so SSR
   // renders an empty string and the client fills it in after mount —
@@ -371,7 +835,7 @@ export default function MorePage() {
       .catch(() => {})
     const d = new Date()
     setUpdatedLabel(
-      `updated · ${d.getFullYear()} · ${String(d.getMonth() + 1).padStart(2, "0")}`,
+      `${d.getFullYear()} · ${String(d.getMonth() + 1).padStart(2, "0")}`,
     )
   }, [])
 
@@ -396,7 +860,7 @@ export default function MorePage() {
                 className="text-[clamp(3rem,8vw,6rem)] leading-[0.9]"
                 style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
               >
-                <MotionText text="more" split="char" stagger={0.05} />
+                <MotionText text={tr(UI.title)} split="char" stagger={0.05} />
               </h1>
               <motion.p
                 initial={{ opacity: 0, y: 12 }}
@@ -409,7 +873,7 @@ export default function MorePage() {
                   lineHeight: 1.55,
                 }}
               >
-                Not a site map — the nav has those. This is the off-the-record half: what i&rsquo;m into now, the inputs that shaped the work, the things i&rsquo;m pushing against, the ones i&rsquo;m bad at, the quiet weights and the antidotes. Read it like a friend&rsquo;s notebook, not a CV.
+                {tr(UI.intro)}
               </motion.p>
             </div>
             {/* two overlapping frames, tipped opposite ways — a small
@@ -474,13 +938,13 @@ export default function MorePage() {
                 className="text-2xl uppercase tracking-[0.3em] sm:text-3xl"
                 style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
               >
-                — now
+                — {tr(UI.now)}
               </h2>
               <span
                 className="text-xs uppercase tracking-[0.3em]"
                 style={{ color: "var(--text-muted)" }}
               >
-                {updatedLabel}
+                {updatedLabel && `${tr(UI.updated)} · ${updatedLabel}`}
               </span>
             </div>
             <dl
@@ -499,7 +963,7 @@ export default function MorePage() {
                       className="mb-0.5 text-[0.65rem] uppercase tracking-[0.3em]"
                       style={{ color: "var(--text-muted)" }}
                     >
-                      {n.k}
+                      {tr(n.kl)}
                     </dt>
                     <dd
                       className="text-base sm:text-lg"
@@ -509,7 +973,7 @@ export default function MorePage() {
                         lineHeight: 1.45,
                       }}
                     >
-                      {n.v}
+                      {tr(n.v)}
                     </dd>
                   </div>
                 </div>
@@ -519,7 +983,7 @@ export default function MorePage() {
               className="mt-4 text-xs uppercase tracking-[0.3em]"
               style={{ color: "var(--text-muted)" }}
             >
-              * hand-edited, not a feed. if it&rsquo;s stale by more than a season i&rsquo;ve probably ghosted the site.
+              {tr(UI.nowNote)}
             </p>
           </section>
 
@@ -534,7 +998,7 @@ export default function MorePage() {
                 className="text-4xl sm:text-5xl"
                 style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
               >
-                <span className="ink-underline">stuff i love</span>
+                <span className="ink-underline">{tr(UI.loveTitle)}</span>
               </h2>
               <BauhausMark />
             </div>
@@ -546,25 +1010,23 @@ export default function MorePage() {
                 lineHeight: 1.55,
               }}
             >
-              The shortlist of people, movements, objects and disciplines I keep
-              reaching for — in conversation and in code. Not a taste-dump; only
-              the ones that actually shifted the work.
+              {tr(UI.loveIntro)}
             </p>
 
-            <Sub title="aesthetic & design" items={AESTHETIC} mark={<RamsGrid />} startSide="left" />
+            <Sub title={tr(UI.subAesthetic)} items={AESTHETIC} mark={<RamsGrid />} startSide="left" />
             <Sub
-              title="music"
+              title={tr(UI.subMusic)}
               items={MUSIC}
               mark={<TuningFork />}
               afterBlock={<MusicMedia />}
             />
-            <Sub title="film" items={FILM} mark={<EyeMark />} />
-            <Sub title="skating" items={SKATE} mark={<HillBombMark />} />
-            <Sub title="code & tools" items={CODE} mark={<NodeMark />} />
-            <Sub title="mind & science" items={MIND} mark={<BrainMark />} />
-            <Sub title="discipline & practice" items={PRACTICE} mark={<EnsoMark />} />
-            <Sub title="people" items={PEOPLE} mark={<PinMark />} />
-            <Sub title="misc" items={MISC} mark={<CoconutMark />} startSide="right" />
+            <Sub title={tr(UI.subFilm)} items={FILM} mark={<EyeMark />} />
+            <Sub title={tr(UI.subSkating)} items={SKATE} mark={<HillBombMark />} />
+            <Sub title={tr(UI.subCode)} items={CODE} mark={<NodeMark />} />
+            <Sub title={tr(UI.subMind)} items={MIND} mark={<BrainMark />} />
+            <Sub title={tr(UI.subPractice)} items={PRACTICE} mark={<EnsoMark />} />
+            <Sub title={tr(UI.subPeople)} items={PEOPLE} mark={<PinMark />} />
+            <Sub title={tr(UI.subMisc)} items={MISC} mark={<CoconutMark />} startSide="right" />
           </section>
 
           <div className="my-10 opacity-30" style={{ color: "var(--ink)" }}>
@@ -587,9 +1049,9 @@ export default function MorePage() {
 
           {/* ===== NOT GREAT AT — short, punchy, inline tags ===== */}
           <TagList
-            title="not great at"
+            title={tr(UI.notGreat)}
             items={NOT_GREAT}
-            note="* the more useful list. anybody without one is lying about something else."
+            note={tr(UI.notGreatNote)}
           />
 
           <div className="my-10 opacity-30" style={{ color: "var(--ink)" }}>
@@ -612,7 +1074,7 @@ export default function MorePage() {
 
           {/* ===== ELSEWHERE ===== */}
           <section className="mb-20">
-            <SectionTitle>elsewhere</SectionTitle>
+            <SectionTitle>{tr(UI.elsewhere)}</SectionTitle>
             <ul className="flex flex-col">
               {OUT_LINKS.map((l) => (
                 <li
@@ -632,11 +1094,11 @@ export default function MorePage() {
                         className="text-xs sm:text-sm"
                         style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}
                       >
-                        {l.sub}
+                        {tr(l.sub)}
                       </span>
                     )}
                   </span>
-                  <CtaButton href={l.href} label={l.cta} />
+                  <CtaButton href={l.href} label={tr(l.cta)} />
                 </li>
               ))}
             </ul>
@@ -648,11 +1110,11 @@ export default function MorePage() {
 
           {/* ===== BLOG ===== */}
           <section className="mb-20">
-            <SectionTitle>blog · loose notes</SectionTitle>
+            <SectionTitle>{tr(UI.blog)}</SectionTitle>
             <div className="flex flex-col gap-8">
               {posts.length === 0 ? (
                 <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}>
-                  loading…
+                  {t("common.loading")}
                 </p>
               ) : (
                 posts.map((p, i) => (
@@ -695,7 +1157,7 @@ export default function MorePage() {
                         {pick(p.excerpt, lang)}
                       </p>
                       <div className="mt-3">
-                        <CtaButton href={`/blog/${p.id}`} label="read it" internal />
+                        <CtaButton href={`/blog/${p.id}`} label={tr(UI.blogRead)} internal />
                       </div>
                     </div>
                   </article>
@@ -703,7 +1165,7 @@ export default function MorePage() {
               )}
             </div>
             <div className="mt-7">
-              <CtaButton href="/blog" label="all posts" internal />
+              <CtaButton href="/blog" label={tr(UI.allPosts)} internal />
             </div>
           </section>
 
@@ -713,7 +1175,7 @@ export default function MorePage() {
 
           {/* ===== ANCHORS ===== */}
           <section className="mb-20">
-            <SectionTitle>anchors</SectionTitle>
+            <SectionTitle>{tr(UI.anchors)}</SectionTitle>
             <dl
               className="grid gap-4 sm:gap-6 md:grid-cols-2"
               style={{ color: "var(--ink)" }}
@@ -730,7 +1192,7 @@ export default function MorePage() {
                       className="mb-1 text-xs uppercase tracking-[0.3em]"
                       style={{ color: "var(--text-muted)" }}
                     >
-                      {a.k}
+                      {tr(a.kl)}
                     </dt>
                     <dd
                       className="text-base sm:text-lg"
@@ -740,7 +1202,7 @@ export default function MorePage() {
                         lineHeight: 1.55,
                       }}
                     >
-                      {a.v}
+                      {tr(a.v)}
                     </dd>
                   </div>
                 </div>
@@ -760,7 +1222,7 @@ export default function MorePage() {
               className="inline-flex items-center gap-2"
             >
               <Github size={12} className="ink-icon" />
-              <span>open-source me</span>
+              <span>{tr(UI.openSource)}</span>
             </a>
             <span>© {new Date().getFullYear()} · eliáš bauer</span>
           </footer>
@@ -855,13 +1317,13 @@ function hashSeed(s: string): number {
 // A sensible three-word-max CTA from the link's flavour, so a list of
 // destinations doesn't read "open it" twenty times. Explicit item.cta
 // always wins.
-function defaultCta(href: string): string {
-  if (/youtube|youtu\.be|spotify|soundcloud/.test(href)) return "hear it"
-  if (/wikipedia/.test(href)) return "read it"
-  if (/github/.test(href)) return "see code"
-  if (/instagram/.test(href)) return "follow"
-  if (/lichess/.test(href)) return "play me"
-  return "open it"
+function defaultCta(href: string): Localized {
+  if (/youtube|youtu\.be|spotify|soundcloud/.test(href)) return CTA.hear
+  if (/wikipedia/.test(href)) return CTA.read
+  if (/github/.test(href)) return CTA.see
+  if (/instagram/.test(href)) return CTA.follow
+  if (/lichess/.test(href)) return CTA.play
+  return CTA.open
 }
 
 function Thumb({
@@ -986,6 +1448,7 @@ function Sub({
 // deliberately uneven and the frame is tipped a degree or two — the row
 // should look set down by hand, not snapped to a grid.
 function ZigFeature({ item, side }: { item: Item; side: "left" | "right" }) {
+  const { lang } = useI18n()
   const mediaRight = side === "right"
   // alternate the lean and the column split so no two featured rows
   // share the same geometry — this is what keeps the page from reading
@@ -1041,7 +1504,7 @@ function ZigFeature({ item, side }: { item: Item; side: "left" | "right" }) {
       <div className={mediaRight ? "md:order-1" : ""}>
         <div className="mb-2 text-2xl sm:text-3xl" style={{ lineHeight: 1.05 }}>
           <span style={{ color: "var(--ink)", fontFamily: "var(--font-display)" }}>
-            {item.name}
+            {pick(item.label ?? item.name, lang)}
           </span>
         </div>
         <p
@@ -1052,11 +1515,11 @@ function ZigFeature({ item, side }: { item: Item; side: "left" | "right" }) {
             lineHeight: 1.55,
           }}
         >
-          {item.note}
+          {pick(item.note, lang)}
         </p>
         {item.href && (
           <div className="mt-4">
-            <CtaButton href={item.href} label={item.cta ?? defaultCta(item.href)} />
+            <CtaButton href={item.href} label={pick(item.cta ?? defaultCta(item.href), lang)} />
           </div>
         )}
       </div>
@@ -1068,6 +1531,8 @@ function ZigFeature({ item, side }: { item: Item; side: "left" | "right" }) {
 // note and — for anything that links out — a clear CTA button. So even
 // the densest list reads as image + words + a way in, never bare text.
 function Entry({ item }: { item: Item }) {
+  const { lang } = useI18n()
+  const displayName = pick(item.label ?? item.name, lang)
   const TitleEl = item.href ? (
     <a
       href={item.href}
@@ -1075,11 +1540,11 @@ function Entry({ item }: { item: Item }) {
       rel="noopener noreferrer"
       style={{ color: "var(--ink)", fontFamily: "var(--font-display)" }}
     >
-      <span className="ink-underline-hover">{item.name}</span>
+      <span className="ink-underline-hover">{displayName}</span>
     </a>
   ) : (
     <span style={{ color: "var(--ink)", fontFamily: "var(--font-display)" }}>
-      {item.name}
+      {displayName}
     </span>
   )
 
@@ -1098,11 +1563,11 @@ function Entry({ item }: { item: Item }) {
             lineHeight: 1.5,
           }}
         >
-          {item.note}
+          {pick(item.note, lang)}
         </p>
         {item.href && (
           <div className="mt-1">
-            <CtaButton href={item.href} label={item.cta ?? defaultCta(item.href)} />
+            <CtaButton href={item.href} label={pick(item.cta ?? defaultCta(item.href), lang)} />
           </div>
         )}
       </div>
@@ -1116,6 +1581,7 @@ function Entry({ item }: { item: Item }) {
 // =====================================================================
 
 function Fighting() {
+  const { lang } = useI18n()
   return (
     <section className="mb-20">
       <div className="mb-6 flex items-baseline gap-3">
@@ -1123,7 +1589,7 @@ function Fighting() {
           className="text-2xl uppercase tracking-[0.3em] sm:text-3xl"
           style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
         >
-          — what i&rsquo;m fighting
+          — {pick(UI.fighting, lang)}
         </h2>
       </div>
       <div className="grid gap-6 sm:gap-10 md:grid-cols-[1fr_2fr]">
@@ -1152,7 +1618,7 @@ function Fighting() {
             className="mt-2 text-xs italic"
             style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}
           >
-            * the things I want to leave a dent in. nothing personal — except all of it.
+            {pick(UI.fightingCap, lang)}
           </figcaption>
         </figure>
 
@@ -1162,7 +1628,7 @@ function Fighting() {
         >
           {FIGHTING.map((line, i) => (
             <li
-              key={`${i}-${line.slice(0, 12)}`}
+              key={i}
               className="flex items-baseline gap-4 border-b py-3 text-base sm:text-lg"
               style={{ borderColor: "var(--border-subtle)", lineHeight: 1.5 }}
             >
@@ -1173,7 +1639,7 @@ function Fighting() {
               >
                 {String(i + 1).padStart(2, "0")}
               </span>
-              <span>{line}</span>
+              <span>{pick(line, lang)}</span>
             </li>
           ))}
         </ol>
@@ -1192,9 +1658,10 @@ function TagList({
   note,
 }: {
   title: string
-  items: string[]
+  items: Localized[]
   note?: string
 }) {
+  const { lang } = useI18n()
   return (
     <section className="mb-20">
       <div className="mb-5 flex items-baseline gap-3">
@@ -1232,7 +1699,7 @@ function TagList({
         <ul className="flex flex-wrap content-start gap-3" aria-label={title}>
           {items.map((line, i) => (
             <li
-              key={`${i}-${line.slice(0, 12)}`}
+              key={i}
               className="px-4 py-2 text-sm sm:text-base"
               style={{
                 fontFamily: "var(--font-display)",
@@ -1241,7 +1708,7 @@ function TagList({
                 filter: "url(#ink-wobble)",
               }}
             >
-              ✕&nbsp;&nbsp;{line}
+              ✕&nbsp;&nbsp;{pick(line, lang)}
             </li>
           ))}
         </ul>
@@ -1265,6 +1732,7 @@ function TagList({
 // =====================================================================
 
 function WeightAndAntidote() {
+  const { lang } = useI18n()
   return (
     <section className="mb-20">
       <div className="mb-6 flex items-baseline gap-3">
@@ -1272,18 +1740,18 @@ function WeightAndAntidote() {
           className="text-2xl uppercase tracking-[0.3em] sm:text-3xl"
           style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
         >
-          — weight &amp; antidote
+          — {pick(UI.weightTitle, lang)}
         </h2>
       </div>
       <div className="grid gap-8 sm:gap-12 md:grid-cols-2">
         <WeightColumn
-          heading="what bums me out"
+          heading={pick(UI.bumsHeading, lang)}
           glyph="↓"
           img="/art/decay/012.webp"
           items={BUMS}
         />
         <WeightColumn
-          heading="what keeps me going"
+          heading={pick(UI.keepsHeading, lang)}
           glyph="↑"
           img="/art/acrylic/014.webp"
           items={KEEPS}
@@ -1293,7 +1761,7 @@ function WeightAndAntidote() {
         className="mt-6 max-w-2xl text-xs uppercase tracking-[0.3em]"
         style={{ color: "var(--text-muted)" }}
       >
-        * not asks for sympathy — the friction the work pushes against, and the receipts that get re-read when the left column gets long.
+        {pick(UI.weightNote, lang)}
       </p>
     </section>
   )
@@ -1308,8 +1776,9 @@ function WeightColumn({
   heading: string
   glyph: string
   img: string
-  items: string[]
+  items: Localized[]
 }) {
+  const { lang } = useI18n()
   return (
     <div className="flex flex-col" style={{ position: "relative", zIndex: 36 }}>
       <div
@@ -1342,7 +1811,7 @@ function WeightColumn({
       >
         {items.map((line, i) => (
           <li
-            key={`${i}-${line.slice(0, 12)}`}
+            key={i}
             className="flex items-baseline gap-3 text-base sm:text-lg"
           >
             <span
@@ -1352,7 +1821,7 @@ function WeightColumn({
             >
               {glyph}
             </span>
-            <span>{line}</span>
+            <span>{pick(line, lang)}</span>
           </li>
         ))}
       </ul>
@@ -1378,6 +1847,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 // =====================================================================
 
 function TomWaitsEmbed() {
+  const { lang } = useI18n()
   return (
     <figure
       className="mt-8 max-w-2xl"
@@ -1408,7 +1878,7 @@ function TomWaitsEmbed() {
         className="mt-2 text-xs italic sm:text-sm"
         style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}
       >
-        * Tom Waits — Hold On. The reason to keep the radio on.
+        {pick(UI.waitsCap, lang)}
       </figcaption>
     </figure>
   )
@@ -1432,6 +1902,7 @@ const SKETCHBOOK: Array<{ src: string; ratio: string; tilt: string; shift: strin
 ]
 
 function Sketchbook() {
+  const { lang } = useI18n()
   return (
     <section className="mb-16" style={{ position: "relative", zIndex: 36 }}>
       <div className="mb-5 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-3">
@@ -1439,9 +1910,9 @@ function Sketchbook() {
           className="text-xl uppercase tracking-[0.3em] sm:text-2xl"
           style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
         >
-          — from the sketchbook
+          — {pick(UI.sketchbook, lang)}
         </h2>
-        <CtaButton href="/art" label="see the work" internal />
+        <CtaButton href="/art" label={pick(UI.seeWork, lang)} internal />
       </div>
       {/* horizontal scroll on phones; an off-baseline scatter on desktop */}
       <div className="-mx-1 flex snap-x items-start gap-3 overflow-x-auto pb-2 sm:grid sm:grid-cols-6 sm:gap-4 sm:overflow-visible">
@@ -1479,6 +1950,7 @@ function Sketchbook() {
 // =====================================================================
 
 function RequiemVideo() {
+  const { lang } = useI18n()
   return (
     <section
       className="mb-20"
@@ -1489,9 +1961,9 @@ function RequiemVideo() {
           className="text-2xl uppercase tracking-[0.3em] sm:text-3xl"
           style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
         >
-          — requiem
+          — {pick(UI.requiem, lang)}
         </h2>
-        <CtaButton href="/art" label="more work" internal />
+        <CtaButton href="/art" label={pick(UI.moreWork, lang)} internal />
       </div>
       <figure className="sm:-mx-6 lg:-mx-16">
         <motion.div
@@ -1522,7 +1994,7 @@ function RequiemVideo() {
           className="mt-3 text-xs italic sm:text-sm"
           style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}
         >
-          * Pietà — a moving piece of mine. Sound optional; the loop does the talking.
+          {pick(UI.requiemCap, lang)}
         </figcaption>
       </figure>
     </section>
@@ -1544,6 +2016,7 @@ const SCATTER: Array<{ src: string; span: string; ratio: string; tilt: string; e
 ]
 
 function ArtScatter() {
+  const { lang } = useI18n()
   return (
     <section className="mb-20" style={{ position: "relative", zIndex: 36 }}>
       <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-3">
@@ -1551,9 +2024,9 @@ function ArtScatter() {
           className="text-xl uppercase tracking-[0.3em] sm:text-2xl"
           style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
         >
-          — off the wall
+          — {pick(UI.offWall, lang)}
         </h2>
-        <CtaButton href="/art" label="the whole wall" internal />
+        <CtaButton href="/art" label={pick(UI.wholeWall, lang)} internal />
       </div>
       <div className="grid grid-cols-2 items-start gap-3 sm:grid-cols-12 sm:gap-5">
         {SCATTER.map((tile) => (
@@ -1597,6 +2070,7 @@ const WATCH: Array<{ id: string; title: string }> = [
 ]
 
 function MusicMedia() {
+  const { lang } = useI18n()
   return (
     <div className="mt-8 flex flex-col gap-10">
       {/* thumbnail wall — images + links, no third-party JS */}
@@ -1650,7 +2124,7 @@ function MusicMedia() {
             style={{ border: "1.5px solid var(--ink)", filter: "url(#ink-wobble)" }}
           />
           <figcaption className="mt-2 text-xs italic" style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}>
-            * Mick Jenkins — The Water[s]. Still on the shortlist.
+            {pick(UI.jenkinsCap, lang)}
           </figcaption>
         </figure>
         <figure>
@@ -1667,7 +2141,7 @@ function MusicMedia() {
             style={{ border: "1.5px solid var(--ink)", filter: "url(#ink-wobble)" }}
           />
           <figcaption className="mt-2 text-xs italic" style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}>
-            * mc zenbauhaus — the other side of the desk.
+            {pick(UI.zenbauhausCap, lang)}
           </figcaption>
         </figure>
       </div>
