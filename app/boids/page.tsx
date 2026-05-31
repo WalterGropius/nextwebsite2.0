@@ -10,12 +10,14 @@ import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
+import { useI18n } from "@/lib/i18n/provider"
 
 // Boids pulls in three/examples + leva; dynamic import keeps it out
 // of the shared bundle and avoids SSR for the WebGL bits.
 const Boids = dynamic(() => import("./Boids"), { ssr: false })
 
 export default function BoidsPage() {
+  const { t } = useI18n()
   return (
     <PageLoader>
       <main
@@ -37,7 +39,7 @@ export default function BoidsPage() {
             }}
           >
             <ArrowLeft size={14} className="ink-icon" />
-            <span className="ink-underline-hover">back</span>
+            <span className="ink-underline-hover">{t("common.back")}</span>
           </Link>
           <h1
             className="text-[clamp(2.4rem,6vw,5rem)] leading-[0.9]"
@@ -52,9 +54,7 @@ export default function BoidsPage() {
               fontFamily: "var(--font-display)",
             }}
           >
-            three rules — separation, alignment, cohesion — and the flock
-            emerges. drag to orbit, scroll to zoom, tweak the parameters
-            from the panel.
+            {t("boids.intro")}
           </p>
         </header>
 

@@ -439,9 +439,9 @@ const NOW: NowEntry[] = [
     k: "reading",
     kl: { en: "reading", cs: "čtu", fr: "je lis" },
     v: {
-      en: "Pirsig — Zen and the Art of Motorcycle Maintenance. Third pass; lands differently at 33.",
-      cs: "Pirsig — Zen a umění údržby motocyklu. Potřetí; ve třiatřiceti dopadá jinak.",
-      fr: "Pirsig — Traité du zen et de l'entretien des motocyclettes. Troisième lecture ; à 33 ans, ça résonne autrement.",
+      en: "Weldon — The Caped Crusade. Batman as a mirror held up to nerd culture.",
+      cs: "Weldon — The Caped Crusade. Batman jako zrcadlo nastavené nerd kultuře.",
+      fr: "Weldon — The Caped Crusade. Batman comme miroir tendu à la culture nerd.",
     },
   },
   {

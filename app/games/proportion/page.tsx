@@ -8,6 +8,7 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { GameShell } from "@/components/game-shell"
+import { useT } from "@/lib/i18n/provider"
 
 type Verdict = "spot-on" | "ballpark" | "miss"
 
@@ -139,8 +140,8 @@ export default function ProportionPage() {
 
   return (
     <GameShell
-      title="proportion"
-      blurb="A rectangle appears. Slide your guess of its width-to-height ratio. Within 10% = spot-on (+2), 20% = ballpark (+1), further = miss (−3). Ten rounds."
+      title={t("prop.title")}
+      blurb={t("prop.blurb")}
     >
       <div
         ref={arenaRef}
@@ -181,6 +182,7 @@ export default function ProportionPage() {
 // --- subviews ----------------------------------------------------
 
 function Intro({ onStart }: { onStart: () => void }) {
+  const t = useT()
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 p-8 text-center">
       <p
@@ -190,11 +192,10 @@ function Intro({ onStart }: { onStart: () => void }) {
           fontFamily: "var(--font-display)",
         }}
       >
-        Slide the bar to your best guess of the rectangle&rsquo;s ratio,
-        hit <kbd>enter</kbd> to lock it in. Ten rounds.
+        {t("prop.intro")}
       </p>
       <button onClick={onStart} className="btn-primary">
-        <span>start</span>
+        <span>{t("game.start")}</span>
         <span aria-hidden style={{ filter: "url(#ink-wobble)" }}>→</span>
       </button>
     </div>
@@ -214,12 +215,13 @@ function Playing({
   score: number
   triesLeft: number
 }) {
+  const t = useT()
   return (
     <>
       {/* HUD */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-baseline justify-between p-4 text-xs uppercase tracking-[0.3em]" style={{ color: "var(--text-muted)" }}>
-        <span>round {TOTAL_ROUNDS - triesLeft + 1} / {TOTAL_ROUNDS}</span>
-        <span>score <strong style={{ color: "var(--ink)" }}>{score}</strong></span>
+        <span>{t("game.round")} {TOTAL_ROUNDS - triesLeft + 1} / {TOTAL_ROUNDS}</span>
+        <span>{t("game.score")} <strong style={{ color: "var(--ink)" }}>{score}</strong></span>
       </div>
 
       {/* The rectangle */}
@@ -244,7 +246,7 @@ function Playing({
           className="text-sm uppercase tracking-[0.3em]"
           style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}
         >
-          your guess:{" "}
+          {t("prop.yourGuess")}{" "}
           <strong style={{ color: "var(--ink)" }}>{guess.toFixed(2)} : 1</strong>
         </div>
         <input
@@ -260,12 +262,12 @@ function Playing({
         />
         {reveal ? (
           <button onClick={onNext} className="btn-primary">
-            <span>next</span>
+            <span>{t("game.next")}</span>
             <span aria-hidden style={{ filter: "url(#ink-wobble)" }}>→</span>
           </button>
         ) : (
           <button onClick={onSubmit} className="btn-primary">
-            <span>guess</span>
+            <span>{t("prop.guess")}</span>
             <span aria-hidden style={{ filter: "url(#ink-wobble)" }}>→</span>
           </button>
         )}
@@ -290,7 +292,7 @@ function Playing({
                   "var(--vermilion, #ee4a44)",
               }}
             >
-              {verdict.v === "spot-on" ? "spot on!" : verdict.v === "ballpark" ? "in the ballpark" : "miss"}{" "}
+              {verdict.v === "spot-on" ? t("prop.spotOn") : verdict.v === "ballpark" ? t("prop.ballpark") : t("prop.miss")}{" "}
               <span style={{ color: "var(--text-muted)", fontSize: "0.7em" }}>
                 {verdict.delta > 0 ? `+${verdict.delta}` : verdict.delta}
               </span>
@@ -299,7 +301,7 @@ function Playing({
               className="mt-1 text-sm uppercase tracking-[0.3em]"
               style={{ color: "var(--text-muted)" }}
             >
-              actual {verdict.target.toFixed(2)} : 1
+              {t("prop.actual")} {verdict.target.toFixed(2)} : 1
             </div>
           </motion.div>
         )}
@@ -309,13 +311,14 @@ function Playing({
 }
 
 function Results({ score, onRestart }: { score: number; onRestart: () => void }) {
+  const t = useT()
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 p-8 text-center">
       <div
         className="text-xs uppercase tracking-[0.3em]"
         style={{ color: "var(--text-muted)" }}
       >
-        final
+        {t("game.final")}
       </div>
       <div
         className="text-[clamp(3rem,10vw,6rem)] leading-[0.9]"
@@ -324,10 +327,10 @@ function Results({ score, onRestart }: { score: number; onRestart: () => void })
         {score}
       </div>
       <div style={{ color: "var(--text-muted)" }}>
-        out of {TOTAL_ROUNDS * 2} possible.
+        {t("game.outOf").replace("{n}", String(TOTAL_ROUNDS * 2))}
       </div>
       <button onClick={onRestart} className="btn-primary">
-        <span>again</span>
+        <span>{t("game.again")}</span>
         <span aria-hidden style={{ filter: "url(#ink-wobble)" }}>↻</span>
       </button>
     </div>
