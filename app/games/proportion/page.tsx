@@ -62,6 +62,7 @@ function playSfx(path: string, volume = 0.5) {
 }
 
 export default function ProportionPage() {
+  const t = useT()
   const [stage, setStage] = useState<"intro" | "playing" | "results">("intro")
   const [round, setRound] = useState<Round | null>(null)
   const [guess, setGuess] = useState(2)
