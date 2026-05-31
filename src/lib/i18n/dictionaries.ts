@@ -223,6 +223,10 @@ export const en: Dict = {
   "cv.lang.3.l": "spanish",
   "cv.lang.3.v": "reading",
 
+  // testimonials
+  "testimonials.title.0": "kind",
+  "testimonials.title.1": "words",
+
   // shared
   "common.loading": "loading…",
 }
@@ -253,8 +257,8 @@ export const cs: Dict = {
   "hero.headline.writeCode": "vytvářím řešení",
   "hero.headline.dot": ".",
   "hero.role.0": "kreativní technolog",
-  "hero.role.1": "vr / ar průkopník",
-  "hero.role.2": "ai architekt",
+  "hero.role.1": "průkopník vr / ar",
+  "hero.role.2": "architekt ai",
   "hero.role.3": "vizuální umělec",
   "hero.role.4": "stavitel nemožného",
   "hero.cta": "ozvi se",
@@ -264,14 +268,14 @@ export const cs: Dict = {
 
   "manifesto.line1": "dělám věci,",
   "manifesto.line2": "co by neměly",
-  "manifesto.line3": "fungovat —",
-  "manifesto.line4": "a pouštím je ven.",
-  "manifesto.body.0": "bez titulu.",
-  "manifesto.body.1": "dnes vedu tým, co staví startup",
-  "manifesto.body.2": "z nuly",
-  "manifesto.body.3": ". zítra píšu ai agenty, stavím prostorová rozhraní v",
+  "manifesto.line3": "jít —",
+  "manifesto.line4": "a pustím je do světa.",
+  "manifesto.body.0": "žádná škatulka.",
+  "manifesto.body.1": "jednou vedu tým, co staví startup",
+  "manifesto.body.2": "od nuly",
+  "manifesto.body.3": ". jindy drátuju ai agenty, stavím prostorová rozhraní v",
   "manifesto.body.4": "unrealu",
-  "manifesto.body.5": ", rozebírám hardware do posledního čipu.",
+  "manifesto.body.5": " nebo rozebírám hardware, abych mu přišel na kloub.",
   "manifesto.body.tag": "čím nemožnější, tím zajímavější.",
 
   "highlights.title.0": "něco",
@@ -294,13 +298,13 @@ export const cs: Dict = {
   "philosophy.0.title": "pragmatismus, ne dogma",
   "philosophy.0.body.0": "nejlepší kód",
   "philosophy.0.body.1": "jde do produkce",
-  "philosophy.0.body.2": ", škáluje, a další ho přečte. nástroj podle úkolu —",
+  "philosophy.0.body.2": ", škáluje a přečte ho i ten po mně. nástroj podle úkolu —",
   "philosophy.0.body.3": "typescript, c++, python",
   "philosophy.0.body.4": ", zbytek je fuk.",
-  "philosophy.1.title": "protokol černé skříňky",
+  "philosophy.1.title": "blackbox protokol",
   "philosophy.1.body.0": "lákají mě systémy, kterým",
   "philosophy.1.body.1": "zatím",
-  "philosophy.1.body.2": "nerozumím. rozeberu, najdu hrany, postavím znova.",
+  "philosophy.1.body.2": "nerozumím. rozeberu na kusy, najdu hrany, složím znova.",
   "philosophy.1.body.3": "nejrychlejší cesta dovnitř.",
   "philosophy.2.title": "samostatní agenti",
   "philosophy.2.body.0": "hoď mi",
@@ -363,7 +367,7 @@ export const cs: Dict = {
   "sketchfab.loading": "načítá se…",
 
   "cv.intro":
-    "stavím systémy, rozplétám problémy, vytvářím řešení. bez titulu — dnes vedu tým, co staví startup z nuly, zítra píšu ai agenty, prostorová rozhraní v unrealu, nebo rozebírám hardware, dokud mu nerozumím. čím nemožnější, tím zajímavější.",
+    "stavím systémy, rozplétám problémy, vytvářím řešení. žádná škatulka — jednou vedu tým, co staví startup od nuly, jindy drátuju ai agenty, stavím prostorová rozhraní v unrealu nebo rozebírám hardware, abych mu přišel na kloub. čím nemožnější, tím zajímavější.",
   "cv.section.experience": "zkušenosti",
   "cv.section.capabilities": "umím",
   "cv.section.education": "škola",
@@ -379,7 +383,7 @@ export const cs: Dict = {
   "cv.exp.0.company": "flipas",
   "cv.exp.0.period": "2024 — 2025",
   "cv.exp.0.blurb":
-    "ai life accelerator pro gen z. postavil mvp, sehnal seed kolo, vedl pět inženýrů. spoludesignoval sombru — empatického konverzačního mentora. dynamický ui framework pro ai řízená rozhraní.",
+    "ai life accelerator pro gen z. postavil mvp, sehnal seed kolo, vedl pět inženýrů. spolunavrhl sombru — empatického konverzačního mentora. dynamický ui framework pro rozhraní řízená ai.",
   "cv.exp.1.title": "zakladatel * autor",
   "cv.exp.1.company": "sombra os",
   "cv.exp.1.period": "2024 — pokračuje",
@@ -404,7 +408,7 @@ export const cs: Dict = {
   "cv.exp.5.company": "numinos * vr historické rekonstrukce",
   "cv.exp.5.period": "2023",
   "cv.exp.5.blurb":
-    "real-time rendering ve vr na hraně. naprogramoval custom simulaci povodně. imerzní rekonstrukce historických měst.",
+    "real-time rendering ve vr na hraně. naprogramoval vlastní simulaci povodně. imerzní rekonstrukce historických měst.",
   "cv.exp.6.title": "spider",
   "cv.exp.6.company": "new life * global innovation",
   "cv.exp.6.period": "2018 — pokračuje",
@@ -431,6 +435,9 @@ export const cs: Dict = {
   "cv.lang.2.v": "pokročile",
   "cv.lang.3.l": "španělština",
   "cv.lang.3.v": "čtu",
+
+  "testimonials.title.0": "milá",
+  "testimonials.title.1": "slova",
 
   "common.loading": "načítá se…",
 }
@@ -639,6 +646,9 @@ export const fr: Dict = {
   "cv.lang.2.v": "natif",
   "cv.lang.3.l": "espagnol",
   "cv.lang.3.v": "lecture",
+
+  "testimonials.title.0": "quelques",
+  "testimonials.title.1": "mots",
 
   "common.loading": "chargement…",
 }
