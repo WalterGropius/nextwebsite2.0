@@ -1385,6 +1385,7 @@ function Thumb({
   href,
   internal = false,
   offset = 0,
+  src: srcOverride,
   className = "w-20 sm:w-24",
 }: {
   seed: string
@@ -1393,10 +1394,13 @@ function Thumb({
   // nudge into a different slice of the pool so neighbouring lines don't
   // land on the same frame.
   offset?: number
+  // explicit image (used for dynamic blog thumbs) — wins over the
+  // seed-based unique allocation.
+  src?: string
   className?: string
 }) {
   const h = hashSeed(seed) + offset
-  const src = THUMB_POOL[h % THUMB_POOL.length]
+  const src = srcOverride ?? thumbSrc(seed)
   const ratio = THUMB_RATIOS[h % THUMB_RATIOS.length]
   const tilt = THUMB_TILTS[h % THUMB_TILTS.length]
   const frame = (
