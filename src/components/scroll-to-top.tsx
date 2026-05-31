@@ -2,8 +2,10 @@
 
 import { useState, useEffect } from "react"
 import { ArrowUp } from "lucide-react"
+import { useT } from "@/lib/i18n/provider"
 
 export function ScrollToTop() {
+  const t = useT()
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
@@ -28,7 +30,7 @@ export function ScrollToTop() {
         border: "1.5px solid var(--ink)",
         filter: "url(#ink-wobble)",
       }}
-      aria-label="scroll to top"
+      aria-label={t("a11y.scrollTop")}
     >
       <ArrowUp size={18} />
     </button>

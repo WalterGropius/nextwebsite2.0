@@ -10,6 +10,11 @@ import { MotionText } from "@/components/motion-text"
 import { InkLine } from "@/components/ink-line"
 import { useI18n } from "@/lib/i18n/provider"
 import { pick, type Localized } from "@/lib/i18n/localize"
+import artData from "../../public/art.json"
+
+// Capitalize just the first letter — the page uses sentence-case
+// labels, never ALL CAPS.
+const cap = (s: string) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : s)
 
 // /more is the off-the-record half of the site. Not a site map — the
 // nav has those. A catalogue of inputs that shaped the work, written
@@ -439,9 +444,9 @@ const NOW: NowEntry[] = [
     k: "reading",
     kl: { en: "reading", cs: "čtu", fr: "je lis" },
     v: {
-      en: "Pirsig — Zen and the Art of Motorcycle Maintenance. Third pass; lands differently at 33.",
-      cs: "Pirsig — Zen a umění údržby motocyklu. Potřetí; ve třiatřiceti dopadá jinak.",
-      fr: "Pirsig — Traité du zen et de l'entretien des motocyclettes. Troisième lecture ; à 33 ans, ça résonne autrement.",
+      en: "Weldon — The Caped Crusade. Batman as a mirror held up to nerd culture.",
+      cs: "Weldon — The Caped Crusade. Batman jako zrcadlo nastavené nerd kultuře.",
+      fr: "Weldon — The Caped Crusade. Batman comme miroir tendu à la culture nerd.",
     },
   },
   {
@@ -736,7 +741,7 @@ const UI = {
   now: { en: "now", cs: "teď", fr: "maintenant" },
   nowNote: {
     en: "* hand-edited, not a feed. if it's stale by more than a season i've probably ghosted the site.",
-    cs: "* psané ručně, není to feed. jestli je to neaktuální víc než sezónu, nejspíš jsem web nechal ležet.",
+    cs: "* psané ručně, není to feed.",
     fr: "* édité à la main, pas un flux. si c'est périmé de plus d'une saison, j'ai sans doute déserté le site.",
   },
   loveTitle: { en: "stuff i love", cs: "co mám rád", fr: "ce que j'aime" },
@@ -935,16 +940,16 @@ export default function MorePage() {
           <section className="mb-20">
             <div className="mb-5 flex items-baseline gap-3">
               <h2
-                className="text-2xl uppercase tracking-[0.3em] sm:text-3xl"
+                className="text-2xl tracking-[0.3em] sm:text-3xl"
                 style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
               >
-                — {tr(UI.now)}
+                — {cap(tr(UI.now))}
               </h2>
               <span
-                className="text-xs uppercase tracking-[0.3em]"
+                className="text-xs tracking-[0.3em]"
                 style={{ color: "var(--text-muted)" }}
               >
-                {updatedLabel && `${tr(UI.updated)} · ${updatedLabel}`}
+                {updatedLabel && `${cap(tr(UI.updated))} · ${updatedLabel}`}
               </span>
             </div>
             <dl
@@ -960,10 +965,10 @@ export default function MorePage() {
                   <Thumb seed={n.k} offset={i} className="w-16 sm:w-20" />
                   <div>
                     <dt
-                      className="mb-0.5 text-[0.65rem] uppercase tracking-[0.3em]"
+                      className="mb-0.5 text-[0.65rem] tracking-[0.3em]"
                       style={{ color: "var(--text-muted)" }}
                     >
-                      {tr(n.kl)}
+                      {cap(tr(n.kl))}
                     </dt>
                     <dd
                       className="text-base sm:text-lg"
@@ -980,7 +985,7 @@ export default function MorePage() {
               ))}
             </dl>
             <p
-              className="mt-4 text-xs uppercase tracking-[0.3em]"
+              className="mt-4 text-xs tracking-[0.3em]"
               style={{ color: "var(--text-muted)" }}
             >
               {tr(UI.nowNote)}
@@ -998,7 +1003,7 @@ export default function MorePage() {
                 className="text-4xl sm:text-5xl"
                 style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
               >
-                <span className="ink-underline">{tr(UI.loveTitle)}</span>
+                <span className="ink-underline">{cap(tr(UI.loveTitle))}</span>
               </h2>
               <BauhausMark />
             </div>
@@ -1074,7 +1079,7 @@ export default function MorePage() {
 
           {/* ===== ELSEWHERE ===== */}
           <section className="mb-20">
-            <SectionTitle>{tr(UI.elsewhere)}</SectionTitle>
+            <SectionTitle>{cap(tr(UI.elsewhere))}</SectionTitle>
             <ul className="flex flex-col">
               {OUT_LINKS.map((l) => (
                 <li
@@ -1110,7 +1115,7 @@ export default function MorePage() {
 
           {/* ===== BLOG ===== */}
           <section className="mb-20">
-            <SectionTitle>{tr(UI.blog)}</SectionTitle>
+            <SectionTitle>{cap(tr(UI.blog))}</SectionTitle>
             <div className="flex flex-col gap-8">
               {posts.length === 0 ? (
                 <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}>
@@ -1123,12 +1128,12 @@ export default function MorePage() {
                       seed={p.id}
                       href={`/blog/${p.id}`}
                       internal
-                      offset={i * 5}
+                      src={blogThumbSrc(i)}
                       className="w-24 sm:w-32"
                     />
                     <div>
                       <div
-                        className="mb-2 text-xs uppercase tracking-[0.3em]"
+                        className="mb-2 text-xs tracking-[0.3em]"
                         style={{ color: "var(--text-muted)" }}
                       >
                         {fmtDate(p.date)}
@@ -1175,7 +1180,7 @@ export default function MorePage() {
 
           {/* ===== ANCHORS ===== */}
           <section className="mb-20">
-            <SectionTitle>{tr(UI.anchors)}</SectionTitle>
+            <SectionTitle>{cap(tr(UI.anchors))}</SectionTitle>
             <dl
               className="grid gap-4 sm:gap-6 md:grid-cols-2"
               style={{ color: "var(--ink)" }}
@@ -1189,10 +1194,10 @@ export default function MorePage() {
                   <Thumb seed={a.k} offset={i * 3} className="w-20 sm:w-24" />
                   <div>
                     <dt
-                      className="mb-1 text-xs uppercase tracking-[0.3em]"
+                      className="mb-1 text-xs tracking-[0.3em]"
                       style={{ color: "var(--text-muted)" }}
                     >
-                      {tr(a.kl)}
+                      {cap(tr(a.kl))}
                     </dt>
                     <dd
                       className="text-base sm:text-lg"
@@ -1252,7 +1257,7 @@ function CtaButton({
 }) {
   const inner = (
     <span
-      className="relative inline-flex items-center gap-2 px-4 py-2 text-xs uppercase tracking-[0.25em] transition-colors duration-300 sm:text-sm"
+      className="relative inline-flex items-center gap-2 px-4 py-2 text-xs tracking-[0.25em] transition-colors duration-300 sm:text-sm"
       style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
     >
       <span
@@ -1294,17 +1299,6 @@ function CtaButton({
 //  without a hydration-tripping random or a hand-assigned path per item.
 // =====================================================================
 
-const THUMB_POOL: string[] = [
-  "/art/surfaces/008.webp", "/art/weird/014.webp", "/art/landscape/021.webp",
-  "/art/decay/006.webp", "/art/reflections/018.webp", "/art/stalking/011.webp",
-  "/art/acrylic/003.webp", "/art/surfaces/077.webp", "/art/weird/045.webp",
-  "/art/landscape/099.webp", "/art/decay/028.webp", "/art/reflections/041.webp",
-  "/art/stalking/072.webp", "/art/acrylic/019.webp", "/art/surfaces/150.webp",
-  "/art/weird/180.webp", "/art/landscape/133.webp", "/art/decay/055.webp",
-  "/art/reflections/063.webp", "/art/stalking/100.webp", "/art/surfaces/210.webp",
-  "/art/weird/220.webp", "/art/landscape/058.webp", "/art/acrylic/025.webp",
-  "/art/surfaces/260.webp", "/art/weird/099.webp",
-]
 const THUMB_RATIOS = ["1 / 1", "3 / 4", "4 / 3", "4 / 5", "5 / 4", "2 / 3"]
 const THUMB_TILTS = ["-2.4deg", "1.8deg", "-1.2deg", "2.2deg", "-1.8deg", "1.4deg"]
 
@@ -1312,6 +1306,66 @@ function hashSeed(s: string): number {
   let h = 0
   for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) >>> 0
   return h
+}
+
+// Every text-only list item gets a unique scrap of real work — no image
+// appears twice on the page. We build one big pool from the art archive,
+// minus the frames already spoken for by featured rows, the sketchbook,
+// the scatter and the standalone figures, then hand each thumb seed a
+// distinct slot. The mapping is a pure function of seed (stable order
+// from the data) so SSR and the client agree — no hydration flicker.
+const FIXED_IMAGES = (): Set<string> => {
+  const used = new Set<string>([
+    "/art/decay/004.webp", "/art/decay/041.webp", "/art/decay/012.webp",
+    "/art/acrylic/014.webp", "/art/decay/050.webp",
+    "/art/surfaces/030.webp", "/art/weird/060.webp",
+  ])
+  ;[AESTHETIC, MUSIC, FILM, SKATE, CODE, MIND, PRACTICE, PEOPLE, MISC]
+    .flat()
+    .forEach((i) => { if (i.img) used.add(i.img) })
+  SKETCHBOOK.forEach((s) => used.add(s.src))
+  SCATTER.forEach((s) => used.add(s.src))
+  return used
+}
+
+let THUMB_POOL: string[] | null = null
+function thumbPool(): string[] {
+  if (THUMB_POOL) return THUMB_POOL
+  const used = FIXED_IMAGES()
+  const pool: string[] = []
+  for (const series of artData as Array<{ images?: string[] }>) {
+    for (const img of series.images ?? []) {
+      if (img.startsWith("/art/img-")) continue // shared hero frames
+      if (!used.has(img) && !pool.includes(img)) pool.push(img)
+    }
+  }
+  THUMB_POOL = pool
+  return pool
+}
+
+// Static seeds in page order — each gets a distinct pool slot by index.
+// Dynamic seeds (blog ids) are handed explicit srcs from the tail.
+const STATIC_SEEDS: string[] = [
+  ...NOW.map((n) => n.k),
+  ...[AESTHETIC, MUSIC, FILM, SKATE, CODE, MIND, PRACTICE, PEOPLE, MISC]
+    .flat()
+    .filter((i) => !i.img)
+    .map((i) => i.name),
+  ...ANCHORS.map((a) => a.k),
+]
+
+function thumbSrc(seed: string): string {
+  const pool = thumbPool()
+  const i = STATIC_SEEDS.indexOf(seed)
+  const idx = i >= 0 ? i : STATIC_SEEDS.length + (hashSeed(seed) % 16)
+  return pool[idx % pool.length]
+}
+
+// Blog thumbs sit just past the static block so they never collide
+// with the influence/anchor thumbs above.
+function blogThumbSrc(i: number): string {
+  const pool = thumbPool()
+  return pool[(STATIC_SEEDS.length + 32 + i) % pool.length]
 }
 
 // A sensible three-word-max CTA from the link's flavour, so a list of
@@ -1331,6 +1385,7 @@ function Thumb({
   href,
   internal = false,
   offset = 0,
+  src: srcOverride,
   className = "w-20 sm:w-24",
 }: {
   seed: string
@@ -1339,10 +1394,13 @@ function Thumb({
   // nudge into a different slice of the pool so neighbouring lines don't
   // land on the same frame.
   offset?: number
+  // explicit image (used for dynamic blog thumbs) — wins over the
+  // seed-based unique allocation.
+  src?: string
   className?: string
 }) {
   const h = hashSeed(seed) + offset
-  const src = THUMB_POOL[h % THUMB_POOL.length]
+  const src = srcOverride ?? thumbSrc(seed)
   const ratio = THUMB_RATIOS[h % THUMB_RATIOS.length]
   const tilt = THUMB_TILTS[h % THUMB_TILTS.length]
   const frame = (
@@ -1406,10 +1464,10 @@ function Sub({
     <section className="mb-14">
       <div className="mb-5 flex items-baseline gap-3">
         <h3
-          className="text-xl uppercase tracking-[0.3em] sm:text-2xl"
+          className="text-xl tracking-[0.3em] sm:text-2xl"
           style={{ color: "var(--ink)", fontFamily: "var(--font-display)" }}
         >
-          — {title}
+          — {cap(title)}
         </h3>
         {mark && (
           <span className="ml-1" style={{ color: "var(--ink)", opacity: 0.7 }}>
@@ -1586,10 +1644,10 @@ function Fighting() {
     <section className="mb-20">
       <div className="mb-6 flex items-baseline gap-3">
         <h2
-          className="text-2xl uppercase tracking-[0.3em] sm:text-3xl"
+          className="text-2xl tracking-[0.3em] sm:text-3xl"
           style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
         >
-          — {pick(UI.fighting, lang)}
+          — {cap(pick(UI.fighting, lang))}
         </h2>
       </div>
       <div className="grid gap-6 sm:gap-10 md:grid-cols-[1fr_2fr]">
@@ -1666,10 +1724,10 @@ function TagList({
     <section className="mb-20">
       <div className="mb-5 flex items-baseline gap-3">
         <h2
-          className="text-2xl uppercase tracking-[0.3em] sm:text-3xl"
+          className="text-2xl tracking-[0.3em] sm:text-3xl"
           style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
         >
-          — {title}
+          — {cap(title)}
         </h2>
       </div>
       <div className="grid items-start gap-6 sm:gap-8 md:grid-cols-[1fr_2fr]">
@@ -1715,7 +1773,7 @@ function TagList({
       </div>
       {note && (
         <p
-          className="mt-5 max-w-2xl text-xs uppercase tracking-[0.3em]"
+          className="mt-5 max-w-2xl text-xs tracking-[0.3em]"
           style={{ color: "var(--text-muted)" }}
         >
           {note}
@@ -1737,10 +1795,10 @@ function WeightAndAntidote() {
     <section className="mb-20">
       <div className="mb-6 flex items-baseline gap-3">
         <h2
-          className="text-2xl uppercase tracking-[0.3em] sm:text-3xl"
+          className="text-2xl tracking-[0.3em] sm:text-3xl"
           style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
         >
-          — {pick(UI.weightTitle, lang)}
+          — {cap(pick(UI.weightTitle, lang))}
         </h2>
       </div>
       <div className="grid gap-8 sm:gap-12 md:grid-cols-2">
@@ -1758,7 +1816,7 @@ function WeightAndAntidote() {
         />
       </div>
       <p
-        className="mt-6 max-w-2xl text-xs uppercase tracking-[0.3em]"
+        className="mt-6 max-w-2xl text-xs tracking-[0.3em]"
         style={{ color: "var(--text-muted)" }}
       >
         {pick(UI.weightNote, lang)}
@@ -1799,10 +1857,10 @@ function WeightColumn({
         />
       </div>
       <h3
-        className="mb-3 text-lg uppercase tracking-[0.3em]"
+        className="mb-3 text-lg tracking-[0.3em]"
         style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
       >
-        — {heading}
+        — {cap(heading)}
       </h3>
       <ul
         aria-label={heading}
@@ -1816,7 +1874,7 @@ function WeightColumn({
           >
             <span
               aria-hidden
-              className="shrink-0 text-xs uppercase tracking-[0.3em]"
+              className="shrink-0 text-xs tracking-[0.3em]"
               style={{ color: "var(--text-muted)" }}
             >
               {glyph}
@@ -1907,10 +1965,10 @@ function Sketchbook() {
     <section className="mb-16" style={{ position: "relative", zIndex: 36 }}>
       <div className="mb-5 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-3">
         <h2
-          className="text-xl uppercase tracking-[0.3em] sm:text-2xl"
+          className="text-xl tracking-[0.3em] sm:text-2xl"
           style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
         >
-          — {pick(UI.sketchbook, lang)}
+          — {cap(pick(UI.sketchbook, lang))}
         </h2>
         <CtaButton href="/art" label={pick(UI.seeWork, lang)} internal />
       </div>
@@ -1958,10 +2016,10 @@ function RequiemVideo() {
     >
       <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-3">
         <h2
-          className="text-2xl uppercase tracking-[0.3em] sm:text-3xl"
+          className="text-2xl tracking-[0.3em] sm:text-3xl"
           style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
         >
-          — {pick(UI.requiem, lang)}
+          — {cap(pick(UI.requiem, lang))}
         </h2>
         <CtaButton href="/art" label={pick(UI.moreWork, lang)} internal />
       </div>
@@ -2021,10 +2079,10 @@ function ArtScatter() {
     <section className="mb-20" style={{ position: "relative", zIndex: 36 }}>
       <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-3">
         <h2
-          className="text-xl uppercase tracking-[0.3em] sm:text-2xl"
+          className="text-xl tracking-[0.3em] sm:text-2xl"
           style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
         >
-          — {pick(UI.offWall, lang)}
+          — {cap(pick(UI.offWall, lang))}
         </h2>
         <CtaButton href="/art" label={pick(UI.wholeWall, lang)} internal />
       </div>
@@ -2097,7 +2155,7 @@ function MusicMedia() {
               style={{ border: "1.5px solid var(--ink)", filter: "url(#ink-wobble)" }}
             />
             <span
-              className="absolute bottom-0 left-0 right-0 px-2 py-1 text-[0.6rem] uppercase tracking-[0.2em] opacity-0 transition-opacity group-hover:opacity-100"
+              className="absolute bottom-0 left-0 right-0 px-2 py-1 text-[0.6rem] tracking-[0.2em] opacity-0 transition-opacity group-hover:opacity-100"
               style={{ background: "var(--surface-dark)", color: "var(--ink)", fontFamily: "var(--font-display)" }}
             >
               {v.title}

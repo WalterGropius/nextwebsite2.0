@@ -13,6 +13,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react"
 import { GameShell } from "@/components/game-shell"
+import { useT } from "@/lib/i18n/provider"
 
 type Stage = "intro" | "showing" | "tracing" | "reveal" | "results"
 type V = { x: number; y: number }
@@ -71,6 +72,7 @@ function matchAndScore(target: V[], user: V[]) {
 }
 
 export default function AnglesPage() {
+  const t = useT()
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const wrapRef = useRef<HTMLDivElement>(null)
 
@@ -235,8 +237,8 @@ export default function AnglesPage() {
 
   return (
     <GameShell
-      title="trace it"
-      blurb="A polygon flashes for a second. From memory, click each corner in order. Score is based on how close your vertices land to the original."
+      title={t("angles.title")}
+      blurb={t("angles.blurb")}
     >
       <div
         ref={wrapRef}
@@ -261,11 +263,10 @@ export default function AnglesPage() {
               className="max-w-md text-base sm:text-lg"
               style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}
             >
-              the polygon flashes — count the corners, remember the angles.
-              click each vertex in order from memory. six rounds.
+              {t("angles.intro")}
             </p>
             <button onClick={startRound} className="btn-primary">
-              <span>start</span>
+              <span>{t("game.start")}</span>
               <span aria-hidden style={{ filter: "url(#ink-wobble)" }}>→</span>
             </button>
           </Overlay>
@@ -277,9 +278,9 @@ export default function AnglesPage() {
             className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-baseline justify-between p-4 text-xs uppercase tracking-[0.3em]"
             style={{ color: "var(--text-muted)" }}
           >
-            <span>round {round} / {TOTAL_ROUNDS}</span>
+            <span>{t("game.round")} {round} / {TOTAL_ROUNDS}</span>
             <span>
-              total <strong style={{ color: "var(--ink)" }}>{total}</strong>
+              {t("game.total")} <strong style={{ color: "var(--ink)" }}>{total}</strong>
             </span>
           </div>
         )}
@@ -289,7 +290,7 @@ export default function AnglesPage() {
             className="pointer-events-none absolute inset-x-0 bottom-4 z-20 text-center text-sm uppercase tracking-[0.3em]"
             style={{ color: "var(--text-muted)" }}
           >
-            * memorise *
+            {t("game.memorise")}
           </div>
         )}
 
@@ -298,7 +299,7 @@ export default function AnglesPage() {
             className="pointer-events-none absolute inset-x-0 bottom-4 z-20 text-center text-sm uppercase tracking-[0.3em]"
             style={{ color: "var(--text-muted)" }}
           >
-            click {target.length - user.length} more vertex{target.length - user.length === 1 ? "" : "es"}
+            {t("angles.left").replace("{n}", String(target.length - user.length))}
           </div>
         )}
 
@@ -317,7 +318,7 @@ export default function AnglesPage() {
               {lastScore} / 100
             </div>
             <button onClick={advance} className="btn-primary">
-              <span>{round >= TOTAL_ROUNDS ? "results" : "next"}</span>
+              <span>{round >= TOTAL_ROUNDS ? t("game.results") : t("game.next")}</span>
               <span aria-hidden style={{ filter: "url(#ink-wobble)" }}>→</span>
             </button>
           </div>
@@ -326,7 +327,7 @@ export default function AnglesPage() {
         {stage === "results" && (
           <Overlay>
             <div className="text-xs uppercase tracking-[0.3em]" style={{ color: "var(--text-muted)" }}>
-              final
+              {t("game.final")}
             </div>
             <div
               className="text-[clamp(3rem,10vw,6rem)] leading-[0.9]"
@@ -335,10 +336,10 @@ export default function AnglesPage() {
               {total}
             </div>
             <div style={{ color: "var(--text-muted)" }}>
-              out of {TOTAL_ROUNDS * 100} possible.
+              {t("game.outOf").replace("{n}", String(TOTAL_ROUNDS * 100))}
             </div>
             <button onClick={restart} className="btn-primary">
-              <span>again</span>
+              <span>{t("game.again")}</span>
               <span aria-hidden style={{ filter: "url(#ink-wobble)" }}>↻</span>
             </button>
           </Overlay>
