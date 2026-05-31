@@ -21,6 +21,11 @@ TAGS = {
 }
 
 TITLE = {
+    "faces-to-cameras": (
+        "every face becomes a camera",
+        "z každé stěny se stane kamera",
+        "chaque face devient une caméra",
+    ),
     "polymath-time-debt": (
         "the polymath's time debt is the only debt that compounds for free",
         "časový dluh polyhistora je jediný dluh, který se úročí zadarmo",
@@ -54,6 +59,11 @@ TITLE = {
 }
 
 EXCERPT = {
+    "faces-to-cameras": (
+        "A tiny Blender script that turns any mesh into a camera rig for gaussian splat capture.",
+        "Maličký Blender skript, který z libovolného meshe udělá kamerový rig pro snímání gaussian splatů.",
+        "Un petit script Blender qui transforme n'importe quel mesh en rig de caméras pour la capture de gaussian splats.",
+    ),
     "polymath-time-debt": (
         "Most ideas you have you won't ship. Sombra OS is the cache.",
         "Většinu nápadů, které máš, nedotáhneš. Sombra OS je cache.",
@@ -87,6 +97,63 @@ EXCERPT = {
 }
 
 BODY = {}
+
+BODY["faces-to-cameras"] = {
+"cs": """Pořád jsem narážel na stejnou zeď při snímání objektů pro **gaussian splatting**: potřeboval jsem desítky úhlů kamery, rovnoměrně rozprostřené kolem objektu, všechny mířící na něj, a žádné dva pohledy náhodně nahloučené k sobě. Dělat to ručně v Blenderu je utrpení.
+
+Tak jsem napsal skript, který dělá tu nasnadě ležící věc: vezme mesh a promění **každou stěnu v kameru**.
+
+## ten trik
+
+Přidej kolem objektu icosféru a geometrie udělá tu těžkou práci za tebe. Stěny icosféry jsou téměř rovnoměrně rozmístěné po kouli — což je přesně to rozložení pohledů, které splat pipeline chce. Jedno dělení dá ~80 kamer, dvě ~320. Každá stěna se stane kamerou sedící ve středu stěny, mířící dovnitř na střed objektu.
+
+Pak přiřadí jednu kameru na snímek časové osy, takže celé snímání je jediné **Render Animation**:
+
+```
+Render > Render Animation   (Ctrl+F12)
+```
+
+Vypadne `frame_0001.png`, `frame_0002.png`, … — jeden obrázek na kameru, v číslované sekvenci, kterou COLMAP a každý splat trenér očekává.
+
+## proč stěny, ne otočný stůl
+
+Otočný stůl ti dá jeden prstenec pohledů v jedné výšce. Splaty to nenávidí — rekonstrukce dostane tlustý rovník a u pólů hladoví. Stěny meshe ti dají plné kulové pokrytí zadarmo a hustotu řídíš dělením, místo abys ladil klíčové snímky.
+
+Je to asi třicet řádků `bmesh` plus `to_track_quat` na zamíření každé kamery. Celé je to na githubu: [blender-export-gs.py](https://github.com/WalterGropius/zenbauhaus_scripts/blob/main/blender-export-gs.py).
+
+## háček
+
+Dokonalá icosféra dá každou kameru na stejný poloměr, dokonale vystředěnou. COLMAP to obvykle zvládne, ale pokud ti rekonstrukce vyjde řídká, trochu rozkmitej poloměr nebo sniž ohnisko pro větší překryv mezi sousedy. Překryv je to, čím se živí krok structure-from-motion.
+
+Hoď mesh kolem věci, spusť skript, renderuj. Nudné nástroje jsou ty, které dotahují.""",
+"fr": """Je butais sans cesse sur le même mur en capturant des objets pour le **gaussian splatting** : il me fallait des dizaines d'angles de caméra, répartis uniformément autour du sujet, tous pointés vers lui, sans que deux vues se retrouvent accidentellement entassées. Le faire à la main dans Blender est un supplice.
+
+Alors j'ai écrit un script qui fait la chose évidente : prendre un mesh et transformer **chaque face en caméra**.
+
+## l'astuce
+
+Ajoute une icosphère autour de ton sujet et la géométrie fait le gros du travail à ta place. Les faces d'une icosphère sont réparties de façon quasi uniforme sur une sphère — c'est exactement la distribution de points de vue que veut un pipeline de splat. Une subdivision donne ~80 caméras, deux ~320. Chaque face devient une caméra posée au centre de la face, pointée vers l'intérieur, vers le centre de l'objet.
+
+Ensuite il lie une caméra par image de la timeline, si bien que toute la capture tient en un seul **Render Animation** :
+
+```
+Render > Render Animation   (Ctrl+F12)
+```
+
+Il en sort `frame_0001.png`, `frame_0002.png`, … — une image par caméra, dans une séquence numérotée que COLMAP et tout entraîneur de splat attendent.
+
+## pourquoi les faces, pas un tourne-disque
+
+Un tourne-disque te donne un seul anneau de vues à une seule hauteur. Les splats détestent ça — la reconstruction se retrouve avec un équateur bien gras et meurt de faim aux pôles. Les faces du mesh te donnent une couverture sphérique complète gratuitement, et tu contrôles la densité en subdivisant plutôt qu'en bricolant des keyframes.
+
+Ça fait une trentaine de lignes de `bmesh` plus `to_track_quat` pour orienter chaque caméra. Le tout est sur github : [blender-export-gs.py](https://github.com/WalterGropius/zenbauhaus_scripts/blob/main/blender-export-gs.py).
+
+## le piège
+
+Une icosphère parfaite met chaque caméra au même rayon, parfaitement centrée. COLMAP s'en sort généralement, mais si ta reconstruction ressort clairsemée, fais varier un peu le rayon ou baisse la focale pour plus de recouvrement entre voisines. Le recouvrement, c'est ce que mange l'étape de structure-from-motion.
+
+Pose un mesh autour d'une chose, lance le script, rends. Les outils ennuyeux sont ceux qui livrent.""",
+}
 
 BODY["polymath-time-debt"] = {
 "cs": """Důvod, proč jsem postavil **Sombra OS**, je brutálně prostý: došlo mi místo na disku pro nápady.
