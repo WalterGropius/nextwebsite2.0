@@ -227,6 +227,13 @@ export const en: Dict = {
   "testimonials.title.0": "kind",
   "testimonials.title.1": "words",
 
+  // contact radar mini-game
+  "radar.label": "radar * contact",
+  "radar.hits": "hits",
+  "radar.miss": "miss",
+  "radar.hint.start": "click a blip when the sweep lights it up",
+  "radar.hint.active": "tag the blip as the sweep passes it",
+
   // shared
   "common.loading": "loading…",
 }
@@ -439,6 +446,12 @@ export const cs: Dict = {
   "testimonials.title.0": "milá",
   "testimonials.title.1": "slova",
 
+  "radar.label": "radar * kontakt",
+  "radar.hits": "zásahy",
+  "radar.miss": "mimo",
+  "radar.hint.start": "klikni na blip ve chvíli, kdy ho rozsvítí paprsek",
+  "radar.hint.active": "klepni na blip přesně, když přes něj přejede paprsek",
+
   "common.loading": "načítá se…",
 }
 
@@ -649,6 +662,12 @@ export const fr: Dict = {
 
   "testimonials.title.0": "quelques",
   "testimonials.title.1": "mots",
+
+  "radar.label": "radar * contact",
+  "radar.hits": "touches",
+  "radar.miss": "raté",
+  "radar.hint.start": "clique sur un blip quand le balayage l'éclaire",
+  "radar.hint.active": "touche le blip au moment où le balayage passe dessus",
 
   "common.loading": "chargement…",
 }

@@ -15,6 +15,7 @@
 // throttling doesn't make it feel laggy.
 
 import { useEffect, useRef, useState } from "react"
+import { useI18n } from "@/lib/i18n/provider"
 
 type Blip = {
   x: number
@@ -35,6 +36,7 @@ const COLORS = {
 }
 
 export function ContactRadar() {
+  const { t } = useI18n()
   const wrapRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [score, setScore] = useState(0)
@@ -350,11 +352,11 @@ export function ContactRadar() {
         className="pointer-events-none absolute -top-3 left-0 right-0 flex items-baseline justify-between text-[0.65rem] uppercase tracking-[0.3em]"
         style={{ color: "var(--text-muted)" }}
       >
-        <span>radar * contact</span>
+        <span>{t("radar.label")}</span>
         <span>
-          hits <strong style={{ color: "var(--ink)" }}>{score}</strong>
+          {t("radar.hits")} <strong style={{ color: "var(--ink)" }}>{score}</strong>
           {misses > 0 && (
-            <span style={{ opacity: 0.6 }}> &nbsp;miss {misses}</span>
+            <span style={{ opacity: 0.6 }}> &nbsp;{t("radar.miss")} {misses}</span>
           )}
         </span>
       </div>
@@ -362,9 +364,7 @@ export function ContactRadar() {
         className="mt-3 text-center text-[0.7rem] uppercase tracking-[0.3em]"
         style={{ color: "var(--text-muted)" }}
       >
-        {active
-          ? "tag the blip as the sweep passes it"
-          : "click a blip when the sweep lights it up"}
+        {active ? t("radar.hint.active") : t("radar.hint.start")}
       </p>
     </div>
   )
