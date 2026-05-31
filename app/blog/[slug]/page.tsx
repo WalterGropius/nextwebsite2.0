@@ -35,7 +35,7 @@ export default function BlogPostPage() {
   const slug = String(params?.slug ?? "")
   const [posts, setPosts] = useState<Post[]>([])
   const [loading, setLoading] = useState(true)
-  const { lang } = useI18n()
+  const { lang, t } = useI18n()
 
   useEffect(() => {
     fetch("/blogs.json")
@@ -67,7 +67,7 @@ export default function BlogPostPage() {
             style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}
           >
             <ArrowLeft size={14} className="ink-icon" />
-            <span className="ink-underline-hover">all posts</span>
+            <span className="ink-underline-hover">{t("blog.allPosts")}</span>
           </Link>
 
           {loading ? (

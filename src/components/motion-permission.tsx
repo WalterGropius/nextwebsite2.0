@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
+import { useT } from "@/lib/i18n/provider"
 
 type DeviceOrientationEventStatic = typeof DeviceOrientationEvent & {
   requestPermission?: () => Promise<"granted" | "denied">
 }
 
 export function MotionPermission() {
+  const t = useT()
   const [show, setShow] = useState(false)
   const [requesting, setRequesting] = useState(false)
 
@@ -79,7 +81,7 @@ export function MotionPermission() {
             className="text-sm"
             style={{ color: "var(--ink)", lineHeight: 1.3 }}
           >
-            tilt to move it * enable motion?
+            {t("motion.prompt")}
           </span>
           <div className="flex shrink-0 items-center gap-2">
             <button
@@ -87,7 +89,7 @@ export function MotionPermission() {
               className="px-2 py-1 text-xs"
               style={{ color: "var(--text-muted)" }}
             >
-              skip
+              {t("motion.skip")}
             </button>
             <button
               onClick={onEnable}
@@ -98,7 +100,7 @@ export function MotionPermission() {
                 color: "var(--surface-dark)",
               }}
             >
-              {requesting ? "…" : "enable"}
+              {requesting ? "…" : t("motion.enable")}
             </button>
           </div>
         </motion.div>

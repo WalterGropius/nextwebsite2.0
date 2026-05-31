@@ -31,7 +31,7 @@ function formatDate(s: string) {
 export default function BlogIndex() {
   const [posts, setPosts] = useState<Post[]>([])
   const [loading, setLoading] = useState(true)
-  const { lang } = useI18n()
+  const { lang, t } = useI18n()
 
   useEffect(() => {
     fetch("/blogs.json")
@@ -59,7 +59,7 @@ export default function BlogIndex() {
             style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}
           >
             <ArrowLeft size={14} className="ink-icon" />
-            <span className="ink-underline-hover">more</span>
+            <span className="ink-underline-hover">{t("nav.more")}</span>
           </Link>
 
           <header className="mb-12">
@@ -76,8 +76,7 @@ export default function BlogIndex() {
                 fontFamily: "var(--font-display)",
               }}
             >
-              Loose notes. Methodology, hardware, taste, the time-debt
-              philosophy. Updated when I have something worth writing down.
+              {t("blog.intro")}
             </p>
           </header>
 
@@ -86,9 +85,9 @@ export default function BlogIndex() {
           </div>
 
           {loading ? (
-            <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}>loading…</p>
+            <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}>{t("common.loading")}</p>
           ) : posts.length === 0 ? (
-            <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}>nothing here yet.</p>
+            <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}>{t("blog.empty")}</p>
           ) : (
             <ul className="flex flex-col">
               {posts.map((p, i) => (

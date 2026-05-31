@@ -6,6 +6,7 @@ import { ArrowLeft } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
 import { InkLine } from "@/components/ink-line"
+import { useT } from "@/lib/i18n/provider"
 
 // GameShell — the small frame every eye-trainer page sits in. Pulls
 // in the site nav, the surface bg, a back-to-/more link, a title and
@@ -19,6 +20,7 @@ export function GameShell({
   blurb: string
   children: ReactNode
 }) {
+  const t = useT()
   return (
     <PageLoader>
       <main
@@ -40,7 +42,7 @@ export function GameShell({
             }}
           >
             <ArrowLeft size={14} className="ink-icon" />
-            <span className="ink-underline-hover">more</span>
+            <span className="ink-underline-hover">{t("nav.more")}</span>
           </Link>
 
           <h1
