@@ -709,16 +709,16 @@
   },
   {
     "id": 26,
-    "image": "/image39.jpg",
+    "image": "/work/trust-perfumes.webp",
     "title": {
       "en": "Trust Perfumes",
       "cs": "Trust Perfumes",
       "fr": "Trust Perfumes"
     },
     "description": {
-      "en": "A long one. It started as a 3D r3f perfume mixer, then we cut it back to something simpler and aimed it straight at the people who actually buy. Now live at trust-perfumes.com.",
-      "cs": "Dlouhý projekt. Začalo to jako 3D mixér parfémů v r3f, pak jsme to osekali na něco jednoduššího a zamířili rovnou na lidi, kteří opravdu nakupují. Teď běží na trust-perfumes.com.",
-      "fr": "Un projet au long cours. Ça a démarré comme un mélangeur de parfums 3D en r3f, puis on a élagué vers quelque chose de plus simple, visant directement les gens qui achètent vraiment. En ligne sur trust-perfumes.com."
+      "en": "A long one. Trust Perfumes is Markéta Ptáčníková's artisanal scent brand (founded 2019). It started as a 3D r3f perfume mixer, then we cut it back to something simpler and aimed it straight at the people who actually buy. Now live at trust-perfumes.com.",
+      "cs": "Dlouhý projekt. Trust Perfumes je řemeslná značka vůní Markéty Ptáčníkové (založená 2019). Začalo to jako 3D mixér parfémů v r3f, pak jsme to osekali na něco jednoduššího a zamířili rovnou na lidi, kteří opravdu nakupují. Teď běží na trust-perfumes.com.",
+      "fr": "Un projet au long cours. Trust Perfumes est la marque de senteurs artisanales de Markéta Ptáčníková (fondée en 2019). Ça a démarré comme un mélangeur de parfums 3D en r3f, puis on a élagué vers quelque chose de plus simple, visant directement les gens qui achètent vraiment. En ligne sur trust-perfumes.com."
     },
     "date": "2023 — 2025",
     "link": "https://trust-perfumes.com",
@@ -727,7 +727,36 @@
       "cs": "3D, grafický design, webdesign",
       "fr": "3D, design graphique, design web"
     },
-    "media": [],
+    "media": [
+      {
+        "type": "image",
+        "src": "/work/trust-online.webp",
+        "alt": {
+          "en": "Trust Perfumes v2 — create your perfume online",
+          "cs": "Trust Perfumes v2 — vytvoř si parfém online",
+          "fr": "Trust Perfumes v2 — créez votre parfum en ligne"
+        },
+        "caption": {
+          "en": "v2 — the simplified online creator: pick a type, led by intuition.",
+          "cs": "v2 — zjednodušená online tvorba: vybereš typ, vedený intuicí.",
+          "fr": "v2 — le créateur en ligne simplifié : choisis un type, guidé par l'intuition."
+        }
+      },
+      {
+        "type": "image",
+        "src": "/work/trust-3d.webp",
+        "alt": {
+          "en": "Trust Perfumes v1 — the 3D r3f mixer",
+          "cs": "Trust Perfumes v1 — 3D mixér v r3f",
+          "fr": "Trust Perfumes v1 — le mélangeur 3D en r3f"
+        },
+        "caption": {
+          "en": "v1 — where it started: the 3D r3f mixer, one ingredient per category.",
+          "cs": "v1 — kde to začalo: 3D mixér v r3f, jedna ingredience na kategorii.",
+          "fr": "v1 — d'où ça part : le mélangeur 3D en r3f, un ingrédient par catégorie."
+        }
+      }
+    ],
     "links": [
       {
         "label": {
@@ -747,9 +776,9 @@
       }
     ],
     "body": {
-      "en": "The longest-running project on this page. It went through two clearly different lives.\n\n## v1 — the 3d mixer\n\nThe first version was an **r3f (react-three-fiber)** perfume mixer: you'd build a scent in 3D, play with the ingredients, watch it react. It looked great in a demo and it was fun to build, but it asked a lot of a first-time visitor who just wanted to buy a bottle.\n\n## v2 — simplify, then aim\n\nFor the second version we **cut the 3D back** and rebuilt around the audience that actually converts. Fewer moving parts, faster first paint, a path to checkout that doesn't make you learn anything first. The fancy stuff earns its place only where it helps the sale.\n\nLive now at [trust-perfumes.com](https://trust-perfumes.com). The old 3D build still lives at trust-old.vercel.app if you want to see where it started.",
-      "cs": "Nejdéle běžící projekt na téhle stránce. Prošel dvěma jasně odlišnými životy.\n\n## v1 — 3d mixér\n\nPrvní verze byl mixér parfémů v **r3f (react-three-fiber)**: vůni jsi skládal ve 3D, hrál si s ingrediencemi a sledoval, jak reaguje. V demu to vypadalo skvěle a bavilo mě to stavět, ale od návštěvníka, který si jen chtěl koupit lahvičku, to chtělo dost.\n\n## v2 — nejdřív zjednodušit, pak zamířit\n\nU druhé verze jsme **3D osekali** a postavili to znovu kolem publika, které opravdu konvertuje. Míň pohyblivých částí, rychlejší první vykreslení, cesta k objednávce, u které se nemusíš nic učit. Efekty si místo zaslouží jen tam, kde pomáhají prodeji.\n\nTeď běží na [trust-perfumes.com](https://trust-perfumes.com). Stará 3D verze pořád žije na trust-old.vercel.app, kdybys chtěl vidět, kde to začalo.",
-      "fr": "Le projet le plus ancien de cette page. Il a connu deux vies bien distinctes.\n\n## v1 — le mélangeur 3d\n\nLa première version était un mélangeur de parfums en **r3f (react-three-fiber)** : on composait une senteur en 3D, on jouait avec les ingrédients, on la regardait réagir. C'était superbe en démo et amusant à construire, mais ça demandait beaucoup à un visiteur qui voulait juste acheter un flacon.\n\n## v2 — simplifier, puis viser\n\nPour la deuxième version, on a **réduit la 3D** et tout reconstruit autour du public qui convertit vraiment. Moins de pièces mobiles, un premier rendu plus rapide, un chemin vers le paiement qui n'exige rien d'apprendre. Les effets ne gardent leur place que là où ils servent la vente.\n\nEn ligne sur [trust-perfumes.com](https://trust-perfumes.com). L'ancienne version 3D vit toujours sur trust-old.vercel.app, si tu veux voir d'où ça part."
+      "en": "The longest-running project on this page. **Trust Perfumes** is the artisanal scent brand of **Markéta Ptáčníková** — perfumer, musician and teacher — founded in 2019 after a string of perfumery and aromatherapy courses. The site offers a custom personal perfume, bespoke workshops for companies and individuals, and remote creation online. It went through two clearly different lives.\n\n## v1 — the 3d mixer\n\nThe first version was an **r3f (react-three-fiber)** perfume mixer: you'd build a scent in 3D — pick one ingredient per category, watch the bottles and petals react, read the note each oil contributes. It looked great in a demo and was fun to build, but it asked a lot of a first-time visitor who just wanted to buy a bottle.\n\n## v2 — simplify, then aim\n\nFor the second version we **cut the 3D back** and rebuilt around the audience that actually converts. The \"create your perfume online\" flow is now a calm, guided picker — choose a type (natural roll-on or niche spray), led by intuition rather than a 3D scene. Fewer moving parts, faster first paint, a path to checkout that doesn't make you learn anything first.\n\nLive now at [trust-perfumes.com](https://trust-perfumes.com). The old 3D build still lives at trust-old.vercel.app if you want to see where it started.",
+      "cs": "Nejdéle běžící projekt na téhle stránce. **Trust Perfumes** je řemeslná značka vůní **Markéty Ptáčníkové** — parfumérky, hudebnice a lektorky — založená v roce 2019 po sérii parfumérských a aromaterapeutických kurzů. Web nabízí osobní parfém na míru, zážitkové workshopy pro firmy i jednotlivce a tvorbu na dálku online. Prošel dvěma jasně odlišnými životy.\n\n## v1 — 3d mixér\n\nPrvní verze byl mixér parfémů v **r3f (react-three-fiber)**: vůni jsi skládal ve 3D — vybral jednu ingredienci na kategorii, sledoval, jak reagují lahvičky a okvětní lístky, a četl, jakou notu každý olej přidává. V demu to vypadalo skvěle a bavilo mě to stavět, ale od návštěvníka, který si jen chtěl koupit lahvičku, to chtělo dost.\n\n## v2 — nejdřív zjednodušit, pak zamířit\n\nU druhé verze jsme **3D osekali** a postavili to znovu kolem publika, které opravdu konvertuje. Tvorba „osobního parfému online\" je teď klidný, vedený průvodce — vybereš typ (přírodní roll-on nebo niche sprej), vedený intuicí, ne 3D scénou. Míň pohyblivých částí, rychlejší první vykreslení, cesta k objednávce, u které se nemusíš nic učit.\n\nTeď běží na [trust-perfumes.com](https://trust-perfumes.com). Stará 3D verze pořád žije na trust-old.vercel.app, kdybys chtěl vidět, kde to začalo.",
+      "fr": "Le projet le plus ancien de cette page. **Trust Perfumes** est la marque de senteurs artisanales de **Markéta Ptáčníková** — parfumeuse, musicienne et enseignante — fondée en 2019 après une série de cours de parfumerie et d'aromathérapie. Le site propose un parfum personnel sur mesure, des ateliers sur mesure pour entreprises et particuliers, et la création à distance en ligne. Il a connu deux vies bien distinctes.\n\n## v1 — le mélangeur 3d\n\nLa première version était un mélangeur de parfums en **r3f (react-three-fiber)** : on composait une senteur en 3D — un ingrédient par catégorie, on regardait les flacons et les pétales réagir, on lisait la note apportée par chaque huile. C'était superbe en démo et amusant à construire, mais ça demandait beaucoup à un visiteur qui voulait juste acheter un flacon.\n\n## v2 — simplifier, puis viser\n\nPour la deuxième version, on a **réduit la 3D** et tout reconstruit autour du public qui convertit vraiment. Le parcours « créez votre parfum en ligne » est désormais un sélecteur calme et guidé — on choisit un type (roll-on naturel ou spray niche), porté par l'intuition plutôt que par une scène 3D. Moins de pièces mobiles, un premier rendu plus rapide, un chemin vers le paiement qui n'exige rien d'apprendre.\n\nEn ligne sur [trust-perfumes.com](https://trust-perfumes.com). L'ancienne version 3D vit toujours sur trust-old.vercel.app, si tu veux voir d'où ça part."
     }
   },
   {
