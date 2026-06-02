@@ -43,7 +43,7 @@ function wrap(text, max) {
 }
 
 const projects = [
-  { slug: 'hopisik', name: 'hopísík', kind: 'game · with my daughter' },
+  { slug: 'hopsik', name: 'hopsík', kind: 'game · with my daughter' },
   { slug: 'be-mindful', name: 'be mindful', kind: 'mindfulness app + landing' },
   { slug: 'chatspc', name: 'chat spc', kind: 'súkl spc rag for doctors' },
   { slug: 'amlproof', name: 'amlproof', kind: 'aml compliance automation' },
