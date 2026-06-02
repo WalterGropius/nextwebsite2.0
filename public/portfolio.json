@@ -778,11 +778,11 @@
   },
   {
     "id": 28,
-    "image": "/work/hopisik.webp",
+    "image": "/work/hopsik.webp",
     "title": {
-      "en": "Hopísík",
-      "cs": "Hopísík",
-      "fr": "Hopísík"
+      "en": "hopsík",
+      "cs": "hopsík",
+      "fr": "hopsík"
     },
     "description": {
       "en": "A small browser game built on the Czech nursery song 'Skákal pes' crossed with the Chrome dino runner. I made it with my daughter — she hand-drew every sprite, and I coded a little sprite-editor tool so we could get from her drawings into the game fast.",
@@ -790,7 +790,7 @@
       "fr": "Un petit jeu de navigateur basé sur la comptine tchèque « Skákal pes » croisée avec le runner du dino de Chrome. Je l'ai fait avec ma fille — elle a dessiné tous les sprites à la main, et j'ai codé un petit éditeur de sprites pour passer vite de ses dessins au jeu."
     },
     "date": "2024",
-    "link": "https://hopisik.vercel.app",
+    "link": "https://hopsik.vercel.app",
     "tags": {
       "en": "Game Design, Web Design",
       "cs": "herní design, webdesign",
@@ -804,7 +804,7 @@
           "cs": "zahrát si",
           "fr": "y jouer"
         },
-        "href": "https://hopisik.vercel.app"
+        "href": "https://hopsik.vercel.app"
       }
     ],
     "body": {
@@ -822,9 +822,9 @@
       "fr": "Be Mindful"
     },
     "description": {
-      "en": "A mindfulness app and its landing page — video and audio courses, a meditation timer, video/audio delivery through bunny.net, and a custom admin to run it all. Launching mid-month.",
-      "cs": "Mindfulness aplikace a její landing page — video a audio kurzy, meditační časovač, doručování videa/audia přes bunny.net a vlastní administrace na správu všeho. Spouští se v polovině měsíce.",
-      "fr": "Une application de pleine conscience et sa landing page — cours vidéo et audio, minuteur de méditation, diffusion vidéo/audio via bunny.net, et une administration sur mesure pour tout piloter. Lancement à la mi-mois."
+      "en": "A mindfulness app and landing page for Michal Dvořák — the way he puts it, the only Senior Mindfulness Teacher in Czechia. Video and audio courses, a meditation timer, bunny.net for delivery, and a custom admin to run it all. Launching mid-month.",
+      "cs": "Mindfulness aplikace a landing page pro Michala Dvořáka — jak sám říká, jediného Senior Mindfulness Teachera v ČR. Video a audio kurzy, meditační časovač, bunny.net na doručování a vlastní administrace na správu všeho. Spouští se v polovině měsíce.",
+      "fr": "Une application de pleine conscience et une landing page pour Michal Dvořák — selon ses mots, le seul Senior Mindfulness Teacher de Tchéquie. Cours vidéo et audio, minuteur de méditation, bunny.net pour la diffusion, et une administration sur mesure pour tout piloter. Lancement à la mi-mois."
     },
     "date": "June 2026",
     "link": "https://be-mindful-app.vercel.app",
@@ -833,7 +833,22 @@
       "cs": "webdesign, r&d",
       "fr": "design web, r&d"
     },
-    "media": [],
+    "media": [
+      {
+        "type": "image",
+        "src": "/work/be-mindful-app.webp",
+        "alt": {
+          "en": "Be Mindful app home screen",
+          "cs": "Domovská obrazovka aplikace Be Mindful",
+          "fr": "Écran d'accueil de l'application Be Mindful"
+        },
+        "caption": {
+          "en": "The app home — minutes tracked, courses, timer, audio, and the AI guide.",
+          "cs": "Domovská obrazovka aplikace — napočítané minuty, kurzy, časovač, audio a AI rádce.",
+          "fr": "L'accueil de l'app — minutes suivies, cours, minuteur, audio et guide IA."
+        }
+      }
+    ],
     "links": [
       {
         "label": {
@@ -853,9 +868,9 @@
       }
     ],
     "body": {
-      "en": "A mindfulness product in two halves: a **landing page** that sells the thing, and the **app** people actually live in.\n\n## what's inside\n\n- **video and audio courses** — structured, sequential, the kind you come back to\n- a **meditation timer** for the unstructured days\n- **bunny.net** doing the heavy lifting on video and audio delivery, so playback stays cheap and fast\n- a **custom admin** so the content can be managed without touching code\n\n## status\n\nLaunching **mid-month**. The links here point at the current builds — the landing at v0-bemindhomepage and the app at be-mindful-app.",
-      "cs": "Mindfulness produkt ve dvou půlkách: **landing page**, který věc prodá, a **aplikace**, ve které lidé reálně žijí.\n\n## co je uvnitř\n\n- **video a audio kurzy** — strukturované, návazné, takové, ke kterým se vracíš\n- **meditační časovač** pro dny bez struktury\n- **bunny.net**, které dělá těžkou práci s doručováním videa a audia, takže přehrávání zůstává levné a rychlé\n- **vlastní administrace**, aby šel obsah spravovat bez sahání do kódu\n\n## stav\n\nSpouští se **v polovině měsíce**. Odkazy tady míří na aktuální buildy — landing na v0-bemindhomepage a aplikace na be-mindful-app.",
-      "fr": "Un produit de pleine conscience en deux moitiés : une **landing page** qui vend la chose, et l'**application** où les gens vivent vraiment.\n\n## ce qu'il y a dedans\n\n- **cours vidéo et audio** — structurés, séquentiels, du genre auquel on revient\n- un **minuteur de méditation** pour les jours sans structure\n- **bunny.net** qui fait le gros du travail sur la diffusion vidéo et audio, pour que la lecture reste rapide et peu coûteuse\n- une **administration sur mesure** pour gérer le contenu sans toucher au code\n\n## statut\n\nLancement à la **mi-mois**. Les liens ici pointent vers les builds actuels — la landing sur v0-bemindhomepage et l'app sur be-mindful-app."
+      "en": "A mindfulness product in two halves: a **landing page** that sells the approach, and the **app** people actually live in. The content and the teaching are Michal Dvořák's — *\"a practical, human and scientifically grounded approach.\"* My job was the product around it.\n\n## what's inside\n\n- **video and audio courses** — structured and sequential, the kind you come back to\n- a **meditation timer** for the unstructured days\n- a home that tracks your minutes, finished videos and exercises, plus upcoming **Q&A sessions and group meditations**\n- quick access to an **AI guide, a library, stories and contact**\n- **bunny.net** doing the heavy lifting on video and audio delivery, so playback stays cheap and fast\n- a **custom admin** so the content can be managed without touching code\n\n## status\n\nLaunching **mid-month**. The landing offers a free 4-day mindfulness course as the way in.",
+      "cs": "Mindfulness produkt ve dvou půlkách: **landing page**, který prodá přístup, a **aplikace**, ve které lidé reálně žijí. Obsah a lektorství jsou Michala Dvořáka — *„praktický, lidský a vědecky podložený přístup.\"* Já dělal produkt kolem toho.\n\n## co je uvnitř\n\n- **video a audio kurzy** — strukturované a návazné, takové, ke kterým se vracíš\n- **meditační časovač** pro dny bez struktury\n- domovská obrazovka, která počítá tvoje minuty, dokoukaná videa a hotová cvičení, plus nadcházející **Q&A setkání a skupinové meditace**\n- rychlý přístup k **AI rádci, knihovně, příběhům a kontaktu**\n- **bunny.net**, které dělá těžkou práci s doručováním videa a audia, takže přehrávání zůstává levné a rychlé\n- **vlastní administrace**, aby šel obsah spravovat bez sahání do kódu\n\n## stav\n\nSpouští se **v polovině měsíce**. Vstupní branou je na landingu 4denní kurz mindfulness zdarma.",
+      "fr": "Un produit de pleine conscience en deux moitiés : une **landing page** qui vend l'approche, et l'**application** où les gens vivent vraiment. Le contenu et l'enseignement sont ceux de Michal Dvořák — *« une approche pratique, humaine et scientifiquement fondée. »* Mon travail, c'était le produit autour.\n\n## ce qu'il y a dedans\n\n- **cours vidéo et audio** — structurés et séquentiels, du genre auquel on revient\n- un **minuteur de méditation** pour les jours sans structure\n- un accueil qui suit tes minutes, tes vidéos terminées et tes exercices, plus les prochaines **sessions Q&A et méditations de groupe**\n- un accès rapide à un **guide IA, une bibliothèque, des histoires et le contact**\n- **bunny.net** qui fait le gros du travail sur la diffusion vidéo et audio, pour une lecture rapide et peu coûteuse\n- une **administration sur mesure** pour gérer le contenu sans toucher au code\n\n## statut\n\nLancement à la **mi-mois**. La landing propose un cours de pleine conscience gratuit de 4 jours comme porte d'entrée."
     }
   },
   {
@@ -867,9 +882,9 @@
       "fr": "Chat SPC"
     },
     "description": {
-      "en": "A RAG search over the Czech SÚKL drug database (SPC documents) so doctors can quickly look up contraindications and details about a medicine instead of scrolling through PDFs.",
-      "cs": "RAG vyhledávání nad databází SÚKL (dokumenty SPC), aby si lékaři mohli rychle dohledat kontraindikace a informace o léku místo scrollování v PDF.",
-      "fr": "Une recherche RAG sur la base de médicaments tchèque SÚKL (documents SPC), pour que les médecins trouvent vite les contre-indications et les informations sur un médicament au lieu de parcourir des PDF."
+      "en": "Drug information you can rely on. A RAG search over the Czech SÚKL SPC documents so doctors can look up contraindications and details fast — every answer cites the exact section and page of the original SPC.",
+      "cs": "Lékové informace, na které se dá spolehnout. RAG vyhledávání nad SPC dokumenty SÚKL, aby si lékaři rychle dohledali kontraindikace a informace — každá odpověď cituje konkrétní sekci a stránku původního SPC.",
+      "fr": "Des informations sur les médicaments fiables. Une recherche RAG sur les documents SPC du SÚKL tchèque, pour que les médecins trouvent vite contre-indications et détails — chaque réponse cite la section et la page exactes du SPC d'origine."
     },
     "date": "2025",
     "link": "https://chat-spc-mvp.vercel.app",
@@ -890,9 +905,9 @@
       }
     ],
     "body": {
-      "en": "Doctors look things up constantly — contraindications, dosing, interactions — and the official source is **SÚKL's SPC documents** (Summary of Product Characteristics). Accurate, authoritative, and buried in PDFs.\n\n## what it does\n\nChat SPC puts a **RAG (retrieval-augmented generation)** layer over that database. You ask in plain language, it retrieves the relevant passages from the actual SPCs, and answers from those — so the answer is grounded in the real document, not invented.\n\n## why it matters\n\nThe point isn't to replace the doctor's judgement, it's to **cut the lookup time** from minutes of scrolling to seconds, with the source passage right there to check. This is the MVP.",
-      "cs": "Lékaři si neustále něco dohledávají — kontraindikace, dávkování, interakce — a oficiálním zdrojem jsou **SPC dokumenty SÚKL** (Souhrn údajů o přípravku). Přesné, autoritativní a zahrabané v PDF.\n\n## co to dělá\n\nChat SPC dává nad tu databázi vrstvu **RAG (retrieval-augmented generation)**. Zeptáš se běžným jazykem, ono vytáhne relevantní pasáže ze skutečných SPC a odpoví z nich — odpověď tak stojí na reálném dokumentu, ne na výmyslu.\n\n## proč na tom záleží\n\nCílem není nahradit úsudek lékaře, ale **zkrátit čas hledání** z minut scrollování na vteřiny, se zdrojovou pasáží hned po ruce ke kontrole. Tohle je MVP.",
-      "fr": "Les médecins font des recherches en permanence — contre-indications, posologie, interactions — et la source officielle, ce sont les **documents SPC du SÚKL** (Résumé des Caractéristiques du Produit). Précis, faisant autorité, et enfouis dans des PDF.\n\n## ce que ça fait\n\nChat SPC pose une couche **RAG (retrieval-augmented generation)** sur cette base. On demande en langage naturel, l'outil récupère les passages pertinents dans les vrais SPC et répond à partir d'eux — la réponse s'appuie donc sur le document réel, pas sur de l'invention.\n\n## pourquoi c'est utile\n\nLe but n'est pas de remplacer le jugement du médecin, mais de **réduire le temps de recherche** de minutes de défilement à quelques secondes, le passage source juste à côté pour vérifier. C'est le MVP."
+      "en": "Doctors look things up constantly — contraindications, dosing, interactions — and the authoritative source is **SÚKL's SPC documents** (Summary of Product Characteristics). Accurate, official, and buried in PDFs.\n\n## what it does\n\n- **citations to section and page** — the model never answers from memory; it searches the SPC database and quotes the exact section (e.g. 4.2) and page of the original PDF, so you can check the source\n- **query history** — after you log in (passwordless, email + code) every question and answer is stored locally in your browser under your account; the server never sees your conversation\n- **weekly updates** — a custom conversion pipeline (PDF → HTML) runs on a cron over the SÚKL data dump, so what you read is always current\n\nThe point isn't to replace the doctor's judgement — it's to cut the lookup from minutes of scrolling to seconds, grounded in the real document. This is the MVP.",
+      "cs": "Lékaři si neustále něco dohledávají — kontraindikace, dávkování, interakce — a autoritativním zdrojem jsou **SPC dokumenty SÚKL** (Souhrn údajů o přípravku). Přesné, oficiální a zahrabané v PDF.\n\n## co to dělá\n\n- **citace na sekci a stránku** — model nikdy neodpovídá z paměti; prohledá databázi SPC a cituje konkrétní oddíl (např. 4.2) i stránku originálního PDF, takže si zdroj ověříš\n- **historie dotazů** — po přihlášení (bez hesla, e-mail + kód) se každý dotaz a odpověď uloží lokálně v prohlížeči pod tvým účtem; server tvoji konverzaci nevidí\n- **týdenní aktualizace** — vlastní konverzní pipeline (PDF → HTML) běží na cronu nad datovým výpisem SÚKL, takže to, co čteš, je vždy platné\n\nCílem není nahradit úsudek lékaře — je to zkrátit hledání z minut scrollování na vteřiny, postavené na reálném dokumentu. Tohle je MVP.",
+      "fr": "Les médecins font des recherches en permanence — contre-indications, posologie, interactions — et la source faisant autorité, ce sont les **documents SPC du SÚKL** (Résumé des Caractéristiques du Produit). Précis, officiels, et enfouis dans des PDF.\n\n## ce que ça fait\n\n- **citations à la section et à la page** — le modèle ne répond jamais de mémoire ; il interroge la base SPC et cite la section exacte (p. ex. 4.2) et la page du PDF d'origine, pour que tu vérifies la source\n- **historique des requêtes** — après connexion (sans mot de passe, e-mail + code), chaque question et réponse est stockée localement dans ton navigateur sous ton compte ; le serveur ne voit jamais ta conversation\n- **mises à jour hebdomadaires** — un pipeline de conversion maison (PDF → HTML) tourne en cron sur l'export de données du SÚKL, pour que ce que tu lis soit toujours à jour\n\nLe but n'est pas de remplacer le jugement du médecin — c'est de réduire la recherche de minutes de défilement à quelques secondes, ancrée dans le document réel. C'est le MVP."
     }
   },
   {
@@ -904,9 +919,9 @@
       "fr": "AMLProof"
     },
     "description": {
-      "en": "AML compliance automation — taking the manual, box-ticking parts of anti-money-laundering checks and streamlining them. I made the architecture and made sure the backend is compliant.",
-      "cs": "Automatizace AML compliance — vzít ruční, odškrtávací části kontrol proti praní špinavých peněz a zjednodušit je. Udělal jsem architekturu a zajistil, aby byl backend v souladu s předpisy.",
-      "fr": "Automatisation de la conformité AML — prendre les parties manuelles et fastidieuses des contrôles anti-blanchiment et les rationaliser. J'ai fait l'architecture et veillé à ce que le backend soit conforme."
+      "en": "Are you an obliged entity? Sort your AML duties in a few minutes. Compliance automation that keeps anti-money-laundering checks systematic and documented. I made the architecture and made sure the backend is compliant.",
+      "cs": "Jste povinná osoba? AML povinnosti vyřešíte za pár minut. Automatizace compliance, která drží kontroly proti praní špinavých peněz systematické a dokladovatelné. Udělal jsem architekturu a zajistil, aby byl backend v souladu s předpisy.",
+      "fr": "Êtes-vous une entité assujettie ? Réglez vos obligations AML en quelques minutes. Automatisation de la conformité qui garde les contrôles anti-blanchiment systématiques et documentés. J'ai fait l'architecture et veillé à ce que le backend soit conforme."
     },
     "date": "2025",
     "link": "https://amlproof.ai",
@@ -927,9 +942,9 @@
       }
     ],
     "body": {
-      "en": "AML — anti-money-laundering — compliance is a lot of repetitive, high-stakes checking. AMLProof automates the parts that are mechanical so people can spend their attention where judgement actually matters.\n\n## my part\n\nI **designed the architecture** and made sure the **backend is compliant** — that the data flows, retention, and checks line up with what the regulations actually require, not just what's convenient to build.\n\nGetting compliance right at the architecture level is the difference between a tool a regulated business can adopt and one it can't.",
-      "cs": "AML — boj proti praní špinavých peněz — compliance je spousta opakované kontroly s vysokou sázkou. AMLProof automatizuje mechanické části, aby lidé mohli soustředit pozornost tam, kde opravdu rozhoduje úsudek.\n\n## moje část\n\n**Navrhl jsem architekturu** a zajistil, aby byl **backend v souladu s předpisy** — aby toky dat, jejich uchovávání a kontroly seděly s tím, co regulace skutečně vyžaduje, ne jen s tím, co se snadno staví.\n\nSprávně zvládnutá compliance na úrovni architektury je rozdíl mezi nástrojem, který si regulovaný byznys může nasadit, a tím, který nemůže.",
-      "fr": "La conformité AML — anti-blanchiment — c'est beaucoup de vérifications répétitives et à fort enjeu. AMLProof automatise les parties mécaniques pour que les gens consacrent leur attention là où le jugement compte vraiment.\n\n## ma part\n\nJ'ai **conçu l'architecture** et veillé à ce que le **backend soit conforme** — que les flux de données, la rétention et les contrôles correspondent à ce que la réglementation exige réellement, pas seulement à ce qui est commode à construire.\n\nBien gérer la conformité au niveau de l'architecture, c'est la différence entre un outil qu'une entreprise régulée peut adopter et un autre qu'elle ne peut pas."
+      "en": "If you're an **obliged entity** under AML law, the checking is repetitive, high-stakes, and audited. AMLProof makes those duties **systematic, documentable and in line with the regulation** — so you're calm at every inspection, not scrambling.\n\n## my part\n\nI **designed the architecture** and made sure the **backend is compliant** — that the data flows, retention and checks line up with what the rules actually require, not just what's convenient to build. Getting that right at the architecture level is the difference between a tool a regulated business can adopt and one it can't.",
+      "cs": "Pokud jsi **povinná osoba** podle AML zákona, kontrola je opakovaná, s vysokou sázkou a podléhá auditu. AMLProof dělá ty povinnosti **systematické, dokladovatelné a v souladu s nařízením** — takže jsi u každé kontroly v klidu, ne ve frmolu.\n\n## moje část\n\n**Navrhl jsem architekturu** a zajistil, aby byl **backend v souladu s předpisy** — aby toky dat, jejich uchovávání a kontroly seděly s tím, co pravidla skutečně vyžadují, ne jen s tím, co se snadno staví. Správně zvládnutá compliance na úrovni architektury je rozdíl mezi nástrojem, který si regulovaný byznys může nasadit, a tím, který nemůže.",
+      "fr": "Si tu es une **entité assujettie** au titre de la loi AML, la vérification est répétitive, à fort enjeu et auditée. AMLProof rend ces obligations **systématiques, documentables et conformes à la réglementation** — pour que tu sois serein à chaque inspection, pas dans la précipitation.\n\n## ma part\n\nJ'ai **conçu l'architecture** et veillé à ce que le **backend soit conforme** — que les flux de données, la rétention et les contrôles correspondent à ce que les règles exigent réellement, pas seulement à ce qui est commode à construire. Bien gérer cela au niveau de l'architecture, c'est la différence entre un outil qu'une entreprise régulée peut adopter et un autre qu'elle ne peut pas."
     }
   },
   {
@@ -941,9 +956,9 @@
       "fr": "HomeProof"
     },
     "description": {
-      "en": "A tool that helps owners and buyers understand the real condition of a property. I built the whole backend.",
-      "cs": "Nástroj, který pomáhá majitelům i kupcům pochopit skutečný stav nemovitosti. Postavil jsem celý backend.",
-      "fr": "Un outil qui aide propriétaires et acheteurs à comprendre l'état réel d'un bien immobilier. J'ai construit tout le backend."
+      "en": "Check a property online. Enter an address and find out its real technical condition — avoid hidden defects, lawsuits and financial loss. Built on the methodology of the Czech property inspectors' association; protects sellers and buyers alike. I built the whole backend.",
+      "cs": "Provĕřte si nemovitost online. Zadáš adresu a zjistíš její skutečný technický stav — vyhneš se skrytým vadám, soudním sporům a finančním ztrátám. Postavené dle metodiky Asociace inspektorů nemovitostí; chrání prodávající i kupující. Postavil jsem celý backend.",
+      "fr": "Vérifiez un bien en ligne. Entrez une adresse et découvrez son véritable état technique — évitez vices cachés, litiges et pertes financières. Bâti sur la méthodologie de l'association tchèque des inspecteurs immobiliers ; protège vendeurs et acheteurs. J'ai construit tout le backend."
     },
     "date": "2025",
     "link": "https://homeproof.ai",
@@ -964,23 +979,23 @@
       }
     ],
     "body": {
-      "en": "Buying or owning a property, the hardest question is the simplest: **what state is it actually in?** HomeProof exists to answer that honestly, for both sides of a deal — owners and buyers.\n\n## my part\n\nI **built the whole backend** — the data model for a property's condition, how evidence comes in, how it's stored, and how it's served to the app. The kind of work that doesn't show on screen but decides whether everything on screen can be trusted.",
-      "cs": "Při koupi nebo vlastnictví nemovitosti je nejtěžší ta nejjednodušší otázka: **v jakém je vlastně stavu?** HomeProof je tu, aby na to poctivě odpověděl oběma stranám obchodu — majitelům i kupcům.\n\n## moje část\n\n**Postavil jsem celý backend** — datový model stavu nemovitosti, jak se podklady dostávají dovnitř, jak se ukládají a jak se servírují aplikaci. Práce, která není na obrazovce vidět, ale rozhoduje o tom, jestli se dá všemu na obrazovce věřit.",
-      "fr": "Quand on achète ou possède un bien, la question la plus difficile est la plus simple : **dans quel état est-il vraiment ?** HomeProof existe pour y répondre honnêtement, des deux côtés d'une transaction — propriétaires et acheteurs.\n\n## ma part\n\nJ'ai **construit tout le backend** — le modèle de données de l'état d'un bien, la façon dont les preuves entrent, sont stockées et servies à l'application. Le genre de travail qui ne se voit pas à l'écran mais qui décide si tout ce qui est à l'écran est digne de confiance."
+      "en": "Buying or owning a property, the hardest question is the simplest: **what state is it actually in?** HomeProof answers it honestly for both sides — you enter an address and get the property's real technical condition, built on the methodology of the **Association of Property Inspectors**. The pitch is plain: avoid hidden defects, court disputes and financial loss.\n\n## my part\n\nI **built the whole backend** — the data model for a property's condition, how evidence comes in, how it's stored, and how it's served to the app. The work that doesn't show on screen but decides whether everything on screen can be trusted.",
+      "cs": "Při koupi nebo vlastnictví nemovitosti je nejtěžší ta nejjednodušší otázka: **v jakém je vlastně stavu?** HomeProof na to poctivě odpoví oběma stranám — zadáš adresu a dostaneš skutečný technický stav nemovitosti, postavený na metodice **Asociace inspektorů nemovitostí**. Pointa je prostá: vyhnout se skrytým vadám, soudním sporům a finančním ztrátám.\n\n## moje část\n\n**Postavil jsem celý backend** — datový model stavu nemovitosti, jak se podklady dostávají dovnitř, jak se ukládají a jak se servírují aplikaci. Práce, která není na obrazovce vidět, ale rozhoduje o tom, jestli se dá všemu na obrazovce věřit.",
+      "fr": "Quand on achète ou possède un bien, la question la plus difficile est la plus simple : **dans quel état est-il vraiment ?** HomeProof y répond honnêtement des deux côtés — on entre une adresse et on obtient l'état technique réel du bien, fondé sur la méthodologie de l'**Association des inspecteurs immobiliers**. Le pitch est clair : éviter vices cachés, litiges et pertes financières.\n\n## ma part\n\nJ'ai **construit tout le backend** — le modèle de données de l'état d'un bien, la façon dont les preuves entrent, sont stockées et servies à l'application. Le travail qui ne se voit pas à l'écran mais qui décide si tout ce qui est à l'écran est digne de confiance."
     }
   },
   {
     "id": 33,
     "image": "/work/shiftrs.webp",
     "title": {
-      "en": "SHIFTRS",
-      "cs": "SHIFTRS",
-      "fr": "SHIFTRS"
+      "en": "Shiftrs",
+      "cs": "Shiftrs",
+      "fr": "Shiftrs"
     },
     "description": {
-      "en": "I'm the CTO at SHIFTRS, a creative agency. We build for clients — AOMU among them.",
-      "cs": "Jsem CTO ve SHIFTRS, kreativní agentuře. Stavíme pro klienty — mezi nimi třeba AOMU.",
-      "fr": "Je suis le CTO de SHIFTRS, une agence créative. On construit pour des clients — AOMU entre autres."
+      "en": "Shift happens. Be the Shiftr. A creative agency where I'm the CTO — building brand-product-experience work for clients, AOMU among them.",
+      "cs": "Shift happens. Be the Shiftr. Kreativní agentura, kde dělám CTO — stavíme brand-produkt-experience práci pro klienty, mezi nimi AOMU.",
+      "fr": "Shift happens. Be the Shiftr. Une agence créative où je suis CTO — on construit du travail marque-produit-expérience pour des clients, AOMU parmi eux."
     },
     "date": "2024",
     "link": "https://shiftrs.co",
@@ -1001,9 +1016,9 @@
       }
     ],
     "body": {
-      "en": "**SHIFTRS** is a creative agency where I'm the **CTO**. The role is the usual mix: picking the tech, keeping the builds honest, and making sure what the creative side dreams up can actually ship.\n\n## clients\n\nWe build for a range of clients — **AOMU** among them. Different brief every time; the constant is the standard the work has to clear before it goes out.",
-      "cs": "**SHIFTRS** je kreativní agentura, kde dělám **CTO**. Role je obvyklý mix: vybrat technologie, držet buildy poctivé a zařídit, aby to, co vymyslí kreativní strana, šlo opravdu vydat.\n\n## klienti\n\nStavíme pro různé klienty — mezi nimi **AOMU**. Pokaždé jiné zadání; konstantou je laťka, kterou práce musí přeskočit, než jde ven.",
-      "fr": "**SHIFTRS** est une agence créative où je suis **CTO**. Le rôle est le mélange habituel : choisir la tech, garder les builds honnêtes et faire en sorte que ce que le côté créatif imagine puisse vraiment sortir.\n\n## clients\n\nOn construit pour divers clients — **AOMU** entre autres. Un brief différent à chaque fois ; la constante, c'est le niveau que le travail doit atteindre avant de partir."
+      "en": "**Shiftrs** is a creative agency where I'm the **CTO**. Their line: *\"Shift happens. Be the Shiftr.\"* — everything is changing fast, and brands need a brand-product-experience-driven shift to stay relevant.\n\nThe CTO role is the usual mix: picking the tech, keeping the builds honest, and making sure what the creative side dreams up can actually ship.\n\n## clients\n\nWe build for a range of clients — **AOMU** among them. Different brief every time; the constant is the standard the work has to clear before it goes out.",
+      "cs": "**Shiftrs** je kreativní agentura, kde dělám **CTO**. Jejich heslo: *„Shift happens. Be the Shiftr.\"* — všechno se mění rychle a značky potřebují posun vedený brandem, produktem a zážitkem, aby zůstaly relevantní.\n\nRole CTO je obvyklý mix: vybrat technologie, držet buildy poctivé a zařídit, aby to, co vymyslí kreativní strana, šlo opravdu vydat.\n\n## klienti\n\nStavíme pro různé klienty — mezi nimi **AOMU**. Pokaždé jiné zadání; konstantou je laťka, kterou práce musí přeskočit, než jde ven.",
+      "fr": "**Shiftrs** est une agence créative où je suis **CTO**. Leur formule : *« Shift happens. Be the Shiftr. »* — tout change vite, et les marques ont besoin d'un virage porté par la marque, le produit et l'expérience pour rester pertinentes.\n\nLe rôle de CTO est le mélange habituel : choisir la tech, garder les builds honnêtes et faire en sorte que ce que le côté créatif imagine puisse vraiment sortir.\n\n## clients\n\nOn construit pour divers clients — **AOMU** entre autres. Un brief différent à chaque fois ; la constante, c'est le niveau que le travail doit atteindre avant de partir."
     }
   },
   {
@@ -1015,12 +1030,12 @@
       "fr": "Lucid Solution Designers"
     },
     "description": {
-      "en": "A joint venture with Petr Václavek — a startup incubator. Right now we're building au-au.app.",
-      "cs": "Společný podnik s Petrem Václavkem — startupový inkubátor. Teď stavíme au-au.app.",
-      "fr": "Une coentreprise avec Petr Václavek — un incubateur de startups. En ce moment, on construit au-au.app."
+      "en": "We don't predict the future. We design it from First Principles. A creative-technology and venture studio — my joint venture with Petr Václavek. It works like a startup incubator; right now we're building au-au.app.",
+      "cs": "We don't predict the future. We design it from First Principles. Studio kreativní technologie a venture buildingu — můj společný podnik s Petrem Václavkem. Funguje to jako startupový inkubátor; teď stavíme au-au.app.",
+      "fr": "We don't predict the future. We design it from First Principles. Un studio de technologie créative et de venture building — ma coentreprise avec Petr Václavek. Ça fonctionne comme un incubateur de startups ; en ce moment, on construit au-au.app."
     },
     "date": "2025",
-    "link": "https://au-au.app",
+    "link": "https://lsd-landing.vercel.app",
     "tags": {
       "en": "r&d, Web Design",
       "cs": "r&d, webdesign",
@@ -1028,6 +1043,14 @@
     },
     "media": [],
     "links": [
+      {
+        "label": {
+          "en": "studio",
+          "cs": "studio",
+          "fr": "studio"
+        },
+        "href": "https://lsd-landing.vercel.app"
+      },
       {
         "label": {
           "en": "au-au.app",
@@ -1038,25 +1061,25 @@
       }
     ],
     "body": {
-      "en": "**Lucid Solution Designers** is a joint venture with **Petr Václavek** — a startup incubator. The idea is simple: take ideas worth building and give them the engineering and design muscle to become real products.\n\n## right now\n\nThe current project in the incubator is **au-au.app**. More as it ships.",
-      "cs": "**Lucid Solution Designers** je společný podnik s **Petrem Václavkem** — startupový inkubátor. Myšlenka je jednoduchá: vzít nápady, které stojí za to postavit, a dát jim inženýrský a designový sval, aby z nich byly skutečné produkty.\n\n## teď\n\nAktuální projekt v inkubátoru je **au-au.app**. Víc, až to vyjde.",
-      "fr": "**Lucid Solution Designers** est une coentreprise avec **Petr Václavek** — un incubateur de startups. L'idée est simple : prendre des idées qui valent la peine d'être construites et leur donner le muscle d'ingénierie et de design pour devenir de vrais produits.\n\n## en ce moment\n\nLe projet actuel dans l'incubateur, c'est **au-au.app**. La suite au fil des sorties."
+      "en": "**Lucid Solution Designers** is my joint venture with **Petr Václavek** — a creative-technology and venture studio that runs like a startup incubator. Their line: *\"We don't predict the future. We design it from First Principles\"* — turning fundamental insights about intelligence, systems and human potential into real companies, technologies and art.\n\n## right now\n\nThe current project in the studio is **au-au.app**. More as it ships.",
+      "cs": "**Lucid Solution Designers** je můj společný podnik s **Petrem Václavkem** — studio kreativní technologie a venture buildingu, které funguje jako startupový inkubátor. Jejich heslo: *„We don't predict the future. We design it from First Principles\"* — proměňovat základní vhledy o inteligenci, systémech a lidském potenciálu ve skutečné firmy, technologie a umění.\n\n## teď\n\nAktuální projekt ve studiu je **au-au.app**. Víc, až to vyjde.",
+      "fr": "**Lucid Solution Designers** est ma coentreprise avec **Petr Václavek** — un studio de technologie créative et de venture building qui fonctionne comme un incubateur de startups. Leur formule : *« We don't predict the future. We design it from First Principles »* — transformer des insights fondamentaux sur l'intelligence, les systèmes et le potentiel humain en vraies entreprises, technologies et œuvres.\n\n## en ce moment\n\nLe projet actuel du studio, c'est **au-au.app**. La suite au fil des sorties."
     }
   },
   {
     "id": 35,
     "image": "/work/pilsner-urquell.webp",
     "title": {
-      "en": "Pilsner Urquell — Live Projections",
-      "cs": "Pilsner Urquell — živé projekce",
-      "fr": "Pilsner Urquell — projections live"
+      "en": "Pilsner Urquell — Pilsner Fest projections",
+      "cs": "Pilsner Urquell — projekce na Pilsner Fest",
+      "fr": "Pilsner Urquell — projections au Pilsner Fest"
     },
     "description": {
-      "en": "Animations for Pilsner Urquell, projected live at an event. Footage of the actual projections is coming — for now there's a Pilsner commercial as a placeholder.",
-      "cs": "Animace pro Pilsner Urquell, promítané živě na akci. Záznam samotných projekcí teprve nahraju — zatím je tu jako placeholder reklama Pilsneru.",
-      "fr": "Animations pour Pilsner Urquell, projetées en direct lors d'un événement. Les images des projections arrivent — pour l'instant, une pub Pilsner sert de placeholder."
+      "en": "Animations for Pilsner Urquell, projected live at Pilsner Fest 2025. Footage of the actual projections is coming — for now there's a Pilsner commercial as a placeholder.",
+      "cs": "Animace pro Pilsner Urquell, promítané živě na Pilsner Festu 2025. Záznam samotných projekcí teprve nahraju — zatím je tu jako placeholder reklama Pilsneru.",
+      "fr": "Animations pour Pilsner Urquell, projetées en direct au Pilsner Fest 2025. Les images des projections arrivent — pour l'instant, une pub Pilsner sert de placeholder."
     },
-    "date": "2024",
+    "date": "2025",
     "link": "",
     "tags": {
       "en": "VFX, VP, Video, 3D",
@@ -1076,9 +1099,9 @@
     ],
     "links": [],
     "body": {
-      "en": "Animation content for **Pilsner Urquell**, made to be **projected live** at an event — built for the scale, brightness, and timing of projection mapping rather than a screen.\n\n## footage coming\n\nI'll upload the real recordings of the projections. Until then the video above is a **placeholder** — a Pilsner Urquell commercial, just so the page isn't empty.",
-      "cs": "Animovaný obsah pro **Pilsner Urquell**, dělaný k **živé projekci** na akci — stavěný na měřítko, jas a načasování projekčního mappingu, ne na obrazovku.\n\n## záznam dorazí\n\nNahraju skutečné záznamy projekcí. Než to udělám, je video nahoře **placeholder** — reklama Pilsner Urquell, ať stránka není prázdná.",
-      "fr": "Contenu animé pour **Pilsner Urquell**, conçu pour être **projeté en direct** lors d'un événement — pensé pour l'échelle, la luminosité et le timing du mapping vidéo plutôt que pour un écran.\n\n## images à venir\n\nJe mettrai en ligne les vrais enregistrements des projections. En attendant, la vidéo ci-dessus est un **placeholder** — une pub Pilsner Urquell, juste pour que la page ne soit pas vide."
+      "en": "Animation content for **Pilsner Urquell**, made to be **projected live at Pilsner Fest 2025** — built for the scale, brightness and timing of projection mapping rather than a screen.\n\n## footage coming\n\nI'll upload the real recordings of the projections. Until then the video below is a **placeholder** — a Pilsner Urquell commercial, just so the page isn't empty.",
+      "cs": "Animovaný obsah pro **Pilsner Urquell**, dělaný k **živé projekci na Pilsner Festu 2025** — stavěný na měřítko, jas a načasování projekčního mappingu, ne na obrazovku.\n\n## záznam dorazí\n\nNahraju skutečné záznamy projekcí. Než to udělám, je video níže **placeholder** — reklama Pilsner Urquell, ať stránka není prázdná.",
+      "fr": "Contenu animé pour **Pilsner Urquell**, conçu pour être **projeté en direct au Pilsner Fest 2025** — pensé pour l'échelle, la luminosité et le timing du mapping vidéo plutôt que pour un écran.\n\n## images à venir\n\nJe mettrai en ligne les vrais enregistrements des projections. En attendant, la vidéo ci-dessous est un **placeholder** — une pub Pilsner Urquell, juste pour que la page ne soit pas vide."
     }
   }
 ]
