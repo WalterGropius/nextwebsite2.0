@@ -7,7 +7,15 @@
 // Everything else stays English by default — the user can still flip it from
 // the dropdown, which will trigger machine translation.
 
-import { dictionaries } from "./dictionaries"
+import { supportedLanguages } from "./dictionaries"
+
+// Auto-pick only languages with a FULL hand translation. The dictionaries
+// map now also carries partial (hero-only) native overlays for every
+// dropdown language — those must not win the auto-pick, or a German
+// browser would silently land on a mostly machine-translated page.
+const FULL_NATIVE = new Set(
+  supportedLanguages.filter((l) => l.native).map((l) => l.code),
+)
 
 const LS_KEY = "zb_language_v1"
 
@@ -32,9 +40,9 @@ export function writeStoredLang(lang: string) {
 function pickFromList(candidates: string[]): string | null {
   for (const c of candidates) {
     const lc = c.toLowerCase()
-    if (dictionaries[lc]) return lc
+    if (FULL_NATIVE.has(lc)) return lc
     const base = lc.split("-")[0]
-    if (dictionaries[base]) return base
+    if (FULL_NATIVE.has(base)) return base
   }
   return null
 }

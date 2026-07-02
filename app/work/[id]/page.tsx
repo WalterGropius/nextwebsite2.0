@@ -332,40 +332,31 @@ function BodyMarkdown({ body }: { body: string }) {
   )
 }
 
-function FallbackBody({ project, tags, lang }: { project: ProjectItem; tags: string[]; lang: string }) {
+// Projects without their own `body` markdown get only the honest
+// tag-driven craft notes. The old fallback also stamped an invented
+// "context" + "what i'd change" story — identical on every project —
+// which read as filler the moment you opened two pages. Gone.
+function FallbackBody({ tags, lang }: { project: ProjectItem; tags: string[]; lang: string }) {
   const { t: tr } = useI18n()
   return (
-    <>
-      <Block title={tr("work.ctx")}>
-        <p>
-          {pick(project.description, lang)}{" "}
-          {tr("work.ctxBody").replace("{date}", project.date.toLowerCase())}
-        </p>
-      </Block>
-
-      <Block title={tr("work.made")}>
-        {tags.length === 0 ? (
-          <p>{tr("work.bespoke")}</p>
-        ) : (
-          tags.map((t) => {
-            const note = TAG_NOTES[t]
-            if (!note) return null
-            return (
-              <p key={t}>
-                <strong>{t.toLowerCase()}.</strong> {pick(note.para, lang)}{" "}
-                {note.aside && (
-                  <em style={{ opacity: 0.7 }}>— {note.aside}</em>
-                )}
-              </p>
-            )
-          })
-        )}
-      </Block>
-
-      <Block title={tr("work.change")}>
-        <p>{tr("work.changeBody")}</p>
-      </Block>
-    </>
+    <Block title={tr("work.made")}>
+      {tags.length === 0 ? (
+        <p>{tr("work.bespoke")}</p>
+      ) : (
+        tags.map((t) => {
+          const note = TAG_NOTES[t]
+          if (!note) return null
+          return (
+            <p key={t}>
+              <strong>{t.toLowerCase()}.</strong> {pick(note.para, lang)}{" "}
+              {note.aside && (
+                <em style={{ opacity: 0.7 }}>— {note.aside}</em>
+              )}
+            </p>
+          )
+        })
+      )}
+    </Block>
   )
 }
 

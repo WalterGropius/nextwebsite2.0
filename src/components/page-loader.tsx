@@ -7,11 +7,20 @@ interface PageLoaderProps {
   children: React.ReactNode
 }
 
+// The brand curtain plays once per JS session — a module-scope flag means
+// client-side navigations skip it entirely (no flash, no hydration
+// mismatch) while hard loads still get the masking curtain. Repeating a
+// fixed 900ms pause on every route change read as lag, not craft.
+let curtainShown = false
+
 export function PageLoader({ children }: PageLoaderProps) {
-  const [isLoading, setIsLoading] = useState(true)
+  const [isLoading, setIsLoading] = useState(() => !curtainShown)
 
   useEffect(() => {
-    const t = window.setTimeout(() => setIsLoading(false), 900)
+    if (curtainShown) return
+    curtainShown = true
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    const t = window.setTimeout(() => setIsLoading(false), reduced ? 0 : 700)
     return () => window.clearTimeout(t)
   }, [])
 

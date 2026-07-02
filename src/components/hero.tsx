@@ -46,10 +46,16 @@ export function Hero() {
             y: headlineY,
           }}
         >
-          {t("hero.headline.i")} <strong>{t("hero.headline.build")}</strong>{" "}
-          {t("hero.headline.systems")}{" "}
-          <span className="humph">{t("hero.headline.untangle")}</span>{" "}
-          <em>{t("hero.headline.messy")}</em> {t("hero.headline.problems")}{" "}
+          {/* Segments carry their own spacing (trailing spaces live in the
+              dictionary values) so languages that don't use spaces — ja,
+              zh — and languages with different word order all render as
+              native-level sentences instead of space-joined fragments. */}
+          {t("hero.headline.i")}
+          <strong>{t("hero.headline.build")}</strong>
+          {t("hero.headline.systems")}
+          <span className="humph">{t("hero.headline.untangle")}</span>
+          <em>{t("hero.headline.messy")}</em>
+          {t("hero.headline.problems")}
           <strong>{t("hero.headline.writeCode")}</strong>
           {t("hero.headline.dot")}
         </motion.h2>

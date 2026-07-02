@@ -1,8 +1,9 @@
 "use client"
 
-import { Suspense } from "react"
+import { Suspense, useMemo } from "react"
 import { Canvas } from "@react-three/fiber"
 import { Flowers } from "@/components/canvas/Flowers"
+import { getDeviceTier, prefersReducedMotion } from "@/lib/device-tier"
 
 // HeroCanvas — the landing-page splat background, isolated into its own
 // module so the landing page can pull it in with `next/dynamic`
@@ -17,22 +18,34 @@ export default function HeroCanvas({
   dark: boolean
   active: boolean
 }) {
+  // Classified once on mount — the tier drives resolution, MSAA and the
+  // particle budgets inside Flowers so a mid-range phone renders a lighter
+  // scene instead of dropping frames on the desktop one.
+  const { tier, reducedMotion } = useMemo(
+    () => ({ tier: getDeviceTier(), reducedMotion: prefersReducedMotion() }),
+    [],
+  )
+  const dpr: [number, number] =
+    tier === "low" ? [0.75, 1] : tier === "mid" ? [1, 1.25] : [1, 1.5]
+
   return (
     <Canvas
       style={{ backgroundColor: "transparent" }}
       camera={{ position: [0, 0, 5], fov: 60 }}
       className="size-full"
-      dpr={[1, 1.5]}
+      dpr={dpr}
       performance={{ min: 0.5 }}
       gl={{
-        antialias: true,
+        // Splats composite their own soft edges — MSAA is pure cost on
+        // weaker GPUs.
+        antialias: tier === "high",
         alpha: true,
         powerPreference: "high-performance",
       }}
-      frameloop={active ? "always" : "demand"}
+      frameloop={active && !reducedMotion ? "always" : "demand"}
     >
       <Suspense fallback={null}>
-        <Flowers dark={dark} />
+        <Flowers dark={dark} tier={tier} />
       </Suspense>
     </Canvas>
   )

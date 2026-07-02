@@ -7,9 +7,8 @@ import { MotionText } from "./motion-text"
 import { InkLine } from "./ink-line"
 import { useI18n } from "@/lib/i18n/provider"
 
-// Real + placeholder client words. The first entry is real (Redbird /
-// Colin Stetson). The three that follow are drawn from CV roles as
-// stand-ins — swap in the genuine quotes when they land. Quotes are
+// Real client words only — no stand-ins. One genuine quote beats three
+// invented ones; more get added here as they land. Quotes are
 // hand-translated per language (en/cs/fr) and fall back to en.
 type Localized = { en: string; cs: string; fr: string }
 type Testimonial = {
@@ -18,7 +17,6 @@ type Testimonial = {
   role: string
   href?: string
   hrefLabel?: string
-  placeholder?: boolean
 }
 
 const TESTIMONIALS: Testimonial[] = [
@@ -32,36 +30,6 @@ const TESTIMONIALS: Testimonial[] = [
     role: "Redbird Music",
     href: "https://www.redbirdmusic.com",
     hrefLabel: "redbirdmusic.com",
-  },
-  {
-    quote: {
-      en: "On set he was the calm one. Chrome ball, colour chart, HDRI — documented so cleanly that post never had to call us back. That kind of quiet thoroughness is rarer than it should be.",
-      cs: "Na place byl ten klidný. Chrome ball, color chart, HDRI — zdokumentované tak čistě, že se nám postprodukce ani jednou neozvala. Takhle tichá pečlivost je vzácnější, než by měla být.",
-      fr: "Sur le plateau, c'était le calme incarné. Chrome ball, charte de couleurs, HDRI — documentés si proprement que la post-prod n'a jamais eu à nous rappeler. Ce genre de rigueur discrète est plus rare qu'il ne devrait l'être.",
-    },
-    name: "Placeholder",
-    role: "Wilma Film",
-    placeholder: true,
-  },
-  {
-    quote: {
-      en: "He took a vague brief and a small budget and came back with a working MVP and a team that believed in it. We closed the round on the strength of what he'd built.",
-      cs: "Dostal mlhavé zadání a malý rozpočet a vrátil se s fungujícím MVP a týmem, který tomu věřil. Kolo jsme zavřeli na základě toho, co postavil.",
-      fr: "Il a pris un brief flou et un petit budget, et il est revenu avec un MVP fonctionnel et une équipe qui y croyait. On a bouclé le tour de table grâce à ce qu'il avait construit.",
-    },
-    name: "Placeholder",
-    role: "Flipas",
-    placeholder: true,
-  },
-  {
-    quote: {
-      en: "We booked him to talk about spatial computing and he rewired how half the room thought about it. No slides full of buzzwords — just the work, and why it matters.",
-      cs: "Pozvali jsme ho na přednášku o prostorovém počítání a půlce sálu obrátil naruby, jak o něm uvažuje. Žádné slidy plné buzzwordů — jen práce a proč na ní záleží.",
-      fr: "On l'a invité à parler d'informatique spatiale et il a reprogrammé la façon dont la moitié de la salle voyait le sujet. Pas de slides bourrées de buzzwords — juste le travail, et pourquoi il compte.",
-    },
-    name: "Placeholder",
-    role: "CzechVRFest",
-    placeholder: true,
   },
 ]
 
@@ -200,14 +168,6 @@ function TestimonialCard({
               <span className="ink-underline-hover">{t.hrefLabel}</span>
               <ExternalLink size={12} className="ink-icon translate-y-[1px]" />
             </a>
-          )}
-          {t.placeholder && (
-            <span
-              className="text-[0.6rem] uppercase tracking-[0.3em]"
-              style={{ color: "var(--vermilion)" }}
-            >
-              placeholder
-            </span>
           )}
         </figcaption>
       </figure>
