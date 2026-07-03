@@ -1,5 +1,65 @@
 [
  {
+  "id": 29,
+  "image": "/work/be-mindful.webp",
+  "title": {
+   "en": "Be Mindful",
+   "cs": "Be Mindful",
+   "fr": "Be Mindful"
+  },
+  "description": {
+   "en": "a mindfulness companion app and course platform for a senior mindfulness coach — guided video courses, an audio meditation library, streaks and a gemini-powered advisor, with an admin dashboard the coach runs herself. five content tiers, from a free 3-day intro to private corporate cohorts.",
+   "cs": "aplikace a kurzová platforma pro mindfulness určená zkušené lektorce — vedené videokurzy, audioknihovna meditací, streaky a poradce poháněný gemini, plus admin dashboard, který si lektorka spravuje sama. pět obsahových úrovní od tří denního intra zdarma po soukromé firemní skupiny.",
+   "fr": "une app compagnon de pleine conscience et plateforme de cours pour une coach expérimentée — cours vidéo guidés, bibliothèque audio de méditations, séries de pratique et un conseiller propulsé par gemini, avec un tableau de bord admin que la coach gère elle-même. cinq niveaux de contenu, de l'intro gratuite de 3 jours aux cohortes d'entreprise privées."
+  },
+  "date": "June 2026",
+  "link": "https://be-mindful-app.vercel.app",
+  "tags": {
+   "en": "Web Design, r&d",
+   "cs": "webdesign, r&d",
+   "fr": "design web, r&d"
+  },
+  "media": [
+   {
+    "type": "image",
+    "src": "/work/be-mindful-app.webp",
+    "alt": {
+     "en": "Be Mindful app home screen",
+     "cs": "Domovská obrazovka aplikace Be Mindful",
+     "fr": "Écran d'accueil de l'application Be Mindful"
+    },
+    "caption": {
+     "en": "The app home — minutes tracked, courses, timer, audio, and the AI guide.",
+     "cs": "Domovská obrazovka aplikace — napočítané minuty, kurzy, časovač, audio a AI rádce.",
+     "fr": "L'accueil de l'app — minutes suivies, cours, minuteur, audio et guide IA."
+    }
+   }
+  ],
+  "links": [
+   {
+    "label": {
+     "en": "the app",
+     "cs": "aplikace",
+     "fr": "l'application"
+    },
+    "href": "https://be-mindful-app.vercel.app"
+   },
+   {
+    "label": {
+     "en": "landing page",
+     "cs": "landing page",
+     "fr": "landing page"
+    },
+    "href": "https://v0-bemindhomepage.vercel.app"
+   }
+  ],
+  "body": {
+   "en": "## what it is\na content platform that lets one mindfulness coach deliver structured practice at a few levels of depth. content is organised as **courses → folders → videos**, plus a categorised **audio meditation library** with its own player, a meditation timer, per-course community chat with threaded replies, and a blog. progress is gamified — daily **streaks**, total practice minutes, lifetime stats.\n\n## five tiers\nthe platform is tiered by commitment: a **free 3-day intro**, a 4-part **foundation course**, a full-library **membership**, a cohort-based **8-week course** with zoom links and workbooks, and **private corporate sections** for workplace wellbeing teams. each tier has its own access window, and the private hubs are password-gated.\n\n## the coach runs it\nthere's a real admin dashboard behind it: a **tus-based video uploader wired to bunny.net** for streaming, full crud over courses/folders/videos/audios/docs, and manual membership overrides — so the coach manages her own catalogue without me in the loop. an **ai advisor on google gemini** answers practice questions in-context. built on next.js 16 / react 19, neon postgres via prisma, stripe checkout, native czech + english, installable as a pwa.",
+   "cs": "## co to je\nobsahová platforma, na které jedna lektorka mindfulness dodává strukturovanou praxi v několika úrovních hloubky. obsah je uspořádaný jako **kurzy → složky → videa**, k tomu kategorizovaná **audioknihovna meditací** s vlastním přehrávačem, meditační časovač, komunitní chat u každého kurzu s vlákny a blog. postup je gamifikovaný — denní **streaky**, celkové odmeditované minuty, statistiky za celou dobu.\n\n## pět úrovní\nplatforma je odstupňovaná podle míry závazku: **intro na 3 dny zdarma**, čtyřdílný **základní kurz**, **členství** k celé knihovně, **osmitýdenní kurz** pro skupinu se zoom odkazy a pracovními sešity a **soukromé firemní sekce** pro týmy wellbeingu. každá úroveň má vlastní okno přístupu a soukromé huby jsou chráněné heslem.\n\n## spravuje si to sama\nvzadu je opravdový admin dashboard: **nahrávač videí přes tus napojený na bunny.net** pro streaming, plný crud nad kurzy/složkami/videi/audii/dokumenty a ruční úpravy členství — takže si lektorka spravuje vlastní katalog beze mě. **ai poradce na google gemini** odpovídá na dotazy k praxi v kontextu. postaveno na next.js 16 / react 19, neon postgres přes prismu, stripe checkout, nativně česky i anglicky, instalovatelné jako pwa.",
+   "fr": "## ce que c'est\nune plateforme de contenu qui permet à une seule coach de pleine conscience de proposer une pratique structurée à plusieurs niveaux de profondeur. le contenu est organisé en **cours → dossiers → vidéos**, avec une **bibliothèque audio de méditations** catégorisée et son propre lecteur, un minuteur de méditation, un chat communautaire par cours avec fils de discussion, et un blog. la progression est gamifiée — **séries** quotidiennes, minutes de pratique cumulées, statistiques à vie.\n\n## cinq niveaux\nla plateforme est étagée selon l'engagement : une **intro gratuite de 3 jours**, un **cours fondation** en 4 parties, un **abonnement** à toute la bibliothèque, un **cours de 8 semaines** en cohorte avec liens zoom et cahiers, et des **sections d'entreprise privées** pour les équipes bien-être. chaque niveau a sa propre fenêtre d'accès, et les espaces privés sont protégés par mot de passe.\n\n## la coach le pilote elle-même\nderrière, il y a un vrai tableau de bord admin : un **uploader vidéo basé sur tus branché à bunny.net** pour le streaming, un crud complet sur cours/dossiers/vidéos/audios/docs, et des ajustements manuels d'abonnement — la coach gère son propre catalogue sans passer par moi. un **conseiller ia sur google gemini** répond aux questions de pratique en contexte. construit sur next.js 16 / react 19, neon postgres via prisma, stripe checkout, nativement en tchèque et anglais, installable en pwa."
+  }
+ },
+ {
   "id": 48,
   "image": "/art/acrylic/012.webp",
   "title": {
@@ -102,108 +162,6 @@
   }
  },
  {
-  "id": 44,
-  "image": "/art/surfaces/240.webp",
-  "title": {
-   "en": "Bookden",
-   "cs": "Bookden",
-   "fr": "Bookden"
-  },
-  "description": {
-   "en": "a book search and discovery app that stitches several book databases into one lookup — google books and open library for free global coverage, with isbndb as a paid option — and adds ai cover recognition: photograph a book's cover and gemini pulls the title, author, publisher, year and isbn, then searches automatically. graceful fallbacks the whole way down.",
-   "cs": "aplikace na hledání a objevování knih, která splétá několik knižních databází do jednoho vyhledávání — google books a open library pro bezplatné globální pokrytí, s isbndb jako placenou volbou — a přidává ai rozpoznávání obálek: vyfotíš obálku knihy a gemini vytáhne název, autora, vydavatele, rok a isbn a rovnou vyhledá. plynulé záložní varianty po celé cestě.",
-   "fr": "une appli de recherche et de découverte de livres qui assemble plusieurs bases en une seule requête — google books et open library pour une couverture mondiale gratuite, avec isbndb en option payante — et ajoute la reconnaissance de couverture par ia : photographie la couverture d'un livre et gemini en tire le titre, l'auteur, l'éditeur, l'année et l'isbn, puis lance la recherche automatiquement. des replis en douceur du début à la fin."
-  },
-  "date": "2025",
-  "tags": {
-   "en": "ai, web, books",
-   "cs": "ai, web, knihy",
-   "fr": "ia, web, livres"
-  },
-  "body": {
-   "en": "## the aggregation\nno single book api is complete, so bookden layers them. **google books** is the primary source (free, great covers), **open library** is the automatic fallback when google is unavailable (free, open), and **isbndb** (33m+ books, paid) can be plugged in for depth. the app degrades gracefully — if one source is down or unconfigured, the search still works.\n\n## the ai part\nthe nicer trick is **cover recognition**. take or upload a photo of a book cover and it goes server-side to **gemini** (1.5 pro / 2.0 flash), which first checks the image actually *is* a cover, then extracts title, author, publisher, year and isbn and fires an automatic search from what it found. if it's not a book, you get a clean error and a manual-search fallback; recognition happens through an `/api/recognize-book` route so keys stay server-side.\n\n## the build\n**next.js**, deployable on vercel or netlify, ai keys (**openai / gemini**) kept strictly server-side with documented env setup. it's an honest little discovery tool: the point is that the seams between four data sources and a vision model are invisible to whoever's just trying to find a book.",
-   "cs": "## agregace\nžádné jediné knižní api není úplné, tak je bookden vrství. **google books** je primární zdroj (zdarma, skvělé obálky), **open library** je automatická záloha, když google nejede (zdarma, open), a **isbndb** (33m+ knih, placené) se dá připojit pro hloubku. aplikace degraduje plynule — když je jeden zdroj mimo nebo nenastavený, hledání pořád funguje.\n\n## ai část\nhezčí trik je **rozpoznávání obálek**. vyfotíš nebo nahraješ obálku knihy a ta jde serverově do **gemini** (1.5 pro / 2.0 flash), který nejdřív ověří, že obrázek *je* obálka, pak vytáhne název, autora, vydavatele, rok a isbn a z nalezeného spustí automatické hledání. když to není kniha, dostaneš čistou chybu a záložní ruční hledání; rozpoznávání běží přes route `/api/recognize-book`, takže klíče zůstávají na serveru.\n\n## stavba\n**next.js**, nasaditelné na vercel nebo netlify, ai klíče (**openai / gemini**) striktně na serveru s zdokumentovaným nastavením env. je to poctivý malý objevovací nástroj: pointa je, že švy mezi čtyřmi datovými zdroji a vision modelem jsou neviditelné pro toho, kdo jen hledá knihu.",
-   "fr": "## l'agrégation\naucune api de livres n'est complète à elle seule, alors bookden les superpose. **google books** est la source principale (gratuit, belles couvertures), **open library** est le repli automatique quand google est indisponible (gratuit, ouvert), et **isbndb** (33m+ livres, payant) peut être branché pour la profondeur. l'appli se dégrade en douceur — si une source tombe ou n'est pas configurée, la recherche fonctionne encore.\n\n## la partie ia\nle plus joli tour, c'est la **reconnaissance de couverture**. prends ou téléverse une photo de couverture et elle part côté serveur vers **gemini** (1.5 pro / 2.0 flash), qui vérifie d'abord que l'image *est* bien une couverture, puis extrait titre, auteur, éditeur, année et isbn et lance une recherche automatique à partir de ça. si ce n'est pas un livre, tu obtiens une erreur propre et un repli en recherche manuelle ; la reconnaissance passe par une route `/api/recognize-book`, pour que les clés restent côté serveur.\n\n## la fabrication\n**next.js**, déployable sur vercel ou netlify, clés ia (**openai / gemini**) strictement côté serveur avec une configuration d'environnement documentée. c'est un honnête petit outil de découverte : l'idée, c'est que les coutures entre quatre sources de données et un modèle de vision soient invisibles pour qui cherche juste un livre."
-  }
- },
- {
-  "id": 43,
-  "image": "/art/surfaces/220.webp",
-  "title": {
-   "en": "Tripomat",
-   "cs": "Tripomat",
-   "fr": "Tripomat"
-  },
-  "description": {
-   "en": "one spot for a whole trip, without retyping a single booking. forward your flight, hotel and transfer confirmation emails to tripomat and a gemini parser strips out every detail — times, airports, passengers, baggage, dress codes — into a clean itinerary. it dedupes garbled passenger names, auto-archives past trips, and shares live with fellow travellers.",
-   "cs": "jedno místo pro celou cestu, bez ručního přepisování jediné rezervace. přepošleš tripomatu potvrzovací e-maily o letu, hotelu a transferech a gemini parser z nich vytáhne každý detail — časy, letiště, cestující, zavazadla, dress kódy — do čistého itineráře. slučuje zkomolená jména cestujících, sám archivuje minulé cesty a sdílí živě se spolucestujícími.",
-   "fr": "un seul endroit pour tout un voyage, sans ressaisir une seule réservation. transfère à tripomat tes e-mails de confirmation de vol, hôtel et transferts, et un parser gemini en extrait chaque détail — horaires, aéroports, passagers, bagages, codes vestimentaires — dans un itinéraire propre. il dédoublonne les noms de passagers mal orthographiés, archive seul les voyages passés et partage en direct avec les compagnons de route."
-  },
-  "date": "2026",
-  "tags": {
-   "en": "ai, travel, web",
-   "cs": "ai, cestování, web",
-   "fr": "ia, voyage, web"
-  },
-  "body": {
-   "en": "## the premise\nevery travel app makes you retype your bookings. tripomat's whole point is that you don't: forward a confirmation email to an address (or paste the raw text), and **gemini 2.5 flash** mines it for absolutely everything — flight times, iata codes, passengers, baggage, transfer notes, even dress-code lines — and folds it into a standardised itinerary.\n\n## the interesting engineering\n- **inbound email** via resend webhooks: signature is verified, sender matched against known accounts, unknown senders get a magic-link invite to connect the address\n- **json-in-sql** schema on postgres/neon via drizzle — segments and a richly formatted `detailedFlight` live in jsonb columns, so any data point the ai finds can be rendered without rigid normalisation\n- **name deduplication** that ignores diacritics while merging (petr václavek vs vaclavek) but reconstructs the correct accented form for display\n- **self-archiving**: a trip flips to archived 48 h after its end date, no manual upkeep\n\n## the feel\noptimistic ui through a shared trip context, offline-first **pwa** with native-style bottom nav, live share notifications to everyone on a trip. stack: **next.js 15, nextauth v5, tailwind, framer motion**, on vercel.",
-   "cs": "## premisa\nkaždá cestovní appka tě nutí přepisovat rezervace. celá pointa tripomatu je, že nemusíš: přepošleš potvrzovací e-mail na adresu (nebo vložíš holý text) a **gemini 2.5 flash** z něj vytěží úplně všechno — časy letů, iata kódy, cestující, zavazadla, poznámky k transferům, i řádky o dress kódu — a složí to do standardizovaného itineráře.\n\n## zajímavý engineering\n- **inbound e-mail** přes resend webhooky: ověří se podpis, odesílatel se spáruje se známými účty, neznámí dostanou magic-link pozvánku k propojení adresy\n- schéma **json-in-sql** na postgres/neon přes drizzle — segmenty a bohatě formátovaný `detailedFlight` sídlí v jsonb sloupcích, takže se vykreslí jakýkoli nalezený datový bod bez tuhé normalizace\n- **deduplikace jmen**, která při slučování ignoruje diakritiku (petr václavek vs vaclavek), ale pro zobrazení zrekonstruuje správnou variantu s háčky\n- **samoarchivace**: cesta se překlopí do archivu 48 h po datu konce, bez ruční údržby\n\n## pocit\noptimistic ui přes sdílený trip context, offline-first **pwa** s navigací nativního stylu, živá oznámení o sdílení všem na cestě. stack: **next.js 15, nextauth v5, tailwind, framer motion**, na vercelu.",
-   "fr": "## la prémisse\nchaque appli de voyage t'oblige à ressaisir tes réservations. tout l'intérêt de tripomat, c'est que non : transfère un e-mail de confirmation à une adresse (ou colle le texte brut) et **gemini 2.5 flash** en extrait absolument tout — horaires de vol, codes iata, passagers, bagages, notes de transfert, jusqu'aux lignes sur le code vestimentaire — et le plie dans un itinéraire standardisé.\n\n## l'ingénierie intéressante\n- **e-mail entrant** via les webhooks resend : signature vérifiée, expéditeur rapproché des comptes connus, les inconnus reçoivent une invitation magic-link pour relier l'adresse\n- schéma **json-in-sql** sur postgres/neon via drizzle — les segments et un `detailedFlight` richement formaté vivent dans des colonnes jsonb, pour afficher n'importe quel point de donnée trouvé sans normalisation rigide\n- **déduplication des noms** qui ignore les diacritiques lors de la fusion (petr václavek vs vaclavek) mais reconstruit la bonne forme accentuée à l'affichage\n- **auto-archivage** : un voyage bascule en archivé 48 h après sa date de fin, sans entretien manuel\n\n## le ressenti\nui optimiste via un contexte de voyage partagé, **pwa** offline-first avec navigation basse de style natif, notifications de partage en direct à tous les voyageurs. stack : **next.js 15, nextauth v5, tailwind, framer motion**, sur vercel."
-  },
-  "link": "https://tripomat.app"
- },
- {
-  "id": 42,
-  "image": "/art/surfaces/200.webp",
-  "title": {
-   "en": "Pawtient",
-   "cs": "Pawtient",
-   "fr": "Pawtient"
-  },
-  "description": {
-   "en": "a pet-health companion for the moment something seems off with your animal. instead of frantic googling, pawtient walks you through documenting symptoms and gives a calm urgency read — monitor, contact a vet, or urgent — plus photo and video records tied to each pet's profile. it's explicitly guidance, not diagnosis. mobile-first pwa.",
-   "cs": "průvodce zdravím mazlíčka pro tu chvíli, kdy se ti zdá, že se zvířetem něco není v pořádku. místo zběsilého googlení tě pawtient provede zdokumentováním příznaků a dá klidné vyhodnocení naléhavosti — sledovat, kontaktovat veterináře, nebo akutní — plus foto a video záznamy navázané na profil každého zvířete. výslovně poradenství, ne diagnóza. mobile-first pwa.",
-   "fr": "un compagnon santé pour l'instant où quelque chose semble anormal chez ton animal. au lieu d'un google frénétique, pawtient te guide pour documenter les symptômes et donne une lecture calme de l'urgence — surveiller, contacter un vétérinaire, ou urgent — avec des enregistrements photo et vidéo liés au profil de chaque animal. explicitement du conseil, pas un diagnostic. pwa mobile-first."
-  },
-  "date": "2025",
-  "tags": {
-   "en": "health, pwa, ux",
-   "cs": "zdraví, pwa, ux",
-   "fr": "santé, pwa, ux"
-  },
-  "body": {
-   "en": "## the core\nthe whole app is built around one feature: **check**. when an owner notices their pet is off, check turns a stressful, panicky moment into a structured process — guided symptom documentation, an **urgency read** (monitor / contact vet / urgent), context from the pet's own health profile, and photo/video attachments. it's the elevated circular button in the centre of the nav for a reason.\n\n## the boundary\npawtient is careful about what it is: it **does not diagnose or treat**. it organises information and helps an owner decide *when to call a vet*, with the medical disclaimer front and centre in the terms. that restraint is the design, not an afterthought.\n\n## the shape\nfive sections — home, pets, check, records, profile. results from check land in a **health timeline** you can hand to a real vet. auth is email magic-link or google. it's a **mobile-first pwa**, installable to the home screen, with a soft warm palette meant to lower the temperature of a worried owner rather than alarm them.",
-   "cs": "## jádro\ncelá appka stojí na jediné funkci: **check**. když majitel zpozoruje, že mazlíček není ve své kůži, check promění stresovou paniku ve strukturovaný proces — vedené zdokumentování příznaků, **vyhodnocení naléhavosti** (sledovat / veterinář / akutní), kontext z profilu zvířete a foto/video přílohy. je to vyvýšené kulaté tlačítko uprostřed navigace, a to z důvodu.\n\n## hranice\npawtient je opatrný v tom, čím je: **nediagnostikuje ani neléčí**. organizuje informace a pomáhá majiteli rozhodnout, *kdy zavolat veterináře*, s lékařskou výhradou vepředu v podmínkách. ta zdrženlivost je design, ne dodatek.\n\n## tvar\npět sekcí — domů, mazlíčci, check, záznamy, profil. výsledky z checku padají do **zdravotní časové osy**, kterou předáš skutečnému veterináři. přihlášení přes e-mailový magic-link nebo google. je to **mobile-first pwa**, instalovatelná na plochu, s jemnou teplou paletou, která má snížit teplotu vystrašenému majiteli, ne ho vyděsit.",
-   "fr": "## le cœur\ntoute l'appli tourne autour d'une fonction : **check**. quand un propriétaire remarque que son animal ne va pas, check transforme un moment stressant et paniqué en processus structuré — documentation guidée des symptômes, **lecture de l'urgence** (surveiller / vétérinaire / urgent), contexte issu du profil santé de l'animal, et pièces jointes photo/vidéo. c'est le bouton circulaire surélevé au centre de la navigation, et ce n'est pas un hasard.\n\n## la limite\npawtient est prudent sur ce qu'il est : il **ne diagnostique ni ne soigne**. il organise l'information et aide le propriétaire à décider *quand appeler un vétérinaire*, avec l'avertissement médical bien en avant dans les conditions. cette retenue est le design, pas une pensée après coup.\n\n## la forme\ncinq sections — accueil, animaux, check, dossiers, profil. les résultats de check atterrissent dans une **frise santé** que tu peux remettre à un vrai vétérinaire. connexion par magic-link e-mail ou google. c'est une **pwa mobile-first**, installable sur l'écran d'accueil, avec une palette douce et chaude censée faire baisser la tension d'un propriétaire inquiet plutôt que l'alarmer."
-  },
-  "link": "https://pawtient.app"
- },
- {
-  "id": 41,
-  "image": "/art/surfaces/180.webp",
-  "title": {
-   "en": "eyetrainer",
-   "cs": "eyetrainer",
-   "fr": "eyetrainer"
-  },
-  "description": {
-   "en": "a little collection of pygame mini-games for training the eye — the kind of perception that painters, colourists and photographers rely on but rarely drill. each game hammers one skill: guessing aspect ratios, spotting hue shifts, reading saturation, matching mixed colours. built for myself, kept simple.",
-   "cs": "malá sbírka pygame mini-her na trénink oka — ten druh vnímání, na který spoléhají malíři, coloristé a fotografové, ale málokdy ho cvičí. každá hra brousí jednu dovednost: odhad poměru stran, hledání posunů odstínu, čtení sytosti, míchání barev na cíl. postavené pro sebe, drženo jednoduše.",
-   "fr": "une petite collection de mini-jeux pygame pour entraîner l'œil — ce type de perception dont peintres, coloristes et photographes dépendent mais qu'ils travaillent rarement. chaque jeu martèle une compétence : deviner les ratios, repérer les glissements de teinte, lire la saturation, reproduire des couleurs mélangées. fait pour moi, gardé simple."
-  },
-  "date": "2023",
-  "tags": {
-   "en": "python, games, color",
-   "cs": "python, hry, barva",
-   "fr": "python, jeux, couleur"
-  },
-  "body": {
-   "en": "## why\nvisual judgement is trainable, but nobody drills it deliberately. i wanted a batch of tiny exercises that isolate one perceptual skill at a time and give instant feedback, the way a musician practises intervals.\n\n## the games\nfive small **pygame** scripts, each a self-contained round:\n\n- **aspect ratio guesser** — read the proportions of a rectangle by eye\n- **complementary color change** — name the complement of a shown colour\n- **hue shift hunt** — catch a subtle shift in hue\n- **saturation detective** — judge how saturated a swatch is\n- **virtual paint palette** — mix primaries to hit a target colour\n\n## the shape of it\ndeliberately unglamorous: run a script, follow the on-screen prompt, get scored. no accounts, no backend, no ceremony — the point is the reps. it fits the same instinct as the rest of my work, tools i actually want to use, built small enough to finish.",
-   "cs": "## proč\nvizuální úsudek se dá trénovat, ale nikdo ho cíleně nedrilluje. chtěl jsem sadu drobných cvičení, která izolují vždy jednu vjemovou dovednost a dávají okamžitou zpětnou vazbu — tak jako muzikant cvičí intervaly.\n\n## hry\npět malých **pygame** skriptů, každý jedno soběstačné kolo:\n\n- **aspect ratio guesser** — odhadni okem poměr stran obdélníku\n- **complementary color change** — pojmenuj doplňkovou barvu\n- **hue shift hunt** — odchyť jemný posun odstínu\n- **saturation detective** — urči, jak je vzorek sytý\n- **virtual paint palette** — namíchej ze základních barev cílovou\n\n## tvar věci\nzáměrně nablýskané ani trochu: spustíš skript, řídíš se instrukcí na obrazovce, dostaneš skóre. žádné účty, žádný backend, žádná ceremonie — jde o opakování. sedí to do stejného instinktu jako zbytek mojí práce: nástroje, které fakt chci používat, malé natolik, abych je dodělal.",
-   "fr": "## pourquoi\nle jugement visuel s'entraîne, mais personne ne le travaille délibérément. je voulais un lot de tout petits exercices qui isolent une compétence perceptive à la fois et donnent un retour instantané, comme un musicien travaille ses intervalles.\n\n## les jeux\ncinq petits scripts **pygame**, chacun une manche autonome :\n\n- **aspect ratio guesser** — évaluer à l'œil les proportions d'un rectangle\n- **complementary color change** — nommer la complémentaire d'une couleur\n- **hue shift hunt** — attraper un léger glissement de teinte\n- **saturation detective** — juger la saturation d'un échantillon\n- **virtual paint palette** — mélanger les primaires pour atteindre une couleur cible\n\n## la forme\nvolontairement sans clinquant : tu lances un script, tu suis la consigne à l'écran, tu es noté. pas de comptes, pas de backend, pas de cérémonie — l'important, ce sont les répétitions. ça relève du même instinct que le reste de mon travail : des outils que j'ai vraiment envie d'utiliser, assez petits pour être finis."
-  }
- },
- {
   "id": 40,
   "image": "/art/surfaces/160.webp",
   "title": {
@@ -226,58 +184,6 @@
    "en": "## the idea\nboids is the canonical flocking algorithm — separation, alignment, cohesion, three rules and emergent swarm behaviour. the twist here isn't the maths, it's the topology: instead of running the simulation locally i pushed the whole thing onto **spacetimedb**, a database you write to with transactional reducers and read from with live subscriptions.\n\n## how it's wired\nthe flock's positions and velocities are **tables**. the step function that nudges every agent each tick is a **reducer** — deterministic, transactional, no clock or randomness smuggled in. clients don't compute the flock; they **subscribe** to the tables and render whatever the server says. add a second client and it sees the identical swarm, live.\n\n## why bother\ni wanted to feel where the line is between \"game loop\" and \"shared database\" when the authoritative state is a single hosted module. it's an experiment more than a product — the interesting part is that multiplayer, persistence and the sim all collapse into one server-side source of truth, with no bespoke netcode on my side.",
    "cs": "## nápad\nboids je kanonický algoritmus hejna — separace, zarovnání, koheze, tři pravidla a emergentní chování roje. zajímavý tu není matematický základ, ale topologie: místo lokálního běhu simulace jsem celé to přesunul na **spacetimedb**, databázi, do které se zapisuje transakčními reducery a čte z ní živými subskripcemi.\n\n## jak je to zapojené\npozice a rychlosti hejna jsou **tabulky**. kroková funkce, která každý tik pošťouchne každého agenta, je **reducer** — deterministický, transakční, bez propašovaných hodin či náhody. klienti hejno nepočítají; **odebírají** tabulky a vykreslují to, co řekne server. přidáš druhého klienta a vidí totožný roj, živě.\n\n## proč do toho jít\nchtěl jsem nahmatat, kde je hranice mezi „herní smyčkou\" a „sdílenou databází\", když je autoritativní stav jediný hostovaný modul. je to spíš experiment než produkt — zajímavé je, že multiplayer, perzistence i simulace splynou do jednoho serverového zdroje pravdy, bez vlastního netcode.",
    "fr": "## l'idée\nboids est l'algorithme de nuée canonique — séparation, alignement, cohésion, trois règles et un comportement d'essaim émergent. l'intérêt ici n'est pas les maths mais la topologie : au lieu de faire tourner la simulation en local, j'ai tout poussé sur **spacetimedb**, une base où l'on écrit via des reducers transactionnels et où l'on lit via des abonnements en direct.\n\n## le câblage\nles positions et vitesses de la nuée sont des **tables**. la fonction de pas qui bouscule chaque agent à chaque tick est un **reducer** — déterministe, transactionnel, sans horloge ni hasard clandestins. les clients ne calculent pas la nuée ; ils **s'abonnent** aux tables et affichent ce que dit le serveur. ajoute un second client, il voit le même essaim, en direct.\n\n## pourquoi\nje voulais sentir la frontière entre « boucle de jeu » et « base partagée » quand l'état faisant autorité est un unique module hébergé. plus une expérience qu'un produit — l'intéressant, c'est que multijoueur, persistance et simulation s'effondrent en une seule source de vérité côté serveur, sans netcode maison."
-  }
- },
- {
-  "id": 39,
-  "image": "/art/surfaces/140.webp",
-  "title": {
-   "en": "FocusFrameFinder",
-   "cs": "FocusFrameFinder",
-   "fr": "FocusFrameFinder"
-  },
-  "description": {
-   "en": "a small python tool i wrote to weed blurry frames out of image sequences before they poison a 3d reconstruction. it scores every frame by the variance of its laplacian and quarantines the fuzziest ones so photogrammetry and nerf pipelines only see sharp input. it ended up public with a few dozen stars.",
-   "cs": "malý pythonový nástroj, který jsem napsal, abych z obrazových sekvencí vyházel rozmazané snímky dřív, než mi rozbijí 3d rekonstrukci. každý snímek oboduje podle variance laplaciánu a ty nejrozmazanější odloží stranou, takže do fotogrammetrie a nerf pipeline jde jen ostrý vstup. skončil veřejně s pár desítkami hvězd.",
-   "fr": "un petit outil python que j'ai écrit pour retirer les images floues d'une séquence avant qu'elles ne gâchent une reconstruction 3d. il note chaque image par la variance de son laplacien et met de côté les plus floues, pour que la photogrammétrie et les pipelines nerf ne voient que du net. il est devenu public avec quelques dizaines d'étoiles."
-  },
-  "date": "2023",
-  "tags": {
-   "en": "3d, python, tooling",
-   "cs": "3d, python, nástroje",
-   "fr": "3d, python, outillage"
-  },
-  "body": {
-   "en": "a small python tool i wrote to weed blurry frames out of image sequences before they poison a 3D reconstruction. it got **written up on [RadianceFields](https://radiancefields.com)** — the hub for the gaussian-splatting / NeRF community — and picked up a few dozen stars.\n\n## the problem\ncapture a video, split it into frames, feed them to a photogrammetry or **NeRF** pipeline, and a handful of motion-blurred frames quietly wreck the whole reconstruction. finding them by eye across hundreds of images is miserable.\n\n## how it works\nit runs the classic **variance of Laplacian** as a focus measure: a sharp frame has high-frequency detail and a high variance; a blurry one goes flat. rank every frame, quarantine the fuzziest, and hand the pipeline only sharp input. one dependency, a few seconds, cleaner splats.\n\nnothing clever — just the boring, reliable filter nobody wants to run by hand, packaged so you don't have to.",
-   "cs": "malý python nástroj, který jsem napsal, aby vyházel rozmazané snímky z obrazových sekvencí dřív, než otráví 3D rekonstrukci. **napsali o něm na [RadianceFields](https://radiancefields.com)** — centru komunity kolem gaussian splattingu a NeRF — a sesbíral pár desítek hvězd.\n\n## problém\nnatočíš video, rozsekáš na snímky, pošleš je do fotogrammetrie nebo **NeRF** pipeline a hrstka rozhýbaných snímků potichu zničí celou rekonstrukci. hledat je okem přes stovky obrázků je utrpení.\n\n## jak to funguje\njede na klasickém **rozptylu Laplaciánu** jako míře ostrosti: ostrý snímek má vysokofrekvenční detail a vysoký rozptyl; rozmazaný je plochý. seřaď všechny snímky, ty nejrozmazanější dej do karantény a pipeline předej jen ostré. jedna závislost, pár vteřin, čistší splaty.\n\nnic chytrého — jen ten nudný, spolehlivý filtr, který nikdo nechce pouštět ručně, zabalený tak, abys nemusel.",
-   "fr": "un petit outil python que j'ai écrit pour éliminer les images floues d'une séquence avant qu'elles n'empoisonnent une reconstruction 3D. il a été **présenté sur [RadianceFields](https://radiancefields.com)** — le carrefour de la communauté gaussian-splatting / NeRF — et a récolté quelques dizaines d'étoiles.\n\n## le problème\nfilme une vidéo, découpe-la en images, envoie-les dans un pipeline de photogrammétrie ou **NeRF**, et une poignée d'images floues sabote discrètement toute la reconstruction. les repérer à l'œil sur des centaines d'images est un supplice.\n\n## comment ça marche\nil utilise la classique **variance du laplacien** comme mesure de netteté : une image nette a du détail haute fréquence et une variance élevée ; une image floue s'aplatit. classe chaque image, met les plus floues en quarantaine, ne donne au pipeline que du net. une dépendance, quelques secondes, des splats plus propres.\n\nrien d'astucieux — juste le filtre ennuyeux et fiable que personne ne veut lancer à la main, empaqueté pour que tu n'aies pas à le faire."
-  },
-  "link": "https://radiancefields.com/focusframefinder-auto-culls-blurry-images-for-nerf-datasets"
- },
- {
-  "id": 38,
-  "image": "/art/surfaces/094.webp",
-  "title": {
-   "en": "Mnam",
-   "cs": "Mnam",
-   "fr": "Mnam"
-  },
-  "description": {
-   "en": "an ai cooking-inspiration app at mnam.app — you tell it what you feel like, it gives you a recipe, and you can save it to your own collection. czech-first, built as an installable pwa with recipe structured data so the dishes surface as rich results in search.",
-   "cs": "aplikace pro kulinářskou inspiraci s ai na mnam.app — řekneš, na co máš chuť, ona ti dá recept a můžeš si ho uložit do vlastní sbírky. česky na prvním místě, postavená jako instalovatelná pwa s recept structured data, aby se jídla ukazovala jako rich results ve vyhledávání.",
-   "fr": "une app d'inspiration culinaire dopée à l'ia sur mnam.app — tu dis ce dont tu as envie, elle te donne une recette, et tu peux l'enregistrer dans ta propre collection. le tchèque d'abord, conçue comme une pwa installable avec des données structurées de recette pour que les plats ressortent en rich results dans la recherche."
-  },
-  "date": "2025",
-  "link": "https://mnam.app",
-  "tags": {
-   "en": "AI, Web Design",
-   "cs": "AI, webdesign",
-   "fr": "IA, web design"
-  },
-  "body": {
-   "en": "## what it is\nmnam.app is an ai cooking companion: instead of scrolling a fixed recipe database, you say what you're in the mood for and it generates a dish, which you can keep in **\"moje recepty\"** (my recipes) or browse in the shared **\"všechny recepty\"** (all recipes). it's built czech-first — czech copy, keywords, `cs_CZ` locale, czech **schema.org recipe** structured data with nutrition info so google renders it as a rich result.\n\n## the save flow, done properly\nthe interesting engineering is in saving. recipe ids are generated **client-side (uuid v4)** and written with `onConflict` upserts, so a save is **idempotent** and safe to retry. when the primary recipe row succeeds but a secondary write (image upload, user association) fails, the recipe is **not rolled back and deleted** — it's marked **orphaned** in a localStorage retry queue and stays visible in \"all recipes\" until the association catches up. every save carries a unique **traceId** through the log (`RECIPE_INSERT_OK`, `IMAGE_UPLOAD_FAIL`, `USER_DATA_UPSERT_OK`…), and known failure classes (rls violations, schema-cache mismatches, missing buckets) are classified rather than swallowed. `client_updated_at` on every row gives **last-write-wins** conflict resolution across devices. next.js, installable pwa.",
-   "cs": "## co to je\nmnam.app je kuchařský společník s ai: místo scrollování pevné databáze receptů řekneš, na co máš chuť, a aplikace ti vygeneruje jídlo, které si buď necháš v **„moje recepty\"**, nebo procházíš ve sdílených **„všechny recepty\"**. je stavěná česky na prvním místě — český text, klíčová slova, locale `cs_CZ` a české **schema.org recipe** structured data s nutričními hodnotami, aby to google vykreslil jako rich result.\n\n## ukládání udělané pořádně\nzajímavý inženýring je v ukládání. id receptů se generují **na klientovi (uuid v4)** a zapisují upsertem přes `onConflict`, takže je uložení **idempotentní** a bezpečné opakovat. když primární zápis receptu projde, ale sekundární (nahrání obrázku, navázání na uživatele) selže, recept se **nemaže rollbackem** — označí se jako **osiřelý** ve frontě v localStorage a zůstane vidět ve „všech receptech\", dokud se navázání nedožene. každé uložení nese vlastní **traceId** logem (`RECIPE_INSERT_OK`, `IMAGE_UPLOAD_FAIL`, `USER_DATA_UPSERT_OK`…) a známé třídy chyb (porušení rls, nesoulad schema cache, chybějící bucket) se klasifikují, ne polykají. `client_updated_at` na každém řádku dává řešení konfliktů **last-write-wins** napříč zařízeními. next.js, instalovatelná pwa.",
-   "fr": "## ce que c'est\nmnam.app est un compagnon de cuisine dopé à l'ia : au lieu de faire défiler une base de recettes figée, tu dis ce dont tu as envie et l'app génère un plat, que tu peux garder dans **« moje recepty »** (mes recettes) ou parcourir dans les **« všechny recepty »** (toutes les recettes) partagées. c'est pensé tchèque d'abord — textes et mots-clés en tchèque, locale `cs_CZ`, et des données structurées **schema.org recipe** avec valeurs nutritionnelles pour que google l'affiche en rich result.\n\n## l'enregistrement, fait proprement\nl'ingénierie intéressante est dans l'enregistrement. les id de recettes sont générés **côté client (uuid v4)** et écrits en upsert via `onConflict`, donc un enregistrement est **idempotent** et sûr à réessayer. quand l'écriture principale de la recette réussit mais qu'une écriture secondaire (upload d'image, association à l'utilisateur) échoue, la recette n'est **pas annulée et supprimée** — elle est marquée **orpheline** dans une file de retry en localStorage et reste visible dans « toutes les recettes » jusqu'à ce que l'association rattrape. chaque enregistrement porte un **traceId** unique dans les logs (`RECIPE_INSERT_OK`, `IMAGE_UPLOAD_FAIL`, `USER_DATA_UPSERT_OK`…), et les classes d'erreur connues (violations rls, désaccord de schema cache, bucket manquant) sont classifiées plutôt qu'avalées. `client_updated_at` sur chaque ligne donne une résolution de conflit **last-write-wins** entre appareils. next.js, pwa installable."
   }
  },
  {
@@ -305,764 +211,6 @@
    "cs": "## co to je\nau au vezme lékařskou zprávu, které skoro nerozumíš, a udělá ji čitelnou. dokument **vyfotíš nebo nahraješ**, multimodální **gemini 2.5 flash** z něj vytáhne text a sám ho pojmenuje, pak přepíše terminologii do lidské řeči — co diagnóza znamená, co dělá léčba. **chat 24/7** odpovídá na doplňující otázky s tvými zprávami jako kontextem a ví, kdy přestat a poslat tě ke skutečnému lékaři. je to výslovně nástroj na porozumění, ne na diagnostiku.\n\n## uspořádané kolem tebe\nzprávy žijí na **vizuální časové ose** seskupené po měsících, každá se shrnutím na první pohled. zdravotní profil drží chronická onemocnění, alergie, současné léky a nouzové kontakty, aby mohly být odpovědi personalizované.\n\n## sdílení bez úniků\nsdílení běží na **kryptografických tokenech**: vygeneruješ bezpečný odkaz a pošleš zprávu lékaři nebo rodině, a vidíš, kdo a kolikrát ji otevřel. postaveno na next.js 15, typescriptu, gemini přes ai sdk, postgresu (neon) s drizzle a google oauth. česky, responzivně, s nativními aplikacemi na roadmapě.",
    "fr": "## ce que c'est\nau au prend un compte rendu médical auquel tu ne comprends presque rien et le rend lisible. tu **photographies ou téléverses** le document, **gemini 2.5 flash** multimodal en extrait le texte et le titre automatiquement, puis réécrit la terminologie en langage clair — ce que veut dire le diagnostic, ce que fait le traitement. un **chat 24/7** répond aux questions de suivi avec tes rapports comme contexte, et sait quand s'arrêter pour te renvoyer vers un vrai médecin. c'est explicitement un outil de compréhension, pas de diagnostic.\n\n## organisé autour de toi\nles rapports vivent sur une **frise chronologique visuelle** groupée par mois, chacun avec un résumé en un coup d'œil. un profil santé conserve maladies chroniques, allergies, traitements en cours et contacts d'urgence, pour que les réponses soient personnalisées.\n\n## partager sans fuiter\nle partage repose sur des **jetons cryptographiques** : tu génères un lien sécurisé pour envoyer un rapport à un médecin ou à un proche, et tu vois qui l'a ouvert et combien de fois. construit sur next.js 15, typescript, gemini via l'ai sdk, postgres (neon) avec drizzle, et google oauth. en tchèque, responsive, avec des apps natives sur la feuille de route."
   }
- },
- {
-  "id": 36,
-  "image": "/art/surfaces/120.webp",
-  "title": {
-   "en": "Laifea",
-   "cs": "Laifea",
-   "fr": "Laifea"
-  },
-  "description": {
-   "en": "My exocortex, and the reincarnation of Sombra — the empathetic AI mentor I built at Flipas. Laifea is a markdown vault with a persistent AI partner, a 3D semantic knowledge graph, voice mode, and ~50 tools behind one registry. One thesis: \"think with it, not through it.\" An AI that makes you sharper, not softer.",
-   "cs": "Můj exokortex a znovuzrození Sombry — empatického AI mentora, kterého jsem postavil ve Flipasu. Laifea je markdown vault s trvalým AI parťákem, 3D sémantickým grafem znalostí, hlasovým režimem a ~50 nástroji za jedním registrem. Jedna teze: „mysli s tím, ne skrz to.“ AI, po které jsi ostřejší, ne měkčí.",
-   "fr": "Mon exocortex, et la réincarnation de Sombra — le mentor IA empathique que j'ai bâti chez Flipas. Laifea est un vault markdown avec un partenaire IA persistant, un graphe de connaissances sémantique en 3D, un mode vocal et ~50 outils derrière un seul registre. Une thèse : « pense avec, pas à travers ». Une IA qui te rend plus vif, pas plus mou."
-  },
-  "date": "2024 — ongoing",
-  "link": "https://laifea.app",
-  "tags": {
-   "en": "r&d, AI, Web Design",
-   "cs": "r&d, AI, webdesign",
-   "fr": "r&d, IA, web design"
-  },
-  "body": {
-   "en": "The project everything else funnels into. **Laifea** (v0.97) is where Sombra — the AI mentor from my Flipas years — grew up. Flipas gave it a soul (*\"Sombra will never give you the solution, it will help you get there — it's going to make you think\"*); Laifea gave it a body it owns.\n\n## the wedge\nfrictionless AI quietly de-skills you. a randomised trial (n=120) put AI-aided learners at **57.5% vs 68.5%** on 45-day retention, worst in technical subjects. so Laifea inverts the goal: intentional friction where thinking matters, frictionless capture where it doesn't. an AI that **makes you think**, not one that thinks for you.\n\n## what it is\n- your notes stay plain **markdown** — files are the source of truth, the database is a cache. export to ZIP/JSON anytime; zero lock-in.\n- a **3D knowledge graph** (768→3D projection + force sim) where the headline move is *reverse semantic search*: show me what's logically near this thought. the mental model is **Cognitive Spacetime** — dense ideas warp the space and pull related notes toward them.\n- **~50 tools** in one registry, exposed identically to chat, voice, and external agents over MCP.\n- **voice mode** on realtime Gemini Live.\n\n## how it's built\nNext.js 16 + React 19 on **SpacetimeDB as the only backend** — tables, vectors and scheduling in one store, no Redis, no queue, ever. several posts on this blog come straight from its build logs.\n\n\"infrastructure for thought. a living partner in cognition. a sovereign mirror of mind.\"",
-   "cs": "Projekt, do kterého ústí všechno ostatní. **Laifea** (v0.97) je místo, kde Sombra — AI mentor z mých časů ve Flipasu — dospěla. Flipas jí dal duši (*„Sombra ti nikdy nedá řešení, pomůže ti k němu dojít — donutí tě myslet“*); Laifea jí dala tělo, které vlastní.\n\n## ten klín\nbezešvá AI tě potichu odnaučuje. randomizovaná studie (n=120) dala uživatelům AI **57,5 % vs 68,5 %** v 45denní retenci, nejhůř u technických oborů. Laifea proto obrací cíl: záměrné tření tam, kde jde o myšlení, bezešvé zachycení tam, kde ne. AI, která tě **nutí myslet**, ne která myslí za tebe.\n\n## co to je\n- poznámky zůstávají obyčejný **markdown** — soubory jsou zdroj pravdy, databáze cache. export do ZIP/JSON kdykoli; žádný lock-in.\n- **3D graf znalostí** (projekce 768→3D + force sim), kde je hlavní tah *obrácené sémantické hledání*: ukaž mi, co leží logicky vedle téhle myšlenky. mentální model je **kognitivní časoprostor** — husté myšlenky zakřiví prostor a přitáhnou k sobě příbuzné poznámky.\n- **~50 nástrojů** v jednom registru, vystavených stejně chatu, hlasu i externím agentům přes MCP.\n- **hlasový režim** na realtime Gemini Live.\n\n## jak je to postavené\nNext.js 16 + React 19 na **SpacetimeDB jako jediném backendu** — tabulky, vektory i plánování v jednom store, žádný Redis, žádná fronta, nikdy. několik zápisků na tomhle blogu je přímo z jeho build logů.\n\n„infrastruktura pro myšlení. živý parťák v poznávání. svrchované zrcadlo mysli.“",
-   "fr": "Le projet vers lequel tout converge. **Laifea** (v0.97), c'est là où Sombra — le mentor IA de mes années Flipas — a grandi. Flipas lui a donné une âme (*« Sombra ne te donnera jamais la solution, elle t'aidera à y arriver — elle va te faire réfléchir »*) ; Laifea lui a donné un corps qui lui appartient.\n\n## le coin enfoncé\nl'IA sans friction te dé-qualifie en silence. un essai randomisé (n=120) a placé les apprenants assistés par l'IA à **57,5 % contre 68,5 %** en rétention à 45 jours, pire dans les matières techniques. Laifea inverse donc le but : friction intentionnelle là où la pensée compte, capture sans friction là où non. une IA qui te **fait penser**, pas qui pense à ta place.\n\n## ce que c'est\n- tes notes restent du **markdown** brut — les fichiers sont la source de vérité, la base un cache. export ZIP/JSON à tout moment ; zéro verrouillage.\n- un **graphe de connaissances 3D** (projection 768→3D + simulation de forces) dont le geste phare est la *recherche sémantique inversée* : montre-moi ce qui est logiquement proche de cette pensée. le modèle mental : l'**espace-temps cognitif** — les idées denses courbent l'espace et attirent les notes voisines.\n- **~50 outils** dans un registre, exposés à l'identique au chat, à la voix et aux agents externes via MCP.\n- **mode vocal** sur Gemini Live temps réel.\n\n## comment c'est bâti\nNext.js 16 + React 19 sur **SpacetimeDB comme unique backend** — tables, vecteurs et planification dans un seul store, jamais de Redis ni de file. plusieurs billets de ce blog viennent directement de ses journaux de build.\n\n« infrastructure pour la pensée. un partenaire vivant de la cognition. un miroir souverain de l'esprit. »"
-  }
- },
- {
-  "id": 16,
-  "image": "/image14.jpg",
-  "title": {
-   "en": "Cpt. Demo EP",
-   "cs": "Cpt. Demo EP",
-   "fr": "Cpt. Demo EP"
-  },
-  "description": {
-   "en": "I made this EP cover with GIMP it was the beginning of a long and beautiful collaboration with Cpt. Demo",
-   "cs": "Obal tohoto EP jsem udělal v GIMPu — byl to začátek dlouhé a krásné spolupráce s Cpt. Demo.",
-   "fr": "J'ai réalisé cette pochette d'EP avec GIMP — ce fut le début d'une longue et belle collaboration avec Cpt. Demo."
-  },
-  "date": "October 2021",
-  "link": "https://open.spotify.com/album/1V3m6SMvu8Bodq4scdqD3o",
-  "tags": {
-   "en": "Graphic Design",
-   "cs": "grafický design",
-   "fr": "design graphique"
-  },
-  "media": [
-   {
-    "type": "image",
-    "src": "/image14.jpg",
-    "alt": {
-     "en": "EP cover",
-     "cs": "Obal EP",
-     "fr": "Pochette d'EP"
-    },
-    "caption": {
-     "en": "The final cover, exported at 3000×3000 for streaming + print.",
-     "cs": "Finální obal, vyexportovaný v 3000×3000 pro streaming i tisk.",
-     "fr": "La pochette finale, exportée en 3000×3000 pour le streaming et l'impression."
-    }
-   },
-   {
-    "type": "embed",
-    "html": "<iframe style=\"border-radius:0\" src=\"https://open.spotify.com/embed/album/1V3m6SMvu8Bodq4scdqD3o?utm_source=generator\" width=\"100%\" height=\"352\" frameborder=\"0\" allowfullscreen allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
-    "caption": {
-     "en": "Stream the full EP.",
-     "cs": "Pusť si celé EP.",
-     "fr": "Écoute l'EP en entier."
-    }
-   },
-   {
-    "type": "video",
-    "src": "/reel_720.mp4",
-    "caption": {
-     "en": "Process clip — sketches I cut into the master reel.",
-     "cs": "Klip z procesu — skici, které jsem sestříhal do master reelu.",
-     "fr": "Clip de process — des esquisses montées dans le reel principal."
-    }
-   }
-  ],
-  "links": [
-   {
-    "label": {
-     "en": "spotify",
-     "cs": "spotify",
-     "fr": "spotify"
-    },
-    "href": "https://open.spotify.com/album/1V3m6SMvu8Bodq4scdqD3o"
-   },
-   {
-    "label": {
-     "en": "cpt. demo",
-     "cs": "cpt. demo",
-     "fr": "cpt. demo"
-    },
-    "href": "https://soundcloud.com/cpt-demo"
-   }
-  ],
-  "body": {
-   "en": "First commission for **Cpt. Demo** — a friend whose taste taught me half of what I know about beats. The EP needed a cover that lived equally well as a 64×64 thumbnail in Spotify and as a 30×30 cm vinyl sleeve, and we wanted the same image to do both jobs without compromise.\n\n## the brief\n\n> \"make it feel like a basement in 2003 but make it last forever\"\n\nThat meant **deliberately limited palette**, almost zero gradients, and high-contrast type that survives the worst chroma subsampling Apple Music does to album art.\n\n## process\n\nStarted in **GIMP** because that's what I had open. Built the type by hand from the rapper's tag — every glyph traced from his own marker strokes so the name owns the artefacts.\n\n- One pass for type\n- One pass for grain\n- One pass for the printed-edge offset\n\nThe vinyl press wanted CMYK with bleed; the streaming services wanted sRGB at 3000². Same source file, different export profiles. Nothing harder than that, but the discipline of treating the digital and physical deliveries with equal weight was the lesson.\n\n## what stuck\n\nThe cover got picked up by a couple of beat-tape blogs. More importantly it was the start of a five-year collaboration with Cpt. Demo — every release since carries the same vocabulary, scaled up.",
-   "cs": "První zakázka pro **Cpt. Demo** — kamaráda, jehož vkus mě naučil polovinu toho, co o beatech vím. EP potřebovalo obal, který bude stejně dobře fungovat jako náhled 64×64 ve Spotify i jako vinylový obal 30×30 cm, a chtěli jsme, aby tentýž obraz zvládl obojí bez kompromisu.\n\n## brief\n\n> „ať to působí jako sklep v roce 2003, ale ať to vydrží navěky“\n\nTo znamenalo **záměrně omezenou paletu**, skoro žádné přechody a vysoce kontrastní typografii, která přežije i nejhorší chroma subsampling, jaký album artu provede Apple Music.\n\n## proces\n\nZačal jsem v **GIMPu**, protože jsem ho měl zrovna otevřený. Typografii jsem postavil ručně z rapperova tagu — každý glyf obkreslený z jeho vlastních tahů fixou, aby jméno vlastnilo i ty artefakty.\n\n- Jeden průchod na typografii\n- Jeden na zrno\n- Jeden na offset tištěné hrany\n\nLisovna vinylu chtěla CMYK se spadávkou; streamovací služby sRGB v 3000². Stejný zdrojový soubor, jiné exportní profily. Nic těžšího než to, ale lekce byla v disciplíně — brát digitální i fyzický výstup se stejnou vahou.\n\n## co zůstalo\n\nObal zachytilo pár blogů o beat-tapech. Důležitější ale bylo, že to byl začátek pětileté spolupráce s Cpt. Demo — každé další vydání nese stejný slovník, jen ve větším měřítku.",
-   "fr": "Première commande pour **Cpt. Demo** — un ami dont le goût m'a appris la moitié de ce que je sais sur les beats. L'EP avait besoin d'une pochette qui fonctionne aussi bien en vignette 64×64 sur Spotify qu'en pochette vinyle de 30×30 cm, et nous voulions que la même image fasse les deux sans compromis.\n\n## le brief\n\n> « qu'on dirait une cave en 2003, mais que ça dure pour toujours »\n\nCela impliquait une **palette délibérément limitée**, presque aucun dégradé et une typographie très contrastée qui survit au pire sous-échantillonnage chroma qu'Apple Music inflige aux pochettes.\n\n## le process\n\nJ'ai commencé sous **GIMP**, parce que c'était ce que j'avais d'ouvert. J'ai construit la typo à la main à partir du tag du rappeur — chaque glyphe décalqué de ses propres traits de marqueur, pour que le nom possède jusqu'à ses artefacts.\n\n- Une passe pour la typo\n- Une passe pour le grain\n- Une passe pour le décalage du bord imprimé\n\nLe pressage vinyle voulait du CMJN avec fond perdu ; le streaming voulait du sRGB en 3000². Même fichier source, profils d'export différents. Rien de plus difficile que ça, mais la leçon était la discipline : traiter la livraison numérique et physique avec le même soin.\n\n## ce qui est resté\n\nLa pochette a été reprise par quelques blogs de beat-tapes. Plus important encore, ce fut le début d'une collaboration de cinq ans avec Cpt. Demo — chaque sortie depuis porte le même vocabulaire, à plus grande échelle."
-  }
- },
- {
-  "id": 11,
-  "image": "/image27.jpg",
-  "title": {
-   "en": "Jan Kaláb sculpture",
-   "cs": "Socha Jana Kalába",
-   "fr": "Sculpture de Jan Kaláb"
-  },
-  "description": {
-   "en": "I made a 3d model in blender based on mockups and technical drawings to preview a sculpture and prepare it for cnc milling",
-   "cs": "V Blenderu jsem podle modelů a technických výkresů udělal 3D model, abych nasimuloval sochu a připravil ji pro CNC frézování.",
-   "fr": "Sous Blender, j'ai créé un modèle 3D à partir de maquettes et de plans techniques pour prévisualiser une sculpture et la préparer au fraisage CNC."
-  },
-  "date": "July 2020",
-  "link": "https://sketchfab.com/models/e136d0a11db84dddb65485134a39ffbb",
-  "tags": {
-   "en": "3D, r&d",
-   "cs": "3D, r&d",
-   "fr": "3D, r&d"
-  },
-  "media": [
-   {
-    "type": "image",
-    "src": "/image27.jpg",
-    "alt": {
-     "en": "3D preview of the sculpture",
-     "cs": "3D náhled sochy",
-     "fr": "Aperçu 3D de la sculpture"
-    },
-    "caption": {
-     "en": "3D preview matched to the original technical drawings.",
-     "cs": "3D náhled odpovídající původním technickým výkresům.",
-     "fr": "Aperçu 3D fidèle aux plans techniques d'origine."
-    }
-   },
-   {
-    "type": "embed",
-    "html": "<div class=\"sketchfab-embed-wrapper\"><iframe title=\"Jan Kalab Sculpture\" frameborder=\"0\" allowfullscreen mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" allow=\"autoplay; fullscreen; xr-spatial-tracking\" width=\"100%\" height=\"480\" src=\"https://sketchfab.com/models/e136d0a11db84dddb65485134a39ffbb/embed?autostart=0\"></iframe></div>",
-    "caption": {
-     "en": "Interactive turntable — drag to orbit, scroll to zoom.",
-     "cs": "Interaktivní otočna — tažením otáčej, kolečkem přibliž.",
-     "fr": "Plateau tournant interactif — glissez pour orbiter, molette pour zoomer."
-    }
-   },
-   {
-    "type": "video",
-    "src": "/reel_720.mp4",
-    "caption": {
-     "en": "Final reel cut.",
-     "cs": "Finální střih reelu.",
-     "fr": "Montage final du reel."
-    }
-   }
-  ],
-  "links": [
-   {
-    "label": {
-     "en": "sketchfab",
-     "cs": "sketchfab",
-     "fr": "sketchfab"
-    },
-    "href": "https://sketchfab.com/models/e136d0a11db84dddb65485134a39ffbb"
-   },
-   {
-    "label": {
-     "en": "jan kaláb",
-     "cs": "jan kaláb",
-     "fr": "jan kaláb"
-    },
-    "href": "https://www.jankalab.com/"
-   }
-  ],
-  "body": {
-   "en": "Jan Kaláb is a Czech painter who'd started moving his canvases into the third dimension. He had the sculpture as a paper maquette and a stack of pencil-on-tracing-paper dimensions; he needed a digital twin he could send to a CNC shop and a render he could send to galleries before the milling bill came due.\n\n## the request\n\nTake the maquette + drawings, build a **clean parametric model**, and produce:\n\n1. A render the gallery can put in their newsletter.\n2. A file the CNC shop can mill from a block of foam without surprises.\n\n## modeling\n\nBuilt in Blender. The shape was a stack of swept revolution surfaces with a couple of boolean cuts; nothing fancy, but the tolerance had to be tight enough that the CNC operator didn't have to second-guess any edge.\n\n- Modeled to scale (working units = mm)\n- Topology cleaned for subdivision (no triangles on the visible faces)\n- Manifold check before export\n- Exported as **STEP** for the mill, **GLB** for the web\n\n## what made it hard\n\nThe hardest part wasn't the geometry — it was the *measurement reconciliation*. The pencil drawings disagreed with each other by a few millimetres in places. I went back to Jan with a list of conflicts and we picked the canonical number for each one before any model lifted off the ground. That conversation saved a week of CNC re-cuts.",
-   "cs": "Jan Kaláb je český malíř, který začal posouvat svá plátna do třetího rozměru. Sochu měl jako papírovou maketu a štos rozměrů tužkou na pauzovacím papíře; potřeboval digitální dvojče, které pošle do CNC dílny, a render, který pošle galeriím dřív, než přijde účet za frézování.\n\n## zadání\n\nVzít maketu a výkresy, postavit **čistý parametrický model** a dodat:\n\n1. Render, který galerie dá do newsletteru.\n2. Soubor, který CNC dílna vyfrézuje z bloku pěny bez překvapení.\n\n## modelování\n\nPostaveno v Blenderu. Tvar byl stoh rotačních ploch s pár booleovskými řezy; nic složitého, ale tolerance musela být tak těsná, aby operátor CNC nemusel u žádné hrany váhat.\n\n- Modelováno v měřítku (pracovní jednotky = mm)\n- Topologie vyčištěná pro subdivision (na viditelných plochách žádné trojúhelníky)\n- Kontrola manifoldnosti před exportem\n- Export jako **STEP** pro frézu, **GLB** pro web\n\n## co bylo těžké\n\nNejtěžší nebyla geometrie — bylo to *sjednocení měr*. Tužkové výkresy si na pár místech navzájem odporovaly o pár milimetrů. Vrátil jsem se za Janem se seznamem rozporů a u každého jsme vybrali kanonické číslo dřív, než se model vůbec zvedl ze země. Ten rozhovor ušetřil týden frézování navíc.",
-   "fr": "Jan Kaláb est un peintre tchèque qui avait commencé à faire passer ses toiles dans la troisième dimension. Il avait la sculpture sous forme de maquette en papier et une pile de cotes au crayon sur papier-calque ; il lui fallait un jumeau numérique à envoyer à un atelier CNC et un rendu à envoyer aux galeries avant que la facture du fraisage ne tombe.\n\n## la demande\n\nPrendre la maquette et les plans, construire un **modèle paramétrique propre** et produire :\n\n1. Un rendu que la galerie peut mettre dans sa newsletter.\n2. Un fichier que l'atelier CNC peut fraiser dans un bloc de mousse sans surprise.\n\n## modélisation\n\nRéalisé sous Blender. La forme était un empilement de surfaces de révolution balayées avec quelques découpes booléennes ; rien de sorcier, mais la tolérance devait être assez serrée pour que l'opérateur CNC n'ait à hésiter sur aucune arête.\n\n- Modélisé à l'échelle (unités de travail = mm)\n- Topologie nettoyée pour la subdivision (aucun triangle sur les faces visibles)\n- Vérification de la variété (manifold) avant export\n- Exporté en **STEP** pour la fraise, en **GLB** pour le web\n\n## ce qui l'a rendu difficile\n\nLe plus dur n'était pas la géométrie — c'était la *réconciliation des mesures*. Les plans au crayon se contredisaient de quelques millimètres par endroits. Je suis retourné voir Jan avec une liste de conflits et nous avons choisi le chiffre canonique pour chacun avant que le moindre modèle ne décolle. Cette conversation a évité une semaine de re-fraisage CNC."
-  }
- },
- {
-  "id": 9,
-  "image": "/image17.jpg",
-  "title": {
-   "en": "Epos 257 - Vanitas",
-   "cs": "Epos 257 – Vanitas",
-   "fr": "Epos 257 – Vanitas"
-  },
-  "description": {
-   "en": "I made an NFT replica of a sculpture for Epos 257",
-   "cs": "Vytvořil jsem NFT repliku sochy pro Epos 257.",
-   "fr": "J'ai réalisé une réplique NFT d'une sculpture pour Epos 257."
-  },
-  "date": "June 2020",
-  "link": "https://sketchfab.com/models/829cdf10a68e4b2d80ee3d53ffc0a75d",
-  "tags": {
-   "en": "3D, NFT",
-   "cs": "3D, NFT",
-   "fr": "3D, NFT"
-  },
-  "media": [],
-  "links": [],
-  "body": null
- },
- {
-  "id": 12,
-  "image": "/image34.jpg",
-  "title": {
-   "en": "Mancuska VR exhibit",
-   "cs": "VR výstava Mančuška",
-   "fr": "Exposition VR Mančuška"
-  },
-  "description": {
-   "en": "VR gallery exposition of A gap by J. Mančuška for Viktor Takač with viewer analytics",
-   "cs": "VR galerijní expozice díla „Mezera“ J. Mančušky pro Viktora Takače, včetně analytiky diváků.",
-   "fr": "Exposition de galerie en VR de « A gap » de J. Mančuška pour Viktor Takač, avec analyse des spectateurs."
-  },
-  "date": "June 2021",
-  "link": "http://blokmagazine.com/a-gap-by-jan-mancuska-at-hunt-kastner-gallery/",
-  "tags": {
-   "en": "VR, r&d",
-   "cs": "VR, r&d",
-   "fr": "VR, r&d"
-  },
-  "media": [],
-  "links": [],
-  "body": {
-   "en": "A **VR gallery exposition of Ján Mančuška's «A gap»** built for Viktor Takač — with viewer analytics.\n\nConceptual art in VR is a curation problem before a technical one: the work has to keep its silence while the headset tracks everything. The analytics layer recorded how visitors actually moved and where they lingered — turning an exhibition into data the curator could read without disturbing a single viewer.",
-   "cs": "**VR expozice díla Jána Mančušky «A gap»** postavená pro Viktora Takače — s analytikou návštěvníků.\n\nKonceptuální umění ve VR je dřív kurátorský než technický problém: dílo si musí udržet své ticho, zatímco headset všechno měří. Analytická vrstva zaznamenávala, jak se návštěvníci opravdu pohybují a kde se zdrží — výstava se proměnila v data, která kurátor přečte, aniž by jediného diváka vyrušil.",
-   "fr": "Une **exposition VR de « A gap » de Ján Mančuška**, construite pour Viktor Takač — avec analytique des visiteurs.\n\nL'art conceptuel en VR est un problème de curation avant d'être technique : l'œuvre doit garder son silence pendant que le casque mesure tout. La couche analytique enregistrait comment les visiteurs se déplaçaient vraiment et où ils s'attardaient — l'exposition devenait une donnée lisible par le curateur sans déranger un seul spectateur."
-  }
- },
- {
-  "id": 14,
-  "image": "/image02.jpg",
-  "title": {
-   "en": "Adrex advertisement",
-   "cs": "Reklama Adrex",
-   "fr": "Publicité Adrex"
-  },
-  "description": {
-   "en": "VFX/VP commerical i made with oldrich.rocks",
-   "cs": "VFX/VP reklama, kterou jsem dělal s oldrich.rocks.",
-   "fr": "Publicité VFX/VP réalisée avec oldrich.rocks."
-  },
-  "date": "July 2021",
-  "link": "https://photos.app.goo.gl/PBZs6EegBARX3aPa7",
-  "tags": {
-   "en": "VFX, VP, r&d",
-   "cs": "VFX, VP, r&d",
-   "fr": "VFX, VP, r&d"
-  },
-  "media": [],
-  "links": [],
-  "body": null
- },
- {
-  "id": 15,
-  "image": "/image37.jpg",
-  "title": {
-   "en": "Vlak LED screen UE4 support",
-   "cs": "Vlak – LED stěna, podpora UE4",
-   "fr": "Vlak – mur LED, support UE4"
-  },
-  "description": {
-   "en": "Virtual production using gargantuous LED panels on czech feature film with VFXR",
-   "cs": "Virtuální produkce na obřích LED panelech pro český celovečerní film, s VFXR.",
-   "fr": "Production virtuelle sur d'immenses panneaux LED pour un long-métrage tchèque, avec VFXR."
-  },
-  "date": "July 2021",
-  "link": "https://www.youtube.com/watch?v=kpt_ltLziek",
-  "tags": {
-   "en": "VFX, VP, r&d",
-   "cs": "VFX, VP, r&d",
-   "fr": "VFX, VP, r&d"
-  },
-  "media": [],
-  "links": [],
-  "body": {
-   "en": "**Virtual production on a Czech feature film** — gargantuan LED panels standing in for the world outside a train, driven by UE4, with VFXR.\n\nLED-wall work is a different discipline from post VFX: the pixels you render are *in* the shot, photographed by the real camera, so colour, parallax and latency problems can't be fixed later. Support meant keeping the Unreal content pipeline alive under set conditions — directorial changes included.",
-   "cs": "**Virtuální produkce na českém celovečerním filmu** — obří LED panely místo světa za okny vlaku, poháněné UE4, s VFXR.\n\nPráce s LED stěnou je jiná disciplína než postprodukční VFX: pixely, které renderuješ, jsou *v záběru*, snímá je skutečná kamera — barvy, paralaxu ani latenci nejde spravit potom. Podpora znamenala udržet unrealovou content pipeline naživu v podmínkách place — včetně režisérských změn.",
-   "fr": "**Production virtuelle sur un long-métrage tchèque** — des panneaux LED gigantesques à la place du monde derrière les fenêtres d'un train, pilotés par UE4, avec VFXR.\n\nLe mur LED est une discipline différente des VFX de post : les pixels rendus sont *dans* le plan, filmés par la vraie caméra — couleur, parallaxe et latence ne se rattrapent pas plus tard. Le support consistait à garder le pipeline Unreal vivant dans les conditions du plateau — changements de mise en scène compris."
-  }
- },
- {
-  "id": 13,
-  "image": "/image19.jpg",
-  "title": {
-   "en": "Hotdog Shooter",
-   "cs": "Hotdog Shooter",
-   "fr": "Hotdog Shooter"
-  },
-  "description": {
-   "en": "playful collaboration with my student of Game Design, crowd system ai made from scratch",
-   "cs": "Hravá spolupráce s mým studentem herního designu; systém davu (AI) napsaný od nuly.",
-   "fr": "Collaboration ludique avec mon étudiant en game design ; système de foule (IA) écrit de zéro."
-  },
-  "date": "June 2021",
-  "link": "",
-  "tags": {
-   "en": "Game Design, VR, r&d",
-   "cs": "herní design, VR, r&d",
-   "fr": "game design, VR, r&d"
-  },
-  "media": [],
-  "links": [],
-  "body": {
-   "en": "A playful VR game built **with my game-design student** — and the reason it's here is the crowd.\n\nThe **crowd AI was written from scratch**: agents with simple local rules producing believable mob behaviour, a direct descendant of my long-running obsession with boids. Teaching someone while building with them is the fastest code review there is; half the design decisions came from questions I couldn't answer cleanly.",
-   "cs": "Hravá VR hra postavená **s mým studentem game designu** — a je tady kvůli davu.\n\n**AI davu vznikla úplně od nuly**: agenti s jednoduchými lokálními pravidly, ze kterých vzniká uvěřitelné chování davu — přímý potomek mojí letité posedlosti boidy. Učit někoho a zároveň s ním stavět je nejrychlejší code review na světě; půlka designových rozhodnutí vzešla z otázek, na které jsem neuměl čistě odpovědět.",
-   "fr": "Un jeu VR espiègle construit **avec mon étudiant en game design** — et s'il figure ici, c'est pour la foule.\n\nL'**IA de foule a été écrite de zéro** : des agents à règles locales simples qui produisent un comportement de masse crédible — descendant direct de ma vieille obsession pour les boids. Enseigner en construisant, c'est la revue de code la plus rapide qui soit ; la moitié des décisions de design sont nées de questions auxquelles je ne savais pas répondre proprement."
-  }
- },
- {
-  "id": 21,
-  "image": "/image31.jpg",
-  "title": {
-   "en": "Kevin Gates mv VFX",
-   "cs": "Kevin Gates – VFX klipu",
-   "fr": "Kevin Gates – VFX du clip"
-  },
-  "description": {
-   "en": "realistic jaguar comped in realtime in Unreal using reprojected and relit geometry + Mocha pro facetrack",
-   "cs": "Realistický jaguár kompozitovaný v reálném čase v Unrealu pomocí reprojektované a nově nasvícené geometrie + facetrack v Mocha Pro.",
-   "fr": "Jaguar réaliste composité en temps réel dans Unreal via une géométrie reprojetée et ré-éclairée + facetrack Mocha Pro."
-  },
-  "date": "March 2022",
-  "link": "https://www.youtube.com/watch?v=noh6BYgtTxQ&ab_channel=kevingatesTV",
-  "tags": {
-   "en": "VFX, VP, r&d",
-   "cs": "VFX, VP, r&d",
-   "fr": "VFX, VP, r&d"
-  },
-  "media": [],
-  "links": [],
-  "body": {
-   "en": "A **realistic jaguar**, composited in real time in Unreal for a Kevin Gates music video.\n\nThe trick: instead of a full CG environment, the plate footage was **reprojected onto geometry and relit**, so the animal and the camera live in the same light. Face tracking ran through Mocha Pro. Real-time compositing on a music-video schedule means you grade and comp while the edit is still moving — the pipeline had to survive daily re-cuts.",
-   "cs": "**Realistický jaguár**, kompozitovaný v reálném čase v Unrealu pro klip Kevina Gatese.\n\nTrik: místo celého CG prostředí se natočený materiál **reprojektoval na geometrii a přesvítil**, takže zvíře i kamera žijí ve stejném světle. Tracking obličeje běžel přes Mocha Pro. Real-time kompozice v tempu hudebního klipu znamená, že graduješ a compíš, zatímco se střih ještě hýbe — pipeline musela přežít každodenní přestřihy.",
-   "fr": "Un **jaguar réaliste**, composité en temps réel dans Unreal pour un clip de Kevin Gates.\n\nL'astuce : au lieu d'un décor 100 % CG, les plans tournés ont été **reprojetés sur de la géométrie puis rééclairés**, pour que l'animal et la caméra vivent dans la même lumière. Le tracking de visage passait par Mocha Pro. Compositer en temps réel au rythme d'un clip, c'est étalonner pendant que le montage bouge encore — le pipeline devait survivre aux recoupes quotidiennes."
-  }
- },
- {
-  "id": 10,
-  "image": "/image03.jpg",
-  "title": {
-   "en": "ALIENDIESEL EP",
-   "cs": "ALIENDIESEL EP",
-   "fr": "ALIENDIESEL EP"
-  },
-  "description": {
-   "en": "spotify artwork made with blender,ue and substance",
-   "cs": "Spotify artwork vytvořený v Blenderu, UE a Substance.",
-   "fr": "Artwork Spotify réalisé avec Blender, UE et Substance."
-  },
-  "date": "June 2020",
-  "link": "",
-  "tags": {
-   "en": "Graphic Design",
-   "cs": "grafický design",
-   "fr": "design graphique"
-  },
-  "media": [],
-  "links": [],
-  "body": null
- },
- {
-  "id": 18,
-  "image": "/image13.jpg",
-  "title": {
-   "en": "Cpt. Demo EP",
-   "cs": "Cpt. Demo EP",
-   "fr": "Cpt. Demo EP"
-  },
-  "description": {
-   "en": "made another EP cover for čardáš in GIMP",
-   "cs": "Další obal EP pro čardáš, opět v GIMPu.",
-   "fr": "Une autre pochette d'EP pour čardáš, encore sous GIMP."
-  },
-  "date": "November 2021",
-  "link": "",
-  "tags": {
-   "en": "Graphic Design",
-   "cs": "grafický design",
-   "fr": "design graphique"
-  },
-  "media": [],
-  "links": [],
-  "body": null
- },
- {
-  "id": 25,
-  "image": "/image01.jpg",
-  "title": {
-   "en": "2MEDIA website",
-   "cs": "Web 2MEDIA",
-   "fr": "Site web 2MEDIA"
-  },
-  "description": {
-   "en": "2media 3d website using playcanvas, polygon.js and finally settling on react-three-fiber",
-   "cs": "3D web pro 2media — přes PlayCanvas a polygon.js jsme nakonec zakotvili u react-three-fiber.",
-   "fr": "Site web 3D pour 2media — après PlayCanvas et polygon.js, on s'est finalement fixé sur react-three-fiber."
-  },
-  "date": "October 2022",
-  "link": "/test",
-  "tags": {
-   "en": "3D, r&d, Web Design",
-   "cs": "3D, r&d, webdesign",
-   "fr": "3D, r&d, design web"
-  },
-  "media": [],
-  "links": [],
-  "body": null
- },
- {
-  "id": 17,
-  "image": "/image15.jpg",
-  "title": {
-   "en": "Cpt. Demo LP",
-   "cs": "Cpt. Demo LP",
-   "fr": "Cpt. Demo LP"
-  },
-  "description": {
-   "en": "Nobel Prize replica LP cover",
-   "cs": "Obal LP — replika Nobelovy ceny.",
-   "fr": "Pochette de LP — réplique du prix Nobel."
-  },
-  "date": "November 2021",
-  "link": "https://open.spotify.com/album/7K2miboa6cK7WwTFmFAc8n",
-  "tags": {
-   "en": "3D, r&d, Graphic Design",
-   "cs": "3D, r&d, grafický design",
-   "fr": "3D, r&d, design graphique"
-  },
-  "media": [],
-  "links": [],
-  "body": null
- },
- {
-  "id": 23,
-  "image": "/image08.jpg",
-  "title": {
-   "en": "Burian LP GFX",
-   "cs": "Burian LP – grafika",
-   "fr": "Burian LP – graphisme"
-  },
-  "description": {
-   "en": "cover artwork design for upcoming Burian LP",
-   "cs": "Návrh obalu pro chystané LP Buriana.",
-   "fr": "Conception de la pochette pour le futur LP de Burian."
-  },
-  "date": "July 2022",
-  "link": "",
-  "tags": {
-   "en": "Graphic Design",
-   "cs": "grafický design",
-   "fr": "design graphique"
-  },
-  "media": [],
-  "links": [],
-  "body": null
- },
- {
-  "id": 24,
-  "image": "/image28.jpg",
-  "title": {
-   "en": "Johnny Majestic mv",
-   "cs": "Johnny Majestic – klip",
-   "fr": "Johnny Majestic – clip"
-  },
-  "description": {
-   "en": "Color grading and digital talking horse VFX",
-   "cs": "Barevné korekce a VFX digitálního mluvícího koně.",
-   "fr": "Étalonnage et VFX d'un cheval parlant numérique."
-  },
-  "date": "August 2022",
-  "link": "https://www.youtube.com/watch?v=LT275WZoh1E&ab_channel=JohnnyMajestic",
-  "tags": {
-   "en": "VFX, grading",
-   "cs": "VFX, barevné korekce",
-   "fr": "VFX, étalonnage"
-  },
-  "media": [],
-  "links": [],
-  "body": null
- },
- {
-  "id": 19,
-  "image": "/image16.jpg",
-  "title": {
-   "en": "Cpt. Demo mv VFX",
-   "cs": "Cpt. Demo – VFX klipu",
-   "fr": "Cpt. Demo – VFX du clip"
-  },
-  "description": {
-   "en": "I made a bunch of unreal scenes, a bttf-style car entry, a lightsabre streetfight a flying car and hand animated bullets (including their reflection on dat windshield",
-   "cs": "Udělal jsem řadu scén v Unrealu — příjezd auta ve stylu Návratu do budoucnosti, souboj se světelnými meči, létající auto a ručně animované kulky (včetně jejich odrazu na čelním skle).",
-   "fr": "J'ai créé une série de scènes Unreal — une arrivée de voiture façon Retour vers le futur, un combat au sabre laser, une voiture volante et des balles animées à la main (reflet sur le pare-brise compris)."
-  },
-  "date": "December 2021",
-  "link": "https://www.youtube.com/watch?v=aJgvE-T5WQU&ab_channel=DemoCrew",
-  "tags": {
-   "en": "VFX, VP, r&d",
-   "cs": "VFX, VP, r&d",
-   "fr": "VFX, VP, r&d"
-  },
-  "media": [],
-  "links": [],
-  "body": null
- },
- {
-  "id": 20,
-  "image": "/image10.jpg",
-  "title": {
-   "en": "CPT. Demo CNN reportage",
-   "cs": "Cpt. Demo – reportáž CNN",
-   "fr": "Cpt. Demo – reportage CNN"
-  },
-  "description": {
-   "en": "Unreal VP for CNN Prima SHOWTIME reportage about Cpt. Demo",
-   "cs": "Unreal VP pro reportáž CNN Prima SHOWTIME o Cpt. Demo.",
-   "fr": "VP Unreal pour le reportage CNN Prima SHOWTIME sur Cpt. Demo."
-  },
-  "date": "January 2022",
-  "link": "",
-  "tags": {
-   "en": "VFX",
-   "cs": "VFX",
-   "fr": "VFX"
-  },
-  "media": [],
-  "links": [],
-  "body": null
- },
- {
-  "id": 22,
-  "image": "/image26.jpg",
-  "title": {
-   "en": "HPNOVERSE VFX",
-   "cs": "HPNOVERSE VFX",
-   "fr": "HPNOVERSE VFX"
-  },
-  "description": {
-   "en": "I made a satirical booze commercial come to life with unreal and DaVinci",
-   "cs": "Satirickou reklamu na chlast jsem oživil pomocí Unrealu a DaVinci.",
-   "fr": "J'ai donné vie à une publicité satirique sur l'alcool avec Unreal et DaVinci."
-  },
-  "date": "July 2022",
-  "link": "https://www.prnewswire.com/news-releases/iconic-liqueur-brand-hpnotiq-invites-consumers-to-enter-the-hpnoverse-with-exclusive-nft-collection--augmented-reality-experience-301627385.html",
-  "tags": {
-   "en": "VFX, VP, r&d",
-   "cs": "VFX, VP, r&d",
-   "fr": "VFX, VP, r&d"
-  },
-  "media": [],
-  "links": [],
-  "body": null
- },
- {
-  "id": 5,
-  "image": "/image09.jpg",
-  "title": {
-   "en": "CIEXPO",
-   "cs": "CIEXPO",
-   "fr": "CIEXPO"
-  },
-  "description": {
-   "en": "http://ciexpo.cz",
-   "cs": "http://ciexpo.cz",
-   "fr": "http://ciexpo.cz"
-  },
-  "date": "February 2018",
-  "link": "http://www.ciexpo.cz/",
-  "tags": {
-   "en": "3D, AR, Game Design, r&d, VR",
-   "cs": "3D, AR, herní design, r&d, VR",
-   "fr": "3D, AR, game design, r&d, VR"
-  },
-  "media": [],
-  "links": [],
-  "body": null
- },
- {
-  "id": 7,
-  "image": "/image04.jpg",
-  "title": {
-   "en": "ARROW",
-   "cs": "ARROW",
-   "fr": "ARROW"
-  },
-  "description": {
-   "en": "Custom branded teambuidling VR archery game featuring boids programmed from scratch",
-   "cs": "Brandovaná teambuildingová VR lukostřelba s hejny (boids) naprogramovanými od nuly.",
-   "fr": "Jeu de tir à l'arc VR de team-building en marque blanche, avec des boids programmés de zéro."
-  },
-  "date": "February 2018",
-  "link": "",
-  "tags": {
-   "en": "3D, Game Design, VR",
-   "cs": "3D, herní design, VR",
-   "fr": "3D, game design, VR"
-  },
-  "media": [],
-  "links": [],
-  "body": {
-   "en": "A custom-branded **team-building VR archery game** — with the flocking targets **programmed from scratch**.\n\nThe boids are the point: arrows against a living, swirling flock beat static targets in every playtest. 2018-era VR meant every draw, nock and release had to feel physical on hardware that fought back. The archery is the hook; the emergent flock is why people stayed.",
-   "cs": "**VR lukostřelba pro teambuilding** na míru značce — s hejnem cílů **naprogramovaným od nuly**.\n\nBoidi jsou pointa: šípy proti živému, vířícímu hejnu porazily statické terče v každém playtestu. VR roku 2018 znamenalo, že každé natažení, nasazení šípu a výstřel musely působit fyzicky na hardwaru, který se bránil. Lukostřelba je návnada; emergentní hejno je důvod, proč lidi zůstali.",
-   "fr": "Un **jeu de tir à l'arc VR de team-building** aux couleurs du client — avec des cibles en nuée **programmées de zéro**.\n\nLes boids sont le propos : des flèches contre une nuée vivante et tourbillonnante battent des cibles statiques à chaque playtest. La VR de 2018, c'était rendre chaque armement et chaque décoche physiques sur du matériel récalcitrant. Le tir à l'arc est l'appât ; la nuée émergente est la raison pour laquelle les gens restaient."
-  }
- },
- {
-  "id": 4,
-  "image": "/image06.jpg",
-  "title": {
-   "en": "Bee Game",
-   "cs": "Včelí hra",
-   "fr": "Le jeu de l'abeille"
-  },
-  "description": {
-   "en": "Educational VR game for kids about the life of a bee",
-   "cs": "Vzdělávací VR hra pro děti o životě včely.",
-   "fr": "Jeu VR éducatif pour enfants sur la vie d'une abeille."
-  },
-  "date": "January 19, 2018",
-  "link": "",
-  "tags": {
-   "en": "3D, Game Design, VR",
-   "cs": "3D, herní design, VR",
-   "fr": "3D, game design, VR"
-  },
-  "media": [],
-  "links": [],
-  "body": null
- },
- {
-  "id": 8,
-  "image": "/image38.jpg",
-  "title": {
-   "en": "VR and AR for Svoboda Williams",
-   "cs": "VR a AR pro Svoboda Williams",
-   "fr": "VR et AR pour Svoboda Williams"
-  },
-  "description": {
-   "en": "case study for VR and AR in real estate",
-   "cs": "Případová studie VR a AR v realitách.",
-   "fr": "Étude de cas sur la VR et l'AR dans l'immobilier."
-  },
-  "date": "January 2019",
-  "link": "https://svoboda-williams.com/realitni-zpravy/232-rozsirena-realita-jako-novy-zpusob-prezentace-nemovitosti",
-  "tags": {
-   "en": "3D modeling, Game Design, VR, Video",
-   "cs": "3D modelování, herní design, VR, video",
-   "fr": "modélisation 3D, game design, VR, vidéo"
-  },
-  "media": [],
-  "links": [],
-  "body": null
- },
- {
-  "id": 1,
-  "image": "/image41.jpg",
-  "title": {
-   "en": "ŽIDLICKÝ VR gallery",
-   "cs": "VR galerie ŽIDLICKÝ",
-   "fr": "Galerie VR ŽIDLICKÝ"
-  },
-  "description": {
-   "en": "first virtual gallery in central Europe :D ",
-   "cs": "první virtuální galerie ve střední Evropě :D",
-   "fr": "première galerie virtuelle d'Europe centrale :D"
-  },
-  "date": "April 2015",
-  "link": "",
-  "tags": {
-   "en": "VR",
-   "cs": "VR",
-   "fr": "VR"
-  },
-  "media": [],
-  "links": [],
-  "body": {
-   "en": "2015. Cardboard-era headsets, no tooling, no playbook — and the **first virtual gallery in central Europe**, built for photographer Václav Židlický's work.\n\nEverything that later became a career started here: putting art into a headset and watching someone turn their whole body to look at a photograph. A decade on, the pattern still holds — every gallery, splat and spatial interface on this site descends from this one.",
-   "cs": "2015. Headsety éry Cardboardu, žádné nástroje, žádná kuchařka — a **první virtuální galerie ve střední Evropě**, postavená pro dílo fotografa Václava Židlického.\n\nVšechno, co se později stalo kariérou, začalo tady: dát umění do headsetu a sledovat, jak člověk otočí celé tělo, aby se podíval na fotku. O dekádu později ten vzorec pořád platí — každá galerie, splat i prostorové rozhraní na tomhle webu je potomkem tohohle projektu.",
-   "fr": "2015. Des casques de l'ère Cardboard, aucun outillage, aucun manuel — et la **première galerie virtuelle d'Europe centrale**, construite pour l'œuvre du photographe Václav Židlický.\n\nTout ce qui est devenu une carrière a commencé ici : mettre de l'art dans un casque et regarder quelqu'un tourner tout son corps pour voir une photographie. Dix ans plus tard, le motif tient toujours — chaque galerie, chaque splat, chaque interface spatiale de ce site descend de celle-ci."
-  }
- },
- {
-  "id": 2,
-  "image": "/image35.jpg",
-  "title": {
-   "en": "Excalibur military",
-   "cs": "Excalibur – armáda",
-   "fr": "Excalibur – militaire"
-  },
-  "description": {
-   "en": "VR+AR Military factory presentation for Indonesian Gvt.",
-   "cs": "VR+AR prezentace vojenské továrny pro indonéskou vládu.",
-   "fr": "Présentation VR+AR d'une usine militaire pour le gouvernement indonésien."
-  },
-  "date": "February 2017",
-  "link": "",
-  "tags": {
-   "en": "3D modeling, AR, VR, Video",
-   "cs": "3D modelování, AR, VR, video",
-   "fr": "modélisation 3D, AR, VR, vidéo"
-  },
-  "media": [],
-  "links": [],
-  "body": null
- },
- {
-  "id": 6,
-  "image": "/image18.jpg",
-  "title": {
-   "en": "old fancy AR tests",
-   "cs": "staré parádní AR testy",
-   "fr": "anciens tests AR stylés"
-  },
-  "description": {
-   "en": "early Unity tests with Lucas Saidl",
-   "cs": "rané testy v Unity s Lucasem Saidlem.",
-   "fr": "premiers tests Unity avec Lucas Saidl."
-  },
-  "date": "February 2018",
-  "link": "",
-  "tags": {
-   "en": "AR",
-   "cs": "AR",
-   "fr": "AR"
-  },
-  "media": [],
-  "links": [],
-  "body": null
- },
- {
-  "id": 3,
-  "image": "/image05.jpg",
-  "title": {
-   "en": "BANK renders and VR",
-   "cs": "BANK – rendery a VR",
-   "fr": "BANK – rendus et VR"
-  },
-  "description": {
-   "en": "Unreal, BLender, Substance",
-   "cs": "Unreal, Blender, Substance",
-   "fr": "Unreal, Blender, Substance"
-  },
-  "date": "June 2017",
-  "link": "",
-  "tags": {
-   "en": "3D, VR, r&d",
-   "cs": "3D, VR, r&d",
-   "fr": "3D, VR, r&d"
-  },
-  "media": [],
-  "links": [],
-  "body": null
  },
  {
   "id": 26,
@@ -1136,131 +284,6 @@
    "en": "The longest-running project on this page. **Trust Perfumes** is the artisanal scent brand of **Markéta Ptáčníková** — perfumer, musician and teacher — founded in 2019 after a string of perfumery and aromatherapy courses. The site offers a custom personal perfume, bespoke workshops for companies and individuals, and remote creation online. It went through two clearly different lives.\n\n## v1 — the 3d mixer\n\nThe first version was an **r3f (react-three-fiber)** perfume mixer: you'd build a scent in 3D — pick one ingredient per category, watch the bottles and petals react, read the note each oil contributes. It looked great in a demo and was fun to build, but it asked a lot of a first-time visitor who just wanted to buy a bottle.\n\n## v2 — simplify, then aim\n\nFor the second version we **cut the 3D back** and rebuilt around the audience that actually converts. The \"create your perfume online\" flow is now a calm, guided picker — choose a type (natural roll-on or niche spray), led by intuition rather than a 3D scene. Fewer moving parts, faster first paint, a path to checkout that doesn't make you learn anything first.\n\nLive now at [trust-perfumes.com](https://trust-perfumes.com). The old 3D build still lives at trust-old.vercel.app if you want to see where it started.",
    "cs": "Nejdéle běžící projekt na téhle stránce. **Trust Perfumes** je řemeslná značka vůní **Markéty Ptáčníkové** — parfumérky, hudebnice a lektorky — založená v roce 2019 po sérii parfumérských a aromaterapeutických kurzů. Web nabízí osobní parfém na míru, zážitkové workshopy pro firmy i jednotlivce a tvorbu na dálku online. Prošel dvěma jasně odlišnými životy.\n\n## v1 — 3d mixér\n\nPrvní verze byl mixér parfémů v **r3f (react-three-fiber)**: vůni jsi skládal ve 3D — vybral jednu ingredienci na kategorii, sledoval, jak reagují lahvičky a okvětní lístky, a četl, jakou notu každý olej přidává. V demu to vypadalo skvěle a bavilo mě to stavět, ale od návštěvníka, který si jen chtěl koupit lahvičku, to chtělo dost.\n\n## v2 — nejdřív zjednodušit, pak zamířit\n\nU druhé verze jsme **3D osekali** a postavili to znovu kolem publika, které opravdu konvertuje. Tvorba „osobního parfému online\" je teď klidný, vedený průvodce — vybereš typ (přírodní roll-on nebo niche sprej), vedený intuicí, ne 3D scénou. Míň pohyblivých částí, rychlejší první vykreslení, cesta k objednávce, u které se nemusíš nic učit.\n\nTeď běží na [trust-perfumes.com](https://trust-perfumes.com). Stará 3D verze pořád žije na trust-old.vercel.app, kdybys chtěl vidět, kde to začalo.",
    "fr": "Le projet le plus ancien de cette page. **Trust Perfumes** est la marque de senteurs artisanales de **Markéta Ptáčníková** — parfumeuse, musicienne et enseignante — fondée en 2019 après une série de cours de parfumerie et d'aromathérapie. Le site propose un parfum personnel sur mesure, des ateliers sur mesure pour entreprises et particuliers, et la création à distance en ligne. Il a connu deux vies bien distinctes.\n\n## v1 — le mélangeur 3d\n\nLa première version était un mélangeur de parfums en **r3f (react-three-fiber)** : on composait une senteur en 3D — un ingrédient par catégorie, on regardait les flacons et les pétales réagir, on lisait la note apportée par chaque huile. C'était superbe en démo et amusant à construire, mais ça demandait beaucoup à un visiteur qui voulait juste acheter un flacon.\n\n## v2 — simplifier, puis viser\n\nPour la deuxième version, on a **réduit la 3D** et tout reconstruit autour du public qui convertit vraiment. Le parcours « créez votre parfum en ligne » est désormais un sélecteur calme et guidé — on choisit un type (roll-on naturel ou spray niche), porté par l'intuition plutôt que par une scène 3D. Moins de pièces mobiles, un premier rendu plus rapide, un chemin vers le paiement qui n'exige rien d'apprendre.\n\nEn ligne sur [trust-perfumes.com](https://trust-perfumes.com). L'ancienne version 3D vit toujours sur trust-old.vercel.app, si tu veux voir d'où ça part."
-  }
- },
- {
-  "id": 27,
-  "image": "/image36.jpg",
-  "title": {
-   "en": "numinos VR timetravel",
-   "cs": "numinos – cestování časem ve VR",
-   "fr": "numinos – voyage temporel en VR"
-  },
-  "description": {
-   "en": "varied work for Numinos VR timetravel as Tech artist, RnD dev, Render in Unreal Engine",
-   "cs": "Různorodá práce na Numinos VR timetravel — tech artist, RnD vývoj, render v Unreal Enginu.",
-   "fr": "Travaux variés pour Numinos VR timetravel — tech artist, dev R&D, rendu sous Unreal Engine."
-  },
-  "date": "March 2023",
-  "link": "http://numinos.one/",
-  "tags": {
-   "en": "r&d, 3D, Game Design, Rendering, VR",
-   "cs": "r&d, 3D, herní design, rendering, VR",
-   "fr": "r&d, 3D, game design, rendu, VR"
-  },
-  "media": [],
-  "links": [],
-  "body": {
-   "en": "Tech artist and R&D on **Numinos' VR time-travel experiences** — immersive recreations of historical cities you walk through in a headset.\n\nThe piece I'm proudest of: a **custom real-time flood simulation**, engineered to run inside VR frame budgets — water you watch rise through historical streets, not a baked animation. The rest of the work was classic tech-art triage: pushing Unreal's real-time rendering as far as a VR frame budget allows, then finding which corners the eye forgives.\n\nHistorical accuracy came from the historians; the job was making it hold 90 fps.",
-   "cs": "Tech artist a R&D na **VR cestování časem pro Numinos** — imerzivní rekonstrukce historických měst, kterými procházíš v headsetu.\n\nKus, na který jsem nejpyšnější: **vlastní real-time simulace povodně**, napsaná tak, aby běžela v rámci VR frame budgetu — voda, která stoupá historickými ulicemi, ne předpečená animace. Zbytek byla klasická tech-art triáž: dotlačit real-time rendering v Unrealu na hranici VR rozpočtu a zjistit, které rohy oko odpustí.\n\nHistorickou přesnost dodali historici; moje práce byla udržet 90 fps.",
-   "fr": "Tech artist et R&D sur les **voyages temporels en VR de Numinos** — des reconstitutions immersives de villes historiques qu'on traverse casque sur la tête.\n\nLa pièce dont je suis le plus fier : une **simulation d'inondation en temps réel**, écrite pour tenir dans le budget d'images de la VR — de l'eau qui monte dans des rues historiques, pas une animation précalculée. Le reste, c'était du triage de tech-art classique : pousser le rendu temps réel d'Unreal jusqu'à la limite du budget VR, puis trouver quels coins l'œil pardonne.\n\nL'exactitude historique venait des historiens ; mon travail, c'était de tenir les 90 fps."
-  }
- },
- {
-  "id": 28,
-  "image": "/work/hopsik.webp",
-  "title": {
-   "en": "hopsík",
-   "cs": "hopsík",
-   "fr": "hopsík"
-  },
-  "description": {
-   "en": "A small browser game built on the Czech nursery song 'Skákal pes' crossed with the Chrome dino runner. I made it with my daughter — she hand-drew every sprite, and I coded a little sprite-editor tool so we could get from her drawings into the game fast.",
-   "cs": "Malá hra do prohlížeče postavená na písničce 'Skákal pes' zkřížené s chromím dino běžcem. Dělal jsem ji s dcerou — všechny sprity nakreslila ručně a já k tomu napsal malý editor spritů, abychom se z jejích kreseb dostali do hry rychle.",
-   "fr": "Un petit jeu de navigateur basé sur la comptine tchèque « Skákal pes » croisée avec le runner du dino de Chrome. Je l'ai fait avec ma fille — elle a dessiné tous les sprites à la main, et j'ai codé un petit éditeur de sprites pour passer vite de ses dessins au jeu."
-  },
-  "date": "2024",
-  "link": "https://hopsik.vercel.app",
-  "tags": {
-   "en": "Game Design, Web Design",
-   "cs": "herní design, webdesign",
-   "fr": "game design, design web"
-  },
-  "media": [],
-  "links": [
-   {
-    "label": {
-     "en": "play it",
-     "cs": "zahrát si",
-     "fr": "y jouer"
-    },
-    "href": "https://hopsik.vercel.app"
-   }
-  ],
-  "body": {
-   "en": "An endless runner you already know in your hands — it's the **Chrome dino game**, but wearing the Czech nursery song *'Skákal pes'* (\"the dog jumped\"). The dog jumps. That's the whole pitch, and it's enough.\n\n## made with my daughter\n\nThe real project here was the collaboration. **My daughter drew every sprite by hand** — the dog, the obstacles, all of it. My job was to get those drawings onto the screen without the fun draining out in the pipeline.\n\n## the sprite editor\n\nSo I built a small **sprite-editor tool** first. It took her scans, let us cut frames, set timing, and drop them straight into the runner. That short loop — draw, import, see it jump — is what kept a kid interested long enough to finish a game.",
-   "cs": "Nekonečný běžec, který máš v rukou už dávno — je to **chromí dino hra**, ale oblečená do písničky *'Skákal pes'*. Pes skáče. To je celé zadání a stačí to.\n\n## dělané s dcerou\n\nTen pravý projekt byla spolupráce. **Dcera nakreslila každý sprite ručně** — psa, překážky, všechno. Mým úkolem bylo dostat ty kresby na obrazovku, aniž by se zábava cestou vytratila.\n\n## editor spritů\n\nNejdřív jsem proto postavil malý **editor spritů**. Bral její scany, umožnil nařezat snímky, nastavit časování a hodit je rovnou do běžce. Ta krátká smyčka — nakresli, naimportuj, koukni, jak skáče — udržela dítě u věci dost dlouho na to, abychom hru dotáhli.",
-   "fr": "Un runner sans fin que tes mains connaissent déjà — c'est le **jeu du dino de Chrome**, mais habillé de la comptine tchèque *« Skákal pes »* (« le chien a sauté »). Le chien saute. C'est tout le pitch, et ça suffit.\n\n## fait avec ma fille\n\nLe vrai projet, c'était la collaboration. **Ma fille a dessiné chaque sprite à la main** — le chien, les obstacles, tout. Mon boulot : amener ces dessins à l'écran sans que le plaisir ne se perde en route.\n\n## l'éditeur de sprites\n\nJ'ai donc d'abord codé un petit **éditeur de sprites**. Il prenait ses scans, permettait de découper les images, régler le timing et les déposer directement dans le runner. Cette boucle courte — dessiner, importer, le voir sauter — c'est ce qui a tenu une enfant assez longtemps pour finir un jeu."
-  }
- },
- {
-  "id": 29,
-  "image": "/work/be-mindful.webp",
-  "title": {
-   "en": "Be Mindful",
-   "cs": "Be Mindful",
-   "fr": "Be Mindful"
-  },
-  "description": {
-   "en": "a mindfulness companion app and course platform for a senior mindfulness coach — guided video courses, an audio meditation library, streaks and a gemini-powered advisor, with an admin dashboard the coach runs herself. five content tiers, from a free 3-day intro to private corporate cohorts.",
-   "cs": "aplikace a kurzová platforma pro mindfulness určená zkušené lektorce — vedené videokurzy, audioknihovna meditací, streaky a poradce poháněný gemini, plus admin dashboard, který si lektorka spravuje sama. pět obsahových úrovní od tří denního intra zdarma po soukromé firemní skupiny.",
-   "fr": "une app compagnon de pleine conscience et plateforme de cours pour une coach expérimentée — cours vidéo guidés, bibliothèque audio de méditations, séries de pratique et un conseiller propulsé par gemini, avec un tableau de bord admin que la coach gère elle-même. cinq niveaux de contenu, de l'intro gratuite de 3 jours aux cohortes d'entreprise privées."
-  },
-  "date": "June 2026",
-  "link": "https://be-mindful-app.vercel.app",
-  "tags": {
-   "en": "Web Design, r&d",
-   "cs": "webdesign, r&d",
-   "fr": "design web, r&d"
-  },
-  "media": [
-   {
-    "type": "image",
-    "src": "/work/be-mindful-app.webp",
-    "alt": {
-     "en": "Be Mindful app home screen",
-     "cs": "Domovská obrazovka aplikace Be Mindful",
-     "fr": "Écran d'accueil de l'application Be Mindful"
-    },
-    "caption": {
-     "en": "The app home — minutes tracked, courses, timer, audio, and the AI guide.",
-     "cs": "Domovská obrazovka aplikace — napočítané minuty, kurzy, časovač, audio a AI rádce.",
-     "fr": "L'accueil de l'app — minutes suivies, cours, minuteur, audio et guide IA."
-    }
-   }
-  ],
-  "links": [
-   {
-    "label": {
-     "en": "the app",
-     "cs": "aplikace",
-     "fr": "l'application"
-    },
-    "href": "https://be-mindful-app.vercel.app"
-   },
-   {
-    "label": {
-     "en": "landing page",
-     "cs": "landing page",
-     "fr": "landing page"
-    },
-    "href": "https://v0-bemindhomepage.vercel.app"
-   }
-  ],
-  "body": {
-   "en": "## what it is\na content platform that lets one mindfulness coach deliver structured practice at a few levels of depth. content is organised as **courses → folders → videos**, plus a categorised **audio meditation library** with its own player, a meditation timer, per-course community chat with threaded replies, and a blog. progress is gamified — daily **streaks**, total practice minutes, lifetime stats.\n\n## five tiers\nthe platform is tiered by commitment: a **free 3-day intro**, a 4-part **foundation course**, a full-library **membership**, a cohort-based **8-week course** with zoom links and workbooks, and **private corporate sections** for workplace wellbeing teams. each tier has its own access window, and the private hubs are password-gated.\n\n## the coach runs it\nthere's a real admin dashboard behind it: a **tus-based video uploader wired to bunny.net** for streaming, full crud over courses/folders/videos/audios/docs, and manual membership overrides — so the coach manages her own catalogue without me in the loop. an **ai advisor on google gemini** answers practice questions in-context. built on next.js 16 / react 19, neon postgres via prisma, stripe checkout, native czech + english, installable as a pwa.",
-   "cs": "## co to je\nobsahová platforma, na které jedna lektorka mindfulness dodává strukturovanou praxi v několika úrovních hloubky. obsah je uspořádaný jako **kurzy → složky → videa**, k tomu kategorizovaná **audioknihovna meditací** s vlastním přehrávačem, meditační časovač, komunitní chat u každého kurzu s vlákny a blog. postup je gamifikovaný — denní **streaky**, celkové odmeditované minuty, statistiky za celou dobu.\n\n## pět úrovní\nplatforma je odstupňovaná podle míry závazku: **intro na 3 dny zdarma**, čtyřdílný **základní kurz**, **členství** k celé knihovně, **osmitýdenní kurz** pro skupinu se zoom odkazy a pracovními sešity a **soukromé firemní sekce** pro týmy wellbeingu. každá úroveň má vlastní okno přístupu a soukromé huby jsou chráněné heslem.\n\n## spravuje si to sama\nvzadu je opravdový admin dashboard: **nahrávač videí přes tus napojený na bunny.net** pro streaming, plný crud nad kurzy/složkami/videi/audii/dokumenty a ruční úpravy členství — takže si lektorka spravuje vlastní katalog beze mě. **ai poradce na google gemini** odpovídá na dotazy k praxi v kontextu. postaveno na next.js 16 / react 19, neon postgres přes prismu, stripe checkout, nativně česky i anglicky, instalovatelné jako pwa.",
-   "fr": "## ce que c'est\nune plateforme de contenu qui permet à une seule coach de pleine conscience de proposer une pratique structurée à plusieurs niveaux de profondeur. le contenu est organisé en **cours → dossiers → vidéos**, avec une **bibliothèque audio de méditations** catégorisée et son propre lecteur, un minuteur de méditation, un chat communautaire par cours avec fils de discussion, et un blog. la progression est gamifiée — **séries** quotidiennes, minutes de pratique cumulées, statistiques à vie.\n\n## cinq niveaux\nla plateforme est étagée selon l'engagement : une **intro gratuite de 3 jours**, un **cours fondation** en 4 parties, un **abonnement** à toute la bibliothèque, un **cours de 8 semaines** en cohorte avec liens zoom et cahiers, et des **sections d'entreprise privées** pour les équipes bien-être. chaque niveau a sa propre fenêtre d'accès, et les espaces privés sont protégés par mot de passe.\n\n## la coach le pilote elle-même\nderrière, il y a un vrai tableau de bord admin : un **uploader vidéo basé sur tus branché à bunny.net** pour le streaming, un crud complet sur cours/dossiers/vidéos/audios/docs, et des ajustements manuels d'abonnement — la coach gère son propre catalogue sans passer par moi. un **conseiller ia sur google gemini** répond aux questions de pratique en contexte. construit sur next.js 16 / react 19, neon postgres via prisma, stripe checkout, nativement en tchèque et anglais, installable en pwa."
   }
  },
  {
@@ -1375,43 +398,6 @@
   }
  },
  {
-  "id": 33,
-  "image": "/work/shiftrs.webp",
-  "title": {
-   "en": "Shiftrs",
-   "cs": "Shiftrs",
-   "fr": "Shiftrs"
-  },
-  "description": {
-   "en": "Shift happens. Be the Shiftr. A creative agency where I'm the CTO — building brand-product-experience work for clients, AOMU among them.",
-   "cs": "Shift happens. Be the Shiftr. Kreativní agentura, kde dělám CTO — stavíme brand-produkt-experience práci pro klienty, mezi nimi AOMU.",
-   "fr": "Shift happens. Be the Shiftr. Une agence créative où je suis CTO — on construit du travail marque-produit-expérience pour des clients, AOMU parmi eux."
-  },
-  "date": "2024",
-  "link": "https://shiftrs.co",
-  "tags": {
-   "en": "Web Design, r&d",
-   "cs": "webdesign, r&d",
-   "fr": "design web, r&d"
-  },
-  "media": [],
-  "links": [
-   {
-    "label": {
-     "en": "shiftrs.co",
-     "cs": "shiftrs.co",
-     "fr": "shiftrs.co"
-    },
-    "href": "https://shiftrs.co"
-   }
-  ],
-  "body": {
-   "en": "**Shiftrs** is a creative agency where I'm the **CTO**. Their line: *\"Shift happens. Be the Shiftr.\"* — everything is changing fast, and brands need a brand-product-experience-driven shift to stay relevant.\n\nThe CTO role is the usual mix: picking the tech, keeping the builds honest, and making sure what the creative side dreams up can actually ship.\n\n## clients\n\nWe build for a range of clients — **AOMU** among them. Different brief every time; the constant is the standard the work has to clear before it goes out.",
-   "cs": "**Shiftrs** je kreativní agentura, kde dělám **CTO**. Jejich heslo: *„Shift happens. Be the Shiftr.\"* — všechno se mění rychle a značky potřebují posun vedený brandem, produktem a zážitkem, aby zůstaly relevantní.\n\nRole CTO je obvyklý mix: vybrat technologie, držet buildy poctivé a zařídit, aby to, co vymyslí kreativní strana, šlo opravdu vydat.\n\n## klienti\n\nStavíme pro různé klienty — mezi nimi **AOMU**. Pokaždé jiné zadání; konstantou je laťka, kterou práce musí přeskočit, než jde ven.",
-   "fr": "**Shiftrs** est une agence créative où je suis **CTO**. Leur formule : *« Shift happens. Be the Shiftr. »* — tout change vite, et les marques ont besoin d'un virage porté par la marque, le produit et l'expérience pour rester pertinentes.\n\nLe rôle de CTO est le mélange habituel : choisir la tech, garder les builds honnêtes et faire en sorte que ce que le côté créatif imagine puisse vraiment sortir.\n\n## clients\n\nOn construit pour divers clients — **AOMU** entre autres. Un brief différent à chaque fois ; la constante, c'est le niveau que le travail doit atteindre avant de partir."
-  }
- },
- {
   "id": 34,
   "image": "/work/lucid.webp",
   "title": {
@@ -1492,6 +478,942 @@
    "en": "Animation content for **Pilsner Urquell**, made to be **projected live at Pilsner Fest 2025** — built for the scale, brightness and timing of projection mapping rather than a screen.\n\n## footage coming\n\nI'll upload the real recordings of the projections. Until then the video below is a **placeholder** — a Pilsner Urquell commercial, just so the page isn't empty.",
    "cs": "Animovaný obsah pro **Pilsner Urquell**, dělaný k **živé projekci na Pilsner Festu 2025** — stavěný na měřítko, jas a načasování projekčního mappingu, ne na obrazovku.\n\n## záznam dorazí\n\nNahraju skutečné záznamy projekcí. Než to udělám, je video níže **placeholder** — reklama Pilsner Urquell, ať stránka není prázdná.",
    "fr": "Contenu animé pour **Pilsner Urquell**, conçu pour être **projeté en direct au Pilsner Fest 2025** — pensé pour l'échelle, la luminosité et le timing du mapping vidéo plutôt que pour un écran.\n\n## images à venir\n\nJe mettrai en ligne les vrais enregistrements des projections. En attendant, la vidéo ci-dessous est un **placeholder** — une pub Pilsner Urquell, juste pour que la page ne soit pas vide."
+  }
+ },
+ {
+  "id": 49,
+  "image": "/art/stalking/060.webp",
+  "title": {
+   "en": "ČÚZK Land Registry Dashboard",
+   "cs": "Dashboard nad katastrem ČÚZK",
+   "fr": "Tableau de bord du cadastre ČÚZK"
+  },
+  "description": {
+   "en": "an ai dashboard sitting on top of the czech land registry's official rest api. instead of clicking through the katastr's forms, you ask a gemini agent in plain language — it has 21 tools wired to parcels, buildings, units and legal proceedings — and it fetches and explains the cadastral data for you. next.js, redis-backed rate limiting and caching so the state api isn't hammered.",
+   "cs": "ai dashboard postavený nad oficiálním rest api českého katastru nemovitostí. místo proklikávání formulářů katastru se prostě zeptáš gemini agenta lidsky — má 21 nástrojů napojených na parcely, budovy, jednotky a řízení — a on ti katastrální data dotáhne a vysvětlí. next.js, rate limiting a cachování přes redis, aby se státní api nezahltilo.",
+   "fr": "un tableau de bord ia posé sur l'api rest officielle du cadastre tchèque. au lieu de naviguer dans les formulaires du katastr, tu interroges un agent gemini en langage naturel — il dispose de 21 outils reliés aux parcelles, bâtiments, unités et procédures — et il récupère et t'explique les données cadastrales. next.js, limitation de débit et cache via redis pour ne pas saturer l'api de l'état."
+  },
+  "date": "2025",
+  "tags": {
+   "en": "ai, web, gov data",
+   "cs": "ai, web, státní data",
+   "fr": "ia, web, données publiques"
+  },
+  "body": {
+   "en": "## what it is\nthe czech state runs an official rest api for the land registry (**katastr nemovitostí**) — parcels, buildings, units, ownership proceedings — but it's built for machines, not for someone with a question. i wrapped it in a chat dashboard where a **gemini 2.0 flash** agent, armed with **21 purpose-built tools**, does the lookups.\n\n## how it works\nask something like \"find parcel 123/4 in prague\" or \"what proceedings came in today\", and the agent picks the right cadastral endpoints, chains the calls, and hands back a readable answer with structured detail behind it. address autocomplete, buildings-on-a-street, territorial hierarchies (municipality → district → region) — all reachable in language.\n\n## the boring load-bearing bits\nbecause it's fronting a public state api with no guaranteed sla, i built for restraint: **upstash redis** rate limiting (fail-open), tiered caching (parcels 5 min, codebooks 24 h), a `/api/health` endpoint reporting api / ai / redis status, and production security headers. stack is **next.js 15, react 19, typescript, shadcn/ui**, deployed on vercel. the repo is private-licensed.",
+   "cs": "## co to je\nčeský stát provozuje oficiální rest api katastru nemovitostí — parcely, budovy, jednotky, řízení — jenže je stavěné pro stroje, ne pro člověka s dotazem. obalil jsem ho chatovacím dashboardem, kde vyhledávání obstará **gemini 2.0 flash** agent vyzbrojený **21 nástroji na míru**.\n\n## jak to funguje\nzeptáš se třeba „najdi parcelu 123/4 v praze\" nebo „jaká řízení dnes přišla\" a agent vybere správné katastrální endpointy, zřetězí volání a vrátí čitelnou odpověď se strukturovaným detailem v pozadí. našeptávání adres, budovy v ulici, územní hierarchie (obec → okres → kraj) — vše dostupné řečí.\n\n## nudné, ale nosné části\nprotože sedím před veřejným státním api bez garantované sla, stavěl jsem zdrženlivě: rate limiting přes **upstash redis** (fail-open), vrstvené cachování (parcely 5 min, číselníky 24 h), endpoint `/api/health` hlásící stav api / ai / redis a produkční bezpečnostní hlavičky. stack **next.js 15, react 19, typescript, shadcn/ui**, nasazeno na vercelu. repozitář má privátní licenci.",
+   "fr": "## ce que c'est\nl'état tchèque exploite une api rest officielle du cadastre (**katastr nemovitostí**) — parcelles, bâtiments, unités, procédures — mais elle est conçue pour des machines, pas pour quelqu'un qui a une question. je l'ai enveloppée dans un tableau de bord conversationnel où un agent **gemini 2.0 flash**, armé de **21 outils dédiés**, fait les recherches.\n\n## comment ça marche\ndemande « trouve la parcelle 123/4 à prague » ou « quelles procédures sont arrivées aujourd'hui », et l'agent choisit les bons endpoints cadastraux, enchaîne les appels et rend une réponse lisible avec le détail structuré derrière. autocomplétion d'adresses, bâtiments d'une rue, hiérarchies territoriales (commune → district → région) — le tout accessible en langage naturel.\n\n## la plomberie porteuse\nparce que je suis devant une api publique de l'état sans sla garantie, j'ai construit avec retenue : limitation de débit via **upstash redis** (fail-open), cache par paliers (parcelles 5 min, référentiels 24 h), un endpoint `/api/health` remontant l'état api / ia / redis, et des en-têtes de sécurité en production. stack **next.js 15, react 19, typescript, shadcn/ui**, déployé sur vercel. le dépôt est sous licence privée."
+  }
+ },
+ {
+  "id": 36,
+  "image": "/art/surfaces/120.webp",
+  "title": {
+   "en": "Laifea",
+   "cs": "Laifea",
+   "fr": "Laifea"
+  },
+  "description": {
+   "en": "My exocortex, and the reincarnation of Sombra — the empathetic AI mentor I built at Flipas. Laifea is a markdown vault with a persistent AI partner, a 3D semantic knowledge graph, voice mode, and ~50 tools behind one registry. One thesis: \"think with it, not through it.\" An AI that makes you sharper, not softer.",
+   "cs": "Můj exokortex a znovuzrození Sombry — empatického AI mentora, kterého jsem postavil ve Flipasu. Laifea je markdown vault s trvalým AI parťákem, 3D sémantickým grafem znalostí, hlasovým režimem a ~50 nástroji za jedním registrem. Jedna teze: „mysli s tím, ne skrz to.“ AI, po které jsi ostřejší, ne měkčí.",
+   "fr": "Mon exocortex, et la réincarnation de Sombra — le mentor IA empathique que j'ai bâti chez Flipas. Laifea est un vault markdown avec un partenaire IA persistant, un graphe de connaissances sémantique en 3D, un mode vocal et ~50 outils derrière un seul registre. Une thèse : « pense avec, pas à travers ». Une IA qui te rend plus vif, pas plus mou."
+  },
+  "date": "2024 — ongoing",
+  "link": "https://laifea.app",
+  "tags": {
+   "en": "r&d, AI, Web Design",
+   "cs": "r&d, AI, webdesign",
+   "fr": "r&d, IA, web design"
+  },
+  "body": {
+   "en": "The project everything else funnels into. **Laifea** (v0.97) is where Sombra — the AI mentor from my Flipas years — grew up. Flipas gave it a soul (*\"Sombra will never give you the solution, it will help you get there — it's going to make you think\"*); Laifea gave it a body it owns.\n\n## the wedge\nfrictionless AI quietly de-skills you. a randomised trial (n=120) put AI-aided learners at **57.5% vs 68.5%** on 45-day retention, worst in technical subjects. so Laifea inverts the goal: intentional friction where thinking matters, frictionless capture where it doesn't. an AI that **makes you think**, not one that thinks for you.\n\n## what it is\n- your notes stay plain **markdown** — files are the source of truth, the database is a cache. export to ZIP/JSON anytime; zero lock-in.\n- a **3D knowledge graph** (768→3D projection + force sim) where the headline move is *reverse semantic search*: show me what's logically near this thought. the mental model is **Cognitive Spacetime** — dense ideas warp the space and pull related notes toward them.\n- **~50 tools** in one registry, exposed identically to chat, voice, and external agents over MCP.\n- **voice mode** on realtime Gemini Live.\n\n## how it's built\nNext.js 16 + React 19 on **SpacetimeDB as the only backend** — tables, vectors and scheduling in one store, no Redis, no queue, ever. several posts on this blog come straight from its build logs.\n\n\"infrastructure for thought. a living partner in cognition. a sovereign mirror of mind.\"",
+   "cs": "Projekt, do kterého ústí všechno ostatní. **Laifea** (v0.97) je místo, kde Sombra — AI mentor z mých časů ve Flipasu — dospěla. Flipas jí dal duši (*„Sombra ti nikdy nedá řešení, pomůže ti k němu dojít — donutí tě myslet“*); Laifea jí dala tělo, které vlastní.\n\n## ten klín\nbezešvá AI tě potichu odnaučuje. randomizovaná studie (n=120) dala uživatelům AI **57,5 % vs 68,5 %** v 45denní retenci, nejhůř u technických oborů. Laifea proto obrací cíl: záměrné tření tam, kde jde o myšlení, bezešvé zachycení tam, kde ne. AI, která tě **nutí myslet**, ne která myslí za tebe.\n\n## co to je\n- poznámky zůstávají obyčejný **markdown** — soubory jsou zdroj pravdy, databáze cache. export do ZIP/JSON kdykoli; žádný lock-in.\n- **3D graf znalostí** (projekce 768→3D + force sim), kde je hlavní tah *obrácené sémantické hledání*: ukaž mi, co leží logicky vedle téhle myšlenky. mentální model je **kognitivní časoprostor** — husté myšlenky zakřiví prostor a přitáhnou k sobě příbuzné poznámky.\n- **~50 nástrojů** v jednom registru, vystavených stejně chatu, hlasu i externím agentům přes MCP.\n- **hlasový režim** na realtime Gemini Live.\n\n## jak je to postavené\nNext.js 16 + React 19 na **SpacetimeDB jako jediném backendu** — tabulky, vektory i plánování v jednom store, žádný Redis, žádná fronta, nikdy. několik zápisků na tomhle blogu je přímo z jeho build logů.\n\n„infrastruktura pro myšlení. živý parťák v poznávání. svrchované zrcadlo mysli.“",
+   "fr": "Le projet vers lequel tout converge. **Laifea** (v0.97), c'est là où Sombra — le mentor IA de mes années Flipas — a grandi. Flipas lui a donné une âme (*« Sombra ne te donnera jamais la solution, elle t'aidera à y arriver — elle va te faire réfléchir »*) ; Laifea lui a donné un corps qui lui appartient.\n\n## le coin enfoncé\nl'IA sans friction te dé-qualifie en silence. un essai randomisé (n=120) a placé les apprenants assistés par l'IA à **57,5 % contre 68,5 %** en rétention à 45 jours, pire dans les matières techniques. Laifea inverse donc le but : friction intentionnelle là où la pensée compte, capture sans friction là où non. une IA qui te **fait penser**, pas qui pense à ta place.\n\n## ce que c'est\n- tes notes restent du **markdown** brut — les fichiers sont la source de vérité, la base un cache. export ZIP/JSON à tout moment ; zéro verrouillage.\n- un **graphe de connaissances 3D** (projection 768→3D + simulation de forces) dont le geste phare est la *recherche sémantique inversée* : montre-moi ce qui est logiquement proche de cette pensée. le modèle mental : l'**espace-temps cognitif** — les idées denses courbent l'espace et attirent les notes voisines.\n- **~50 outils** dans un registre, exposés à l'identique au chat, à la voix et aux agents externes via MCP.\n- **mode vocal** sur Gemini Live temps réel.\n\n## comment c'est bâti\nNext.js 16 + React 19 sur **SpacetimeDB comme unique backend** — tables, vecteurs et planification dans un seul store, jamais de Redis ni de file. plusieurs billets de ce blog viennent directement de ses journaux de build.\n\n« infrastructure pour la pensée. un partenaire vivant de la cognition. un miroir souverain de l'esprit. »"
+  }
+ },
+ {
+  "id": 28,
+  "image": "/work/hopsik.webp",
+  "title": {
+   "en": "hopsík",
+   "cs": "hopsík",
+   "fr": "hopsík"
+  },
+  "description": {
+   "en": "A small browser game built on the Czech nursery song 'Skákal pes' crossed with the Chrome dino runner. I made it with my daughter — she hand-drew every sprite, and I coded a little sprite-editor tool so we could get from her drawings into the game fast.",
+   "cs": "Malá hra do prohlížeče postavená na písničce 'Skákal pes' zkřížené s chromím dino běžcem. Dělal jsem ji s dcerou — všechny sprity nakreslila ručně a já k tomu napsal malý editor spritů, abychom se z jejích kreseb dostali do hry rychle.",
+   "fr": "Un petit jeu de navigateur basé sur la comptine tchèque « Skákal pes » croisée avec le runner du dino de Chrome. Je l'ai fait avec ma fille — elle a dessiné tous les sprites à la main, et j'ai codé un petit éditeur de sprites pour passer vite de ses dessins au jeu."
+  },
+  "date": "2024",
+  "link": "https://hopsik.vercel.app",
+  "tags": {
+   "en": "Game Design, Web Design",
+   "cs": "herní design, webdesign",
+   "fr": "game design, design web"
+  },
+  "media": [],
+  "links": [
+   {
+    "label": {
+     "en": "play it",
+     "cs": "zahrát si",
+     "fr": "y jouer"
+    },
+    "href": "https://hopsik.vercel.app"
+   }
+  ],
+  "body": {
+   "en": "An endless runner you already know in your hands — it's the **Chrome dino game**, but wearing the Czech nursery song *'Skákal pes'* (\"the dog jumped\"). The dog jumps. That's the whole pitch, and it's enough.\n\n## made with my daughter\n\nThe real project here was the collaboration. **My daughter drew every sprite by hand** — the dog, the obstacles, all of it. My job was to get those drawings onto the screen without the fun draining out in the pipeline.\n\n## the sprite editor\n\nSo I built a small **sprite-editor tool** first. It took her scans, let us cut frames, set timing, and drop them straight into the runner. That short loop — draw, import, see it jump — is what kept a kid interested long enough to finish a game.",
+   "cs": "Nekonečný běžec, který máš v rukou už dávno — je to **chromí dino hra**, ale oblečená do písničky *'Skákal pes'*. Pes skáče. To je celé zadání a stačí to.\n\n## dělané s dcerou\n\nTen pravý projekt byla spolupráce. **Dcera nakreslila každý sprite ručně** — psa, překážky, všechno. Mým úkolem bylo dostat ty kresby na obrazovku, aniž by se zábava cestou vytratila.\n\n## editor spritů\n\nNejdřív jsem proto postavil malý **editor spritů**. Bral její scany, umožnil nařezat snímky, nastavit časování a hodit je rovnou do běžce. Ta krátká smyčka — nakresli, naimportuj, koukni, jak skáče — udržela dítě u věci dost dlouho na to, abychom hru dotáhli.",
+   "fr": "Un runner sans fin que tes mains connaissent déjà — c'est le **jeu du dino de Chrome**, mais habillé de la comptine tchèque *« Skákal pes »* (« le chien a sauté »). Le chien saute. C'est tout le pitch, et ça suffit.\n\n## fait avec ma fille\n\nLe vrai projet, c'était la collaboration. **Ma fille a dessiné chaque sprite à la main** — le chien, les obstacles, tout. Mon boulot : amener ces dessins à l'écran sans que le plaisir ne se perde en route.\n\n## l'éditeur de sprites\n\nJ'ai donc d'abord codé un petit **éditeur de sprites**. Il prenait ses scans, permettait de découper les images, régler le timing et les déposer directement dans le runner. Cette boucle courte — dessiner, importer, le voir sauter — c'est ce qui a tenu une enfant assez longtemps pour finir un jeu."
+  }
+ },
+ {
+  "id": 33,
+  "image": "/work/shiftrs.webp",
+  "title": {
+   "en": "Shiftrs",
+   "cs": "Shiftrs",
+   "fr": "Shiftrs"
+  },
+  "description": {
+   "en": "Shift happens. Be the Shiftr. A creative agency where I'm the CTO — building brand-product-experience work for clients, AOMU among them.",
+   "cs": "Shift happens. Be the Shiftr. Kreativní agentura, kde dělám CTO — stavíme brand-produkt-experience práci pro klienty, mezi nimi AOMU.",
+   "fr": "Shift happens. Be the Shiftr. Une agence créative où je suis CTO — on construit du travail marque-produit-expérience pour des clients, AOMU parmi eux."
+  },
+  "date": "2024",
+  "link": "https://shiftrs.co",
+  "tags": {
+   "en": "Web Design, r&d",
+   "cs": "webdesign, r&d",
+   "fr": "design web, r&d"
+  },
+  "media": [],
+  "links": [
+   {
+    "label": {
+     "en": "shiftrs.co",
+     "cs": "shiftrs.co",
+     "fr": "shiftrs.co"
+    },
+    "href": "https://shiftrs.co"
+   }
+  ],
+  "body": {
+   "en": "**Shiftrs** is a creative agency where I'm the **CTO**. Their line: *\"Shift happens. Be the Shiftr.\"* — everything is changing fast, and brands need a brand-product-experience-driven shift to stay relevant.\n\nThe CTO role is the usual mix: picking the tech, keeping the builds honest, and making sure what the creative side dreams up can actually ship.\n\n## clients\n\nWe build for a range of clients — **AOMU** among them. Different brief every time; the constant is the standard the work has to clear before it goes out.",
+   "cs": "**Shiftrs** je kreativní agentura, kde dělám **CTO**. Jejich heslo: *„Shift happens. Be the Shiftr.\"* — všechno se mění rychle a značky potřebují posun vedený brandem, produktem a zážitkem, aby zůstaly relevantní.\n\nRole CTO je obvyklý mix: vybrat technologie, držet buildy poctivé a zařídit, aby to, co vymyslí kreativní strana, šlo opravdu vydat.\n\n## klienti\n\nStavíme pro různé klienty — mezi nimi **AOMU**. Pokaždé jiné zadání; konstantou je laťka, kterou práce musí přeskočit, než jde ven.",
+   "fr": "**Shiftrs** est une agence créative où je suis **CTO**. Leur formule : *« Shift happens. Be the Shiftr. »* — tout change vite, et les marques ont besoin d'un virage porté par la marque, le produit et l'expérience pour rester pertinentes.\n\nLe rôle de CTO est le mélange habituel : choisir la tech, garder les builds honnêtes et faire en sorte que ce que le côté créatif imagine puisse vraiment sortir.\n\n## clients\n\nOn construit pour divers clients — **AOMU** entre autres. Un brief différent à chaque fois ; la constante, c'est le niveau que le travail doit atteindre avant de partir."
+  }
+ },
+ {
+  "id": 41,
+  "image": "/art/surfaces/180.webp",
+  "title": {
+   "en": "eyetrainer",
+   "cs": "eyetrainer",
+   "fr": "eyetrainer"
+  },
+  "description": {
+   "en": "a little collection of pygame mini-games for training the eye — the kind of perception that painters, colourists and photographers rely on but rarely drill. each game hammers one skill: guessing aspect ratios, spotting hue shifts, reading saturation, matching mixed colours. built for myself, kept simple.",
+   "cs": "malá sbírka pygame mini-her na trénink oka — ten druh vnímání, na který spoléhají malíři, coloristé a fotografové, ale málokdy ho cvičí. každá hra brousí jednu dovednost: odhad poměru stran, hledání posunů odstínu, čtení sytosti, míchání barev na cíl. postavené pro sebe, drženo jednoduše.",
+   "fr": "une petite collection de mini-jeux pygame pour entraîner l'œil — ce type de perception dont peintres, coloristes et photographes dépendent mais qu'ils travaillent rarement. chaque jeu martèle une compétence : deviner les ratios, repérer les glissements de teinte, lire la saturation, reproduire des couleurs mélangées. fait pour moi, gardé simple."
+  },
+  "date": "2023",
+  "tags": {
+   "en": "python, games, color",
+   "cs": "python, hry, barva",
+   "fr": "python, jeux, couleur"
+  },
+  "body": {
+   "en": "## why\nvisual judgement is trainable, but nobody drills it deliberately. i wanted a batch of tiny exercises that isolate one perceptual skill at a time and give instant feedback, the way a musician practises intervals.\n\n## the games\nfive small **pygame** scripts, each a self-contained round:\n\n- **aspect ratio guesser** — read the proportions of a rectangle by eye\n- **complementary color change** — name the complement of a shown colour\n- **hue shift hunt** — catch a subtle shift in hue\n- **saturation detective** — judge how saturated a swatch is\n- **virtual paint palette** — mix primaries to hit a target colour\n\n## the shape of it\ndeliberately unglamorous: run a script, follow the on-screen prompt, get scored. no accounts, no backend, no ceremony — the point is the reps. it fits the same instinct as the rest of my work, tools i actually want to use, built small enough to finish.",
+   "cs": "## proč\nvizuální úsudek se dá trénovat, ale nikdo ho cíleně nedrilluje. chtěl jsem sadu drobných cvičení, která izolují vždy jednu vjemovou dovednost a dávají okamžitou zpětnou vazbu — tak jako muzikant cvičí intervaly.\n\n## hry\npět malých **pygame** skriptů, každý jedno soběstačné kolo:\n\n- **aspect ratio guesser** — odhadni okem poměr stran obdélníku\n- **complementary color change** — pojmenuj doplňkovou barvu\n- **hue shift hunt** — odchyť jemný posun odstínu\n- **saturation detective** — urči, jak je vzorek sytý\n- **virtual paint palette** — namíchej ze základních barev cílovou\n\n## tvar věci\nzáměrně nablýskané ani trochu: spustíš skript, řídíš se instrukcí na obrazovce, dostaneš skóre. žádné účty, žádný backend, žádná ceremonie — jde o opakování. sedí to do stejného instinktu jako zbytek mojí práce: nástroje, které fakt chci používat, malé natolik, abych je dodělal.",
+   "fr": "## pourquoi\nle jugement visuel s'entraîne, mais personne ne le travaille délibérément. je voulais un lot de tout petits exercices qui isolent une compétence perceptive à la fois et donnent un retour instantané, comme un musicien travaille ses intervalles.\n\n## les jeux\ncinq petits scripts **pygame**, chacun une manche autonome :\n\n- **aspect ratio guesser** — évaluer à l'œil les proportions d'un rectangle\n- **complementary color change** — nommer la complémentaire d'une couleur\n- **hue shift hunt** — attraper un léger glissement de teinte\n- **saturation detective** — juger la saturation d'un échantillon\n- **virtual paint palette** — mélanger les primaires pour atteindre une couleur cible\n\n## la forme\nvolontairement sans clinquant : tu lances un script, tu suis la consigne à l'écran, tu es noté. pas de comptes, pas de backend, pas de cérémonie — l'important, ce sont les répétitions. ça relève du même instinct que le reste de mon travail : des outils que j'ai vraiment envie d'utiliser, assez petits pour être finis."
+  }
+ },
+ {
+  "id": 39,
+  "image": "/art/surfaces/140.webp",
+  "title": {
+   "en": "FocusFrameFinder",
+   "cs": "FocusFrameFinder",
+   "fr": "FocusFrameFinder"
+  },
+  "description": {
+   "en": "a small python tool i wrote to weed blurry frames out of image sequences before they poison a 3d reconstruction. it scores every frame by the variance of its laplacian and quarantines the fuzziest ones so photogrammetry and nerf pipelines only see sharp input. it ended up public with a few dozen stars.",
+   "cs": "malý pythonový nástroj, který jsem napsal, abych z obrazových sekvencí vyházel rozmazané snímky dřív, než mi rozbijí 3d rekonstrukci. každý snímek oboduje podle variance laplaciánu a ty nejrozmazanější odloží stranou, takže do fotogrammetrie a nerf pipeline jde jen ostrý vstup. skončil veřejně s pár desítkami hvězd.",
+   "fr": "un petit outil python que j'ai écrit pour retirer les images floues d'une séquence avant qu'elles ne gâchent une reconstruction 3d. il note chaque image par la variance de son laplacien et met de côté les plus floues, pour que la photogrammétrie et les pipelines nerf ne voient que du net. il est devenu public avec quelques dizaines d'étoiles."
+  },
+  "date": "2023",
+  "tags": {
+   "en": "3d, python, tooling",
+   "cs": "3d, python, nástroje",
+   "fr": "3d, python, outillage"
+  },
+  "body": {
+   "en": "a small python tool i wrote to weed blurry frames out of image sequences before they poison a 3D reconstruction. it got **written up on [RadianceFields](https://radiancefields.com)** — the hub for the gaussian-splatting / NeRF community — and picked up a few dozen stars.\n\n## the problem\ncapture a video, split it into frames, feed them to a photogrammetry or **NeRF** pipeline, and a handful of motion-blurred frames quietly wreck the whole reconstruction. finding them by eye across hundreds of images is miserable.\n\n## how it works\nit runs the classic **variance of Laplacian** as a focus measure: a sharp frame has high-frequency detail and a high variance; a blurry one goes flat. rank every frame, quarantine the fuzziest, and hand the pipeline only sharp input. one dependency, a few seconds, cleaner splats.\n\nnothing clever — just the boring, reliable filter nobody wants to run by hand, packaged so you don't have to.",
+   "cs": "malý python nástroj, který jsem napsal, aby vyházel rozmazané snímky z obrazových sekvencí dřív, než otráví 3D rekonstrukci. **napsali o něm na [RadianceFields](https://radiancefields.com)** — centru komunity kolem gaussian splattingu a NeRF — a sesbíral pár desítek hvězd.\n\n## problém\nnatočíš video, rozsekáš na snímky, pošleš je do fotogrammetrie nebo **NeRF** pipeline a hrstka rozhýbaných snímků potichu zničí celou rekonstrukci. hledat je okem přes stovky obrázků je utrpení.\n\n## jak to funguje\njede na klasickém **rozptylu Laplaciánu** jako míře ostrosti: ostrý snímek má vysokofrekvenční detail a vysoký rozptyl; rozmazaný je plochý. seřaď všechny snímky, ty nejrozmazanější dej do karantény a pipeline předej jen ostré. jedna závislost, pár vteřin, čistší splaty.\n\nnic chytrého — jen ten nudný, spolehlivý filtr, který nikdo nechce pouštět ručně, zabalený tak, abys nemusel.",
+   "fr": "un petit outil python que j'ai écrit pour éliminer les images floues d'une séquence avant qu'elles n'empoisonnent une reconstruction 3D. il a été **présenté sur [RadianceFields](https://radiancefields.com)** — le carrefour de la communauté gaussian-splatting / NeRF — et a récolté quelques dizaines d'étoiles.\n\n## le problème\nfilme une vidéo, découpe-la en images, envoie-les dans un pipeline de photogrammétrie ou **NeRF**, et une poignée d'images floues sabote discrètement toute la reconstruction. les repérer à l'œil sur des centaines d'images est un supplice.\n\n## comment ça marche\nil utilise la classique **variance du laplacien** comme mesure de netteté : une image nette a du détail haute fréquence et une variance élevée ; une image floue s'aplatit. classe chaque image, met les plus floues en quarantaine, ne donne au pipeline que du net. une dépendance, quelques secondes, des splats plus propres.\n\nrien d'astucieux — juste le filtre ennuyeux et fiable que personne ne veut lancer à la main, empaqueté pour que tu n'aies pas à le faire."
+  },
+  "link": "https://radiancefields.com/focusframefinder-auto-culls-blurry-images-for-nerf-datasets"
+ },
+ {
+  "id": 27,
+  "image": "/image36.jpg",
+  "title": {
+   "en": "numinos VR timetravel",
+   "cs": "numinos – cestování časem ve VR",
+   "fr": "numinos – voyage temporel en VR"
+  },
+  "description": {
+   "en": "varied work for Numinos VR timetravel as Tech artist, RnD dev, Render in Unreal Engine",
+   "cs": "Různorodá práce na Numinos VR timetravel — tech artist, RnD vývoj, render v Unreal Enginu.",
+   "fr": "Travaux variés pour Numinos VR timetravel — tech artist, dev R&D, rendu sous Unreal Engine."
+  },
+  "date": "March 2023",
+  "link": "http://numinos.one/",
+  "tags": {
+   "en": "r&d, 3D, Game Design, Rendering, VR",
+   "cs": "r&d, 3D, herní design, rendering, VR",
+   "fr": "r&d, 3D, game design, rendu, VR"
+  },
+  "media": [],
+  "links": [],
+  "body": {
+   "en": "Tech artist and R&D on **Numinos' VR time-travel experiences** — immersive recreations of historical cities you walk through in a headset.\n\nThe piece I'm proudest of: a **custom real-time flood simulation**, engineered to run inside VR frame budgets — water you watch rise through historical streets, not a baked animation. The rest of the work was classic tech-art triage: pushing Unreal's real-time rendering as far as a VR frame budget allows, then finding which corners the eye forgives.\n\nHistorical accuracy came from the historians; the job was making it hold 90 fps.",
+   "cs": "Tech artist a R&D na **VR cestování časem pro Numinos** — imerzivní rekonstrukce historických měst, kterými procházíš v headsetu.\n\nKus, na který jsem nejpyšnější: **vlastní real-time simulace povodně**, napsaná tak, aby běžela v rámci VR frame budgetu — voda, která stoupá historickými ulicemi, ne předpečená animace. Zbytek byla klasická tech-art triáž: dotlačit real-time rendering v Unrealu na hranici VR rozpočtu a zjistit, které rohy oko odpustí.\n\nHistorickou přesnost dodali historici; moje práce byla udržet 90 fps.",
+   "fr": "Tech artist et R&D sur les **voyages temporels en VR de Numinos** — des reconstitutions immersives de villes historiques qu'on traverse casque sur la tête.\n\nLa pièce dont je suis le plus fier : une **simulation d'inondation en temps réel**, écrite pour tenir dans le budget d'images de la VR — de l'eau qui monte dans des rues historiques, pas une animation précalculée. Le reste, c'était du triage de tech-art classique : pousser le rendu temps réel d'Unreal jusqu'à la limite du budget VR, puis trouver quels coins l'œil pardonne.\n\nL'exactitude historique venait des historiens ; mon travail, c'était de tenir les 90 fps."
+  }
+ },
+ {
+  "id": 25,
+  "image": "/image01.jpg",
+  "title": {
+   "en": "2MEDIA website",
+   "cs": "Web 2MEDIA",
+   "fr": "Site web 2MEDIA"
+  },
+  "description": {
+   "en": "2media 3d website using playcanvas, polygon.js and finally settling on react-three-fiber",
+   "cs": "3D web pro 2media — přes PlayCanvas a polygon.js jsme nakonec zakotvili u react-three-fiber.",
+   "fr": "Site web 3D pour 2media — après PlayCanvas et polygon.js, on s'est finalement fixé sur react-three-fiber."
+  },
+  "date": "October 2022",
+  "link": "/test",
+  "tags": {
+   "en": "3D, r&d, Web Design",
+   "cs": "3D, r&d, webdesign",
+   "fr": "3D, r&d, design web"
+  },
+  "media": [],
+  "links": [],
+  "body": null
+ },
+ {
+  "id": 24,
+  "image": "/image28.jpg",
+  "title": {
+   "en": "Johnny Majestic mv",
+   "cs": "Johnny Majestic – klip",
+   "fr": "Johnny Majestic – clip"
+  },
+  "description": {
+   "en": "Color grading and digital talking horse VFX",
+   "cs": "Barevné korekce a VFX digitálního mluvícího koně.",
+   "fr": "Étalonnage et VFX d'un cheval parlant numérique."
+  },
+  "date": "August 2022",
+  "link": "https://www.youtube.com/watch?v=LT275WZoh1E&ab_channel=JohnnyMajestic",
+  "tags": {
+   "en": "VFX, grading",
+   "cs": "VFX, barevné korekce",
+   "fr": "VFX, étalonnage"
+  },
+  "media": [],
+  "links": [],
+  "body": null
+ },
+ {
+  "id": 23,
+  "image": "/image08.jpg",
+  "title": {
+   "en": "Burian LP GFX",
+   "cs": "Burian LP – grafika",
+   "fr": "Burian LP – graphisme"
+  },
+  "description": {
+   "en": "cover artwork design for upcoming Burian LP",
+   "cs": "Návrh obalu pro chystané LP Buriana.",
+   "fr": "Conception de la pochette pour le futur LP de Burian."
+  },
+  "date": "July 2022",
+  "link": "",
+  "tags": {
+   "en": "Graphic Design",
+   "cs": "grafický design",
+   "fr": "design graphique"
+  },
+  "media": [],
+  "links": [],
+  "body": null
+ },
+ {
+  "id": 22,
+  "image": "/image26.jpg",
+  "title": {
+   "en": "HPNOVERSE VFX",
+   "cs": "HPNOVERSE VFX",
+   "fr": "HPNOVERSE VFX"
+  },
+  "description": {
+   "en": "I made a satirical booze commercial come to life with unreal and DaVinci",
+   "cs": "Satirickou reklamu na chlast jsem oživil pomocí Unrealu a DaVinci.",
+   "fr": "J'ai donné vie à une publicité satirique sur l'alcool avec Unreal et DaVinci."
+  },
+  "date": "July 2022",
+  "link": "https://www.prnewswire.com/news-releases/iconic-liqueur-brand-hpnotiq-invites-consumers-to-enter-the-hpnoverse-with-exclusive-nft-collection--augmented-reality-experience-301627385.html",
+  "tags": {
+   "en": "VFX, VP, r&d",
+   "cs": "VFX, VP, r&d",
+   "fr": "VFX, VP, r&d"
+  },
+  "media": [],
+  "links": [],
+  "body": null
+ },
+ {
+  "id": 21,
+  "image": "/image31.jpg",
+  "title": {
+   "en": "Kevin Gates mv VFX",
+   "cs": "Kevin Gates – VFX klipu",
+   "fr": "Kevin Gates – VFX du clip"
+  },
+  "description": {
+   "en": "realistic jaguar comped in realtime in Unreal using reprojected and relit geometry + Mocha pro facetrack",
+   "cs": "Realistický jaguár kompozitovaný v reálném čase v Unrealu pomocí reprojektované a nově nasvícené geometrie + facetrack v Mocha Pro.",
+   "fr": "Jaguar réaliste composité en temps réel dans Unreal via une géométrie reprojetée et ré-éclairée + facetrack Mocha Pro."
+  },
+  "date": "March 2022",
+  "link": "https://www.youtube.com/watch?v=noh6BYgtTxQ&ab_channel=kevingatesTV",
+  "tags": {
+   "en": "VFX, VP, r&d",
+   "cs": "VFX, VP, r&d",
+   "fr": "VFX, VP, r&d"
+  },
+  "media": [],
+  "links": [],
+  "body": {
+   "en": "A **realistic jaguar**, composited in real time in Unreal for a Kevin Gates music video.\n\nThe trick: instead of a full CG environment, the plate footage was **reprojected onto geometry and relit**, so the animal and the camera live in the same light. Face tracking ran through Mocha Pro. Real-time compositing on a music-video schedule means you grade and comp while the edit is still moving — the pipeline had to survive daily re-cuts.",
+   "cs": "**Realistický jaguár**, kompozitovaný v reálném čase v Unrealu pro klip Kevina Gatese.\n\nTrik: místo celého CG prostředí se natočený materiál **reprojektoval na geometrii a přesvítil**, takže zvíře i kamera žijí ve stejném světle. Tracking obličeje běžel přes Mocha Pro. Real-time kompozice v tempu hudebního klipu znamená, že graduješ a compíš, zatímco se střih ještě hýbe — pipeline musela přežít každodenní přestřihy.",
+   "fr": "Un **jaguar réaliste**, composité en temps réel dans Unreal pour un clip de Kevin Gates.\n\nL'astuce : au lieu d'un décor 100 % CG, les plans tournés ont été **reprojetés sur de la géométrie puis rééclairés**, pour que l'animal et la caméra vivent dans la même lumière. Le tracking de visage passait par Mocha Pro. Compositer en temps réel au rythme d'un clip, c'est étalonner pendant que le montage bouge encore — le pipeline devait survivre aux recoupes quotidiennes."
+  }
+ },
+ {
+  "id": 20,
+  "image": "/image10.jpg",
+  "title": {
+   "en": "CPT. Demo CNN reportage",
+   "cs": "Cpt. Demo – reportáž CNN",
+   "fr": "Cpt. Demo – reportage CNN"
+  },
+  "description": {
+   "en": "Unreal VP for CNN Prima SHOWTIME reportage about Cpt. Demo",
+   "cs": "Unreal VP pro reportáž CNN Prima SHOWTIME o Cpt. Demo.",
+   "fr": "VP Unreal pour le reportage CNN Prima SHOWTIME sur Cpt. Demo."
+  },
+  "date": "January 2022",
+  "link": "",
+  "tags": {
+   "en": "VFX",
+   "cs": "VFX",
+   "fr": "VFX"
+  },
+  "media": [],
+  "links": [],
+  "body": null
+ },
+ {
+  "id": 19,
+  "image": "/image16.jpg",
+  "title": {
+   "en": "Cpt. Demo mv VFX",
+   "cs": "Cpt. Demo – VFX klipu",
+   "fr": "Cpt. Demo – VFX du clip"
+  },
+  "description": {
+   "en": "I made a bunch of unreal scenes, a bttf-style car entry, a lightsabre streetfight a flying car and hand animated bullets (including their reflection on dat windshield",
+   "cs": "Udělal jsem řadu scén v Unrealu — příjezd auta ve stylu Návratu do budoucnosti, souboj se světelnými meči, létající auto a ručně animované kulky (včetně jejich odrazu na čelním skle).",
+   "fr": "J'ai créé une série de scènes Unreal — une arrivée de voiture façon Retour vers le futur, un combat au sabre laser, une voiture volante et des balles animées à la main (reflet sur le pare-brise compris)."
+  },
+  "date": "December 2021",
+  "link": "https://www.youtube.com/watch?v=aJgvE-T5WQU&ab_channel=DemoCrew",
+  "tags": {
+   "en": "VFX, VP, r&d",
+   "cs": "VFX, VP, r&d",
+   "fr": "VFX, VP, r&d"
+  },
+  "media": [],
+  "links": [],
+  "body": null
+ },
+ {
+  "id": 18,
+  "image": "/image13.jpg",
+  "title": {
+   "en": "Cpt. Demo EP",
+   "cs": "Cpt. Demo EP",
+   "fr": "Cpt. Demo EP"
+  },
+  "description": {
+   "en": "made another EP cover for čardáš in GIMP",
+   "cs": "Další obal EP pro čardáš, opět v GIMPu.",
+   "fr": "Une autre pochette d'EP pour čardáš, encore sous GIMP."
+  },
+  "date": "November 2021",
+  "link": "",
+  "tags": {
+   "en": "Graphic Design",
+   "cs": "grafický design",
+   "fr": "design graphique"
+  },
+  "media": [],
+  "links": [],
+  "body": null
+ },
+ {
+  "id": 17,
+  "image": "/image15.jpg",
+  "title": {
+   "en": "Cpt. Demo LP",
+   "cs": "Cpt. Demo LP",
+   "fr": "Cpt. Demo LP"
+  },
+  "description": {
+   "en": "Nobel Prize replica LP cover",
+   "cs": "Obal LP — replika Nobelovy ceny.",
+   "fr": "Pochette de LP — réplique du prix Nobel."
+  },
+  "date": "November 2021",
+  "link": "https://open.spotify.com/album/7K2miboa6cK7WwTFmFAc8n",
+  "tags": {
+   "en": "3D, r&d, Graphic Design",
+   "cs": "3D, r&d, grafický design",
+   "fr": "3D, r&d, design graphique"
+  },
+  "media": [],
+  "links": [],
+  "body": null
+ },
+ {
+  "id": 16,
+  "image": "/image14.jpg",
+  "title": {
+   "en": "Cpt. Demo EP",
+   "cs": "Cpt. Demo EP",
+   "fr": "Cpt. Demo EP"
+  },
+  "description": {
+   "en": "I made this EP cover with GIMP it was the beginning of a long and beautiful collaboration with Cpt. Demo",
+   "cs": "Obal tohoto EP jsem udělal v GIMPu — byl to začátek dlouhé a krásné spolupráce s Cpt. Demo.",
+   "fr": "J'ai réalisé cette pochette d'EP avec GIMP — ce fut le début d'une longue et belle collaboration avec Cpt. Demo."
+  },
+  "date": "October 2021",
+  "link": "https://open.spotify.com/album/1V3m6SMvu8Bodq4scdqD3o",
+  "tags": {
+   "en": "Graphic Design",
+   "cs": "grafický design",
+   "fr": "design graphique"
+  },
+  "media": [
+   {
+    "type": "image",
+    "src": "/image14.jpg",
+    "alt": {
+     "en": "EP cover",
+     "cs": "Obal EP",
+     "fr": "Pochette d'EP"
+    },
+    "caption": {
+     "en": "The final cover, exported at 3000×3000 for streaming + print.",
+     "cs": "Finální obal, vyexportovaný v 3000×3000 pro streaming i tisk.",
+     "fr": "La pochette finale, exportée en 3000×3000 pour le streaming et l'impression."
+    }
+   },
+   {
+    "type": "embed",
+    "html": "<iframe style=\"border-radius:0\" src=\"https://open.spotify.com/embed/album/1V3m6SMvu8Bodq4scdqD3o?utm_source=generator\" width=\"100%\" height=\"352\" frameborder=\"0\" allowfullscreen allow=\"autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture\" loading=\"lazy\"></iframe>",
+    "caption": {
+     "en": "Stream the full EP.",
+     "cs": "Pusť si celé EP.",
+     "fr": "Écoute l'EP en entier."
+    }
+   },
+   {
+    "type": "video",
+    "src": "/reel_720.mp4",
+    "caption": {
+     "en": "Process clip — sketches I cut into the master reel.",
+     "cs": "Klip z procesu — skici, které jsem sestříhal do master reelu.",
+     "fr": "Clip de process — des esquisses montées dans le reel principal."
+    }
+   }
+  ],
+  "links": [
+   {
+    "label": {
+     "en": "spotify",
+     "cs": "spotify",
+     "fr": "spotify"
+    },
+    "href": "https://open.spotify.com/album/1V3m6SMvu8Bodq4scdqD3o"
+   },
+   {
+    "label": {
+     "en": "cpt. demo",
+     "cs": "cpt. demo",
+     "fr": "cpt. demo"
+    },
+    "href": "https://soundcloud.com/cpt-demo"
+   }
+  ],
+  "body": {
+   "en": "First commission for **Cpt. Demo** — a friend whose taste taught me half of what I know about beats. The EP needed a cover that lived equally well as a 64×64 thumbnail in Spotify and as a 30×30 cm vinyl sleeve, and we wanted the same image to do both jobs without compromise.\n\n## the brief\n\n> \"make it feel like a basement in 2003 but make it last forever\"\n\nThat meant **deliberately limited palette**, almost zero gradients, and high-contrast type that survives the worst chroma subsampling Apple Music does to album art.\n\n## process\n\nStarted in **GIMP** because that's what I had open. Built the type by hand from the rapper's tag — every glyph traced from his own marker strokes so the name owns the artefacts.\n\n- One pass for type\n- One pass for grain\n- One pass for the printed-edge offset\n\nThe vinyl press wanted CMYK with bleed; the streaming services wanted sRGB at 3000². Same source file, different export profiles. Nothing harder than that, but the discipline of treating the digital and physical deliveries with equal weight was the lesson.\n\n## what stuck\n\nThe cover got picked up by a couple of beat-tape blogs. More importantly it was the start of a five-year collaboration with Cpt. Demo — every release since carries the same vocabulary, scaled up.",
+   "cs": "První zakázka pro **Cpt. Demo** — kamaráda, jehož vkus mě naučil polovinu toho, co o beatech vím. EP potřebovalo obal, který bude stejně dobře fungovat jako náhled 64×64 ve Spotify i jako vinylový obal 30×30 cm, a chtěli jsme, aby tentýž obraz zvládl obojí bez kompromisu.\n\n## brief\n\n> „ať to působí jako sklep v roce 2003, ale ať to vydrží navěky“\n\nTo znamenalo **záměrně omezenou paletu**, skoro žádné přechody a vysoce kontrastní typografii, která přežije i nejhorší chroma subsampling, jaký album artu provede Apple Music.\n\n## proces\n\nZačal jsem v **GIMPu**, protože jsem ho měl zrovna otevřený. Typografii jsem postavil ručně z rapperova tagu — každý glyf obkreslený z jeho vlastních tahů fixou, aby jméno vlastnilo i ty artefakty.\n\n- Jeden průchod na typografii\n- Jeden na zrno\n- Jeden na offset tištěné hrany\n\nLisovna vinylu chtěla CMYK se spadávkou; streamovací služby sRGB v 3000². Stejný zdrojový soubor, jiné exportní profily. Nic těžšího než to, ale lekce byla v disciplíně — brát digitální i fyzický výstup se stejnou vahou.\n\n## co zůstalo\n\nObal zachytilo pár blogů o beat-tapech. Důležitější ale bylo, že to byl začátek pětileté spolupráce s Cpt. Demo — každé další vydání nese stejný slovník, jen ve větším měřítku.",
+   "fr": "Première commande pour **Cpt. Demo** — un ami dont le goût m'a appris la moitié de ce que je sais sur les beats. L'EP avait besoin d'une pochette qui fonctionne aussi bien en vignette 64×64 sur Spotify qu'en pochette vinyle de 30×30 cm, et nous voulions que la même image fasse les deux sans compromis.\n\n## le brief\n\n> « qu'on dirait une cave en 2003, mais que ça dure pour toujours »\n\nCela impliquait une **palette délibérément limitée**, presque aucun dégradé et une typographie très contrastée qui survit au pire sous-échantillonnage chroma qu'Apple Music inflige aux pochettes.\n\n## le process\n\nJ'ai commencé sous **GIMP**, parce que c'était ce que j'avais d'ouvert. J'ai construit la typo à la main à partir du tag du rappeur — chaque glyphe décalqué de ses propres traits de marqueur, pour que le nom possède jusqu'à ses artefacts.\n\n- Une passe pour la typo\n- Une passe pour le grain\n- Une passe pour le décalage du bord imprimé\n\nLe pressage vinyle voulait du CMJN avec fond perdu ; le streaming voulait du sRGB en 3000². Même fichier source, profils d'export différents. Rien de plus difficile que ça, mais la leçon était la discipline : traiter la livraison numérique et physique avec le même soin.\n\n## ce qui est resté\n\nLa pochette a été reprise par quelques blogs de beat-tapes. Plus important encore, ce fut le début d'une collaboration de cinq ans avec Cpt. Demo — chaque sortie depuis porte le même vocabulaire, à plus grande échelle."
+  }
+ },
+ {
+  "id": 14,
+  "image": "/image02.jpg",
+  "title": {
+   "en": "Adrex advertisement",
+   "cs": "Reklama Adrex",
+   "fr": "Publicité Adrex"
+  },
+  "description": {
+   "en": "VFX/VP commerical i made with oldrich.rocks",
+   "cs": "VFX/VP reklama, kterou jsem dělal s oldrich.rocks.",
+   "fr": "Publicité VFX/VP réalisée avec oldrich.rocks."
+  },
+  "date": "July 2021",
+  "link": "https://photos.app.goo.gl/PBZs6EegBARX3aPa7",
+  "tags": {
+   "en": "VFX, VP, r&d",
+   "cs": "VFX, VP, r&d",
+   "fr": "VFX, VP, r&d"
+  },
+  "media": [],
+  "links": [],
+  "body": null
+ },
+ {
+  "id": 15,
+  "image": "/image37.jpg",
+  "title": {
+   "en": "Vlak LED screen UE4 support",
+   "cs": "Vlak – LED stěna, podpora UE4",
+   "fr": "Vlak – mur LED, support UE4"
+  },
+  "description": {
+   "en": "Virtual production using gargantuous LED panels on czech feature film with VFXR",
+   "cs": "Virtuální produkce na obřích LED panelech pro český celovečerní film, s VFXR.",
+   "fr": "Production virtuelle sur d'immenses panneaux LED pour un long-métrage tchèque, avec VFXR."
+  },
+  "date": "July 2021",
+  "link": "https://www.youtube.com/watch?v=kpt_ltLziek",
+  "tags": {
+   "en": "VFX, VP, r&d",
+   "cs": "VFX, VP, r&d",
+   "fr": "VFX, VP, r&d"
+  },
+  "media": [],
+  "links": [],
+  "body": {
+   "en": "**Virtual production on a Czech feature film** — gargantuan LED panels standing in for the world outside a train, driven by UE4, with VFXR.\n\nLED-wall work is a different discipline from post VFX: the pixels you render are *in* the shot, photographed by the real camera, so colour, parallax and latency problems can't be fixed later. Support meant keeping the Unreal content pipeline alive under set conditions — directorial changes included.",
+   "cs": "**Virtuální produkce na českém celovečerním filmu** — obří LED panely místo světa za okny vlaku, poháněné UE4, s VFXR.\n\nPráce s LED stěnou je jiná disciplína než postprodukční VFX: pixely, které renderuješ, jsou *v záběru*, snímá je skutečná kamera — barvy, paralaxu ani latenci nejde spravit potom. Podpora znamenala udržet unrealovou content pipeline naživu v podmínkách place — včetně režisérských změn.",
+   "fr": "**Production virtuelle sur un long-métrage tchèque** — des panneaux LED gigantesques à la place du monde derrière les fenêtres d'un train, pilotés par UE4, avec VFXR.\n\nLe mur LED est une discipline différente des VFX de post : les pixels rendus sont *dans* le plan, filmés par la vraie caméra — couleur, parallaxe et latence ne se rattrapent pas plus tard. Le support consistait à garder le pipeline Unreal vivant dans les conditions du plateau — changements de mise en scène compris."
+  }
+ },
+ {
+  "id": 12,
+  "image": "/image34.jpg",
+  "title": {
+   "en": "Mancuska VR exhibit",
+   "cs": "VR výstava Mančuška",
+   "fr": "Exposition VR Mančuška"
+  },
+  "description": {
+   "en": "VR gallery exposition of A gap by J. Mančuška for Viktor Takač with viewer analytics",
+   "cs": "VR galerijní expozice díla „Mezera“ J. Mančušky pro Viktora Takače, včetně analytiky diváků.",
+   "fr": "Exposition de galerie en VR de « A gap » de J. Mančuška pour Viktor Takač, avec analyse des spectateurs."
+  },
+  "date": "June 2021",
+  "link": "http://blokmagazine.com/a-gap-by-jan-mancuska-at-hunt-kastner-gallery/",
+  "tags": {
+   "en": "VR, r&d",
+   "cs": "VR, r&d",
+   "fr": "VR, r&d"
+  },
+  "media": [],
+  "links": [],
+  "body": {
+   "en": "A **VR gallery exposition of Ján Mančuška's «A gap»** built for Viktor Takač — with viewer analytics.\n\nConceptual art in VR is a curation problem before a technical one: the work has to keep its silence while the headset tracks everything. The analytics layer recorded how visitors actually moved and where they lingered — turning an exhibition into data the curator could read without disturbing a single viewer.",
+   "cs": "**VR expozice díla Jána Mančušky «A gap»** postavená pro Viktora Takače — s analytikou návštěvníků.\n\nKonceptuální umění ve VR je dřív kurátorský než technický problém: dílo si musí udržet své ticho, zatímco headset všechno měří. Analytická vrstva zaznamenávala, jak se návštěvníci opravdu pohybují a kde se zdrží — výstava se proměnila v data, která kurátor přečte, aniž by jediného diváka vyrušil.",
+   "fr": "Une **exposition VR de « A gap » de Ján Mančuška**, construite pour Viktor Takač — avec analytique des visiteurs.\n\nL'art conceptuel en VR est un problème de curation avant d'être technique : l'œuvre doit garder son silence pendant que le casque mesure tout. La couche analytique enregistrait comment les visiteurs se déplaçaient vraiment et où ils s'attardaient — l'exposition devenait une donnée lisible par le curateur sans déranger un seul spectateur."
+  }
+ },
+ {
+  "id": 13,
+  "image": "/image19.jpg",
+  "title": {
+   "en": "Hotdog Shooter",
+   "cs": "Hotdog Shooter",
+   "fr": "Hotdog Shooter"
+  },
+  "description": {
+   "en": "playful collaboration with my student of Game Design, crowd system ai made from scratch",
+   "cs": "Hravá spolupráce s mým studentem herního designu; systém davu (AI) napsaný od nuly.",
+   "fr": "Collaboration ludique avec mon étudiant en game design ; système de foule (IA) écrit de zéro."
+  },
+  "date": "June 2021",
+  "link": "",
+  "tags": {
+   "en": "Game Design, VR, r&d",
+   "cs": "herní design, VR, r&d",
+   "fr": "game design, VR, r&d"
+  },
+  "media": [],
+  "links": [],
+  "body": {
+   "en": "A playful VR game built **with my game-design student** — and the reason it's here is the crowd.\n\nThe **crowd AI was written from scratch**: agents with simple local rules producing believable mob behaviour, a direct descendant of my long-running obsession with boids. Teaching someone while building with them is the fastest code review there is; half the design decisions came from questions I couldn't answer cleanly.",
+   "cs": "Hravá VR hra postavená **s mým studentem game designu** — a je tady kvůli davu.\n\n**AI davu vznikla úplně od nuly**: agenti s jednoduchými lokálními pravidly, ze kterých vzniká uvěřitelné chování davu — přímý potomek mojí letité posedlosti boidy. Učit někoho a zároveň s ním stavět je nejrychlejší code review na světě; půlka designových rozhodnutí vzešla z otázek, na které jsem neuměl čistě odpovědět.",
+   "fr": "Un jeu VR espiègle construit **avec mon étudiant en game design** — et s'il figure ici, c'est pour la foule.\n\nL'**IA de foule a été écrite de zéro** : des agents à règles locales simples qui produisent un comportement de masse crédible — descendant direct de ma vieille obsession pour les boids. Enseigner en construisant, c'est la revue de code la plus rapide qui soit ; la moitié des décisions de design sont nées de questions auxquelles je ne savais pas répondre proprement."
+  }
+ },
+ {
+  "id": 11,
+  "image": "/image27.jpg",
+  "title": {
+   "en": "Jan Kaláb sculpture",
+   "cs": "Socha Jana Kalába",
+   "fr": "Sculpture de Jan Kaláb"
+  },
+  "description": {
+   "en": "I made a 3d model in blender based on mockups and technical drawings to preview a sculpture and prepare it for cnc milling",
+   "cs": "V Blenderu jsem podle modelů a technických výkresů udělal 3D model, abych nasimuloval sochu a připravil ji pro CNC frézování.",
+   "fr": "Sous Blender, j'ai créé un modèle 3D à partir de maquettes et de plans techniques pour prévisualiser une sculpture et la préparer au fraisage CNC."
+  },
+  "date": "July 2020",
+  "link": "https://sketchfab.com/models/e136d0a11db84dddb65485134a39ffbb",
+  "tags": {
+   "en": "3D, r&d",
+   "cs": "3D, r&d",
+   "fr": "3D, r&d"
+  },
+  "media": [
+   {
+    "type": "image",
+    "src": "/image27.jpg",
+    "alt": {
+     "en": "3D preview of the sculpture",
+     "cs": "3D náhled sochy",
+     "fr": "Aperçu 3D de la sculpture"
+    },
+    "caption": {
+     "en": "3D preview matched to the original technical drawings.",
+     "cs": "3D náhled odpovídající původním technickým výkresům.",
+     "fr": "Aperçu 3D fidèle aux plans techniques d'origine."
+    }
+   },
+   {
+    "type": "embed",
+    "html": "<div class=\"sketchfab-embed-wrapper\"><iframe title=\"Jan Kalab Sculpture\" frameborder=\"0\" allowfullscreen mozallowfullscreen=\"true\" webkitallowfullscreen=\"true\" allow=\"autoplay; fullscreen; xr-spatial-tracking\" width=\"100%\" height=\"480\" src=\"https://sketchfab.com/models/e136d0a11db84dddb65485134a39ffbb/embed?autostart=0\"></iframe></div>",
+    "caption": {
+     "en": "Interactive turntable — drag to orbit, scroll to zoom.",
+     "cs": "Interaktivní otočna — tažením otáčej, kolečkem přibliž.",
+     "fr": "Plateau tournant interactif — glissez pour orbiter, molette pour zoomer."
+    }
+   },
+   {
+    "type": "video",
+    "src": "/reel_720.mp4",
+    "caption": {
+     "en": "Final reel cut.",
+     "cs": "Finální střih reelu.",
+     "fr": "Montage final du reel."
+    }
+   }
+  ],
+  "links": [
+   {
+    "label": {
+     "en": "sketchfab",
+     "cs": "sketchfab",
+     "fr": "sketchfab"
+    },
+    "href": "https://sketchfab.com/models/e136d0a11db84dddb65485134a39ffbb"
+   },
+   {
+    "label": {
+     "en": "jan kaláb",
+     "cs": "jan kaláb",
+     "fr": "jan kaláb"
+    },
+    "href": "https://www.jankalab.com/"
+   }
+  ],
+  "body": {
+   "en": "Jan Kaláb is a Czech painter who'd started moving his canvases into the third dimension. He had the sculpture as a paper maquette and a stack of pencil-on-tracing-paper dimensions; he needed a digital twin he could send to a CNC shop and a render he could send to galleries before the milling bill came due.\n\n## the request\n\nTake the maquette + drawings, build a **clean parametric model**, and produce:\n\n1. A render the gallery can put in their newsletter.\n2. A file the CNC shop can mill from a block of foam without surprises.\n\n## modeling\n\nBuilt in Blender. The shape was a stack of swept revolution surfaces with a couple of boolean cuts; nothing fancy, but the tolerance had to be tight enough that the CNC operator didn't have to second-guess any edge.\n\n- Modeled to scale (working units = mm)\n- Topology cleaned for subdivision (no triangles on the visible faces)\n- Manifold check before export\n- Exported as **STEP** for the mill, **GLB** for the web\n\n## what made it hard\n\nThe hardest part wasn't the geometry — it was the *measurement reconciliation*. The pencil drawings disagreed with each other by a few millimetres in places. I went back to Jan with a list of conflicts and we picked the canonical number for each one before any model lifted off the ground. That conversation saved a week of CNC re-cuts.",
+   "cs": "Jan Kaláb je český malíř, který začal posouvat svá plátna do třetího rozměru. Sochu měl jako papírovou maketu a štos rozměrů tužkou na pauzovacím papíře; potřeboval digitální dvojče, které pošle do CNC dílny, a render, který pošle galeriím dřív, než přijde účet za frézování.\n\n## zadání\n\nVzít maketu a výkresy, postavit **čistý parametrický model** a dodat:\n\n1. Render, který galerie dá do newsletteru.\n2. Soubor, který CNC dílna vyfrézuje z bloku pěny bez překvapení.\n\n## modelování\n\nPostaveno v Blenderu. Tvar byl stoh rotačních ploch s pár booleovskými řezy; nic složitého, ale tolerance musela být tak těsná, aby operátor CNC nemusel u žádné hrany váhat.\n\n- Modelováno v měřítku (pracovní jednotky = mm)\n- Topologie vyčištěná pro subdivision (na viditelných plochách žádné trojúhelníky)\n- Kontrola manifoldnosti před exportem\n- Export jako **STEP** pro frézu, **GLB** pro web\n\n## co bylo těžké\n\nNejtěžší nebyla geometrie — bylo to *sjednocení měr*. Tužkové výkresy si na pár místech navzájem odporovaly o pár milimetrů. Vrátil jsem se za Janem se seznamem rozporů a u každého jsme vybrali kanonické číslo dřív, než se model vůbec zvedl ze země. Ten rozhovor ušetřil týden frézování navíc.",
+   "fr": "Jan Kaláb est un peintre tchèque qui avait commencé à faire passer ses toiles dans la troisième dimension. Il avait la sculpture sous forme de maquette en papier et une pile de cotes au crayon sur papier-calque ; il lui fallait un jumeau numérique à envoyer à un atelier CNC et un rendu à envoyer aux galeries avant que la facture du fraisage ne tombe.\n\n## la demande\n\nPrendre la maquette et les plans, construire un **modèle paramétrique propre** et produire :\n\n1. Un rendu que la galerie peut mettre dans sa newsletter.\n2. Un fichier que l'atelier CNC peut fraiser dans un bloc de mousse sans surprise.\n\n## modélisation\n\nRéalisé sous Blender. La forme était un empilement de surfaces de révolution balayées avec quelques découpes booléennes ; rien de sorcier, mais la tolérance devait être assez serrée pour que l'opérateur CNC n'ait à hésiter sur aucune arête.\n\n- Modélisé à l'échelle (unités de travail = mm)\n- Topologie nettoyée pour la subdivision (aucun triangle sur les faces visibles)\n- Vérification de la variété (manifold) avant export\n- Exporté en **STEP** pour la fraise, en **GLB** pour le web\n\n## ce qui l'a rendu difficile\n\nLe plus dur n'était pas la géométrie — c'était la *réconciliation des mesures*. Les plans au crayon se contredisaient de quelques millimètres par endroits. Je suis retourné voir Jan avec une liste de conflits et nous avons choisi le chiffre canonique pour chacun avant que le moindre modèle ne décolle. Cette conversation a évité une semaine de re-fraisage CNC."
+  }
+ },
+ {
+  "id": 9,
+  "image": "/image17.jpg",
+  "title": {
+   "en": "Epos 257 - Vanitas",
+   "cs": "Epos 257 – Vanitas",
+   "fr": "Epos 257 – Vanitas"
+  },
+  "description": {
+   "en": "I made an NFT replica of a sculpture for Epos 257",
+   "cs": "Vytvořil jsem NFT repliku sochy pro Epos 257.",
+   "fr": "J'ai réalisé une réplique NFT d'une sculpture pour Epos 257."
+  },
+  "date": "June 2020",
+  "link": "https://sketchfab.com/models/829cdf10a68e4b2d80ee3d53ffc0a75d",
+  "tags": {
+   "en": "3D, NFT",
+   "cs": "3D, NFT",
+   "fr": "3D, NFT"
+  },
+  "media": [],
+  "links": [],
+  "body": null
+ },
+ {
+  "id": 10,
+  "image": "/image03.jpg",
+  "title": {
+   "en": "ALIENDIESEL EP",
+   "cs": "ALIENDIESEL EP",
+   "fr": "ALIENDIESEL EP"
+  },
+  "description": {
+   "en": "spotify artwork made with blender,ue and substance",
+   "cs": "Spotify artwork vytvořený v Blenderu, UE a Substance.",
+   "fr": "Artwork Spotify réalisé avec Blender, UE et Substance."
+  },
+  "date": "June 2020",
+  "link": "",
+  "tags": {
+   "en": "Graphic Design",
+   "cs": "grafický design",
+   "fr": "design graphique"
+  },
+  "media": [],
+  "links": [],
+  "body": null
+ },
+ {
+  "id": 8,
+  "image": "/image38.jpg",
+  "title": {
+   "en": "VR and AR for Svoboda Williams",
+   "cs": "VR a AR pro Svoboda Williams",
+   "fr": "VR et AR pour Svoboda Williams"
+  },
+  "description": {
+   "en": "case study for VR and AR in real estate",
+   "cs": "Případová studie VR a AR v realitách.",
+   "fr": "Étude de cas sur la VR et l'AR dans l'immobilier."
+  },
+  "date": "January 2019",
+  "link": "https://svoboda-williams.com/realitni-zpravy/232-rozsirena-realita-jako-novy-zpusob-prezentace-nemovitosti",
+  "tags": {
+   "en": "3D modeling, Game Design, VR, Video",
+   "cs": "3D modelování, herní design, VR, video",
+   "fr": "modélisation 3D, game design, VR, vidéo"
+  },
+  "media": [],
+  "links": [],
+  "body": null
+ },
+ {
+  "id": 5,
+  "image": "/image09.jpg",
+  "title": {
+   "en": "CIEXPO",
+   "cs": "CIEXPO",
+   "fr": "CIEXPO"
+  },
+  "description": {
+   "en": "http://ciexpo.cz",
+   "cs": "http://ciexpo.cz",
+   "fr": "http://ciexpo.cz"
+  },
+  "date": "February 2018",
+  "link": "http://www.ciexpo.cz/",
+  "tags": {
+   "en": "3D, AR, Game Design, r&d, VR",
+   "cs": "3D, AR, herní design, r&d, VR",
+   "fr": "3D, AR, game design, r&d, VR"
+  },
+  "media": [],
+  "links": [],
+  "body": null
+ },
+ {
+  "id": 7,
+  "image": "/image04.jpg",
+  "title": {
+   "en": "ARROW",
+   "cs": "ARROW",
+   "fr": "ARROW"
+  },
+  "description": {
+   "en": "Custom branded teambuidling VR archery game featuring boids programmed from scratch",
+   "cs": "Brandovaná teambuildingová VR lukostřelba s hejny (boids) naprogramovanými od nuly.",
+   "fr": "Jeu de tir à l'arc VR de team-building en marque blanche, avec des boids programmés de zéro."
+  },
+  "date": "February 2018",
+  "link": "",
+  "tags": {
+   "en": "3D, Game Design, VR",
+   "cs": "3D, herní design, VR",
+   "fr": "3D, game design, VR"
+  },
+  "media": [],
+  "links": [],
+  "body": {
+   "en": "A custom-branded **team-building VR archery game** — with the flocking targets **programmed from scratch**.\n\nThe boids are the point: arrows against a living, swirling flock beat static targets in every playtest. 2018-era VR meant every draw, nock and release had to feel physical on hardware that fought back. The archery is the hook; the emergent flock is why people stayed.",
+   "cs": "**VR lukostřelba pro teambuilding** na míru značce — s hejnem cílů **naprogramovaným od nuly**.\n\nBoidi jsou pointa: šípy proti živému, vířícímu hejnu porazily statické terče v každém playtestu. VR roku 2018 znamenalo, že každé natažení, nasazení šípu a výstřel musely působit fyzicky na hardwaru, který se bránil. Lukostřelba je návnada; emergentní hejno je důvod, proč lidi zůstali.",
+   "fr": "Un **jeu de tir à l'arc VR de team-building** aux couleurs du client — avec des cibles en nuée **programmées de zéro**.\n\nLes boids sont le propos : des flèches contre une nuée vivante et tourbillonnante battent des cibles statiques à chaque playtest. La VR de 2018, c'était rendre chaque armement et chaque décoche physiques sur du matériel récalcitrant. Le tir à l'arc est l'appât ; la nuée émergente est la raison pour laquelle les gens restaient."
+  }
+ },
+ {
+  "id": 6,
+  "image": "/image18.jpg",
+  "title": {
+   "en": "old fancy AR tests",
+   "cs": "staré parádní AR testy",
+   "fr": "anciens tests AR stylés"
+  },
+  "description": {
+   "en": "early Unity tests with Lucas Saidl",
+   "cs": "rané testy v Unity s Lucasem Saidlem.",
+   "fr": "premiers tests Unity avec Lucas Saidl."
+  },
+  "date": "February 2018",
+  "link": "",
+  "tags": {
+   "en": "AR",
+   "cs": "AR",
+   "fr": "AR"
+  },
+  "media": [],
+  "links": [],
+  "body": null
+ },
+ {
+  "id": 4,
+  "image": "/image06.jpg",
+  "title": {
+   "en": "Bee Game",
+   "cs": "Včelí hra",
+   "fr": "Le jeu de l'abeille"
+  },
+  "description": {
+   "en": "Educational VR game for kids about the life of a bee",
+   "cs": "Vzdělávací VR hra pro děti o životě včely.",
+   "fr": "Jeu VR éducatif pour enfants sur la vie d'une abeille."
+  },
+  "date": "January 19, 2018",
+  "link": "",
+  "tags": {
+   "en": "3D, Game Design, VR",
+   "cs": "3D, herní design, VR",
+   "fr": "3D, game design, VR"
+  },
+  "media": [],
+  "links": [],
+  "body": null
+ },
+ {
+  "id": 3,
+  "image": "/image05.jpg",
+  "title": {
+   "en": "BANK renders and VR",
+   "cs": "BANK – rendery a VR",
+   "fr": "BANK – rendus et VR"
+  },
+  "description": {
+   "en": "Unreal, BLender, Substance",
+   "cs": "Unreal, Blender, Substance",
+   "fr": "Unreal, Blender, Substance"
+  },
+  "date": "June 2017",
+  "link": "",
+  "tags": {
+   "en": "3D, VR, r&d",
+   "cs": "3D, VR, r&d",
+   "fr": "3D, VR, r&d"
+  },
+  "media": [],
+  "links": [],
+  "body": null
+ },
+ {
+  "id": 2,
+  "image": "/image35.jpg",
+  "title": {
+   "en": "Excalibur military",
+   "cs": "Excalibur – armáda",
+   "fr": "Excalibur – militaire"
+  },
+  "description": {
+   "en": "VR+AR Military factory presentation for Indonesian Gvt.",
+   "cs": "VR+AR prezentace vojenské továrny pro indonéskou vládu.",
+   "fr": "Présentation VR+AR d'une usine militaire pour le gouvernement indonésien."
+  },
+  "date": "February 2017",
+  "link": "",
+  "tags": {
+   "en": "3D modeling, AR, VR, Video",
+   "cs": "3D modelování, AR, VR, video",
+   "fr": "modélisation 3D, AR, VR, vidéo"
+  },
+  "media": [],
+  "links": [],
+  "body": null
+ },
+ {
+  "id": 1,
+  "image": "/image41.jpg",
+  "title": {
+   "en": "ŽIDLICKÝ VR gallery",
+   "cs": "VR galerie ŽIDLICKÝ",
+   "fr": "Galerie VR ŽIDLICKÝ"
+  },
+  "description": {
+   "en": "first virtual gallery in central Europe :D ",
+   "cs": "první virtuální galerie ve střední Evropě :D",
+   "fr": "première galerie virtuelle d'Europe centrale :D"
+  },
+  "date": "April 2015",
+  "link": "",
+  "tags": {
+   "en": "VR",
+   "cs": "VR",
+   "fr": "VR"
+  },
+  "media": [],
+  "links": [],
+  "body": {
+   "en": "2015. Cardboard-era headsets, no tooling, no playbook — and the **first virtual gallery in central Europe**, built for photographer Václav Židlický's work.\n\nEverything that later became a career started here: putting art into a headset and watching someone turn their whole body to look at a photograph. A decade on, the pattern still holds — every gallery, splat and spatial interface on this site descends from this one.",
+   "cs": "2015. Headsety éry Cardboardu, žádné nástroje, žádná kuchařka — a **první virtuální galerie ve střední Evropě**, postavená pro dílo fotografa Václava Židlického.\n\nVšechno, co se později stalo kariérou, začalo tady: dát umění do headsetu a sledovat, jak člověk otočí celé tělo, aby se podíval na fotku. O dekádu později ten vzorec pořád platí — každá galerie, splat i prostorové rozhraní na tomhle webu je potomkem tohohle projektu.",
+   "fr": "2015. Des casques de l'ère Cardboard, aucun outillage, aucun manuel — et la **première galerie virtuelle d'Europe centrale**, construite pour l'œuvre du photographe Václav Židlický.\n\nTout ce qui est devenu une carrière a commencé ici : mettre de l'art dans un casque et regarder quelqu'un tourner tout son corps pour voir une photographie. Dix ans plus tard, le motif tient toujours — chaque galerie, chaque splat, chaque interface spatiale de ce site descend de celle-ci."
   }
  }
 ]
