@@ -453,9 +453,9 @@ const NOW: NowEntry[] = [
     k: "building",
     kl: { en: "building", cs: "stavím", fr: "je construis" },
     v: {
-      en: "the Sombra OS memory layer. Local works. Cloud doesn't — yet.",
-      cs: "paměťovou vrstvu Sombra OS. Lokálně to jede. V cloudu zatím ne.",
-      fr: "la couche mémoire de Sombra OS. En local ça marche. Dans le cloud, pas encore.",
+      en: "Laifea — the exocortex is live at laifea.app. Now teaching it to brief me before I ask.",
+      cs: "Laifeu — exokortex běží na laifea.app. Teď ji učím, aby mi hlásila věci dřív, než se zeptám.",
+      fr: "Laifea — l'exocortex est en ligne sur laifea.app. Maintenant je lui apprends à me briefer avant que je demande.",
     },
   },
   {

@@ -5,10 +5,10 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        display: ['Zenhand', 'Cormorant Garamond', 'Georgia', 'Times New Roman', 'serif'],
-        body: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
-        serif: ['Cormorant Garamond', 'Georgia', 'serif'],
-        sans: ['Inter', '-apple-system', 'sans-serif'],
+        display: ['Zenhand', 'var(--font-cormorant)', 'Georgia', 'Times New Roman', 'serif'],
+        body: ['var(--font-inter)', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'sans-serif'],
+        serif: ['var(--font-cormorant)', 'Georgia', 'serif'],
+        sans: ['var(--font-inter)', '-apple-system', 'sans-serif'],
       },
       colors: {
         vermilion: '#ee4a44',

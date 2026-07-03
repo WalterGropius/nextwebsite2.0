@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { Inter, Cormorant_Garamond } from 'next/font/google'
 import { Layout } from '@/components/dom/Layout'
 import { ThemeProvider } from '@/components/theme-provider'
 import { I18nProvider } from '@/lib/i18n/provider'
@@ -6,13 +7,31 @@ import { PaperBackdrop } from '@/components/paper-backdrop'
 import { PaperDecorations } from '@/components/paper-decorations'
 import '@/global.css'
 
+// Fallback fonts for glyphs Zenhand doesn't carry (diacritics, non-latin).
+// Served through next/font so they're self-hosted, subset, and never
+// render-blocking — this replaced a synchronous Google Fonts @import in
+// global.css that stalled first paint on slow connections.
+const inter = Inter({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-inter',
+  display: 'swap',
+})
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-cormorant',
+  display: 'swap',
+})
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://zenbauhaus.vercel.app'),
   title: {
     default: 'zenbauhaus | Art & Tech Polymath',
     template: '%s | zenbauhaus',
   },
-  description: 'CTO & Creative Technologist bridging creative vision and technical execution. Specializing in VR/AR, AI systems, and cutting-edge web development.',
+  description:
+    'Eliáš Bauer — autodidact creative technologist in Prague. I build systems, untangle messy problems, and write code: VR/AR, real-time 3D, AI, and the occasional impossible thing.',
   manifest: '/manifest.json',
   alternates: { canonical: '/' },
   icons: {
@@ -45,7 +64,8 @@ export const metadata: Metadata = {
   robots: 'index, follow',
   openGraph: {
     title: 'zenbauhaus | Art & Tech Polymath',
-    description: 'CTO & Creative Technologist bridging creative vision and technical execution',
+    description:
+      'Eliáš Bauer — autodidact creative technologist in Prague. Systems, messy problems, code.',
     type: 'website',
     locale: 'en_US',
     siteName: 'zenbauhaus',
@@ -55,7 +75,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'zenbauhaus | Art & Tech Polymath',
-    description: 'CTO & Creative Technologist bridging creative vision and technical execution',
+    description:
+      'Eliáš Bauer — autodidact creative technologist in Prague. Systems, messy problems, code.',
     images: ['/icons/share.png'],
   },
   generator: 'Next.js',
@@ -69,11 +90,15 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="antialiased" suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`antialiased ${inter.variable} ${cormorant.variable}`}
+      suppressHydrationWarning
+    >
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link rel="preload" as="fetch" href="/flowers_white.sog" crossOrigin="anonymous" />
+        {/* The 4MB splat preload lives in app/landing/layout.tsx — it's
+            only needed there; preloading it from the root layout made
+            every route pay for it. */}
         <link rel="preload" as="font" type="font/woff2" href="/zenhand4.woff2" crossOrigin="anonymous" />
       </head>
       <body>

@@ -18,7 +18,24 @@ function getScreenAngle(): number {
   return typeof legacy === 'number' ? legacy : 0
 }
 
-export function Flowers({ dark = false }: { dark?: boolean }) {
+import type { DeviceTier } from '@/lib/device-tier'
+
+// Particle budgets per device tier. The dark-mode scene is procedural
+// (stars + nebula splats) so it scales linearly with these counts; the
+// light-mode splat mesh is a fixed asset and scales via canvas dpr instead.
+const DARK_BUDGET: Record<DeviceTier, { near: number; far: number; nebula: number }> = {
+  low: { near: 2500, far: 1200, nebula: 5000 },
+  mid: { near: 5000, far: 2500, nebula: 9000 },
+  high: { near: 9000, far: 4500, nebula: 16000 },
+}
+
+export function Flowers({
+  dark = false,
+  tier = 'high',
+}: {
+  dark?: boolean
+  tier?: DeviceTier
+}) {
   const splatRef = useRef<THREE.Object3D | null>(null)
   const [isClient, setIsClient] = useState(false)
   const pointerRef = useRef({ x: 0, y: 0 })
@@ -134,7 +151,9 @@ export function Flowers({ dark = false }: { dark?: boolean }) {
     // Dark mode: a foreground field of bright white stars, a deeper
     // colour-saturated star layer further out, and a procedural Spark
     // nebula behind both. Stars sit in front of the nebula at +z so
-    // they aren't fully obscured by dense splats.
+    // they aren't fully obscured by dense splats. Counts scale with the
+    // device tier so the scene stays fluid on weak GPUs.
+    const budget = DARK_BUDGET[tier]
     return (
       <>
         <SparkRenderer />
@@ -142,7 +161,7 @@ export function Flowers({ dark = false }: { dark?: boolean }) {
           <Stars
             radius={80}
             depth={40}
-            count={9000}
+            count={budget.near}
             factor={6}
             saturation={0}
             fade
@@ -152,14 +171,14 @@ export function Flowers({ dark = false }: { dark?: boolean }) {
         <Stars
           radius={140}
           depth={60}
-          count={4500}
+          count={budget.far}
           factor={3.5}
           saturation={1}
           fade
           speed={0.4}
         />
         <group ref={splatRef as unknown as React.RefObject<THREE.Group>}>
-          <Nebula count={16000} radius={26} position={[0, 0, -28]} spin={0.008} />
+          <Nebula count={budget.nebula} radius={26} position={[0, 0, -28]} spin={0.008} />
         </group>
       </>
     )
