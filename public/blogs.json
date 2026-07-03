@@ -50,6 +50,46 @@
   }
  },
  {
+  "id": "a-food-grade-you-can-open",
+  "title": {
+   "en": "a food grade you can open",
+   "cs": "hodnocení jídla, které si otevřeš",
+   "fr": "une note alimentaire qu'on peut ouvrir"
+  },
+  "date": "2026-06-05",
+  "excerpt": {
+   "en": "One number for a food product, from a photo. But every percent of it is a weighted, inspectable dimension — and I removed the one that pretended to be universal.",
+   "cs": "Jedno číslo pro potravinu, z fotky. Ale každé jeho procento je vážená, prohlédnutelná dimenze — a tu, která předstírala univerzálnost, jsem odebral.",
+   "fr": "Un seul chiffre pour un produit alimentaire, depuis une photo. Mais chaque pourcent est une dimension pondérée et inspectable — et j'ai retiré celle qui prétendait être universelle."
+  },
+  "tags": {
+   "en": [
+    "scoring",
+    "nutrition",
+    "transparency",
+    "foodament"
+   ],
+   "cs": [
+    "skóring",
+    "výživa",
+    "transparentnost",
+    "foodament"
+   ],
+   "fr": [
+    "notation",
+    "nutrition",
+    "transparence",
+    "foodament"
+   ]
+  },
+  "image": null,
+  "body": {
+   "en": "Point a camera at a food label, get a single **0–100%** grade in the hero header, like a film rating. Easy to consume. The whole design fight was making that one number honest enough to open up and argue with.\n\n## pure functions, no black box\n\nThe AI does one job: read the photo into structured JSON — nutrition, ingredients, certificates, origin. Every score after that is a **pure client-side function**. No network calls during scoring, same input always the same output. If a user disputes the grade, I can walk them through each step.\n\n## six dimensions, each normalized\n\nNutri-Score, NOVA processing level, additive risk, allergens, bio status, sustainability — each is first normalized to 0–100 on its own scale. Nutri-Score A becomes 100, E becomes 0. NOVA 1 is 100, NOVA 4 is 0. Non-organic gets **40, not 0**, because being non-organic is normal, not a crime.\n\n## the weight I removed\n\nThe overall number is a **weighted composite**. Nutri-Score and NOVA carry **30% each** — processing level is a strong health predictor. Additives 18%, bio 12%, sustainability 10%.\n\nAllergens used to weigh 15%. I **took it out**. A product containing milk is excellent for most people and dangerous for a few; that is a personal sensitivity, not a universal quality of the food. Folding it into one grade would punish good food for the wrong reason. Allergens stay — as their own informational section, never in the number.\n\nWhen a dimension is missing — no nutrition panel, no Nutri-Score — it drops out and the remaining weights **redistribute proportionally**. The grade stays honest about what it actually knew.\n\nA transparent number beats a confident one. You can argue with transparency.",
+   "cs": "Namíříš foťák na etiketu a dostaneš jedno **0–100%** hodnocení v hlavičce, jako známku filmu. Snadné ke konzumaci. Celý boj návrhu byl udělat to jedno číslo dost poctivé na to, aby se dalo otevřít a přít se s ním.\n\n## čisté funkce, žádná černá skříňka\n\nAI dělá jednu věc: přečte fotku do strukturovaného JSONu — výživa, složení, certifikáty, původ. Každé skóre potom je **čistá funkce na klientu**. Během skórování žádné síťové volání, stejný vstup vždy stejný výstup. Když uživatel známku zpochybní, provedu ho krok po kroku.\n\n## šest dimenzí, každá normalizovaná\n\nNutri-Score, stupeň zpracování NOVA, riziko aditiv, alergeny, bio status, udržitelnost — každá se nejdřív normalizuje na 0–100 na vlastní škále. Nutri-Score A je 100, E je 0. NOVA 1 je 100, NOVA 4 je 0. Ne-bio dostane **40, ne 0**, protože být ne-bio je normální, ne zločin.\n\n## váha, kterou jsem odebral\n\nCelkové číslo je **vážený kompozit**. Nutri-Score a NOVA nesou **po 30 %** — míra zpracování je silný prediktor zdraví. Aditiva 18 %, bio 12 %, udržitelnost 10 %.\n\nAlergeny kdysi vážily 15 %. **Vyhodil jsem je.** Přípravek s mlékem je pro většinu lidí výborný a pro pár nebezpečný; to je osobní citlivost, ne univerzální kvalita jídla. Zabalit to do jedné známky by trestalo dobré jídlo ze špatného důvodu. Alergeny zůstávají — jako vlastní informativní sekce, nikdy v tom čísle.\n\nKdyž dimenze chybí — žádná výživová tabulka, žádné Nutri-Score — vypadne a zbylé váhy se **proporcionálně přerozdělí**. Známka zůstane poctivá k tomu, co doopravdy věděla.\n\nTransparentní číslo poráží to sebejisté. S transparentností se dá přít.",
+   "fr": "Braque une caméra sur une étiquette et obtiens une seule note **0–100%** dans l'en-tête, comme une note de film. Facile à consommer. Tout le combat de conception fut de rendre ce chiffre unique assez honnête pour l'ouvrir et le contester.\n\n## des fonctions pures, pas de boîte noire\n\nL'IA fait un seul travail : lire la photo en JSON structuré — nutrition, ingrédients, certificats, origine. Chaque score ensuite est une **fonction pure côté client**. Aucun appel réseau pendant le calcul, même entrée toujours même sortie. Si un utilisateur conteste la note, je peux le guider étape par étape.\n\n## six dimensions, chacune normalisée\n\nNutri-Score, niveau de transformation NOVA, risque des additifs, allergènes, statut bio, durabilité — chacune est d'abord normalisée sur 0–100 à sa propre échelle. Nutri-Score A devient 100, E devient 0. NOVA 1 vaut 100, NOVA 4 vaut 0. Le non-bio obtient **40, pas 0**, car être non-bio est normal, pas un crime.\n\n## le poids que j'ai retiré\n\nLe chiffre global est un **composite pondéré**. Nutri-Score et NOVA pèsent **30 % chacun** — le niveau de transformation est un fort prédicteur de santé. Additifs 18 %, bio 12 %, durabilité 10 %.\n\nLes allergènes pesaient autrefois 15 %. Je les ai **retirés**. Un produit contenant du lait est excellent pour la plupart et dangereux pour quelques-uns ; c'est une sensibilité personnelle, pas une qualité universelle de l'aliment. Le fondre dans une note punirait un bon produit pour la mauvaise raison. Les allergènes restent — comme leur propre section informative, jamais dans le chiffre.\n\nQuand une dimension manque — pas de tableau nutritionnel, pas de Nutri-Score — elle sort et les poids restants se **redistribuent proportionnellement**. La note reste honnête sur ce qu'elle savait vraiment.\n\nUn chiffre transparent vaut mieux qu'un chiffre assuré. La transparence, on peut la contester."
+  }
+ },
+ {
   "id": "faces-to-cameras",
   "title": {
    "en": "every face becomes a camera",
@@ -72,6 +112,46 @@
    "en": "I kept hitting the same wall capturing objects for **gaussian splatting**: I needed dozens of camera angles, evenly spread around the subject, all pointing at it, with no two views accidentally bunched up. Doing that by hand in Blender is miserable.\n\nSo I wrote a script that does the obvious thing: take a mesh, and turn **every face into a camera**.\n\n## the trick\n\nAdd an icosphere around your subject and the geometry does the hard part for you. An icosphere's faces are near-uniformly distributed over a sphere — which is exactly the viewpoint distribution a splat pipeline wants. Subdivide once for ~80 cameras, twice for ~320. Each face becomes a camera sitting at the face centre, aimed inward at the object's centre.\n\nThen it binds one camera per timeline frame, so the whole capture is a single **Render Animation**:\n\n```\nRender > Render Animation   (Ctrl+F12)\n```\n\nOut comes `frame_0001.png`, `frame_0002.png`, … — one image per camera, in a numbered sequence that COLMAP and every splat trainer expects.\n\n## why faces, not a turntable\n\nA turntable gives you one ring of views at one height. Splats hate that — the reconstruction gets a fat equator and starves at the poles. Mesh faces give you full spherical coverage for free, and you control density by subdividing instead of fiddling with keyframes.\n\nIt's about thirty lines of `bmesh` plus `to_track_quat` to aim each camera. The whole thing is on github: [blender-export-gs.py](https://github.com/WalterGropius/zenbauhaus_scripts/blob/main/blender-export-gs.py).\n\n## the gotcha\n\nA perfect icosphere puts every camera at the same radius, perfectly centred. COLMAP usually solves that fine, but if your reconstruction comes out sparse, jitter the radius a little or drop the focal length for more overlap between neighbours. Overlap is what the structure-from-motion step eats.\n\nDrop a mesh around a thing, run the script, render. The boring tools are the ones that ship.",
    "cs": "Pořád jsem narážel na stejnou zeď při snímání objektů pro **gaussian splatting**: potřeboval jsem desítky úhlů kamery, rovnoměrně rozprostřené kolem objektu, všechny mířící na něj, a žádné dva pohledy náhodně nahloučené k sobě. Dělat to ručně v Blenderu je utrpení.\n\nTak jsem napsal skript, který dělá tu nasnadě ležící věc: vezme mesh a promění **každou stěnu v kameru**.\n\n## ten trik\n\nPřidej kolem objektu icosféru a geometrie udělá tu těžkou práci za tebe. Stěny icosféry jsou téměř rovnoměrně rozmístěné po kouli — což je přesně to rozložení pohledů, které splat pipeline chce. Jedno dělení dá ~80 kamer, dvě ~320. Každá stěna se stane kamerou sedící ve středu stěny, mířící dovnitř na střed objektu.\n\nPak přiřadí jednu kameru na snímek časové osy, takže celé snímání je jediné **Render Animation**:\n\n```\nRender > Render Animation   (Ctrl+F12)\n```\n\nVypadne `frame_0001.png`, `frame_0002.png`, … — jeden obrázek na kameru, v číslované sekvenci, kterou COLMAP a každý splat trenér očekává.\n\n## proč stěny, ne otočný stůl\n\nOtočný stůl ti dá jeden prstenec pohledů v jedné výšce. Splaty to nenávidí — rekonstrukce dostane tlustý rovník a u pólů hladoví. Stěny meshe ti dají plné kulové pokrytí zadarmo a hustotu řídíš dělením, místo abys ladil klíčové snímky.\n\nJe to asi třicet řádků `bmesh` plus `to_track_quat` na zamíření každé kamery. Celé je to na githubu: [blender-export-gs.py](https://github.com/WalterGropius/zenbauhaus_scripts/blob/main/blender-export-gs.py).\n\n## háček\n\nDokonalá icosféra dá každou kameru na stejný poloměr, dokonale vystředěnou. COLMAP to obvykle zvládne, ale pokud ti rekonstrukce vyjde řídká, trochu rozkmitej poloměr nebo sniž ohnisko pro větší překryv mezi sousedy. Překryv je to, čím se živí krok structure-from-motion.\n\nHoď mesh kolem věci, spusť skript, renderuj. Nudné nástroje jsou ty, které dotahují.",
    "fr": "Je butais sans cesse sur le même mur en capturant des objets pour le **gaussian splatting** : il me fallait des dizaines d'angles de caméra, répartis uniformément autour du sujet, tous pointés vers lui, sans que deux vues se retrouvent accidentellement entassées. Le faire à la main dans Blender est un supplice.\n\nAlors j'ai écrit un script qui fait la chose évidente : prendre un mesh et transformer **chaque face en caméra**.\n\n## l'astuce\n\nAjoute une icosphère autour de ton sujet et la géométrie fait le gros du travail à ta place. Les faces d'une icosphère sont réparties de façon quasi uniforme sur une sphère — c'est exactement la distribution de points de vue que veut un pipeline de splat. Une subdivision donne ~80 caméras, deux ~320. Chaque face devient une caméra posée au centre de la face, pointée vers l'intérieur, vers le centre de l'objet.\n\nEnsuite il lie une caméra par image de la timeline, si bien que toute la capture tient en un seul **Render Animation** :\n\n```\nRender > Render Animation   (Ctrl+F12)\n```\n\nIl en sort `frame_0001.png`, `frame_0002.png`, … — une image par caméra, dans une séquence numérotée que COLMAP et tout entraîneur de splat attendent.\n\n## pourquoi les faces, pas un tourne-disque\n\nUn tourne-disque te donne un seul anneau de vues à une seule hauteur. Les splats détestent ça — la reconstruction se retrouve avec un équateur bien gras et meurt de faim aux pôles. Les faces du mesh te donnent une couverture sphérique complète gratuitement, et tu contrôles la densité en subdivisant plutôt qu'en bricolant des keyframes.\n\nÇa fait une trentaine de lignes de `bmesh` plus `to_track_quat` pour orienter chaque caméra. Le tout est sur github : [blender-export-gs.py](https://github.com/WalterGropius/zenbauhaus_scripts/blob/main/blender-export-gs.py).\n\n## le piège\n\nUne icosphère parfaite met chaque caméra au même rayon, parfaitement centrée. COLMAP s'en sort généralement, mais si ta reconstruction ressort clairsemée, fais varier un peu le rayon ou baisse la focale pour plus de recouvrement entre voisines. Le recouvrement, c'est ce que mange l'étape de structure-from-motion.\n\nPose un mesh autour d'une chose, lance le script, rends. Les outils ennuyeux sont ceux qui livrent."
+  }
+ },
+ {
+  "id": "grounded-or-silent",
+  "title": {
+   "en": "grounded or silent",
+   "cs": "podložit, nebo mlčet",
+   "fr": "sourcé ou silencieux"
+  },
+  "date": "2026-04-11",
+  "excerpt": {
+   "en": "A RAG system over Czech drug leaflets where a hallucination is a safety issue. Every claim carries its source section — or the app refuses to say it.",
+   "cs": "RAG nad českými příbalovými informacemi, kde je halucinace bezpečnostní problém. Každé tvrzení nese svou zdrojovou sekci — nebo to appka odmítne říct.",
+   "fr": "Un système RAG sur les notices de médicaments tchèques, où une hallucination est un problème de sécurité. Chaque affirmation porte sa section source — ou l'app refuse de la dire."
+  },
+  "tags": {
+   "en": [
+    "rag",
+    "retrieval",
+    "sukl",
+    "grounding"
+   ],
+   "cs": [
+    "rag",
+    "retrieval",
+    "sukl",
+    "grounding"
+   ],
+   "fr": [
+    "rag",
+    "recherche",
+    "sukl",
+    "ancrage"
+   ]
+  },
+  "image": null,
+  "body": {
+   "en": "ChatSPC answers questions over Czech **SÚKL** drug leaflets — the SPC, the summary of product characteristics. In this domain a confident wrong answer is not embarrassing, it is dangerous. So the whole design bends toward one rule: **answer only from what a tool retrieved**, no general medical knowledge, no guessing.\n\n## citations you can verify\n\nEvery claim carries a `SPC<number> §<section>` tag. The UI turns it into a clickable chip — but first it **checks that the model actually received that code from a tool**. If the code never came back from retrieval, it is flagged as **unsupported** rather than shown as a source. A citation the system cannot trace is worse than no citation.\n\n## the hard part was Czech, not the model\n\nMost of the early failures lived in retrieval, not in the LLM. Czech **declines names**: a user asking about \"Zoloftu\" or \"Mireny\" hit a full-text index that only matches the nominative, got **zero results**, and the chat declared the drug \"not found.\" The fix strips case endings back to the stem and re-ranks, letting the real nominative match win.\n\nThen the salt forms. Compositions list **metoprolol-sukcinát**, not bare metoprolol, so a naive query misses half the equivalents. And a genuine bug: a strict cap on a retrieval parameter **threw** on a value the model chose, crashing the whole turn into an empty reply. Now it clamps instead of throwing.\n\n## honest about the ceiling\n\nWhen a drug is truly outside the corpus, the answer is \"not here\" — explained, not invented. The known limit is recall: the full-text backend caps results, so a product whose brand name differs from its active ingredient can slip past. The real fix is a **structured active-ingredient index**, and I say so in the docs.\n\nRefusing to answer is a feature. In this domain it might be the most important one.",
+   "cs": "ChatSPC odpovídá na dotazy nad českými příbalovými informacemi ze **SÚKL** — nad SPC, souhrnem údajů o přípravku. V téhle doméně není sebejistá špatná odpověď trapná, je nebezpečná. Celý návrh se proto ohýbá k jednomu pravidlu: **odpovídej jen z toho, co našel nástroj**, žádné obecné lékařské znalosti, žádné hádání.\n\n## citace, které ověříš\n\nKaždé tvrzení nese značku `SPC<číslo> §<sekce>`. UI z ní dělá klikací chip — ale nejdřív **ověří, že model ten kód skutečně dostal z nástroje**. Když kód z retrievalu nikdy nepřišel, označí se jako **nepodložený**, místo aby se zobrazil jako zdroj. Citace, kterou systém neumí dohledat, je horší než žádná.\n\n## nejtěžší byla čeština, ne model\n\nVětšina raných chyb byla v retrievalu, ne v LLM. Čeština **skloňuje názvy**: dotaz na „Zoloftu\" nebo „Mireny\" narazil na fulltext, který matchuje jen 1. pád, vrátil **nula zásahů** a chat prohlásil přípravek za „nenalezený\". Oprava odebere pádové koncovky zpět na kmen a přeřadí výsledky, aby vyhrála skutečná nominativní shoda.\n\nPak solné tvary. Složení uvádí **metoprolol-sukcinát**, ne holý metoprolol, takže naivní dotaz mine půlku ekvivalentů. A opravdový bug: tvrdý strop na parametru retrievalu **vyhodil výjimku** na hodnotě, kterou zvolil model, a celý turn spadl do prázdné odpovědi. Teď hodnotu ořízne, místo aby padal.\n\n## poctivě o stropu\n\nKdyž přípravek v korpusu opravdu není, odpověď zní „tady není\" — vysvětleno, ne vymyšleno. Známý limit je recall: fulltext má strop výsledků, takže přípravek, jehož obchodní název se liší od účinné látky, může proklouznout. Pravý fix je **strukturovaný index účinná látka → přípravky**, a v dokumentaci to říkám nahlas.\n\nOdmítnout odpověď je funkce. V téhle doméně možná ta nejdůležitější.",
+   "fr": "ChatSPC répond à des questions sur les notices de médicaments tchèques du **SÚKL** — le SPC, le résumé des caractéristiques du produit. Dans ce domaine, une réponse fausse mais assurée n'est pas gênante, elle est dangereuse. Toute la conception plie donc vers une règle : **ne répondre qu'à partir de ce qu'un outil a récupéré**, aucune connaissance médicale générale, aucune supposition.\n\n## des citations vérifiables\n\nChaque affirmation porte une étiquette `SPC<numéro> §<section>`. L'UI en fait une puce cliquable — mais d'abord elle **vérifie que le modèle a réellement reçu ce code depuis un outil**. Si le code n'est jamais revenu de la recherche, il est signalé comme **non sourcé** au lieu d'être affiché comme source. Une citation que le système ne peut pas tracer est pire qu'aucune citation.\n\n## le plus dur, c'était le tchèque, pas le modèle\n\nLa plupart des échecs initiaux venaient de la recherche, pas du LLM. Le tchèque **décline les noms** : une question sur « Zoloftu » ou « Mireny » heurtait un index plein texte qui ne matche que le nominatif, renvoyait **zéro résultat**, et le chat déclarait le médicament « introuvable ». Le correctif retire les terminaisons de cas jusqu'au radical et re-classe, laissant gagner la vraie forme nominative.\n\nPuis les formes salines. Les compositions listent le **métoprolol-succinate**, pas le métoprolol nu, donc une requête naïve rate la moitié des équivalents. Et un vrai bug : un plafond strict sur un paramètre de recherche **levait une exception** sur une valeur choisie par le modèle, faisant tomber tout le tour en réponse vide. Désormais il borne au lieu de lever.\n\n## honnête sur le plafond\n\nQuand un médicament est vraiment hors corpus, la réponse est « pas ici » — expliquée, pas inventée. La limite connue, c'est le rappel : le moteur plein texte plafonne les résultats, donc un produit dont le nom commercial diffère du principe actif peut passer entre les mailles. Le vrai correctif est un **index structuré principe actif → produits**, et je le dis dans la doc.\n\nRefuser de répondre est une fonctionnalité. Dans ce domaine, peut-être la plus importante."
   }
  },
  {
@@ -225,6 +305,46 @@
   }
  },
  {
+  "id": "scoring-a-lemon",
+  "title": {
+   "en": "scoring a lemon",
+   "cs": "jak obodovat propadák",
+   "fr": "noter un tacot immobilier"
+  },
+  "date": "2026-01-20",
+  "excerpt": {
+   "en": "\"Is this flat a lemon?\" is a feeling. I turned it into a defensible number: 22 elements, five age bands, category weights, and zero guessed inputs.",
+   "cs": "„Je tenhle byt propadák?\" je pocit. Udělal jsem z něj obhajitelné číslo: 22 prvků, pět životnostních pásem, váhy kategorií a nula odhadnutých vstupů.",
+   "fr": "« Cet appartement est-il un tacot ? » est un ressenti. J'en ai fait un chiffre défendable : 22 éléments, cinq tranches d'âge, des poids par catégorie et zéro entrée devinée."
+  },
+  "tags": {
+   "en": [
+    "scoring",
+    "real estate",
+    "methodology",
+    "homeproof"
+   ],
+   "cs": [
+    "skóring",
+    "nemovitosti",
+    "metodika",
+    "homeproof"
+   ],
+   "fr": [
+    "notation",
+    "immobilier",
+    "méthodologie",
+    "homeproof"
+   ]
+  },
+  "image": null,
+  "body": {
+   "en": "In Czechia, roughly **one property in three** sold has a hidden defect, and the seller stays liable for **five years**. Buyers want one answer: is this flat a lemon? The temptation is to let an AI vibe on some photos and emit a grade. I did the opposite.\n\n## a grade you can defend\n\nThe score follows the methodology of the **Association of Property Inspectors (AIN)**. It is **deterministic and auditable**, and it **never guesses a missing value**. Give it the same inputs and it returns the same result — for a stated year, so a later recalculation cannot be disputed.\n\nIt works element by element. Twenty-two building elements are scored — foundations, load-bearing walls, roof structure, roofing, windows, wiring, plumbing, and so on. Another six (connections, fencing) are **informational only** and never touch the score.\n\n## age becomes a rating\n\nFor each element I compute age from the year of its last renovation, then place it into an AIN **lifespan band**, A through E. Foundations are good for well over a century; interior floors age in a decade. Each rating maps to points: **A=100, B=75, C=50, D=25, E=0** — E being critical condition.\n\nThe overall number is a **weighted average**. Structure weighs 3, envelope and installations 2 each, interiors and safety 1. A cracked foundation should hurt more than tired paint, and the weights say so.\n\n## risk is a second question\n\nA parallel questionnaire screens **ten risk areas** with branching yes/no logic. A risk only surfaces if the property qualifies — there is a pitched roof, a basement, metal windowsills — **and** a specific defect is detected. No qualifier, no noise.\n\nThe methodology is the product. A number nobody can explain is just a vibe wearing a suit.",
+   "cs": "V Česku má zhruba **každá třetí** prodaná nemovitost skrytou vadu a prodávající za ni ručí **pět let**. Kupující chtějí jednu odpověď: je tenhle byt propadák? Pokušení je nechat AI „vycítit\" pár fotek a vyplivnout známku. Udělal jsem opak.\n\n## známka, kterou obhájíš\n\nSkóre vychází z metodiky **Asociace inspektorů nemovitostí (AIN)**. Je **deterministické a auditovatelné** a **nikdy neodhaduje chybějící hodnotu**. Dej mu stejné vstupy a vrátí stejný výsledek — pro daný rok, aby pozdější přepočet nešel zpochybnit.\n\nPracuje prvek po prvku. Hodnotí se dvacet dva stavebních prvků — základy, nosné zdi, krov, střešní krytina, okna, elektroinstalace, rozvody vody a další. Dalších šest (přípojky, oplocení) je **jen informativních** a skóre se nikdy nedotknou.\n\n## věk se mění v rating\n\nU každého prvku spočítám stáří od roku poslední rekonstrukce a zařadím ho do životnostního **pásma AIN**, A až E. Základy vydrží klidně přes sto let; podlahy stárnou v desetiletí. Každý rating má body: **A=100, B=75, C=50, D=25, E=0** — E je havarijní stav.\n\nCelkové číslo je **vážený průměr**. Konstrukce má váhu 3, obálka a instalace po 2, interiéry a bezpečnost po 1. Prasklé základy mají bolet víc než unavená malba — a váhy to říkají.\n\n## riziko je druhá otázka\n\nDruhý dotazník prověřuje **deset rizikových oblastí** větvenou logikou ANO/NE. Riziko se objeví, jen když se nemovitost kvalifikuje — je tu šikmá střecha, suterén, plechové parapety — **a zároveň** je detekována konkrétní závada. Bez kvalifikace žádný šum.\n\nMetodika je ten produkt. Číslo, které nikdo neumí vysvětlit, je jen pocit v obleku.",
+   "fr": "En Tchéquie, environ **un bien sur trois** vendu recèle un défaut caché, et le vendeur en reste responsable **cinq ans**. Les acheteurs veulent une réponse : cet appartement est-il un tacot ? La tentation est de laisser une IA « ressentir » quelques photos et cracher une note. J'ai fait l'inverse.\n\n## une note défendable\n\nLe score suit la méthodologie de l'**Association des inspecteurs immobiliers (AIN)**. Il est **déterministe et auditable**, et il **ne devine jamais une valeur manquante**. Mêmes entrées, même résultat — pour une année donnée, afin qu'un recalcul ultérieur soit incontestable.\n\nIl procède élément par élément. Vingt-deux éléments du bâti sont notés — fondations, murs porteurs, charpente, couverture, fenêtres, électricité, plomberie, etc. Six autres (branchements, clôture) sont **purement informatifs** et ne touchent jamais au score.\n\n## l'âge devient une note\n\nPour chaque élément je calcule l'âge depuis l'année de sa dernière rénovation, puis je le place dans une **tranche de durée de vie** AIN, de A à E. Les fondations tiennent bien plus d'un siècle ; les sols intérieurs vieillissent en une décennie. Chaque note donne des points : **A=100, B=75, C=50, D=25, E=0** — E étant l'état critique.\n\nLe chiffre global est une **moyenne pondérée**. La structure pèse 3, l'enveloppe et les installations 2 chacune, les intérieurs et la sécurité 1. Des fondations fissurées doivent peser plus qu'une peinture fatiguée — les poids le disent.\n\n## le risque est une seconde question\n\nUn questionnaire parallèle passe au crible **dix zones de risque** par une logique oui/non arborescente. Un risque n'apparaît que si le bien se qualifie — toit en pente, sous-sol, appuis métalliques — **et** qu'un défaut précis est détecté. Sans qualifiant, pas de bruit.\n\nLa méthodologie est le produit. Un chiffre que personne ne sait expliquer n'est qu'un ressenti en costume."
+  }
+ },
+ {
   "id": "neuron-as-pid-controller",
   "title": {
    "en": "a neuron as a pid controller",
@@ -300,6 +420,46 @@
   }
  },
  {
+  "id": "address-to-parcel",
+  "title": {
+   "en": "address to parcel",
+   "cs": "z adresy na parcelu",
+   "fr": "de l'adresse à la parcelle"
+  },
+  "date": "2025-11-08",
+  "excerpt": {
+   "en": "Building on the Czech cadastre is not an API problem, it is a terms-of-use problem. Here is what it actually takes to turn an address into a parcel legally.",
+   "cs": "Stavět nad českým katastrem není problém API, ale problém podmínek užívání. Tady je, co doopravdy obnáší dostat z adresy parcelu legálně.",
+   "fr": "Bâtir sur le cadastre tchèque n'est pas un problème d'API, c'est un problème de conditions d'usage. Voici ce qu'il faut vraiment pour transformer une adresse en parcelle, légalement."
+  },
+  "tags": {
+   "en": [
+    "cadastre",
+    "cuzk",
+    "geocoding",
+    "rate limiting"
+   ],
+   "cs": [
+    "katastr",
+    "čúzk",
+    "geokódování",
+    "rate limiting"
+   ],
+   "fr": [
+    "cadastre",
+    "cuzk",
+    "géocodage",
+    "limitation de débit"
+   ]
+  },
+  "image": null,
+  "body": {
+   "en": "A user types an address. I need a parcel from the Czech cadastre, **ČÚZK**. Between those two facts sits more plumbing than anyone expects.\n\n## step one: an address is not coordinates\n\nThe cadastre speaks in parcels, not street names. So first I **forward-geocode**: the address goes to a geocoding API that returns a position, a bounding box, and a regional hierarchy — country, region, municipality, street. Czech input matters, so declension and diacritics have to survive the trip. Only then do I have a point to ask the cadastre about.\n\n## step two: the terms are the hard part\n\nThe ČÚZK REST API to cadastre data is **free**, but the conditions are strict and worth reading twice. It **does not serve personal data**. The data is **informative only**. There is no SLA — updates land in roughly 10 to 120 minutes, sometimes hours, and every response carries the timestamp of its last refresh.\n\nCrucially: the API is **not for bulk harvesting**. Misuse of cadastre data can be classed as an offence with a fine up to 100,000 CZK. Authentication is an ApiKey tied to a verified identity, and — the line that shapes the whole architecture — the key **must never live on the client device**. Every call is proxied server-side.\n\n## step three: caching and limits\n\nThere is a hard call ceiling per time window; exceed it and calls are simply refused until the window resets. So I cache aggressively and honestly: parcels for a few minutes, codebooks for a day. A per-IP rate limiter sits in front, backed by Redis, failing **open** if Redis is unreachable so the app degrades instead of dying.\n\nThe cadastre is not a database you scrape. It is a public register you are a guest in. Build like a guest.",
+   "cs": "Uživatel napíše adresu. Já potřebuji parcelu z českého katastru, **ČÚZK**. Mezi těmi dvěma fakty leží víc instalatérské práce, než kdo čeká.\n\n## krok jedna: adresa nejsou souřadnice\n\nKatastr mluví v parcelách, ne v názvech ulic. Nejdřív tedy **forward-geokóduji**: adresa jde do geokódovací služby, která vrátí pozici, bounding box a regionální hierarchii — stát, kraj, obec, ulice. Na češtině záleží, takže skloňování i diakritika musí cestu přežít. Teprve pak mám bod, na který se katastru zeptám.\n\n## krok dva: nejtěžší jsou podmínky\n\nREST API ČÚZK ke katastru je **zdarma**, ale podmínky jsou přísné a stojí za dvojí přečtení. **Neposkytuje osobní údaje.** Data mají **jen informativní charakter**. Není žádné SLA — aktualizace dorazí zhruba za 10 až 120 minut, občas i za hodiny, a každá odpověď nese čas své poslední aktualizace.\n\nZásadní věc: API **není určené pro hromadné vytěžování**. Zneužití katastrálních dat lze kvalifikovat jako přestupek s pokutou až 100 000 Kč. Autentizace je ApiKey navázaný na ověřenou totožnost a — řádek, který určuje celou architekturu — klíč **nikdy nesmí být na zařízení klienta**. Každé volání jde přes server.\n\n## krok tři: cache a limity\n\nExistuje tvrdý strop volání za časové okno; při jeho překročení jsou volání prostě odmítnuta, dokud se okno neresetuje. Takže cachuji agresivně a poctivě: parcely na pár minut, číselníky na den. Před tím sedí rate limiter podle IP, opřený o Redis, který při nedostupnosti Redisu selhává **doprava** — appka degraduje, místo aby umřela.\n\nKatastr není databáze na scrapování. Je to veřejný registr, ve kterém jsi hostem. Stav jako host.",
+   "fr": "Un utilisateur saisit une adresse. Il me faut une parcelle du cadastre tchèque, **ČÚZK**. Entre ces deux faits se cache plus de tuyauterie qu'on ne l'imagine.\n\n## étape un : une adresse n'est pas des coordonnées\n\nLe cadastre parle en parcelles, pas en noms de rue. Je fais donc d'abord du **géocodage direct** : l'adresse part vers une API qui renvoie une position, une boîte englobante et une hiérarchie régionale — pays, région, commune, rue. L'entrée tchèque compte, donc déclinaisons et diacritiques doivent survivre au trajet. Ce n'est qu'ensuite que j'ai un point à soumettre au cadastre.\n\n## étape deux : le plus dur, ce sont les conditions\n\nL'API REST du ČÚZK vers les données cadastrales est **gratuite**, mais les conditions sont strictes et méritent une double lecture. Elle **ne fournit aucune donnée personnelle**. Les données sont **purement informatives**. Aucun SLA — les mises à jour arrivent en 10 à 120 minutes environ, parfois des heures, et chaque réponse porte l'horodatage de son dernier rafraîchissement.\n\nSurtout : l'API **n'est pas faite pour l'extraction en masse**. Un mésusage des données cadastrales peut être qualifié d'infraction, avec une amende jusqu'à 100 000 CZK. L'authentification est une ApiKey liée à une identité vérifiée et — la ligne qui façonne toute l'architecture — la clé **ne doit jamais résider sur l'appareil client**. Chaque appel passe par le serveur.\n\n## étape trois : cache et limites\n\nIl existe un plafond d'appels par fenêtre de temps ; dépassé, les appels sont simplement refusés jusqu'au reset. Je mets donc en cache, agressivement et honnêtement : les parcelles quelques minutes, les nomenclatures une journée. Devant, un limiteur par IP adossé à Redis, qui en cas de panne de Redis échoue **en mode ouvert** — l'app se dégrade au lieu de mourir.\n\nLe cadastre n'est pas une base à scraper. C'est un registre public dont tu es l'invité. Bâtis en invité."
+  }
+ },
+ {
   "id": "moving-200gb-for-free",
   "title": {
    "en": "moving 200 gb for free",
@@ -347,6 +507,46 @@
    "en": "I keep going back to the workbench because hardware fixes my software brain.\n\nSoftware is forgiving. You can hold a wrong mental model for *years* and the compiler will quietly pretend nothing is wrong, as long as your tests pass. Hardware is unforgiving in the literal sense: voltage doesn't lie, current doesn't lie, the magic smoke doesn't lie.\n\nThe first time you wire an ESP32 backward and watch a $4 chip turn into $4 of decorative carbon, you learn a grammar lesson that no amount of TypeScript can teach you: **the laws are not negotiable**.\n\n## what carries over\n\n- **Tolerance budgets.** Software ignores them. Hardware can't.\n- **Calibration.** Software has units; hardware enforces them.\n- **Bring-up sequencing.** Power before signal, ground before everything, clock before data. Software has the same dependencies — your IDE just hides them.\n- **The smell test.** Burning epoxy. Hot regulators. A coil whining at audio frequencies. Hardware tells you in three senses what software only tells you through a logfile.\n\n## practical recipe\n\nBuy one cheap dev board. Buy a multimeter you actually understand. Buy a soldering iron with a temperature dial. Wire an LED to a button to a microcontroller; flash some firmware; then make it do one useless physical thing. The act of producing one *real-world side-effect* re-grounds the abstraction stack. Everything you do at a keyboard tomorrow is sharper for it.",
    "cs": "Pořád se vracím k pracovnímu stolu, protože hardware spravuje můj softwarový mozek.\n\nSoftware odpouští. Můžeš držet špatný mentální model *roky* a kompilátor bude tiše předstírat, že je všechno v pořádku, dokud ti procházejí testy. Hardware je nemilosrdný v doslovném smyslu: napětí nelže, proud nelže, magický kouř nelže.\n\nKdyž poprvé zapojíš ESP32 obráceně a koukáš, jak se z čipu za 4 dolary stávají 4 dolary dekorativního uhlíku, dostaneš lekci z gramatiky, jakou tě žádný TypeScript nenaučí: **zákony se nedají vyjednat**.\n\n## co se přenáší\n\n- **Rozpočty tolerancí.** Software je ignoruje. Hardware nemůže.\n- **Kalibrace.** Software má jednotky; hardware je vynucuje.\n- **Pořadí oživení.** Napájení před signálem, zem před vším, hodiny před daty. Software má stejné závislosti — tvé IDE je jen schovává.\n- **Čichová zkouška.** Hořící epoxid. Horké regulátory. Cívka kvílící na slyšitelné frekvenci. Hardware ti to řekne třemi smysly tam, kde ti software dá vědět jen přes logfile.\n\n## praktický recept\n\nKup jednu levnou vývojovou desku. Kup multimetr, kterému opravdu rozumíš. Kup pájku s regulací teploty. Zapoj LED na tlačítko na mikrokontrolér; nahraj firmware; pak ho přiměj udělat jednu zbytečnou fyzickou věc. Akt vyrobení jednoho *vedlejšího efektu v reálném světě* znovu uzemní celý abstrakční stack. Všechno, co zítra uděláš u klávesnice, je díky tomu ostřejší.",
    "fr": "Je retourne sans cesse à l'établi, parce que le matériel répare mon cerveau de logiciel.\n\nLe logiciel pardonne. Tu peux tenir un modèle mental faux pendant des *années* et le compilateur fera tranquillement comme si de rien n'était, tant que tes tests passent. Le matériel est impitoyable au sens littéral : la tension ne ment pas, le courant ne ment pas, la fumée magique ne ment pas.\n\nLa première fois que tu câbles un ESP32 à l'envers et que tu regardes une puce à 4 dollars devenir 4 dollars de carbone décoratif, tu reçois une leçon de grammaire qu'aucun TypeScript ne peut t'enseigner : **les lois ne sont pas négociables**.\n\n## ce qui se transfère\n\n- **Budgets de tolérance.** Le logiciel les ignore. Le matériel ne peut pas.\n- **Calibration.** Le logiciel a des unités ; le matériel les impose.\n- **Séquence de mise en route.** L'alimentation avant le signal, la masse avant tout, l'horloge avant les données. Le logiciel a les mêmes dépendances — ton IDE les cache, c'est tout.\n- **Le test de l'odeur.** Époxy qui brûle. Régulateurs chauds. Une bobine qui siffle dans l'audible. Le matériel te le dit par trois sens là où le logiciel ne te le dit que par un fichier de log.\n\n## recette pratique\n\nAchète une carte de dev bon marché. Achète un multimètre que tu comprends vraiment. Achète un fer à souder avec réglage de température. Câble une LED à un bouton à un microcontrôleur ; flashe un firmware ; puis fais-lui faire une seule chose physique inutile. Le fait de produire un seul *effet de bord dans le monde réel* re-ancre toute la pile d'abstractions. Tout ce que tu feras au clavier demain en sera plus net."
+  }
+ },
+ {
+  "id": "boids-on-a-database",
+  "title": {
+   "en": "boids on a database",
+   "cs": "hejno v databázi",
+   "fr": "des boids dans une base de données"
+  },
+  "date": "2025-09-14",
+  "excerpt": {
+   "en": "I put per-agent flocking state into a synced database. SpacetimeDB became the authoritative brain of the swarm, and the rules got stranger than the sim.",
+   "cs": "Stav každého jedince hejna jsem dal do synchronizované databáze. SpacetimeDB se stal autoritativním mozkem roje a pravidla byla podivnější než samotná simulace.",
+   "fr": "J'ai mis l'état de chaque agent d'une nuée dans une base synchronisée. SpacetimeDB est devenu le cerveau autoritaire de l'essaim, et les règles sont devenues plus étranges que la simulation."
+  },
+  "tags": {
+   "en": [
+    "spacetimedb",
+    "boids",
+    "simulation",
+    "determinism"
+   ],
+   "cs": [
+    "spacetimedb",
+    "boids",
+    "simulace",
+    "determinismus"
+   ],
+   "fr": [
+    "spacetimedb",
+    "boids",
+    "simulation",
+    "déterminisme"
+   ]
+  },
+  "image": null,
+  "body": {
+   "en": "I have been obsessed with **boids** for years. Three rules — separation, alignment, cohesion — and a flock appears out of nothing. Usually you run it in a single loop on one machine. This time I did something perverse: I made **SpacetimeDB** the authoritative state of every agent.\n\n## the swarm lives in tables\n\nEach boid is a row. Position, velocity, heading — all persisted. The simulation step is a **reducer** that reads the flock, computes the next frame, and writes it back. Clients never own the truth; they **subscribe** to the tables and render whatever the database says.\n\nThat inversion sounds harmless until you meet the constraints.\n\n## reducers must be deterministic\n\nNo filesystem. No network. No timers. **No random.** For a flocking sim that last one stings — jitter is how you break symmetry. So randomness has to become state you seed and advance yourself, deterministically, or it does not belong in the reducer at all.\n\nReducers are also **transactional and return nothing**. You cannot ask a reducer for the next frame. You mutate, and then you read the tables back through a subscription. The loop is split across a boundary that a normal game loop never has.\n\n## the traps\n\nAuto-increment IDs are **not sequential** — gaps are normal, so I could not use them to order agents. And the classic mistake: you build the tables and the reducer, publish, and nothing moves. The client was never wired to **call** the reducer. Backend perfect, swarm frozen.\n\nPutting simulation state in a synced DB is absurd on paper. But now any browser that subscribes sees the same flock, live, with no netcode of my own. The database is the netcode.\n\nConstraints do not kill a simulation. They tell you where its real shape is.",
+   "cs": "**Boidy** mě fascinují už roky. Tři pravidla — odstup, zarovnání, soudržnost — a z ničeho vznikne hejno. Obvykle to běží v jedné smyčce na jednom stroji. Tentokrát jsem to udělal zvráceně: autoritativním stavem každého jedince jsem udělal **SpacetimeDB**.\n\n## roj žije v tabulkách\n\nKaždý boid je řádek. Pozice, rychlost, směr — všechno perzistentní. Krok simulace je **reducer**, který přečte hejno, spočítá další snímek a zapíše ho zpět. Klienti nevlastní pravdu; **odebírají** tabulky a vykreslují to, co říká databáze.\n\nTa inverze zní neškodně, dokud nenarazíš na omezení.\n\n## reducery musí být deterministické\n\nŽádný souborový systém. Žádná síť. Žádné časovače. **Žádný random.** U simulace hejna to poslední bolí — právě šum láme symetrii. Náhoda se tak musí stát stavem, který si sám naseeduješ a deterministicky posouváš, jinak do reduceru vůbec nepatří.\n\nReducery jsou navíc **transakční a nic nevracejí**. Nemůžeš si od reduceru vyžádat další snímek. Zmutuješ stav a pak si tabulky přečteš zpátky přes subscription. Smyčka je rozseknutá hranicí, kterou běžný herní loop nezná.\n\n## pasti\n\nAuto-increment ID **nejsou sekvenční** — mezery jsou normální, takže jsem podle nich nemohl řadit jedince. A klasická chyba: postavíš tabulky i reducer, publikuješ a nic se nehýbe. Klient nebyl napojený tak, aby reducer **volal**. Backend perfektní, roj zamrzlý.\n\nDát stav simulace do synchronizované DB je na papíře absurdní. Ale teď každý prohlížeč, který se přihlásí k odběru, vidí totéž hejno naživo — bez jediné řádky mého síťového kódu. Databáze je ten síťový kód.\n\nOmezení simulaci nezabijí. Ukážou ti, kde je její skutečný tvar.",
+   "fr": "Les **boids** m'obsèdent depuis des années. Trois règles — séparation, alignement, cohésion — et une nuée surgit du néant. D'habitude on les fait tourner dans une seule boucle sur une seule machine. Cette fois j'ai fait quelque chose de pervers : j'ai fait de **SpacetimeDB** l'état autoritaire de chaque agent.\n\n## l'essaim vit dans des tables\n\nChaque boid est une ligne. Position, vitesse, cap — tout est persisté. Le pas de simulation est un **reducer** qui lit la nuée, calcule l'image suivante et la réécrit. Les clients ne possèdent pas la vérité ; ils **s'abonnent** aux tables et affichent ce que dit la base.\n\nCette inversion paraît inoffensive jusqu'à ce qu'on rencontre les contraintes.\n\n## les reducers doivent être déterministes\n\nPas de système de fichiers. Pas de réseau. Pas de timers. **Pas d'aléatoire.** Pour une nuée, ce dernier point pique — c'est le bruit qui brise la symétrie. Le hasard doit donc devenir un état qu'on ensemence et fait avancer soi-même, de façon déterministe, sinon il n'a rien à faire dans le reducer.\n\nLes reducers sont aussi **transactionnels et ne renvoient rien**. On ne peut pas demander l'image suivante à un reducer. On mute, puis on relit les tables via un abonnement. La boucle est coupée par une frontière qu'une boucle de jeu classique ignore.\n\n## les pièges\n\nLes ID auto-incrémentés **ne sont pas séquentiels** — les trous sont normaux, impossible de trier les agents avec. Et l'erreur classique : on construit les tables et le reducer, on publie, et rien ne bouge. Le client n'appelait jamais le reducer. Backend parfait, essaim figé.\n\nMettre l'état d'une simulation dans une base synchronisée est absurde sur le papier. Mais désormais tout navigateur abonné voit la même nuée en direct, sans un seul octet de mon code réseau. La base de données est le code réseau.\n\nLes contraintes ne tuent pas une simulation. Elles te disent où est sa vraie forme."
   }
  },
  {
