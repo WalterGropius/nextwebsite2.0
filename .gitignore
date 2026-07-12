@@ -41,3 +41,6 @@ report.*.json
 
 # .vscode Debugging
 .vscode/*-debug-profile
+
+# Laifea website-mirror export (regenerate via scripts/laifea-export.mjs)
+laifea-notes/
