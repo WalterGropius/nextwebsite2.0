@@ -35,31 +35,32 @@ export function Hero() {
         style={{ opacity }}
         className="relative z-10 flex w-full max-w-4xl flex-col items-center text-center"
       >
-        <motion.h2
-          initial={{ opacity: 0, filter: "blur(8px)" }}
-          animate={{ opacity: 1, filter: "blur(0px)" }}
-          transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="mx-auto max-w-5xl text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.92]"
-          style={{
-            fontFamily: "var(--font-display)",
-            color: "var(--ink)",
-            textShadow: "var(--hero-text-shadow)",
-            y: headlineY,
-          }}
-        >
-          {/* Segments carry their own spacing (trailing spaces live in the
-              dictionary values) so languages that don't use spaces — ja,
-              zh — and languages with different word order all render as
-              native-level sentences instead of space-joined fragments. */}
-          {t("hero.headline.i")}
-          <strong>{t("hero.headline.build")}</strong>
-          {t("hero.headline.systems")}
-          <span className="humph">{t("hero.headline.untangle")}</span>
-          <em>{t("hero.headline.messy")}</em>
-          {t("hero.headline.problems")}
-          <strong>{t("hero.headline.writeCode")}</strong>
-          {t("hero.headline.dot")}
-        </motion.h2>
+        <div className="hero-ink-outline">
+          <motion.h2
+            initial={{ opacity: 0, filter: "blur(8px)" }}
+            animate={{ opacity: 1, filter: "blur(0px)" }}
+            transition={{ duration: 1.1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="mx-auto max-w-5xl text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.92]"
+            style={{
+              fontFamily: "var(--font-display)",
+              color: "var(--ink)",
+              y: headlineY,
+            }}
+          >
+            {/* Segments carry their own spacing (trailing spaces live in the
+                dictionary values) so languages that don't use spaces — ja,
+                zh — and languages with different word order all render as
+                native-level sentences instead of space-joined fragments. */}
+            {t("hero.headline.i")}
+            <strong>{t("hero.headline.build")}</strong>
+            {t("hero.headline.systems")}
+            <span className="humph">{t("hero.headline.untangle")}</span>
+            <em>{t("hero.headline.messy")}</em>
+            {t("hero.headline.problems")}
+            <strong>{t("hero.headline.writeCode")}</strong>
+            {t("hero.headline.dot")}
+          </motion.h2>
+        </div>
 
         <motion.div
           initial={{ opacity: 0 }}
@@ -108,12 +109,8 @@ export function Hero() {
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-2"
-          style={{
-            color: "var(--ink)",
-            opacity: 0.6,
-            textShadow: "var(--hero-text-shadow)",
-          }}
+          className="flex flex-col items-center gap-2 hero-ink-outline"
+          style={{ color: "var(--ink)", opacity: 0.6 }}
         >
           <span>{t("hero.scroll")}</span>
           <ArrowDown size={12} className="ink-icon" />
