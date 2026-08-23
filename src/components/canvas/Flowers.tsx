@@ -166,30 +166,34 @@ export function Flowers({
     return (
       <>
         <SparkRenderer />
-        <group position={[0, 0, 4]}>
-          <Stars
-            radius={80}
-            depth={40}
-            count={budget.near}
-            factor={6}
-            saturation={0}
-            fade
-            speed={0.8}
-          />
-        </group>
-        <Stars
-          radius={140}
-          depth={60}
-          count={budget.far}
-          factor={3.5}
-          saturation={1}
-          fade
-          speed={0.4}
-        />
+        {/* Everything the viewer parallaxes lives under the tilt group —
+            both star layers as well as the capture. With the stars
+            outside it the splat swung on its own against a pinned
+            starfield, which read as the nebula sliding over a painted
+            backdrop instead of the whole sky moving with the viewer. */}
         <group ref={splatRef as unknown as React.RefObject<THREE.Group>}>
+          <group position={[0, 0, 4]}>
+            <Stars
+              radius={80}
+              depth={40}
+              count={budget.near}
+              factor={6}
+              saturation={0}
+              fade
+              speed={0.8}
+            />
+          </group>
+          <Stars
+            radius={140}
+            depth={60}
+            count={budget.far}
+            factor={3.5}
+            saturation={1}
+            fade
+            speed={0.4}
+          />
           {/* Same X flip as the light-mode capture — both come out of
-              splat-transform Y-down. Inside the tilt group so pointer
-              and gyro sweep the dust field around the viewer. */}
+              splat-transform Y-down. */}
           <SplatMesh
             url="/splat_dark.sog"
             scale={DARK_SPLAT_SCALE}
