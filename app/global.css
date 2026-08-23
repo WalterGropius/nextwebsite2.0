@@ -60,6 +60,17 @@
        ink-filled surface (e.g. the primary CTA button) */
     --ink-inverse: #ffffff;
 
+    /* Legibility halo for hero copy sitting directly on the splat canvas.
+       Layered soft shadows in the inverse luminance hug the handwritten
+       letterforms, so the text separates from a busy background without
+       reading as a hard drop shadow. Light theme: dark ink over the pale
+       flower capture, so the halo is white. */
+    --hero-text-shadow:
+      0 0 2px rgba(255, 255, 255, 0.9),
+      0 1px 8px rgba(255, 255, 255, 0.75),
+      0 0 22px rgba(255, 255, 255, 0.6),
+      0 0 46px rgba(255, 255, 255, 0.4);
+
     /* Typography Scale */
     --font-display: 'Zenhand', var(--font-cormorant, 'Cormorant Garamond'), Georgia, 'Times New Roman', serif;
     --font-body: 'Zenhand', var(--font-inter, 'Inter'), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -84,13 +95,27 @@
     --surface-dark: #0a1626;
     --surface-elevated: #122035;
     --surface-glass: rgba(20, 36, 60, 0.55);
-    --surface-ink: rgba(220, 232, 255, 0.06);
-    --border-subtle: rgba(220, 232, 255, 0.16);
-    --border-strong: rgba(220, 232, 255, 0.65);
-    --text-primary: #e3ecf6;
-    --text-muted: rgba(227, 236, 246, 0.6);
-    --ink: #e3ecf6;
+    /* Golden amber rather than the blue-white these used to be. The dark
+       surface and the nebula capture behind it are both cold blue, so a
+       cool white sat *in* that family and went muddy over the splat. A
+       properly saturated yellow-orange puts the ink, borders and the
+       filled CTA on the opposite side of the wheel from the background,
+       so they read as their own warm layer. Contrast against
+       --surface-dark is ~13.8:1, well clear of AA. */
+    --surface-ink: rgba(255, 217, 160, 0.07);
+    --border-subtle: rgba(255, 217, 160, 0.18);
+    --border-strong: rgba(255, 217, 160, 0.65);
+    --text-primary: #ffd9a0;
+    --text-muted: rgba(255, 217, 160, 0.62);
+    --ink: #ffd9a0;
     --ink-inverse: #0a1626;
+
+    /* Dark theme: light ink over the bright nebula capture, so the halo
+       inverts to the deep background blue. */
+    --hero-text-shadow:
+      0 1px 2px rgba(4, 10, 20, 0.6),
+      0 2px 14px rgba(4, 10, 20, 0.52),
+      0 0 34px rgba(4, 10, 20, 0.42);
 
     /* Grain inverts so the dust reads as a faint warm haze, not a smudge */
     --grain-opacity: 0.18;
@@ -106,8 +131,8 @@
     color: var(--text-primary);
   }
   html.dark ::-webkit-scrollbar-track { background: var(--surface-dark); }
-  html.dark ::-webkit-scrollbar-thumb { background: rgba(236, 234, 212, 0.18); }
-  html.dark ::-webkit-scrollbar-thumb:hover { background: rgba(236, 234, 212, 0.32); }
+  html.dark ::-webkit-scrollbar-thumb { background: rgba(255, 217, 160, 0.18); }
+  html.dark ::-webkit-scrollbar-thumb:hover { background: rgba(255, 217, 160, 0.32); }
 
   * {
     box-sizing: border-box;

@@ -4,7 +4,6 @@ import { useRef, useState, useEffect } from 'react'
 import * as THREE from 'three'
 import { Stars } from '@react-three/drei'
 import { SparkRenderer, SplatMesh } from './spark'
-import { Nebula } from './Nebula'
 
 type DeviceOrientationEventStatic = typeof DeviceOrientationEvent & {
   requestPermission?: () => Promise<'granted' | 'denied'>
@@ -20,14 +19,23 @@ function getScreenAngle(): number {
 
 import type { DeviceTier } from '@/lib/device-tier'
 
-// Particle budgets per device tier. The dark-mode scene is procedural
-// (stars + nebula splats) so it scales linearly with these counts; the
-// light-mode splat mesh is a fixed asset and scales via canvas dpr instead.
-const DARK_BUDGET: Record<DeviceTier, { near: number; far: number; nebula: number }> = {
-  low: { near: 2500, far: 1200, nebula: 5000 },
-  mid: { near: 5000, far: 2500, nebula: 9000 },
-  high: { near: 9000, far: 4500, nebula: 16000 },
+// Star budgets per device tier. The two star layers are the only
+// procedural part of the dark scene left, so it scales linearly with
+// these counts; the captured splat meshes are fixed assets and scale via
+// canvas dpr instead.
+const DARK_BUDGET: Record<DeviceTier, { near: number; far: number }> = {
+  low: { near: 2500, far: 1200 },
+  mid: { near: 5000, far: 2500 },
+  high: { near: 9000, far: 4500 },
 }
+
+// The dark-mode capture is authored tiny: 95% of its 52k gaussians sit
+// within a 0.16-unit radius of the centroid, so at the light scene's
+// scale of 3 it renders as a speck in the middle of the frame. Blown up
+// 100x it engulfs the camera (~16-unit radius) and reads as an immersive
+// dust field — the individual gaussians stay sub-0.1 units even here, so
+// the cloud keeps its grain instead of smearing into blobs.
+const DARK_SPLAT_SCALE = 100
 
 export function Flowers({
   dark = false,
@@ -148,11 +156,12 @@ export function Flowers({
   if (!isClient) return null
 
   if (dark) {
-    // Dark mode: a foreground field of bright white stars, a deeper
-    // colour-saturated star layer further out, and a procedural Spark
-    // nebula behind both. Stars sit in front of the nebula at +z so
-    // they aren't fully obscured by dense splats. Counts scale with the
-    // device tier so the scene stays fluid on weak GPUs.
+    // Dark mode: the captured splat nebula scaled up around the camera,
+    // with a foreground field of bright white stars and a deeper
+    // colour-saturated layer further out. This used to be a procedural
+    // Spark nebula standing in for an asset that did not exist yet — the
+    // real capture replaces it. Star counts scale with the device tier so
+    // the scene stays fluid on weak GPUs.
     const budget = DARK_BUDGET[tier]
     return (
       <>
@@ -178,7 +187,14 @@ export function Flowers({
           speed={0.4}
         />
         <group ref={splatRef as unknown as React.RefObject<THREE.Group>}>
-          <Nebula count={budget.nebula} radius={26} position={[0, 0, -28]} spin={0.008} />
+          {/* Same X flip as the light-mode capture — both come out of
+              splat-transform Y-down. Inside the tilt group so pointer
+              and gyro sweep the dust field around the viewer. */}
+          <SplatMesh
+            url="/splat_dark.sog"
+            scale={DARK_SPLAT_SCALE}
+            rotation={[Math.PI, 0.3 * Math.PI, 0]}
+          />
         </group>
       </>
     )
