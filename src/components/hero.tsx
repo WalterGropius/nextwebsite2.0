@@ -43,6 +43,7 @@ export function Hero() {
           style={{
             fontFamily: "var(--font-display)",
             color: "var(--ink)",
+            textShadow: "var(--hero-text-shadow)",
             y: headlineY,
           }}
         >
@@ -108,7 +109,11 @@ export function Hero() {
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="flex flex-col items-center gap-2"
-          style={{ color: "var(--ink)", opacity: 0.6 }}
+          style={{
+            color: "var(--ink)",
+            opacity: 0.6,
+            textShadow: "var(--hero-text-shadow)",
+          }}
         >
           <span>{t("hero.scroll")}</span>
           <ArrowDown size={12} className="ink-icon" />
