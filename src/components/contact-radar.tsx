@@ -157,16 +157,43 @@ export function ContactRadar() {
     }
     canvas.addEventListener("click", onClick)
 
-    const onVis = () => { visibilityActive = !document.hidden }
+    // The radar lives at the foot of a long landing page. It used to sweep
+    // continuously from mount, pausing only when the whole tab was hidden,
+    // so a full canvas animation ran the entire time the visitor was reading
+    // the sections above it. Gate on actually being on screen, and stop the
+    // rAF chain outright rather than waking each frame to skip the draw.
+    let onScreen = false
+    let running = false
+    const start = () => {
+      if (running || !visibilityActive || !onScreen) return
+      running = true
+      last = performance.now()
+      raf = requestAnimationFrame(draw)
+    }
+    const stop = () => {
+      running = false
+      if (raf) cancelAnimationFrame(raf)
+      raf = 0
+    }
+
+    const onVis = () => {
+      visibilityActive = !document.hidden
+      visibilityActive ? start() : stop()
+    }
     document.addEventListener("visibilitychange", onVis)
 
-    const draw = (now: number) => {
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        onScreen = entry.isIntersecting
+        onScreen ? start() : stop()
+      },
+      { rootMargin: "120px" },
+    )
+    io.observe(canvas)
+
+    function draw(now: number) {
       const dt = Math.min(0.05, (now - last) / 1000)
       last = now
-      if (!visibilityActive) {
-        raf = requestAnimationFrame(draw)
-        return
-      }
 
       // Sweep marches left → right across the upper half, wraps back.
       sweepAngle += sweepSpeed * dt
@@ -316,12 +343,12 @@ export function ContactRadar() {
       }
 
       ctx.restore()
-      raf = requestAnimationFrame(draw)
+      if (running) raf = requestAnimationFrame(draw)
     }
-    raf = requestAnimationFrame(draw)
 
     return () => {
-      cancelAnimationFrame(raf)
+      stop()
+      io.disconnect()
       window.removeEventListener("resize", onResize)
       canvas.removeEventListener("click", onClick)
       document.removeEventListener("visibilitychange", onVis)

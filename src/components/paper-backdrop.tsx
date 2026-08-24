@@ -5,9 +5,10 @@ import { useTheme } from "next-themes"
 
 // PaperBackdrop — global texture layer mounted once at the root.
 //
-//   1. A WebGL fragment-shader canvas painting procedural paper grain
-//      (dust + soft fibre fbm). Animates at a low rate so the grain
-//      crawls like real film.
+//   1. A WebGL fragment-shader canvas painting procedural paper grain:
+//      half uniform white-noise speckle, half fractal (fibres + stains).
+//      Drawn once — paper does not shimmer, and a permanent full-viewport
+//      repaint loop is the single most expensive thing a backdrop can do.
 //   2. An SVG millimeter-grid pattern rotated 6° and warped by the
 //      ink-wobble filter so the lines feel like a hand-folded sheet.
 //
@@ -29,7 +30,7 @@ function PaperGrain({ dark }: { dark: boolean }) {
       alpha: true,
       premultipliedAlpha: false,
       antialias: false,
-      preserveDrawingBuffer: false,
+      preserveDrawingBuffer: true,
     })
     if (!gl) return
 
@@ -44,8 +45,8 @@ function PaperGrain({ dark }: { dark: boolean }) {
     const fsrc = `
       precision highp float;
       varying vec2 v;
-      uniform float u_time;
       uniform vec2 u_res;
+      uniform float u_dpr;
       uniform float u_dark;
 
       float hash(vec2 p) {
@@ -61,41 +62,46 @@ function PaperGrain({ dark }: { dark: boolean }) {
           u.y
         );
       }
+      // Five octaves: summing independent octaves pushes the distribution
+      // toward a normal one (central limit), which is what gives the smooth
+      // half of the mix its organic, non-uniform feel.
       float fbm(vec2 p) {
         float v = 0.0;
-        float a = 0.55;
-        for (int i = 0; i < 4; i++) {
+        float a = 0.5;
+        float norm = 0.0;
+        for (int i = 0; i < 5; i++) {
           v += a * noise(p);
+          norm += a;
           p *= 2.07;
           a *= 0.5;
         }
-        return v;
+        return v / norm;
       }
       void main() {
-        vec2 px = gl_FragCoord.xy;
-        float t = u_time;
+        // Work in CSS pixels so the grain is the same physical size
+        // whatever the device pixel ratio.
+        vec2 px = gl_FragCoord.xy / u_dpr;
 
-        // crawling dust grain — re-hashed each animation tick
-        float dust = hash(px + vec2(t * 11.0, t * 7.0));
+        // --- half 1: uniform white noise, quantised into cells so the
+        // speckle reads as paper tooth rather than single-pixel fizz ---
+        float white = hash(floor(px / 2.4));
 
-        // soft paper fibres — anisotropic fbm to fake a wove direction
-        vec2 fib = vec2(px.x * 0.6, px.y * 2.2) / 90.0;
-        float fibres = fbm(fib + vec2(t * 0.05, 0.0));
+        // --- half 2: fractal / near-gaussian. Three scales: fine tooth,
+        // anisotropic wove fibres, and broad watermark stains ---
+        float tooth = fbm(px / 9.0);
+        float fibres = fbm(vec2(px.x * 0.6, px.y * 2.2) / 70.0);
+        float stains = fbm(px / 340.0);
+        float fractal = tooth * 0.45 + fibres * 0.34 + stains * 0.21;
 
-        // coarse stains — large blotches like watered paper
-        float stains = fbm(px / 420.0);
-
-        float val = dust * 0.55 + fibres * 0.35 + stains * 0.30;
-        val = clamp(val, 0.0, 1.0);
+        // Exactly half and half — uniform speckle over organic structure.
+        float val = clamp(0.5 * white + 0.5 * fractal, 0.0, 1.0);
 
         if (u_dark > 0.5) {
           // light dust on dark paper — screen-style additive haze
-          float a = val * 0.22;
-          gl_FragColor = vec4(vec3(val * 0.85), a);
+          gl_FragColor = vec4(vec3(val * 0.85), val * 0.34);
         } else {
           // dark grain on cream paper — multiply-style subtractive
-          float a = (1.0 - val) * 0.22 + 0.05;
-          gl_FragColor = vec4(vec3(0.04, 0.05, 0.07), a);
+          gl_FragColor = vec4(vec3(0.04, 0.05, 0.07), (1.0 - val) * 0.32 + 0.07);
         }
       }`
 
@@ -128,8 +134,8 @@ function PaperGrain({ dark }: { dark: boolean }) {
     gl.enableVertexAttribArray(0)
     gl.vertexAttribPointer(0, 2, gl.FLOAT, false, 0, 0)
 
-    const uTime = gl.getUniformLocation(prog, "u_time")
     const uRes = gl.getUniformLocation(prog, "u_res")
+    const uDpr = gl.getUniformLocation(prog, "u_dpr")
     const uDark = gl.getUniformLocation(prog, "u_dark")
 
     let dpr = Math.min(window.devicePixelRatio || 1, 1.25)
@@ -143,42 +149,42 @@ function PaperGrain({ dark }: { dark: boolean }) {
         gl!.uniform2f(uRes, w, h)
       }
     }
-    resize()
-    window.addEventListener("resize", resize, { passive: true })
+    function draw() {
+      resize()
+      gl!.uniform1f(uDpr, dpr)
+      gl!.uniform1f(uDark, darkRef.current ? 1.0 : 0.0)
+      gl!.drawArrays(gl!.TRIANGLES, 0, 3)
+    }
 
     gl.enable(gl.BLEND)
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA)
 
-    let raf = 0
-    let last = performance.now()
-    // Cap to ~18fps — grain only needs to crawl, not race
-    const interval = 1000 / 18
-    let acc = 0
-    let t0 = performance.now()
+    // Paper grain does not move. It used to be repainted on a permanent
+    // requestAnimationFrame loop (throttled to 18fps, but the loop itself
+    // still ran every frame on every route), which kept a full-viewport
+    // blended layer re-rasterising for the whole session. Now it is drawn
+    // once and only redrawn when the viewport or the theme changes.
+    draw()
 
-    const tick = (now: number) => {
-      const dt = now - last
-      last = now
-      acc += dt
-      if (acc >= interval) {
-        acc = 0
-        gl!.uniform1f(uTime, (now - t0) * 0.001)
-        gl!.uniform1f(uDark, darkRef.current ? 1.0 : 0.0)
-        gl!.drawArrays(gl!.TRIANGLES, 0, 3)
-      }
-      raf = requestAnimationFrame(tick)
+    let resizeRaf = 0
+    function onResize() {
+      if (resizeRaf) return
+      resizeRaf = requestAnimationFrame(() => {
+        resizeRaf = 0
+        draw()
+      })
     }
-    raf = requestAnimationFrame(tick)
+    window.addEventListener("resize", onResize, { passive: true })
 
     return () => {
-      cancelAnimationFrame(raf)
-      window.removeEventListener("resize", resize)
+      if (resizeRaf) cancelAnimationFrame(resizeRaf)
+      window.removeEventListener("resize", onResize)
       gl.deleteBuffer(buf)
       gl.deleteShader(vs)
       gl.deleteShader(fs)
       gl.deleteProgram(prog)
     }
-  }, [])
+  }, [dark])
 
   return (
     <canvas
