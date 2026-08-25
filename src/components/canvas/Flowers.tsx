@@ -49,7 +49,7 @@ const DARK_BUDGET: Record<DeviceTier, { near: number; far: number }> = {
 // it engulfs the camera (~11-unit radius here) and reads as an immersive
 // dust field — the individual gaussians stay sub-0.1 units even scaled,
 // so the cloud keeps its grain instead of smearing into blobs.
-const DARK_SPLAT_SCALE = 40
+const DARK_SPLAT_SCALE = 20
 
 export function Flowers({
   dark = false,
