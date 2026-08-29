@@ -5,11 +5,13 @@ import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
 import { InkLine } from "@/components/ink-line"
 import { MotionText } from "@/components/motion-text"
+import { Philosophy } from "@/components/philosophy"
+import { Testimonials } from "@/components/testimonials"
 import { motion } from "motion/react"
 import { Download, Printer } from "lucide-react"
 import { useT } from "@/lib/i18n/provider"
 
-const EXPERIENCE_COUNT = 7
+const EXPERIENCE_COUNT = 8
 const EDUCATION_COUNT = 2
 const LANGUAGE_COUNT = 4
 
@@ -416,6 +418,13 @@ export default function CVPage() {
             </div>
           </section>
 
+          {/* "how i build" — moved here from the landing page: the
+              philosophy belongs next to the experience it explains, in
+              front of the reader who is deciding whether to hire. */}
+          <section className="mb-16">
+            <Philosophy embedded />
+          </section>
+
           <section className="mb-16 grid gap-12 md:grid-cols-2">
             <div>
               <SectionTitle>{t("cv.section.education")}</SectionTitle>
@@ -502,6 +511,12 @@ export default function CVPage() {
                 </li>
               ))}
             </ul>
+          </section>
+
+          {/* client words — also moved off the landing page; social
+              proof reads strongest right next to the track record. */}
+          <section className="no-print mb-16">
+            <Testimonials embedded />
           </section>
 
           <section className="no-print">

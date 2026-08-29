@@ -33,46 +33,72 @@ const TESTIMONIALS: Testimonial[] = [
   },
 ]
 
-export function Testimonials() {
+export function Testimonials({ embedded = false }: { embedded?: boolean }) {
+  // embedded — rendered inside an existing section-container (the CV
+  // article): skip the outer container and the landing-scale heading.
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, amount: 0.15 })
   const { t, lang } = useI18n()
 
+  const inner = (
+    <>
+      <h2
+        className={
+          embedded
+            ? "mb-10 text-3xl sm:text-4xl"
+            : "mb-12 text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.92] sm:mb-16"
+        }
+        style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
+      >
+        {embedded ? (
+          <span className="ink-underline">
+            {t("testimonials.title.0")} {t("testimonials.title.1")}
+          </span>
+        ) : (
+          <>
+            <MotionText
+              key={`tt0-${lang}`}
+              text={t("testimonials.title.0")}
+              split="word"
+              from="up"
+            />{" "}
+            <MotionText
+              key={`tt1-${lang}`}
+              text={t("testimonials.title.1")}
+              split="word"
+              from="up"
+              delay={0.15}
+              className="ink-underline"
+            />
+          </>
+        )}
+      </h2>
+
+      <ul className="flex flex-col gap-12 sm:gap-16">
+        {TESTIMONIALS.map((tst, i) => (
+          <TestimonialCard
+            key={tst.name + i}
+            t={tst}
+            i={i}
+            inView={inView}
+            lang={lang}
+          />
+        ))}
+      </ul>
+    </>
+  )
+
+  if (embedded) {
+    return (
+      <section className="relative" ref={ref}>
+        {inner}
+      </section>
+    )
+  }
+
   return (
     <section className="relative py-20 sm:py-32" ref={ref}>
-      <div className="section-container">
-        <h2
-          className="mb-12 text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.92] sm:mb-16"
-          style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
-        >
-          <MotionText
-            key={`tt0-${lang}`}
-            text={t("testimonials.title.0")}
-            split="word"
-            from="up"
-          />{" "}
-          <MotionText
-            key={`tt1-${lang}`}
-            text={t("testimonials.title.1")}
-            split="word"
-            from="up"
-            delay={0.15}
-            className="ink-underline"
-          />
-        </h2>
-
-        <ul className="flex flex-col gap-12 sm:gap-16">
-          {TESTIMONIALS.map((tst, i) => (
-            <TestimonialCard
-              key={tst.name + i}
-              t={tst}
-              i={i}
-              inView={inView}
-              lang={lang}
-            />
-          ))}
-        </ul>
-      </div>
+      <div className="section-container">{inner}</div>
     </section>
   )
 }

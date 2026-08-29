@@ -25,7 +25,7 @@ export default function Sketchfab() {
             <div className="grid gap-6 sm:grid-cols-3">
               {[
                 { href: "/reel", label: t("nav.reel"), blurb: t("reel.more.reel") },
-                { href: "/portfolio", label: t("nav.work"), blurb: t("reel.more.work") },
+                { href: "/portfolio-s", label: t("nav.work"), blurb: t("reel.more.work") },
                 { href: "/art", label: t("reel.more.art.label"), blurb: t("reel.more.art") },
               ].map((item) => (
                 <a

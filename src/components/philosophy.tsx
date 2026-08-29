@@ -14,7 +14,9 @@ import { InkLine } from "./ink-line"
 import { TiltCard } from "./tilt-card"
 import { useT } from "@/lib/i18n/provider"
 
-export function Philosophy() {
+export function Philosophy({ embedded = false }: { embedded?: boolean }) {
+  // embedded — rendered inside an existing section-container (the CV
+  // article): skip the outer container and the landing-scale padding.
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, amount: 0.2 })
   const t = useT()
@@ -75,40 +77,64 @@ export function Philosophy() {
     },
   ]
 
+  const inner = (
+    <>
+      <motion.h2
+        className={
+          embedded
+            ? "mb-10 text-3xl sm:text-4xl"
+            : "mb-14 text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.92]"
+        }
+        style={{
+          fontFamily: "var(--font-display)",
+          color: "var(--ink)",
+          y: embedded ? undefined : titleY,
+        }}
+      >
+        {embedded ? (
+          <span className="ink-underline">
+            {t("philosophy.title.0")} {t("philosophy.title.1")}
+          </span>
+        ) : (
+          <>
+            <MotionText text={t("philosophy.title.0")} split="word" from="up" />{" "}
+            <MotionText
+              text={t("philosophy.title.1")}
+              split="word"
+              from="up"
+              delay={0.2}
+              className="ink-underline"
+            />
+          </>
+        )}
+      </motion.h2>
+
+      <div className="grid gap-12 md:grid-cols-3 md:gap-10">
+        {pillars.map((p, i) => (
+          <Pillar
+            key={p.n}
+            p={p}
+            i={i}
+            inView={inView}
+            smooth={smooth}
+            speed={embedded ? { y: 0, rot: 0 } : pillarSpeeds[i]}
+          />
+        ))}
+      </div>
+    </>
+  )
+
+  if (embedded) {
+    return (
+      <section className="relative" ref={ref}>
+        {inner}
+      </section>
+    )
+  }
+
   return (
     <section className="relative py-20 sm:py-32" ref={ref}>
-      <div className="section-container">
-        <motion.h2
-          className="mb-14 text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.92]"
-          style={{
-            fontFamily: "var(--font-display)",
-            color: "var(--ink)",
-            y: titleY,
-          }}
-        >
-          <MotionText text={t("philosophy.title.0")} split="word" from="up" />{" "}
-          <MotionText
-            text={t("philosophy.title.1")}
-            split="word"
-            from="up"
-            delay={0.2}
-            className="ink-underline"
-          />
-        </motion.h2>
-
-        <div className="grid gap-12 md:grid-cols-3 md:gap-10">
-          {pillars.map((p, i) => (
-            <Pillar
-              key={p.n}
-              p={p}
-              i={i}
-              inView={inView}
-              smooth={smooth}
-              speed={pillarSpeeds[i]}
-            />
-          ))}
-        </div>
-      </div>
+      <div className="section-container">{inner}</div>
     </section>
   )
 }
