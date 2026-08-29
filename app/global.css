@@ -809,6 +809,15 @@
     transform: translateY(-8px);
   }
 
+  /* Off-screen rendering skip for long editorial pages (/more). The
+     browser lays out and paints these sections only as they approach
+     the viewport; contain-intrinsic-size keeps the scrollbar honest
+     with a rough estimate until the real size is known. */
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+
   /* Text utilities */
   .text-balance {
     text-wrap: balance;

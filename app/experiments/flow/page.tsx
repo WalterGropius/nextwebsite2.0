@@ -1,40 +1,68 @@
 "use client"
 
-// Flow — WebGPU + TSL particle field. 200k points pushed around by
-// curl-noise plus cursor attraction, ran on the GPU through Three's
-// new TSL compute pipeline. If WebGPU isn't available we render an
-// idle CSS card explaining why; we don't fall back to WebGL because
-// the whole point of the page is the WebGPU path.
+// Flow — Three.js TSL particle field on the WebGPU renderer.
 //
-// Built directly on three.webgpu + three.tsl — no react-three-fiber
-// for the renderer, just a useEffect that mounts a WebGPURenderer
-// on a canvas and tears it down on unmount.
+// The same TSL compute pipeline now runs on two backends:
+//   · WebGPU        → real compute shaders, 200k particles
+//   · WebGL 2       → three's fallback backend (transform feedback),
+//                     smaller budget, identical visuals
+// so the page works for every visitor instead of dead-ending on a
+// "webgpu unavailable" card. Speed-based colour is computed in the
+// vertex stage and passed as a varying — storage reads aren't legal
+// in fragment shaders on the WebGL fallback.
+//
+// Built directly on three/webgpu + three/tsl — no react-three-fiber
+// for the renderer, just a useEffect that mounts the renderer on a
+// canvas and tears it down on unmount.
 
 import { useEffect, useRef, useState } from "react"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
+import { getDeviceTier } from "@/lib/device-tier"
+import { perfHudEnabled } from "@/lib/perf"
 
-type Stage = "probing" | "unsupported" | "running" | "error"
+type Stage = "probing" | "running" | "error"
+type Backend = "webgpu" | "webgl2"
+
+// Particle budgets. WebGPU chews through these; the transform-feedback
+// fallback is still GPU-resident but pays more per particle.
+const BUDGET: Record<Backend, Record<string, number>> = {
+  webgpu: { low: 40_000, mid: 120_000, high: 200_000 },
+  webgl2: { low: 12_000, mid: 30_000, high: 60_000 },
+}
 
 export default function FlowPage() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const wrapRef = useRef<HTMLDivElement>(null)
   const mouse = useRef({ x: 0, y: 0, active: 0 })
   const [stage, setStage] = useState<Stage>("probing")
+  const [backend, setBackend] = useState<Backend | null>(null)
+  const [count, setCount] = useState(0)
+  const [fps, setFps] = useState(0)
   const [reason, setReason] = useState<string>("")
+  const hud = useRef(false)
 
   useEffect(() => {
+    hud.current = perfHudEnabled()
     let cancelled = false
     let cleanup: (() => void) | null = null
     ;(async () => {
-      // Probe WebGPU
-      const nav = navigator as Navigator & { gpu?: { requestAdapter?: () => Promise<unknown> } }
-      if (!nav.gpu) {
-        setStage("unsupported")
-        return
+      const nav = navigator as Navigator & {
+        gpu?: { requestAdapter?: () => Promise<unknown> }
       }
+      // Prefer WebGPU, fall back to the WebGL2 backend of the same
+      // renderer — same scene graph, same TSL, no separate code path.
+      let useWebGPU = false
+      if (nav.gpu?.requestAdapter) {
+        try {
+          useWebGPU = (await nav.gpu.requestAdapter()) != null
+        } catch {
+          useWebGPU = false
+        }
+      }
+      if (cancelled) return
 
       try {
         const THREE = await import("three/webgpu")
@@ -42,36 +70,10 @@ export default function FlowPage() {
         if (cancelled) return
 
         const {
-          WebGPURenderer,
-          Scene,
-          PerspectiveCamera,
-          Color,
-          AdditiveBlending,
-          BufferGeometry,
-          Mesh,
-          PlaneGeometry,
-          StorageInstancedBufferAttribute,
-          InstancedMesh,
-          NodeMaterial,
-          Vector2,
-        } = THREE as unknown as typeof import("three/webgpu") & {
-          Vector2: typeof import("three").Vector2
-          BufferGeometry: typeof import("three").BufferGeometry
-          PlaneGeometry: typeof import("three").PlaneGeometry
-          Mesh: typeof import("three").Mesh
-          InstancedMesh: typeof import("three").InstancedMesh
-          PerspectiveCamera: typeof import("three").PerspectiveCamera
-          Scene: typeof import("three").Scene
-          Color: typeof import("three").Color
-          AdditiveBlending: number
-        }
-
-        const {
           Fn,
           vec3,
           vec4,
           float,
-          uint,
           uniform,
           instanceIndex,
           mix,
@@ -79,27 +81,50 @@ export default function FlowPage() {
           smoothstep,
           time,
           positionLocal,
-          attribute,
-          cameraPosition,
-          modelWorldMatrix,
           cameraProjectionMatrix,
           cameraViewMatrix,
+          modelWorldMatrix,
           color,
+          storage,
+          varying,
+          sin,
+          cos,
         } = TSL
 
         const canvas = canvasRef.current
         const wrap = wrapRef.current
         if (!canvas || !wrap) return
 
-        const renderer = new WebGPURenderer({ canvas, antialias: true, alpha: true })
-        // initialise — required for WebGPU async setup
+        const renderer = new THREE.WebGPURenderer({
+          canvas,
+          antialias: true,
+          alpha: true,
+          forceWebGL: !useWebGPU,
+        })
         await renderer.init()
         if (cancelled) {
           renderer.dispose()
           return
         }
+        const activeBackend: Backend = useWebGPU ? "webgpu" : "webgl2"
+        setBackend(activeBackend)
 
-        const dpr = Math.min(window.devicePixelRatio || 1, 2)
+        const tier = getDeviceTier()
+        const COUNT = BUDGET[activeBackend][tier]
+        setCount(COUNT)
+
+        const dpr = Math.min(
+          window.devicePixelRatio || 1,
+          activeBackend === "webgpu" ? 2 : 1.5,
+        )
+
+        const scene = new THREE.Scene()
+        scene.background = null
+
+        const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100)
+        camera.position.set(0, 0, 6)
+        camera.lookAt(0, 0, 0)
+
         const resize = () => {
           const r = wrap.getBoundingClientRect()
           renderer.setSize(r.width, r.height, false)
@@ -108,16 +133,7 @@ export default function FlowPage() {
           camera.updateProjectionMatrix()
         }
 
-        const scene = new Scene()
-        scene.background = null
-
-        const camera = new PerspectiveCamera(55, 1, 0.1, 100)
-        camera.position.set(0, 0, 6)
-        camera.lookAt(0, 0, 0)
-
-        // ===== particles =================================================
-        const COUNT = 200_000
-
+        // ===== particles ================================================
         // initial positions in a thin disk
         const initPos = new Float32Array(COUNT * 4)
         const initVel = new Float32Array(COUNT * 4)
@@ -127,51 +143,34 @@ export default function FlowPage() {
           initPos[i * 4 + 0] = Math.cos(a) * r
           initPos[i * 4 + 1] = Math.sin(a) * r
           initPos[i * 4 + 2] = (Math.random() - 0.5) * 0.4
-          initPos[i * 4 + 3] = Math.random() // unused / lifetime
-          initVel[i * 4 + 0] = 0
-          initVel[i * 4 + 1] = 0
-          initVel[i * 4 + 2] = 0
-          initVel[i * 4 + 3] = 0
+          initPos[i * 4 + 3] = Math.random()
         }
 
-        const positions = new StorageInstancedBufferAttribute(initPos, 4)
-        const velocities = new StorageInstancedBufferAttribute(initVel, 4)
-        // TSL storage handles for compute
-        // signature: storage(buffer, type, count)
-        // type: 'vec4'
-        // eslint-disable-next-line
-        const storage = (TSL as any).storage
+        const positions = new THREE.StorageInstancedBufferAttribute(initPos, 4)
+        const velocities = new THREE.StorageInstancedBufferAttribute(initVel, 4)
         const posBuf = storage(positions, "vec4", COUNT)
         const velBuf = storage(velocities, "vec4", COUNT)
 
-        // uniforms
-        const uMouse = uniform(new Vector2(0, 0))
+        const uMouse = uniform(new THREE.Vector2(0, 0))
         const uMouseActive = uniform(0.0)
         const uDt = uniform(0.016)
 
         // tiny pseudo curl-noise: two sin/cos bands; cheap, looks fluid.
         // eslint-disable-next-line
         const curl = Fn(([p]: [any]) => {
-          // p is vec3
-          // eslint-disable-next-line
-          const s = (TSL as any).sin
-          // eslint-disable-next-line
-          const c = (TSL as any).cos
           const x = p.x.mul(1.4).add(time.mul(0.6))
           const y = p.y.mul(1.4).add(time.mul(0.5))
           const z = p.z.mul(1.4).add(time.mul(0.4))
           return vec3(
-            s(y).mul(0.9).add(c(z).mul(0.6)),
-            s(z).mul(0.9).add(c(x).mul(0.6)),
-            s(x).mul(0.4).add(c(y).mul(0.4)),
+            sin(y).mul(0.9).add(cos(z).mul(0.6)),
+            sin(z).mul(0.9).add(cos(x).mul(0.6)),
+            sin(x).mul(0.4).add(cos(y).mul(0.4)),
           )
         })
 
         const computeNode = Fn(() => {
-          // eslint-disable-next-line
-          const i = uint(instanceIndex) as any
-          const pos = posBuf.element(i)
-          const vel = velBuf.element(i)
+          const pos = posBuf.element(instanceIndex)
+          const vel = velBuf.element(instanceIndex)
 
           // curl-noise force
           const force = curl(pos.xyz).mul(0.7)
@@ -186,66 +185,71 @@ export default function FlowPage() {
           pos.xyz.assign(pos.xyz.add(vel.xyz.mul(uDt)))
         })().compute(COUNT)
 
-        // === geometry + material for the particles =====================
-        // Each particle is a tiny billboard quad. We bypass three's
-        // normal Points pipeline so we have full control over the
-        // shader.
-        const geo = new PlaneGeometry(0.018, 0.018)
+        // === geometry + material =======================================
+        // Each particle is a tiny billboard quad; instanced so the whole
+        // field is one draw call.
+        const geo = new THREE.PlaneGeometry(0.018, 0.018)
         // eslint-disable-next-line
-        const mesh = new InstancedMesh(geo, undefined as any, COUNT)
+        const mesh = new THREE.InstancedMesh(geo, undefined as any, COUNT)
         mesh.frustumCulled = false
 
-        const mat = new NodeMaterial()
+        const mat = new THREE.NodeMaterial()
         mat.transparent = true
         mat.depthWrite = false
-        // eslint-disable-next-line
-        ;(mat as any).blending = AdditiveBlending
+        mat.blending = THREE.AdditiveBlending
 
-        // vertex shader: place each instance at the storage position
-        // eslint-disable-next-line
+        // Everything that touches the storage buffers happens in the
+        // vertex stage; the fragment stage only sees varyings. This is
+        // what makes the WebGL fallback possible.
+        const worldPos = posBuf.element(instanceIndex).xyz
+        const speed = length(velBuf.element(instanceIndex).xyz).mul(0.6)
+        const vSpeed = varying(speed)
+
         mat.vertexNode = Fn(() => {
+          const mvPos = cameraViewMatrix
+            .mul(modelWorldMatrix)
+            .mul(vec4(worldPos, 1.0))
           // eslint-disable-next-line
-          const i = uint(instanceIndex) as any
-          const worldPos = posBuf.element(i).xyz
-          // billboard: convert position to view space, add localPos
-          const mvPos = cameraViewMatrix.mul(modelWorldMatrix).mul(vec4(worldPos, 1.0))
-          // eslint-disable-next-line
-          const billboard = (mvPos as any).xyz.add(vec3(positionLocal.x, positionLocal.y, 0))
+          const billboard = (mvPos as any).xyz.add(
+            vec3(positionLocal.x, positionLocal.y, 0),
+          )
           return cameraProjectionMatrix.mul(vec4(billboard, 1.0))
         })()
 
-        // fragment shader: gradient by speed
-        // eslint-disable-next-line
         mat.fragmentNode = Fn(() => {
-          // eslint-disable-next-line
-          const i = uint(instanceIndex) as any
-          const speed = length(velBuf.element(i).xyz).mul(0.6)
-          const tCool = color(new Color("#3a8da8"))
-          const tWarm = color(new Color("#ffb066"))
-          const c = mix(tCool, tWarm, smoothstep(0.0, 1.6, speed))
-          const alpha = float(0.22).add(speed.mul(0.15))
+          const tCool = color(new THREE.Color("#3a8da8"))
+          const tWarm = color(new THREE.Color("#ffb066"))
+          const c = mix(tCool, tWarm, smoothstep(0.0, 1.6, vSpeed))
+          const alpha = float(0.22).add(vSpeed.mul(0.15))
           return vec4(c, alpha)
         })()
 
         mesh.material = mat
         scene.add(mesh)
 
-        // pointer
-        const onMove = (e: PointerEvent) => {
+        // pointer + touch — touchmove stays passive so the page can
+        // still scroll; the field just reacts while a finger drags.
+        const setPointer = (clientX: number, clientY: number) => {
           const r = wrap.getBoundingClientRect()
-          // convert to normalized clip space then to scene plane (z=0)
-          const ndcX = ((e.clientX - r.left) / r.width) * 2 - 1
-          const ndcY = -(((e.clientY - r.top) / r.height) * 2 - 1)
-          // approximate: scale to scene units (camera fov 55 @ z=6)
+          const ndcX = ((clientX - r.left) / r.width) * 2 - 1
+          const ndcY = -(((clientY - r.top) / r.height) * 2 - 1)
           const sceneY = Math.tan((55 * Math.PI) / 360) * 6
           const sceneX = sceneY * (r.width / r.height)
           mouse.current.x = ndcX * sceneX
           mouse.current.y = ndcY * sceneY
           mouse.current.active = 1
         }
-        const onLeave = () => { mouse.current.active = 0 }
+        const onMove = (e: PointerEvent) => setPointer(e.clientX, e.clientY)
+        const onTouch = (e: TouchEvent) => {
+          if (e.touches[0]) setPointer(e.touches[0].clientX, e.touches[0].clientY)
+        }
+        const onLeave = () => {
+          mouse.current.active = 0
+        }
         wrap.addEventListener("pointermove", onMove)
+        wrap.addEventListener("touchmove", onTouch, { passive: true })
         wrap.addEventListener("pointerleave", onLeave)
+        wrap.addEventListener("touchend", onLeave)
         window.addEventListener("resize", resize)
         resize()
 
@@ -253,15 +257,24 @@ export default function FlowPage() {
 
         let last = performance.now()
         let raf = 0
+        let frames = 0
+        let fpsWindowStart = last
         const tick = (now: number) => {
           const dt = Math.min(0.05, (now - last) / 1000)
           last = now
           uMouse.value.set(mouse.current.x, mouse.current.y)
           uMouseActive.value = mouse.current.active
           uDt.value = dt
-          // eslint-disable-next-line
-          ;(renderer as any).computeAsync(computeNode)
+          renderer.computeAsync(computeNode)
           renderer.render(scene, camera)
+          if (hud.current) {
+            frames++
+            if (now - fpsWindowStart >= 500) {
+              setFps(Math.round((frames * 1000) / (now - fpsWindowStart)))
+              frames = 0
+              fpsWindowStart = now
+            }
+          }
           raf = requestAnimationFrame(tick)
         }
         raf = requestAnimationFrame(tick)
@@ -269,7 +282,9 @@ export default function FlowPage() {
         cleanup = () => {
           cancelAnimationFrame(raf)
           wrap.removeEventListener("pointermove", onMove)
+          wrap.removeEventListener("touchmove", onTouch)
           wrap.removeEventListener("pointerleave", onLeave)
+          wrap.removeEventListener("touchend", onLeave)
           window.removeEventListener("resize", resize)
           mesh.geometry.dispose()
           mat.dispose()
@@ -313,7 +328,7 @@ export default function FlowPage() {
             className="text-[clamp(2.4rem,6vw,5rem)] leading-[0.9]"
             style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
           >
-            flow · webgpu
+            flow * webgpu
           </h1>
           <p
             className="mt-3 max-w-2xl text-sm sm:text-base"
@@ -322,9 +337,11 @@ export default function FlowPage() {
               fontFamily: "var(--font-display)",
             }}
           >
-            200,000 particles, GPU-resident, advected by curl noise and your
-            cursor. Built on Three.js TSL → WebGPU compute shaders. Move the
-            mouse over the canvas to perturb the field.
+            {count > 0 ? count.toLocaleString("en-US") : "200,000"} particles,
+            GPU-resident, advected by curl noise and your cursor. Three.js TSL
+            compute — WebGPU where the browser has it, transform-feedback
+            WebGL 2 everywhere else. Move over the canvas to perturb the
+            field.
           </p>
         </section>
 
@@ -346,34 +363,51 @@ export default function FlowPage() {
             className="block h-full w-full"
             style={{ cursor: "crosshair" }}
           />
+          {backend && stage === "running" && (
+            <div
+              className="pointer-events-none absolute left-3 top-3 flex items-center gap-3 px-3 py-1 text-[0.65rem] uppercase tracking-[0.3em]"
+              style={{
+                color: "var(--text-muted)",
+                background:
+                  "color-mix(in srgb, var(--surface-dark) 82%, transparent)",
+                border: "1px solid var(--border-subtle)",
+              }}
+            >
+              <span>{backend === "webgpu" ? "webgpu" : "webgl2 fallback"}</span>
+              {fps > 0 && <span>{fps} fps</span>}
+            </div>
+          )}
           {stage !== "running" && (
             <div
               className="absolute inset-0 flex flex-col items-center justify-center gap-3 p-8 text-center"
-              style={{ background: "color-mix(in srgb, var(--surface-dark) 92%, transparent)" }}
+              style={{
+                background:
+                  "color-mix(in srgb, var(--surface-dark) 92%, transparent)",
+              }}
             >
               {stage === "probing" && (
-                <span className="text-sm uppercase tracking-[0.3em]" style={{ color: "var(--text-muted)" }}>
-                  probing webgpu…
+                <span
+                  className="text-sm uppercase tracking-[0.3em]"
+                  style={{ color: "var(--text-muted)" }}
+                >
+                  waking the gpu…
                 </span>
-              )}
-              {stage === "unsupported" && (
-                <>
-                  <span className="text-sm uppercase tracking-[0.3em]" style={{ color: "var(--text-muted)" }}>
-                    webgpu unavailable
-                  </span>
-                  <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }} className="max-w-md">
-                    This page only runs in browsers with WebGPU enabled
-                    (Chrome 113+, Edge 113+, recent Safari TP). Firefox needs
-                    the `dom.webgpu.enabled` flag.
-                  </p>
-                </>
               )}
               {stage === "error" && (
                 <>
-                  <span className="text-sm uppercase tracking-[0.3em]" style={{ color: "var(--vermilion, #ee4a44)" }}>
-                    webgpu pipeline crashed
+                  <span
+                    className="text-sm uppercase tracking-[0.3em]"
+                    style={{ color: "var(--vermilion, #ee4a44)" }}
+                  >
+                    gpu pipeline crashed
                   </span>
-                  <p style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }} className="max-w-md text-xs">
+                  <p
+                    style={{
+                      color: "var(--text-muted)",
+                      fontFamily: "var(--font-display)",
+                    }}
+                    className="max-w-md text-xs"
+                  >
                     {reason}
                   </p>
                 </>
