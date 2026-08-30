@@ -9,11 +9,14 @@ interface SplatMeshProps {
   scale?: number
   position?: [number, number, number]
   rotation?: [number, number, number]
+  // Spark 2.x: build a LoD pyramid on load so SparkRenderer can render
+  // a downsampled set when the budget (lodSplatScale) calls for it.
+  lod?: boolean
   onLoad?: (mesh: SplatMeshClass) => void
 }
 
 export const SplatMesh = forwardRef<THREE.Object3D, SplatMeshProps>(
-  ({ url, scale = 1, position, rotation, onLoad }, ref) => {
+  ({ url, scale = 1, position, rotation, lod = false, onLoad }, ref) => {
     const groupRef = useRef<THREE.Group>(null!)
     const splatRef = useRef<SplatMeshClass | null>(null)
     const onLoadRef = useRef(onLoad)
@@ -31,7 +34,7 @@ export const SplatMesh = forwardRef<THREE.Object3D, SplatMeshProps>(
     // below so prop-reference churn (e.g. parent re-renders) doesn't dispose
     // and reload the multi-MB asset.
     useEffect(() => {
-      const splat = new SplatMeshClass({ url })
+      const splat = new SplatMeshClass({ url, lod })
       splatRef.current = splat
       // eslint-disable-next-line
       const group = groupRef.current as any
@@ -43,7 +46,7 @@ export const SplatMesh = forwardRef<THREE.Object3D, SplatMeshProps>(
         splat.dispose?.()
         splatRef.current = null
       }
-    }, [url])
+    }, [url, lod])
 
     // Apply transforms whenever the value (not the array reference) changes
     const sx = scale

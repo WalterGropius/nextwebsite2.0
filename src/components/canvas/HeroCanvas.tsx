@@ -11,14 +11,23 @@ import { perfHudEnabled } from "@/lib/perf"
 // is opened with ?perf, so it costs the ordinary visitor zero bytes.
 const Perf = lazy(() => import("r3f-perf").then((m) => ({ default: m.Perf })))
 
-// Per-tier dpr ceiling/floor. The PerformanceMonitor walks between them
-// at runtime, so a device that *claims* to be high-tier but renders the
-// splat at 20fps still ends up on a cheap frame.
-const DPR_RANGE: Record<string, [number, number]> = {
-  low: [0.6, 1],
-  mid: [0.75, 1.25],
-  high: [0.85, 1.5],
+// Per-tier dpr floor / baseline / boost ceiling. The ladder starts at
+// the baseline and walks in BOTH directions from measured fps: down to
+// the floor when frames sag, up toward the boost ceiling when the
+// device proves it has headroom (the ceiling is additionally capped by
+// the screen's real devicePixelRatio — no point rendering pixels the
+// panel can't show). MSAA stays off everywhere per Spark's guidance —
+// splats composite their own soft edges, so the budget goes to
+// resolution instead.
+const DPR_STOPS: Record<string, { floor: number; base: number; boost: number }> = {
+  low: { floor: 0.6, base: 1, boost: 1.25 },
+  mid: { floor: 0.75, base: 1.25, boost: 1.75 },
+  high: { floor: 0.85, base: 1.5, boost: 2.25 },
 }
+
+// Ladder steps: -4 (survival) … 0 (baseline) … +3 (overdrive).
+const LEVEL_MIN = -4
+const LEVEL_MAX = 3
 
 // HeroCanvas — the landing-page splat background, isolated into its own
 // module so the landing page can pull it in with `next/dynamic`
@@ -27,12 +36,13 @@ const DPR_RANGE: Record<string, [number, number]> = {
 // hero actually mounts, which slashes First Load JS and main-thread
 // blocking on the most-visited route.
 //
-// Runtime quality is adaptive on top of the static device tier:
-//   PerformanceMonitor watches real fps →
-//     decline: step dpr down, thin the star layers
-//     incline: step back up toward the tier ceiling
-//     fallback (sustained misery): freeze the frameloop entirely —
-//       the splat becomes a still image, which beats a 15fps slideshow.
+// Runtime quality is symmetric around the static device tier:
+//   decline → dpr down, stars thin, and (Spark 2 LoD, non-high tiers)
+//             the splat itself renders a downsampled set
+//   incline → dpr climbs past the baseline toward the panel's true
+//             pixel ratio and the star field overdrives a touch
+//   sustained misery → freeze the frameloop; a still splat beats a
+//             15fps slideshow.
 export default function HeroCanvas({
   dark,
   active,
@@ -40,22 +50,32 @@ export default function HeroCanvas({
   dark: boolean
   active: boolean
 }) {
-  // Classified once on mount — the tier picks the starting resolution,
-  // MSAA and particle budgets; the monitor below refines from there.
-  const { tier, reducedMotion, hud } = useMemo(
+  const { tier, reducedMotion, hud, deviceDpr } = useMemo(
     () => ({
       tier: getDeviceTier(),
       reducedMotion: prefersReducedMotion(),
       hud: perfHudEnabled(),
+      deviceDpr:
+        typeof window === "undefined" ? 1 : window.devicePixelRatio || 1,
     }),
     [],
   )
-  const [dprMin, dprMax] = DPR_RANGE[tier]
-  const [dpr, setDpr] = useState(dprMax)
-  // 1 → full star budget, stepped down when frames drop.
-  const [starScale, setStarScale] = useState(1)
+  const stops = DPR_STOPS[tier]
+  const [level, setLevel] = useState(0)
   // Set when the monitor gives up: render on demand only.
   const [frozen, setFrozen] = useState(false)
+
+  // Derive every knob from the single ladder position.
+  const dpr = Math.min(
+    level >= 0
+      ? stops.base + (level / LEVEL_MAX) * (stops.boost - stops.base)
+      : stops.base + (level / -LEVEL_MIN) * (stops.floor - stops.base),
+    deviceDpr,
+  )
+  const quality =
+    level >= 0
+      ? 1 + level * 0.12 // up to 1.36× stars on proven-fast machines
+      : Math.max(0.3, 1 + level * 0.175)
 
   const running = active && !reducedMotion && !frozen
 
@@ -67,9 +87,10 @@ export default function HeroCanvas({
       dpr={dpr}
       performance={{ min: 0.5 }}
       gl={{
-        // Splats composite their own soft edges — MSAA is pure cost on
-        // weaker GPUs.
-        antialias: tier === "high",
+        // Spark composites its own soft splat edges and explicitly
+        // recommends antialias: false — MSAA was pure cost even on
+        // strong GPUs. The saved budget funds the dpr boost instead.
+        antialias: false,
         alpha: true,
         powerPreference: "high-performance",
       }}
@@ -80,27 +101,19 @@ export default function HeroCanvas({
         // (demand) canvas produces no frames and would read as 0fps.
         ms={running ? 250 : 1e9}
         iterations={8}
-        bounds={() => [40, 60]}
-        onDecline={() => {
-          setDpr((d) => Math.max(dprMin, +(d - 0.2).toFixed(2)))
-          setStarScale((s) => Math.max(0.35, +(s - 0.25).toFixed(2)))
-        }}
-        onIncline={() => {
-          setDpr((d) => Math.min(dprMax, +(d + 0.15).toFixed(2)))
-          setStarScale((s) => Math.min(1, +(s + 0.15).toFixed(2)))
-        }}
+        // Incline threshold tracks the panel's refresh rate so 60Hz
+        // screens (which can never exceed ~60fps) can still climb.
+        bounds={(hz) => [40, Math.min(Math.max(hz - 6, 50), 90)]}
+        onDecline={() => setLevel((l) => Math.max(LEVEL_MIN, l - 1))}
+        onIncline={() => setLevel((l) => Math.min(LEVEL_MAX, l + 1))}
         flipflops={4}
         onFallback={() => {
-          // Still losing after four decline/incline cycles: stop paying
-          // per-frame at all. The captured splat reads perfectly as a
-          // still; parallax quietly turns off.
-          setDpr(dprMin)
-          setStarScale(0.3)
+          setLevel(LEVEL_MIN)
           setFrozen(true)
         }}
       >
         <Suspense fallback={null}>
-          <Flowers dark={dark} tier={tier} starScale={starScale} />
+          <Flowers dark={dark} tier={tier} quality={quality} />
         </Suspense>
       </PerformanceMonitor>
       {hud && (

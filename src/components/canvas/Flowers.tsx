@@ -54,15 +54,23 @@ const DARK_SPLAT_SCALE = 20
 export function Flowers({
   dark = false,
   tier = 'high',
-  starScale = 1,
+  quality = 1,
 }: {
   dark?: boolean
   tier?: DeviceTier
-  // Runtime multiplier (0..1) from the hero's PerformanceMonitor —
-  // lets the star budget shrink further when real fps sags below what
-  // the static device tier predicted.
-  starScale?: number
+  // Runtime quality multiplier from the hero's PerformanceMonitor.
+  // Below 1 the scene sheds cost (fewer stars, and — via Spark 2's
+  // LoD budget — fewer splats); above 1 fast machines overdrive the
+  // star field a little. Splats themselves never exceed 1: the
+  // captures have a fixed count, so extra sharpness comes from dpr.
+  quality?: number
 }) {
+  // LoD pyramids cost load/mem on devices that will never need them —
+  // only non-high tiers build one, and only they can be told to render
+  // a downsampled splat set under pressure.
+  const useLod = tier !== 'high'
+  const lodSplatScale = useLod ? Math.min(1, quality) : 1
+  const starScale = quality
   const [isClient, setIsClient] = useState(false)
   const orbitRef = useRef({ x: 0, y: 0 })
   const distanceRef = useRef(0)
@@ -213,7 +221,7 @@ export function Flowers({
     const far = Math.max(200, Math.round(budget.far * starScale))
     return (
       <>
-        <SparkRenderer />
+        <SparkRenderer lodSplatScale={lodSplatScale} />
         {/* Everything the viewer parallaxes lives under the tilt group —
             both star layers as well as the capture. With the stars
             outside it the splat swung on its own against a pinned
@@ -247,6 +255,7 @@ export function Flowers({
           url="/splat_dark.sog"
           scale={DARK_SPLAT_SCALE}
           rotation={[Math.PI, 0.3 * Math.PI, 0]}
+          lod={useLod}
         />
       </>
     )
@@ -254,11 +263,12 @@ export function Flowers({
 
   return (
     <>
-      <SparkRenderer />
+      <SparkRenderer lodSplatScale={lodSplatScale} />
       <SplatMesh
         url="/flowers_white.sog"
         scale={3}
         rotation={[Math.PI, 0.3 * Math.PI, 0]}
+        lod={useLod}
       />
     </>
   )

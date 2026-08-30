@@ -4,7 +4,10 @@ import React, { useRef, useEffect } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import * as THREE from "three";
 import { OrbitControls } from "@react-three/drei";
-import { GPUComputationRenderer, Variable } from "three/examples/jsm/Addons.js";
+// Direct module import — the Addons.js barrel re-exports LottieLoader,
+// which in three r185 imports lottie-web from a CDN URL webpack can't
+// bundle.
+import { GPUComputationRenderer, Variable } from "three/examples/jsm/misc/GPUComputationRenderer.js";
 import { useControls } from "leva";
 import { EffectComposer, Bloom, Pixelation } from "@react-three/postprocessing";
 /* import {
