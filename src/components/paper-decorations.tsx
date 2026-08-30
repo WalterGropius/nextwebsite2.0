@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useMemo, useState, type ReactNode } from "react"
+import { getDeviceTier } from "@/lib/device-tier"
 
 // PaperDecorations — the full catalog of hand-sketched marginalia.
 // Every doodle is line-drawn SVG that picks up `var(--ink)` and the
@@ -37,10 +38,10 @@ const COFFEE_STAINS: Array<{
   { src: "/coffee1.webp", top: "1280vh", side: "right", offset: "-3vw",  size: 340, rotate: -19, opacity: 0.18 },
 ]
 
-function CoffeeStains() {
+function CoffeeStains({ stains }: { stains: typeof COFFEE_STAINS }) {
   return (
     <>
-      {COFFEE_STAINS.map((s, i) => (
+      {stains.map((s, i) => (
         <img
           key={i}
           src={s.src}
@@ -1705,24 +1706,26 @@ function MarginStar({ top, side, offset, rotate = 0, size = 18, opacity = 0.5 }:
 // blocks on the landing page. We reuse renderers from the main
 // catalog rather than redrawing them, just at a larger scale and
 // horizontally centred.
+// Tuned to the decluttered landing (hero → manifesto → highlights →
+// creations → contact); on longer pages they simply land early.
 const CENTER_PICKS: Array<{ id: string; topVh: number; rotate: number; opacity?: number }> = [
-  { id: "boids",     topVh: 215, rotate: -2, opacity: 0.45 }, // manifesto ↔ highlights
-  { id: "ouroboros", topVh: 375, rotate: 3,  opacity: 0.4 },  // highlights ↔ philosophy
-  { id: "cymatics",  topVh: 545, rotate: -2, opacity: 0.4 },  // philosophy ↔ arsenal
-  { id: "node-graph",topVh: 715, rotate: 2,  opacity: 0.4 },  // arsenal ↔ creations
-  { id: "dmn",       topVh: 935, rotate: -3, opacity: 0.4 },  // creations ↔ contact
+  { id: "boids",     topVh: 185, rotate: -2, opacity: 0.45 }, // manifesto ↔ highlights
+  { id: "node-graph",topVh: 290, rotate: 2,  opacity: 0.4 },  // highlights ↔ creations
+  { id: "dmn",       topVh: 400, rotate: -3, opacity: 0.4 },  // creations ↔ contact
 ]
 
-function CenterDoodles() {
+function CenterDoodles({ cutoffVh }: { cutoffVh: number }) {
   // Look up each pick's renderer from the main catalog. If a pick
   // references an unknown id we just skip it (safer than crashing).
   const picks = useMemo(
     () =>
-      CENTER_PICKS.map((p) => {
-        const found = DOODLES.find((d) => d.id === p.id)
-        return found ? { ...p, render: found.render } : null
-      }).filter((x): x is { id: string; topVh: number; rotate: number; opacity?: number; render: () => ReactNode } => x !== null),
-    [],
+      CENTER_PICKS.filter((p) => p.topVh < cutoffVh)
+        .map((p) => {
+          const found = DOODLES.find((d) => d.id === p.id)
+          return found ? { ...p, render: found.render } : null
+        })
+        .filter((x): x is { id: string; topVh: number; rotate: number; opacity?: number; render: () => ReactNode } => x !== null),
+    [cutoffVh],
   )
   return (
     <>
@@ -1754,6 +1757,9 @@ function CenterDoodles() {
 
 // ---- Root --------------------------------------------------------
 
+// Parse "85vh" → 85 for the stain/star top strings.
+const vhOf = (top: string) => parseFloat(top)
+
 export function PaperDecorations() {
   // Mount-gate everything. The SVG paths inside the doodles use
   // Math.sin/Math.cos to build coordinates and the trig results
@@ -1762,9 +1768,37 @@ export function PaperDecorations() {
   // on the server side avoids the mismatch entirely.
   const [mounted, setMounted] = useState(false)
   const [items, setItems] = useState<Placed[] | null>(null)
+  // Document height in vh — the doodle catalog reaches 2000vh+ for the
+  // longest pages, but most routes are a fraction of that. Anything
+  // placed past the real page height used to still mount (and
+  // rasterise its SVG-filter layer) while sitting invisibly below the
+  // footer. Measure and cull instead.
+  const [docVh, setDocVh] = useState(Infinity)
+  const [tier] = useState(() => getDeviceTier())
   useEffect(() => {
     setMounted(true)
     setItems(place(DOODLES))
+
+    let raf = 0
+    const measure = () => {
+      raf = 0
+      const vh = window.innerHeight || 1
+      setDocVh((document.body.scrollHeight / vh) * 100)
+    }
+    const queue = () => {
+      if (!raf) raf = requestAnimationFrame(measure)
+    }
+    queue()
+    // Content arrives async (fetched grids, lazy images) — watch the
+    // body so late layout growth re-admits the deeper doodles.
+    const ro = new ResizeObserver(queue)
+    ro.observe(document.body)
+    window.addEventListener("resize", queue, { passive: true })
+    return () => {
+      ro.disconnect()
+      window.removeEventListener("resize", queue)
+      if (raf) cancelAnimationFrame(raf)
+    }
   }, [])
 
   const stars = useMemo(
@@ -1789,6 +1823,20 @@ export function PaperDecorations() {
 
   if (!mounted) return null
 
+  // Cull everything below the fold of the actual document. The 15vh
+  // margin keeps a doodle from poking out under the footer.
+  const cutoff = docVh - 15
+  const visibleItems = items?.filter((d) => d.topVh < cutoff) ?? null
+  // Low-tier devices get half the marginalia — every SVG-filtered layer
+  // costs raster time on weak GPUs, and the notebook still reads with a
+  // sparser hand.
+  const prunedItems =
+    tier === "low" && visibleItems
+      ? visibleItems.filter((_, i) => i % 2 === 0)
+      : visibleItems
+  const visibleStains = COFFEE_STAINS.filter((s) => vhOf(s.top) < cutoff)
+  const visibleStars = stars.filter((s) => vhOf(s.top) < cutoff)
+
   return (
     <>
       {/* Doodle sizing + positioning. All placement lives in CSS
@@ -1798,12 +1846,12 @@ export function PaperDecorations() {
               the centred content column, scaled to 115%
             - tablet / narrow desktop: every doodle into the right
               margin (content is left-aligned at that width), 75%
-            - phone: same right margin, 60%, slightly more faded. */}
+            - phone: hidden — 40 SVG-filter layers squeezed into a
+              360px margin were pure cost, not marginalia. */}
       <style>{`
         .doodle {
           transform: rotate(var(--r, 0deg));
           transform-origin: 50% 50%;
-          will-change: transform;
         }
         /* desktop placement: doodle sits just past the centred
            content column on its preferred side */
@@ -1823,11 +1871,7 @@ export function PaperDecorations() {
           }
         }
         @media (max-width: 640px) {
-          .doodle {
-            transform: rotate(var(--r, 0deg)) scale(0.6);
-            opacity: 0.45;
-            right: 0.5vw;
-          }
+          .doodle { display: none; }
         }
 
         /* Centred-between-sections doodles — a bigger sketch sits in
@@ -1852,10 +1896,10 @@ export function PaperDecorations() {
           overflow: "hidden",
         }}
       >
-        <CoffeeStains />
-        {items && <DoodleLayer items={items} />}
-        <CenterDoodles />
-        {stars.map((s, i) => (
+        <CoffeeStains stains={visibleStains} />
+        {prunedItems && <DoodleLayer items={prunedItems} />}
+        {tier !== "low" && <CenterDoodles cutoffVh={cutoff} />}
+        {visibleStars.map((s, i) => (
           <MarginStar key={i} {...s} opacity={0.45} />
         ))}
       </div>

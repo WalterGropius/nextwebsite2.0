@@ -9,16 +9,39 @@ import { MotionText } from "@/components/motion-text"
 import { InkLine } from "@/components/ink-line"
 import { useT } from "@/lib/i18n/provider"
 
+// Pick the reel rendition per device: the 720p file is 26MB, the 480p
+// 13MB. Small screens can't show the extra pixels and data-saver
+// connections shouldn't pay for them.
+function pickReelSrc(): string {
+  if (typeof window === "undefined") return "/reel_720.mp4"
+  const conn = (navigator as Navigator & {
+    connection?: { saveData?: boolean; effectiveType?: string }
+  }).connection
+  const small = window.innerWidth * (window.devicePixelRatio || 1) < 1000
+  const frugal =
+    conn?.saveData === true ||
+    conn?.effectiveType === "2g" ||
+    conn?.effectiveType === "slow-2g" ||
+    conn?.effectiveType === "3g"
+  return small || frugal ? "/reel_480.mp4" : "/reel_720.mp4"
+}
+
 export default function Reel() {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [isMuted, setIsMuted] = useState(true)
   const [isPlaying, setIsPlaying] = useState(true)
   const [isLoaded, setIsLoaded] = useState(false)
+  const [src, setSrc] = useState<string | null>(null)
   const t = useT()
 
   useEffect(() => {
-    videoRef.current?.play().catch(() => {})
+    // Resolved on the client so SSR markup stays deterministic.
+    setSrc(pickReelSrc())
   }, [])
+
+  useEffect(() => {
+    if (src) videoRef.current?.play().catch(() => {})
+  }, [src])
 
   const toggleMute = () => {
     if (!videoRef.current) return
@@ -124,8 +147,9 @@ export default function Reel() {
               {/* H.264 baseline — plays in every browser. The old
                   reel_sm.mp4 was HEVC, which Chrome and Firefox cannot
                   decode, so the reel was silently blank for most
-                  visitors. */}
-              <source src="/reel_720.mp4" type="video/mp4" />
+                  visitors. Rendition (480p/720p) picked client-side by
+                  screen size + connection. */}
+              {src && <source src={src} type="video/mp4" />}
             </video>
             {!isLoaded && (
               <div
@@ -206,7 +230,7 @@ export default function Reel() {
             </h2>
             <div className="grid gap-6 sm:grid-cols-3">
               {[
-                { href: "/portfolio", label: t("nav.work"), blurb: t("reel.more.work") },
+                { href: "/portfolio-s", label: t("nav.work"), blurb: t("reel.more.work") },
                 { href: "/sketchfab", label: t("nav.3d"), blurb: t("reel.more.3d") },
                 { href: "/art", label: t("reel.more.art.label"), blurb: t("reel.more.art") },
               ].map((item) => (

@@ -11,17 +11,23 @@ import '@/global.css'
 // Served through next/font so they're self-hosted, subset, and never
 // render-blocking — this replaced a synchronous Google Fonts @import in
 // global.css that stalled first paint on slow connections.
+// preload: false — these two only ever paint glyphs Zenhand is missing
+// (some diacritics, non-latin scripts), so for most visitors they are
+// never used at all. Preloading them pushed ten woff2 fetches ahead of
+// the hero splat; lazy per-face loading costs nothing on the common path.
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-inter',
   display: 'swap',
+  preload: false,
 })
 const cormorant = Cormorant_Garamond({
   subsets: ['latin', 'latin-ext'],
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-cormorant',
   display: 'swap',
+  preload: false,
 })
 
 export const metadata: Metadata = {
@@ -52,6 +58,7 @@ export const metadata: Metadata = {
     'CTO',
     'Three.js',
     'React Three Fiber',
+    'WebGPU',
     'Unreal Engine',
     'digital art',
     'web development',

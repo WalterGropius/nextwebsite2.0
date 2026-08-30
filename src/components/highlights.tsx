@@ -11,7 +11,7 @@ export function Highlights() {
   const inView = useInView(ref, { once: true, amount: 0.25 })
   const t = useT()
 
-  const credits = Array.from({ length: 6 }, (_, i) => ({
+  const credits = Array.from({ length: 7 }, (_, i) => ({
     role: t(`highlights.${i}.role`),
     at: t(`highlights.${i}.at`),
   }))
@@ -60,9 +60,11 @@ export function Highlights() {
             </div>
             {credits.map((c, i) => {
               // alternating drag/race + tiny rotational sway so rows
-              // don't all glide identically.
+              // don't all glide identically. Amplitude stays under a
+              // row's height so neighbours never fully overlap at the
+              // section's edges (seven rows now, was six).
               const dir = i % 2 === 0 ? -1 : 1
-              const amp = 40 + (i % 3) * 18
+              const amp = 26 + (i % 3) * 12
               return (
                 <HighlightRow
                   key={i}

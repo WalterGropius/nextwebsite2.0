@@ -719,6 +719,51 @@ const ANCHORS: Array<{ k: string; kl: Localized; v: Localized }> = [
   },
 ]
 
+// The lab — live experiments that used to be reachable only by URL.
+// Running code, not products; each one is a toy with a real engine.
+const LAB_LINKS: Array<{ href: string; title: string; sub: Localized; cta: Localized }> = [
+  {
+    href: "/experiments/flow",
+    title: "flow * webgpu",
+    sub: {
+      en: "200,000 particles on webgpu compute — falls back to webgl 2.",
+      cs: "200 000 částic na webgpu compute — fallback do webgl 2.",
+      fr: "200 000 particules en compute webgpu — repli en webgl 2.",
+    },
+    cta: { en: "run it", cs: "spusť", fr: "lancer" },
+  },
+  {
+    href: "/boids",
+    title: "boids",
+    sub: {
+      en: "three rules, one flock. gpgpu, every knob exposed.",
+      cs: "tři pravidla, jedno hejno. gpgpu, každý knoflík jde otočit.",
+      fr: "trois règles, une nuée. gpgpu, tous les curseurs à portée.",
+    },
+    cta: { en: "play me", cs: "zahraj si", fr: "jouer" },
+  },
+  {
+    href: "/games/angles",
+    title: "trace it",
+    sub: {
+      en: "a polygon flashes; redraw it from memory.",
+      cs: "mnohoúhelník blikne; obkresli ho po paměti.",
+      fr: "un polygone clignote ; retrace-le de mémoire.",
+    },
+    cta: { en: "play me", cs: "zahraj si", fr: "jouer" },
+  },
+  {
+    href: "/games/proportion",
+    title: "proportion",
+    sub: {
+      en: "guess width-to-height ratios. harder than it sounds.",
+      cs: "tipuj poměry stran. těžší, než to zní.",
+      fr: "devine des rapports largeur/hauteur. plus dur qu'il n'y paraît.",
+    },
+    cta: { en: "play me", cs: "zahraj si", fr: "jouer" },
+  },
+]
+
 const OUT_LINKS: Array<{ href: string; title: string; sub?: Localized; cta: Localized }> = [
   { href: "https://laifea.app", title: "laifea.app", sub: { en: "where i ship the real ones", cs: "kde dodávám ty opravdové", fr: "là où je livre les vrais" }, cta: { en: "open it", cs: "otevři", fr: "ouvrir" } },
   { href: "https://github.com/WalterGropius", title: "github", cta: { en: "see code", cs: "kód", fr: "le code" } },
@@ -780,6 +825,12 @@ const UI = {
     fr: "* pas un appel à la pitié — la friction contre laquelle le travail pousse, et les preuves qu'on relit quand la colonne de gauche s'allonge.",
   },
   elsewhere: { en: "elsewhere", cs: "jinde", fr: "ailleurs" },
+  lab: { en: "the lab", cs: "laborka", fr: "le labo" },
+  labNote: {
+    en: "* running experiments, not products. bring a gpu and low expectations.",
+    cs: "* běžící experimenty, ne produkty. vezmi si gpu a malá očekávání.",
+    fr: "* des expériences qui tournent, pas des produits. viens avec un gpu et peu d'attentes.",
+  },
   blog: { en: "blog · loose notes", cs: "blog · volné zápisky", fr: "blog · notes libres" },
   blogRead: { en: "read it", cs: "přečti si", fr: "à lire" },
   allPosts: { en: "all posts", cs: "všechny zápisky", fr: "tous les billets" },
@@ -997,7 +1048,7 @@ export default function MorePage() {
           </div>
 
           {/* ===== STUFF I LOVE ===== */}
-          <section className="mb-24">
+          <section className="cv-auto mb-24">
             <div className="mb-8 flex items-baseline gap-4">
               <h2
                 className="text-4xl sm:text-5xl"
@@ -1078,7 +1129,7 @@ export default function MorePage() {
           </div>
 
           {/* ===== ELSEWHERE ===== */}
-          <section className="mb-20">
+          <section className="cv-auto mb-20">
             <SectionTitle>{cap(tr(UI.elsewhere))}</SectionTitle>
             <ul className="flex flex-col">
               {OUT_LINKS.map((l) => (
@@ -1113,8 +1164,48 @@ export default function MorePage() {
             <InkLine fade thickness={1} />
           </div>
 
+          {/* ===== THE LAB — live experiments, finally linked ===== */}
+          <section className="cv-auto mb-20">
+            <SectionTitle>{cap(tr(UI.lab))}</SectionTitle>
+            <ul className="flex flex-col">
+              {LAB_LINKS.map((l) => (
+                <li
+                  key={l.href}
+                  className="flex flex-wrap items-center justify-between gap-x-4 gap-y-3 border-b py-4"
+                  style={{ borderColor: "var(--border-subtle)" }}
+                >
+                  <span className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                    <span
+                      className="text-lg sm:text-xl"
+                      style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
+                    >
+                      {l.title}
+                    </span>
+                    <span
+                      className="text-xs sm:text-sm"
+                      style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}
+                    >
+                      {tr(l.sub)}
+                    </span>
+                  </span>
+                  <CtaButton href={l.href} label={tr(l.cta)} internal />
+                </li>
+              ))}
+            </ul>
+            <p
+              className="mt-4 text-xs tracking-[0.3em]"
+              style={{ color: "var(--text-muted)" }}
+            >
+              {tr(UI.labNote)}
+            </p>
+          </section>
+
+          <div className="my-10 opacity-30" style={{ color: "var(--ink)" }}>
+            <InkLine fade thickness={1} />
+          </div>
+
           {/* ===== BLOG ===== */}
-          <section className="mb-20">
+          <section className="cv-auto mb-20">
             <SectionTitle>{cap(tr(UI.blog))}</SectionTitle>
             <div className="flex flex-col gap-8">
               {posts.length === 0 ? (
@@ -1179,7 +1270,7 @@ export default function MorePage() {
           </div>
 
           {/* ===== ANCHORS ===== */}
-          <section className="mb-20">
+          <section className="cv-auto mb-20">
             <SectionTitle>{cap(tr(UI.anchors))}</SectionTitle>
             <dl
               className="grid gap-4 sm:gap-6 md:grid-cols-2"

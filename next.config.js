@@ -1,4 +1,8 @@
 /** @type {import('next').NextConfig} */
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
+
 const nextConfig = {
   // Performance optimizations
   compiler: {
@@ -15,7 +19,6 @@ const nextConfig = {
       'lucide-react',
       'motion',
       '@react-three/drei',
-      'three-stdlib',
     ],
   },
 
@@ -38,12 +41,6 @@ const nextConfig = {
         ...config.module.parser?.javascript,
         url: false, // disable parsing of `new URL()` syntax
       },
-    }
-
-    // Bundle analyzer (conditionally enabled)
-    if (process.env.ANALYZE === 'true' && !isServer) {
-      const { BundleAnalyzerPlugin } = require('@next/bundle-analyzer')()
-      config.plugins.push(new BundleAnalyzerPlugin())
     }
 
     return config
@@ -89,8 +86,10 @@ const nextConfig = {
         ],
       },
       // Long-lived caching for the heavy, never-changing media in /public.
+      // Art/photo assets are content-addressed by path, so jpg/png are as
+      // safe to pin as the webp set.
       {
-        source: '/(.*).(mp4|webm|webp|woff2|sog|glb|hdr)',
+        source: '/(.*).(mp4|webm|webp|jpg|jpeg|png|woff2|sog|glb|hdr|wav)',
         headers: [
           {
             key: 'Cache-Control',
@@ -108,4 +107,4 @@ const nextConfig = {
   output: 'standalone',
 }
 
-module.exports = nextConfig
+module.exports = withBundleAnalyzer(nextConfig)

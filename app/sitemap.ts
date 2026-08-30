@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
     '/landing',
     '/portfolio',
+    '/portfolio-s',
     '/reel',
     '/sketchfab',
     '/art',
@@ -29,6 +30,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/blog',
     '/more',
     '/contact',
+    '/experiments/flow',
+    '/boids',
+    '/games/angles',
+    '/games/proportion',
   ].map((path) => ({
     url: `${BASE}${path}`,
     lastModified: now,
@@ -52,5 +57,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     }))
 
-  return [...staticRoutes, ...work, ...posts]
+  const art = readPublicJson<{ id?: string }>('art.json')
+    .filter((s) => s.id)
+    .map((s) => ({
+      url: `${BASE}/art/${s.id}`,
+      lastModified: now,
+      changeFrequency: 'yearly' as const,
+      priority: 0.5,
+    }))
+
+  return [...staticRoutes, ...work, ...posts, ...art]
 }

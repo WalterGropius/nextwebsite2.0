@@ -54,9 +54,14 @@ const DARK_SPLAT_SCALE = 20
 export function Flowers({
   dark = false,
   tier = 'high',
+  starScale = 1,
 }: {
   dark?: boolean
   tier?: DeviceTier
+  // Runtime multiplier (0..1) from the hero's PerformanceMonitor —
+  // lets the star budget shrink further when real fps sags below what
+  // the static device tier predicted.
+  starScale?: number
 }) {
   const [isClient, setIsClient] = useState(false)
   const orbitRef = useRef({ x: 0, y: 0 })
@@ -204,6 +209,8 @@ export function Flowers({
     // real capture replaces it. Star counts scale with the device tier so
     // the scene stays fluid on weak GPUs.
     const budget = DARK_BUDGET[tier]
+    const near = Math.max(400, Math.round(budget.near * starScale))
+    const far = Math.max(200, Math.round(budget.far * starScale))
     return (
       <>
         <SparkRenderer />
@@ -214,9 +221,10 @@ export function Flowers({
             backdrop instead of the whole sky moving with the viewer. */}
         <group position={[0, 0, 4]}>
           <Stars
+            key={`near-${near}`}
             radius={80}
             depth={40}
-            count={budget.near}
+            count={near}
             factor={6}
             saturation={0}
             fade
@@ -224,9 +232,10 @@ export function Flowers({
           />
         </group>
         <Stars
+          key={`far-${far}`}
           radius={140}
           depth={60}
-          count={budget.far}
+          count={far}
           factor={3.5}
           saturation={1}
           fade

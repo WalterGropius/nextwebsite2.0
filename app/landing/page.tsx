@@ -5,12 +5,9 @@ import dynamic from "next/dynamic"
 import { useTheme } from "next-themes"
 import { Hero } from "@/components/hero"
 import { Manifesto } from "@/components/manifesto"
-import { Arsenal } from "@/components/arsenal"
-import { Philosophy } from "@/components/philosophy"
 import { Contact } from "@/components/contact"
 import { Creations } from "@/components/creations"
 import { Highlights } from "@/components/highlights"
-import { Testimonials } from "@/components/testimonials"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
@@ -127,15 +124,14 @@ export default function Home() {
             }}
           />
 
+          {/* Decluttered on purpose: statement (manifesto), proof
+              (highlights + selected works), invitation (contact).
+              Philosophy, the toolkit and the client quote moved to /cv
+              where a reader deciding whether to hire actually looks —
+              the landing keeps the pulse, not the dossier. */}
           <Manifesto />
           <Divider />
-          <Testimonials />
-          <Divider />
           <Highlights />
-          <Divider />
-          <Philosophy />
-          <Divider />
-          <Arsenal />
           <Divider />
           <Creations randomCount={6} />
           <Divider />
