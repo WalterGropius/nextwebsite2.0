@@ -1775,6 +1775,14 @@ export function PaperDecorations() {
   // footer. Measure and cull instead.
   const [docVh, setDocVh] = useState(Infinity)
   const [tier] = useState(() => getDeviceTier())
+  // Phones keep the marginalia (it's half the personality) but at half
+  // density — same treatment as low-tier GPUs, since every doodle is
+  // its own SVG-filtered raster layer.
+  const [compact] = useState(
+    () =>
+      typeof window !== "undefined" &&
+      (getDeviceTier() === "low" || window.innerWidth < 768),
+  )
   useEffect(() => {
     setMounted(true)
     setItems(place(DOODLES))
@@ -1827,11 +1835,10 @@ export function PaperDecorations() {
   // margin keeps a doodle from poking out under the footer.
   const cutoff = docVh - 15
   const visibleItems = items?.filter((d) => d.topVh < cutoff) ?? null
-  // Low-tier devices get half the marginalia — every SVG-filtered layer
-  // costs raster time on weak GPUs, and the notebook still reads with a
-  // sparser hand.
+  // Compact contexts (low-tier GPUs, phones) get half the marginalia —
+  // the notebook still reads with a sparser hand.
   const prunedItems =
-    tier === "low" && visibleItems
+    compact && visibleItems
       ? visibleItems.filter((_, i) => i % 2 === 0)
       : visibleItems
   const visibleStains = COFFEE_STAINS.filter((s) => vhOf(s.top) < cutoff)
@@ -1846,8 +1853,8 @@ export function PaperDecorations() {
               the centred content column, scaled to 115%
             - tablet / narrow desktop: every doodle into the right
               margin (content is left-aligned at that width), 75%
-            - phone: hidden — 40 SVG-filter layers squeezed into a
-              360px margin were pure cost, not marginalia. */}
+            - phone: same right margin, 60%, slightly more faded —
+              and only every other doodle mounts (see `compact`). */}
       <style>{`
         .doodle {
           transform: rotate(var(--r, 0deg));
@@ -1871,7 +1878,11 @@ export function PaperDecorations() {
           }
         }
         @media (max-width: 640px) {
-          .doodle { display: none; }
+          .doodle {
+            transform: rotate(var(--r, 0deg)) scale(0.6);
+            opacity: 0.45;
+            right: 0.5vw;
+          }
         }
 
         /* Centred-between-sections doodles — a bigger sketch sits in
