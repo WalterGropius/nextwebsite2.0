@@ -31,6 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/more',
     '/contact',
     '/experiments/flow',
+    '/experiments/ink',
     '/boids',
     '/games/angles',
     '/games/proportion',

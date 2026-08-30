@@ -723,6 +723,16 @@ const ANCHORS: Array<{ k: string; kl: Localized; v: Localized }> = [
 // Running code, not products; each one is a toy with a real engine.
 const LAB_LINKS: Array<{ href: string; title: string; sub: Localized; cta: Localized }> = [
   {
+    href: "/experiments/ink",
+    title: "ink * vgpu",
+    sub: {
+      en: "fluid ink you stir with a finger — typed wgsl on vercel's vgpu.",
+      cs: "tekutá tuš, kterou rozmícháš prstem — typovaný wgsl na vgpu od vercelu.",
+      fr: "de l'encre fluide qu'on remue du doigt — wgsl typé sur le vgpu de vercel.",
+    },
+    cta: { en: "stir it", cs: "zamíchej", fr: "remuer" },
+  },
+  {
     href: "/experiments/flow",
     title: "flow * webgpu",
     sub: {
