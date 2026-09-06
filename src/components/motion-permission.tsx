@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { motion, AnimatePresence } from "motion/react"
 import { useT } from "@/lib/i18n/provider"
+import { prefersReducedMotion } from "@/lib/device-tier"
 
 type DeviceOrientationEventStatic = typeof DeviceOrientationEvent & {
   requestPermission?: () => Promise<"granted" | "denied">
@@ -20,6 +21,10 @@ export function MotionPermission() {
       | undefined
     if (!Ctor || typeof Ctor.requestPermission !== "function") return
     if (sessionStorage.getItem("motion-permission-asked")) return
+    // Granting the sensor permission can't produce any visible tilt when
+    // the render loop is frozen for reduced motion (see HeroCanvas's
+    // `running` gate) — asking for it here would be a pure no-op prompt.
+    if (prefersReducedMotion()) return
 
     const t = window.setTimeout(() => setShow(true), 1800)
     return () => window.clearTimeout(t)
@@ -70,7 +75,7 @@ export function MotionPermission() {
           transition={{ type: "spring", stiffness: 200, damping: 26 }}
           className="fixed inset-x-4 bottom-4 z-[60] mx-auto flex max-w-md items-center justify-between gap-3 rounded-2xl px-4 py-3 sm:left-1/2 sm:right-auto sm:-translate-x-1/2"
           style={{
-            background: "rgba(246, 246, 244, 0.95)",
+            background: "color-mix(in srgb, var(--surface-dark) 95%, transparent)",
             backdropFilter: "blur(20px) saturate(110%)",
             WebkitBackdropFilter: "blur(20px) saturate(110%)",
             border: "1.5px solid var(--ink)",
