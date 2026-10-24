@@ -87,11 +87,25 @@ export default function WorkPage() {
         setProject(p)
         if (p) {
           // Match on the stable English tag set, regardless of UI language.
-          const tags = pick(p.tags, "en").split(",").map((t) => t.trim()).filter(Boolean)
+          // Shared tags are weighted by rarity, so two projects tagged
+          // "multiplayer" outrank two that merely share the ubiquitous "r&d".
+          const tagsOf = (q: ProjectItem) =>
+            pick(q.tags, "en").split(",").map((t) => t.trim().toLowerCase()).filter(Boolean)
+          const freq = new Map<string, number>()
+          for (const q of list) for (const t of tagsOf(q)) freq.set(t, (freq.get(t) ?? 0) + 1)
+          const mine = new Set(tagsOf(p))
           setRelated(
             list
-              .filter((q) => q.id !== p.id && pick(q.tags, "en").split(",").some((t) => tags.includes(t.trim())))
-              .slice(0, 4),
+              .filter((q) => q.id !== p.id)
+              .map((q, i) => ({
+                q,
+                i,
+                score: tagsOf(q).reduce((s, t) => (mine.has(t) ? s + 1 / (freq.get(t) ?? 1) : s), 0),
+              }))
+              .filter((r) => r.score > 0)
+              .sort((a, b) => b.score - a.score || a.i - b.i)
+              .slice(0, 4)
+              .map((r) => r.q),
           )
         } else {
           setError("work.notFound")
@@ -344,7 +358,8 @@ function FallbackBody({ tags, lang }: { project: ProjectItem; tags: string[]; la
         <p>{tr("work.bespoke")}</p>
       ) : (
         tags.map((t) => {
-          const note = TAG_NOTES[t]
+          const key = Object.keys(TAG_NOTES).find((k) => k.toLowerCase() === t.toLowerCase())
+          const note = key ? TAG_NOTES[key] : undefined
           if (!note) return null
           return (
             <p key={t}>

@@ -66,9 +66,22 @@ export function Creations({ randomCount }: CreationsProps) {
     }
   }, [])
 
-  const allTags = Array.from(
-    new Set(projects.flatMap((p) => pick(p.tags, lang).split(",").map((t) => t.trim())))
-  ).filter(Boolean)
+  // Filter chips: case-insensitive, most-used first, so the eight that fit
+  // are the eight that actually slice the archive.
+  const tagCounts = new Map<string, { label: string; n: number }>()
+  for (const p of projects) {
+    for (const raw of pick(p.tags, lang).split(",")) {
+      const label = raw.trim()
+      if (!label) continue
+      const key = label.toLowerCase()
+      const hit = tagCounts.get(key)
+      if (hit) hit.n++
+      else tagCounts.set(key, { label, n: 1 })
+    }
+  }
+  const allTags = Array.from(tagCounts.values())
+    .sort((a, b) => b.n - a.n)
+    .map((t) => t.label)
 
   const randomizedProjects = useMemo(() => {
     if (typeof randomCount === "number" && projects.length > 0) {
@@ -79,7 +92,9 @@ export function Creations({ randomCount }: CreationsProps) {
 
   const displayedProjects = selectedTag
     ? randomizedProjects.filter((p) =>
-        pick(p.tags, lang).toLowerCase().includes(selectedTag.toLowerCase())
+        pick(p.tags, lang)
+          .split(",")
+          .some((t) => t.trim().toLowerCase() === selectedTag.toLowerCase())
       )
     : randomizedProjects
 
