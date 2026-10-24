@@ -336,42 +336,6 @@
   }
  },
  {
-  "image": "/work/foodamend.webp",
-  "title": {
-   "en": "Foodamend",
-   "cs": "Foodamend",
-   "fr": "Foodamend"
-  },
-  "description": {
-   "en": "Photograph a grocery product and get an independent grade — Nutri-Score, NOVA processing level, additives, allergens — with the working shown. Every scanned product becomes a public page anyone can open, so the second person to scan it gets the answer instantly.",
-   "cs": "Vyfoť potravinu a dostaneš nezávislé hodnocení — Nutri-Score, stupeň zpracování NOVA, aditiva, alergeny — i s postupem. Každý naskenovaný produkt se stane veřejnou stránkou, kterou si může otevřít kdokoli, takže druhý, kdo ho naskenuje, má odpověď hned.",
-   "fr": "Photographie un produit alimentaire et obtiens une note indépendante — Nutri-Score, degré de transformation NOVA, additifs, allergènes — calcul compris. Chaque produit scanné devient une page publique que n'importe qui peut ouvrir, si bien que la deuxième personne à le scanner a la réponse tout de suite."
-  },
-  "date": "2026",
-  "link": "https://foodamend.com",
-  "tags": {
-   "en": "AI, Web Design",
-   "cs": "AI, webdesign",
-   "fr": "IA, design web"
-  },
-  "links": [
-   {
-    "label": {
-     "en": "foodamend.com",
-     "cs": "foodamend.com",
-     "fr": "foodamend.com"
-    },
-    "href": "https://foodamend.com"
-   }
-  ],
-  "body": {
-   "en": "## a grade you can check\nfood apps hand you a colour and ask you to trust it. Foodamend shows the working: the Nutri-Score inputs, the NOVA processing level, each additive and allergen, and how they add up — the method is [on the blog](/blog/a-food-grade-you-can-open).\n\n## the cheap guess in front\na careful, grounded analysis of a product is slow and costs money, so it shouldn't run twice for the same jar. a quick model call first guesses brand and name from the photo, and that guess is looked up in a fuzzy-match cache before anything expensive happens. the catch: a model paraphrases. *mito drink 2.0* comes back as \"Mito\" one time and \"Energy Drink\" the next, and a brand-only match once served biscuits for a strawberry product. the thresholds came from logged near-misses — the false match scored **0.135**, the true one **0.273** — and the cache keeps a log of its closest miss so the floor can move on evidence.\n\n## pages, not just answers\nevery analysed product becomes a public, indexable page in Czech and English, regenerated daily. the scanner app is the front door; the pages are what's left for everyone after.",
-   "cs": "## známka, kterou si ověříš\npotravinové aplikace ti dají barvu a čekají, že jí uvěříš. Foodamend ukáže postup: vstupy Nutri-Score, stupeň zpracování NOVA, každé aditivum a alergen a jak se to sečte — metodika je [na blogu](/blog/a-food-grade-you-can-open).\n\n## levný odhad napřed\npečlivá, ukotvená analýza produktu je pomalá a stojí peníze, takže by neměla běžet dvakrát pro tutéž sklenici. nejdřív rychlé volání modelu odhadne z fotky značku a název a ten odhad se vyhledá ve fuzzy cache dřív, než se spustí cokoli drahého. háček: model parafrázuje. *mito drink 2.0* se jednou vrátí jako „Mito“ a podruhé jako „Energy Drink“ a shoda jen podle značky jednou servírovala sušenky místo jahodového produktu. prahy vzešly z logovaných téměř-shod — falešná shoda měla skóre **0,135**, ta pravá **0,273** — a cache si loguje svou nejbližší minelu, aby se hranice mohla posouvat podle důkazů.\n\n## stránky, ne jen odpovědi\nkaždý analyzovaný produkt se stane veřejnou, indexovatelnou stránkou v češtině a angličtině, přegenerovanou denně. skenovací aplikace jsou vchodové dveře; stránky jsou to, co po nich zůstane pro všechny.",
-   "fr": "## une note qu'on peut vérifier\nles apps alimentaires te donnent une couleur et te demandent d'y croire. Foodamend montre le calcul : les entrées du Nutri-Score, le degré de transformation NOVA, chaque additif et allergène, et comment tout s'additionne — la méthode est [sur le blog](/blog/a-food-grade-you-can-open).\n\n## l'estimation bon marché d'abord\nune analyse soignée et ancrée d'un produit est lente et coûte de l'argent, elle ne devrait donc pas tourner deux fois pour le même bocal. un appel rapide au modèle devine d'abord marque et nom à partir de la photo, et cette estimation est cherchée dans un cache à correspondance floue avant que quoi que ce soit de coûteux ne démarre. le piège : un modèle paraphrase. *mito drink 2.0* revient une fois comme « Mito », la suivante comme « Energy Drink », et une correspondance sur la seule marque a un jour servi des biscuits pour un produit à la fraise. les seuils viennent de quasi-correspondances journalisées — la fausse a obtenu **0,135**, la vraie **0,273** — et le cache garde la trace de son raté le plus proche pour que le seuil bouge sur preuves.\n\n## des pages, pas seulement des réponses\nchaque produit analysé devient une page publique et indexable en tchèque et en anglais, régénérée chaque jour. l'app de scan est la porte d'entrée ; les pages sont ce qui reste ensuite pour tout le monde."
-  },
-  "id": 52
- },
- {
   "id": 37,
   "image": "/work/auau.webp",
   "title": {

@@ -14,7 +14,7 @@ be edited there and synced back into the repo. One note per **art series**,
 | bucket | count | source file | vault folder |
 |--------|-------|-------------|--------------|
 | art | 15 | `public/art.json` | `website/Art` |
-| project | 47 | `public/portfolio.json` | `website/Projects` |
+| project | 46 | `public/portfolio.json` | `website/Projects` |
 | blog | 33 | `public/blogs.json` | `website/Blog` |
 
 Two projects already have their own KB notes, so they are **linked, not
@@ -89,7 +89,7 @@ changes** — the mapping is lossless for the fields it owns:
 
 ```bash
 node scripts/laifea-export.mjs /tmp/notes && node scripts/laifea-sync.mjs /tmp/notes --check
-# notes parsed: 95  skipped: 1  field-changes: 0
+# notes parsed: 94  skipped: 1  field-changes: 0
 ```
 
 ## Typical loop
