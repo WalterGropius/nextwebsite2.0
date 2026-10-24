@@ -1,5 +1,31 @@
 [
  {
+  "id": 36,
+  "image": "/art/surfaces/120.webp",
+  "title": {
+   "en": "Laifea",
+   "cs": "Laifea",
+   "fr": "Laifea"
+  },
+  "description": {
+   "en": "My exocortex, and the reincarnation of Sombra — the empathetic AI mentor I built at Flipas. Laifea is a markdown vault with a persistent AI partner, a 3D semantic knowledge graph, voice mode, and ~50 tools behind one registry. One thesis: \"think with it, not through it.\" An AI that makes you sharper, not softer.",
+   "cs": "Můj exokortex a znovuzrození Sombry — empatického AI mentora, kterého jsem postavil ve Flipasu. Laifea je markdown vault s trvalým AI parťákem, 3D sémantickým grafem znalostí, hlasovým režimem a ~50 nástroji za jedním registrem. Jedna teze: „mysli s tím, ne skrz to.“ AI, po které jsi ostřejší, ne měkčí.",
+   "fr": "Mon exocortex, et la réincarnation de Sombra — le mentor IA empathique que j'ai bâti chez Flipas. Laifea est un vault markdown avec un partenaire IA persistant, un graphe de connaissances sémantique en 3D, un mode vocal et ~50 outils derrière un seul registre. Une thèse : « pense avec, pas à travers ». Une IA qui te rend plus vif, pas plus mou."
+  },
+  "date": "2024 — ongoing",
+  "link": "https://laifea.app",
+  "tags": {
+   "en": "r&d, AI, Web Design",
+   "cs": "r&d, AI, webdesign",
+   "fr": "r&d, IA, design web"
+  },
+  "body": {
+   "en": "The project everything else funnels into. **Laifea** (v0.97) is where Sombra — the AI mentor from my Flipas years — grew up. Flipas gave it a soul (*\"Sombra will never give you the solution, it will help you get there — it's going to make you think\"*); Laifea gave it a body it owns.\n\n## the wedge\nfrictionless AI quietly de-skills you. a randomised trial (n=120) put AI-aided learners at **57.5% vs 68.5%** on 45-day retention, worst in technical subjects. so Laifea inverts the goal: intentional friction where thinking matters, frictionless capture where it doesn't. an AI that **makes you think**, not one that thinks for you.\n\n## what it is\n- your notes stay plain **markdown** — files are the source of truth, the database is a cache. export to ZIP/JSON anytime; zero lock-in.\n- a **3D knowledge graph** (768→3D projection + force sim) where the headline move is *reverse semantic search*: show me what's logically near this thought. the mental model is **Cognitive Spacetime** — dense ideas warp the space and pull related notes toward them.\n- **~50 tools** in one registry, exposed identically to chat, voice, and external agents over MCP.\n- **voice mode** on realtime Gemini Live.\n\n## how it's built\nNext.js 16 + React 19 on **SpacetimeDB as the only backend** — tables, vectors and scheduling in one store, no Redis, no queue, ever. several posts on this blog come straight from its build logs.\n\n\"infrastructure for thought. a living partner in cognition. a sovereign mirror of mind.\"",
+   "cs": "Projekt, do kterého ústí všechno ostatní. **Laifea** (v0.97) je místo, kde Sombra — AI mentor z mých časů ve Flipasu — dospěla. Flipas jí dal duši (*„Sombra ti nikdy nedá řešení, pomůže ti k němu dojít — donutí tě myslet“*); Laifea jí dala tělo, které vlastní.\n\n## ten klín\nbezešvá AI tě potichu odnaučuje. randomizovaná studie (n=120) dala uživatelům AI **57,5 % vs 68,5 %** v 45denní retenci, nejhůř u technických oborů. Laifea proto obrací cíl: záměrné tření tam, kde jde o myšlení, bezešvé zachycení tam, kde ne. AI, která tě **nutí myslet**, ne která myslí za tebe.\n\n## co to je\n- poznámky zůstávají obyčejný **markdown** — soubory jsou zdroj pravdy, databáze cache. export do ZIP/JSON kdykoli; žádný lock-in.\n- **3D graf znalostí** (projekce 768→3D + force sim), kde je hlavní tah *obrácené sémantické hledání*: ukaž mi, co leží logicky vedle téhle myšlenky. mentální model je **kognitivní časoprostor** — husté myšlenky zakřiví prostor a přitáhnou k sobě příbuzné poznámky.\n- **~50 nástrojů** v jednom registru, vystavených stejně chatu, hlasu i externím agentům přes MCP.\n- **hlasový režim** na realtime Gemini Live.\n\n## jak je to postavené\nNext.js 16 + React 19 na **SpacetimeDB jako jediném backendu** — tabulky, vektory i plánování v jednom store, žádný Redis, žádná fronta, nikdy. několik zápisků na tomhle blogu je přímo z jeho build logů.\n\n„infrastruktura pro myšlení. živý parťák v poznávání. svrchované zrcadlo mysli.“",
+   "fr": "Le projet vers lequel tout converge. **Laifea** (v0.97), c'est là où Sombra — le mentor IA de mes années Flipas — a grandi. Flipas lui a donné une âme (*« Sombra ne te donnera jamais la solution, elle t'aidera à y arriver — elle va te faire réfléchir »*) ; Laifea lui a donné un corps qui lui appartient.\n\n## le coin enfoncé\nl'IA sans friction te dé-qualifie en silence. un essai randomisé (n=120) a placé les apprenants assistés par l'IA à **57,5 % contre 68,5 %** en rétention à 45 jours, pire dans les matières techniques. Laifea inverse donc le but : friction intentionnelle là où la pensée compte, capture sans friction là où non. une IA qui te **fait penser**, pas qui pense à ta place.\n\n## ce que c'est\n- tes notes restent du **markdown** brut — les fichiers sont la source de vérité, la base un cache. export ZIP/JSON à tout moment ; zéro verrouillage.\n- un **graphe de connaissances 3D** (projection 768→3D + simulation de forces) dont le geste phare est la *recherche sémantique inversée* : montre-moi ce qui est logiquement proche de cette pensée. le modèle mental : l'**espace-temps cognitif** — les idées denses courbent l'espace et attirent les notes voisines.\n- **~50 outils** dans un registre, exposés à l'identique au chat, à la voix et aux agents externes via MCP.\n- **mode vocal** sur Gemini Live temps réel.\n\n## comment c'est bâti\nNext.js 16 + React 19 sur **SpacetimeDB comme unique backend** — tables, vecteurs et planification dans un seul store, jamais de Redis ni de file. plusieurs billets de ce blog viennent directement de ses journaux de build.\n\n« infrastructure pour la pensée. un partenaire vivant de la cognition. un miroir souverain de l'esprit. »"
+  }
+ },
+ {
   "id": 29,
   "image": "/work/be-mindful.webp",
   "title": {
@@ -74,9 +100,9 @@
   },
   "date": "2025",
   "tags": {
-   "en": "web design, r&d",
+   "en": "Web Design, r&d",
    "cs": "webdesign, r&d",
-   "fr": "web design, r&d"
+   "fr": "design web, r&d"
   },
   "body": {
    "en": "**Bungalov 7** is a shared art studio in Prague, founded by four friends with a common past in film, advertising and theatre. They make their own and commissioned work, and teach — kids' art classes, day camps, and an open art space for adults (workshops, jewellery, upcycling, textile, light objects).\n\n## what i built\na clean, warm site that does the two jobs an art space actually needs: **tell the story** (about the space, about the four of them, their work) and **fill the classes** — a browsable catalogue split kids / adults, and a registration flow so a parent can sign a kid up without a phone call.\n\nno flash for its own sake. the work on the walls is the hero; the site gets out of its way and points people at the door.",
@@ -100,9 +126,9 @@
   },
   "date": "2025",
   "tags": {
-   "en": "3d, r&d, ai",
-   "cs": "3d, r&d, ai",
-   "fr": "3d, r&d, ia"
+   "en": "3D, r&d, AI",
+   "cs": "3D, r&d, AI",
+   "fr": "3D, r&d, IA"
   },
   "body": {
    "en": "A library catalogue is a list. **A universe for a library** turns it into a place.\n\n## meaning as coordinates\nevery book's text is embedded into a vector, then projected into 3D. books that are *about* similar things end up near each other — so the layout is a map of ideas, not a Dewey number. hover a star, read the annotation, follow the link to the book.\n\n## the boring part that made it beautiful\n500+ books merged at runtime stuttered on every hover and click. so i precompute: a build step matches coordinates to annotations and links and bakes one **enriched-data.json** (~1.2MB), killing all runtime overhead. the visualization stays silky because the thinking already happened offline.\n\nit's a small piece with a simple thesis: a collection you can *fly through* invites a different kind of browsing than a list you scroll — you discover by proximity, not by search.",
@@ -125,9 +151,9 @@
   },
   "date": "2015 — 2025",
   "tags": {
-   "en": "web design, r&d",
+   "en": "Web Design, r&d",
    "cs": "webdesign, r&d",
-   "fr": "web design, r&d"
+   "fr": "design web, r&d"
   },
   "body": {
    "en": "Some projects you don't finish, you just keep restarting. **Zlé Rádio** — *radio for bad people* — is one of mine.\n\n## the original\nit lived at **zleradio.org** in 2015: a Czech WordPress site with a deliberately hostile menu (KDO? / CO? / TO. / ROZKAZY — who / what / that / orders) and a tone that took nothing seriously except itself. i kept the WordPress export all these years.\n\n## the rebirth\nzlerad.io is the same spirit rebuilt as a modern web app — fast, no plugin rot, the archive preserved. it's not a startup and it's not trying to be; it's a piece of internet culture i made once and refused to let die on a dead CMS.\n\ncall it archaeology of my own back catalogue: proof that the stuff you make for fun is worth carrying forward, even a decade later.",
@@ -151,9 +177,9 @@
   },
   "date": "2025",
   "tags": {
-   "en": "r&d, ai, web design",
-   "cs": "r&d, ai, webdesign",
-   "fr": "r&d, ia, web design"
+   "en": "r&d, AI, Web Design",
+   "cs": "r&d, AI, webdesign",
+   "fr": "r&d, IA, design web"
   },
   "body": {
    "en": "Second-hand retail at volume lives and dies on **intake speed** and **shrinkage**. Threesome replaces the spreadsheet with a real-time database that keeps both honest.\n\n## intake at flow-state speed\nan associate photographs an item; `/api/analyze-item` reads its barcode with **zxing-wasm**, then asks **Gemini 2.0 Flash** to categorise it, pull colour/condition, and suggest a price. no barcode? the model reads the label text instead, with manual override. the point is one photo → a priced, catalogued item in seconds.\n\n## shifts and cash integrity\nnothing touches the POS without an open **shift** (with GPS + a cash ledger). selling runs off physical scanners or the camera; discounts are mathematically fenced; at close the shift locks its cash total so discrepancies surface later instead of vanishing.\n\n## reconciliation by blind scan\ninstead of asking *what should be on this rack*, associates scan everything that **is** there into an `inventorySession`; the system diffs against expected stock and turns the gap into **discrepancies** for a manager to chase.\n\nNext.js 15, React 19, Neon Postgres + Drizzle, Vercel Blob. built for two Prague shops. the roadmap is a loyalty layer — club card, tiers, customer-lifetime-value.",
@@ -176,7 +202,7 @@
   },
   "date": "2025",
   "tags": {
-   "en": "r&d, real-time, multiplayer",
+   "en": "r&d, Real-time, Multiplayer",
    "cs": "r&d, real-time, multiplayer",
    "fr": "r&d, temps réel, multijoueur"
   },
@@ -204,7 +230,7 @@
   "tags": {
    "en": "AI, Web Design",
    "cs": "AI, webdesign",
-   "fr": "IA, web design"
+   "fr": "IA, design web"
   },
   "body": {
    "en": "## what it is\nau au takes a medical report you barely understand and makes it readable. you **photograph or upload** the document, multimodal **gemini 2.5 flash** extracts the text and auto-titles it, then rewrites the terminology into plain language — what the diagnosis means, what the treatment does. a **24/7 chat** answers follow-ups with your reports as context, and it knows when to stop and point you to a real doctor. it is explicitly a comprehension tool, not a diagnostic one.\n\n## organised around you\nreports live on a **visual timeline** grouped by month, each with an at-a-glance summary. a health profile holds chronic conditions, allergies, current medication and emergency contacts, so answers can be personalised.\n\n## sharing without leaking\nsharing runs on **cryptographic tokens**: you generate a secure link to send a report to a doctor or family member, and you can see who opened it and how many times. built on next.js 15, typescript, gemini via the ai sdk, postgres (neon) with drizzle, and google oauth. czech-language, responsive, with native apps on the roadmap.",
@@ -495,40 +521,14 @@
   },
   "date": "2025",
   "tags": {
-   "en": "ai, web, gov data",
-   "cs": "ai, web, státní data",
-   "fr": "ia, web, données publiques"
+   "en": "AI, Web Design, Data",
+   "cs": "AI, webdesign, data",
+   "fr": "IA, design web, données"
   },
   "body": {
    "en": "## what it is\nthe czech state runs an official rest api for the land registry (**katastr nemovitostí**) — parcels, buildings, units, ownership proceedings — but it's built for machines, not for someone with a question. i wrapped it in a chat dashboard where a **gemini 2.0 flash** agent, armed with **21 purpose-built tools**, does the lookups.\n\n## how it works\nask something like \"find parcel 123/4 in prague\" or \"what proceedings came in today\", and the agent picks the right cadastral endpoints, chains the calls, and hands back a readable answer with structured detail behind it. address autocomplete, buildings-on-a-street, territorial hierarchies (municipality → district → region) — all reachable in language.\n\n## the boring load-bearing bits\nbecause it's fronting a public state api with no guaranteed sla, i built for restraint: **upstash redis** rate limiting (fail-open), tiered caching (parcels 5 min, codebooks 24 h), a `/api/health` endpoint reporting api / ai / redis status, and production security headers. stack is **next.js 15, react 19, typescript, shadcn/ui**, deployed on vercel. the repo is private-licensed.",
    "cs": "## co to je\nčeský stát provozuje oficiální rest api katastru nemovitostí — parcely, budovy, jednotky, řízení — jenže je stavěné pro stroje, ne pro člověka s dotazem. obalil jsem ho chatovacím dashboardem, kde vyhledávání obstará **gemini 2.0 flash** agent vyzbrojený **21 nástroji na míru**.\n\n## jak to funguje\nzeptáš se třeba „najdi parcelu 123/4 v praze\" nebo „jaká řízení dnes přišla\" a agent vybere správné katastrální endpointy, zřetězí volání a vrátí čitelnou odpověď se strukturovaným detailem v pozadí. našeptávání adres, budovy v ulici, územní hierarchie (obec → okres → kraj) — vše dostupné řečí.\n\n## nudné, ale nosné části\nprotože sedím před veřejným státním api bez garantované sla, stavěl jsem zdrženlivě: rate limiting přes **upstash redis** (fail-open), vrstvené cachování (parcely 5 min, číselníky 24 h), endpoint `/api/health` hlásící stav api / ai / redis a produkční bezpečnostní hlavičky. stack **next.js 15, react 19, typescript, shadcn/ui**, nasazeno na vercelu. repozitář má privátní licenci.",
    "fr": "## ce que c'est\nl'état tchèque exploite une api rest officielle du cadastre (**katastr nemovitostí**) — parcelles, bâtiments, unités, procédures — mais elle est conçue pour des machines, pas pour quelqu'un qui a une question. je l'ai enveloppée dans un tableau de bord conversationnel où un agent **gemini 2.0 flash**, armé de **21 outils dédiés**, fait les recherches.\n\n## comment ça marche\ndemande « trouve la parcelle 123/4 à prague » ou « quelles procédures sont arrivées aujourd'hui », et l'agent choisit les bons endpoints cadastraux, enchaîne les appels et rend une réponse lisible avec le détail structuré derrière. autocomplétion d'adresses, bâtiments d'une rue, hiérarchies territoriales (commune → district → région) — le tout accessible en langage naturel.\n\n## la plomberie porteuse\nparce que je suis devant une api publique de l'état sans sla garantie, j'ai construit avec retenue : limitation de débit via **upstash redis** (fail-open), cache par paliers (parcelles 5 min, référentiels 24 h), un endpoint `/api/health` remontant l'état api / ia / redis, et des en-têtes de sécurité en production. stack **next.js 15, react 19, typescript, shadcn/ui**, déployé sur vercel. le dépôt est sous licence privée."
-  }
- },
- {
-  "id": 36,
-  "image": "/art/surfaces/120.webp",
-  "title": {
-   "en": "Laifea",
-   "cs": "Laifea",
-   "fr": "Laifea"
-  },
-  "description": {
-   "en": "My exocortex, and the reincarnation of Sombra — the empathetic AI mentor I built at Flipas. Laifea is a markdown vault with a persistent AI partner, a 3D semantic knowledge graph, voice mode, and ~50 tools behind one registry. One thesis: \"think with it, not through it.\" An AI that makes you sharper, not softer.",
-   "cs": "Můj exokortex a znovuzrození Sombry — empatického AI mentora, kterého jsem postavil ve Flipasu. Laifea je markdown vault s trvalým AI parťákem, 3D sémantickým grafem znalostí, hlasovým režimem a ~50 nástroji za jedním registrem. Jedna teze: „mysli s tím, ne skrz to.“ AI, po které jsi ostřejší, ne měkčí.",
-   "fr": "Mon exocortex, et la réincarnation de Sombra — le mentor IA empathique que j'ai bâti chez Flipas. Laifea est un vault markdown avec un partenaire IA persistant, un graphe de connaissances sémantique en 3D, un mode vocal et ~50 outils derrière un seul registre. Une thèse : « pense avec, pas à travers ». Une IA qui te rend plus vif, pas plus mou."
-  },
-  "date": "2024 — ongoing",
-  "link": "https://laifea.app",
-  "tags": {
-   "en": "r&d, AI, Web Design",
-   "cs": "r&d, AI, webdesign",
-   "fr": "r&d, IA, web design"
-  },
-  "body": {
-   "en": "The project everything else funnels into. **Laifea** (v0.97) is where Sombra — the AI mentor from my Flipas years — grew up. Flipas gave it a soul (*\"Sombra will never give you the solution, it will help you get there — it's going to make you think\"*); Laifea gave it a body it owns.\n\n## the wedge\nfrictionless AI quietly de-skills you. a randomised trial (n=120) put AI-aided learners at **57.5% vs 68.5%** on 45-day retention, worst in technical subjects. so Laifea inverts the goal: intentional friction where thinking matters, frictionless capture where it doesn't. an AI that **makes you think**, not one that thinks for you.\n\n## what it is\n- your notes stay plain **markdown** — files are the source of truth, the database is a cache. export to ZIP/JSON anytime; zero lock-in.\n- a **3D knowledge graph** (768→3D projection + force sim) where the headline move is *reverse semantic search*: show me what's logically near this thought. the mental model is **Cognitive Spacetime** — dense ideas warp the space and pull related notes toward them.\n- **~50 tools** in one registry, exposed identically to chat, voice, and external agents over MCP.\n- **voice mode** on realtime Gemini Live.\n\n## how it's built\nNext.js 16 + React 19 on **SpacetimeDB as the only backend** — tables, vectors and scheduling in one store, no Redis, no queue, ever. several posts on this blog come straight from its build logs.\n\n\"infrastructure for thought. a living partner in cognition. a sovereign mirror of mind.\"",
-   "cs": "Projekt, do kterého ústí všechno ostatní. **Laifea** (v0.97) je místo, kde Sombra — AI mentor z mých časů ve Flipasu — dospěla. Flipas jí dal duši (*„Sombra ti nikdy nedá řešení, pomůže ti k němu dojít — donutí tě myslet“*); Laifea jí dala tělo, které vlastní.\n\n## ten klín\nbezešvá AI tě potichu odnaučuje. randomizovaná studie (n=120) dala uživatelům AI **57,5 % vs 68,5 %** v 45denní retenci, nejhůř u technických oborů. Laifea proto obrací cíl: záměrné tření tam, kde jde o myšlení, bezešvé zachycení tam, kde ne. AI, která tě **nutí myslet**, ne která myslí za tebe.\n\n## co to je\n- poznámky zůstávají obyčejný **markdown** — soubory jsou zdroj pravdy, databáze cache. export do ZIP/JSON kdykoli; žádný lock-in.\n- **3D graf znalostí** (projekce 768→3D + force sim), kde je hlavní tah *obrácené sémantické hledání*: ukaž mi, co leží logicky vedle téhle myšlenky. mentální model je **kognitivní časoprostor** — husté myšlenky zakřiví prostor a přitáhnou k sobě příbuzné poznámky.\n- **~50 nástrojů** v jednom registru, vystavených stejně chatu, hlasu i externím agentům přes MCP.\n- **hlasový režim** na realtime Gemini Live.\n\n## jak je to postavené\nNext.js 16 + React 19 na **SpacetimeDB jako jediném backendu** — tabulky, vektory i plánování v jednom store, žádný Redis, žádná fronta, nikdy. několik zápisků na tomhle blogu je přímo z jeho build logů.\n\n„infrastruktura pro myšlení. živý parťák v poznávání. svrchované zrcadlo mysli.“",
-   "fr": "Le projet vers lequel tout converge. **Laifea** (v0.97), c'est là où Sombra — le mentor IA de mes années Flipas — a grandi. Flipas lui a donné une âme (*« Sombra ne te donnera jamais la solution, elle t'aidera à y arriver — elle va te faire réfléchir »*) ; Laifea lui a donné un corps qui lui appartient.\n\n## le coin enfoncé\nl'IA sans friction te dé-qualifie en silence. un essai randomisé (n=120) a placé les apprenants assistés par l'IA à **57,5 % contre 68,5 %** en rétention à 45 jours, pire dans les matières techniques. Laifea inverse donc le but : friction intentionnelle là où la pensée compte, capture sans friction là où non. une IA qui te **fait penser**, pas qui pense à ta place.\n\n## ce que c'est\n- tes notes restent du **markdown** brut — les fichiers sont la source de vérité, la base un cache. export ZIP/JSON à tout moment ; zéro verrouillage.\n- un **graphe de connaissances 3D** (projection 768→3D + simulation de forces) dont le geste phare est la *recherche sémantique inversée* : montre-moi ce qui est logiquement proche de cette pensée. le modèle mental : l'**espace-temps cognitif** — les idées denses courbent l'espace et attirent les notes voisines.\n- **~50 outils** dans un registre, exposés à l'identique au chat, à la voix et aux agents externes via MCP.\n- **mode vocal** sur Gemini Live temps réel.\n\n## comment c'est bâti\nNext.js 16 + React 19 sur **SpacetimeDB comme unique backend** — tables, vecteurs et planification dans un seul store, jamais de Redis ni de file. plusieurs billets de ce blog viennent directement de ses journaux de build.\n\n« infrastructure pour la pensée. un partenaire vivant de la cognition. un miroir souverain de l'esprit. »"
   }
  },
  {
@@ -606,57 +606,6 @@
   }
  },
  {
-  "id": 41,
-  "image": "/art/surfaces/180.webp",
-  "title": {
-   "en": "eyetrainer",
-   "cs": "eyetrainer",
-   "fr": "eyetrainer"
-  },
-  "description": {
-   "en": "a little collection of pygame mini-games for training the eye — the kind of perception that painters, colourists and photographers rely on but rarely drill. each game hammers one skill: guessing aspect ratios, spotting hue shifts, reading saturation, matching mixed colours. built for myself, kept simple.",
-   "cs": "malá sbírka pygame mini-her na trénink oka — ten druh vnímání, na který spoléhají malíři, coloristé a fotografové, ale málokdy ho cvičí. každá hra brousí jednu dovednost: odhad poměru stran, hledání posunů odstínu, čtení sytosti, míchání barev na cíl. postavené pro sebe, drženo jednoduše.",
-   "fr": "une petite collection de mini-jeux pygame pour entraîner l'œil — ce type de perception dont peintres, coloristes et photographes dépendent mais qu'ils travaillent rarement. chaque jeu martèle une compétence : deviner les ratios, repérer les glissements de teinte, lire la saturation, reproduire des couleurs mélangées. fait pour moi, gardé simple."
-  },
-  "date": "2023",
-  "tags": {
-   "en": "python, games, color",
-   "cs": "python, hry, barva",
-   "fr": "python, jeux, couleur"
-  },
-  "body": {
-   "en": "## why\nvisual judgement is trainable, but nobody drills it deliberately. i wanted a batch of tiny exercises that isolate one perceptual skill at a time and give instant feedback, the way a musician practises intervals.\n\n## the games\nfive small **pygame** scripts, each a self-contained round:\n\n- **aspect ratio guesser** — read the proportions of a rectangle by eye\n- **complementary color change** — name the complement of a shown colour\n- **hue shift hunt** — catch a subtle shift in hue\n- **saturation detective** — judge how saturated a swatch is\n- **virtual paint palette** — mix primaries to hit a target colour\n\n## the shape of it\ndeliberately unglamorous: run a script, follow the on-screen prompt, get scored. no accounts, no backend, no ceremony — the point is the reps. it fits the same instinct as the rest of my work, tools i actually want to use, built small enough to finish.",
-   "cs": "## proč\nvizuální úsudek se dá trénovat, ale nikdo ho cíleně nedrilluje. chtěl jsem sadu drobných cvičení, která izolují vždy jednu vjemovou dovednost a dávají okamžitou zpětnou vazbu — tak jako muzikant cvičí intervaly.\n\n## hry\npět malých **pygame** skriptů, každý jedno soběstačné kolo:\n\n- **aspect ratio guesser** — odhadni okem poměr stran obdélníku\n- **complementary color change** — pojmenuj doplňkovou barvu\n- **hue shift hunt** — odchyť jemný posun odstínu\n- **saturation detective** — urči, jak je vzorek sytý\n- **virtual paint palette** — namíchej ze základních barev cílovou\n\n## tvar věci\nzáměrně nablýskané ani trochu: spustíš skript, řídíš se instrukcí na obrazovce, dostaneš skóre. žádné účty, žádný backend, žádná ceremonie — jde o opakování. sedí to do stejného instinktu jako zbytek mojí práce: nástroje, které fakt chci používat, malé natolik, abych je dodělal.",
-   "fr": "## pourquoi\nle jugement visuel s'entraîne, mais personne ne le travaille délibérément. je voulais un lot de tout petits exercices qui isolent une compétence perceptive à la fois et donnent un retour instantané, comme un musicien travaille ses intervalles.\n\n## les jeux\ncinq petits scripts **pygame**, chacun une manche autonome :\n\n- **aspect ratio guesser** — évaluer à l'œil les proportions d'un rectangle\n- **complementary color change** — nommer la complémentaire d'une couleur\n- **hue shift hunt** — attraper un léger glissement de teinte\n- **saturation detective** — juger la saturation d'un échantillon\n- **virtual paint palette** — mélanger les primaires pour atteindre une couleur cible\n\n## la forme\nvolontairement sans clinquant : tu lances un script, tu suis la consigne à l'écran, tu es noté. pas de comptes, pas de backend, pas de cérémonie — l'important, ce sont les répétitions. ça relève du même instinct que le reste de mon travail : des outils que j'ai vraiment envie d'utiliser, assez petits pour être finis."
-  }
- },
- {
-  "id": 39,
-  "image": "/art/surfaces/140.webp",
-  "title": {
-   "en": "FocusFrameFinder",
-   "cs": "FocusFrameFinder",
-   "fr": "FocusFrameFinder"
-  },
-  "description": {
-   "en": "a small python tool i wrote to weed blurry frames out of image sequences before they poison a 3d reconstruction. it scores every frame by the variance of its laplacian and quarantines the fuzziest ones so photogrammetry and nerf pipelines only see sharp input. it ended up public with a few dozen stars.",
-   "cs": "malý pythonový nástroj, který jsem napsal, abych z obrazových sekvencí vyházel rozmazané snímky dřív, než mi rozbijí 3d rekonstrukci. každý snímek oboduje podle variance laplaciánu a ty nejrozmazanější odloží stranou, takže do fotogrammetrie a nerf pipeline jde jen ostrý vstup. skončil veřejně s pár desítkami hvězd.",
-   "fr": "un petit outil python que j'ai écrit pour retirer les images floues d'une séquence avant qu'elles ne gâchent une reconstruction 3d. il note chaque image par la variance de son laplacien et met de côté les plus floues, pour que la photogrammétrie et les pipelines nerf ne voient que du net. il est devenu public avec quelques dizaines d'étoiles."
-  },
-  "date": "2023",
-  "tags": {
-   "en": "3d, python, tooling",
-   "cs": "3d, python, nástroje",
-   "fr": "3d, python, outillage"
-  },
-  "body": {
-   "en": "a small python tool i wrote to weed blurry frames out of image sequences before they poison a 3D reconstruction. it got **written up on [RadianceFields](https://radiancefields.com)** — the hub for the gaussian-splatting / NeRF community — and picked up a few dozen stars.\n\n## the problem\ncapture a video, split it into frames, feed them to a photogrammetry or **NeRF** pipeline, and a handful of motion-blurred frames quietly wreck the whole reconstruction. finding them by eye across hundreds of images is miserable.\n\n## how it works\nit runs the classic **variance of Laplacian** as a focus measure: a sharp frame has high-frequency detail and a high variance; a blurry one goes flat. rank every frame, quarantine the fuzziest, and hand the pipeline only sharp input. one dependency, a few seconds, cleaner splats.\n\nnothing clever — just the boring, reliable filter nobody wants to run by hand, packaged so you don't have to.",
-   "cs": "malý python nástroj, který jsem napsal, aby vyházel rozmazané snímky z obrazových sekvencí dřív, než otráví 3D rekonstrukci. **napsali o něm na [RadianceFields](https://radiancefields.com)** — centru komunity kolem gaussian splattingu a NeRF — a sesbíral pár desítek hvězd.\n\n## problém\nnatočíš video, rozsekáš na snímky, pošleš je do fotogrammetrie nebo **NeRF** pipeline a hrstka rozhýbaných snímků potichu zničí celou rekonstrukci. hledat je okem přes stovky obrázků je utrpení.\n\n## jak to funguje\njede na klasickém **rozptylu Laplaciánu** jako míře ostrosti: ostrý snímek má vysokofrekvenční detail a vysoký rozptyl; rozmazaný je plochý. seřaď všechny snímky, ty nejrozmazanější dej do karantény a pipeline předej jen ostré. jedna závislost, pár vteřin, čistší splaty.\n\nnic chytrého — jen ten nudný, spolehlivý filtr, který nikdo nechce pouštět ručně, zabalený tak, abys nemusel.",
-   "fr": "un petit outil python que j'ai écrit pour éliminer les images floues d'une séquence avant qu'elles n'empoisonnent une reconstruction 3D. il a été **présenté sur [RadianceFields](https://radiancefields.com)** — le carrefour de la communauté gaussian-splatting / NeRF — et a récolté quelques dizaines d'étoiles.\n\n## le problème\nfilme une vidéo, découpe-la en images, envoie-les dans un pipeline de photogrammétrie ou **NeRF**, et une poignée d'images floues sabote discrètement toute la reconstruction. les repérer à l'œil sur des centaines d'images est un supplice.\n\n## comment ça marche\nil utilise la classique **variance du laplacien** comme mesure de netteté : une image nette a du détail haute fréquence et une variance élevée ; une image floue s'aplatit. classe chaque image, met les plus floues en quarantaine, ne donne au pipeline que du net. une dépendance, quelques secondes, des splats plus propres.\n\nrien d'astucieux — juste le filtre ennuyeux et fiable que personne ne veut lancer à la main, empaqueté pour que tu n'aies pas à le faire."
-  },
-  "link": "https://radiancefields.com/focusframefinder-auto-culls-blurry-images-for-nerf-datasets"
- },
- {
   "id": 27,
   "image": "/image36.jpg",
   "title": {
@@ -683,6 +632,57 @@
    "cs": "Tech artist a R&D na **VR cestování časem pro Numinos** — imerzivní rekonstrukce historických měst, kterými procházíš v headsetu.\n\nKus, na který jsem nejpyšnější: **vlastní real-time simulace povodně**, napsaná tak, aby běžela v rámci VR frame budgetu — voda, která stoupá historickými ulicemi, ne předpečená animace. Zbytek byla klasická tech-art triáž: dotlačit real-time rendering v Unrealu na hranici VR rozpočtu a zjistit, které rohy oko odpustí.\n\nHistorickou přesnost dodali historici; moje práce byla udržet 90 fps.",
    "fr": "Tech artist et R&D sur les **voyages temporels en VR de Numinos** — des reconstitutions immersives de villes historiques qu'on traverse casque sur la tête.\n\nLa pièce dont je suis le plus fier : une **simulation d'inondation en temps réel**, écrite pour tenir dans le budget d'images de la VR — de l'eau qui monte dans des rues historiques, pas une animation précalculée. Le reste, c'était du triage de tech-art classique : pousser le rendu temps réel d'Unreal jusqu'à la limite du budget VR, puis trouver quels coins l'œil pardonne.\n\nL'exactitude historique venait des historiens ; mon travail, c'était de tenir les 90 fps."
   }
+ },
+ {
+  "id": 41,
+  "image": "/art/surfaces/180.webp",
+  "title": {
+   "en": "eyetrainer",
+   "cs": "eyetrainer",
+   "fr": "eyetrainer"
+  },
+  "description": {
+   "en": "a little collection of pygame mini-games for training the eye — the kind of perception that painters, colourists and photographers rely on but rarely drill. each game hammers one skill: guessing aspect ratios, spotting hue shifts, reading saturation, matching mixed colours. built for myself, kept simple.",
+   "cs": "malá sbírka pygame mini-her na trénink oka — ten druh vnímání, na který spoléhají malíři, coloristé a fotografové, ale málokdy ho cvičí. každá hra brousí jednu dovednost: odhad poměru stran, hledání posunů odstínu, čtení sytosti, míchání barev na cíl. postavené pro sebe, drženo jednoduše.",
+   "fr": "une petite collection de mini-jeux pygame pour entraîner l'œil — ce type de perception dont peintres, coloristes et photographes dépendent mais qu'ils travaillent rarement. chaque jeu martèle une compétence : deviner les ratios, repérer les glissements de teinte, lire la saturation, reproduire des couleurs mélangées. fait pour moi, gardé simple."
+  },
+  "date": "2023",
+  "tags": {
+   "en": "Python, Game Design, Color",
+   "cs": "python, herní design, barva",
+   "fr": "python, game design, couleur"
+  },
+  "body": {
+   "en": "## why\nvisual judgement is trainable, but nobody drills it deliberately. i wanted a batch of tiny exercises that isolate one perceptual skill at a time and give instant feedback, the way a musician practises intervals.\n\n## the games\nfive small **pygame** scripts, each a self-contained round:\n\n- **aspect ratio guesser** — read the proportions of a rectangle by eye\n- **complementary color change** — name the complement of a shown colour\n- **hue shift hunt** — catch a subtle shift in hue\n- **saturation detective** — judge how saturated a swatch is\n- **virtual paint palette** — mix primaries to hit a target colour\n\n## the shape of it\ndeliberately unglamorous: run a script, follow the on-screen prompt, get scored. no accounts, no backend, no ceremony — the point is the reps. it fits the same instinct as the rest of my work, tools i actually want to use, built small enough to finish.",
+   "cs": "## proč\nvizuální úsudek se dá trénovat, ale nikdo ho cíleně nedrilluje. chtěl jsem sadu drobných cvičení, která izolují vždy jednu vjemovou dovednost a dávají okamžitou zpětnou vazbu — tak jako muzikant cvičí intervaly.\n\n## hry\npět malých **pygame** skriptů, každý jedno soběstačné kolo:\n\n- **aspect ratio guesser** — odhadni okem poměr stran obdélníku\n- **complementary color change** — pojmenuj doplňkovou barvu\n- **hue shift hunt** — odchyť jemný posun odstínu\n- **saturation detective** — urči, jak je vzorek sytý\n- **virtual paint palette** — namíchej ze základních barev cílovou\n\n## tvar věci\nzáměrně nablýskané ani trochu: spustíš skript, řídíš se instrukcí na obrazovce, dostaneš skóre. žádné účty, žádný backend, žádná ceremonie — jde o opakování. sedí to do stejného instinktu jako zbytek mojí práce: nástroje, které fakt chci používat, malé natolik, abych je dodělal.",
+   "fr": "## pourquoi\nle jugement visuel s'entraîne, mais personne ne le travaille délibérément. je voulais un lot de tout petits exercices qui isolent une compétence perceptive à la fois et donnent un retour instantané, comme un musicien travaille ses intervalles.\n\n## les jeux\ncinq petits scripts **pygame**, chacun une manche autonome :\n\n- **aspect ratio guesser** — évaluer à l'œil les proportions d'un rectangle\n- **complementary color change** — nommer la complémentaire d'une couleur\n- **hue shift hunt** — attraper un léger glissement de teinte\n- **saturation detective** — juger la saturation d'un échantillon\n- **virtual paint palette** — mélanger les primaires pour atteindre une couleur cible\n\n## la forme\nvolontairement sans clinquant : tu lances un script, tu suis la consigne à l'écran, tu es noté. pas de comptes, pas de backend, pas de cérémonie — l'important, ce sont les répétitions. ça relève du même instinct que le reste de mon travail : des outils que j'ai vraiment envie d'utiliser, assez petits pour être finis."
+  }
+ },
+ {
+  "id": 39,
+  "image": "/art/surfaces/140.webp",
+  "title": {
+   "en": "FocusFrameFinder",
+   "cs": "FocusFrameFinder",
+   "fr": "FocusFrameFinder"
+  },
+  "description": {
+   "en": "a small python tool i wrote to weed blurry frames out of image sequences before they poison a 3d reconstruction. it scores every frame by the variance of its laplacian and quarantines the fuzziest ones so photogrammetry and nerf pipelines only see sharp input. it ended up public with a few dozen stars.",
+   "cs": "malý pythonový nástroj, který jsem napsal, abych z obrazových sekvencí vyházel rozmazané snímky dřív, než mi rozbijí 3d rekonstrukci. každý snímek oboduje podle variance laplaciánu a ty nejrozmazanější odloží stranou, takže do fotogrammetrie a nerf pipeline jde jen ostrý vstup. skončil veřejně s pár desítkami hvězd.",
+   "fr": "un petit outil python que j'ai écrit pour retirer les images floues d'une séquence avant qu'elles ne gâchent une reconstruction 3d. il note chaque image par la variance de son laplacien et met de côté les plus floues, pour que la photogrammétrie et les pipelines nerf ne voient que du net. il est devenu public avec quelques dizaines d'étoiles."
+  },
+  "date": "2023",
+  "tags": {
+   "en": "3D, Python, Tooling",
+   "cs": "3D, python, nástroje",
+   "fr": "3D, python, outillage"
+  },
+  "body": {
+   "en": "a small python tool i wrote to weed blurry frames out of image sequences before they poison a 3D reconstruction. it got **written up on [RadianceFields](https://radiancefields.com)** — the hub for the gaussian-splatting / NeRF community — and picked up a few dozen stars.\n\n## the problem\ncapture a video, split it into frames, feed them to a photogrammetry or **NeRF** pipeline, and a handful of motion-blurred frames quietly wreck the whole reconstruction. finding them by eye across hundreds of images is miserable.\n\n## how it works\nit runs the classic **variance of Laplacian** as a focus measure: a sharp frame has high-frequency detail and a high variance; a blurry one goes flat. rank every frame, quarantine the fuzziest, and hand the pipeline only sharp input. one dependency, a few seconds, cleaner splats.\n\nnothing clever — just the boring, reliable filter nobody wants to run by hand, packaged so you don't have to.",
+   "cs": "malý python nástroj, který jsem napsal, aby vyházel rozmazané snímky z obrazových sekvencí dřív, než otráví 3D rekonstrukci. **napsali o něm na [RadianceFields](https://radiancefields.com)** — centru komunity kolem gaussian splattingu a NeRF — a sesbíral pár desítek hvězd.\n\n## problém\nnatočíš video, rozsekáš na snímky, pošleš je do fotogrammetrie nebo **NeRF** pipeline a hrstka rozhýbaných snímků potichu zničí celou rekonstrukci. hledat je okem přes stovky obrázků je utrpení.\n\n## jak to funguje\njede na klasickém **rozptylu Laplaciánu** jako míře ostrosti: ostrý snímek má vysokofrekvenční detail a vysoký rozptyl; rozmazaný je plochý. seřaď všechny snímky, ty nejrozmazanější dej do karantény a pipeline předej jen ostré. jedna závislost, pár vteřin, čistší splaty.\n\nnic chytrého — jen ten nudný, spolehlivý filtr, který nikdo nechce pouštět ručně, zabalený tak, abys nemusel.",
+   "fr": "un petit outil python que j'ai écrit pour éliminer les images floues d'une séquence avant qu'elles n'empoisonnent une reconstruction 3D. il a été **présenté sur [RadianceFields](https://radiancefields.com)** — le carrefour de la communauté gaussian-splatting / NeRF — et a récolté quelques dizaines d'étoiles.\n\n## le problème\nfilme une vidéo, découpe-la en images, envoie-les dans un pipeline de photogrammétrie ou **NeRF**, et une poignée d'images floues sabote discrètement toute la reconstruction. les repérer à l'œil sur des centaines d'images est un supplice.\n\n## comment ça marche\nil utilise la classique **variance du laplacien** comme mesure de netteté : une image nette a du détail haute fréquence et une variance élevée ; une image floue s'aplatit. classe chaque image, met les plus floues en quarantaine, ne donne au pipeline que du net. une dépendance, quelques secondes, des splats plus propres.\n\nrien d'astucieux — juste le filtre ennuyeux et fiable que personne ne veut lancer à la main, empaqueté pour que tu n'aies pas à le faire."
+  },
+  "link": "https://radiancefields.com/focusframefinder-auto-culls-blurry-images-for-nerf-datasets"
  },
  {
   "id": 25,

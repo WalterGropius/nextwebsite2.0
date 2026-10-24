@@ -88,24 +88,9 @@
    "fr": "Un seul chiffre pour un produit alimentaire, depuis une photo. Mais chaque pourcent est une dimension pondérée et inspectable — et j'ai retiré celle qui prétendait être universelle."
   },
   "tags": {
-   "en": [
-    "scoring",
-    "nutrition",
-    "transparency",
-    "foodament"
-   ],
-   "cs": [
-    "skóring",
-    "výživa",
-    "transparentnost",
-    "foodament"
-   ],
-   "fr": [
-    "notation",
-    "nutrition",
-    "transparence",
-    "foodament"
-   ]
+   "en": "scoring, methodology",
+   "cs": "skóring, metodika",
+   "fr": "notation, méthodologie"
   },
   "image": null,
   "body": {
@@ -153,24 +138,9 @@
    "fr": "Un système RAG sur les notices de médicaments tchèques, où une hallucination est un problème de sécurité. Chaque affirmation porte sa section source — ou l'app refuse de la dire."
   },
   "tags": {
-   "en": [
-    "rag",
-    "retrieval",
-    "sukl",
-    "grounding"
-   ],
-   "cs": [
-    "rag",
-    "retrieval",
-    "sukl",
-    "grounding"
-   ],
-   "fr": [
-    "rag",
-    "recherche",
-    "sukl",
-    "ancrage"
-   ]
+   "en": "ai, rag",
+   "cs": "ai, rag",
+   "fr": "ia, rag"
   },
   "image": null,
   "body": {
@@ -343,24 +313,9 @@
    "fr": "« Cet appartement est-il un tacot ? » est un ressenti. J'en ai fait un chiffre défendable : 22 éléments, cinq tranches d'âge, des poids par catégorie et zéro entrée devinée."
   },
   "tags": {
-   "en": [
-    "scoring",
-    "real estate",
-    "methodology",
-    "homeproof"
-   ],
-   "cs": [
-    "skóring",
-    "nemovitosti",
-    "metodika",
-    "homeproof"
-   ],
-   "fr": [
-    "notation",
-    "immobilier",
-    "méthodologie",
-    "homeproof"
-   ]
+   "en": "scoring, methodology",
+   "cs": "skóring, metodika",
+   "fr": "notation, méthodologie"
   },
   "image": null,
   "body": {
@@ -458,24 +413,9 @@
    "fr": "Bâtir sur le cadastre tchèque n'est pas un problème d'API, c'est un problème de conditions d'usage. Voici ce qu'il faut vraiment pour transformer une adresse en parcelle, légalement."
   },
   "tags": {
-   "en": [
-    "cadastre",
-    "cuzk",
-    "geocoding",
-    "rate limiting"
-   ],
-   "cs": [
-    "katastr",
-    "čúzk",
-    "geokódování",
-    "rate limiting"
-   ],
-   "fr": [
-    "cadastre",
-    "cuzk",
-    "géocodage",
-    "limitation de débit"
-   ]
+   "en": "engineering, data",
+   "cs": "inženýrství, data",
+   "fr": "ingénierie, données"
   },
   "image": null,
   "body": {
@@ -548,24 +488,9 @@
    "fr": "J'ai mis l'état de chaque agent d'une nuée dans une base synchronisée. SpacetimeDB est devenu le cerveau autoritaire de l'essaim, et les règles sont devenues plus étranges que la simulation."
   },
   "tags": {
-   "en": [
-    "spacetimedb",
-    "boids",
-    "simulation",
-    "determinism"
-   ],
-   "cs": [
-    "spacetimedb",
-    "boids",
-    "simulace",
-    "determinismus"
-   ],
-   "fr": [
-    "spacetimedb",
-    "boids",
-    "simulation",
-    "déterminisme"
-   ]
+   "en": "architecture, simulation",
+   "cs": "architektura, simulace",
+   "fr": "architecture, simulation"
   },
   "image": null,
   "body": {
