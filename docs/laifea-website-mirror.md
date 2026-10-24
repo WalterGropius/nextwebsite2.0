@@ -14,8 +14,8 @@ be edited there and synced back into the repo. One note per **art series**,
 | bucket | count | source file | vault folder |
 |--------|-------|-------------|--------------|
 | art | 15 | `public/art.json` | `website/Art` |
-| project | 43 | `public/portfolio.json` | `website/Projects` |
-| blog | 20 | `public/blogs.json` | `website/Blog` |
+| project | 47 | `public/portfolio.json` | `website/Projects` |
+| blog | 33 | `public/blogs.json` | `website/Blog` |
 
 Two projects already have their own KB notes, so they are **linked, not
 duplicated** (only referenced from the index): **Laifea** → `[[Laifee]]` /
@@ -51,7 +51,8 @@ duplicated** (only referenced from the index): **Laifea** → `[[Laifee]]` /
 
 Only `.en` fields (and a few plain scalars) are touched. **Czech/French copy,
 images, media, and structured links in the JSON are left exactly as-is.** Tags
-that are arrays in the JSON stay arrays; comma-string tags stay strings.
+that are arrays in the JSON stay arrays; comma-string tags stay strings (all
+tags are comma strings since 2026-10).
 
 ## Scripts
 
@@ -88,7 +89,7 @@ changes** — the mapping is lossless for the fields it owns:
 
 ```bash
 node scripts/laifea-export.mjs /tmp/notes && node scripts/laifea-sync.mjs /tmp/notes --check
-# notes parsed: 78  skipped: 1  field-changes: 0
+# notes parsed: 95  skipped: 1  field-changes: 0
 ```
 
 ## Typical loop

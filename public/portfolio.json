@@ -1,5 +1,75 @@
 [
  {
+  "id": 36,
+  "image": "/art/surfaces/120.webp",
+  "title": {
+   "en": "Laifea",
+   "cs": "Laifea",
+   "fr": "Laifea"
+  },
+  "description": {
+   "en": "My exocortex: a notes graph I own, with an AI partner that reads back from my own writing instead of telling me what I want to hear — the reincarnation of Sombra, the mentor I built at Flipas. It all runs on SpacetimeDB, the model composes the home screen from a fixed catalogue, and an MCP server lets Claude Code or Cursor work inside the same vault. That's how I keep my own ~3,900-note vault in order.",
+   "cs": "Můj exokortex: graf poznámek, který vlastním, s AI parťákem, který mi čte zpátky z mého vlastního psaní, místo aby mi říkal, co chci slyšet — znovuzrození Sombry, mentora, kterého jsem postavil ve Flipasu. Celé to běží na SpacetimeDB, model skládá domovskou obrazovku z pevného katalogu a MCP server pustí Claude Code nebo Cursor pracovat přímo ve stejném vaultu. Takhle udržuju v pořádku svůj vlastní vault s ~3 900 poznámkami.",
+   "fr": "Mon exocortex : un graphe de notes qui m'appartient, avec un partenaire IA qui me relit dans mes propres écrits au lieu de me dire ce que je veux entendre — la réincarnation de Sombra, le mentor que j'ai bâti chez Flipas. Tout tourne sur SpacetimeDB, le modèle compose l'écran d'accueil à partir d'un catalogue fixe, et un serveur MCP laisse Claude Code ou Cursor travailler dans le même vault. C'est comme ça que je tiens en ordre mon propre vault de ~3 900 notes."
+  },
+  "date": "2024 — ongoing",
+  "link": "https://laifea.app",
+  "tags": {
+   "en": "r&d, AI, Web Design",
+   "cs": "r&d, AI, webdesign",
+   "fr": "r&d, IA, design web"
+  },
+  "body": {
+   "en": "The project everything else funnels into. **Laifea** is where Sombra — the AI mentor from my Flipas years — grew up. Flipas gave it a soul (*\"Sombra will never give you the solution, it will help you get there — it's going to make you think\"*); Laifea gave it a body it owns.\n\n## the wedge\nfrictionless AI quietly de-skills you. a randomised trial (n=120) put AI-aided learners at **57.5% vs 68.5%** on 45-day retention, worst in technical subjects. so Laifea inverts the goal: intentional friction where thinking matters, frictionless capture where it doesn't. an AI that **makes you think**, not one that thinks for you.\n\n## what it is\n- a **knowledge graph you own** — notes, wikilinks and backlinks, imported straight from an Obsidian-style vault (mine is 3,901 notes), with a **3D semantic map** where the headline move is *reverse semantic search*: show me what's logically near this thought.\n- an AI partner with **189 tools** behind one registry — the same tools in chat, in voice, and for outside agents: **144 of them over MCP**, behind OAuth 2.1 (PKCE S256 only) and per-tool scoped keys.\n- a **generative home**: the model composes the screen from a fixed catalogue of components, and a typed line like *\"make it about sleep\"* comes back as an **edit, not a rewrite** — [27 s became 2.4 s](/blog/a-typed-line-is-an-edit).\n- a **local-first mirror** in the browser, so a note opens in **0.6–1.0 ms** instead of ~42 ms over 4G.\n- one UI spec, **seven render targets** — the app, email, PDF, an image, plain text, a terminal screen, and an MCP Apps resource another client draws inside itself.\n\n## how it's built\nNext.js 16 + React 19 on **SpacetimeDB as the only datastore** — 134 tables and 304 reducers, rate limits and OAuth code claims included; no Redis, no queue. most of the code now comes from waves of parallel Claude Code sessions with costed lanes, held to 18 ADRs and ~1,150 test suites. several posts on this blog come straight from its build logs — the latest: [shipped, documented, and dead](/blog/shipped-documented-and-dead) and [your p95 is just the max](/blog/your-p95-is-just-the-max).\n\n\"infrastructure for thought. a living partner in cognition. a sovereign mirror of mind.\"",
+   "cs": "Projekt, do kterého se slévá všechno ostatní. **Laifea** je místo, kde vyrostla Sombra — AI mentor z mých let ve Flipasu. Flipas jí dal duši (*„Sombra ti nikdy nedá řešení, pomůže ti k němu dojít — donutí tě přemýšlet“*); Laifea jí dala tělo, které jí patří.\n\n## klín\nAI bez tření tě potichu odnaučuje. randomizovaná studie (n=120) naměřila u studentů s AI **57,5 % proti 68,5 %** zapamatování po 45 dnech, nejhůř v technických předmětech. Laifea proto cíl obrací: záměrné tření tam, kde jde o přemýšlení, a zachycování bez tření tam, kde nejde. AI, která **tě nutí přemýšlet**, ne taková, co přemýšlí za tebe.\n\n## co to je\n- **graf znalostí, který vlastníš** — poznámky, wikilinky a zpětné odkazy, importované rovnou z vaultu ve stylu Obsidianu (můj má 3 901 poznámek), se **3D sémantickou mapou**, kde hlavním tahem je *obrácené sémantické hledání*: ukaž mi, co leží logicky blízko téhle myšlenky.\n- AI parťák se **189 nástroji** za jedním registrem — stejné nástroje v chatu, v hlasu i pro cizí agenty: **144 z nich přes MCP**, za OAuth 2.1 (jen PKCE S256) a klíči s oprávněním na jednotlivé nástroje.\n- **generativní domovská obrazovka**: model skládá obrazovku z pevného katalogu komponent a napsaný řádek jako *„udělej to o spánku“* se vrací jako **úprava, ne přepis** — [z 27 s se stalo 2,4 s](/blog/a-typed-line-is-an-edit).\n- **local-first zrcadlo** v prohlížeči, takže poznámka se otevře za **0,6–1,0 ms** místo ~42 ms přes 4G.\n- jedna specifikace UI, **sedm cílů vykreslení** — aplikace, e-mail, PDF, obrázek, prostý text, obrazovka terminálu a MCP Apps zdroj, který si jiný klient vykreslí u sebe.\n\n## jak je postavená\nNext.js 16 + React 19 na **SpacetimeDB jako jediném úložišti** — 134 tabulek a 304 reducerů, včetně rate limitů a OAuth kódů; žádný Redis, žádná fronta. většinu kódu dnes píšou vlny paralelních sessions Claude Code s naceněnými drahami, držené 18 ADR a ~1 150 sadami testů. několik článků na tomhle blogu pochází přímo z jejích build logů — naposledy [vydané, zdokumentované a mrtvé](/blog/shipped-documented-and-dead) a [tvoje p95 je jen maximum](/blog/your-p95-is-just-the-max).\n\n„infrastruktura pro myšlení. živý partner v poznávání. suverénní zrcadlo mysli.“",
+   "fr": "Le projet vers lequel tout le reste converge. **Laifea**, c'est là où Sombra — le mentor IA de mes années Flipas — a grandi. Flipas lui a donné une âme (*« Sombra ne te donnera jamais la solution, il t'aidera à y arriver — il va te faire réfléchir »*) ; Laifea lui a donné un corps qui lui appartient.\n\n## l'angle\nl'IA sans friction te déqualifie en silence. un essai randomisé (n=120) a mesuré **57,5 % contre 68,5 %** de rétention à 45 jours chez les apprenants aidés par l'IA, pire encore en matières techniques. Laifea inverse donc l'objectif : de la friction voulue là où penser compte, une capture sans friction là où ça ne compte pas. une IA qui **te fait réfléchir**, pas une qui réfléchit à ta place.\n\n## ce que c'est\n- un **graphe de connaissances qui t'appartient** — notes, wikiliens et rétroliens, importés directement d'un vault façon Obsidian (le mien compte 3 901 notes), avec une **carte sémantique en 3D** dont le geste phare est la *recherche sémantique inversée* : montre-moi ce qui est logiquement proche de cette pensée.\n- un partenaire IA avec **189 outils** derrière un seul registre — les mêmes outils en chat, en voix et pour des agents externes : **144 d'entre eux via MCP**, derrière OAuth 2.1 (PKCE S256 uniquement) et des clés limitées outil par outil.\n- un **accueil génératif** : le modèle compose l'écran à partir d'un catalogue fixe de composants, et une ligne tapée comme *« fais-le sur le sommeil »* revient comme une **modification, pas une réécriture** — [27 s sont devenues 2,4 s](/blog/a-typed-line-is-an-edit).\n- un **miroir local-first** dans le navigateur : une note s'ouvre en **0,6–1,0 ms** au lieu de ~42 ms en 4G.\n- une seule spec d'interface, **sept cibles de rendu** — l'app, l'e-mail, le PDF, une image, du texte brut, un écran de terminal, et une ressource MCP Apps qu'un autre client affiche chez lui.\n\n## comment c'est construit\nNext.js 16 + React 19 sur **SpacetimeDB comme seul stockage** — 134 tables et 304 reducers, limites de débit et codes OAuth compris ; pas de Redis, pas de file. l'essentiel du code vient désormais de vagues de sessions Claude Code parallèles aux couloirs chiffrés, tenues par 18 ADR et ~1 150 suites de tests. plusieurs articles de ce blog sortent directement de ses journaux de build — les derniers : [livrées, documentées et mortes](/blog/shipped-documented-and-dead) et [ton p95, c'est juste le max](/blog/your-p95-is-just-the-max).\n\n« une infrastructure pour la pensée. un partenaire vivant de la cognition. un miroir souverain de l'esprit. »"
+  }
+ },
+ {
+  "image": "/work/argmax.webp",
+  "title": {
+   "en": "ARGMAX",
+   "cs": "ARGMAX",
+   "fr": "ARGMAX"
+  },
+  "description": {
+   "en": "A strategy game where you don't give orders — you write the function your units maximize. One integer-only C# simulation runs on the SpacetimeDB server, in the Unity client and in an ML training gym, and produces the same state hash on all of them. A 28-level campaign teaches the rule language one word at a time. Open source, playable in the browser.",
+   "cs": "Strategie, ve které nerozkazuješ — píšeš funkci, kterou tvoje jednotky maximalizují. Jedna celočíselná simulace v C# běží na serveru SpacetimeDB, v klientu v Unity i v ML tréninkovém prostředí a na všech dává stejný hash stavu. Kampaň o 28 úrovních učí jazyk pravidel slovo po slovu. Open source, hratelné v prohlížeči.",
+   "fr": "Un jeu de stratégie où tu ne donnes pas d'ordres — tu écris la fonction que tes unités maximisent. Une seule simulation C# en entiers tourne sur le serveur SpacetimeDB, dans le client Unity et dans un environnement d'entraînement ML, et produit le même hash d'état partout. Une campagne de 28 niveaux enseigne le langage de règles mot par mot. Open source, jouable dans le navigateur."
+  },
+  "date": "2026",
+  "link": "https://waltergropius.github.io/argmax/play/",
+  "tags": {
+   "en": "Game Design, AI, Multiplayer, r&d",
+   "cs": "herní design, AI, multiplayer, r&d",
+   "fr": "game design, IA, multijoueur, r&d"
+  },
+  "links": [
+   {
+    "label": {
+     "en": "play it",
+     "cs": "zahrát si",
+     "fr": "y jouer"
+    },
+    "href": "https://waltergropius.github.io/argmax/play/"
+   },
+   {
+    "label": {
+     "en": "source",
+     "cs": "zdrojový kód",
+     "fr": "code source"
+    },
+    "href": "https://github.com/WalterGropius/argmax"
+   }
+  ],
+  "body": {
+   "en": "## the idea\nin most strategy games you click units around. in **ARGMAX** you don't command anything: you write the objective — a small rule language — and every unit picks, each tick, the action that maximizes it. the game is about writing good functions, so the campaign is really a course: **28 levels** that introduce the language one word at a time.\n\n## one simulation, three homes\nthe simulation is a single **integer-only C#** library. the same code runs as a **SpacetimeDB** server module (the authority in multiplayer), inside the **Unity** client, and in an **ML-Agents** training gym. no floats anywhere, so it's bit-for-bit deterministic: the same match produces the same state hash on every host — checked on four machines. replays are just the inputs.\n\n## two things that took longer than they should have\n- a golden-hash test that changed with test order. cached enemy programs were keyed by a packed `seed ⊕ (id≪1)`, and two different seeds collided — on a server running many matches that would have silently broken replays.\n- the server module runs on a runtime roughly **70× slower** than native, and a tick took ~130 ms against a 100 ms budget. profiling showed the simulation itself, not I/O; lookup tables and hoisting per-unit work brought the tick to ~**20 ms**.\n\nboth are [on the blog](/blog/one-hash-four-hosts). an AI commander built on a small fast model also plays it: **300 decisions, 0 failures** in testing. MIT-licensed.",
+   "cs": "## nápad\nve většině strategií klikáš jednotkami. v **ARGMAXu** nic nerozkazuješ: píšeš cíl — malý jazyk pravidel — a každá jednotka si v každém tiku vybere akci, která ho maximalizuje. hra je o psaní dobrých funkcí, takže kampaň je vlastně kurz: **28 úrovní**, které uvádějí jazyk slovo po slovu.\n\n## jedna simulace, tři domovy\nsimulace je jediná **celočíselná knihovna v C#**. stejný kód běží jako modul serveru **SpacetimeDB** (autorita v multiplayeru), uvnitř klienta v **Unity** a v tréninkovém prostředí **ML-Agents**. nikde žádná desetinná čísla, takže je deterministická bit po bitu: stejný zápas dá na každém stroji stejný hash stavu — ověřeno na čtyřech. záznam hry jsou jen vstupy.\n\n## dvě věci, které trvaly déle, než měly\n- test zlatého hashe, který se měnil podle pořadí testů. cachované programy nepřátel měly klíč sbalený jako `seed ⊕ (id≪1)` a dva různé seedy kolidovaly — na serveru s mnoha zápasy by to potichu rozbilo záznamy.\n- serverový modul běží v runtimu zhruba **70× pomalejším** než nativní kód a tik trval ~130 ms proti rozpočtu 100 ms. profilování ukázalo samotnou simulaci, ne I/O; vyhledávací tabulky a vytažení práce na jednotku z vnitřní smyčky srazily tik na ~**20 ms**.\n\nobojí je [na blogu](/blog/one-hash-four-hosts). hraje ho i AI velitel postavený na malém rychlém modelu: **300 rozhodnutí, 0 selhání** v testech. licence MIT.",
+   "fr": "## l'idée\ndans la plupart des jeux de stratégie, on déplace des unités au clic. dans **ARGMAX**, tu ne commandes rien : tu écris l'objectif — un petit langage de règles — et chaque unité choisit, à chaque tick, l'action qui le maximise. le jeu consiste à écrire de bonnes fonctions, donc la campagne est en fait un cours : **28 niveaux** qui introduisent le langage mot par mot.\n\n## une simulation, trois maisons\nla simulation est une seule bibliothèque **C# en entiers**. le même code tourne comme module serveur **SpacetimeDB** (l'autorité en multijoueur), dans le client **Unity**, et dans un environnement d'entraînement **ML-Agents**. aucun flottant nulle part, donc elle est déterministe au bit près : le même match produit le même hash d'état sur chaque machine — vérifié sur quatre. un replay, ce ne sont que les entrées.\n\n## deux choses qui ont pris plus longtemps que prévu\n- un test de hash de référence qui changeait selon l'ordre des tests. les programmes ennemis en cache étaient indexés par un `seed ⊕ (id≪1)` compacté, et deux graines différentes entraient en collision — sur un serveur avec beaucoup de matchs, ça aurait cassé les replays en silence.\n- le module serveur tourne sur un runtime environ **70× plus lent** que le natif, et un tick prenait ~130 ms pour un budget de 100 ms. le profilage a montré la simulation elle-même, pas les I/O ; des tables de correspondance et le travail par unité sorti de la boucle interne ont ramené le tick à ~**20 ms**.\n\nles deux sont [sur le blog](/blog/one-hash-four-hosts). un commandant IA construit sur un petit modèle rapide y joue aussi : **300 décisions, 0 échec** en test. sous licence MIT."
+  },
+  "id": 50
+ },
+ {
   "id": 29,
   "image": "/work/be-mindful.webp",
   "title": {
@@ -8,16 +78,16 @@
    "fr": "Be Mindful"
   },
   "description": {
-   "en": "a mindfulness companion app and course platform for a senior mindfulness coach — guided video courses, an audio meditation library, streaks and a gemini-powered advisor, with an admin dashboard the coach runs herself. five content tiers, from a free 3-day intro to private corporate cohorts. funded, live, and growing — a business edition for workplace teams is in the works (2026).",
-   "cs": "aplikace a kurzová platforma pro mindfulness určená zkušené lektorce — vedené videokurzy, audioknihovna meditací, streaky a poradce poháněný gemini, plus admin dashboard, který si lektorka spravuje sama. pět obsahových úrovní od tří denního intra zdarma po soukromé firemní skupiny. projekt má funding, běží naostro a roste — chystá se firemní verze pro týmy (2026).",
-   "fr": "une app compagnon de pleine conscience et plateforme de cours pour une coach expérimentée — cours vidéo guidés, bibliothèque audio de méditations, séries de pratique et un conseiller propulsé par gemini, avec un tableau de bord admin que la coach gère elle-même. cinq niveaux de contenu, de l'intro gratuite de 3 jours aux cohortes d'entreprise privées. financée, en ligne et en croissance — une version entreprise pour les équipes est en préparation (2026)."
+   "en": "A course and membership app for a mindfulness school, plus the bemindful.cz site that sells it. People take guided video courses, sit with a timer that keeps ringing on a locked phone, and practise together in cohort chats — and since September 2026, workplace teams get their own edition from the same deployment.",
+   "cs": "Kurzová a členská aplikace pro školu mindfulness a k ní web bemindful.cz, který ji prodává. Lidé procházejí vedené videokurzy, sedí s časovačem, který zvoní i na zamčeném telefonu, a praktikují spolu v chatech skupin — a od září 2026 mají firemní týmy vlastní verzi ze stejného nasazení.",
+   "fr": "Une app de cours et d'abonnement pour une école de pleine conscience, plus le site bemindful.cz qui la vend. On y suit des cours vidéo guidés, on médite avec un minuteur qui sonne même téléphone verrouillé, on pratique ensemble dans les chats de cohorte — et depuis septembre 2026, les équipes en entreprise ont leur propre édition, depuis le même déploiement."
   },
-  "date": "June 2026",
-  "link": "https://be-mindful-app.vercel.app",
+  "date": "2025 — 2026",
+  "link": "https://www.bemindful.cz",
   "tags": {
-   "en": "Web Design, r&d",
-   "cs": "webdesign, r&d",
-   "fr": "design web, r&d"
+   "en": "Web Design, Wellbeing, AI",
+   "cs": "webdesign, wellbeing, AI",
+   "fr": "design web, bien-être, IA"
   },
   "media": [
    {
@@ -42,99 +112,140 @@
      "cs": "aplikace",
      "fr": "l'application"
     },
-    "href": "https://be-mindful-app.vercel.app"
+    "href": "https://app.bemindful.cz"
    },
    {
     "label": {
-     "en": "landing page",
-     "cs": "landing page",
-     "fr": "landing page"
+     "en": "bemindful.cz",
+     "cs": "bemindful.cz",
+     "fr": "bemindful.cz"
     },
-    "href": "https://v0-bemindhomepage.vercel.app"
+    "href": "https://www.bemindful.cz"
    }
   ],
   "body": {
-   "en": "## what it is\na content platform that lets one mindfulness coach deliver structured practice at a few levels of depth. content is organised as **courses → folders → videos**, plus a categorised **audio meditation library** with its own player, a meditation timer, per-course community chat with threaded replies, and a blog. progress is gamified — daily **streaks**, total practice minutes, lifetime stats.\n\n## five tiers\nthe platform is tiered by commitment: a **free 3-day intro**, a 4-part **foundation course**, a full-library **membership**, a cohort-based **8-week course** with zoom links and workbooks, and **private corporate sections** for workplace wellbeing teams. each tier has its own access window, and the private hubs are password-gated.\n\n## the coach runs it\nthere's a real admin dashboard behind it: a **tus-based video uploader wired to bunny.net** for streaming, full crud over courses/folders/videos/audios/docs, and manual membership overrides — so the coach manages her own catalogue without me in the loop. an **ai advisor on google gemini** answers practice questions in-context. built on next.js 16 / react 19, neon postgres via prisma, stripe checkout, native czech + english, installable as a pwa.",
-   "cs": "## co to je\nobsahová platforma, na které jedna lektorka mindfulness dodává strukturovanou praxi v několika úrovních hloubky. obsah je uspořádaný jako **kurzy → složky → videa**, k tomu kategorizovaná **audioknihovna meditací** s vlastním přehrávačem, meditační časovač, komunitní chat u každého kurzu s vlákny a blog. postup je gamifikovaný — denní **streaky**, celkové odmeditované minuty, statistiky za celou dobu.\n\n## pět úrovní\nplatforma je odstupňovaná podle míry závazku: **intro na 3 dny zdarma**, čtyřdílný **základní kurz**, **členství** k celé knihovně, **osmitýdenní kurz** pro skupinu se zoom odkazy a pracovními sešity a **soukromé firemní sekce** pro týmy wellbeingu. každá úroveň má vlastní okno přístupu a soukromé huby jsou chráněné heslem.\n\n## spravuje si to sama\nvzadu je opravdový admin dashboard: **nahrávač videí přes tus napojený na bunny.net** pro streaming, plný crud nad kurzy/složkami/videi/audii/dokumenty a ruční úpravy členství — takže si lektorka spravuje vlastní katalog beze mě. **ai poradce na google gemini** odpovídá na dotazy k praxi v kontextu. postaveno na next.js 16 / react 19, neon postgres přes prismu, stripe checkout, nativně česky i anglicky, instalovatelné jako pwa.",
-   "fr": "## ce que c'est\nune plateforme de contenu qui permet à une seule coach de pleine conscience de proposer une pratique structurée à plusieurs niveaux de profondeur. le contenu est organisé en **cours → dossiers → vidéos**, avec une **bibliothèque audio de méditations** catégorisée et son propre lecteur, un minuteur de méditation, un chat communautaire par cours avec fils de discussion, et un blog. la progression est gamifiée — **séries** quotidiennes, minutes de pratique cumulées, statistiques à vie.\n\n## cinq niveaux\nla plateforme est étagée selon l'engagement : une **intro gratuite de 3 jours**, un **cours fondation** en 4 parties, un **abonnement** à toute la bibliothèque, un **cours de 8 semaines** en cohorte avec liens zoom et cahiers, et des **sections d'entreprise privées** pour les équipes bien-être. chaque niveau a sa propre fenêtre d'accès, et les espaces privés sont protégés par mot de passe.\n\n## la coach le pilote elle-même\nderrière, il y a un vrai tableau de bord admin : un **uploader vidéo basé sur tus branché à bunny.net** pour le streaming, un crud complet sur cours/dossiers/vidéos/audios/docs, et des ajustements manuels d'abonnement — la coach gère son propre catalogue sans passer par moi. un **conseiller ia sur google gemini** répond aux questions de pratique en contexte. construit sur next.js 16 / react 19, neon postgres via prisma, stripe checkout, nativement en tchèque et anglais, installable en pwa."
+   "en": "## what it is\na content platform that lets one mindfulness school deliver structured practice at a few levels of depth. content is organised as **courses → folders → videos**, plus a categorised **audio meditation library** with its own player, a meditation timer, per-course community chat with threaded replies, and a blog. progress is gamified — daily **streaks**, total practice minutes, lifetime stats.\n\n## the tiers\nthe platform is tiered by commitment: **Foundations** (the first lesson plays for an e-mail address), a full-library **membership**, a cohort-based **8-week course** with workbooks, and **company runs** for workplace teams. since **September 2026** the business edition is a second app on the same deployment — the request's host decides which one you get.\n\n## the timer that had to survive a locked phone\nthe meditation timer used to ring its gongs from a JavaScript interval, and a locked phone suspends those — no gong, no end bell, minutes missing from the totals. now the whole sitting is rendered as one in-memory **FLAC** from an encoder written by hand, played through a single audio element, because media playback is the one thing a phone keeps alive when the screen goes dark. a silent block costs **13 bytes** instead of 8 KB, so an hour of sitting is about half a megabyte instead of a 300 MB WAV ([the full story](/blog/the-timer-became-a-recording)).\n\n## the school runs it\nthere's a real admin behind it: a **tus-based video uploader wired to bunny.net** for streaming, full control over courses, folders, videos, audio and documents, and manual membership overrides — so the school manages its own catalogue without me in the loop. images are optimised in-house now (3.25 MB → 478 KB on a typical upload). an **ai advisor on google gemini** answers practice questions in context. next.js 16 / react 19, neon postgres via prisma, stripe, native czech + english, installable as a pwa — and most of the 300-odd commits came straight from the school's own feedback lists.",
+   "cs": "## co to je\nobsahová platforma, na které jedna škola mindfulness dodává strukturovanou praxi v několika úrovních hloubky. obsah je uspořádaný jako **kurzy → složky → videa**, k tomu kategorizovaná **audioknihovna meditací** s vlastním přehrávačem, meditační časovač, komunitní chat u každého kurzu s vlákny odpovědí a blog. pokrok je gamifikovaný — denní **streaky**, celkové minuty praxe, statistiky za celou dobu.\n\n## úrovně\nplatforma je odstupňovaná podle závazku: **Foundations** (první lekce se pustí za e-mailovou adresu), **členství** s celou knihovnou, **8týdenní kurz** ve skupině s pracovními sešity a **firemní běhy** pro týmy. od **září 2026** je firemní verze druhou aplikací na stejném nasazení — o tom, kterou dostaneš, rozhodne host v požadavku.\n\n## časovač, který musel přežít zamčený telefon\nmeditační časovač dřív zvonil gongy z javascriptového intervalu a zamčený telefon takové intervaly uspí — žádný gong, žádný závěrečný zvon, chybějící minuty v součtech. teď se celé sezení vyrenderuje jako jeden **FLAC** v paměti z ručně napsaného enkodéru a hraje přes jediný audio element, protože přehrávání médií je jediná věc, kterou telefon nechá běžet i se zhasnutou obrazovkou. tichý blok stojí **13 bajtů** místo 8 KB, takže hodina sezení je zhruba půl megabajtu místo 300 MB WAVu ([celý příběh](/blog/the-timer-became-a-recording)).\n\n## škola si ho řídí sama\nza tím stojí skutečná administrace: **tus uploader videí napojený na bunny.net** pro streamování, plná správa kurzů, složek, videí, audia a dokumentů a ruční úpravy členství — takže škola spravuje vlastní katalog beze mě. obrázky se teď optimalizují vlastními silami (3,25 MB → 478 KB u běžného nahrání). **ai poradce na google gemini** odpovídá na otázky k praxi v kontextu. next.js 16 / react 19, neon postgres přes prismu, stripe, nativně česky + anglicky, instalovatelné jako pwa — a většina z více než 300 commitů vzešla přímo ze seznamů připomínek od školy.",
+   "fr": "## ce que c'est\nune plateforme de contenu qui permet à une école de pleine conscience de proposer une pratique structurée à plusieurs niveaux de profondeur. le contenu est organisé en **cours → dossiers → vidéos**, plus une **bibliothèque audio de méditations** classée avec son propre lecteur, un minuteur de méditation, un chat communautaire par cours avec réponses en fil, et un blog. la progression est ludifiée — **séries** quotidiennes, minutes de pratique cumulées, statistiques à vie.\n\n## les niveaux\nla plateforme est étagée selon l'engagement : **Foundations** (la première leçon se débloque contre une adresse e-mail), un **abonnement** à toute la bibliothèque, un **cours de 8 semaines** en cohorte avec cahiers d'exercices, et des **sessions en entreprise** pour les équipes. depuis **septembre 2026**, l'édition entreprise est une seconde app sur le même déploiement — c'est l'hôte de la requête qui décide laquelle tu reçois.\n\n## le minuteur qui devait survivre à un téléphone verrouillé\nle minuteur faisait sonner ses gongs depuis un intervalle JavaScript, et un téléphone verrouillé suspend ces intervalles — pas de gong, pas de cloche finale, des minutes manquantes dans les totaux. désormais toute la séance est rendue en un seul **FLAC** en mémoire, par un encodeur écrit à la main, et jouée par un unique élément audio, parce que la lecture média est la seule chose qu'un téléphone garde en vie écran éteint. un bloc de silence coûte **13 octets** au lieu de 8 Ko, donc une heure de séance pèse environ un demi-mégaoctet au lieu d'un WAV de 300 Mo ([toute l'histoire](/blog/the-timer-became-a-recording)).\n\n## l'école la pilote\nil y a une vraie administration derrière : un **uploader vidéo tus relié à bunny.net** pour le streaming, la gestion complète des cours, dossiers, vidéos, audios et documents, et des ajustements manuels d'abonnement — l'école gère son propre catalogue sans moi. les images sont désormais optimisées en interne (3,25 Mo → 478 Ko pour un envoi typique). un **conseiller ia sur google gemini** répond aux questions de pratique en contexte. next.js 16 / react 19, neon postgres via prisma, stripe, tchèque + anglais natifs, installable en pwa — et l'essentiel des 300 et quelques commits est venu directement des listes de retours de l'école."
   }
  },
  {
-  "id": 48,
-  "image": "/art/acrylic/012.webp",
+  "id": 30,
+  "image": "/work/chatspc.webp",
   "title": {
-   "en": "Bungalov 7",
-   "cs": "Bungalov 7",
-   "fr": "Bungalov 7"
+   "en": "Chat SPC",
+   "cs": "Chat SPC",
+   "fr": "Chat SPC"
   },
   "description": {
-   "en": "The website for Bungalov 7 — a Prague art space four friends founded for their own work and for courses and workshops, kids to adults. I built the site: the studio's story, the class catalogue, and the registration flow.",
-   "cs": "Web pro Bungalov 7 — pražský výtvarný prostor, který založily čtyři kamarádky pro vlastní tvorbu i pro kurzy a workshopy, od dětí po dospělé. Postavil jsem web: příběh ateliéru, katalog kurzů a přihlašování.",
-   "fr": "Le site de Bungalov 7 — un espace d'art praguois que quatre amies ont fondé pour leur propre travail et pour des cours et ateliers, des enfants aux adultes. J'ai construit le site : l'histoire de l'atelier, le catalogue des cours et les inscriptions."
+   "en": "An AI that answers questions about Czech medicines only from the official SÚKL leaflets (SPCs), with a citation on every claim. Every night it checks SÚKL for changed leaflets, converts only the PDFs that changed and republishes them — an ingest I built as two reusable services, a crawler and a PDF parser.",
+   "cs": "AI, která odpovídá na otázky o českých lécích jen z oficiálních SPC od SÚKL, s citací u každého tvrzení. Každou noc zkontroluje, které SPC se na SÚKL změnily, převede jen změněná PDF a znovu je publikuje — ingest, který jsem postavil jako dvě znovupoužitelné služby, crawler a PDF parser.",
+   "fr": "Une IA qui répond aux questions sur les médicaments tchèques uniquement à partir des RCP officiels du SÚKL, avec une citation pour chaque affirmation. Chaque nuit, elle vérifie quels RCP ont changé, ne convertit que les PDF modifiés et les republie — une ingestion que j'ai construite comme deux services réutilisables, un crawler et un parseur PDF."
   },
-  "date": "2025",
+  "date": "2025 — 2026",
+  "link": "https://chatspc.cz",
   "tags": {
-   "en": "web design, r&d",
-   "cs": "webdesign, r&d",
-   "fr": "web design, r&d"
+   "en": "AI, Data, Web Design",
+   "cs": "AI, data, webdesign",
+   "fr": "IA, données, design web"
   },
+  "media": [],
+  "links": [
+   {
+    "label": {
+     "en": "chatspc.cz",
+     "cs": "chatspc.cz",
+     "fr": "chatspc.cz"
+    },
+    "href": "https://chatspc.cz"
+   }
+  ],
   "body": {
-   "en": "**Bungalov 7** is a shared art studio in Prague, founded by four friends with a common past in film, advertising and theatre. They make their own and commissioned work, and teach — kids' art classes, day camps, and an open art space for adults (workshops, jewellery, upcycling, textile, light objects).\n\n## what i built\na clean, warm site that does the two jobs an art space actually needs: **tell the story** (about the space, about the four of them, their work) and **fill the classes** — a browsable catalogue split kids / adults, and a registration flow so a parent can sign a kid up without a phone call.\n\nno flash for its own sake. the work on the walls is the hero; the site gets out of its way and points people at the door.",
-   "cs": "**Bungalov 7** je sdílený ateliér v Praze, který založily čtyři kamarádky se společnou minulostí u filmu, reklamy a divadla. Dělají vlastní i zakázkovou tvorbu a učí — výtvarku pro děti, příměšťáky a open art space pro dospělé (workshopy, šperk, upcycle, textil, svítící objekty).\n\n## co jsem postavil\nčistý, vřelý web, který zvládá dvě věci, jež výtvarný prostor opravdu potřebuje: **vyprávět příběh** (o prostoru, o té čtveřici, o jejich tvorbě) a **naplnit kurzy** — procházitelný katalog rozdělený děti / dospělí a přihlašování, aby rodič zapsal dítě bez telefonátu.\n\nžádné efekty pro efekt. hrdinou je tvorba na stěnách; web jí jde z cesty a nasměruje lidi ke dveřím.",
-   "fr": "**Bungalov 7** est un atelier partagé à Prague, fondé par quatre amies au passé commun dans le cinéma, la publicité et le théâtre. Elles font leur propre travail et des commandes, et enseignent — cours d'art pour enfants, stages, et un espace d'art ouvert aux adultes (ateliers, bijou, upcycling, textile, objets lumineux).\n\n## ce que j'ai construit\nun site sobre et chaleureux qui remplit les deux rôles dont un espace d'art a vraiment besoin : **raconter l'histoire** (le lieu, les quatre, leur travail) et **remplir les cours** — un catalogue parcourable séparé enfants / adultes, et un parcours d'inscription pour qu'un parent inscrive un enfant sans coup de fil.\n\npas d'effets pour les effets. la vedette, c'est le travail aux murs ; le site s'efface et dirige les gens vers la porte."
-  },
-  "link": "https://bungalov7.com"
- },
- {
-  "id": 47,
-  "image": "/art/surfaces/220.webp",
-  "title": {
-   "en": "A Universe for a Library",
-   "cs": "Vesmír pro knihovnu",
-   "fr": "Un univers pour une bibliothèque"
-  },
-  "description": {
-   "en": "500+ books scattered through 3D space by meaning, not by shelf. I embedded a library's collection and let the vectors decide where each title sits, so related books cluster into constellations you can fly through. Reading as astronomy.",
-   "cs": "500+ knih rozesetých 3D prostorem podle významu, ne podle regálu. Naembeddoval jsem sbírku knihovny a nechal vektory rozhodnout, kde který titul leží, takže se příbuzné knihy shluknou do souhvězdí, kterými se dá prolétnout. Čtení jako astronomie.",
-   "fr": "Plus de 500 livres dispersés dans un espace 3D par le sens, pas par l'étagère. J'ai vectorisé la collection d'une bibliothèque et laissé les embeddings décider de la place de chaque titre, si bien que les livres proches se regroupent en constellations qu'on peut survoler. La lecture comme astronomie."
-  },
-  "date": "2025",
-  "tags": {
-   "en": "3d, r&d, ai",
-   "cs": "3d, r&d, ai",
-   "fr": "3d, r&d, ia"
-  },
-  "body": {
-   "en": "A library catalogue is a list. **A universe for a library** turns it into a place.\n\n## meaning as coordinates\nevery book's text is embedded into a vector, then projected into 3D. books that are *about* similar things end up near each other — so the layout is a map of ideas, not a Dewey number. hover a star, read the annotation, follow the link to the book.\n\n## the boring part that made it beautiful\n500+ books merged at runtime stuttered on every hover and click. so i precompute: a build step matches coordinates to annotations and links and bakes one **enriched-data.json** (~1.2MB), killing all runtime overhead. the visualization stays silky because the thinking already happened offline.\n\nit's a small piece with a simple thesis: a collection you can *fly through* invites a different kind of browsing than a list you scroll — you discover by proximity, not by search.",
-   "cs": "Katalog knihovny je seznam. **Vesmír pro knihovnu** z něj dělá místo.\n\n## význam jako souřadnice\ntext každé knihy se převede na vektor a promítne do 3D. knihy, které jsou *o* podobných věcech, skončí blízko sebe — rozložení je tak mapa myšlenek, ne dewey číslo. najeď na hvězdu, přečti anotaci, klikni na odkaz ke knize.\n\n## ta nudná část, po které to zkrásnělo\n500+ knih slévaných za běhu sekalo při každém najetí a kliknutí. tak to předpočítávám: build krok napáruje souřadnice na anotace a odkazy a upeče jeden **enriched-data.json** (~1,2 MB), čímž zabije veškerou režii za běhu. vizualizace zůstane hedvábná, protože přemýšlení proběhlo offline.\n\nmalý kus s jednoduchou tezí: sbírka, kterou můžeš *prolétnout*, zve k jinému prohlížení než seznam, který scrolluješ — objevuješ blízkostí, ne hledáním.",
-   "fr": "Un catalogue de bibliothèque est une liste. **Un univers pour une bibliothèque** en fait un lieu.\n\n## le sens comme coordonnées\nle texte de chaque livre est vectorisé, puis projeté en 3D. les livres qui *parlent* de choses proches se retrouvent voisins — la disposition est une carte d'idées, pas une cote. survole une étoile, lis l'annotation, suis le lien vers le livre.\n\n## la partie ennuyeuse qui l'a rendu beau\n500+ livres fusionnés à l'exécution saccadaient à chaque survol et clic. alors je précalcule : une étape de build associe coordonnées, annotations et liens et cuit un seul **enriched-data.json** (~1,2 Mo), tuant tout le coût à l'exécution. la visualisation reste soyeuse parce que la réflexion a déjà eu lieu hors ligne.\n\nune petite pièce à la thèse simple : une collection qu'on peut *survoler* invite à un autre butinage qu'une liste qu'on fait défiler — on découvre par proximité, pas par recherche."
+   "en": "## what it is\na chat that answers drug questions strictly from the SÚKL SPC corpus — **7,000+ leaflets**, no general medical knowledge, no guessing. the model runs a **grounded tool loop** on gemini 2.5 flash: `searchSPC` for full-text, `getSection` to pull a specific section, `recordUnansweredQuery` for coverage telemetry. **every claim carries a `SPC<code> §section` citation**, and the ui checks the code actually came back from a tool before it renders the chip — otherwise it's flagged as unsupported. (it started on 2.5 pro; sixty-second timeouts settled that.)\n\n## the part czech breaks\nthe hard problems were in retrieval, not the model. czech declines drug names (\"zoloftu\", \"mireny\"), but the backend index only matches the nominative, so a declined query returned **zero hits** and the chat wrongly said \"not found\". i added **declension recovery** (strip case endings, retry, merge), **salt/latin-form expansion** (metoprolol → metoprolol-sukcinát, metoprololi tartras), plus dedup and re-ranking so the same drug across every strength doesn't drown a real match.\n\n## the pipeline\nthe ingest is two small services i wrote to be reused. a **crawler** you program with declarative JSON recipes (no code execution) checks SÚKL every night and returns only the leaflets that changed. a **PDF parser** turns each one into faithful markdown and html through three tiers — plain text extraction first, OCR for scans, a gemini pass only when both fail. a live SÚKL week went through **70/70 on the cheapest tier** ([and why the cheapest tier has to win](/blog/the-fallback-that-hid-a-missing-tier)). the results publish one post per SPC on a partner platform, with page numbers and section anchors that survive the trip — which took longer than it should have: [the marker the sanitizer ate](/blog/the-marker-the-sanitizer-ate).",
+   "cs": "## co to je\nchat, který odpovídá na otázky o lécích výhradně z korpusu SPC od SÚKL — **přes 7 000 dokumentů**, žádné obecné medicínské znalosti, žádné hádání. model běží v **ukotvené smyčce nástrojů** na gemini 2.5 flash: `searchSPC` pro fulltext, `getSection` pro konkrétní oddíl, `recordUnansweredQuery` pro telemetrii pokrytí. **každé tvrzení nese citaci `SPC<kód> §oddíl`** a ui ověří, že kód opravdu přišel z nástroje, než vykreslí štítek — jinak ho označí jako nepodložený. (začínalo se na 2.5 pro; šedesátivteřinové timeouty to rozhodly.)\n\n## část, kterou rozbije čeština\ntěžké problémy byly ve vyhledávání, ne v modelu. čeština skloňuje názvy léků („zoloftu“, „mireny“), ale index na backendu páruje jen první pád, takže vyskloňovaný dotaz vrátil **nula výsledků** a chat mylně tvrdil „nenalezeno“. přidal jsem **obnovu skloňování** (odříznout koncovky, zkusit znovu, sloučit), **rozšíření o soli a latinské tvary** (metoprolol → metoprolol-sukcinát, metoprololi tartras) a k tomu deduplikaci a přeřazení, aby stejný lék ve všech silách nepřehlušil skutečnou shodu.\n\n## pipeline\ningest tvoří dvě malé služby, které jsem napsal tak, aby šly použít znovu. **crawler**, který se programuje deklarativními JSON recepty (žádné spouštění kódu), každou noc zkontroluje SÚKL a vrátí jen změněné dokumenty. **PDF parser** z každého udělá věrný markdown a html přes tři úrovně — nejdřív prostá extrakce textu, OCR pro skeny, průchod přes gemini jen když selžou obě. živý týden ze SÚKL prošel **70/70 na nejlevnější úrovni** ([a proč musí vyhrát ta nejlevnější](/blog/the-fallback-that-hid-a-missing-tier)). výsledky se publikují jako jeden příspěvek na SPC na partnerské platformě, s čísly stránek a kotvami oddílů, které cestu přežijí — což trvalo déle, než mělo: [značka, kterou snědl sanitizer](/blog/the-marker-the-sanitizer-ate).",
+   "fr": "## ce que c'est\nun chat qui répond aux questions sur les médicaments strictement à partir du corpus de RCP du SÚKL — **plus de 7 000 notices**, aucune connaissance médicale générale, aucune devinette. le modèle tourne dans une **boucle d'outils ancrée** sur gemini 2.5 flash : `searchSPC` pour le plein texte, `getSection` pour extraire une section précise, `recordUnansweredQuery` pour la télémétrie de couverture. **chaque affirmation porte une citation `SPC<code> §section`**, et l'interface vérifie que le code est bien revenu d'un outil avant d'afficher la pastille — sinon elle est signalée comme non étayée. (il a commencé sur 2.5 pro ; des timeouts de soixante secondes ont tranché.)\n\n## la partie que le tchèque casse\nles vrais problèmes étaient dans la recherche, pas dans le modèle. le tchèque décline les noms de médicaments (« zoloftu », « mireny »), mais l'index ne reconnaît que le nominatif, donc une requête déclinée renvoyait **zéro résultat** et le chat disait à tort « introuvable ». j'ai ajouté une **récupération des déclinaisons** (retirer les terminaisons, réessayer, fusionner), une **expansion sels/formes latines** (metoprolol → metoprolol-sukcinát, metoprololi tartras), plus déduplication et re-classement pour que le même médicament dans tous ses dosages n'étouffe pas un vrai résultat.\n\n## le pipeline\nl'ingestion, ce sont deux petits services écrits pour être réutilisés. un **crawler** qu'on programme avec des recettes JSON déclaratives (aucune exécution de code) vérifie le SÚKL chaque nuit et ne renvoie que les notices modifiées. un **parseur PDF** transforme chacune en markdown et html fidèles en trois niveaux — d'abord l'extraction de texte, l'OCR pour les scans, un passage gemini seulement si les deux échouent. une vraie semaine du SÚKL est passée **70/70 au niveau le moins cher** ([et pourquoi c'est lui qui doit gagner](/blog/the-fallback-that-hid-a-missing-tier)). les résultats sont publiés un article par RCP sur une plateforme partenaire, avec des numéros de page et des ancres de section qui survivent au voyage — ce qui a pris plus longtemps que prévu : [le marqueur que le sanitizer a mangé](/blog/the-marker-the-sanitizer-ate)."
   }
  },
  {
-  "id": 46,
-  "image": "/art/decay/050.webp",
+  "image": "/work/holy-rag.webp",
   "title": {
-   "en": "Zlé Rádio",
-   "cs": "Zlé Rádio",
-   "fr": "Zlé Rádio"
+   "en": "Holy RAG",
+   "cs": "Holy RAG",
+   "fr": "Holy RAG"
   },
   "description": {
-   "en": "Radio for bad people — reborn. Zlé Rádio started in 2015 as a WordPress oddity at zleradio.org; a decade later I brought it back at zlerad.io. Same defiant tone, KDO / CO / TO / ROZKAZY, now a fast modern web app instead of a crumbling blog.",
-   "cs": "Rádio pro zlé lidi — znovuzrozené. Zlé Rádio začalo v roce 2015 jako wordpressová úchylka na zleradio.org; o dekádu později jsem ho vzkřísil na zlerad.io. Stejný vzdorný tón, KDO / CO / TO / ROZKAZY, jen místo rozpadlého blogu rychlá moderní webová appka.",
-   "fr": "La radio pour les méchants — renée. Zlé Rádio a commencé en 2015 comme une bizarrerie WordPress sur zleradio.org ; dix ans plus tard je l'ai ramenée sur zlerad.io. Le même ton frondeur, KDO / CO / TO / ROZKAZY, mais une app web moderne et rapide au lieu d'un blog en ruine."
+   "en": "A Bible chatbot that answers only with cited verses from the whole King James Version, and flips to the 1613 Czech Kralice Bible in one click. It has no database: the text and its int8 embeddings ship inside the deployment, and without an API key it still works as plain semantic search.",
+   "cs": "Chatbot nad Biblí, který odpovídá jen citovanými verši z celé King James Version a jedním klikem přepne na Bibli kralickou z roku 1613. Nemá databázi: text i jeho int8 embeddingy jsou přímo součástí nasazení a bez API klíče funguje aspoň jako sémantické vyhledávání.",
+   "fr": "Un chatbot biblique qui ne répond qu'avec des versets cités de toute la King James Version, et bascule d'un clic vers la Bible tchèque de Kralice de 1613. Pas de base de données : le texte et ses embeddings int8 sont livrés dans le déploiement, et sans clé d'API il fonctionne encore comme une simple recherche sémantique."
   },
-  "date": "2015 — 2025",
+  "date": "2026",
+  "link": "https://holy-rag.vercel.app",
   "tags": {
-   "en": "web design, r&d",
-   "cs": "webdesign, r&d",
-   "fr": "web design, r&d"
+   "en": "AI, r&d",
+   "cs": "AI, r&d",
+   "fr": "IA, r&d"
   },
+  "links": [
+   {
+    "label": {
+     "en": "try it",
+     "cs": "vyzkoušet",
+     "fr": "l'essayer"
+    },
+    "href": "https://holy-rag.vercel.app"
+   },
+   {
+    "label": {
+     "en": "source",
+     "cs": "zdrojový kód",
+     "fr": "code source"
+    },
+    "href": "https://github.com/WalterGropius/holy_rag"
+   }
+  ],
   "body": {
-   "en": "Some projects you don't finish, you just keep restarting. **Zlé Rádio** — *radio for bad people* — is one of mine.\n\n## the original\nit lived at **zleradio.org** in 2015: a Czech WordPress site with a deliberately hostile menu (KDO? / CO? / TO. / ROZKAZY — who / what / that / orders) and a tone that took nothing seriously except itself. i kept the WordPress export all these years.\n\n## the rebirth\nzlerad.io is the same spirit rebuilt as a modern web app — fast, no plugin rot, the archive preserved. it's not a startup and it's not trying to be; it's a piece of internet culture i made once and refused to let die on a dead CMS.\n\ncall it archaeology of my own back catalogue: proof that the stuff you make for fun is worth carrying forward, even a decade later.",
-   "cs": "Některé projekty nedokončíš, jen je pořád restartuješ. **Zlé Rádio** — *rádio pro zlé lidi* — je jeden z mých.\n\n## originál\nžilo na **zleradio.org** v roce 2015: český wordpressový web se schválně nepřátelským menu (KDO? / CO? / TO. / ROZKAZY) a tónem, který nebral vážně nic kromě sebe sama. wordpressový export jsem si celé ty roky schovával.\n\n## znovuzrození\nzlerad.io je stejný duch přestavěný jako moderní webová appka — rychlá, bez hnijících pluginů, archiv zachovaný. není to startup a ani se o to nesnaží; je to kus internetové kultury, který jsem jednou udělal a odmítl ho nechat umřít na mrtvém CMS.\n\nříkej tomu archeologie vlastního katalogu: důkaz, že věci, co děláš pro radost, stojí za to táhnout dál — i po deseti letech.",
-   "fr": "Certains projets ne se terminent pas, on les redémarre. **Zlé Rádio** — *la radio pour les méchants* — est l'un des miens.\n\n## l'original\nelle vivait sur **zleradio.org** en 2015 : un site WordPress tchèque au menu volontairement hostile (KDO? / CO? / TO. / ROZKAZY) et au ton qui ne prenait rien au sérieux, sauf lui-même. j'ai gardé l'export WordPress toutes ces années.\n\n## la renaissance\nzlerad.io, c'est le même esprit reconstruit en app web moderne — rapide, sans plugins pourris, l'archive préservée. ce n'est pas une startup et ça n'essaie pas de l'être ; c'est un morceau de culture internet que j'ai fait une fois et que j'ai refusé de laisser mourir sur un CMS défunt.\n\nappelle ça l'archéologie de mon propre catalogue : la preuve que ce qu'on fait pour le plaisir mérite d'être porté plus loin — même dix ans après."
+   "en": "## the constraint\nanswer questions about the bible, cite every claim, and run without a database. that last one shaped everything.\n\n## no database\nall **31,102 verses** of the King James Version, plus their embeddings quantised to **int8** (**11.9 MB**), ship inside the deployment. retrieval runs in the function itself — four tools for exact references, chapters, full-text and semantic search — and the model can only answer with what those tools return. no key configured? it degrades to semantic search instead of breaking.\n\n## czech without a second index\nthe Czech **Kralice Bible** (1613) isn't embedded separately. it's an overlay aligned to the KJV **verse by verse**, so search still runs on one set of vectors and the answer swaps language at the end: about **4 MB** more text and **zero** new vectors.\n\n## why\nRAG demos usually hide their plumbing behind a vector database. this one is small enough to read whole — a useful reminder that for a fixed corpus, the index can just be a file.",
+   "cs": "## omezení\nodpovídat na otázky o bibli, citovat každé tvrzení a běžet bez databáze. to poslední určilo všechno.\n\n## žádná databáze\nvšech **31 102 veršů** King James Version a k nim embeddingy kvantované na **int8** (**11,9 MB**) jsou přímo součástí nasazení. vyhledávání běží v samotné funkci — čtyři nástroje pro přesné odkazy, kapitoly, fulltext a sémantické hledání — a model smí odpovídat jen tím, co tyhle nástroje vrátí. žádný klíč? spadne do sémantického hledání, místo aby se rozbil.\n\n## čeština bez druhého indexu\n**Bible kralická** (1613) nemá vlastní embeddingy. je to vrstva zarovnaná s KJV **verš po verši**, takže hledání pořád běží nad jednou sadou vektorů a jazyk se prohodí až v odpovědi: zhruba **4 MB** textu navíc a **nula** nových vektorů.\n\n## proč\nRAG dema obvykle schovávají svoje potrubí za vektorovou databázi. tohle je dost malé na to, aby se dalo přečíst celé — užitečná připomínka, že u pevného korpusu může být index prostě soubor.",
+   "fr": "## la contrainte\nrépondre aux questions sur la bible, citer chaque affirmation, et tourner sans base de données. ce dernier point a tout façonné.\n\n## pas de base de données\nles **31 102 versets** de la King James Version, avec leurs embeddings quantifiés en **int8** (**11,9 Mo**), sont livrés dans le déploiement. la recherche tourne dans la fonction elle-même — quatre outils pour les références exactes, les chapitres, le plein texte et la recherche sémantique — et le modèle ne peut répondre qu'avec ce que ces outils renvoient. pas de clé configurée ? il se replie sur la recherche sémantique au lieu de casser.\n\n## le tchèque sans second index\nla **Bible de Kralice** (1613) n'a pas ses propres embeddings. c'est une couche alignée sur la KJV **verset par verset**, donc la recherche tourne toujours sur un seul jeu de vecteurs et la langue bascule à la fin : environ **4 Mo** de texte en plus et **zéro** nouveau vecteur.\n\n## pourquoi\nles démos RAG cachent d'habitude leur tuyauterie derrière une base vectorielle. celle-ci est assez petite pour se lire en entier — un rappel utile que, pour un corpus fixe, l'index peut n'être qu'un fichier."
   },
-  "link": "https://zlerad.io"
+  "id": 51
+ },
+ {
+  "id": 31,
+  "image": "/work/amlproof.webp",
+  "title": {
+   "en": "AMLProof",
+   "cs": "AMLProof",
+   "fr": "AMLProof"
+  },
+  "description": {
+   "en": "AML compliance for Czech \"obliged entities\" — the estate agents, accountants, lawyers and a dozen other trades the law makes run anti-money-laundering checks. A client check goes from identification (remote form, a one-crown bank transfer or Bank iD) through parallel sanctions and PEP screening and a weighted risk score to a sealed, publicly verifiable PDF archive.",
+   "cs": "AML compliance pro české „povinné osoby“ — realitní makléře, účetní, advokáty a tucet dalších profesí, kterým zákon ukládá kontroly proti praní peněz. Kontrola klienta vede od identifikace (vzdálený formulář, platba jedné koruny nebo Bank iD) přes paralelní prověrku sankcí a PEP a vážené skóre rizika až k zapečetěnému, veřejně ověřitelnému PDF archivu.",
+   "fr": "La conformité LCB-FT pour les « entités assujetties » tchèques — agents immobiliers, comptables, avocats et une douzaine d'autres métiers que la loi oblige à faire des contrôles anti-blanchiment. Le contrôle d'un client va de l'identification (formulaire à distance, virement d'une couronne ou Bank iD) au filtrage parallèle sanctions et PEP, puis à un score de risque pondéré et une archive PDF scellée et vérifiable publiquement."
+  },
+  "date": "2025 — 2026",
+  "link": "https://amlproof.ai",
+  "tags": {
+   "en": "RegTech, AI, Web Design",
+   "cs": "RegTech, AI, webdesign",
+   "fr": "RegTech, IA, design web"
+  },
+  "media": [],
+  "links": [
+   {
+    "label": {
+     "en": "amlproof.ai",
+     "cs": "amlproof.ai",
+     "fr": "amlproof.ai"
+    },
+    "href": "https://amlproof.ai"
+   }
+  ],
+  "body": {
+   "en": "## are you an obliged entity\nthe product answers one question first: is your business legally on the hook for aml? a landing self-check maps obligations across **15+ regulated sectors** — legal, accountants, real estate, trust services, precious metals, gambling, crypto/casp, art dealers, and more. then it generates the internal policy documents a compliance file needs.\n\n## the client check\nthe core is a guided check per client. **identification** — a remote form, a one-crown bank transfer matched against the account it came from, or Bank iD. **screening** runs five sources in parallel for sanctions and politically exposed persons, and an outage shows as *not verified* — never as *no hit*. a **weighted risk score** (customer 40 / product 25 / geography 25 / channel 10) decides how deep the due diligence goes.\n\n## the archive\na closed check becomes a sealed PDF: a **SHA-256** hash, an **RFC 3161** timestamp, content-addressed storage, ten-year retention and a public verify page. sealed means sealed — when a report needs correcting, it gets a new signed version and the old one stays verifiable.\n\n## where it is now\nlive with paying customers, eleven interface languages, and sector rules for lawyers' and notaries' chambers. ~1,320 test files and guard tests on every push, because in compliance a silent bug is a legal one. one small monitor from this project is [on the blog](/blog/a-202-is-not-the-page). next.js, neon postgres, built under aml proof, s.r.o.",
+   "cs": "## jste povinná osoba?\nprodukt nejdřív odpoví na jednu otázku: vztahuje se na vaši firmu ze zákona aml? úvodní sebetest mapuje povinnosti napříč **15+ regulovanými sektory** — advokáti, účetní, reality, svěřenské služby, drahé kovy, hazard, krypto/casp, obchodníci s uměním a další. pak vygeneruje vnitřní dokumenty, které compliance složka potřebuje.\n\n## kontrola klienta\njádrem je vedená kontrola každého klienta. **identifikace** — vzdálený formulář, platba jedné koruny spárovaná s účtem, ze kterého přišla, nebo Bank iD. **prověrka** běží paralelně v pěti zdrojích na sankce a politicky exponované osoby a výpadek se ukáže jako *neověřeno* — nikdy jako *bez nálezu*. **vážené skóre rizika** (klient 40 / produkt 25 / geografie 25 / kanál 10) rozhodne, jak hluboká bude hloubková kontrola.\n\n## archiv\nuzavřená kontrola se stane zapečetěným PDF: hash **SHA-256**, časové razítko **RFC 3161**, úložiště adresované obsahem, desetiletá archivace a veřejná ověřovací stránka. zapečetěné znamená zapečetěné — když je potřeba zprávu opravit, dostane novou podepsanou verzi a ta stará zůstane ověřitelná.\n\n## kde je teď\nostře s platícími zákazníky, jedenáct jazyků rozhraní a sektorová pravidla pro advokátní a notářskou komoru. ~1 320 testovacích souborů a hlídací testy při každém pushi, protože v compliance je tichá chyba chybou právní. jeden malý monitor z tohohle projektu je [na blogu](/blog/a-202-is-not-the-page). next.js, neon postgres, postaveno pod aml proof, s.r.o.",
+   "fr": "## êtes-vous une entité assujettie\nle produit répond d'abord à une question : votre entreprise est-elle légalement concernée par la lcb-ft ? un autodiagnostic d'accueil cartographie les obligations sur **15+ secteurs réglementés** — avocats, comptables, immobilier, fiducie, métaux précieux, jeux d'argent, crypto/casp, marchands d'art, et d'autres. puis il génère les documents internes dont un dossier de conformité a besoin.\n\n## le contrôle client\nle cœur est un contrôle guidé par client. **identification** — un formulaire à distance, un virement d'une couronne rapproché du compte d'origine, ou Bank iD. le **filtrage** interroge cinq sources en parallèle pour les sanctions et les personnes politiquement exposées, et une panne s'affiche comme *non vérifié* — jamais comme *aucun résultat*. un **score de risque pondéré** (client 40 / produit 25 / géographie 25 / canal 10) décide de la profondeur de la vigilance.\n\n## l'archive\nun contrôle clos devient un PDF scellé : une empreinte **SHA-256**, un horodatage **RFC 3161**, un stockage adressé par contenu, dix ans de conservation et une page de vérification publique. scellé veut dire scellé — quand un rapport doit être corrigé, il reçoit une nouvelle version signée et l'ancienne reste vérifiable.\n\n## où il en est\nen production avec des clients payants, onze langues d'interface, et des règles sectorielles pour les chambres des avocats et des notaires. ~1 320 fichiers de tests et des tests de garde à chaque push, parce qu'en conformité un bug silencieux est un bug juridique. un petit moniteur de ce projet est [sur le blog](/blog/a-202-is-not-the-page). next.js, neon postgres, construit sous aml proof, s.r.o."
+  }
  },
  {
   "id": 45,
@@ -145,50 +256,124 @@
    "fr": "Threesome"
   },
   "description": {
-   "en": "A full-stack operating system for a high-volume second-hand shop — the thing that finally killed the spreadsheet. AI recognises each item from a photo, a WASM barcode scanner runs off a phone camera or a Bluetooth gun, and blind physical scans reconcile the inventory so nothing walks out unaccounted for.",
-   "cs": "Full-stack operační systém pro second-hand s velkým obratem — to, co konečně zabilo tabulku v Excelu. AI pozná každou věc z fotky, WASM čtečka čárových kódů běží z foťáku v telefonu i z bluetooth pistole a slepé fyzické skeny srovnají sklad, aby nic nezmizelo bez záznamu.",
-   "fr": "Un système d'exploitation full-stack pour une friperie à fort volume — ce qui a enfin tué le tableur. L'IA reconnaît chaque article depuis une photo, un scanner de codes-barres en WASM tourne sur l'appareil photo du téléphone ou une douchette bluetooth, et des scans physiques à l'aveugle réconcilient l'inventaire pour que rien ne parte sans trace."
+   "en": "The till, stockroom and cash book for two second-hand shops in Prague — the thing that finally killed the spreadsheet. One photo gets an item catalogued and priced by Gemini, a barcode gun or the phone camera rings it up, and blind rack scans show what walked out. Most of this year's work came straight from the staff's bug sheets.",
+   "cs": "Pokladna, sklad a pokladní kniha pro dva second handy v Praze — věc, která konečně zabila tabulku. Jedna fotka a Gemini položku zakatalogizuje a nacení, čtečka nebo kamera telefonu ji namarkuje a slepé skenování věšáků ukáže, co zmizelo. Většina letošní práce přišla rovnou z bug listů personálu.",
+   "fr": "La caisse, la réserve et le livre de caisse de deux friperies à Prague — ce qui a enfin tué le tableur. Une photo et Gemini catalogue et estime l'article, une douchette ou la caméra du téléphone l'encaisse, et des scans à l'aveugle des portants montrent ce qui a disparu. L'essentiel du travail de cette année est venu tout droit des listes de bugs du personnel."
   },
-  "date": "2025",
+  "date": "2025 — 2026",
   "tags": {
-   "en": "r&d, ai, web design",
-   "cs": "r&d, ai, webdesign",
-   "fr": "r&d, ia, web design"
+   "en": "r&d, AI, Web Design",
+   "cs": "r&d, AI, webdesign",
+   "fr": "r&d, IA, design web"
   },
   "body": {
-   "en": "Second-hand retail at volume lives and dies on **intake speed** and **shrinkage**. Threesome replaces the spreadsheet with a real-time database that keeps both honest.\n\n## intake at flow-state speed\nan associate photographs an item; `/api/analyze-item` reads its barcode with **zxing-wasm**, then asks **Gemini 2.0 Flash** to categorise it, pull colour/condition, and suggest a price. no barcode? the model reads the label text instead, with manual override. the point is one photo → a priced, catalogued item in seconds.\n\n## shifts and cash integrity\nnothing touches the POS without an open **shift** (with GPS + a cash ledger). selling runs off physical scanners or the camera; discounts are mathematically fenced; at close the shift locks its cash total so discrepancies surface later instead of vanishing.\n\n## reconciliation by blind scan\ninstead of asking *what should be on this rack*, associates scan everything that **is** there into an `inventorySession`; the system diffs against expected stock and turns the gap into **discrepancies** for a manager to chase.\n\nNext.js 15, React 19, Neon Postgres + Drizzle, Vercel Blob. built for two Prague shops. the roadmap is a loyalty layer — club card, tiers, customer-lifetime-value.",
-   "cs": "Second-hand ve velkém stojí a padá na **rychlosti příjmu** a **manku**. Threesome nahrazuje tabulku databází v reálném čase, která hlídá obojí.\n\n## příjem v tempu flow\nprodavač vyfotí věc; `/api/analyze-item` přečte čárový kód přes **zxing-wasm** a pak nechá **Gemini 2.0 Flash** věc zařadit, vytáhnout barvu a stav a navrhnout cenu. čárák chybí? model přečte text na etiketě, s ruční korekcí. pointa: jedna fotka → naceněná, zkatalogizovaná položka během vteřin.\n\n## směny a poctivá kasa\nk pokladně se nikdo nedostane bez otevřené **směny** (s GPS a pokladní knihou). prodej jede z fyzických čteček nebo z foťáku; slevy jsou matematicky ohraničené; na konci směna zamkne hotovost, takže se nesrovnalosti objeví, místo aby zmizely.\n\n## inventura slepým skenem\nmísto otázky *co tu má být* prodavač naskenuje všechno, co na regálu **je**, do `inventorySession`; systém spočítá rozdíl proti očekávanému stavu a udělá z něj **nesrovnalosti**, které dořeší manažer.\n\nNext.js 15, React 19, Neon Postgres + Drizzle, Vercel Blob. postavené pro dva pražské obchody. na roadmapě je věrnostní vrstva — klubová karta, úrovně, hodnota zákazníka v čase.",
-   "fr": "La friperie à volume vit et meurt sur la **vitesse de réception** et la **démarque**. Threesome remplace le tableur par une base de données temps réel qui tient les deux honnêtes.\n\n## réception au rythme du flow\nun vendeur photographie un article ; `/api/analyze-item` lit son code-barres avec **zxing-wasm**, puis demande à **Gemini 2.0 Flash** de le classer, d'en tirer couleur et état et de suggérer un prix. pas de code-barres ? le modèle lit le texte de l'étiquette, avec correction manuelle. l'idée : une photo → un article tarifé et catalogué en quelques secondes.\n\n## postes et intégrité de la caisse\nrien ne touche la caisse sans un **poste** ouvert (avec GPS + un livre de caisse). la vente passe par des douchettes ou l'appareil photo ; les remises sont bornées mathématiquement ; à la clôture, le poste verrouille son total pour que les écarts remontent au lieu de disparaître.\n\n## réconciliation par scan à l'aveugle\nau lieu de demander *ce qui devrait être sur ce portant*, le vendeur scanne tout ce qui **y est** dans une `inventorySession` ; le système fait la différence avec le stock attendu et en fait des **écarts** qu'un manager traque.\n\nNext.js 15, React 19, Neon Postgres + Drizzle, Vercel Blob. construit pour deux boutiques praguoises. la suite : une couche fidélité — carte de club, paliers, valeur client à vie."
+   "en": "Second-hand retail at volume lives and dies on **intake speed** and **shrinkage**. Threesome replaces the spreadsheet with a real-time database that keeps both honest.\n\n## intake at flow-state speed\nan associate photographs an item; `/api/analyze-item` reads its barcode with **zxing-wasm**, then asks **Gemini** to categorise it, pull colour/condition, and suggest a price. no barcode? the model reads the label text instead, with manual override. one photo → a priced, catalogued item in seconds. (when Google retired the model version it was pinned to, analysis started returning 404s overnight — it now follows the flash alias.)\n\n## shifts and cash integrity\nnothing touches the POS without an open **shift**. selling runs off physical scanners or the camera; discounts are fenced; a line paid several ways is stored as **one row per payment**, crowns and euros alike. at clock-out the counted drawer is checked against opening count + cash sales − payouts, so a discrepancy surfaces that evening instead of vanishing.\n\n## reconciliation by blind scan\ninstead of asking *what should be on this rack*, associates scan everything that **is** there into an inventory session; the system diffs against expected stock and turns the gap into **discrepancies** for a manager to chase.\n\n## a year on the shop floor\ntwo rounds of staff bug sheets reshaped it: gift vouchers, split payments, cash reports, a camera that survives an hour-long inventory ([every scan reset the clock](/blog/every-scan-reset-the-clock)). production builds now apply their own database migrations and refuse destructive SQL. Next.js 16, React 19, Neon Postgres + Drizzle, Vercel Blob. built for two Prague shops, used every day.",
+   "cs": "Second hand ve velkém stojí a padá na **rychlosti příjmu** a **ztrátách**. Threesome nahrazuje tabulku real-time databází, která drží obojí poctivé.\n\n## příjem rychlostí flow\nprodavačka položku vyfotí; `/api/analyze-item` přečte čárový kód přes **zxing-wasm** a pak požádá **Gemini**, aby ji zařadil, určil barvu a stav a navrhl cenu. bez kódu? model přečte text štítku, s ruční korekcí. jedna fotka → naceněná, zakatalogizovaná položka během vteřin. (když Google vyřadil verzi modelu, na kterou byla aplikace přišpendlená, analýza začala přes noc vracet 404 — teď jede na aliasu flash.)\n\n## směny a pokladní integrita\nbez otevřené **směny** se pokladny nikdo nedotkne. prodává se přes fyzické čtečky nebo kameru; slevy mají mantinely; položka placená víc způsoby se ukládá jako **jeden řádek na platbu**, v korunách i eurech. při odchodu se spočítaná pokladna porovná s počátečním stavem + hotovostními tržbami − výdaji, takže rozdíl vyleze ještě ten večer, místo aby zmizel.\n\n## inventura slepým skenem\nmísto otázky *co by mělo viset na tomhle věšáku* naskenuje personál všechno, co tam **opravdu je**, do inventurní session; systém to porovná s očekávaným stavem a z rozdílu udělá **nesrovnalosti**, které dohledá vedoucí.\n\n## rok na prodejně\npřestavěly ho dvě kola bug listů od personálu: dárkové poukazy, dělené platby, pokladní reporty, kamera, která vydrží hodinovou inventuru ([každý sken vynuloval časovač](/blog/every-scan-reset-the-clock)). produkční buildy si teď samy pouštějí databázové migrace a odmítnou destruktivní SQL. Next.js 16, React 19, Neon Postgres + Drizzle, Vercel Blob. postaveno pro dva pražské obchody, používané každý den.",
+   "fr": "La fripe à grand volume vit et meurt sur la **vitesse d'entrée** et la **démarque**. Threesome remplace le tableur par une base temps réel qui garde les deux honnêtes.\n\n## l'entrée en état de flow\nun vendeur photographie un article ; `/api/analyze-item` lit son code-barres avec **zxing-wasm**, puis demande à **Gemini** de le classer, d'en tirer couleur et état, et de proposer un prix. pas de code-barres ? le modèle lit le texte de l'étiquette, avec correction manuelle. une photo → un article catalogué et chiffré en quelques secondes. (quand Google a retiré la version du modèle sur laquelle l'app était épinglée, l'analyse a renvoyé des 404 du jour au lendemain — elle suit désormais l'alias flash.)\n\n## services et intégrité de caisse\nrien ne touche la caisse sans **service** ouvert. la vente passe par des douchettes ou la caméra ; les remises sont encadrées ; un article payé de plusieurs façons est enregistré comme **une ligne par paiement**, en couronnes comme en euros. à la fin du service, le tiroir compté est comparé au fond de caisse + ventes en espèces − sorties, pour qu'un écart apparaisse le soir même au lieu de s'évaporer.\n\n## l'inventaire par scan à l'aveugle\nau lieu de demander *ce qui devrait être sur ce portant*, le personnel scanne tout ce qui **y est** dans une session d'inventaire ; le système compare au stock attendu et transforme l'écart en **anomalies** qu'un responsable va traquer.\n\n## un an en boutique\ndeux vagues de listes de bugs du personnel l'ont remodelé : bons cadeaux, paiements fractionnés, rapports de caisse, une caméra qui tient une heure d'inventaire ([chaque scan remettait le chrono à zéro](/blog/every-scan-reset-the-clock)). les builds de production appliquent désormais eux-mêmes leurs migrations de base et refusent le SQL destructif. Next.js 16, React 19, Neon Postgres + Drizzle, Vercel Blob. construit pour deux boutiques pragoises, utilisé tous les jours."
   }
  },
  {
-  "id": 40,
-  "image": "/art/surfaces/160.webp",
+  "id": 48,
+  "image": "/work/bungalov7.webp",
   "title": {
-   "en": "stdboids",
-   "cs": "stdboids",
-   "fr": "stdboids"
+   "en": "Bungalov 7",
+   "cs": "Bungalov 7",
+   "fr": "Bungalov 7"
   },
   "description": {
-   "en": "a boids flocking simulation where the flock lives in the database, not the client. i put the simulation state on spacetimedb, so agents move by transactional reducers and every connected client just subscribes and renders the same swarm in real time. it's an experiment in treating a game loop as shared server state.",
-   "cs": "simulace hejna boidů, kde hejno žije v databázi, ne v klientovi. stav simulace jsem dal na spacetimedb, takže se agenti pohybují transakčními reducery a každý připojený klient jen odebírá a vykresluje stejné hejno v reálném čase. je to experiment s herní smyčkou jako sdíleným serverovým stavem.",
-   "fr": "une simulation de nuée (boids) où la nuée vit dans la base de données, pas dans le client. j'ai mis l'état de la simulation sur spacetimedb : les agents se déplacent via des reducers transactionnels et chaque client connecté s'abonne et affiche le même essaim en temps réel. une expérience où la boucle de jeu devient un état serveur partagé."
+   "en": "The website and back office for Bungalov 7 — a Prague art studio four friends founded for their own work and for courses and workshops, kids to adults. Next to the class catalogue I built the registration system that replaced their Google Forms, an admin where they confirm payments and email parents by course, and a gift-voucher shop.",
+   "cs": "Web a back office pro Bungalov 7 — pražský ateliér, který založili čtyři kamarádi pro vlastní tvorbu i pro kurzy a workshopy, od dětí po dospělé. Vedle katalogu kurzů jsem postavil registrační systém, který nahradil jejich Google Formuláře, administraci, kde potvrzují platby a píšou rodičům po kurzech, a e-shop s dárkovými poukazy.",
+   "fr": "Le site et le back-office de Bungalov 7 — un atelier d'art pragois fondé par quatre amis pour leur propre travail et pour des cours et ateliers, des enfants aux adultes. À côté du catalogue des cours, j'ai construit le système d'inscription qui a remplacé leurs Google Forms, une administration où ils confirment les paiements et écrivent aux parents par cours, et une boutique de bons cadeaux."
   },
-  "date": "2025",
+  "date": "2026",
   "tags": {
-   "en": "r&d, real-time, multiplayer",
-   "cs": "r&d, real-time, multiplayer",
-   "fr": "r&d, temps réel, multijoueur"
+   "en": "Web Design, E-commerce, r&d",
+   "cs": "webdesign, e-shop, r&d",
+   "fr": "design web, e-commerce, r&d"
   },
   "body": {
-   "en": "## the idea\nboids is the canonical flocking algorithm — separation, alignment, cohesion, three rules and emergent swarm behaviour. the twist here isn't the maths, it's the topology: instead of running the simulation locally i pushed the whole thing onto **spacetimedb**, a database you write to with transactional reducers and read from with live subscriptions.\n\n## how it's wired\nthe flock's positions and velocities are **tables**. the step function that nudges every agent each tick is a **reducer** — deterministic, transactional, no clock or randomness smuggled in. clients don't compute the flock; they **subscribe** to the tables and render whatever the server says. add a second client and it sees the identical swarm, live.\n\n## why bother\ni wanted to feel where the line is between \"game loop\" and \"shared database\" when the authoritative state is a single hosted module. it's an experiment more than a product — the interesting part is that multiplayer, persistence and the sim all collapse into one server-side source of truth, with no bespoke netcode on my side.",
-   "cs": "## nápad\nboids je kanonický algoritmus hejna — separace, zarovnání, koheze, tři pravidla a emergentní chování roje. zajímavý tu není matematický základ, ale topologie: místo lokálního běhu simulace jsem celé to přesunul na **spacetimedb**, databázi, do které se zapisuje transakčními reducery a čte z ní živými subskripcemi.\n\n## jak je to zapojené\npozice a rychlosti hejna jsou **tabulky**. kroková funkce, která každý tik pošťouchne každého agenta, je **reducer** — deterministický, transakční, bez propašovaných hodin či náhody. klienti hejno nepočítají; **odebírají** tabulky a vykreslují to, co řekne server. přidáš druhého klienta a vidí totožný roj, živě.\n\n## proč do toho jít\nchtěl jsem nahmatat, kde je hranice mezi „herní smyčkou\" a „sdílenou databází\", když je autoritativní stav jediný hostovaný modul. je to spíš experiment než produkt — zajímavé je, že multiplayer, perzistence i simulace splynou do jednoho serverového zdroje pravdy, bez vlastního netcode.",
-   "fr": "## l'idée\nboids est l'algorithme de nuée canonique — séparation, alignement, cohésion, trois règles et un comportement d'essaim émergent. l'intérêt ici n'est pas les maths mais la topologie : au lieu de faire tourner la simulation en local, j'ai tout poussé sur **spacetimedb**, une base où l'on écrit via des reducers transactionnels et où l'on lit via des abonnements en direct.\n\n## le câblage\nles positions et vitesses de la nuée sont des **tables**. la fonction de pas qui bouscule chaque agent à chaque tick est un **reducer** — déterministe, transactionnel, sans horloge ni hasard clandestins. les clients ne calculent pas la nuée ; ils **s'abonnent** aux tables et affichent ce que dit le serveur. ajoute un second client, il voit le même essaim, en direct.\n\n## pourquoi\nje voulais sentir la frontière entre « boucle de jeu » et « base partagée » quand l'état faisant autorité est un unique module hébergé. plus une expérience qu'un produit — l'intéressant, c'est que multijoueur, persistance et simulation s'effondrent en une seule source de vérité côté serveur, sans netcode maison."
+   "en": "**Bungalov 7** is a shared art studio in Prague, founded by four friends with a common past in film, advertising and theatre. They make their own and commissioned work, and teach — kids' art classes, day camps, and an open art space for adults (workshops, jewellery, upcycling, textile, light objects).\n\n## the site\na warm site that does the two jobs an art space actually needs: **tell the story** (the space, the four of them, their work) and **fill the classes**. the work on the walls is the hero; the site gets out of its way and points people at the door.\n\n## the back office\nthe part nobody sees grew bigger than the part everyone does. **one course catalogue** drives prices, schedules and capacity everywhere. a registration lands in the database and sends the confirmation mail; a full course answers with a waiting-list mail instead. in the admin, confirming a registration means the payment arrived — then there's occupancy at a glance, a paid tick-off, group mail by course or by day, a read-only role for the rest of the team, and visit counts with no cookies and no IPs.\n\n## vouchers\na small gift-voucher shop where you design a postcard around the site's 3D objects. each voucher gets a unique code that reaches the buyer only after payment, and a voucher for a specific course never shows its price.\n\non phones the 3D stays polite: one lazy-loaded model instead of four, particles capped at 100.",
+   "cs": "**Bungalov 7** je sdílený výtvarný ateliér v Praze, který založili čtyři kamarádi se společnou minulostí ve filmu, reklamě a divadle. Tvoří vlastní i zakázkovou práci a učí — výtvarné kurzy pro děti, příměstské tábory a otevřený ateliér pro dospělé (workshopy, šperky, upcycling, textil, světelné objekty).\n\n## web\nteplý web, který dělá dvě věci, co ateliér opravdu potřebuje: **vyprávět příběh** (prostor, ty čtyři, jejich práce) a **naplnit kurzy**. hlavní roli hraje práce na zdech; web jí uhne z cesty a ukáže lidem dveře.\n\n## back office\nčást, kterou nikdo nevidí, přerostla tu, kterou vidí všichni. **jeden katalog kurzů** řídí ceny, rozvrhy a kapacity všude. přihláška se uloží do databáze a odešle potvrzovací mail; plný kurz místo toho odpoví mailem o čekací listině. v administraci znamená potvrzení přihlášky, že dorazila platba — k tomu obsazenost na první pohled, odškrtávání zaplacených, hromadné maily po kurzech nebo po dnech, roli jen pro čtení pro zbytek týmu a počítání návštěv bez cookies a bez IP adres.\n\n## poukazy\nmalý e-shop s dárkovými poukazy, kde si navrhneš pohlednici kolem 3D objektů z webu. každý poukaz dostane unikátní kód, který kupujícímu přijde až po zaplacení, a poukaz na konkrétní kurz nikdy neukazuje cenu.\n\nna telefonech je 3D slušné: jeden líně načítaný model místo čtyř, částice omezené na 100.",
+   "fr": "**Bungalov 7** est un atelier d'art partagé à Prague, fondé par quatre amis au passé commun dans le cinéma, la publicité et le théâtre. Ils font leurs propres œuvres et des commandes, et enseignent — cours d'art pour enfants, stages de jour et un atelier ouvert pour adultes (ateliers, bijoux, upcycling, textile, objets lumineux).\n\n## le site\nun site chaleureux qui fait les deux choses dont un atelier a vraiment besoin : **raconter l'histoire** (le lieu, eux quatre, leur travail) et **remplir les cours**. le travail accroché aux murs est le héros ; le site s'efface et montre la porte.\n\n## le back-office\nla partie que personne ne voit a dépassé celle que tout le monde voit. **un seul catalogue de cours** pilote prix, horaires et capacités partout. une inscription arrive en base et envoie le mail de confirmation ; un cours complet répond plutôt par un mail de liste d'attente. dans l'admin, confirmer une inscription veut dire que le paiement est arrivé — avec le taux de remplissage d'un coup d'œil, le pointage des payés, des mails groupés par cours ou par jour, un rôle en lecture seule pour le reste de l'équipe, et un comptage des visites sans cookies ni IP.\n\n## les bons\nune petite boutique de bons cadeaux où l'on compose une carte postale autour des objets 3D du site. chaque bon reçoit un code unique qui n'arrive à l'acheteur qu'après paiement, et un bon pour un cours précis n'affiche jamais son prix.\n\nsur téléphone, la 3D reste polie : un seul modèle chargé à la demande au lieu de quatre, particules plafonnées à 100."
+  },
+  "link": "https://bungalov7.com"
+ },
+ {
+  "id": 32,
+  "image": "/work/homeproof.webp",
+  "title": {
+   "en": "HomeProof",
+   "cs": "HomeProof",
+   "fr": "HomeProof"
+  },
+  "description": {
+   "en": "a czech b2c platform that verifies the technical condition of a property before it changes hands, using the methodology of the association of property inspectors (ain.cz). an owner answers a questionnaire, the app scores 22 building elements plus 10 risk areas, and issues a tamper-evident report with a qr verification link.",
+   "cs": "česká b2c platforma, která ověří technický stav nemovitosti dřív, než změní majitele — podle metodiky asociace inspektorů nemovitostí (ain.cz). vlastník vyplní dotazník, aplikace ohodnotí 22 stavebních prvků a 10 rizikových oblastí a vydá report chráněný proti falšování s qr odkazem na ověření.",
+   "fr": "une plateforme b2c tchèque qui vérifie l'état technique d'un bien avant qu'il ne change de mains, selon la méthodologie de l'association des inspecteurs immobiliers (ain.cz). le propriétaire remplit un questionnaire, l'app note 22 éléments du bâti et 10 zones de risque, et délivre un rapport infalsifiable avec un lien de vérification par qr."
+  },
+  "date": "2025 — 2026",
+  "link": "https://homeproof.ai",
+  "tags": {
+   "en": "PropTech, Data, Web Design",
+   "cs": "PropTech, data, webdesign",
+   "fr": "PropTech, données, design web"
+  },
+  "media": [],
+  "links": [
+   {
+    "label": {
+     "en": "homeproof.ai",
+     "cs": "homeproof.ai",
+     "fr": "homeproof.ai"
+    },
+    "href": "https://homeproof.ai"
+   }
+  ],
+  "body": {
+   "en": "## the problem\nin czechia roughly **1 in 3 sold properties has a hidden defect**, and a seller stays liable for those for **5 years** after the sale — yet almost nobody verifies condition beforehand. homeproof turns that into a document: a seller fills a questionnaire and pays once; a buyer can then unlock the finished report.\n\n## how a property gets scored\ntwo questionnaires, both from the **ain methodology**. the first scores **22 building elements** (foundations, load-bearing walls, roof truss, wiring, plumbing…): each element's age = current year − year of reconstruction, dropped into an **a–e lifespan band** (a=100 … e=0), then a **weighted average** by category (structure ×3, envelope ×2, installations ×2, interiors ×1, safety ×1) gives an overall a–e rating. it's deterministic — missing values are never guessed, they're excluded. **5 critical elements** (foundations, load-bearing, roof truss, electrics, internal sewer) raise a warning flag if they land on d or e, even when the overall score looks fine. the second questionnaire walks **10 risk areas** with branching yes/no logic — a risk only surfaces if the house actually has that element and a defect is detected.\n\n## making the report trustworthy\naddresses come from the czech cadastre (cúzk) api. each report gets a **ulid id**, a **sha-256 property hash** (no full address), and an **hmac-sha256 anti-tamper signature** encoded in a **qr code** that points to a public verify page — which confirms the report is genuine, revoked or invalid without ever exposing the owner's name or address. addresses and parcels come through a cache in front of the cadastre api, so a busy day doesn't burn the state quota; brokers can send the questionnaire to a seller and choose who pays. next.js 16, neon postgres, stripe, pdf via pdfmake.",
+   "cs": "## problém\nv česku má zhruba **každá třetí prodaná nemovitost skrytou vadu** a prodávající za ni ručí **5 let** po prodeji — přitom skoro nikdo stav předem neověřuje. homeproof z toho udělá dokument: prodávající vyplní dotazník a jednou zaplatí; kupující si pak hotový report může odemknout.\n\n## jak se nemovitost oboduje\ndva dotazníky, oba podle **metodiky ain**. první hodnotí **22 stavebních prvků** (základy, nosné zdi, krov, elektroinstalace, rozvody…): stáří prvku = aktuální rok − rok rekonstrukce, zařazené do **životnostního pásma a–e** (a=100 … e=0), z toho **vážený průměr** podle kategorie (konstrukce ×3, obálka ×2, instalace ×2, interiéry ×1, bezpečnost ×1) dá celkový rating a–e. je to deterministické — chybějící hodnoty se nikdy neodhadují, prvek se prostě vyloučí. **5 kritických prvků** (základy, svislé nosné, krov, elektroinstalace, vnitřní kanalizace) spustí varování, pokud spadnou na d nebo e, i když je celkové skóre jinak dobré. druhý dotazník prochází **10 rizikových oblastí** větvenou logikou ano/ne — riziko se objeví, jen pokud dům daný prvek skutečně má a je zjištěná závada.\n\n## aby se reportu dalo věřit\nadresy tahám z api katastru nemovitostí (cúzk). každý report dostane **ulid identifikátor**, **sha-256 hash nemovitosti** (bez plné adresy) a **anti-tamper podpis hmac-sha256** zakódovaný v **qr kódu**, který míří na veřejnou ověřovací stránku — ta potvrdí, že report je pravý, zneplatněný nebo neplatný, aniž by kdy ukázala jméno nebo adresu vlastníka. adresy a parcely jdou přes cache před api katastru, aby rušný den nespálil státní kvótu; makléři můžou poslat dotazník prodávajícímu a zvolit, kdo platí. next.js 16, neon postgres, stripe, pdf přes pdfmake.",
+   "fr": "## le problème\nen tchéquie, environ **un bien vendu sur trois cache un défaut**, et le vendeur en reste responsable **5 ans** après la vente — alors que presque personne ne vérifie l'état au préalable. homeproof en fait un document : le vendeur remplit un questionnaire et paie une fois ; l'acheteur peut ensuite débloquer le rapport terminé.\n\n## comment un bien est noté\ndeux questionnaires, tous deux issus de la **méthodologie ain**. le premier note **22 éléments du bâti** (fondations, murs porteurs, charpente, électricité, plomberie…) : âge de l'élément = année en cours − année de rénovation, placé dans une **bande de durée de vie a–e** (a=100 … e=0), puis une **moyenne pondérée** par catégorie (structure ×3, enveloppe ×2, installations ×2, intérieurs ×1, sécurité ×1) donne une note globale a–e. c'est déterministe — les valeurs manquantes ne sont jamais devinées, l'élément est exclu. **5 éléments critiques** (fondations, murs porteurs, charpente, électricité, égout intérieur) déclenchent une alerte s'ils tombent en d ou e, même si la note globale reste bonne. le second questionnaire parcourt **10 zones de risque** en logique oui/non ramifiée — un risque n'apparaît que si la maison possède réellement l'élément et qu'un défaut est détecté.\n\n## rendre le rapport digne de confiance\nles adresses viennent de l'api du cadastre tchèque (cúzk). chaque rapport reçoit un **identifiant ulid**, un **hash sha-256 du bien** (sans adresse complète) et une **signature anti-falsification hmac-sha256** encodée dans un **qr code** pointant vers une page de vérification publique — qui confirme que le rapport est authentique, révoqué ou invalide sans jamais exposer le nom ni l'adresse du propriétaire. adresses et parcelles passent par un cache devant l'api du cadastre, pour qu'une journée chargée ne brûle pas le quota de l'état ; les agents peuvent envoyer le questionnaire au vendeur et choisir qui paie. next.js 16, neon postgres, stripe, pdf via pdfmake."
   }
+ },
+ {
+  "image": "/work/foodamend.webp",
+  "title": {
+   "en": "Foodamend",
+   "cs": "Foodamend",
+   "fr": "Foodamend"
+  },
+  "description": {
+   "en": "Photograph a grocery product and get an independent grade — Nutri-Score, NOVA processing level, additives, allergens — with the working shown. Every scanned product becomes a public page anyone can open, so the second person to scan it gets the answer instantly.",
+   "cs": "Vyfoť potravinu a dostaneš nezávislé hodnocení — Nutri-Score, stupeň zpracování NOVA, aditiva, alergeny — i s postupem. Každý naskenovaný produkt se stane veřejnou stránkou, kterou si může otevřít kdokoli, takže druhý, kdo ho naskenuje, má odpověď hned.",
+   "fr": "Photographie un produit alimentaire et obtiens une note indépendante — Nutri-Score, degré de transformation NOVA, additifs, allergènes — calcul compris. Chaque produit scanné devient une page publique que n'importe qui peut ouvrir, si bien que la deuxième personne à le scanner a la réponse tout de suite."
+  },
+  "date": "2026",
+  "link": "https://foodamend.com",
+  "tags": {
+   "en": "AI, Web Design",
+   "cs": "AI, webdesign",
+   "fr": "IA, design web"
+  },
+  "links": [
+   {
+    "label": {
+     "en": "foodamend.com",
+     "cs": "foodamend.com",
+     "fr": "foodamend.com"
+    },
+    "href": "https://foodamend.com"
+   }
+  ],
+  "body": {
+   "en": "## a grade you can check\nfood apps hand you a colour and ask you to trust it. Foodamend shows the working: the Nutri-Score inputs, the NOVA processing level, each additive and allergen, and how they add up — the method is [on the blog](/blog/a-food-grade-you-can-open).\n\n## the cheap guess in front\na careful, grounded analysis of a product is slow and costs money, so it shouldn't run twice for the same jar. a quick model call first guesses brand and name from the photo, and that guess is looked up in a fuzzy-match cache before anything expensive happens. the catch: a model paraphrases. *mito drink 2.0* comes back as \"Mito\" one time and \"Energy Drink\" the next, and a brand-only match once served biscuits for a strawberry product. the thresholds came from logged near-misses — the false match scored **0.135**, the true one **0.273** — and the cache keeps a log of its closest miss so the floor can move on evidence.\n\n## pages, not just answers\nevery analysed product becomes a public, indexable page in Czech and English, regenerated daily. the scanner app is the front door; the pages are what's left for everyone after.",
+   "cs": "## známka, kterou si ověříš\npotravinové aplikace ti dají barvu a čekají, že jí uvěříš. Foodamend ukáže postup: vstupy Nutri-Score, stupeň zpracování NOVA, každé aditivum a alergen a jak se to sečte — metodika je [na blogu](/blog/a-food-grade-you-can-open).\n\n## levný odhad napřed\npečlivá, ukotvená analýza produktu je pomalá a stojí peníze, takže by neměla běžet dvakrát pro tutéž sklenici. nejdřív rychlé volání modelu odhadne z fotky značku a název a ten odhad se vyhledá ve fuzzy cache dřív, než se spustí cokoli drahého. háček: model parafrázuje. *mito drink 2.0* se jednou vrátí jako „Mito“ a podruhé jako „Energy Drink“ a shoda jen podle značky jednou servírovala sušenky místo jahodového produktu. prahy vzešly z logovaných téměř-shod — falešná shoda měla skóre **0,135**, ta pravá **0,273** — a cache si loguje svou nejbližší minelu, aby se hranice mohla posouvat podle důkazů.\n\n## stránky, ne jen odpovědi\nkaždý analyzovaný produkt se stane veřejnou, indexovatelnou stránkou v češtině a angličtině, přegenerovanou denně. skenovací aplikace jsou vchodové dveře; stránky jsou to, co po nich zůstane pro všechny.",
+   "fr": "## une note qu'on peut vérifier\nles apps alimentaires te donnent une couleur et te demandent d'y croire. Foodamend montre le calcul : les entrées du Nutri-Score, le degré de transformation NOVA, chaque additif et allergène, et comment tout s'additionne — la méthode est [sur le blog](/blog/a-food-grade-you-can-open).\n\n## l'estimation bon marché d'abord\nune analyse soignée et ancrée d'un produit est lente et coûte de l'argent, elle ne devrait donc pas tourner deux fois pour le même bocal. un appel rapide au modèle devine d'abord marque et nom à partir de la photo, et cette estimation est cherchée dans un cache à correspondance floue avant que quoi que ce soit de coûteux ne démarre. le piège : un modèle paraphrase. *mito drink 2.0* revient une fois comme « Mito », la suivante comme « Energy Drink », et une correspondance sur la seule marque a un jour servi des biscuits pour un produit à la fraise. les seuils viennent de quasi-correspondances journalisées — la fausse a obtenu **0,135**, la vraie **0,273** — et le cache garde la trace de son raté le plus proche pour que le seuil bouge sur preuves.\n\n## des pages, pas seulement des réponses\nchaque produit analysé devient une page publique et indexable en tchèque et en anglais, régénérée chaque jour. l'app de scan est la porte d'entrée ; les pages sont ce qui reste ensuite pour tout le monde."
+  },
+  "id": 52
  },
  {
   "id": 37,
-  "image": "/art/acrylic/006.webp",
+  "image": "/work/auau.webp",
   "title": {
    "en": "AuAu",
    "cs": "AuAu",
@@ -199,17 +384,17 @@
    "cs": "ai společník, který překládá lékařské zprávy do srozumitelné řeči — vyfotíš zprávu, aplikace z ní vytáhne text a gemini vysvětlí diagnózu i léčbu lidsky, pak 24/7 chat odpovídá na doplňující otázky v kontextu. postavené na myšlence, že každý má právo rozumět svému zdraví.",
    "fr": "un compagnon ia qui traduit les comptes rendus médicaux en langage clair — tu photographies un rapport, l'app en extrait le texte et gemini explique le diagnostic et le traitement en termes humains, puis un chat 24/7 répond aux questions de suivi en contexte. bâti sur l'idée que chacun a le droit de comprendre sa propre santé."
   },
-  "date": "2025",
+  "date": "2025 — 2026",
   "link": "https://au-au.app",
   "tags": {
-   "en": "AI, Web Design",
-   "cs": "AI, webdesign",
-   "fr": "IA, web design"
+   "en": "AI, Health, Web Design",
+   "cs": "AI, zdraví, webdesign",
+   "fr": "IA, santé, design web"
   },
   "body": {
-   "en": "## what it is\nau au takes a medical report you barely understand and makes it readable. you **photograph or upload** the document, multimodal **gemini 2.5 flash** extracts the text and auto-titles it, then rewrites the terminology into plain language — what the diagnosis means, what the treatment does. a **24/7 chat** answers follow-ups with your reports as context, and it knows when to stop and point you to a real doctor. it is explicitly a comprehension tool, not a diagnostic one.\n\n## organised around you\nreports live on a **visual timeline** grouped by month, each with an at-a-glance summary. a health profile holds chronic conditions, allergies, current medication and emergency contacts, so answers can be personalised.\n\n## sharing without leaking\nsharing runs on **cryptographic tokens**: you generate a secure link to send a report to a doctor or family member, and you can see who opened it and how many times. built on next.js 15, typescript, gemini via the ai sdk, postgres (neon) with drizzle, and google oauth. czech-language, responsive, with native apps on the roadmap.",
-   "cs": "## co to je\nau au vezme lékařskou zprávu, které skoro nerozumíš, a udělá ji čitelnou. dokument **vyfotíš nebo nahraješ**, multimodální **gemini 2.5 flash** z něj vytáhne text a sám ho pojmenuje, pak přepíše terminologii do lidské řeči — co diagnóza znamená, co dělá léčba. **chat 24/7** odpovídá na doplňující otázky s tvými zprávami jako kontextem a ví, kdy přestat a poslat tě ke skutečnému lékaři. je to výslovně nástroj na porozumění, ne na diagnostiku.\n\n## uspořádané kolem tebe\nzprávy žijí na **vizuální časové ose** seskupené po měsících, každá se shrnutím na první pohled. zdravotní profil drží chronická onemocnění, alergie, současné léky a nouzové kontakty, aby mohly být odpovědi personalizované.\n\n## sdílení bez úniků\nsdílení běží na **kryptografických tokenech**: vygeneruješ bezpečný odkaz a pošleš zprávu lékaři nebo rodině, a vidíš, kdo a kolikrát ji otevřel. postaveno na next.js 15, typescriptu, gemini přes ai sdk, postgresu (neon) s drizzle a google oauth. česky, responzivně, s nativními aplikacemi na roadmapě.",
-   "fr": "## ce que c'est\nau au prend un compte rendu médical auquel tu ne comprends presque rien et le rend lisible. tu **photographies ou téléverses** le document, **gemini 2.5 flash** multimodal en extrait le texte et le titre automatiquement, puis réécrit la terminologie en langage clair — ce que veut dire le diagnostic, ce que fait le traitement. un **chat 24/7** répond aux questions de suivi avec tes rapports comme contexte, et sait quand s'arrêter pour te renvoyer vers un vrai médecin. c'est explicitement un outil de compréhension, pas de diagnostic.\n\n## organisé autour de toi\nles rapports vivent sur une **frise chronologique visuelle** groupée par mois, chacun avec un résumé en un coup d'œil. un profil santé conserve maladies chroniques, allergies, traitements en cours et contacts d'urgence, pour que les réponses soient personnalisées.\n\n## partager sans fuiter\nle partage repose sur des **jetons cryptographiques** : tu génères un lien sécurisé pour envoyer un rapport à un médecin ou à un proche, et tu vois qui l'a ouvert et combien de fois. construit sur next.js 15, typescript, gemini via l'ai sdk, postgres (neon) avec drizzle, et google oauth. en tchèque, responsive, avec des apps natives sur la feuille de route."
+   "en": "## what it is\nau au takes a medical report you barely understand and makes it readable. you **photograph or upload** the document, multimodal **gemini 2.5 flash** extracts the text and auto-titles it, then rewrites the terminology into plain language — what the diagnosis means, what the treatment does. a **24/7 chat** answers follow-ups with your reports as context, and it knows when to stop and point you to a real doctor. it is explicitly a comprehension tool, not a diagnostic one.\n\n## organised around you\nreports live on a **visual timeline** grouped by month, each with an at-a-glance summary. a health profile holds chronic conditions, allergies, current medication and emergency contacts, so answers can be personalised.\n\n## sharing without leaking\nsharing runs on **cryptographic tokens**: you generate a secure link to send a report to a doctor or family member, and you can see who opened it and how many times. built on next.js 15, typescript, gemini via the ai sdk, postgres (neon) with drizzle, and google oauth. czech-language, responsive, with native apps on the roadmap.\n\n## a year in\nsubscriptions through stripe, and **family profiles** — a parent can keep a child's reports, with consent rules for minors. before any photo reaches the model, plain deterministic checks reject what isn't a document: at least **900 px**, a Laplacian sharpness of **100** or more, an edge density of **8 %** or more, then a score for whether the text looks medical at all. the cheapest AI call is the one a blurry photo of a cat never makes.",
+   "cs": "## co to je\nau au vezme lékařskou zprávu, které skoro nerozumíš, a udělá ji čitelnou. dokument **vyfotíš nebo nahraješ**, multimodální **gemini 2.5 flash** z něj vytáhne text a sám ho pojmenuje, pak přepíše terminologii do lidské řeči — co diagnóza znamená, co dělá léčba. **chat 24/7** odpovídá na doplňující otázky s tvými zprávami jako kontextem a ví, kdy přestat a poslat tě ke skutečnému lékaři. je to výslovně nástroj na porozumění, ne na diagnostiku.\n\n## uspořádané kolem tebe\nzprávy žijí na **vizuální časové ose** seskupené po měsících, každá se shrnutím na první pohled. zdravotní profil drží chronická onemocnění, alergie, současné léky a nouzové kontakty, aby mohly být odpovědi personalizované.\n\n## sdílení bez úniků\nsdílení běží na **kryptografických tokenech**: vygeneruješ bezpečný odkaz a pošleš zprávu lékaři nebo rodině, a vidíš, kdo a kolikrát ji otevřel. postaveno na next.js 15, typescriptu, gemini přes ai sdk, postgresu (neon) s drizzle a google oauth. česky, responzivně, s nativními aplikacemi na roadmapě.\n\n## o rok později\npředplatné přes stripe a **rodinné profily** — rodič může vést zprávy svého dítěte, s pravidly souhlasu pro nezletilé. než se jakákoli fotka dostane k modelu, jednoduché deterministické kontroly odmítnou, co není dokument: aspoň **900 px**, ostrost podle Laplaciánu **100** a víc, hustota hran **8 %** a víc, a pak skóre, jestli text vůbec vypadá zdravotnicky. nejlevnější volání AI je to, které rozmazaná fotka kočky nikdy neudělá.",
+   "fr": "## ce que c'est\nau au prend un compte rendu médical auquel tu ne comprends presque rien et le rend lisible. tu **photographies ou téléverses** le document, **gemini 2.5 flash** multimodal en extrait le texte et le titre automatiquement, puis réécrit la terminologie en langage clair — ce que veut dire le diagnostic, ce que fait le traitement. un **chat 24/7** répond aux questions de suivi avec tes rapports comme contexte, et sait quand s'arrêter pour te renvoyer vers un vrai médecin. c'est explicitement un outil de compréhension, pas de diagnostic.\n\n## organisé autour de toi\nles rapports vivent sur une **frise chronologique visuelle** groupée par mois, chacun avec un résumé en un coup d'œil. un profil santé conserve maladies chroniques, allergies, traitements en cours et contacts d'urgence, pour que les réponses soient personnalisées.\n\n## partager sans fuiter\nle partage repose sur des **jetons cryptographiques** : tu génères un lien sécurisé pour envoyer un rapport à un médecin ou à un proche, et tu vois qui l'a ouvert et combien de fois. construit sur next.js 15, typescript, gemini via l'ai sdk, postgres (neon) avec drizzle, et google oauth. en tchèque, responsive, avec des apps natives sur la feuille de route.\n\n## un an après\ndes abonnements via stripe, et des **profils famille** — un parent peut garder les comptes rendus d'un enfant, avec des règles de consentement pour les mineurs. avant qu'une photo n'atteigne le modèle, de simples contrôles déterministes rejettent ce qui n'est pas un document : au moins **900 px**, une netteté laplacienne de **100** ou plus, une densité de contours de **8 %** ou plus, puis un score indiquant si le texte a l'air médical. l'appel IA le moins cher est celui qu'une photo floue de chat ne déclenche jamais."
   }
  },
  {
@@ -225,12 +410,12 @@
    "cs": "Dlouhý projekt. Trust Perfumes je řemeslná značka vůní Markéty Ptáčníkové (založená 2019). Začalo to jako 3D mixér parfémů v r3f, pak jsme to osekali na něco jednoduššího a zamířili rovnou na lidi, kteří opravdu nakupují. Teď běží na trust-perfumes.com.",
    "fr": "Un projet au long cours. Trust Perfumes est la marque de senteurs artisanales de Markéta Ptáčníková (fondée en 2019). Ça a démarré comme un mélangeur de parfums 3D en r3f, puis on a élagué vers quelque chose de plus simple, visant directement les gens qui achètent vraiment. En ligne sur trust-perfumes.com."
   },
-  "date": "2023 — 2025",
+  "date": "2023 — 2026",
   "link": "https://trust-perfumes.com",
   "tags": {
-   "en": "3D, Graphic Design, Web Design",
-   "cs": "3D, grafický design, webdesign",
-   "fr": "3D, design graphique, design web"
+   "en": "3D, Graphic Design, Web Design, E-commerce",
+   "cs": "3D, grafický design, webdesign, e-shop",
+   "fr": "3D, design graphique, design web, e-commerce"
   },
   "media": [
    {
@@ -281,121 +466,159 @@
    }
   ],
   "body": {
-   "en": "The longest-running project on this page. **Trust Perfumes** is the artisanal scent brand of **Markéta Ptáčníková** — perfumer, musician and teacher — founded in 2019 after a string of perfumery and aromatherapy courses. The site offers a custom personal perfume, bespoke workshops for companies and individuals, and remote creation online. It went through two clearly different lives.\n\n## v1 — the 3d mixer\n\nThe first version was an **r3f (react-three-fiber)** perfume mixer: you'd build a scent in 3D — pick one ingredient per category, watch the bottles and petals react, read the note each oil contributes. It looked great in a demo and was fun to build, but it asked a lot of a first-time visitor who just wanted to buy a bottle.\n\n## v2 — simplify, then aim\n\nFor the second version we **cut the 3D back** and rebuilt around the audience that actually converts. The \"create your perfume online\" flow is now a calm, guided picker — choose a type (natural roll-on or niche spray), led by intuition rather than a 3D scene. Fewer moving parts, faster first paint, a path to checkout that doesn't make you learn anything first.\n\nLive now at [trust-perfumes.com](https://trust-perfumes.com). The old 3D build still lives at trust-old.vercel.app if you want to see where it started.",
-   "cs": "Nejdéle běžící projekt na téhle stránce. **Trust Perfumes** je řemeslná značka vůní **Markéty Ptáčníkové** — parfumérky, hudebnice a lektorky — založená v roce 2019 po sérii parfumérských a aromaterapeutických kurzů. Web nabízí osobní parfém na míru, zážitkové workshopy pro firmy i jednotlivce a tvorbu na dálku online. Prošel dvěma jasně odlišnými životy.\n\n## v1 — 3d mixér\n\nPrvní verze byl mixér parfémů v **r3f (react-three-fiber)**: vůni jsi skládal ve 3D — vybral jednu ingredienci na kategorii, sledoval, jak reagují lahvičky a okvětní lístky, a četl, jakou notu každý olej přidává. V demu to vypadalo skvěle a bavilo mě to stavět, ale od návštěvníka, který si jen chtěl koupit lahvičku, to chtělo dost.\n\n## v2 — nejdřív zjednodušit, pak zamířit\n\nU druhé verze jsme **3D osekali** a postavili to znovu kolem publika, které opravdu konvertuje. Tvorba „osobního parfému online\" je teď klidný, vedený průvodce — vybereš typ (přírodní roll-on nebo niche sprej), vedený intuicí, ne 3D scénou. Míň pohyblivých částí, rychlejší první vykreslení, cesta k objednávce, u které se nemusíš nic učit.\n\nTeď běží na [trust-perfumes.com](https://trust-perfumes.com). Stará 3D verze pořád žije na trust-old.vercel.app, kdybys chtěl vidět, kde to začalo.",
-   "fr": "Le projet le plus ancien de cette page. **Trust Perfumes** est la marque de senteurs artisanales de **Markéta Ptáčníková** — parfumeuse, musicienne et enseignante — fondée en 2019 après une série de cours de parfumerie et d'aromathérapie. Le site propose un parfum personnel sur mesure, des ateliers sur mesure pour entreprises et particuliers, et la création à distance en ligne. Il a connu deux vies bien distinctes.\n\n## v1 — le mélangeur 3d\n\nLa première version était un mélangeur de parfums en **r3f (react-three-fiber)** : on composait une senteur en 3D — un ingrédient par catégorie, on regardait les flacons et les pétales réagir, on lisait la note apportée par chaque huile. C'était superbe en démo et amusant à construire, mais ça demandait beaucoup à un visiteur qui voulait juste acheter un flacon.\n\n## v2 — simplifier, puis viser\n\nPour la deuxième version, on a **réduit la 3D** et tout reconstruit autour du public qui convertit vraiment. Le parcours « créez votre parfum en ligne » est désormais un sélecteur calme et guidé — on choisit un type (roll-on naturel ou spray niche), porté par l'intuition plutôt que par une scène 3D. Moins de pièces mobiles, un premier rendu plus rapide, un chemin vers le paiement qui n'exige rien d'apprendre.\n\nEn ligne sur [trust-perfumes.com](https://trust-perfumes.com). L'ancienne version 3D vit toujours sur trust-old.vercel.app, si tu veux voir d'où ça part."
+   "en": "The longest-running project on this page. **Trust Perfumes** is the artisanal scent brand of **Markéta Ptáčníková** — perfumer, musician and teacher — founded in 2019 after a string of perfumery and aromatherapy courses. The site offers a custom personal perfume, bespoke workshops for companies and individuals, and remote creation online. It went through two clearly different lives.\n\n## v1 — the 3d mixer\n\nThe first version was an **r3f (react-three-fiber)** perfume mixer: you'd build a scent in 3D — pick one ingredient per category, watch the bottles and petals react, read the note each oil contributes. It looked great in a demo and was fun to build, but it asked a lot of a first-time visitor who just wanted to buy a bottle.\n\n## v2 — simplify, then aim\n\nFor the second version we **cut the 3D back** and rebuilt around the audience that actually converts. The \"create your perfume online\" flow is now a calm, guided picker — choose a type (natural roll-on or niche spray), led by intuition rather than a 3D scene. Fewer moving parts, faster first paint, a path to checkout that doesn't make you learn anything first.\n\nLive now at [trust-perfumes.com](https://trust-perfumes.com). The old 3D build still lives at trust-old.vercel.app if you want to see where it started.\n\n## v2, a year on\nthe live shop takes payment through Stripe in crowns, and its analytics only start after cookie consent. Vercel's analytics can't be exported, so the site counts its own visits and emails a **monthly report** that puts traffic next to Stripe sales — the one number a small brand actually reads.",
+   "cs": "Nejdéle běžící projekt na téhle stránce. **Trust Perfumes** je řemeslná značka vůní **Markéty Ptáčníkové** — parfumérky, hudebnice a lektorky — založená v roce 2019 po sérii parfumérských a aromaterapeutických kurzů. Web nabízí osobní parfém na míru, zážitkové workshopy pro firmy i jednotlivce a tvorbu na dálku online. Prošel dvěma jasně odlišnými životy.\n\n## v1 — 3d mixér\n\nPrvní verze byl mixér parfémů v **r3f (react-three-fiber)**: vůni jsi skládal ve 3D — vybral jednu ingredienci na kategorii, sledoval, jak reagují lahvičky a okvětní lístky, a četl, jakou notu každý olej přidává. V demu to vypadalo skvěle a bavilo mě to stavět, ale od návštěvníka, který si jen chtěl koupit lahvičku, to chtělo dost.\n\n## v2 — nejdřív zjednodušit, pak zamířit\n\nU druhé verze jsme **3D osekali** a postavili to znovu kolem publika, které opravdu konvertuje. Tvorba „osobního parfému online\" je teď klidný, vedený průvodce — vybereš typ (přírodní roll-on nebo niche sprej), vedený intuicí, ne 3D scénou. Míň pohyblivých částí, rychlejší první vykreslení, cesta k objednávce, u které se nemusíš nic učit.\n\nTeď běží na [trust-perfumes.com](https://trust-perfumes.com). Stará 3D verze pořád žije na trust-old.vercel.app, kdybys chtěl vidět, kde to začalo.\n\n## v2 o rok později\nostrý e-shop bere platby přes Stripe v korunách a analytika se spustí až po souhlasu s cookies. Analytiku Vercelu nejde exportovat, takže si web počítá návštěvy sám a posílá **měsíční report**, který dá vedle sebe návštěvnost a tržby ze Stripe — jediné číslo, které malá značka opravdu čte.",
+   "fr": "Le projet le plus ancien de cette page. **Trust Perfumes** est la marque de senteurs artisanales de **Markéta Ptáčníková** — parfumeuse, musicienne et enseignante — fondée en 2019 après une série de cours de parfumerie et d'aromathérapie. Le site propose un parfum personnel sur mesure, des ateliers sur mesure pour entreprises et particuliers, et la création à distance en ligne. Il a connu deux vies bien distinctes.\n\n## v1 — le mélangeur 3d\n\nLa première version était un mélangeur de parfums en **r3f (react-three-fiber)** : on composait une senteur en 3D — un ingrédient par catégorie, on regardait les flacons et les pétales réagir, on lisait la note apportée par chaque huile. C'était superbe en démo et amusant à construire, mais ça demandait beaucoup à un visiteur qui voulait juste acheter un flacon.\n\n## v2 — simplifier, puis viser\n\nPour la deuxième version, on a **réduit la 3D** et tout reconstruit autour du public qui convertit vraiment. Le parcours « créez votre parfum en ligne » est désormais un sélecteur calme et guidé — on choisit un type (roll-on naturel ou spray niche), porté par l'intuition plutôt que par une scène 3D. Moins de pièces mobiles, un premier rendu plus rapide, un chemin vers le paiement qui n'exige rien d'apprendre.\n\nEn ligne sur [trust-perfumes.com](https://trust-perfumes.com). L'ancienne version 3D vit toujours sur trust-old.vercel.app, si tu veux voir d'où ça part.\n\n## la v2, un an après\nla boutique en ligne encaisse via Stripe en couronnes, et ses statistiques ne démarrent qu'après consentement aux cookies. Les analytics de Vercel ne s'exportent pas, alors le site compte lui-même ses visites et envoie un **rapport mensuel** qui met le trafic à côté des ventes Stripe — le seul chiffre qu'une petite marque lit vraiment."
   }
  },
  {
-  "id": 30,
-  "image": "/work/chatspc.webp",
+  "image": "/art/surfaces/080.webp",
   "title": {
-   "en": "Chat SPC",
-   "cs": "Chat SPC",
-   "fr": "Chat SPC"
+   "en": "Expressive TTS",
+   "cs": "Expresivní TTS",
+   "fr": "TTS expressif"
   },
   "description": {
-   "en": "rag search over the czech SÚKL summary-of-product-characteristics leaflets, so a doctor or pharmacist can ask a plain question and get an answer built only from the official text. it's a next.js 15 chat on vercel with a gemini 2.5 flash tool loop, and every claim is cited back to a specific SPC and paragraph.",
-   "cs": "vyhledávání nad souhrny údajů o léčivém přípravku (SPC) ze SÚKL, aby se lékař nebo lékárník mohl zeptat obyčejnou větou a dostal odpověď složenou jen z oficiálního textu. je to chat v next.js 15 na vercelu, gemini 2.5 flash běží ve smyčce nástrojů a každé tvrzení nese citaci na konkrétní SPC a odstavec.",
-   "fr": "recherche rag sur les résumés des caractéristiques du produit (SPC) de l'agence tchèque du médicament, pour qu'un médecin ou un pharmacien pose une question en langage courant et reçoive une réponse construite uniquement à partir du texte officiel. un chat next.js 15 sur vercel, une boucle d'outils gemini 2.5 flash, et chaque affirmation renvoie à un SPC et un paragraphe précis."
+   "en": "A text-to-speech API that runs on a CPU fast enough for live conversation, so an app can keep its own language model and drop the hosted realtime voice. Kokoro-82M supplies the voice; a layer on top adds emotion, laughs and breathing — applied to the half of the style vector that carries timing and pitch, so the speaker stays the same while the delivery changes.",
+   "cs": "API pro převod textu na řeč, které na procesoru běží dost rychle na živou konverzaci, takže si aplikace může nechat vlastní jazykový model a obejít se bez hostovaného realtime hlasu. Hlas dodává Kokoro-82M; vrstva nad ním přidává emoce, smích a dýchání — aplikované na tu polovinu stylového vektoru, která nese tempo a výšku, takže mluvčí zůstává stejný a mění se jen podání.",
+   "fr": "Une API de synthèse vocale qui tourne sur CPU assez vite pour une conversation en direct, pour qu'une app garde son propre modèle de langage et se passe de la voix temps réel hébergée. Kokoro-82M fournit la voix ; une couche par-dessus ajoute émotion, rires et respiration — appliqués à la moitié du vecteur de style qui porte le rythme et la hauteur, si bien que la voix reste la même pendant que l'interprétation change."
   },
-  "date": "2025",
-  "link": "https://chat-spc-mvp.vercel.app",
+  "date": "2026",
+  "link": "https://github.com/WalterGropius/tts",
   "tags": {
-   "en": "r&d, Web Design",
-   "cs": "r&d, webdesign",
-   "fr": "r&d, design web"
+   "en": "AI, Python, r&d",
+   "cs": "AI, python, r&d",
+   "fr": "IA, python, r&d"
+  },
+  "links": [
+   {
+    "label": {
+     "en": "source",
+     "cs": "zdrojový kód",
+     "fr": "code source"
+    },
+    "href": "https://github.com/WalterGropius/tts"
+   }
+  ],
+  "body": {
+   "en": "## the gap\nthe expressive open speech models are autoregressive and far too slow on a CPU; the fast ones are flat. Kokoro-82M is fast — the question was whether a flat model could be made to *perform*.\n\n## where the delivery lives\nkokoro conditions every voice on a style vector. swapping its halves between voices showed the split: one half carries **who** is speaking, the other **how** — timing and pitch. emotion is applied to the second half only, so an angry line is still the same person.\n\n## the rest is craft\nbreaths are generated as shaped noise, because the model voices a written breath as a vowel. laughs are hand-written phoneme strings, so they come out in the speaker's own voice. pitch shifts are one resample instead of a time-stretch per chunk.\n\n## numbers\n~**440 ms** to first audio and about **0.22× realtime** on four CPU cores, streamed over a websocket. the quantised int8 model, which should have been the fast one, ran *slower than playback* — [measured, not assumed](/blog/int8-was-slower-than-real-time). 18 emotions, 26 cues, 54 voices, 8 languages, 134 tests.",
+   "cs": "## mezera\nexpresivní otevřené řečové modely jsou autoregresivní a na procesoru příliš pomalé; ty rychlé jsou ploché. Kokoro-82M je rychlý — otázka zněla, jestli se dá plochý model naučit *hrát*.\n\n## kde žije podání\nkokoro podmiňuje každý hlas stylovým vektorem. prohození jeho polovin mezi hlasy ukázalo dělení: jedna polovina nese, **kdo** mluví, druhá **jak** — tempo a výšku. emoce se aplikuje jen na druhou polovinu, takže naštvaná věta je pořád tentýž člověk.\n\n## zbytek je řemeslo\nnádechy se generují jako tvarovaný šum, protože model napsaný nádech vysloví jako samohlásku. smích jsou ručně psané řetězce fonémů, takže zní hlasem mluvčího. změna výšky je jedno převzorkování místo time-stretche po každém kousku.\n\n## čísla\n~**440 ms** do prvního zvuku a zhruba **0,22× reálného času** na čtyřech jádrech, streamované přes websocket. kvantovaný int8 model, který měl být ten rychlý, běžel *pomaleji než přehrávání* — [změřeno, ne předpokládáno](/blog/int8-was-slower-than-real-time). 18 emocí, 26 pokynů, 54 hlasů, 8 jazyků, 134 testů.",
+   "fr": "## le manque\nles modèles de parole ouverts et expressifs sont autorégressifs et bien trop lents sur CPU ; les rapides sont plats. Kokoro-82M est rapide — la question était de savoir si un modèle plat pouvait être amené à *jouer*.\n\n## où vit l'interprétation\nkokoro conditionne chaque voix par un vecteur de style. échanger ses moitiés entre voix a révélé le partage : une moitié porte **qui** parle, l'autre **comment** — rythme et hauteur. l'émotion n'est appliquée qu'à la seconde moitié, donc une réplique en colère reste la même personne.\n\n## le reste, c'est de l'artisanat\nles respirations sont générées comme du bruit mis en forme, parce que le modèle prononce une respiration écrite comme une voyelle. les rires sont des chaînes de phonèmes écrites à la main, donc ils sortent avec la voix du locuteur. les changements de hauteur sont un seul rééchantillonnage au lieu d'un étirement temporel par morceau.\n\n## chiffres\n~**440 ms** jusqu'au premier son et environ **0,22× le temps réel** sur quatre cœurs CPU, en streaming par websocket. le modèle quantifié int8, censé être le rapide, tournait *plus lentement que la lecture* — [mesuré, pas supposé](/blog/int8-was-slower-than-real-time). 18 émotions, 26 indications, 54 voix, 8 langues, 134 tests."
+  },
+  "id": 53
+ },
+ {
+  "id": 40,
+  "image": "/art/surfaces/160.webp",
+  "title": {
+   "en": "stdboids",
+   "cs": "stdboids",
+   "fr": "stdboids"
+  },
+  "description": {
+   "en": "a boids flocking simulation where the flock lives in the database, not the client. i put the simulation state on spacetimedb, so agents move by transactional reducers and every connected client just subscribes and renders the same swarm in real time. it's an experiment in treating a game loop as shared server state.",
+   "cs": "simulace hejna boidů, kde hejno žije v databázi, ne v klientovi. stav simulace jsem dal na spacetimedb, takže se agenti pohybují transakčními reducery a každý připojený klient jen odebírá a vykresluje stejné hejno v reálném čase. je to experiment s herní smyčkou jako sdíleným serverovým stavem.",
+   "fr": "une simulation de nuée (boids) où la nuée vit dans la base de données, pas dans le client. j'ai mis l'état de la simulation sur spacetimedb : les agents se déplacent via des reducers transactionnels et chaque client connecté s'abonne et affiche le même essaim en temps réel. une expérience où la boucle de jeu devient un état serveur partagé."
+  },
+  "date": "2026",
+  "tags": {
+   "en": "r&d, Real-time, Multiplayer",
+   "cs": "r&d, real-time, multiplayer",
+   "fr": "r&d, temps réel, multijoueur"
+  },
+  "body": {
+   "en": "## the idea\nboids is the canonical flocking algorithm — separation, alignment, cohesion, three rules and emergent swarm behaviour. the twist here isn't the maths, it's the topology: instead of running the simulation locally i pushed the whole thing onto **spacetimedb**, a database you write to with transactional reducers and read from with live subscriptions.\n\n## how it's wired\nthe flock's positions and velocities are **tables**. the step function that nudges every agent is a **scheduled reducer** that ticks every **50 ms** (20 Hz) — deterministic and transactional. reducers can't call `Math.random`, so randomness comes from a 64-bit LCG whose seed lives in a state row. clients don't compute the flock; they **subscribe** to the tables and render whatever the server says. add a second client and it sees the identical swarm, live.\n\n## a small ecology\npredators move at **1.5×** boid speed and starve after ten minutes without food; boids expire after five minutes, food after one. any visitor can take over a single boid and steer it through the flock.\n\n## why bother\ni wanted to feel where the line is between \"game loop\" and \"shared database\" when the authoritative state is a single hosted module. it's an experiment more than a product — the interesting part is that multiplayer, persistence and the sim all collapse into one server-side source of truth, with no bespoke netcode on my side.",
+   "cs": "## nápad\nboids je kanonický algoritmus hejna — separace, zarovnání, koheze, tři pravidla a emergentní chování roje. zvláštní tu není matematika, ale topologie: místo abych simulaci pouštěl lokálně, přesunul jsem celou na **spacetimedb**, databázi, do které se zapisuje transakčními reducery a čte živými odběry.\n\n## jak je to zapojené\npozice a rychlosti hejna jsou **tabulky**. krokovací funkce, která posouvá každého agenta, je **plánovaný reducer**, který tiká každých **50 ms** (20 Hz) — deterministický a transakční. reducery nesmějí volat `Math.random`, takže náhoda pochází z 64bitového LCG, jehož seed žije v řádku stavu. klienti hejno nepočítají; **odebírají** tabulky a vykreslují, co řekne server. přidej druhého klienta a uvidí identický roj, živě.\n\n## malá ekologie\npredátoři jsou **1,5×** rychlejší než boidi a po deseti minutách bez potravy vyhladoví; boidi zaniknou po pěti minutách, potrava po jedné. kterýkoli návštěvník může převzít jednoho boida a řídit ho skrz hejno.\n\n## proč se s tím trápit\nchtěl jsem si osahat, kde vede hranice mezi „herní smyčkou“ a „sdílenou databází“, když autoritativní stav je jediný hostovaný modul. je to spíš experiment než produkt — zajímavé je, že multiplayer, perzistence i simulace se slijí do jednoho serverového zdroje pravdy, bez vlastního netcode na mé straně.",
+   "fr": "## l'idée\nboids est l'algorithme canonique de nuée — séparation, alignement, cohésion, trois règles et un comportement d'essaim émergent. l'originalité n'est pas dans les maths mais dans la topologie : au lieu de lancer la simulation en local, j'ai tout poussé sur **spacetimedb**, une base où l'on écrit par des reducers transactionnels et où l'on lit par des abonnements en direct.\n\n## comment c'est câblé\nles positions et vitesses de la nuée sont des **tables**. la fonction de pas qui pousse chaque agent est un **reducer planifié** qui bat toutes les **50 ms** (20 Hz) — déterministe et transactionnel. les reducers ne peuvent pas appeler `Math.random`, donc le hasard vient d'un LCG 64 bits dont la graine vit dans une ligne d'état. les clients ne calculent pas la nuée ; ils **s'abonnent** aux tables et affichent ce que dit le serveur. ajoute un second client et il voit le même essaim, en direct.\n\n## une petite écologie\nles prédateurs vont **1,5×** plus vite que les boids et meurent de faim après dix minutes sans nourriture ; les boids expirent après cinq minutes, la nourriture après une. n'importe quel visiteur peut prendre le contrôle d'un boid et le piloter à travers la nuée.\n\n## pourquoi s'embêter\nje voulais sentir où passe la ligne entre « boucle de jeu » et « base partagée » quand l'état qui fait foi est un seul module hébergé. c'est une expérience plus qu'un produit — l'intérêt, c'est que multijoueur, persistance et simulation se fondent en une seule source de vérité côté serveur, sans netcode maison de mon côté."
+  }
+ },
+ {
+  "id": 33,
+  "image": "/work/shiftrs.webp",
+  "title": {
+   "en": "Shiftrs",
+   "cs": "Shiftrs",
+   "fr": "Shiftrs"
+  },
+  "description": {
+   "en": "Shift happens. Be the Shiftr. A creative agency where I'm the CTO — building brand-product-experience work for clients, AOMU among them.",
+   "cs": "Shift happens. Be the Shiftr. Kreativní agentura, kde dělám CTO — stavíme brand-produkt-experience práci pro klienty, mezi nimi AOMU.",
+   "fr": "Shift happens. Be the Shiftr. Une agence créative où je suis CTO — on construit du travail marque-produit-expérience pour des clients, AOMU parmi eux."
+  },
+  "date": "2024 — 2026",
+  "link": "https://shiftrs.co",
+  "tags": {
+   "en": "Web Design, r&d",
+   "cs": "webdesign, r&d",
+   "fr": "design web, r&d"
   },
   "media": [],
   "links": [
    {
     "label": {
-     "en": "try the mvp",
-     "cs": "vyzkoušet mvp",
-     "fr": "essayer le mvp"
+     "en": "shiftrs.co",
+     "cs": "shiftrs.co",
+     "fr": "shiftrs.co"
     },
-    "href": "https://chat-spc-mvp.vercel.app"
+    "href": "https://shiftrs.co"
    }
   ],
   "body": {
-   "en": "## what it is\na chat that answers drug questions strictly from the SÚKL SPC corpus — no general medical knowledge, no guessing. the model runs a **grounded tool loop** (gemini 2.5 flash, ~12 steps): `searchSPC` for full-text, `getSection` to pull a specific section, `recordUnansweredQuery` for coverage telemetry. **every claim carries a `SPC<code> §section` citation**, and the ui checks the code actually came back from a tool before it renders the chip — otherwise it's flagged as unsupported.\n\n## the part czech breaks\nthe hard problems were in retrieval, not the model. czech declines drug names (\"zoloftu\", \"mireny\"), but the backend index only matches the nominative, so a declined query returned **zero hits** and the chat wrongly said \"not found\". i added **declension recovery** (strip case endings, retry, merge), **salt/latin-form expansion** (metoprolol → metoprolol-sukcinát, metoprololi tartras), plus dedup and re-ranking so the same drug across every strength doesn't drown a real match.\n\n## the pipeline\nSPC pdfs are converted to faithful html locally with a pdfplumber kernel plus a gemini overlay, then stored one post per SPC and refreshed on a **weekly ingest**. the whole thing sits behind auth and a credit gate. status: mvp — chat, auth and credits are live; the conversion pipeline is a local-dev tool that stages the corpus.",
-   "cs": "## co to je\nchat, který odpovídá na dotazy o lécích výhradně z korpusu SPC ze SÚKL — žádné obecné lékařské znalosti, žádné hádání. model běží v **grounded smyčce nástrojů** (gemini 2.5 flash, ~12 kroků): `searchSPC` na fulltext, `getSection` na konkrétní sekci, `recordUnansweredQuery` pro telemetrii pokrytí. **každé tvrzení nese citaci `SPC<kód> §sekce`** a ui ověří, že model kód opravdu dostal z nástroje, než z něj udělá klikatelný chip — jinak ho označí jako nepodložený.\n\n## na čem čeština padá\ntěžké problémy byly v retrievalu, ne v modelu. čeština skloňuje názvy léků („zoloftu\", „mireny\"), ale index na backendu matchuje jen první pád, takže skloňovaný dotaz vracel **nula zásahů** a chat mylně tvrdil „nenalezeno\". přidal jsem **obnovu z pádů** (odebrat koncovky, zopakovat, sloučit), **rozšíření o solné a latinské tvary** (metoprolol → metoprolol-sukcinát, metoprololi tartras) a de-duplikaci s re-rankingem, aby týž lék v každé síle nepřeválcoval reálnou shodu.\n\n## pipeline\nSPC pdf převádím na věrné html lokálně jádrem nad pdfplumber a gemini overlayem, ukládám jeden post na jedno SPC a obnovuji **týdenním ingestem**. celé to stojí za přihlášením a kreditovou bránou. stav: mvp — chat, přihlášení i kredity běží; převodní pipeline je lokální nástroj, který korpus jen připraví.",
-   "fr": "## ce que c'est\nun chat qui répond aux questions sur les médicaments strictement à partir du corpus SPC du SÚKL — aucune connaissance médicale générale, aucune supposition. le modèle tourne dans une **boucle d'outils ancrée** (gemini 2.5 flash, ~12 étapes) : `searchSPC` pour le plein texte, `getSection` pour une section précise, `recordUnansweredQuery` pour la télémétrie de couverture. **chaque affirmation porte une citation `SPC<code> §section`**, et l'ui vérifie que le code provient bien d'un outil avant d'afficher la puce — sinon elle est marquée comme non étayée.\n\n## là où le tchèque casse tout\nles vrais problèmes étaient dans le retrieval, pas dans le modèle. le tchèque décline les noms de médicaments (« zoloftu », « mireny »), mais l'index du backend ne matche que le nominatif : une requête déclinée renvoyait **zéro résultat** et le chat affirmait à tort « introuvable ». j'ai ajouté une **récupération des déclinaisons** (retirer les terminaisons, réessayer, fusionner), une **expansion des formes salines et latines** (metoprolol → metoprolol-sukcinát, metoprololi tartras), plus déduplication et re-ranking pour qu'un même médicament décliné en tous dosages n'écrase pas une vraie correspondance.\n\n## le pipeline\nles pdf des SPC sont convertis en html fidèle en local, via un noyau pdfplumber et une couche gemini, puis stockés à raison d'un post par SPC et rafraîchis par un **ingest hebdomadaire**. le tout derrière l'authentification et une barrière de crédits. statut : mvp — chat, auth et crédits sont en ligne ; le pipeline de conversion est un outil de dev local qui prépare le corpus."
+   "en": "**Shiftrs** is a creative agency where I'm the **CTO**. Their line: *\"Shift happens. Be the Shiftr.\"* — everything is changing fast, and brands need a brand-product-experience-driven shift to stay relevant.\n\nThe CTO role is the usual mix: picking the tech, keeping the builds honest, and making sure what the creative side dreams up can actually ship.\n\n## clients\n\nWe build for a range of clients — **AOMU** among them. Different brief every time; the constant is the standard the work has to clear before it goes out.\n\n## the back office\n\nI also built the agency's own site and the back office behind it. A quote goes out as a public link the client can accept or decline; acceptance sends the confirmation e-mail and turns into an invoice PDF — with the Czech tax-point date and the client's company details pulled from the ARES registry, so nobody retypes them.",
+   "cs": "**Shiftrs** je kreativní agentura, kde dělám **CTO**. Jejich heslo: *„Shift happens. Be the Shiftr.\"* — všechno se mění rychle a značky potřebují posun vedený brandem, produktem a zážitkem, aby zůstaly relevantní.\n\nRole CTO je obvyklý mix: vybrat technologie, držet buildy poctivé a zařídit, aby to, co vymyslí kreativní strana, šlo opravdu vydat.\n\n## klienti\n\nStavíme pro různé klienty — mezi nimi **AOMU**. Pokaždé jiné zadání; konstantou je laťka, kterou práce musí přeskočit, než jde ven.\n\n## back office\n\nPostavil jsem i web agentury a back office za ním. Nabídka odchází jako veřejný odkaz, který klient přijme nebo odmítne; přijetí odešle potvrzovací e-mail a promění se ve fakturu v PDF — s datem uskutečnění zdanitelného plnění a údaji o firmě klienta staženými z ARES, takže je nikdo nepřepisuje.",
+   "fr": "**Shiftrs** est une agence créative où je suis **CTO**. Leur formule : *« Shift happens. Be the Shiftr. »* — tout change vite, et les marques ont besoin d'un virage porté par la marque, le produit et l'expérience pour rester pertinentes.\n\nLe rôle de CTO est le mélange habituel : choisir la tech, garder les builds honnêtes et faire en sorte que ce que le côté créatif imagine puisse vraiment sortir.\n\n## clients\n\nOn construit pour divers clients — **AOMU** entre autres. Un brief différent à chaque fois ; la constante, c'est le niveau que le travail doit atteindre avant de partir.\n\n## le back-office\n\nJ'ai aussi construit le site de l'agence et le back-office derrière. Un devis part sous forme de lien public que le client accepte ou refuse ; l'acceptation envoie l'e-mail de confirmation et devient une facture PDF — avec la date d'exigibilité de la TVA tchèque et les coordonnées de l'entreprise cliente tirées du registre ARES, pour que personne ne les retape."
   }
  },
  {
-  "id": 31,
-  "image": "/work/amlproof.webp",
+  "id": 47,
+  "image": "/art/surfaces/220.webp",
   "title": {
-   "en": "AMLProof",
-   "cs": "AMLProof",
-   "fr": "AMLProof"
+   "en": "A Universe for a Library",
+   "cs": "Vesmír pro knihovnu",
+   "fr": "Un univers pour une bibliothèque"
   },
   "description": {
-   "en": "aml compliance for \"obliged entities\" — the regulated businesses (law firms, accountants, estate agents, crypto services and a dozen more sectors) that are legally required to run anti-money-laundering checks. you answer a 4-step profile wizard, it generates the 8 mandatory aml documents, and then it runs your client cases and screening with an audit-ready trail.",
-   "cs": "aml compliance pro „povinné osoby\" — regulované podniky (advokátní kanceláře, účetní, realitní makléři, krypto služby a dalších zhruba patnáct oborů), které ze zákona musí dělat opatření proti praní špinavých peněz. vyplníš čtyřkrokového průvodce profilem, systém vygeneruje osm povinných aml dokumentů a pak vede tvé klientské případy i prověřování s auditovatelnou stopou.",
-   "fr": "conformité lba pour les « entités assujetties » — les métiers réglementés (cabinets d'avocats, experts-comptables, agents immobiliers, services crypto et une quinzaine d'autres secteurs) légalement tenus de mener des contrôles anti-blanchiment. tu remplis un assistant de profil en quatre étapes, il génère les huit documents lba obligatoires, puis il gère tes dossiers clients et le screening avec une piste d'audit."
+   "en": "1,347 books from a library's collection, scattered through 3D space by meaning instead of shelf, so related titles cluster into constellations you can fly through. Built as a kiosk for the library floor: every session draws 500 of them, and the universe resets after 30 seconds idle.",
+   "cs": "1 347 knih z fondu knihovny rozesetých 3D prostorem podle významu místo podle regálu, takže příbuzné tituly se shlukují do souhvězdí, kterými se dá proletět. Postavené jako kiosek přímo do knihovny: každá session vylosuje 500 z nich a po 30 vteřinách nečinnosti se vesmír resetuje.",
+   "fr": "1 347 livres du fonds d'une bibliothèque, dispersés dans l'espace 3D selon leur sens plutôt que leur rayon, si bien que les titres proches se regroupent en constellations qu'on traverse en vol. Conçu comme une borne pour la bibliothèque elle-même : chaque session en tire 500, et l'univers se réinitialise après 30 secondes d'inactivité."
   },
   "date": "2025",
-  "link": "https://amlproof.ai",
   "tags": {
-   "en": "r&d, Web Design",
-   "cs": "r&d, webdesign",
-   "fr": "r&d, design web"
+   "en": "3D, r&d, AI",
+   "cs": "3D, r&d, AI",
+   "fr": "3D, r&d, IA"
   },
-  "media": [],
-  "links": [
-   {
-    "label": {
-     "en": "amlproof.ai",
-     "cs": "amlproof.ai",
-     "fr": "amlproof.ai"
-    },
-    "href": "https://amlproof.ai"
-   }
-  ],
   "body": {
-   "en": "## are you an obliged entity\nthe whole product answers one question first: is your business legally on the hook for aml? a landing self-check maps obligations across **15+ regulated sectors** — banks, insurance, investment, payments, legal, accountants, real estate, trust services, precious metals, gambling, crypto/casp, art dealers, and more.\n\n## the 8 documents\nthe core is a **4-step obliged-entity wizard** — company registration, ultimate beneficial owners, a pick from **28 aml-triggering service categories**, and responsible persons — that then auto-generates the **8 documents a compliance file actually needs**: aml policy, business-wide risk assessment, cdd/kyc framework, risk appetite statement, str/sar & sanctions sop, mlro appointment, training policy, and outsourcing/reliance policy.\n\n## the case lifecycle\non top of the profile you open, monitor and archive aml cases: client onboarding, kyc/kyb, pep / sanctions / adverse-media screening, enhanced due diligence, and str drafting — with **5–10 year retention** and full audit trails. it's built to line up with **eu amlr 2024, amld6, fatf, eba guidelines and mica**. next.js, bilingual cz/en. built under aml proof, s.r.o.",
-   "cs": "## jsi povinná osoba?\ncelý produkt začíná jednou otázkou: vztahují se na tvé podnikání aml povinnosti? samoobslužný test na landingu mapuje povinnosti napříč **15+ regulovanými obory** — banky, pojišťovny, investice, platby, advokáti, účetní, reality, svěřenské služby, drahé kovy, hazard, krypto/casp, obchodníci s uměním a další.\n\n## osm dokumentů\njádrem je **čtyřkrokový průvodce profilem povinné osoby** — registrace firmy, skuteční majitelé, výběr z **28 kategorií služeb spouštějících aml** a odpovědné osoby — který pak automaticky vygeneruje **osm dokumentů, které compliance složka reálně potřebuje**: aml politiku, hodnocení rizik napříč činností (bwra), rámec cdd/kyc, prohlášení o rizikovém apetitu, sop pro str/sar a sankce, jmenování mlro, školicí politiku a politiku outsourcingu.\n\n## životní cyklus případu\nnad profilem otevíráš, monitoruješ a archivuješ aml případy: onboarding klienta, kyc/kyb, prověřování pep / sankcí / negativních médií, zesílenou kontrolu a přípravu str — s **archivací na 5–10 let** a plnou auditní stopou. celé je to postavené tak, aby sedělo na **eu amlr 2024, amld6, fatf, eba a mica**. next.js, dvojjazyčně cz/en. pod hlavičkou aml proof, s.r.o.",
-   "fr": "## es-tu une entité assujettie ?\ntout le produit part d'une seule question : ton activité est-elle légalement soumise à la lba ? un auto-diagnostic sur la landing cartographie les obligations à travers **plus de 15 secteurs réglementés** — banques, assurance, investissement, paiements, avocats, experts-comptables, immobilier, fiducies, métaux précieux, jeux d'argent, crypto/casp, marchands d'art, et d'autres.\n\n## les 8 documents\nle cœur est un **assistant d'entité assujettie en quatre étapes** — enregistrement de la société, bénéficiaires effectifs, sélection parmi **28 catégories de services déclenchant la lba**, et personnes responsables — qui génère ensuite automatiquement les **huit documents dont un dossier de conformité a réellement besoin** : politique lba, évaluation des risques à l'échelle de l'activité, cadre cdd/kyc, déclaration d'appétence au risque, procédure str/sar et sanctions, nomination du mlro, politique de formation et politique d'externalisation.\n\n## le cycle de vie du dossier\nau-dessus du profil, tu ouvres, surveilles et archives des dossiers lba : entrée en relation, kyc/kyb, screening pep / sanctions / médias défavorables, vigilance renforcée et rédaction de str — avec **conservation de 5 à 10 ans** et pistes d'audit complètes. le tout est aligné sur **eu amlr 2024, amld6, fatf, eba et mica**. next.js, bilingue cz/en. porté par aml proof, s.r.o."
+   "en": "A library catalogue is a list. **A universe for a library** turns it into a place.\n\n## meaning as coordinates\nevery book's annotation becomes a point in 3D, placed so that books *about* similar things end up near each other — the layout is a map of ideas, not a call number. hover a star, read the annotation, follow the link straight into the library's catalogue.\n\n## the boring part that made it beautiful\n**1,347 annotated books** and **3,113 distinct tags** merged at runtime stuttered on every hover and click. so i precompute: a build step matches coordinates to annotations and links and bakes one **enriched-data.json** (~1.2MB), killing all runtime overhead. the visualization stays silky because the thinking already happened offline.\n\n## built for the floor, not the web\nit runs as a kiosk: each session shows a random **500** of the books plus a welcome book, and after **30 seconds** without a touch the universe resets for the next person.\n\nit's a small piece with a simple thesis: a collection you can *fly through* invites a different kind of browsing than a list you scroll — you discover by proximity, not by search.",
+   "cs": "Katalog knihovny je seznam. **Vesmír pro knihovnu** z něj dělá místo.\n\n## význam jako souřadnice\nanotace každé knihy se stane bodem ve 3D, umístěným tak, aby knihy, které jsou *o* podobných věcech, skončily blízko sebe — rozložení je mapa myšlenek, ne signatura. najedeš na hvězdu, přečteš anotaci a odkaz tě pošle rovnou do katalogu knihovny.\n\n## nudná část, díky které je to krásné\n**1 347 anotovaných knih** a **3 113 různých štítků** spojovaných za běhu se zasekávalo při každém najetí a kliknutí. tak to předpočítám: build krok spáruje souřadnice s anotacemi a odkazy a upeče jeden **enriched-data.json** (~1,2 MB), který zabije veškerou režii za běhu. vizualizace zůstává hladká, protože přemýšlení proběhlo předem.\n\n## pro knihovnu, ne pro web\nběží jako kiosek: každá session ukáže náhodných **500** knih plus uvítací knihu a po **30 vteřinách** bez dotyku se vesmír resetuje pro dalšího návštěvníka.\n\nje to malá věc s jednoduchou tezí: sbírka, kterou můžeš *proletět*, svádí k jinému prohlížení než seznam, kterým scrolluješ — objevuješ blízkostí, ne vyhledáváním.",
+   "fr": "Un catalogue de bibliothèque est une liste. **Un univers pour une bibliothèque** en fait un lieu.\n\n## le sens comme coordonnées\nl'annotation de chaque livre devient un point en 3D, placé pour que les livres qui parlent de choses proches finissent voisins — la disposition est une carte des idées, pas une cote. survole une étoile, lis l'annotation, suis le lien directement dans le catalogue de la bibliothèque.\n\n## la partie ennuyeuse qui l'a rendu beau\n**1 347 livres annotés** et **3 113 tags distincts** fusionnés à l'exécution saccadaient à chaque survol et chaque clic. alors je précalcule : une étape de build associe coordonnées, annotations et liens et cuit un seul **enriched-data.json** (~1,2 Mo), ce qui supprime tout le coût à l'exécution. la visualisation reste fluide parce que la réflexion a déjà eu lieu hors ligne.\n\n## conçu pour la salle, pas pour le web\nil tourne en borne : chaque session montre **500** livres tirés au hasard plus un livre d'accueil, et après **30 secondes** sans contact l'univers se réinitialise pour la personne suivante.\n\nune petite pièce avec une thèse simple : une collection qu'on peut *traverser en vol* invite à une autre façon de flâner qu'une liste qu'on fait défiler — on découvre par proximité, pas par recherche."
   }
  },
  {
-  "id": 32,
-  "image": "/work/homeproof.webp",
+  "id": 46,
+  "image": "/art/decay/050.webp",
   "title": {
-   "en": "HomeProof",
-   "cs": "HomeProof",
-   "fr": "HomeProof"
+   "en": "Zlé Rádio",
+   "cs": "Zlé Rádio",
+   "fr": "Zlé Rádio"
   },
   "description": {
-   "en": "a czech b2c platform that verifies the technical condition of a property before it changes hands, using the methodology of the association of property inspectors (ain.cz). an owner answers a questionnaire, the app scores 22 building elements plus 10 risk areas, and issues a tamper-evident report with a qr verification link.",
-   "cs": "česká b2c platforma, která ověří technický stav nemovitosti dřív, než změní majitele — podle metodiky asociace inspektorů nemovitostí (ain.cz). vlastník vyplní dotazník, aplikace ohodnotí 22 stavebních prvků a 10 rizikových oblastí a vydá report chráněný proti falšování s qr odkazem na ověření.",
-   "fr": "une plateforme b2c tchèque qui vérifie l'état technique d'un bien avant qu'il ne change de mains, selon la méthodologie de l'association des inspecteurs immobiliers (ain.cz). le propriétaire remplit un questionnaire, l'app note 22 éléments du bâti et 10 zones de risque, et délivre un rapport infalsifiable avec un lien de vérification par qr."
+   "en": "Radio for bad people — reborn. Zlé Rádio started in 2015 as a WordPress oddity at zleradio.org; a decade later I brought it back at zlerad.io. Same defiant tone, KDO / CO / TO / ROZKAZY, now a fast modern web app instead of a crumbling blog.",
+   "cs": "Rádio pro zlé lidi — znovuzrozené. Zlé Rádio začalo v roce 2015 jako wordpressová úchylka na zleradio.org; o dekádu později jsem ho vzkřísil na zlerad.io. Stejný vzdorný tón, KDO / CO / TO / ROZKAZY, jen místo rozpadlého blogu rychlá moderní webová appka.",
+   "fr": "La radio pour les méchants — renée. Zlé Rádio a commencé en 2015 comme une bizarrerie WordPress sur zleradio.org ; dix ans plus tard je l'ai ramenée sur zlerad.io. Le même ton frondeur, KDO / CO / TO / ROZKAZY, mais une app web moderne et rapide au lieu d'un blog en ruine."
   },
-  "date": "2025",
-  "link": "https://homeproof.ai",
+  "date": "2015 — 2025",
   "tags": {
-   "en": "r&d, Web Design",
-   "cs": "r&d, webdesign",
-   "fr": "r&d, design web"
+   "en": "Web Design, r&d",
+   "cs": "webdesign, r&d",
+   "fr": "design web, r&d"
   },
-  "media": [],
-  "links": [
-   {
-    "label": {
-     "en": "homeproof.ai",
-     "cs": "homeproof.ai",
-     "fr": "homeproof.ai"
-    },
-    "href": "https://homeproof.ai"
-   }
-  ],
   "body": {
-   "en": "## the problem\nin czechia roughly **1 in 3 sold properties has a hidden defect**, and a seller stays liable for those for **5 years** after the sale — yet almost nobody verifies condition beforehand. homeproof turns that into a document: a seller fills a questionnaire for **1,999 czk**, a buyer can then buy the finished report for **399–499 czk**.\n\n## how a property gets scored\ntwo questionnaires, both from the **ain methodology**. the first scores **22 building elements** (foundations, load-bearing walls, roof truss, wiring, plumbing…): each element's age = current year − year of reconstruction, dropped into an **a–e lifespan band** (a=100 … e=0), then a **weighted average** by category (structure ×3, envelope ×2, installations ×2, interiors ×1, safety ×1) gives an overall a–e rating. it's deterministic — missing values are never guessed, they're excluded. **5 critical elements** (foundations, load-bearing, roof truss, electrics, internal sewer) raise a warning flag if they land on d or e, even when the overall score looks fine. the second questionnaire walks **10 risk areas** with branching yes/no logic — a risk only surfaces if the house actually has that element and a defect is detected.\n\n## making the report trustworthy\naddresses come from the czech cadastre (cúzk) api. each report gets a **ulid id**, a **sha-256 property hash** (no full address), and an **hmac-sha256 anti-tamper signature** encoded in a **qr code** that points to a public verify page — which confirms the report is genuine, revoked or invalid without ever exposing the owner's name or address. next.js 15, neon postgres, stripe, pdf via pdfmake.",
-   "cs": "## problém\nv česku má zhruba **každá třetí prodaná nemovitost skrytou vadu** a prodávající za ni ručí **5 let** po prodeji — přitom skoro nikdo stav předem neověřuje. homeproof z toho udělá dokument: prodávající vyplní dotazník za **1 999 kč**, kupující si pak hotový report koupí za **399–499 kč**.\n\n## jak se nemovitost oboduje\ndva dotazníky, oba podle **metodiky ain**. první hodnotí **22 stavebních prvků** (základy, nosné zdi, krov, elektroinstalace, rozvody…): stáří prvku = aktuální rok − rok rekonstrukce, zařazené do **životnostního pásma a–e** (a=100 … e=0), z toho **vážený průměr** podle kategorie (konstrukce ×3, obálka ×2, instalace ×2, interiéry ×1, bezpečnost ×1) dá celkový rating a–e. je to deterministické — chybějící hodnoty se nikdy neodhadují, prvek se prostě vyloučí. **5 kritických prvků** (základy, svislé nosné, krov, elektroinstalace, vnitřní kanalizace) spustí varování, pokud spadnou na d nebo e, i když je celkové skóre jinak dobré. druhý dotazník prochází **10 rizikových oblastí** větvenou logikou ano/ne — riziko se objeví, jen pokud dům daný prvek skutečně má a je zjištěná závada.\n\n## aby se reportu dalo věřit\nadresy tahám z api katastru nemovitostí (cúzk). každý report dostane **ulid identifikátor**, **sha-256 hash nemovitosti** (bez plné adresy) a **anti-tamper podpis hmac-sha256** zakódovaný v **qr kódu**, který míří na veřejnou ověřovací stránku — ta potvrdí, že report je pravý, zneplatněný nebo neplatný, aniž by kdy ukázala jméno nebo adresu vlastníka. next.js 15, neon postgres, stripe, pdf přes pdfmake.",
-   "fr": "## le problème\nen tchéquie, environ **un bien vendu sur trois cache un défaut**, et le vendeur en reste responsable **5 ans** après la vente — alors que presque personne ne vérifie l'état au préalable. homeproof en fait un document : le vendeur remplit un questionnaire pour **1 999 czk**, l'acheteur peut ensuite acheter le rapport terminé pour **399–499 czk**.\n\n## comment un bien est noté\ndeux questionnaires, tous deux issus de la **méthodologie ain**. le premier note **22 éléments du bâti** (fondations, murs porteurs, charpente, électricité, plomberie…) : âge de l'élément = année en cours − année de rénovation, placé dans une **bande de durée de vie a–e** (a=100 … e=0), puis une **moyenne pondérée** par catégorie (structure ×3, enveloppe ×2, installations ×2, intérieurs ×1, sécurité ×1) donne une note globale a–e. c'est déterministe — les valeurs manquantes ne sont jamais devinées, l'élément est exclu. **5 éléments critiques** (fondations, murs porteurs, charpente, électricité, égout intérieur) déclenchent une alerte s'ils tombent en d ou e, même si la note globale reste bonne. le second questionnaire parcourt **10 zones de risque** en logique oui/non ramifiée — un risque n'apparaît que si la maison possède réellement l'élément et qu'un défaut est détecté.\n\n## rendre le rapport digne de confiance\nles adresses viennent de l'api du cadastre tchèque (cúzk). chaque rapport reçoit un **identifiant ulid**, un **hash sha-256 du bien** (sans adresse complète) et une **signature anti-falsification hmac-sha256** encodée dans un **qr code** pointant vers une page de vérification publique — qui confirme que le rapport est authentique, révoqué ou invalide sans jamais exposer le nom ni l'adresse du propriétaire. next.js 15, neon postgres, stripe, pdf via pdfmake."
-  }
+   "en": "Some projects you don't finish, you just keep restarting. **Zlé Rádio** — *radio for bad people* — is one of mine.\n\n## the original\nit lived at **zleradio.org** in 2015: a Czech WordPress site with a deliberately hostile menu (KDO? / CO? / TO. / ROZKAZY — who / what / that / orders) and a tone that took nothing seriously except itself. i kept the WordPress export all these years.\n\n## the rebirth\nzlerad.io is the same spirit rebuilt as a modern web app — fast, no plugin rot, the archive preserved, and now in Czech, English and French: manifest, listen, conspiracy, archive. it's not a startup and it's not trying to be; it's a piece of internet culture i made once and refused to let die on a dead CMS.\n\ncall it archaeology of my own back catalogue: proof that the stuff you make for fun is worth carrying forward, even a decade later.",
+   "cs": "Některé projekty nedokončíš, jen je pořád restartuješ. **Zlé Rádio** — *rádio pro zlé lidi* — je jeden z mých.\n\n## originál\nžilo na **zleradio.org** v roce 2015: český wordpressový web se schválně nepřátelským menu (KDO? / CO? / TO. / ROZKAZY) a tónem, který nebral vážně nic kromě sebe sama. wordpressový export jsem si celé ty roky schovával.\n\n## znovuzrození\nzlerad.io je stejný duch přestavěný jako moderní webová appka — rychlá, bez hnijících pluginů, archiv zachovaný, a teď česky, anglicky i francouzsky: manifest, poslech, spiknutí, archiv. není to startup a ani se o to nesnaží; je to kus internetové kultury, který jsem jednou udělal a odmítl ho nechat umřít na mrtvém CMS.\n\nříkej tomu archeologie vlastního katalogu: důkaz, že věci, co děláš pro radost, stojí za to táhnout dál — i po deseti letech.",
+   "fr": "Certains projets ne se terminent pas, on les redémarre. **Zlé Rádio** — *la radio pour les méchants* — est l'un des miens.\n\n## l'original\nelle vivait sur **zleradio.org** en 2015 : un site WordPress tchèque au menu volontairement hostile (KDO? / CO? / TO. / ROZKAZY) et au ton qui ne prenait rien au sérieux, sauf lui-même. j'ai gardé l'export WordPress toutes ces années.\n\n## la renaissance\nzlerad.io, c'est le même esprit reconstruit en app web moderne — rapide, sans plugins pourris, l'archive préservée, et désormais en tchèque, en anglais et en français : manifeste, écoute, complot, archives. ce n'est pas une startup et ça n'essaie pas de l'être ; c'est un morceau de culture internet que j'ai fait une fois et que j'ai refusé de laisser mourir sur un CMS défunt.\n\nappelle ça l'archéologie de mon propre catalogue : la preuve que ce qu'on fait pour le plaisir mérite d'être porté plus loin — même dix ans après."
+  },
+  "link": "https://zlerad.io"
  },
  {
   "id": 34,
@@ -437,9 +660,9 @@
    }
   ],
   "body": {
-   "en": "**Lucid Solution Designers** is my joint venture with **Petr Václavek** — a creative-technology and venture studio that runs like a startup incubator. Their line: *\"We don't predict the future. We design it from First Principles\"* — turning fundamental insights about intelligence, systems and human potential into real companies, technologies and art.\n\n## right now\n\nThe current project in the studio is **au-au.app**. More as it ships.",
-   "cs": "**Lucid Solution Designers** je můj společný podnik s **Petrem Václavkem** — studio kreativní technologie a venture buildingu, které funguje jako startupový inkubátor. Jejich heslo: *„We don't predict the future. We design it from First Principles\"* — proměňovat základní vhledy o inteligenci, systémech a lidském potenciálu ve skutečné firmy, technologie a umění.\n\n## teď\n\nAktuální projekt ve studiu je **au-au.app**. Víc, až to vyjde.",
-   "fr": "**Lucid Solution Designers** est ma coentreprise avec **Petr Václavek** — un studio de technologie créative et de venture building qui fonctionne comme un incubateur de startups. Leur formule : *« We don't predict the future. We design it from First Principles »* — transformer des insights fondamentaux sur l'intelligence, les systèmes et le potentiel humain en vraies entreprises, technologies et œuvres.\n\n## en ce moment\n\nLe projet actuel du studio, c'est **au-au.app**. La suite au fil des sorties."
+   "en": "**Lucid Solution Designers** is my joint venture with **Petr Václavek** — a creative-technology and venture studio that runs like a startup incubator. Their line: *\"We don't predict the future. We design it from First Principles\"* — turning fundamental insights about intelligence, systems and human potential into real companies, technologies and art.\n\n## what's come out of it\n\nThe studio's own products — **AML Proof** and **HomeProof** — plus apps like **au-au.app**, **Mnam** and **Mám to**, and client builds from e-shops to a library kiosk. Several of them have their own pages here.",
+   "cs": "**Lucid Solution Designers** je můj společný podnik s **Petrem Václavkem** — studio kreativní technologie a venture buildingu, které funguje jako startupový inkubátor. Jejich heslo: *„We don't predict the future. We design it from First Principles\"* — proměňovat základní vhledy o inteligenci, systémech a lidském potenciálu ve skutečné firmy, technologie a umění.\n\n## co z toho vzešlo\n\nVlastní produkty studia — **AML Proof** a **HomeProof** — k tomu aplikace jako **au-au.app**, **Mnam** a **Mám to** a zakázky od e-shopů po kiosek do knihovny. Několik z nich tu má vlastní stránku.",
+   "fr": "**Lucid Solution Designers** est ma coentreprise avec **Petr Václavek** — un studio de technologie créative et de venture building qui fonctionne comme un incubateur de startups. Leur formule : *« We don't predict the future. We design it from First Principles »* — transformer des insights fondamentaux sur l'intelligence, les systèmes et le potentiel humain en vraies entreprises, technologies et œuvres.\n\n## ce qui en est sorti\n\nLes produits du studio — **AML Proof** et **HomeProof** — plus des apps comme **au-au.app**, **Mnam** et **Mám to**, et des projets clients, de l'e-shop à la borne de bibliothèque. Plusieurs ont leur propre page ici."
   }
  },
  {
@@ -495,40 +718,14 @@
   },
   "date": "2025",
   "tags": {
-   "en": "ai, web, gov data",
-   "cs": "ai, web, státní data",
-   "fr": "ia, web, données publiques"
+   "en": "AI, Web Design, Data",
+   "cs": "AI, webdesign, data",
+   "fr": "IA, design web, données"
   },
   "body": {
    "en": "## what it is\nthe czech state runs an official rest api for the land registry (**katastr nemovitostí**) — parcels, buildings, units, ownership proceedings — but it's built for machines, not for someone with a question. i wrapped it in a chat dashboard where a **gemini 2.0 flash** agent, armed with **21 purpose-built tools**, does the lookups.\n\n## how it works\nask something like \"find parcel 123/4 in prague\" or \"what proceedings came in today\", and the agent picks the right cadastral endpoints, chains the calls, and hands back a readable answer with structured detail behind it. address autocomplete, buildings-on-a-street, territorial hierarchies (municipality → district → region) — all reachable in language.\n\n## the boring load-bearing bits\nbecause it's fronting a public state api with no guaranteed sla, i built for restraint: **upstash redis** rate limiting (fail-open), tiered caching (parcels 5 min, codebooks 24 h), a `/api/health` endpoint reporting api / ai / redis status, and production security headers. stack is **next.js 15, react 19, typescript, shadcn/ui**, deployed on vercel. the repo is private-licensed.",
    "cs": "## co to je\nčeský stát provozuje oficiální rest api katastru nemovitostí — parcely, budovy, jednotky, řízení — jenže je stavěné pro stroje, ne pro člověka s dotazem. obalil jsem ho chatovacím dashboardem, kde vyhledávání obstará **gemini 2.0 flash** agent vyzbrojený **21 nástroji na míru**.\n\n## jak to funguje\nzeptáš se třeba „najdi parcelu 123/4 v praze\" nebo „jaká řízení dnes přišla\" a agent vybere správné katastrální endpointy, zřetězí volání a vrátí čitelnou odpověď se strukturovaným detailem v pozadí. našeptávání adres, budovy v ulici, územní hierarchie (obec → okres → kraj) — vše dostupné řečí.\n\n## nudné, ale nosné části\nprotože sedím před veřejným státním api bez garantované sla, stavěl jsem zdrženlivě: rate limiting přes **upstash redis** (fail-open), vrstvené cachování (parcely 5 min, číselníky 24 h), endpoint `/api/health` hlásící stav api / ai / redis a produkční bezpečnostní hlavičky. stack **next.js 15, react 19, typescript, shadcn/ui**, nasazeno na vercelu. repozitář má privátní licenci.",
    "fr": "## ce que c'est\nl'état tchèque exploite une api rest officielle du cadastre (**katastr nemovitostí**) — parcelles, bâtiments, unités, procédures — mais elle est conçue pour des machines, pas pour quelqu'un qui a une question. je l'ai enveloppée dans un tableau de bord conversationnel où un agent **gemini 2.0 flash**, armé de **21 outils dédiés**, fait les recherches.\n\n## comment ça marche\ndemande « trouve la parcelle 123/4 à prague » ou « quelles procédures sont arrivées aujourd'hui », et l'agent choisit les bons endpoints cadastraux, enchaîne les appels et rend une réponse lisible avec le détail structuré derrière. autocomplétion d'adresses, bâtiments d'une rue, hiérarchies territoriales (commune → district → région) — le tout accessible en langage naturel.\n\n## la plomberie porteuse\nparce que je suis devant une api publique de l'état sans sla garantie, j'ai construit avec retenue : limitation de débit via **upstash redis** (fail-open), cache par paliers (parcelles 5 min, référentiels 24 h), un endpoint `/api/health` remontant l'état api / ia / redis, et des en-têtes de sécurité en production. stack **next.js 15, react 19, typescript, shadcn/ui**, déployé sur vercel. le dépôt est sous licence privée."
-  }
- },
- {
-  "id": 36,
-  "image": "/art/surfaces/120.webp",
-  "title": {
-   "en": "Laifea",
-   "cs": "Laifea",
-   "fr": "Laifea"
-  },
-  "description": {
-   "en": "My exocortex, and the reincarnation of Sombra — the empathetic AI mentor I built at Flipas. Laifea is a markdown vault with a persistent AI partner, a 3D semantic knowledge graph, voice mode, and ~50 tools behind one registry. One thesis: \"think with it, not through it.\" An AI that makes you sharper, not softer.",
-   "cs": "Můj exokortex a znovuzrození Sombry — empatického AI mentora, kterého jsem postavil ve Flipasu. Laifea je markdown vault s trvalým AI parťákem, 3D sémantickým grafem znalostí, hlasovým režimem a ~50 nástroji za jedním registrem. Jedna teze: „mysli s tím, ne skrz to.“ AI, po které jsi ostřejší, ne měkčí.",
-   "fr": "Mon exocortex, et la réincarnation de Sombra — le mentor IA empathique que j'ai bâti chez Flipas. Laifea est un vault markdown avec un partenaire IA persistant, un graphe de connaissances sémantique en 3D, un mode vocal et ~50 outils derrière un seul registre. Une thèse : « pense avec, pas à travers ». Une IA qui te rend plus vif, pas plus mou."
-  },
-  "date": "2024 — ongoing",
-  "link": "https://laifea.app",
-  "tags": {
-   "en": "r&d, AI, Web Design",
-   "cs": "r&d, AI, webdesign",
-   "fr": "r&d, IA, web design"
-  },
-  "body": {
-   "en": "The project everything else funnels into. **Laifea** (v0.97) is where Sombra — the AI mentor from my Flipas years — grew up. Flipas gave it a soul (*\"Sombra will never give you the solution, it will help you get there — it's going to make you think\"*); Laifea gave it a body it owns.\n\n## the wedge\nfrictionless AI quietly de-skills you. a randomised trial (n=120) put AI-aided learners at **57.5% vs 68.5%** on 45-day retention, worst in technical subjects. so Laifea inverts the goal: intentional friction where thinking matters, frictionless capture where it doesn't. an AI that **makes you think**, not one that thinks for you.\n\n## what it is\n- your notes stay plain **markdown** — files are the source of truth, the database is a cache. export to ZIP/JSON anytime; zero lock-in.\n- a **3D knowledge graph** (768→3D projection + force sim) where the headline move is *reverse semantic search*: show me what's logically near this thought. the mental model is **Cognitive Spacetime** — dense ideas warp the space and pull related notes toward them.\n- **~50 tools** in one registry, exposed identically to chat, voice, and external agents over MCP.\n- **voice mode** on realtime Gemini Live.\n\n## how it's built\nNext.js 16 + React 19 on **SpacetimeDB as the only backend** — tables, vectors and scheduling in one store, no Redis, no queue, ever. several posts on this blog come straight from its build logs.\n\n\"infrastructure for thought. a living partner in cognition. a sovereign mirror of mind.\"",
-   "cs": "Projekt, do kterého ústí všechno ostatní. **Laifea** (v0.97) je místo, kde Sombra — AI mentor z mých časů ve Flipasu — dospěla. Flipas jí dal duši (*„Sombra ti nikdy nedá řešení, pomůže ti k němu dojít — donutí tě myslet“*); Laifea jí dala tělo, které vlastní.\n\n## ten klín\nbezešvá AI tě potichu odnaučuje. randomizovaná studie (n=120) dala uživatelům AI **57,5 % vs 68,5 %** v 45denní retenci, nejhůř u technických oborů. Laifea proto obrací cíl: záměrné tření tam, kde jde o myšlení, bezešvé zachycení tam, kde ne. AI, která tě **nutí myslet**, ne která myslí za tebe.\n\n## co to je\n- poznámky zůstávají obyčejný **markdown** — soubory jsou zdroj pravdy, databáze cache. export do ZIP/JSON kdykoli; žádný lock-in.\n- **3D graf znalostí** (projekce 768→3D + force sim), kde je hlavní tah *obrácené sémantické hledání*: ukaž mi, co leží logicky vedle téhle myšlenky. mentální model je **kognitivní časoprostor** — husté myšlenky zakřiví prostor a přitáhnou k sobě příbuzné poznámky.\n- **~50 nástrojů** v jednom registru, vystavených stejně chatu, hlasu i externím agentům přes MCP.\n- **hlasový režim** na realtime Gemini Live.\n\n## jak je to postavené\nNext.js 16 + React 19 na **SpacetimeDB jako jediném backendu** — tabulky, vektory i plánování v jednom store, žádný Redis, žádná fronta, nikdy. několik zápisků na tomhle blogu je přímo z jeho build logů.\n\n„infrastruktura pro myšlení. živý parťák v poznávání. svrchované zrcadlo mysli.“",
-   "fr": "Le projet vers lequel tout converge. **Laifea** (v0.97), c'est là où Sombra — le mentor IA de mes années Flipas — a grandi. Flipas lui a donné une âme (*« Sombra ne te donnera jamais la solution, elle t'aidera à y arriver — elle va te faire réfléchir »*) ; Laifea lui a donné un corps qui lui appartient.\n\n## le coin enfoncé\nl'IA sans friction te dé-qualifie en silence. un essai randomisé (n=120) a placé les apprenants assistés par l'IA à **57,5 % contre 68,5 %** en rétention à 45 jours, pire dans les matières techniques. Laifea inverse donc le but : friction intentionnelle là où la pensée compte, capture sans friction là où non. une IA qui te **fait penser**, pas qui pense à ta place.\n\n## ce que c'est\n- tes notes restent du **markdown** brut — les fichiers sont la source de vérité, la base un cache. export ZIP/JSON à tout moment ; zéro verrouillage.\n- un **graphe de connaissances 3D** (projection 768→3D + simulation de forces) dont le geste phare est la *recherche sémantique inversée* : montre-moi ce qui est logiquement proche de cette pensée. le modèle mental : l'**espace-temps cognitif** — les idées denses courbent l'espace et attirent les notes voisines.\n- **~50 outils** dans un registre, exposés à l'identique au chat, à la voix et aux agents externes via MCP.\n- **mode vocal** sur Gemini Live temps réel.\n\n## comment c'est bâti\nNext.js 16 + React 19 sur **SpacetimeDB comme unique backend** — tables, vecteurs et planification dans un seul store, jamais de Redis ni de file. plusieurs billets de ce blog viennent directement de ses journaux de build.\n\n« infrastructure pour la pensée. un partenaire vivant de la cognition. un miroir souverain de l'esprit. »"
   }
  },
  {
@@ -569,94 +766,6 @@
   }
  },
  {
-  "id": 33,
-  "image": "/work/shiftrs.webp",
-  "title": {
-   "en": "Shiftrs",
-   "cs": "Shiftrs",
-   "fr": "Shiftrs"
-  },
-  "description": {
-   "en": "Shift happens. Be the Shiftr. A creative agency where I'm the CTO — building brand-product-experience work for clients, AOMU among them.",
-   "cs": "Shift happens. Be the Shiftr. Kreativní agentura, kde dělám CTO — stavíme brand-produkt-experience práci pro klienty, mezi nimi AOMU.",
-   "fr": "Shift happens. Be the Shiftr. Une agence créative où je suis CTO — on construit du travail marque-produit-expérience pour des clients, AOMU parmi eux."
-  },
-  "date": "2024",
-  "link": "https://shiftrs.co",
-  "tags": {
-   "en": "Web Design, r&d",
-   "cs": "webdesign, r&d",
-   "fr": "design web, r&d"
-  },
-  "media": [],
-  "links": [
-   {
-    "label": {
-     "en": "shiftrs.co",
-     "cs": "shiftrs.co",
-     "fr": "shiftrs.co"
-    },
-    "href": "https://shiftrs.co"
-   }
-  ],
-  "body": {
-   "en": "**Shiftrs** is a creative agency where I'm the **CTO**. Their line: *\"Shift happens. Be the Shiftr.\"* — everything is changing fast, and brands need a brand-product-experience-driven shift to stay relevant.\n\nThe CTO role is the usual mix: picking the tech, keeping the builds honest, and making sure what the creative side dreams up can actually ship.\n\n## clients\n\nWe build for a range of clients — **AOMU** among them. Different brief every time; the constant is the standard the work has to clear before it goes out.",
-   "cs": "**Shiftrs** je kreativní agentura, kde dělám **CTO**. Jejich heslo: *„Shift happens. Be the Shiftr.\"* — všechno se mění rychle a značky potřebují posun vedený brandem, produktem a zážitkem, aby zůstaly relevantní.\n\nRole CTO je obvyklý mix: vybrat technologie, držet buildy poctivé a zařídit, aby to, co vymyslí kreativní strana, šlo opravdu vydat.\n\n## klienti\n\nStavíme pro různé klienty — mezi nimi **AOMU**. Pokaždé jiné zadání; konstantou je laťka, kterou práce musí přeskočit, než jde ven.",
-   "fr": "**Shiftrs** est une agence créative où je suis **CTO**. Leur formule : *« Shift happens. Be the Shiftr. »* — tout change vite, et les marques ont besoin d'un virage porté par la marque, le produit et l'expérience pour rester pertinentes.\n\nLe rôle de CTO est le mélange habituel : choisir la tech, garder les builds honnêtes et faire en sorte que ce que le côté créatif imagine puisse vraiment sortir.\n\n## clients\n\nOn construit pour divers clients — **AOMU** entre autres. Un brief différent à chaque fois ; la constante, c'est le niveau que le travail doit atteindre avant de partir."
-  }
- },
- {
-  "id": 41,
-  "image": "/art/surfaces/180.webp",
-  "title": {
-   "en": "eyetrainer",
-   "cs": "eyetrainer",
-   "fr": "eyetrainer"
-  },
-  "description": {
-   "en": "a little collection of pygame mini-games for training the eye — the kind of perception that painters, colourists and photographers rely on but rarely drill. each game hammers one skill: guessing aspect ratios, spotting hue shifts, reading saturation, matching mixed colours. built for myself, kept simple.",
-   "cs": "malá sbírka pygame mini-her na trénink oka — ten druh vnímání, na který spoléhají malíři, coloristé a fotografové, ale málokdy ho cvičí. každá hra brousí jednu dovednost: odhad poměru stran, hledání posunů odstínu, čtení sytosti, míchání barev na cíl. postavené pro sebe, drženo jednoduše.",
-   "fr": "une petite collection de mini-jeux pygame pour entraîner l'œil — ce type de perception dont peintres, coloristes et photographes dépendent mais qu'ils travaillent rarement. chaque jeu martèle une compétence : deviner les ratios, repérer les glissements de teinte, lire la saturation, reproduire des couleurs mélangées. fait pour moi, gardé simple."
-  },
-  "date": "2023",
-  "tags": {
-   "en": "python, games, color",
-   "cs": "python, hry, barva",
-   "fr": "python, jeux, couleur"
-  },
-  "body": {
-   "en": "## why\nvisual judgement is trainable, but nobody drills it deliberately. i wanted a batch of tiny exercises that isolate one perceptual skill at a time and give instant feedback, the way a musician practises intervals.\n\n## the games\nfive small **pygame** scripts, each a self-contained round:\n\n- **aspect ratio guesser** — read the proportions of a rectangle by eye\n- **complementary color change** — name the complement of a shown colour\n- **hue shift hunt** — catch a subtle shift in hue\n- **saturation detective** — judge how saturated a swatch is\n- **virtual paint palette** — mix primaries to hit a target colour\n\n## the shape of it\ndeliberately unglamorous: run a script, follow the on-screen prompt, get scored. no accounts, no backend, no ceremony — the point is the reps. it fits the same instinct as the rest of my work, tools i actually want to use, built small enough to finish.",
-   "cs": "## proč\nvizuální úsudek se dá trénovat, ale nikdo ho cíleně nedrilluje. chtěl jsem sadu drobných cvičení, která izolují vždy jednu vjemovou dovednost a dávají okamžitou zpětnou vazbu — tak jako muzikant cvičí intervaly.\n\n## hry\npět malých **pygame** skriptů, každý jedno soběstačné kolo:\n\n- **aspect ratio guesser** — odhadni okem poměr stran obdélníku\n- **complementary color change** — pojmenuj doplňkovou barvu\n- **hue shift hunt** — odchyť jemný posun odstínu\n- **saturation detective** — urči, jak je vzorek sytý\n- **virtual paint palette** — namíchej ze základních barev cílovou\n\n## tvar věci\nzáměrně nablýskané ani trochu: spustíš skript, řídíš se instrukcí na obrazovce, dostaneš skóre. žádné účty, žádný backend, žádná ceremonie — jde o opakování. sedí to do stejného instinktu jako zbytek mojí práce: nástroje, které fakt chci používat, malé natolik, abych je dodělal.",
-   "fr": "## pourquoi\nle jugement visuel s'entraîne, mais personne ne le travaille délibérément. je voulais un lot de tout petits exercices qui isolent une compétence perceptive à la fois et donnent un retour instantané, comme un musicien travaille ses intervalles.\n\n## les jeux\ncinq petits scripts **pygame**, chacun une manche autonome :\n\n- **aspect ratio guesser** — évaluer à l'œil les proportions d'un rectangle\n- **complementary color change** — nommer la complémentaire d'une couleur\n- **hue shift hunt** — attraper un léger glissement de teinte\n- **saturation detective** — juger la saturation d'un échantillon\n- **virtual paint palette** — mélanger les primaires pour atteindre une couleur cible\n\n## la forme\nvolontairement sans clinquant : tu lances un script, tu suis la consigne à l'écran, tu es noté. pas de comptes, pas de backend, pas de cérémonie — l'important, ce sont les répétitions. ça relève du même instinct que le reste de mon travail : des outils que j'ai vraiment envie d'utiliser, assez petits pour être finis."
-  }
- },
- {
-  "id": 39,
-  "image": "/art/surfaces/140.webp",
-  "title": {
-   "en": "FocusFrameFinder",
-   "cs": "FocusFrameFinder",
-   "fr": "FocusFrameFinder"
-  },
-  "description": {
-   "en": "a small python tool i wrote to weed blurry frames out of image sequences before they poison a 3d reconstruction. it scores every frame by the variance of its laplacian and quarantines the fuzziest ones so photogrammetry and nerf pipelines only see sharp input. it ended up public with a few dozen stars.",
-   "cs": "malý pythonový nástroj, který jsem napsal, abych z obrazových sekvencí vyházel rozmazané snímky dřív, než mi rozbijí 3d rekonstrukci. každý snímek oboduje podle variance laplaciánu a ty nejrozmazanější odloží stranou, takže do fotogrammetrie a nerf pipeline jde jen ostrý vstup. skončil veřejně s pár desítkami hvězd.",
-   "fr": "un petit outil python que j'ai écrit pour retirer les images floues d'une séquence avant qu'elles ne gâchent une reconstruction 3d. il note chaque image par la variance de son laplacien et met de côté les plus floues, pour que la photogrammétrie et les pipelines nerf ne voient que du net. il est devenu public avec quelques dizaines d'étoiles."
-  },
-  "date": "2023",
-  "tags": {
-   "en": "3d, python, tooling",
-   "cs": "3d, python, nástroje",
-   "fr": "3d, python, outillage"
-  },
-  "body": {
-   "en": "a small python tool i wrote to weed blurry frames out of image sequences before they poison a 3D reconstruction. it got **written up on [RadianceFields](https://radiancefields.com)** — the hub for the gaussian-splatting / NeRF community — and picked up a few dozen stars.\n\n## the problem\ncapture a video, split it into frames, feed them to a photogrammetry or **NeRF** pipeline, and a handful of motion-blurred frames quietly wreck the whole reconstruction. finding them by eye across hundreds of images is miserable.\n\n## how it works\nit runs the classic **variance of Laplacian** as a focus measure: a sharp frame has high-frequency detail and a high variance; a blurry one goes flat. rank every frame, quarantine the fuzziest, and hand the pipeline only sharp input. one dependency, a few seconds, cleaner splats.\n\nnothing clever — just the boring, reliable filter nobody wants to run by hand, packaged so you don't have to.",
-   "cs": "malý python nástroj, který jsem napsal, aby vyházel rozmazané snímky z obrazových sekvencí dřív, než otráví 3D rekonstrukci. **napsali o něm na [RadianceFields](https://radiancefields.com)** — centru komunity kolem gaussian splattingu a NeRF — a sesbíral pár desítek hvězd.\n\n## problém\nnatočíš video, rozsekáš na snímky, pošleš je do fotogrammetrie nebo **NeRF** pipeline a hrstka rozhýbaných snímků potichu zničí celou rekonstrukci. hledat je okem přes stovky obrázků je utrpení.\n\n## jak to funguje\njede na klasickém **rozptylu Laplaciánu** jako míře ostrosti: ostrý snímek má vysokofrekvenční detail a vysoký rozptyl; rozmazaný je plochý. seřaď všechny snímky, ty nejrozmazanější dej do karantény a pipeline předej jen ostré. jedna závislost, pár vteřin, čistší splaty.\n\nnic chytrého — jen ten nudný, spolehlivý filtr, který nikdo nechce pouštět ručně, zabalený tak, abys nemusel.",
-   "fr": "un petit outil python que j'ai écrit pour éliminer les images floues d'une séquence avant qu'elles n'empoisonnent une reconstruction 3D. il a été **présenté sur [RadianceFields](https://radiancefields.com)** — le carrefour de la communauté gaussian-splatting / NeRF — et a récolté quelques dizaines d'étoiles.\n\n## le problème\nfilme une vidéo, découpe-la en images, envoie-les dans un pipeline de photogrammétrie ou **NeRF**, et une poignée d'images floues sabote discrètement toute la reconstruction. les repérer à l'œil sur des centaines d'images est un supplice.\n\n## comment ça marche\nil utilise la classique **variance du laplacien** comme mesure de netteté : une image nette a du détail haute fréquence et une variance élevée ; une image floue s'aplatit. classe chaque image, met les plus floues en quarantaine, ne donne au pipeline que du net. une dépendance, quelques secondes, des splats plus propres.\n\nrien d'astucieux — juste le filtre ennuyeux et fiable que personne ne veut lancer à la main, empaqueté pour que tu n'aies pas à le faire."
-  },
-  "link": "https://radiancefields.com/focusframefinder-auto-culls-blurry-images-for-nerf-datasets"
- },
- {
   "id": 27,
   "image": "/image36.jpg",
   "title": {
@@ -683,6 +792,57 @@
    "cs": "Tech artist a R&D na **VR cestování časem pro Numinos** — imerzivní rekonstrukce historických měst, kterými procházíš v headsetu.\n\nKus, na který jsem nejpyšnější: **vlastní real-time simulace povodně**, napsaná tak, aby běžela v rámci VR frame budgetu — voda, která stoupá historickými ulicemi, ne předpečená animace. Zbytek byla klasická tech-art triáž: dotlačit real-time rendering v Unrealu na hranici VR rozpočtu a zjistit, které rohy oko odpustí.\n\nHistorickou přesnost dodali historici; moje práce byla udržet 90 fps.",
    "fr": "Tech artist et R&D sur les **voyages temporels en VR de Numinos** — des reconstitutions immersives de villes historiques qu'on traverse casque sur la tête.\n\nLa pièce dont je suis le plus fier : une **simulation d'inondation en temps réel**, écrite pour tenir dans le budget d'images de la VR — de l'eau qui monte dans des rues historiques, pas une animation précalculée. Le reste, c'était du triage de tech-art classique : pousser le rendu temps réel d'Unreal jusqu'à la limite du budget VR, puis trouver quels coins l'œil pardonne.\n\nL'exactitude historique venait des historiens ; mon travail, c'était de tenir les 90 fps."
   }
+ },
+ {
+  "id": 41,
+  "image": "/art/surfaces/180.webp",
+  "title": {
+   "en": "eyetrainer",
+   "cs": "eyetrainer",
+   "fr": "eyetrainer"
+  },
+  "description": {
+   "en": "a little collection of pygame mini-games for training the eye — the kind of perception that painters, colourists and photographers rely on but rarely drill. each game hammers one skill: guessing aspect ratios, spotting hue shifts, reading saturation, matching mixed colours. built for myself, kept simple.",
+   "cs": "malá sbírka pygame mini-her na trénink oka — ten druh vnímání, na který spoléhají malíři, coloristé a fotografové, ale málokdy ho cvičí. každá hra brousí jednu dovednost: odhad poměru stran, hledání posunů odstínu, čtení sytosti, míchání barev na cíl. postavené pro sebe, drženo jednoduše.",
+   "fr": "une petite collection de mini-jeux pygame pour entraîner l'œil — ce type de perception dont peintres, coloristes et photographes dépendent mais qu'ils travaillent rarement. chaque jeu martèle une compétence : deviner les ratios, repérer les glissements de teinte, lire la saturation, reproduire des couleurs mélangées. fait pour moi, gardé simple."
+  },
+  "date": "2023",
+  "tags": {
+   "en": "Python, Game Design, Color",
+   "cs": "python, herní design, barva",
+   "fr": "python, game design, couleur"
+  },
+  "body": {
+   "en": "## why\nvisual judgement is trainable, but nobody drills it deliberately. i wanted a batch of tiny exercises that isolate one perceptual skill at a time and give instant feedback, the way a musician practises intervals.\n\n## the games\nfive small **pygame** scripts, each a self-contained round:\n\n- **aspect ratio guesser** — read the proportions of a rectangle by eye\n- **complementary color change** — name the complement of a shown colour\n- **hue shift hunt** — catch a subtle shift in hue\n- **saturation detective** — judge how saturated a swatch is\n- **virtual paint palette** — mix primaries to hit a target colour\n\n## the shape of it\ndeliberately unglamorous: run a script, follow the on-screen prompt, get scored. no accounts, no backend, no ceremony — the point is the reps. it fits the same instinct as the rest of my work, tools i actually want to use, built small enough to finish.",
+   "cs": "## proč\nvizuální úsudek se dá trénovat, ale nikdo ho cíleně nedrilluje. chtěl jsem sadu drobných cvičení, která izolují vždy jednu vjemovou dovednost a dávají okamžitou zpětnou vazbu — tak jako muzikant cvičí intervaly.\n\n## hry\npět malých **pygame** skriptů, každý jedno soběstačné kolo:\n\n- **aspect ratio guesser** — odhadni okem poměr stran obdélníku\n- **complementary color change** — pojmenuj doplňkovou barvu\n- **hue shift hunt** — odchyť jemný posun odstínu\n- **saturation detective** — urči, jak je vzorek sytý\n- **virtual paint palette** — namíchej ze základních barev cílovou\n\n## tvar věci\nzáměrně nablýskané ani trochu: spustíš skript, řídíš se instrukcí na obrazovce, dostaneš skóre. žádné účty, žádný backend, žádná ceremonie — jde o opakování. sedí to do stejného instinktu jako zbytek mojí práce: nástroje, které fakt chci používat, malé natolik, abych je dodělal.",
+   "fr": "## pourquoi\nle jugement visuel s'entraîne, mais personne ne le travaille délibérément. je voulais un lot de tout petits exercices qui isolent une compétence perceptive à la fois et donnent un retour instantané, comme un musicien travaille ses intervalles.\n\n## les jeux\ncinq petits scripts **pygame**, chacun une manche autonome :\n\n- **aspect ratio guesser** — évaluer à l'œil les proportions d'un rectangle\n- **complementary color change** — nommer la complémentaire d'une couleur\n- **hue shift hunt** — attraper un léger glissement de teinte\n- **saturation detective** — juger la saturation d'un échantillon\n- **virtual paint palette** — mélanger les primaires pour atteindre une couleur cible\n\n## la forme\nvolontairement sans clinquant : tu lances un script, tu suis la consigne à l'écran, tu es noté. pas de comptes, pas de backend, pas de cérémonie — l'important, ce sont les répétitions. ça relève du même instinct que le reste de mon travail : des outils que j'ai vraiment envie d'utiliser, assez petits pour être finis."
+  }
+ },
+ {
+  "id": 39,
+  "image": "/art/surfaces/140.webp",
+  "title": {
+   "en": "FocusFrameFinder",
+   "cs": "FocusFrameFinder",
+   "fr": "FocusFrameFinder"
+  },
+  "description": {
+   "en": "a small python tool i wrote to weed blurry frames out of image sequences before they poison a 3d reconstruction. it scores every frame by the variance of its laplacian and quarantines the fuzziest ones so photogrammetry and nerf pipelines only see sharp input. it ended up public with a few dozen stars.",
+   "cs": "malý pythonový nástroj, který jsem napsal, abych z obrazových sekvencí vyházel rozmazané snímky dřív, než mi rozbijí 3d rekonstrukci. každý snímek oboduje podle variance laplaciánu a ty nejrozmazanější odloží stranou, takže do fotogrammetrie a nerf pipeline jde jen ostrý vstup. skončil veřejně s pár desítkami hvězd.",
+   "fr": "un petit outil python que j'ai écrit pour retirer les images floues d'une séquence avant qu'elles ne gâchent une reconstruction 3d. il note chaque image par la variance de son laplacien et met de côté les plus floues, pour que la photogrammétrie et les pipelines nerf ne voient que du net. il est devenu public avec quelques dizaines d'étoiles."
+  },
+  "date": "2023",
+  "tags": {
+   "en": "3D, Python, Tooling",
+   "cs": "3D, python, nástroje",
+   "fr": "3D, python, outillage"
+  },
+  "body": {
+   "en": "a small python tool i wrote to weed blurry frames out of image sequences before they poison a 3D reconstruction. it got **written up on [RadianceFields](https://radiancefields.com)** — the hub for the gaussian-splatting / NeRF community — and picked up a few dozen stars.\n\n## the problem\ncapture a video, split it into frames, feed them to a photogrammetry or **NeRF** pipeline, and a handful of motion-blurred frames quietly wreck the whole reconstruction. finding them by eye across hundreds of images is miserable.\n\n## how it works\nit runs the classic **variance of Laplacian** as a focus measure: a sharp frame has high-frequency detail and a high variance; a blurry one goes flat. rank every frame, quarantine the fuzziest, and hand the pipeline only sharp input. one dependency, a few seconds, cleaner splats.\n\nnothing clever — just the boring, reliable filter nobody wants to run by hand, packaged so you don't have to.",
+   "cs": "malý python nástroj, který jsem napsal, aby vyházel rozmazané snímky z obrazových sekvencí dřív, než otráví 3D rekonstrukci. **napsali o něm na [RadianceFields](https://radiancefields.com)** — centru komunity kolem gaussian splattingu a NeRF — a sesbíral pár desítek hvězd.\n\n## problém\nnatočíš video, rozsekáš na snímky, pošleš je do fotogrammetrie nebo **NeRF** pipeline a hrstka rozhýbaných snímků potichu zničí celou rekonstrukci. hledat je okem přes stovky obrázků je utrpení.\n\n## jak to funguje\njede na klasickém **rozptylu Laplaciánu** jako míře ostrosti: ostrý snímek má vysokofrekvenční detail a vysoký rozptyl; rozmazaný je plochý. seřaď všechny snímky, ty nejrozmazanější dej do karantény a pipeline předej jen ostré. jedna závislost, pár vteřin, čistší splaty.\n\nnic chytrého — jen ten nudný, spolehlivý filtr, který nikdo nechce pouštět ručně, zabalený tak, abys nemusel.",
+   "fr": "un petit outil python que j'ai écrit pour éliminer les images floues d'une séquence avant qu'elles n'empoisonnent une reconstruction 3D. il a été **présenté sur [RadianceFields](https://radiancefields.com)** — le carrefour de la communauté gaussian-splatting / NeRF — et a récolté quelques dizaines d'étoiles.\n\n## le problème\nfilme une vidéo, découpe-la en images, envoie-les dans un pipeline de photogrammétrie ou **NeRF**, et une poignée d'images floues sabote discrètement toute la reconstruction. les repérer à l'œil sur des centaines d'images est un supplice.\n\n## comment ça marche\nil utilise la classique **variance du laplacien** comme mesure de netteté : une image nette a du détail haute fréquence et une variance élevée ; une image floue s'aplatit. classe chaque image, met les plus floues en quarantaine, ne donne au pipeline que du net. une dépendance, quelques secondes, des splats plus propres.\n\nrien d'astucieux — juste le filtre ennuyeux et fiable que personne ne veut lancer à la main, empaqueté pour que tu n'aies pas à le faire."
+  },
+  "link": "https://radiancefields.com/focusframefinder-auto-culls-blurry-images-for-nerf-datasets"
  },
  {
   "id": 25,
