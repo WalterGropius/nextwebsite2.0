@@ -18,10 +18,9 @@ This script treats the master as a set of drawings, not a font:
                    the hand still wobbles but the line stops bouncing.
   2. repair      - placeholders and broken glyphs are rebuilt from the
                    writer's own strokes (two periods make a colon, the
-                   hyphen warps into a tilde...). `a` was written as a
-                   reversed e that reads as "ə" in running text; the
-                   default `a` is now built from the `d` bowl, and the
-                   original stays available as `ss01`.
+                   hyphen warps into a tilde...). The writer's own `a` stays
+                   the default; a single-storey alternate built from the
+                   `q` bowl is available as `ss01`.
   3. variants    - Regular and Bold (outline grown with a round pen, which
                    replaces the -webkit-text-stroke faux-bold the site used)
                    in the original rough line, and Smooth Regular / Bold,
@@ -512,9 +511,10 @@ def build_base(master):
     add("i", seat(m["i"], bottom=0, target=1180, partial=0.4), ord("i"), "lc")
     add("j", seat(m["j"], top=bounds(G["i"].path)[3] + 10, partial=0.0), ord("j"), "lc")
 
-    # `a`: the master's a is a reversed e that reads as a schwa in running
-    # text. Build a single-storey a from the q instead: same bowl, stem
-    # cut at the baseline with a slight pen-like slant.
+    # `a`: the writer's own a is the default — it's part of the hand.
+    # A single-storey alternate (ss01) is built from the q: same bowl,
+    # stem cut at the baseline with a slight pen-like slant.
+    add("a", seat(m["a"], target=XH, bottom=0), ord("a"), "lc")
     q = G["q"].path
     qx0, _, qx1, _ = bounds(q)
     cut = pathops.Path()
@@ -523,9 +523,8 @@ def build_base(master):
     cut.lineTo(qx1 + 200, XH + 400)
     cut.lineTo(qx0 - 200, XH + 400)
     cut.close()
-    a_new = intersect(q, cut)
-    add("a", seat(a_new, bottom=0, partial=0), ord("a"), "lc")
-    add("a.ss01", seat(m["a"], target=XH, bottom=0), [], "lc")
+    a_alt = intersect(q, cut)
+    add("a.ss01", seat(a_alt, bottom=0, partial=0), [], "lc")
 
     # capitals
     for ch in "ABCDEFGHIJKLMNOPQRSTUVWXYZ":
@@ -1206,7 +1205,7 @@ def feature_code(pairs, members, G):
     if "a.ss01" in G:
         lines += [
             "feature ss01 {",
-            '  featureNames { name "Original a"; };',
+            '  featureNames { name "Single-storey a"; };',
             "  sub a by a.ss01;",
             "} ss01;",
         ]
