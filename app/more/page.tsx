@@ -148,7 +148,7 @@ export default function MorePage() {
           <header className="mb-3 sm:mb-4">
             <div className="flex items-center justify-between gap-4">
               <div className="flex min-w-0 items-baseline gap-x-5">
-                <h1 className="text-[clamp(2.2rem,5vw,3.2rem)] leading-[0.95]" style={ink}>
+                <h1 className="whitespace-nowrap text-[clamp(2.2rem,5vw,3.2rem)] leading-[0.95]" style={ink}>
                   <MotionText text={tr(UI.title)} split="char" stagger={0.05} />
                 </h1>
                 <Intro text={tr(UI.intro)} className="hidden md:block" />
