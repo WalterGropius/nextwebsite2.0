@@ -28,6 +28,13 @@ type CreationsProps = {
   randomCount?: number
 }
 
+// Cards show only the year span ("January 2022" -> "2022",
+// "2025 — 2026" stays) so the meta line never outgrows a phone column.
+function yearsOf(date: string): string {
+  const ys = Array.from(new Set(date.match(/\d{4}/g) ?? []))
+  return ys.length ? ys.join(" — ") : date
+}
+
 export function Creations({ randomCount }: CreationsProps) {
   const ref = useRef<HTMLDivElement | null>(null)
   const inView = useInView(ref, { once: true, amount: 0.1 })
@@ -105,7 +112,11 @@ export function Creations({ randomCount }: CreationsProps) {
           className="mb-10 text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.92]"
           style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
         >
-          <MotionText text={t("creations.title.0")} split="word" from="up" />{" "}
+          {randomCount ? (
+            <>
+              <MotionText text={t("creations.title.0")} split="word" from="up" />{" "}
+            </>
+          ) : null}
           <MotionText
             text={t(randomCount ? "creations.title.works" : "creations.title.everything")}
             split="word"
@@ -255,9 +266,9 @@ export function Creations({ randomCount }: CreationsProps) {
                     </div>
                   </div>
                   <div className="mt-3 flex flex-col gap-1">
-                    <div className="flex items-baseline justify-between gap-3">
+                    <div className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-3">
                       <h3
-                        className="text-xl sm:text-2xl"
+                        className="min-w-0 text-xl [overflow-wrap:anywhere] sm:text-2xl"
                         style={{
                           fontFamily: "var(--font-display)",
                           color: "var(--ink)",
@@ -273,7 +284,7 @@ export function Creations({ randomCount }: CreationsProps) {
                           fontFamily: "var(--font-display)",
                         }}
                       >
-                        {project.date}
+                        {yearsOf(project.date)}
                       </span>
                     </div>
                     <div style={{ color: "var(--ink)", opacity: 0.5 }}>

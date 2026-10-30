@@ -41,14 +41,19 @@ const LEVEL_MAX = 3
 //             the splat itself renders a downsampled set
 //   incline → dpr climbs past the baseline toward the panel's true
 //             pixel ratio and the star field overdrives a touch
-//   sustained misery → freeze the frameloop; a still splat beats a
-//             15fps slideshow.
+//   sustained misery → hand back to the page, which swaps the canvas for
+//             the still poster; a picture beats a 15fps slideshow, and
+//             unmounting frees the GPU for everything else.
 export default function HeroCanvas({
   dark,
   active,
+  onReady,
+  onGiveUp,
 }: {
   dark: boolean
   active: boolean
+  onReady?: () => void
+  onGiveUp?: () => void
 }) {
   const { tier, reducedMotion, hud, deviceDpr } = useMemo(
     () => ({
@@ -62,7 +67,8 @@ export default function HeroCanvas({
   )
   const stops = DPR_STOPS[tier]
   const [level, setLevel] = useState(0)
-  // Set when the monitor gives up: render on demand only.
+  // Set when the monitor gives up: render on demand only (until the page
+  // swaps us out for the poster).
   const [frozen, setFrozen] = useState(false)
 
   // Derive every knob from the single ladder position.
@@ -110,10 +116,11 @@ export default function HeroCanvas({
         onFallback={() => {
           setLevel(LEVEL_MIN)
           setFrozen(true)
+          onGiveUp?.()
         }}
       >
         <Suspense fallback={null}>
-          <Flowers dark={dark} tier={tier} quality={quality} />
+          <Flowers dark={dark} tier={tier} quality={quality} onReady={onReady} />
         </Suspense>
       </PerformanceMonitor>
       {hud && (

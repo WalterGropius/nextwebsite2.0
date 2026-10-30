@@ -83,10 +83,13 @@ export function Navigation() {
         }}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6">
-          <div className="flex min-w-0 flex-1 items-baseline gap-3">
+          {/* Wordmark and role ticker are direct children of the row so
+              only the ticker can shrink. They used to share one min-w-0
+              box, which the inline links could squeeze below the
+              wordmark's own width on tablets — the links overlapped it. */}
             <Link
               href="/"
-              className="shrink-0 text-base transition-transform hover:-translate-y-0.5"
+              className="shrink-0 whitespace-nowrap text-base transition-transform hover:-translate-y-0.5"
               style={{
                 fontFamily: "var(--font-display)",
                 color: "var(--ink)",
@@ -100,7 +103,9 @@ export function Navigation() {
                 the nav links, with a soft fade-out mask on the trailing
                 edge so a long role just clips gracefully. */}
             <div
-              className="relative hidden h-[1.2em] min-w-0 flex-1 items-center overflow-hidden text-xs sm:flex sm:text-sm"
+              // With the inline links showing, there's only room for a
+              // clipped fragment of the role — hide it unless very wide.
+              className={`relative hidden h-[1.2em] min-w-0 flex-1 items-center overflow-hidden text-xs sm:flex sm:text-sm ${showLinks ? "lg:hidden 2xl:flex" : ""}`}
               aria-live="polite"
               style={{
                 WebkitMaskImage:
@@ -135,14 +140,13 @@ export function Navigation() {
                 </motion.span>
               </AnimatePresence>
             </div>
-          </div>
 
           {/* gap-4 is shared with the icon switcher inside
               LangThemeSwitcher so the rhythm between every right-side
               element is the same. On /landing the links are hidden
               until the user scrolls past the hero CTAs — they fade
               in to the left of the always-visible switcher. */}
-          <div className="hidden items-center gap-4 md:flex">
+          <div className="hidden shrink-0 items-center gap-4 lg:flex">
             <AnimatePresence initial={false}>
               {showLinks && (
                 <motion.div
@@ -151,13 +155,13 @@ export function Navigation() {
                   animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                   exit={{ opacity: 0, x: 12, filter: "blur(6px)" }}
                   transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex items-center gap-4"
+                  className="flex items-center gap-[0.8rem]"
                 >
                   {navLinks.map((l) => (
                     <Link
                       key={l.href}
                       href={l.href}
-                      className="relative text-base transition-transform hover:-translate-y-0.5"
+                      className="relative whitespace-nowrap text-[0.85rem] transition-transform hover:-translate-y-0.5"
                       style={{
                         fontFamily: "var(--font-display)",
                         color: "var(--ink)",
@@ -173,7 +177,7 @@ export function Navigation() {
             <LangThemeSwitcher />
           </div>
 
-          <div className="flex items-center gap-1 md:hidden">
+          <div className="flex items-center gap-1 lg:hidden">
             <LangThemeSwitcher compact />
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -225,7 +229,7 @@ export function Navigation() {
             // z-[55] — above the landing-page hero (z-40), but below
             // the fixed <nav> bar itself (z-50) so the close (X)
             // button on top stays clickable.
-            className="fixed inset-0 z-[55] flex flex-col items-center justify-center gap-1 px-8 md:hidden"
+            className="fixed inset-0 z-[55] flex flex-col items-center justify-center gap-1 px-8 lg:hidden"
             style={{
               background:
                 "color-mix(in srgb, var(--surface-dark) 97%, transparent)",

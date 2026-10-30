@@ -49,6 +49,7 @@ function CoffeeStains({ stains }: { stains: typeof COFFEE_STAINS }) {
           alt=""
           loading="lazy"
           decoding="async"
+          className="coffee-stain"
           style={{
             position: "absolute",
             top: s.top,
@@ -57,7 +58,8 @@ function CoffeeStains({ stains }: { stains: typeof COFFEE_STAINS }) {
             height: "auto",
             transform: `rotate(${s.rotate}deg)`,
             transformOrigin: "50% 50%",
-            opacity: s.opacity,
+            ["--o" as string]: s.opacity,
+            opacity: "var(--o)",
             mixBlendMode: "multiply",
             pointerEvents: "none",
             zIndex: 25,
@@ -1702,58 +1704,6 @@ function MarginStar({ top, side, offset, rotate = 0, size = 18, opacity = 0.5 }:
 
 // ---- Centred between-sections doodles ---------------------------
 
-// One bigger sketch sits in the gap between each pair of content
-// blocks on the landing page. We reuse renderers from the main
-// catalog rather than redrawing them, just at a larger scale and
-// horizontally centred.
-// Tuned to the decluttered landing (hero → manifesto → highlights →
-// creations → contact); on longer pages they simply land early.
-const CENTER_PICKS: Array<{ id: string; topVh: number; rotate: number; opacity?: number }> = [
-  { id: "boids",     topVh: 185, rotate: -2, opacity: 0.45 }, // manifesto ↔ highlights
-  { id: "node-graph",topVh: 290, rotate: 2,  opacity: 0.4 },  // highlights ↔ creations
-  { id: "dmn",       topVh: 400, rotate: -3, opacity: 0.4 },  // creations ↔ contact
-]
-
-function CenterDoodles({ cutoffVh }: { cutoffVh: number }) {
-  // Look up each pick's renderer from the main catalog. If a pick
-  // references an unknown id we just skip it (safer than crashing).
-  const picks = useMemo(
-    () =>
-      CENTER_PICKS.filter((p) => p.topVh < cutoffVh)
-        .map((p) => {
-          const found = DOODLES.find((d) => d.id === p.id)
-          return found ? { ...p, render: found.render } : null
-        })
-        .filter((x): x is { id: string; topVh: number; rotate: number; opacity?: number; render: () => ReactNode } => x !== null),
-    [cutoffVh],
-  )
-  return (
-    <>
-      {picks.map((p) => (
-        <div
-          key={`c-${p.id}`}
-          aria-hidden
-          className="doodle-center"
-          style={
-            {
-              position: "absolute",
-              top: `${p.topVh}vh`,
-              "--r": `${p.rotate}deg`,
-              opacity: p.opacity ?? 0.4,
-              pointerEvents: "none",
-              zIndex: 26,
-              color: "var(--ink)",
-              fontFamily: "var(--font-display)",
-              filter: "url(#ink-wobble)",
-            } as React.CSSProperties
-          }
-        >
-          {p.render()}
-        </div>
-      ))}
-    </>
-  )
-}
 
 // ---- Root --------------------------------------------------------
 
@@ -1774,7 +1724,6 @@ export function PaperDecorations() {
   // rasterise its SVG-filter layer) while sitting invisibly below the
   // footer. Measure and cull instead.
   const [docVh, setDocVh] = useState(Infinity)
-  const [tier] = useState(() => getDeviceTier())
   // Phones keep the marginalia (it's half the personality) but at half
   // density — same treatment as low-tier GPUs, since every doodle is
   // its own SVG-filtered raster layer.
@@ -1874,27 +1823,20 @@ export function PaperDecorations() {
             right: 1vw;
             transform: rotate(var(--r, 0deg)) scale(0.75);
             transform-origin: 100% 50%;
-            opacity: 0.5;
+            opacity: 0.38;
           }
+        }
+        /* On a phone the column is the whole width, so a stain always
+           lands under text — keep it as a hint, not a blot. */
+        @media (max-width: 767px) {
+          .coffee-stain { opacity: calc(var(--o) * 0.45) !important; }
         }
         @media (max-width: 640px) {
           .doodle {
             transform: rotate(var(--r, 0deg)) scale(0.6);
-            opacity: 0.45;
+            opacity: 0.26;
             right: 0.5vw;
           }
-        }
-
-        /* Centred-between-sections doodles — a bigger sketch sits in
-           the gap between each pair of content blocks, full-page
-           centred. Hidden on phones to keep the column tidy. */
-        .doodle-center {
-          left: 50%;
-          transform: translateX(-50%) rotate(var(--r, 0deg)) scale(1.25);
-          transform-origin: 50% 50%;
-        }
-        @media (max-width: 640px) {
-          .doodle-center { display: none; }
         }
       `}</style>
       <div
@@ -1909,7 +1851,6 @@ export function PaperDecorations() {
       >
         <CoffeeStains stains={visibleStains} />
         {prunedItems && <DoodleLayer items={prunedItems} />}
-        {tier !== "low" && <CenterDoodles cutoffVh={cutoff} />}
         {visibleStars.map((s, i) => (
           <MarginStar key={i} {...s} opacity={0.45} />
         ))}

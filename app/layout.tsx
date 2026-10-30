@@ -106,7 +106,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* The 4MB splat preload lives in app/landing/layout.tsx — it's
             only needed there; preloading it from the root layout made
             every route pay for it. */}
-        <link rel="preload" as="font" type="font/woff2" href="/zenhand4.woff2?v=2" crossOrigin="anonymous" />
+        {/* Hero headline + nav are display type (Zenhand regular/bold);
+            running text below the fold pulls Zenhand Smooth lazily. */}
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/zenhand-regular.woff2?v=5" crossOrigin="anonymous" />
+        <link rel="preload" as="font" type="font/woff2" href="/fonts/zenhand-bold.woff2?v=5" crossOrigin="anonymous" />
       </head>
       <body>
         {/* SVG filter sprite — referenced via filter: url(#ink-wobble) on
