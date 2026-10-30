@@ -36,3 +36,35 @@ export function prefersReducedMotion(): boolean {
   if (typeof window === 'undefined') return false
   return window.matchMedia('(prefers-reduced-motion: reduce)').matches
 }
+
+// Whether the landing hero should run its live WebGL splat at all. A weak
+// device gets a still frame of the same scene instead of a stuttering one
+// (and skips the multi-MB download): low tier, reduced motion, no WebGL2,
+// or a software rasteriser (SwiftShader / llvmpipe / Basic Render Driver —
+// what a GPU-less VM or a blocklisted driver falls back to).
+let cached3D: boolean | null = null
+export function canRunHero3D(): boolean {
+  if (typeof window === 'undefined') return false
+  if (cached3D !== null) return cached3D
+  cached3D = (() => {
+    if (prefersReducedMotion()) return false
+    if (getDeviceTier() === 'low') return false
+    try {
+      const c = document.createElement('canvas')
+      const gl = c.getContext('webgl2', { failIfMajorPerformanceCaveat: true })
+      if (!gl) return false
+      const info = gl.getExtension('WEBGL_debug_renderer_info')
+      const renderer = info
+        ? String(gl.getParameter(info.UNMASKED_RENDERER_WEBGL))
+        : ''
+      gl.getExtension('WEBGL_lose_context')?.loseContext()
+      if (/swiftshader|llvmpipe|softpipe|basic render|software/i.test(renderer)) {
+        return false
+      }
+      return true
+    } catch {
+      return false
+    }
+  })()
+  return cached3D
+}

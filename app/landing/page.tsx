@@ -11,8 +11,8 @@ import { Highlights } from "@/components/highlights"
 import { ScrollToTop } from "@/components/scroll-to-top"
 import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
-import { MotionPermission } from "@/components/motion-permission"
 import { InkLine } from "@/components/ink-line"
+import { canRunHero3D } from "@/lib/device-tier"
 
 // Three.js + the splat loader are pulled in only after the page mounts,
 // so they stay out of the initial JS bundle for the landing route.
@@ -31,16 +31,39 @@ function Divider() {
   )
 }
 
+// Still frames of the hero scene, captured from the live splat. They stand
+// in for it on devices that shouldn't run it, and cover it while it loads.
+function posterSrc(dark: boolean, portrait: boolean) {
+  return `/hero/poster-${dark ? "dark" : "light"}-${portrait ? "portrait" : "landscape"}.webp`
+}
+
+function announceHeroReady() {
+  ;(window as unknown as { __zbHeroReady?: boolean }).__zbHeroReady = true
+  window.dispatchEvent(new Event("zb:hero-ready"))
+}
+
 export default function Home() {
   const [mounted, setMounted] = useState(false)
   const [canvasVisible, setCanvasVisible] = useState(true)
+  // live: WebGL splat · poster: still frame only · null: not decided yet
+  const [hero, setHero] = useState<"live" | "poster" | null>(null)
+  const [splatReady, setSplatReady] = useState(false)
   const canvasRef = useRef<HTMLDivElement>(null)
   const { resolvedTheme } = useTheme()
   const dark = mounted && resolvedTheme === "dark"
 
   useEffect(() => {
     setMounted(true)
+    const force = new URLSearchParams(window.location.search).get("hero3d")
+    const live = force === "1" ? true : force === "0" ? false : canRunHero3D()
+    setHero(live ? "live" : "poster")
+    if (!live) announceHeroReady()
   }, [])
+
+  // A theme switch loads the other capture; show the poster until it lands.
+  useEffect(() => {
+    setSplatReady(false)
+  }, [dark])
 
   useEffect(() => {
     // Pause R3F's render loop once the user has scrolled past the
@@ -88,8 +111,35 @@ export default function Home() {
             className="absolute inset-0 z-0"
             suppressHydrationWarning
           >
-            {mounted ? (
-              <HeroCanvas dark={dark} active={canvasVisible} />
+            {mounted && (
+              <picture
+                className="pointer-events-none absolute inset-0 block transition-opacity duration-1000 ease-out"
+                style={{ opacity: hero === "live" && splatReady ? 0 : 1 }}
+              >
+                <source
+                  media="(orientation: portrait)"
+                  srcSet={posterSrc(dark, true)}
+                />
+                <img
+                  src={posterSrc(dark, false)}
+                  alt=""
+                  aria-hidden
+                  fetchPriority="high"
+                  decoding="async"
+                  className="size-full object-cover"
+                />
+              </picture>
+            )}
+            {mounted && hero === "live" ? (
+              <HeroCanvas
+                dark={dark}
+                active={canvasVisible}
+                onReady={() => {
+                  setSplatReady(true)
+                  announceHeroReady()
+                }}
+                onGiveUp={() => setHero("poster")}
+              />
             ) : null}
           </div>
 
@@ -139,7 +189,6 @@ export default function Home() {
         </div>
 
         <ScrollToTop />
-        <MotionPermission />
       </main>
     </PageLoader>
   )

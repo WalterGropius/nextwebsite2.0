@@ -5,10 +5,6 @@ import * as THREE from 'three'
 import { Stars } from '@react-three/drei'
 import { SparkRenderer, SplatMesh } from './spark'
 
-type DeviceOrientationEventStatic = typeof DeviceOrientationEvent & {
-  requestPermission?: () => Promise<'granted' | 'denied'>
-}
-
 function getScreenAngle(): number {
   if (typeof window === 'undefined') return 0
   const orientation = window.screen?.orientation?.angle
@@ -51,12 +47,21 @@ const DARK_BUDGET: Record<DeviceTier, { near: number; far: number }> = {
 // so the cloud keeps its grain instead of smearing into blobs.
 const DARK_SPLAT_SCALE = 20
 
+// Idle drift: when nothing steers the camera (no mouse, no gyro — e.g. an
+// iPhone, which only exposes the gyro behind a permission prompt we refuse
+// to show) it wanders on a slow Lissajous so the scene still reads as 3D.
+const DRIFT = { x: 0.07, y: 0.16, fx: 0.11, fy: 0.07 }
+const IDLE_AFTER = 2.2 // seconds without input before the drift fades in
+
 export function Flowers({
   dark = false,
   tier = 'high',
   quality = 1,
+  onReady,
 }: {
   dark?: boolean
+  // Fired once the capture has loaded, so the page can retire its poster.
+  onReady?: () => void
   tier?: DeviceTier
   // Runtime quality multiplier from the hero's PerformanceMonitor.
   // Below 1 the scene sheds cost (fewer stars, and — via Spark 2's
@@ -77,6 +82,9 @@ export function Flowers({
   const pointerRef = useRef({ x: 0, y: 0 })
   const gyroRef = useRef<{ x: number; y: number } | null>(null)
   const screenAngleRef = useRef(0)
+  const lastInputRef = useRef(-1e9)
+  const idleRef = useRef(0)
+  const scrollRef = useRef(0)
 
   useEffect(() => {
     setIsClient(true)
@@ -87,7 +95,13 @@ export function Flowers({
     const handlePointer = (clientX: number, clientY: number) => {
       pointerRef.current.x = (clientX / window.innerWidth) * 2 - 1
       pointerRef.current.y = (clientY / window.innerHeight) * 2 - 1
+      lastInputRef.current = performance.now() / 1000
     }
+    const onScroll = () => {
+      scrollRef.current = Math.min(1, window.scrollY / window.innerHeight)
+    }
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
     const onMouseMove = (e: MouseEvent) => handlePointer(e.clientX, e.clientY)
     const onTouchMove = (e: TouchEvent) => {
       if (e.touches[0]) handlePointer(e.touches[0].clientX, e.touches[0].clientY)
@@ -97,6 +111,7 @@ export function Flowers({
     return () => {
       window.removeEventListener('mousemove', onMouseMove)
       window.removeEventListener('touchmove', onTouchMove)
+      window.removeEventListener('scroll', onScroll)
     }
   }, [isClient])
 
@@ -137,42 +152,32 @@ export function Flowers({
       }
     }
 
-    let attached = false
-    const attach = () => {
-      if (attached) return
-      window.addEventListener('deviceorientation', handleOrientation, true)
-      attached = true
-    }
-    const detach = () => {
-      if (!attached) return
-      window.removeEventListener('deviceorientation', handleOrientation, true)
-      attached = false
-    }
-
-    const Ctor = DeviceOrientationEvent as DeviceOrientationEventStatic | undefined
-    const needsPermission =
-      Ctor && typeof Ctor.requestPermission === 'function'
-
-    if (!needsPermission) {
-      attach()
-      return detach
-    }
-
-    const onGranted = () => attach()
-    window.addEventListener('motion-permission-granted', onGranted)
-
+    // Always listen: Android and desktop deliver orientation freely. iOS
+    // only does after DeviceOrientationEvent.requestPermission(), which
+    // means a system prompt — not worth it for a background. There the
+    // listener simply never fires and touch + idle drift take over.
+    window.addEventListener('deviceorientation', handleOrientation, true)
     return () => {
-      window.removeEventListener('motion-permission-granted', onGranted)
-      detach()
+      window.removeEventListener('deviceorientation', handleOrientation, true)
     }
   }, [isClient])
 
-  useFrame(({ camera }, delta) => {
+  useFrame(({ camera, clock }, delta) => {
     const gyro = gyroRef.current
-    const targetX = gyro ? gyro.x : pointerRef.current.y * 0.3
-    const targetY = gyro ? gyro.y : pointerRef.current.x * 0.5
+    const now = performance.now() / 1000
+    // Fade the idle drift in once input goes quiet, out the moment it resumes.
+    const idleTarget = !gyro && now - lastInputRef.current > IDLE_AFTER ? 1 : 0
+    idleRef.current += (idleTarget - idleRef.current) * (1 - Math.exp(-1.5 * Math.min(delta, 0.1)))
+    const t = clock.elapsedTime
+    const driftX = Math.sin(t * DRIFT.fx * Math.PI * 2) * DRIFT.x * idleRef.current
+    const driftY = Math.sin(t * DRIFT.fy * Math.PI * 2 + 1.3) * DRIFT.y * idleRef.current
+    const targetX = (gyro ? gyro.x : pointerRef.current.y * 0.3) + driftX
+    const targetY = (gyro ? gyro.y : pointerRef.current.x * 0.5) + driftY
     const orbit = orbitRef.current
     if (!distanceRef.current) distanceRef.current = camera.position.length() || 5
+    // Scrolling eases the camera back a touch, so even a thumb flick on a
+    // phone reads as moving through the scene.
+    const dist = distanceRef.current * (1 + scrollRef.current * 0.35)
 
     // Critically-damped lerp — small step every frame so the scene
     // glides toward the target rather than snapping. Frame-rate
@@ -191,7 +196,12 @@ export function Flowers({
       Math.abs(nextX - orbit.x) < ORBIT_EPSILON &&
       Math.abs(nextY - orbit.y) < ORBIT_EPSILON
     ) {
-      if (orbit.x === targetX && orbit.y === targetY) return
+      if (
+        orbit.x === targetX &&
+        orbit.y === targetY &&
+        Math.abs(camera.position.length() - dist) < ORBIT_EPSILON
+      )
+        return
       orbit.x = targetX
       orbit.y = targetY
     } else {
@@ -203,7 +213,7 @@ export function Flowers({
     // (-x, -y) are the same relative motion, so the parallax reads
     // identically — but this way the splat's world matrix never changes.
     ORBIT_EULER.set(-orbit.x, -orbit.y, 0, 'YXZ')
-    camera.position.set(0, 0, distanceRef.current).applyEuler(ORBIT_EULER)
+    camera.position.set(0, 0, dist).applyEuler(ORBIT_EULER)
     camera.lookAt(0, 0, 0)
   })
 
@@ -256,6 +266,7 @@ export function Flowers({
           scale={DARK_SPLAT_SCALE}
           rotation={[Math.PI, 0.3 * Math.PI, 0]}
           lod={useLod}
+          onLoad={onReady}
         />
       </>
     )
@@ -269,6 +280,7 @@ export function Flowers({
         scale={3}
         rotation={[Math.PI, 0.3 * Math.PI, 0]}
         lod={useLod}
+        onLoad={onReady}
       />
     </>
   )
