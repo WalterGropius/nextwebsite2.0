@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'More',
-  description: 'The human behind the work — stuff I love: aesthetics, music, film, code, and what I am into now.',
+  description: 'Off the record: what I love, fight, fail at and keep — music, film, code, art, and what I am on right now.',
   alternates: { canonical: '/more' },
   openGraph: {
     title: 'More | zenbauhaus',
-    description: 'Stuff I love: aesthetics, music, film, code, and what I am into now.',
+    description: 'Off the record: what I love, fight, fail at and keep.',
     url: 'https://zenbauhaus.vercel.app/more',
   },
 }
