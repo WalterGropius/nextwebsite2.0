@@ -95,7 +95,7 @@ export default function Home() {
   }, [mounted])
 
   return (
-    <PageLoader>
+    <PageLoader intro>
       <main className="min-h-screen overflow-x-hidden">
         <Navigation />
         {/* Hero with 3D splat background. The section lifts above the
