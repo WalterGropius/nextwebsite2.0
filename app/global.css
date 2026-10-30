@@ -14,28 +14,28 @@
    preloads in app/layout.tsx whenever the build is re-run. */
 @font-face {
   font-family: 'Zenhand';
-  src: url('/fonts/zenhand-regular.woff2?v=5') format('woff2');
+  src: url('/fonts/zenhand-regular.woff2?v=6') format('woff2');
   font-weight: 100 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Zenhand';
-  src: url('/fonts/zenhand-bold.woff2?v=5') format('woff2');
+  src: url('/fonts/zenhand-bold.woff2?v=6') format('woff2');
   font-weight: 600 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Zenhand Smooth';
-  src: url('/fonts/zenhand-smooth-regular.woff2?v=5') format('woff2');
+  src: url('/fonts/zenhand-smooth-regular.woff2?v=6') format('woff2');
   font-weight: 100 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Zenhand Smooth';
-  src: url('/fonts/zenhand-smooth-bold.woff2?v=5') format('woff2');
+  src: url('/fonts/zenhand-smooth-bold.woff2?v=6') format('woff2');
   font-weight: 600 900;
   font-style: normal;
   font-display: swap;
