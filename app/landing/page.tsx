@@ -127,6 +127,9 @@ export default function Home() {
                   fetchPriority="high"
                   decoding="async"
                   className="size-full object-cover"
+                  onError={(e) => {
+                    e.currentTarget.style.visibility = "hidden"
+                  }}
                 />
               </picture>
             )}
