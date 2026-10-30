@@ -2,19 +2,41 @@
    app/layout.tsx) and exposed as --font-inter / --font-cormorant. The old
    render-blocking Google Fonts @import lived here. */
 
-/* Zenhand v4 — source ships as OTF; we serve WOFF2 first (best
-   compression, all evergreen browsers), then WOFF for legacy, and
-   finally the raw OTF as a safety net. The WOFF2/WOFF files are
-   generated from the OTF by `python3 scripts/convert-font.py
-   public/zenhand4.otf`. Fonts are cached immutable for a year, so
-   bump ?v= (here and in the preload in app/layout.tsx) whenever the
-   files change. */
+/* Zenhand v5 — the handwriting, rebuilt as a real family by
+   `python3 scripts/build-zenhand.py` from the master scan
+   (public/zenhand4.otf): seated baselines, optical spacing, kerning,
+   full FR/DE/CS/… accents, a true bold, and a smoothed cut.
+
+     Zenhand         rough pen line — display type, headings, UI
+     Zenhand Smooth  re-traced, fewer points — running text
+
+   Files are cached immutable for a year: bump ?v= here and in the
+   preloads in app/layout.tsx whenever the build is re-run. */
 @font-face {
   font-family: 'Zenhand';
-  src: url('/zenhand4.woff2?v=2') format('woff2'),
-       url('/zenhand4.woff?v=2')  format('woff'),
-       url('/zenhand4.otf?v=2')   format('opentype');
-  font-weight: 400 700;
+  src: url('/fonts/zenhand-regular.woff2?v=5') format('woff2');
+  font-weight: 100 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Zenhand';
+  src: url('/fonts/zenhand-bold.woff2?v=5') format('woff2');
+  font-weight: 600 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Zenhand Smooth';
+  src: url('/fonts/zenhand-smooth-regular.woff2?v=5') format('woff2');
+  font-weight: 100 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Zenhand Smooth';
+  src: url('/fonts/zenhand-smooth-bold.woff2?v=5') format('woff2');
+  font-weight: 600 900;
   font-style: normal;
   font-display: swap;
 }
@@ -63,15 +85,9 @@
     --ink-inverse: #ffffff;
 
     /* Hero copy sits directly on the splat canvas and needs an outline in
-       the page background colour. This is a filter, not a text-shadow, and
-       that is deliberate: headings carry -webkit-text-stroke in
-       currentColor with `paint-order: stroke fill` to fake Zenhand's
-       missing bold, and Chromium composites that stroke ring against a
-       text-shadow rather than over it — the ring comes out muddy grey
-       instead of the text colour, which reads as a dark rim in light mode
-       and a pale glow in dark mode. drop-shadow() runs on the already
-       composited glyph (stroke and fill together), so the outline sits
-       strictly outside the letter and the faux-bold survives.
+       the page background colour. drop-shadow() rather than text-shadow so
+       it can sit on a wrapper (motion animates `filter` on the headline
+       itself) and outline every glyph inside at once.
 
        Built from the --aura-* channels, which already hold --surface-dark
        broken out per theme, so this one definition is the cream in light
@@ -86,7 +102,7 @@
 
     /* Typography Scale */
     --font-display: 'Zenhand', var(--font-cormorant, 'Cormorant Garamond'), Georgia, 'Times New Roman', serif;
-    --font-body: 'Zenhand', var(--font-inter, 'Inter'), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-body: 'Zenhand Smooth', 'Zenhand', var(--font-inter, 'Inter'), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     
     /* Spacing — tightened so larger type stays compact */
     --section-padding: clamp(2rem, 6vh, 4.5rem);
@@ -169,10 +185,7 @@
        establishes no scroll container, so the page scrolls only on the
        viewport. */
     overflow-x: clip;
-    /* Slight faux-weight for body text so Zenhand reads firmer */
-    -webkit-text-stroke: 0.025em currentColor;
-    paint-order: stroke fill;
-    letter-spacing: 0.035em;
+    font-kerning: normal;
   }
 
   body {
@@ -194,39 +207,31 @@
   }
 
 
-  /* Typography Base — Zenhand has only one weight, so we fake bold by
-     stroking the glyphs with their own colour and painting the stroke
-     behind the fill. This roughly doubles perceived thickness. */
+  /* Headings use the real Zenhand Bold — no more stroking glyphs with
+     their own colour to fake weight. */
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    font-weight: 800;
-    letter-spacing: -0.015em;
+    font-weight: 700;
+    letter-spacing: -0.005em;
     line-height: 1.02;
-    -webkit-text-stroke: 0.05em currentColor;
-    paint-order: stroke fill;
+    text-wrap: balance;
   }
 
-  /* em stays italic — Zenhand has no italic glyphs, so we synthesize
-     a light skew for the slant. Acts like an aside in the author's
-     own hand. strong gets the heaviest weight in the variable axis. */
+  /* Zenhand has no italic; a light synthesized slant reads as an aside
+     in the author's own hand. */
   em {
     font-style: italic;
+    font-synthesis: style;
     color: inherit;
   }
   strong, b {
-    font-weight: 800;
-    -webkit-text-stroke: 0.025em currentColor;
-  }
-
-  /* Allow elements to opt-out of the faux-bold stroke (e.g. logo glyph
-     on a coloured background where currentColor would smudge it) */
-  .no-faux-bold {
-    -webkit-text-stroke: 0;
+    font-weight: 700;
   }
 
   p {
-    line-height: 1.7;
+    line-height: 1.6;
     color: var(--text-muted);
+    text-wrap: pretty;
   }
 
   /* Selection styling */
@@ -629,7 +634,6 @@
     font-size: 1.7rem;
     line-height: 1.05;
     margin: 1.6em 0 0.4em;
-    -webkit-text-stroke: 0.03em currentColor;
   }
   .prose-md h3 {
     color: var(--ink);
@@ -919,7 +923,6 @@
     html, body {
       background: #ffffff !important;
       color: #111 !important;
-      -webkit-text-stroke: 0 !important;
     }
     body::before { display: none !important; }
     nav, .no-print, [data-no-print] {
@@ -934,11 +937,9 @@
     #cv-print h1 {
       font-size: 3rem !important;
       line-height: 1 !important;
-      -webkit-text-stroke: 0.02em currentColor !important;
     }
     #cv-print h2 {
       font-size: 1.4rem !important;
-      -webkit-text-stroke: 0.02em currentColor !important;
     }
     /* Force every element inside the printable CV to be fully visible —
        motion sets inline opacity:0 / blur / translateY for animations,
