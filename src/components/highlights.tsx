@@ -27,8 +27,8 @@ export function Highlights() {
     damping: 24,
     mass: 0.35,
   })
-  const stickyY = useTransform(smooth, [0, 1], [-20, 90])
-  const stickyRot = useTransform(smooth, [0, 0.5, 1], [-1.5, 0, 1.5])
+  const stickyY = useTransform(smooth, [0, 1], [-10, 30])
+  const stickyRot = useTransform(smooth, [0, 0.5, 1], [-0.6, 0, 0.6])
 
   return (
     <section className="relative py-20 sm:py-32" ref={ref}>
@@ -64,7 +64,7 @@ export function Highlights() {
               // row's height so neighbours never fully overlap at the
               // section's edges (seven rows now, was six).
               const dir = i % 2 === 0 ? -1 : 1
-              const amp = 26 + (i % 3) * 12
+              const amp = 4 + (i % 3) * 3
               return (
                 <HighlightRow
                   key={i}

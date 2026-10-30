@@ -22,9 +22,9 @@ export function Manifesto() {
     damping: 24,
     mass: 0.4,
   })
-  const titleY = useTransform(smooth, [0, 1], [120, -40])
-  const bodyY = useTransform(smooth, [0, 1], [-30, 110])
-  const tilt = useTransform(smooth, [0, 0.5, 1], [-1.2, 0, 1.2])
+  const titleY = useTransform(smooth, [0, 1], [36, -36])
+  const bodyY = useTransform(smooth, [0, 1], [18, -18])
+  const tilt = useTransform(smooth, [0, 0.5, 1], [-0.5, 0, 0.5])
 
   return (
     <section

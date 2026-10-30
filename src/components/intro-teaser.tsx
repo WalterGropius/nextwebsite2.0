@@ -244,7 +244,7 @@ export function IntroTeaser() {
                     data-zb-headline
                     aria-hidden="true"
                     className={`${s.headline} mx-auto max-w-5xl text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.92]`}
-                    style={{ fontFamily: "var(--font-display)", color: "var(--ink)" }}
+                    style={{ fontFamily: "var(--font-display)", fontWeight: 400, color: "var(--ink)" }}
                   >
                     {t("hero.headline.i")}
                     <strong>{t("hero.headline.build")}</strong>

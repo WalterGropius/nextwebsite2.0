@@ -43,6 +43,8 @@ export function Hero() {
             className="mx-auto max-w-5xl text-[clamp(2.4rem,5vw,4.2rem)] leading-[0.92]"
             style={{
               fontFamily: "var(--font-display)",
+              // Regular weight, so <strong> (Zenhand Bold) actually stands out
+              fontWeight: 400,
               color: "var(--ink)",
               y: headlineY,
             }}

@@ -48,11 +48,14 @@ export default function ArtPage() {
               className="max-w-md text-base"
               style={{ color: "var(--text-muted)", fontFamily: "var(--font-display)" }}
             >
+              {/* The book's title is Czech in every language — set it as a
+                  title so it doesn't read like a missed translation. */}
+              <em style={{ color: "var(--ink)" }}>Soubor fotek na cloudu</em>
               {lang === "cs"
-                ? "Soubor fotek na cloudu — knížka ve čtrnácti sériích. Povrchy, krajina, divno, rozpad, světlo, plast."
+                ? " — fotokniha ve čtrnácti sériích: povrchy, krajina, divno, rozpad, světlo, plast."
                 : lang === "fr"
-                ? "« Soubor fotek na cloudu » — un livre en quatorze séries. Surfaces, paysage, étrange, décomposition, lumière, plastique."
-                : "Soubor fotek na cloudu — a book in fourteen series. Surfaces, landscape, the weird, decay, light, plastic."}
+                ? " — un livre photo en quatorze séries : surfaces, paysage, étrange, décomposition, lumière, plastique."
+                : " — a photo book in fourteen series: surfaces, landscape, the weird, decay, light, plastic."}
             </motion.p>
           </header>
 

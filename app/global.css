@@ -60,10 +60,8 @@
     --cobalt-blue: #3b66f3;
     --indigo: #5e5372;
 
-    /* Paper grain inversion factors — flipped in dark mode so the
-       overlay reads as light dust rather than dark dust. */
-    --grain-opacity: 0.25;
-    --grain-blend: multiply;
+    /* Strength of the paper texture (soft-light, see .paper-grain) */
+    --paper-opacity: 1;
 
     /* Surface alpha used inside the text-aura mask (light cream) */
     --aura-r: 246;
@@ -78,7 +76,7 @@
     --border-subtle: rgba(15, 17, 23, 0.12);
     --border-strong: rgba(15, 17, 23, 0.6);
     --text-primary: #1a1d28;
-    --text-muted: rgba(15, 17, 23, 0.6);
+    --text-muted: rgba(15, 17, 23, 0.7);
     --ink: #1a1d28;
     /* Colour that contrasts with --ink — used for text drawn on top of an
        ink-filled surface (e.g. the primary CTA button) */
@@ -135,13 +133,11 @@
     --border-subtle: rgba(255, 231, 194, 0.18);
     --border-strong: rgba(255, 231, 194, 0.65);
     --text-primary: #ffe7c2;
-    --text-muted: rgba(255, 231, 194, 0.62);
+    --text-muted: rgba(255, 231, 194, 0.72);
     --ink: #ffe7c2;
     --ink-inverse: #0a1626;
 
-    /* Grain inverts so the dust reads as a faint warm haze, not a smudge */
-    --grain-opacity: 0.18;
-    --grain-blend: screen;
+    --paper-opacity: 0.55;
 
     /* Aura colour matches the dark background so text-aura wells stay invisible */
     --aura-r: 10;
@@ -400,6 +396,21 @@
      on the headline (blur-in) and would overwrite this. */
   .hero-ink-outline {
     filter: var(--hero-ink-outline);
+  }
+
+  /* Paper texture (see paper-backdrop.tsx). Absolute to <body>, so it is
+     as tall as the document and scrolls with it. Same stacking slot as
+     the millimetre grid: above section backgrounds, below the nav. */
+  .paper-grain {
+    position: absolute;
+    inset: 0;
+    z-index: 30;
+    pointer-events: none;
+    background-image: url('/paper/tooth.webp'), url('/paper/cloud.webp');
+    background-size: 512px 512px, 1800px 1800px;
+    background-repeat: repeat;
+    mix-blend-mode: soft-light;
+    opacity: var(--paper-opacity);
   }
 
   /* Hand-drawn ink edge — applied to titles or accent blocks for character */

@@ -37,11 +37,11 @@ export function Contact({ withRadar = false }: { withRadar?: boolean }) {
   })
   // Email grows as you reach it then drifts upward. The status pill
   // crawls in slow from the left. The line stretches across the page.
-  const emailY = useTransform(smooth, [0, 0.5, 1], [120, 0, -60])
-  const emailScale = useTransform(smooth, [0, 0.5, 1], [0.92, 1.02, 0.98])
-  const statusX = useTransform(smooth, [0, 0.5, 1], [-30, 0, 20])
+  const emailY = useTransform(smooth, [0, 0.5, 1], [30, 0, -16])
+  const emailScale = useTransform(smooth, [0, 0.5, 1], [0.97, 1, 0.99])
+  const statusX = useTransform(smooth, [0, 0.5, 1], [-10, 0, 6])
   const lineScale = useTransform(smooth, [0.2, 0.6], [0.4, 1.05])
-  const socialsY = useTransform(smooth, [0, 1], [60, -20])
+  const socialsY = useTransform(smooth, [0, 1], [16, -8])
 
   return (
     <section
@@ -128,8 +128,7 @@ export function Contact({ withRadar = false }: { withRadar?: boolean }) {
             {t("contact.body.0")} <strong>{t("contact.body.ai")}</strong>
             {t("contact.body.1")} <strong>{t("contact.body.spatial")}</strong>
             {t("contact.body.2")} <em>{t("contact.body.zero")}</em>{" "}
-            {t("contact.body.3")}{" "}
-            <span className="humph">{t("contact.body.tag")}</span>
+            {t("contact.body.3")}
           </motion.p>
 
           <motion.div

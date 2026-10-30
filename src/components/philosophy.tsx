@@ -30,7 +30,7 @@ export function Philosophy({ embedded = false }: { embedded?: boolean }) {
     damping: 24,
     mass: 0.4,
   })
-  const titleY = useTransform(smooth, [0, 1], [80, -50])
+  const titleY = useTransform(smooth, [0, 1], [24, -24])
 
   // Three pillars, three different motion profiles. The middle one
   // races past while the outer two drag — like film tracking shots
