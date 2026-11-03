@@ -35,6 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/boids',
     '/games/angles',
     '/games/proportion',
+    '/games/glance',
   ].map((path) => ({
     url: `${BASE}${path}`,
     lastModified: now,
