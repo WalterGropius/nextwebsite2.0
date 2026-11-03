@@ -703,6 +703,16 @@ export const LAB_LINKS: Array<{ href: string; title: string; sub: Localized; cta
     cta: CTA.play,
   },
   {
+    href: "/games/glance",
+    title: "glance",
+    sub: {
+      en: "A word flashes, half as long each time you read it. Lines, a vanishing page, a timed read an AI checks.",
+      cs: "Blikne slovo, pokaždé na půl doby. Pak řádky, mizející stránka a čtení na čas, které zkontroluje AI.",
+      fr: "Un mot apparaît, deux fois moins longtemps à chaque fois. Puis des lignes, une page qui s'efface, une lecture vérifiée par une IA.",
+    },
+    cta: CTA.play,
+  },
+  {
     href: "/games/proportion",
     title: "proportion",
     sub: {
@@ -1014,7 +1024,7 @@ export const CHAPTERS: Chapter[] = [
     id: "lab",
     shelf: "made",
     title: { en: "the lab", cs: "laborka", fr: "le labo" },
-    hook: { en: "Five experiments that actually run.", cs: "Pět experimentů, které fakt běží.", fr: "Cinq expériences qui tournent vraiment." },
+    hook: { en: "Six experiments that actually run.", cs: "Šest experimentů, které fakt běží.", fr: "Six expériences qui tournent vraiment." },
     img: "/art/surfaces/219.webp",
     ratio: "5 / 4",
     tilt: 1.7,
