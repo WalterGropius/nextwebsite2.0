@@ -25,9 +25,9 @@ const toPic = (p: any): Pic | null => {
 const INFO = { prop: "imageinfo", iiprop: "url|extmetadata", iiurlwidth: "640" }
 
 // 1) the lead photo of the Wikipedia article — editors pick it to identify the subject
-async function fromWikipedia(query: string): Promise<Pic | null> {
-  for (const lang of ["en", "cs"]) {
-    const d = await api(`${lang}.wikipedia.org`, { action: "query", generator: "search", gsrsearch: query, gsrlimit: "1", prop: "pageimages", piprop: "name" })
+async function fromWikipedia(query: string, lang: string): Promise<Pic | null> {
+  for (const l of Array.from(new Set([lang, "en"]))) {
+    const d = await api(`${l}.wikipedia.org`, { action: "query", generator: "search", gsrsearch: query, gsrlimit: "1", prop: "pageimages", piprop: "name" })
     const name = Object.values<any>(d?.query?.pages ?? {})[0]?.pageimage
     if (!name || /\.svg$/i.test(name)) continue
     const c = await api("commons.wikimedia.org", { action: "query", titles: `File:${name}`, ...INFO })
@@ -47,10 +47,10 @@ async function fromCommons(query: string): Promise<Pic | null> {
   return c.find((x) => /public domain|cc0|^pd/i.test(x.license)) ?? c[0] ?? null
 }
 
-export async function findPic(query: string): Promise<Pic | null> {
+export async function findPic(query: string, lang = "en"): Promise<Pic | null> {
   if (query in cache) return cache[query]
   let pic: Pic | null = null
-  try { pic = (await fromWikipedia(query)) ?? (await fromCommons(query)) } catch { return null } // network/rate limit: don't cache
+  try { pic = (await fromWikipedia(query, lang)) ?? (await fromCommons(query)) } catch { return null } // network/rate limit: don't cache
   cache[query] = pic
   try { localStorage.setItem(KEY, JSON.stringify(cache)) } catch {}
   return pic

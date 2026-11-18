@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react"
 import { SEED } from "./seed"
+import { type Item, type Deck, promptsFor, fill, parseNotes, deckToNotes } from "./deck"
 import { findPic, type Pic } from "./images"
 import { QuestionView, type QSpec } from "./render"
 
@@ -9,9 +10,6 @@ import { QuestionView, type QSpec } from "./render"
 // /api/quiz, and play procedurally generated questions. Decks and scores
 // persist in localStorage; the library lists past decks.
 
-type Item = { term: string; category: string; fact?: string; image?: string }
-type Extra = { q: string; answer: string; wrong: string[] }
-type Deck = { id: string; title: string; language?: string; created: string; items: Item[]; questions: Extra[]; best?: number }
 type Q = { prompt: string; answer: string; options: string[]; note?: string; image?: string }
 
 const KEY = "kviz-library-v2"
@@ -32,16 +30,17 @@ function save(d: Deck[]) { try { localStorage.setItem(KEY, JSON.stringify(d)) } 
 // Procedural generator: term→category in both directions, plus extra questions.
 function generate(deck: Deck, n: number): Q[] {
   const cats = uniq(deck.items.map((i) => i.category))
+  const P = promptsFor(deck)
   const out: Q[] = []
   for (const it of deck.items) {
     if (cats.length >= 2) {
       out.push({
-        prompt: `Kam patří: ${cap(it.term)}?`, answer: it.category, note: it.fact,
+        prompt: fill(P.toCategory, { term: cap(it.term) }), answer: it.category, note: it.fact,
         options: shuffle([it.category, ...shuffle(cats.filter((c) => c !== it.category)).slice(0, 3)]),
       })
       const others = deck.items.filter((o) => o.category !== it.category).map((o) => o.term)
       if (others.length >= 3) out.push({
-        prompt: `Co patří mezi ${it.category}?`, answer: it.term, note: it.fact,
+        prompt: fill(P.toTerm, { category: it.category }), answer: it.term, note: it.fact,
         options: shuffle([it.term, ...shuffle(uniq(others)).slice(0, 3)]),
       })
     }
@@ -51,11 +50,11 @@ function generate(deck: Deck, n: number): Q[] {
   for (const it of deck.items) {
     if (!it.image) continue
     if (terms.length >= 4) out.push({
-      prompt: "Co je na obrázku?", answer: it.term, note: it.fact, image: it.image,
+      prompt: P.pictureTerm, answer: it.term, note: it.fact, image: it.image,
       options: shuffle([it.term, ...shuffle(terms.filter((t) => t !== it.term)).slice(0, 3)]),
     })
     if (cats.length >= 2) out.push({
-      prompt: "Kam patří zvíře na obrázku?", answer: it.category, note: `${cap(it.term)}`, image: it.image,
+      prompt: P.pictureCategory, answer: it.category, note: `${cap(it.term)}`, image: it.image,
       options: shuffle([it.category, ...shuffle(cats.filter((c) => c !== it.category)).slice(0, 3)]),
     })
   }
@@ -126,6 +125,16 @@ export default function Kviz() {
     setView("done")
   }
 
+  const save1 = (d: Omit<Deck, "id" | "created">) => {
+    const deck: Deck = { ...d, id: crypto.randomUUID(), created: new Date().toISOString() }
+    if (!deck.items.length && !deck.questions.length) throw new Error("Z materiálu se nepodařilo nic vytáhnout.")
+    update([deck, ...lib]); setText(""); setLinks(""); setFiles([]); start(deck)
+  }
+  const offline = () => {
+    setErr("")
+    try { save1({ language: "cs", ...parseNotes(text) }) } catch (e) { setErr((e as Error).message) }
+  }
+
   const create = async () => {
     setBusy(true); setErr("")
     try {
@@ -133,12 +142,17 @@ export default function Kviz() {
       const r = await fetch("/api/quiz", {
         method: "POST", headers: { "content-type": "application/json" },
         body: JSON.stringify({ text, images, links: links.split(/\s+/).filter((l) => /^https?:\/\//.test(l)) }),
-      })
-      if (!r.ok) throw new Error(await r.text())
+      }).catch(() => null)
+      if (!r || !r.ok) {
+        // AI unavailable: text-only material can still be parsed locally
+        if (text.trim() && !files.length) return offline()
+        throw new Error(r?.status === 503 ? "AI teď není k dispozici – napiš poznámky jako text a použij „Bez AI“." : `Chyba ${r?.status ?? "sítě"}`)
+      }
       const d = await r.json()
-      const deck: Deck = { id: crypto.randomUUID(), created: new Date().toISOString(), title: d.title || "Kvíz", language: d.language, items: (d.items || []).map((x: Item) => ({ ...x, image: x.image || undefined })), questions: d.questions || [] }
-      if (!deck.items.length && !deck.questions.length) throw new Error("Z materiálu se nepodařilo nic vytáhnout.")
-      update([deck, ...lib]); setText(""); setLinks(""); setFiles([]); start(deck)
+      save1({
+        title: d.title || "Kvíz", language: d.language, prompts: d.prompts, questions: d.questions || [],
+        items: (d.items || []).map((x: Item) => ({ ...x, image: x.image || undefined })),
+      })
     } catch (e) { setErr(String((e as Error).message).slice(0, 300)) } finally { setBusy(false) }
   }
 
@@ -155,16 +169,16 @@ export default function Kviz() {
     setPic(null)
     if (!q?.image) return
     let live = true; setPicLoading(true)
-    findPic(q.image).then((p) => {
+    findPic(q.image, deck?.language?.slice(0, 2)).then((p) => {
       if (!live) return
       // no free photo found: drop this question rather than show a broken one
       if (!p) { const rest = qs.filter((_, k) => k !== i); if (rest.length > i) setQs(rest); else { setQs(rest); setView("done") } }
       setPic(p); setPicLoading(false)
     })
     // prefetch next picture
-    const n = qs[i + 1]; if (n?.image) findPic(n.image)
+    const n = qs[i + 1]; if (n?.image) findPic(n.image, deck?.language?.slice(0, 2))
     return () => { live = false }
-  }, [q, qs, i])
+  }, [q, qs, i, deck])
   const shown = q
   const total = useMemo(() => deck ? generate(deck, 9999).length : 0, [deck])
 
@@ -191,6 +205,18 @@ export default function Kviz() {
                 className={`${btn} w-full bg-emerald-500 text-white disabled:opacity-40`}>
                 {busy ? "Vytvářím…" : "Vytvořit kvíz ✨"}
               </button>
+              <button disabled={busy || !text.trim()} onClick={offline} className="mt-2 w-full text-sm text-slate-500 underline disabled:opacity-40">
+                Bez AI – z poznámek
+              </button>
+              <details className="mt-2 text-xs text-slate-500">
+                <summary>Jak psát poznámky bez AI</summary>
+                <pre className="mt-1 whitespace-pre-wrap">{`Hlodavci: myš, bobr, veverka
+Šelmy:
+- rys
+- lev
+dog - pes
+Q: Kolik hrbů má velbloud? | 1 | 2 | 3`}</pre>
+              </details>
               {err && <p className="mt-2 text-sm text-red-600">{err}</p>}
             </section>
 
@@ -213,6 +239,7 @@ export default function Kviz() {
                         {d.best != null && ` · nejlépe ${d.best} %`}
                       </div>
                     </button>
+                    <button title="Upravit jako poznámky" onClick={() => { setText(deckToNotes(d)); window.scrollTo({ top: 0, behavior: "smooth" }) }} className="px-2">✏️</button>
                     <button title="Stáhnout JSON" onClick={() => exportDeck(d)} className="px-2">⬇️</button>
                     <button title="Smazat" onClick={() => confirm(`Smazat „${d.title}“?`) && update(lib.filter((x) => x.id !== d.id))} className="px-2">🗑️</button>
                   </li>
