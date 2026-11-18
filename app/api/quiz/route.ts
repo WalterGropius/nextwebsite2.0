@@ -68,7 +68,10 @@ async function linkText(url: string): Promise<string> {
 }
 
 export async function POST(req: NextRequest) {
-  const key = process.env.AI_GATEWAY_API_KEY || process.env.AI_GATEWAY
+  // On Vercel the deployment's own OIDC token authenticates with the AI Gateway,
+  // so no key has to be stored; a key in env still wins (local dev).
+  const key = process.env.AI_GATEWAY_API_KEY || process.env.AI_GATEWAY ||
+    req.headers.get("x-vercel-oidc-token") || process.env.VERCEL_OIDC_TOKEN
   if (!key) return NextResponse.json({ error: "no key" }, { status: 503 })
   const { text = "", images = [], links = [] } = await req.json()
   if (images.length > 12 || String(text).length > 20000) {
