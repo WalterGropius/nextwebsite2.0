@@ -1,3 +1,5 @@
+import type { Test } from "./deck"
+
 // Seed deck transcribed from the "Živorodí" worksheets.
 export const LATIN: Record<string, string> = {"koala medvídkovitý": "Phascolarctos cinereus", "klokan rudý": "Osphranter rufus", "vačice opossum": "Didelphis virginiana", "rejsek obecný": "Sorex araneus", "krtek obecný": "Talpa europaea", "ježek západní": "Erinaceus europaeus", "lenochod tříprstý": "Bradypus", "mravenečník velký": "Myrmecophaga tridactyla", "pásovec velký": "Dasypus novemcinctus", "myš domácí": "Mus musculus", "křeček polní": "Cricetus cricetus", "krysa obecná": "Rattus rattus", "sysel polní": "Spermophilus citellus", "veverka obecná": "Sciurus vulgaris", "bobr evropský": "Castor fiber", "zajíc polní": "Lepus europaeus", "králík divoký": "Oryctolagus cuniculus", "lemur kata": "Lemur catta", "komba ušatá": "Otolemur", "gueréza angolská": "Colobus angolensis", "kočkodan obecný": "Chlorocebus", "pavián": "Papio hamadryas", "gorila horská": "Gorilla beringei beringei", "šimpanz učenlivý": "Pan troglodytes", "orangutan sumaterský": "Pongo abelii", "rys ostrovid": "Lynx lynx", "lev pustinný": "Panthera leo", "kočka divoká": "Felis silvestris", "tygr indický": "Panthera tigris tigris", "puma americká": "Puma concolor", "gepard královský": "Acinonyx jubatus", "hyena skvrnitá": "Crocuta crocuta", "mýval severní": "Procyon lotor", "lasice kolčava": "Mustela nivalis", "tchoř tmavý": "Mustela putorius", "vydra říční": "Lutra lutra", "jezevec lesní": "Meles meles", "kuna skalní": "Martes foina", "lachtan jižní": "Otaria flavescens", "tuleň obecný": "Phoca vitulina", "mrož lední": "Odobenus rosmarus", "velryba grónská": "Balaena mysticetus", "delfín obecný": "Tursiops truncatus", "kosatka dravá": "Orcinus orca", "slon africký": "Loxodonta africana", "slon indický": "Elephas maximus", "kůň domácí": "Equus ferus caballus", "zebra stepní": "Equus quagga", "tapír čabrakový": "Tapirus indicus", "osel domácí": "Equus asinus", "nosorožec tuponosý": "Ceratotherium simum", "prase divoké": "Sus scrofa", "hroch obojživelný": "Hippopotamus amphibius", "tur domácí": "cow Bos taurus", "ovce domácí": "Ovis aries sheep", "koza domácí": "Capra hircus goat", "srnec obecný": "Capreolus capreolus", "jelen evropský": "Cervus elaphus", "los evropský": "Alces alces", "velbloud jednohrbý": "Camelus dromedarius", "lama alpaka": "Vicugna pacos alpaca"}
 
@@ -36,6 +38,13 @@ export const SEED = {
       fact: category === "Vačnatci" ? "Vačnatci nosí mláďata ve vaku." : "Placentálové – mládě se vyvíjí v těle matky (placenta).",
     })),
   ),
+  tests: [
+    { id: "seed-rychle", name: "Rychlé opakování", input: "buttons", level: "normal", count: 15, timed: false },
+    { id: "seed-obrazky", name: "Poznej z fotky", input: "buttons", level: "hard", count: 15, timed: false, kinds: ["pictureTerm", "pictureCategory"] },
+    { id: "seed-selmy-hlas", name: "Šelmy hlasem", input: "voice", level: "normal", count: 15, timed: false,
+      categories: ["Šelmy – kočkovité", "Šelmy – hyenovité", "Šelmy – medvídkovité", "Šelmy – lasicovité", "Šelmy – ploutvonožci"] },
+    { id: "seed-extra", name: "Extra těžký psaný na čas", input: "text", level: "extra", count: 20, timed: true },
+  ] as Test[],
   questions: [
     { q: "Jak se jmenují savci, kteří nosí mláďata ve vaku?", answer: "Vačnatci", wrong: ["Placentálové", "Hlodavci", "Kytovci"] },
     { q: "Kam patří velryby, delfíni a kosatky?", answer: "Kytovci", wrong: ["Ryby", "Ploutvonožci", "Chobotnatci"] },

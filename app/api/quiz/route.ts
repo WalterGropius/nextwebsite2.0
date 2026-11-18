@@ -114,6 +114,11 @@ export async function POST(req: NextRequest) {
   }
   const body = await req.json().catch(() => null)
   if (!body) return NextResponse.json({ error: "bad request" }, { status: 400 })
+  if (body.mode === "test") {
+    const ip = (req.headers.get("x-forwarded-for") ?? "").split(",")[0].trim() || "unknown"
+    const blocked = limit(ip)
+    return blocked ? NextResponse.json({ error: blocked }, { status: 429 }) : describeTest(body, key)
+  }
   const { text = "", images = [], links = [] } = body
   const focus = typeof body.focus === "string" ? body.focus.slice(0, 300) : ""
   const difficulty = ["easy", "normal", "hard", "extra"].includes(body.difficulty) ? body.difficulty : "normal"
@@ -168,4 +173,45 @@ export async function POST(req: NextRequest) {
   } catch {
     return NextResponse.json({ error: "bad model output" }, { status: 502 })
   }
+}
+
+// mode "test": turns a sentence ("jen šelmy, hlasem, 20 otázek, na čas") into a
+// test preset over the deck's categories. Tiny prompt, no images — very cheap.
+const TEST_SCHEMA = {
+  type: "object",
+  properties: {
+    name: { type: "string", description: "Short test name in the request's language" },
+    input: { type: "string", enum: ["buttons", "text", "voice"], description: "buttons=choose, text=type the answer, voice=say it" },
+    level: { type: "string", enum: ["easy", "normal", "hard", "extra"] },
+    count: { type: "integer", description: "Number of questions, 999 = all" },
+    timed: { type: "boolean" },
+    categories: { type: "array", items: { type: "string" }, description: "Subset of the given categories, exact strings; empty = all" },
+    kinds: { type: "array", items: { type: "string" }, description: "Subset of the given question kinds; empty = all" },
+  },
+  required: ["name", "input", "level", "count", "timed", "categories", "kinds"],
+}
+
+async function describeTest(body: any, key: string) {
+  const request = String(body.request ?? "").slice(0, 500)
+  const cats = (Array.isArray(body.categories) ? body.categories : []).slice(0, 200).map(String)
+  const kinds = (Array.isArray(body.kinds) ? body.kinds : []).slice(0, 10).map(String)
+  if (!request.trim()) return NextResponse.json({ error: "empty" }, { status: 400 })
+  const r = await fetch("https://ai-gateway.vercel.sh/v1/chat/completions", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${key}`, "content-type": "application/json" },
+    body: JSON.stringify({
+      model: MODEL, max_tokens: 1000,
+      messages: [{ role: "user", content:
+        "A child describes the practice test she wants over a study deck. Turn it into the JSON preset.\n" +
+        "Kinds: toCategory = 'where does X belong', toTerm = 'which one belongs to Y', pictureTerm = 'what is in the photo', " +
+        "pictureCategory = 'where does the pictured thing belong', extra = other questions.\n" +
+        "Pick categories by meaning (e.g. 'bez koček' = all except cat groups, 'co žije ve vodě' = aquatic groups). " +
+        "Defaults when unsaid: buttons, normal, 15, not timed, all categories, all kinds.\n" +
+        `CATEGORIES: ${JSON.stringify(cats)}\nKINDS: ${JSON.stringify(kinds)}\nREQUEST: ${request}` }],
+      response_format: { type: "json_schema", json_schema: { name: "test", schema: TEST_SCHEMA } },
+    }),
+  })
+  if (!r.ok) return NextResponse.json({ error: "gateway" }, { status: 502 })
+  try { return NextResponse.json(JSON.parse((await r.json()).choices[0].message.content)) }
+  catch { return NextResponse.json({ error: "bad model output" }, { status: 502 }) }
 }

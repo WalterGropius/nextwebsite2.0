@@ -11,12 +11,31 @@ export const LEVELS: Record<Level, { label: string; options: number }> = {
   easy: { label: "Lehká", options: 3 },
   normal: { label: "Střední", options: 4 },
   hard: { label: "Těžká", options: 6 },
-  extra: { label: "Extra těžká – psát odpověď", options: 6 },
+  extra: { label: "Extra těžká", options: 8 },
 }
-export type Run = { at: string; score: number; total: number; ms: number | null; level: Level }
+
+// How she answers. Independent of difficulty: any test can be buttons, typed or spoken.
+export type Input = "buttons" | "text" | "voice"
+export const INPUTS: Record<Input, string> = { buttons: "🔘 Tlačítka", text: "⌨️ Psaní", voice: "🎤 Hlasem" }
+
+// Question shapes the generator can produce from a deck.
+export type Kind = "toCategory" | "toTerm" | "pictureTerm" | "pictureCategory" | "extra"
+export const KINDS: Record<Kind, string> = {
+  toCategory: "Kam patří", toTerm: "Co patří mezi", pictureTerm: "Co je na obrázku", pictureCategory: "Kam patří (obrázek)", extra: "Vlastní otázky",
+}
+
+// A test is a saved preset layered on a deck: the same material can carry
+// "rychlé opakování", "jen šelmy hlasem", "extra těžký psaný na čas"…
+export type Test = {
+  id: string; name: string; input: Input; level: Level; count: number; timed: boolean
+  categories?: string[]; kinds?: Kind[]
+}
+export const QUICK_ID = "quick"
+
+export type Run = { at: string; score: number; total: number; ms: number | null; level: Level; testId?: string; input?: Input }
 export type Deck = {
   id: string; title: string; language?: string; created: string
-  items: Item[]; questions: Extra[]; prompts?: Prompts; best?: number; focus?: string; history?: Run[]
+  items: Item[]; questions: Extra[]; prompts?: Prompts; best?: number; focus?: string; history?: Run[]; tests?: Test[]
 }
 
 export const DEFAULT_PROMPTS: Record<string, Prompts> = {
