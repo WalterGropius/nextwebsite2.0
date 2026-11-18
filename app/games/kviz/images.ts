@@ -12,7 +12,7 @@ const strip = (s = "") => s.replace(/<[^>]+>/g, "").trim()
 async function api(host: string, params: Record<string, string>) {
   const u = new URL(`https://${host}/w/api.php`)
   Object.entries({ format: "json", origin: "*", ...params }).forEach(([k, v]) => u.searchParams.set(k, v))
-  return (await fetch(u)).json()
+  return (await fetch(u, { signal: AbortSignal.timeout(6000) })).json()
 }
 
 const toPic = (p: any): Pic | null => {

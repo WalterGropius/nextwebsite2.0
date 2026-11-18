@@ -115,6 +115,8 @@ export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null)
   if (!body) return NextResponse.json({ error: "bad request" }, { status: 400 })
   const { text = "", images = [], links = [] } = body
+  const focus = typeof body.focus === "string" ? body.focus.slice(0, 300) : ""
+  const difficulty = ["easy", "normal", "hard", "extra"].includes(body.difficulty) ? body.difficulty : "normal"
   if (!Array.isArray(images) || !Array.isArray(links) || typeof text !== "string" ||
       images.length > 8 || text.length > 20000 ||
       images.some((u) => typeof u !== "string" || !u.startsWith("data:image/"))) {
@@ -137,6 +139,13 @@ export async function POST(req: NextRequest) {
         "(prompts: write them in the language the learner reads, i.e. of the instructions/notes; Czech if unsure) " +
         "language of the material. Keep facts short and child friendly. Add 'questions' only for facts " +
         "that do not fit term→category, each with 3 plausible wrong answers. For every item that can be recognised from a picture (animals, plants, places, objects, artworks, people, flags…) give an 'image' search query; photos are fetched from Wikimedia Commons, never cropped from the uploaded material.\n\n" +
+        (focus ? `FOCUS (from the parent – follow it, e.g. only these topics): ${focus}\n\n` : "") +
+        `DIFFICULTY: ${difficulty}. ` + ({
+          easy: "Main facts only, simple wording.",
+          normal: "All facts from the material.",
+          hard: "All facts plus finer detail; wrong answers in 'questions' must be close and plausible.",
+          extra: "Be exhaustive and tricky: include every detail, exact full names with correct diacritics (they will be typed), confusable pairs, and questions about distinguishing features. Wrong answers must be very close.",
+        } as Record<string, string>)[difficulty] + "\n\n" +
         `TEXT:\n${text}\n\nLINKED PAGES:\n${linked}`,
     },
     ...(images as string[]).map((url) => ({ type: "image_url", image_url: { url } })),

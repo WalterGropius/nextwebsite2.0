@@ -6,9 +6,17 @@
 export type Item = { term: string; category: string; fact?: string; image?: string }
 export type Extra = { q: string; answer: string; wrong: string[] }
 export type Prompts = { toCategory: string; toTerm: string; pictureTerm: string; pictureCategory: string }
+export type Level = "easy" | "normal" | "hard" | "extra"
+export const LEVELS: Record<Level, { label: string; options: number }> = {
+  easy: { label: "Lehká", options: 3 },
+  normal: { label: "Střední", options: 4 },
+  hard: { label: "Těžká", options: 6 },
+  extra: { label: "Extra těžká – psát odpověď", options: 6 },
+}
+export type Run = { at: string; score: number; total: number; ms: number | null; level: Level }
 export type Deck = {
   id: string; title: string; language?: string; created: string
-  items: Item[]; questions: Extra[]; prompts?: Prompts; best?: number
+  items: Item[]; questions: Extra[]; prompts?: Prompts; best?: number; focus?: string; history?: Run[]
 }
 
 export const DEFAULT_PROMPTS: Record<string, Prompts> = {
