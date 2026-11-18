@@ -80,9 +80,9 @@ function toSpec(q: Q, pic: Pic | null, picked: string | null): QSpec {
 const fileToDataUrl = (f: File) => new Promise<string>((res, rej) => {
   const img = new Image(); const url = URL.createObjectURL(f)
   img.onload = () => { // downscale so uploads stay small
-    const s = Math.min(1, 1600 / Math.max(img.width, img.height)); const c = document.createElement("canvas")
+    const s = Math.min(1, 1280 / Math.max(img.width, img.height)); const c = document.createElement("canvas")
     c.width = img.width * s; c.height = img.height * s; c.getContext("2d")!.drawImage(img, 0, 0, c.width, c.height)
-    URL.revokeObjectURL(url); res(c.toDataURL("image/jpeg", 0.8))
+    URL.revokeObjectURL(url); res(c.toDataURL("image/jpeg", 0.7))
   }
   img.onerror = rej; img.src = url
 })
@@ -138,7 +138,7 @@ export default function Kviz() {
   const create = async () => {
     setBusy(true); setErr("")
     try {
-      const images = await Promise.all(files.map(fileToDataUrl))
+      const images = await Promise.all(files.slice(0, 8).map(fileToDataUrl))
       const r = await fetch("/api/quiz", {
         method: "POST", headers: { "content-type": "application/json" },
         body: JSON.stringify({ text, images, links: links.split(/\s+/).filter((l) => /^https?:\/\//.test(l)) }),
@@ -146,6 +146,7 @@ export default function Kviz() {
       if (!r || !r.ok) {
         // AI unavailable: text-only material can still be parsed locally
         if (text.trim() && !files.length) return offline()
+        if (r?.status === 429 || r?.status === 413) throw new Error((await r.json().catch(() => ({}))).error ?? "Limit")
         throw new Error(r?.status === 503 ? "AI teď není k dispozici – napiš poznámky jako text a použij „Bez AI“." : `Chyba ${r?.status ?? "sítě"}`)
       }
       const d = await r.json()

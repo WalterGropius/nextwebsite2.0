@@ -56,8 +56,41 @@ const SCHEMA = {
   required: ["title", "language", "prompts", "items", "questions"],
 }
 
+// ---- abuse protection ---------------------------------------------------
+// Limits live in instance memory. Vercel reuses warm instances, so they hold
+// for normal traffic; a determined attacker spread across cold instances can
+// exceed them, which is why the real ceiling is the AI Gateway spend budget.
+const PER_IP_MINUTE = 4
+const PER_IP_DAY = 30
+const GLOBAL_DAY = 300
+const DAY = 86_400_000
+const hits = new Map<string, number[]>()
+let global: { day: number; n: number } = { day: 0, n: 0 }
+
+function limit(ip: string): string | null {
+  const now = Date.now(); const today = Math.floor(now / DAY)
+  if (global.day !== today) global = { day: today, n: 0 }
+  if (global.n >= GLOBAL_DAY) return "Dnešní limit pro všechny je vyčerpán, zkus to zítra. Poznámky „Bez AI“ fungují dál."
+  const recent = (hits.get(ip) ?? []).filter((t) => now - t < DAY)
+  if (recent.filter((t) => now - t < 60_000).length >= PER_IP_MINUTE) return "Moc rychle – zkus to za minutu."
+  if (recent.length >= PER_IP_DAY) return "Dnešní limit vyčerpán, zkus to zítra. Poznámky „Bez AI“ fungují dál."
+  recent.push(now); hits.set(ip, recent); global.n++
+  if (hits.size > 10_000) hits.clear()
+  return null
+}
+
+// Only our own page may call this: browsers send Sec-Fetch-Site / Origin.
+function sameOrigin(req: NextRequest): boolean {
+  const site = req.headers.get("sec-fetch-site")
+  if (site) return site === "same-origin"
+  const origin = req.headers.get("origin")
+  return !!origin && new URL(origin).host === req.headers.get("host")
+}
+
 async function linkText(url: string): Promise<string> {
   try {
+    const u = new URL(url)
+    if (!/^https?:$/.test(u.protocol) || /^(localhost|127\.|10\.|192\.168\.|169\.254\.|0\.|\[)/.test(u.hostname)) return ""
     const r = await fetch(url, { signal: AbortSignal.timeout(8000) })
     const html = await r.text()
     return html.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, " ")
@@ -73,10 +106,26 @@ export async function POST(req: NextRequest) {
   const key = process.env.AI_GATEWAY_API_KEY || process.env.AI_GATEWAY ||
     req.headers.get("x-vercel-oidc-token") || process.env.VERCEL_OIDC_TOKEN
   if (!key) return NextResponse.json({ error: "no key" }, { status: 503 })
-  const { text = "", images = [], links = [] } = await req.json()
-  if (images.length > 12 || String(text).length > 20000) {
-    return NextResponse.json({ error: "too much input" }, { status: 413 })
+  if (process.env.NODE_ENV === "production" && !sameOrigin(req)) {
+    return NextResponse.json({ error: "forbidden" }, { status: 403 })
   }
+  if (Number(req.headers.get("content-length") ?? 0) > 4_000_000) {
+    return NextResponse.json({ error: "Moc velké – méně fotek." }, { status: 413 })
+  }
+  const body = await req.json().catch(() => null)
+  if (!body) return NextResponse.json({ error: "bad request" }, { status: 400 })
+  const { text = "", images = [], links = [] } = body
+  if (!Array.isArray(images) || !Array.isArray(links) || typeof text !== "string" ||
+      images.length > 8 || text.length > 20000 ||
+      images.some((u) => typeof u !== "string" || !u.startsWith("data:image/"))) {
+    return NextResponse.json({ error: "Moc velké nebo neplatné zadání." }, { status: 413 })
+  }
+  if (!text.trim() && !images.length && !links.length) {
+    return NextResponse.json({ error: "empty" }, { status: 400 })
+  }
+  const ip = (req.headers.get("x-forwarded-for") ?? "").split(",")[0].trim() || "unknown"
+  const blocked = limit(ip)
+  if (blocked) return NextResponse.json({ error: blocked }, { status: 429 })
   const linked = (await Promise.all((links as string[]).slice(0, 5).map(linkText))).join("\n\n")
   const content: unknown[] = [
     {
@@ -98,6 +147,7 @@ export async function POST(req: NextRequest) {
     body: JSON.stringify({
       model: MODEL,
       messages: [{ role: "user", content }],
+      max_tokens: 8000,
       response_format: { type: "json_schema", json_schema: { name: "deck", schema: SCHEMA } },
     }),
   })
