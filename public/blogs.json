@@ -848,5 +848,30 @@
    "cs": "Obvyklý názor zní, že VR / AR / XR je nika, která nikou zůstane, dokud nebudou headsety pohodlné jako brýle. Myslím, že ten obvyklý názor má kauzalitu obráceně.\n\nProstorové počítání nečeká, až bude hardware dost dobrý pro *spotřebitele*. Čeká, až budou **nástroje na obsah** dost dobré, aby designéři a vývojáři nemuseli každý projekt vynalézat kolo znovu. Jakmile budou nástroje komoditou, headsety se svezou s nimi.\n\n## co se změnilo v letech 2024–25\n\n- **WebXR** je teď opravdová platforma, ne jen flag.\n- **Gaussian splatting** proměnil telefon ve 3D skener.\n- **Unreal 5 + Niagara** zvládnou snímkové rozpočty headsetů, aniž bys přepisoval herní kód.\n- **Apple Vision Pro** dodal vážně dobrý model interakce pohledem a štípnutím a většina branže ho během měsíců okopírovala.\n\nKaždé z toho je vylepšení toolchainu, které se skládá. Ani jedno není funkce pro koncového uživatele.\n\n## co bude dál\n\nAž budou nástroje komoditou, nová generace designérů stráví prvních deset let přemýšlením v prostoru — stejně jako mobilní generace strávila prvních deset let přemýšlením „touch first“. Oba ty posuny byly zpětně zřejmé; oba všechny zaskočily; oba do pěti let spolkly každou sousední plochu.\n\nPráce, na kterou teď sázím, jsou nástroje, ne headsety. Když dnes vyrábíš krumpáče a lopaty pro prostorové počítání, prodáváš zlaté horečce v roce 2028.",
    "fr": "L'avis courant veut que la VR / AR / XR soit une niche qui restera une niche jusqu'à ce que les casques soient aussi confortables que des lunettes. Je pense que cet avis courant a la causalité à l'envers.\n\nL'informatique spatiale n'attend pas que le matériel devienne assez bon pour les *consommateurs*. Elle attend que les **outils de contenu** deviennent assez bons pour que designers et développeurs cessent de réinventer la roue à chaque projet. Dès que les outils sont une commodité, les casques suivent.\n\n## ce qui a changé en 2024-25\n\n- **WebXR** est désormais une vraie plateforme, plus un simple flag.\n- **Le gaussian splatting** a transformé un téléphone en scanner 3D.\n- **Unreal 5 + Niagara** tiennent les budgets d'images des casques sans réécrire ton code de gameplay.\n- **Apple Vision Pro** a livré un modèle d'interaction regard + pincement vraiment bon, et la majorité de l'industrie l'a copié en quelques mois.\n\nChacun de ces points est une amélioration de chaîne d'outils qui compose. Aucun n'est une fonctionnalité pour l'utilisateur final.\n\n## ce qui vient ensuite\n\nQuand l'outillage sera une commodité, la nouvelle génération de designers passera ses dix premières années à penser dans l'espace, comme la génération mobile a passé ses dix premières années à penser « touch first ». Les deux mouvements étaient évidents après coup ; les deux ont surpris tout le monde ; les deux ont dévoré chaque surface adjacente en cinq ans.\n\nLe travail sur lequel je parie aujourd'hui, ce sont les outils, pas les casques. Si tu fabriques les pioches et les pelles du spatial aujourd'hui, tu vends à la ruée vers l'or de 2028."
   }
+ },
+ {
+  "id": "kviz-z-cehokoli",
+  "title": {
+   "en": "a quiz from anything",
+   "cs": "kvíz z čehokoli",
+   "fr": "un quiz à partir de tout"
+  },
+  "date": "2026-11-18",
+  "excerpt": {
+   "en": "My daughter had a test on mammals and a stack of worksheets. I built a page that turns text, photos or links into a quiz that lives on her device.",
+   "cs": "Dcera měla test ze savců a hromádku pracovních listů. Postavil jsem stránku, která z textu, fotek nebo odkazů udělá kvíz, který zůstane v jejím zařízení.",
+   "fr": "Ma fille avait un contrôle sur les mammifères et une pile de fiches. J'ai fait une page qui transforme texte, photos ou liens en quiz, gardé sur son appareil."
+  },
+  "tags": {
+   "en": "learning, tools",
+   "cs": "učení, nástroje",
+   "fr": "apprentissage, outils"
+  },
+  "image": null,
+  "body": {
+   "en": "Twenty worksheets, each a group of mammals with photos: marsupials, rodents, cats, whales.\n\nInstead of writing questions by hand, the [quiz page](/games/kviz) turns material into a small JSON deck: every fact becomes *term → category* (lynx → carnivores – cats). Questions are generated from that deck procedurally in both directions, so every round is different and the same page works for vocabulary, history dates or anything else.\n\n- Paste text, upload photos of the worksheets or add links; Gemini Flash reads them and returns the deck.\n- Decks and best scores stay in the browser, in a library you can reopen, export or import as JSON.\n- After each round you can drill only the mistakes.\n\nThe mammal worksheets are seeded in, ready to play.",
+   "cs": "Dvacet pracovních listů, každý jedna skupina savců s fotkami: vačnatci, hlodavci, kočkovité šelmy, kytovci.\n\nMísto psaní otázek ručně udělá [stránka s kvízem](/games/kviz) z materiálu malý JSON balíček: každá informace je *pojem → skupina* (rys ostrovid → šelmy – kočkovité). Otázky se z něj generují procedurálně oběma směry, takže každé kolo je jiné a stejná stránka funguje na slovíčka, dějepis nebo cokoli jiného.\n\n- Vlož text, nahraj fotky listů nebo přidej odkazy; Gemini Flash je přečte a vrátí balíček.\n- Balíčky a nejlepší skóre zůstávají v prohlížeči, v knihovně, kterou jde znovu otevřít, exportovat nebo importovat jako JSON.\n- Po každém kole lze procvičit jen chyby.\n\nListy se savci jsou předvyplněné, připravené ke hraní.",
+   "fr": "Vingt fiches, chacune un groupe de mammifères avec photos.\n\nLa [page du quiz](/games/kviz) transforme le matériel en un petit paquet JSON (*terme → catégorie*) et génère les questions de façon procédurale : chaque partie est différente.\n\n- Texte, photos ou liens ; Gemini Flash les lit.\n- Paquets et scores restent dans le navigateur, exportables en JSON.\n- On peut réviser uniquement les erreurs.\n\nLes fiches sur les mammifères sont déjà incluses."
+  }
  }
 ]
