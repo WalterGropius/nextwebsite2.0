@@ -23,8 +23,9 @@ const SCHEMA = {
           term: { type: "string" },
           category: { type: "string" },
           fact: { type: "string" },
+          image: { type: "string", description: "Wikimedia Commons search query that finds a photo of exactly this term (scientific/English name for living things, landmark or object name). Empty string if a photo would not help identify it." },
         },
-        required: ["term", "category", "fact"],
+        required: ["term", "category", "fact", "image"],
       },
     },
     questions: {
@@ -71,7 +72,7 @@ export async function POST(req: NextRequest) {
         "(text, photos of worksheets, web pages) into the JSON schema. Prefer items: term → category " +
         "(e.g. animal → its group, word → translation, date → event). Use the exact spelling and the " +
         "language of the material. Keep facts short and child friendly. Add 'questions' only for facts " +
-        "that do not fit term→category, each with 3 plausible wrong answers.\n\n" +
+        "that do not fit term→category, each with 3 plausible wrong answers. For every item that can be recognised from a picture (animals, plants, places, objects, artworks, people, flags…) give an 'image' search query; photos are fetched from Wikimedia Commons, never cropped from the uploaded material.\n\n" +
         `TEXT:\n${text}\n\nLINKED PAGES:\n${linked}`,
     },
     ...(images as string[]).map((url) => ({ type: "image_url", image_url: { url } })),

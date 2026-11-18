@@ -2,23 +2,30 @@
 
 import { useEffect, useMemo, useState } from "react"
 import { SEED } from "./seed"
+import { findPic, type Pic } from "./images"
+import { QuestionView, type QSpec } from "./render"
 
 // Kvíz — paste anything (text, photos, links), get a JSON deck back from
 // /api/quiz, and play procedurally generated questions. Decks and scores
 // persist in localStorage; the library lists past decks.
 
-type Item = { term: string; category: string; fact?: string }
+type Item = { term: string; category: string; fact?: string; image?: string }
 type Extra = { q: string; answer: string; wrong: string[] }
 type Deck = { id: string; title: string; language?: string; created: string; items: Item[]; questions: Extra[]; best?: number }
-type Q = { prompt: string; answer: string; options: string[]; note?: string }
+type Q = { prompt: string; answer: string; options: string[]; note?: string; image?: string }
 
-const KEY = "kviz-library-v1"
+const KEY = "kviz-library-v2"
 const shuffle = <T,>(a: T[]) => { const b = a.slice(); for (let i = b.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [b[i], b[j]] = [b[j], b[i]] } return b }
 const uniq = (a: string[]) => Array.from(new Set(a))
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1)
 
 function load(): Deck[] {
-  try { const d = JSON.parse(localStorage.getItem(KEY) || "[]"); return Array.isArray(d) && d.length ? d : [SEED] } catch { return [SEED] }
+  try {
+    const d = JSON.parse(localStorage.getItem(KEY) || "null")
+    if (Array.isArray(d)) return d
+    const old = JSON.parse(localStorage.getItem("kviz-library-v1") || "[]") as Deck[] // keep decks from v1
+    return [SEED, ...old.filter((x) => x.id !== SEED.id)]
+  } catch { return [SEED] }
 }
 function save(d: Deck[]) { try { localStorage.setItem(KEY, JSON.stringify(d)) } catch {} }
 
@@ -39,8 +46,36 @@ function generate(deck: Deck, n: number): Q[] {
       })
     }
   }
+  // picture questions: identify the thing, and its group, from a photo
+  const terms = uniq(deck.items.map((o) => o.term))
+  for (const it of deck.items) {
+    if (!it.image) continue
+    if (terms.length >= 4) out.push({
+      prompt: "Co je na obrázku?", answer: it.term, note: it.fact, image: it.image,
+      options: shuffle([it.term, ...shuffle(terms.filter((t) => t !== it.term)).slice(0, 3)]),
+    })
+    if (cats.length >= 2) out.push({
+      prompt: "Kam patří zvíře na obrázku?", answer: it.category, note: `${cap(it.term)}`, image: it.image,
+      options: shuffle([it.category, ...shuffle(cats.filter((c) => c !== it.category)).slice(0, 3)]),
+    })
+  }
   for (const e of deck.questions || []) out.push({ prompt: e.q, answer: e.answer, options: shuffle([e.answer, ...e.wrong.slice(0, 3)]) })
   return shuffle(out).slice(0, n)
+}
+
+function toSpec(q: Q, pic: Pic | null, picked: string | null): QSpec {
+  const el: QSpec["elements"] = {}
+  const kids: string[] = []
+  if (pic) { el.pic = { type: "Picture", props: { src: pic.url, href: pic.page, credit: `Wikimedia Commons · ${pic.license}${pic.author ? " · " + pic.author : ""}` } }; kids.push("pic") }
+  el.prompt = { type: "Prompt", props: { text: q.prompt } }; kids.push("prompt")
+  const opts = q.options.map((o, k) => {
+    const state = !picked ? "idle" : o === q.answer ? "right" : o === picked ? "wrong" : "dim"
+    el[`o${k}`] = { type: "Option", props: { label: cap(o), state }, on: { press: { action: "choose", params: { value: o } } } }
+    return `o${k}`
+  })
+  el.opts = { type: "Options", props: {}, children: opts }; kids.push("opts")
+  el.root = { type: "Stack", props: {}, children: kids }
+  return { root: "root", elements: el }
 }
 
 const fileToDataUrl = (f: File) => new Promise<string>((res, rej) => {
@@ -68,6 +103,8 @@ export default function Kviz() {
   const [files, setFiles] = useState<File[]>([])
   const [busy, setBusy] = useState(false)
   const [err, setErr] = useState("")
+  const [pic, setPic] = useState<Pic | null>(null)
+  const [picLoading, setPicLoading] = useState(false)
 
   useEffect(() => setLib(load()), [])
   const update = (d: Deck[]) => { setLib(d); save(d) }
@@ -99,7 +136,7 @@ export default function Kviz() {
       })
       if (!r.ok) throw new Error(await r.text())
       const d = await r.json()
-      const deck: Deck = { id: crypto.randomUUID(), created: new Date().toISOString(), title: d.title || "Kvíz", language: d.language, items: d.items || [], questions: d.questions || [] }
+      const deck: Deck = { id: crypto.randomUUID(), created: new Date().toISOString(), title: d.title || "Kvíz", language: d.language, items: (d.items || []).map((x: Item) => ({ ...x, image: x.image || undefined })), questions: d.questions || [] }
       if (!deck.items.length && !deck.questions.length) throw new Error("Z materiálu se nepodařilo nic vytáhnout.")
       update([deck, ...lib]); setText(""); setLinks(""); setFiles([]); start(deck)
     } catch (e) { setErr(String((e as Error).message).slice(0, 300)) } finally { setBusy(false) }
@@ -114,6 +151,21 @@ export default function Kviz() {
   }
 
   const q = qs[i]
+  useEffect(() => {
+    setPic(null)
+    if (!q?.image) return
+    let live = true; setPicLoading(true)
+    findPic(q.image).then((p) => {
+      if (!live) return
+      // no free photo found: drop this question rather than show a broken one
+      if (!p) { const rest = qs.filter((_, k) => k !== i); if (rest.length > i) setQs(rest); else { setQs(rest); setView("done") } }
+      setPic(p); setPicLoading(false)
+    })
+    // prefetch next picture
+    const n = qs[i + 1]; if (n?.image) findPic(n.image)
+    return () => { live = false }
+  }, [q, qs, i])
+  const shown = q
   const total = useMemo(() => deck ? generate(deck, 9999).length : 0, [deck])
 
   const btn = "rounded-xl px-4 py-3 font-semibold transition active:scale-95"
@@ -179,13 +231,9 @@ export default function Kviz() {
               <span>{i + 1} / {qs.length}</span><span>✅ {score}</span>
             </div>
             <div className="mb-4 h-2 rounded bg-slate-100"><div className="h-2 rounded bg-emerald-400" style={{ width: `${(i / qs.length) * 100}%` }} /></div>
-            <h2 className="mb-4 text-2xl font-bold">{q.prompt}</h2>
-            <div className="grid gap-2 sm:grid-cols-2">
-              {q.options.map((o) => {
-                const state = !picked ? "bg-sky-100 hover:bg-sky-200" : o === q.answer ? "bg-emerald-400 text-white" : o === picked ? "bg-red-400 text-white" : "bg-slate-100 opacity-60"
-                return <button key={o} onClick={() => choose(o)} className={`${btn} ${state}`}>{cap(o)}</button>
-              })}
-            </div>
+            {q.image && picLoading
+              ? <div className="h-72 animate-pulse rounded-xl bg-slate-100" />
+              : shown && <QuestionView spec={toSpec(shown, q.image ? pic : null, picked)} onChoose={choose} />}
             {picked && (
               <div className="mt-4">
                 <p className="mb-3">{picked === q.answer ? "🎉 Správně!" : `Správně je: ${cap(q.answer)}`}{q.note && <span className="block text-sm text-slate-500">{q.note}</span>}</p>

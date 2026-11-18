@@ -1,4 +1,6 @@
 // Seed deck transcribed from the "Živorodí" worksheets.
+export const LATIN: Record<string, string> = {"koala medvídkovitý": "Phascolarctos cinereus", "klokan rudý": "Osphranter rufus", "vačice opossum": "Didelphis virginiana", "rejsek obecný": "Sorex araneus", "krtek obecný": "Talpa europaea", "ježek západní": "Erinaceus europaeus", "lenochod tříprstý": "Bradypus", "mravenečník velký": "Myrmecophaga tridactyla", "pásovec velký": "Dasypus novemcinctus", "myš domácí": "Mus musculus", "křeček polní": "Cricetus cricetus", "krysa obecná": "Rattus rattus", "sysel polní": "Spermophilus citellus", "veverka obecná": "Sciurus vulgaris", "bobr evropský": "Castor fiber", "zajíc polní": "Lepus europaeus", "králík divoký": "Oryctolagus cuniculus", "lemur kata": "Lemur catta", "komba ušatá": "Otolemur", "gueréza angolská": "Colobus angolensis", "kočkodan obecný": "Chlorocebus", "pavián": "Papio hamadryas", "gorila horská": "Gorilla beringei beringei", "šimpanz učenlivý": "Pan troglodytes", "orangutan sumaterský": "Pongo abelii", "rys ostrovid": "Lynx lynx", "lev pustinný": "Panthera leo", "kočka divoká": "Felis silvestris", "tygr indický": "Panthera tigris tigris", "puma americká": "Puma concolor", "gepard královský": "Acinonyx jubatus", "hyena skvrnitá": "Crocuta crocuta", "mýval severní": "Procyon lotor", "lasice kolčava": "Mustela nivalis", "tchoř tmavý": "Mustela putorius", "vydra říční": "Lutra lutra", "jezevec lesní": "Meles meles", "kuna skalní": "Martes foina", "lachtan jižní": "Otaria flavescens", "tuleň obecný": "Phoca vitulina", "mrož lední": "Odobenus rosmarus", "velryba grónská": "Balaena mysticetus", "delfín obecný": "Tursiops truncatus", "kosatka dravá": "Orcinus orca", "slon africký": "Loxodonta africana", "slon indický": "Elephas maximus", "kůň domácí": "Equus ferus caballus", "zebra stepní": "Equus quagga", "tapír čabrakový": "Tapirus indicus", "osel domácí": "Equus asinus", "nosorožec tuponosý": "Ceratotherium simum", "prase divoké": "Sus scrofa", "hroch obojživelný": "Hippopotamus amphibius", "tur domácí": "cow Bos taurus", "ovce domácí": "Ovis aries sheep", "koza domácí": "Capra hircus goat", "srnec obecný": "Capreolus capreolus", "jelen evropský": "Cervus elaphus", "los evropský": "Alces alces", "velbloud jednohrbý": "Camelus dromedarius", "lama alpaka": "Vicugna pacos alpaca"}
+
 const g: Record<string, string[]> = {
   "Vačnatci": ["koala medvídkovitý", "klokan rudý", "vačice opossum"],
   "Hmyzožravci": ["rejsek obecný", "krtek obecný", "ježek západní"],
@@ -29,6 +31,7 @@ export const SEED = {
   items: Object.entries(g).flatMap(([category, terms]) =>
     terms.map((term) => ({
       term,
+      image: LATIN[term],
       category,
       fact: category === "Vačnatci" ? "Vačnatci nosí mláďata ve vaku." : "Placentálové – mládě se vyvíjí v těle matky (placenta).",
     })),
