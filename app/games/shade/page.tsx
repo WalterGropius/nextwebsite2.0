@@ -277,7 +277,7 @@ export default function ShadePage() {
         {stage === "playing" && round && (
           <>
             <div
-              className="flex items-baseline justify-between gap-2 px-3 pt-3 text-[11px] sm:px-4 sm:pt-4 uppercase tracking-[0.3em] sm:text-xs"
+              className="flex items-baseline justify-between gap-2 whitespace-nowrap px-3 pt-3 text-[11px] uppercase tracking-[0.12em] sm:px-4 sm:pt-4 sm:text-xs sm:tracking-[0.3em]"
               style={muted}
             >
               <span>{t("game.round")} {index + 1}/{TOTAL_ROUNDS}</span>

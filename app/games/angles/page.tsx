@@ -458,7 +458,7 @@ export default function AnglesPage() {
                       {" · "}
                       {last.score >= 70 ? p(C.nextLevel) : last.score < 40 && level > 1 ? p(C.levelDown) : p(C.steady)}
                     </span>
-                    <button onClick={advance} className="btn-primary">
+                    <button onClick={advance} className="btn-primary lg:-my-3 lg:scale-[0.72]">
                       <span>{round >= TOTAL_ROUNDS ? t("game.results") : t("game.next")}</span>
                       <span aria-hidden style={{ filter: "url(#ink-wobble)" }}>→</span>
                     </button>
