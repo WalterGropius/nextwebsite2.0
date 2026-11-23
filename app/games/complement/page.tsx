@@ -138,6 +138,8 @@ export default function ComplementPage() {
   const [result, setResult] = useState<Result | null>(null)
   const [score, setScore] = useState(0)
   const [hits, setHits] = useState(0)
+  const [streak, setStreak] = useState(0)
+  const arenaRef = useRef<HTMLDivElement | null>(null)
   const [maxLevel, setMaxLevel] = useState(1)
   const [best, setBest] = useState(0)
   const [isNewBest, setIsNewBest] = useState(false)
@@ -150,6 +152,7 @@ export default function ComplementPage() {
   const start = useCallback(() => {
     setScore(0)
     setHits(0)
+    setStreak(0)
     setIndex(0)
     setSpread(SPREAD_START)
     setMaxLevel(1)
@@ -157,6 +160,7 @@ export default function ComplementPage() {
     setRound(makeRound(SPREAD_START, null))
     setResult(null)
     setStage("playing")
+    requestAnimationFrame(() => arenaRef.current?.scrollIntoView({ block: "start", behavior: "smooth" }))
   }, [])
 
   const finish = useCallback(
@@ -184,10 +188,12 @@ export default function ComplementPage() {
       setScore((s) => s + points)
       if (correct) {
         setHits((n) => n + 1)
+        setStreak((n) => n + 1)
         setMaxLevel((m) => Math.max(m, levelOf(Math.max(SPREAD_FLOOR, round.spread * SHRINK))))
         setSpread(Math.max(SPREAD_FLOOR, round.spread * SHRINK))
         playSfx("/correct.wav", 0.4)
       } else {
+        setStreak(0)
         setSpread(Math.min(SPREAD_START, round.spread * RELAX))
         playSfx(picked === null ? "/nb.wav" : "/incorrect.wav", 0.35)
       }
@@ -258,7 +264,7 @@ export default function ComplementPage() {
 
   return (
     <GameShell title={p(C.title)} blurb={p(C.blurb)}>
-      <div className="relative w-full" style={{ minHeight: 560 }}>
+      <div ref={arenaRef} className="relative w-full" style={{ minHeight: 560, scrollMarginTop: 128 }}>
         {/* The inky frame is its own layer so the wobble never touches the colours. */}
         <div
           aria-hidden
@@ -292,7 +298,7 @@ export default function ComplementPage() {
               style={{ color: "var(--text-muted)" }}
             >
               <span>{t("game.round")} {index + 1} / {TOTAL_ROUNDS}</span>
-              <span>{p(C.level)} <strong style={{ color: "var(--ink)" }}>{level}</strong></span>
+              <span>{p(C.level)} <strong style={{ color: "var(--ink)" }}>{level}</strong>{streak >= 2 && <span style={{ color: "#3a9d4e" }}> · x{streak}</span>}</span>
               <span>{t("game.score")} <strong style={{ color: "var(--ink)" }}>{score}</strong></span>
             </div>
 

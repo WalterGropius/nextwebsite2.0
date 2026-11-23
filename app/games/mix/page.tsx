@@ -167,12 +167,7 @@ export default function MixPage() {
     setIsNewBest(false)
     setStage("playing")
     // bring the whole arena under the nav so sliders and button are in reach
-    requestAnimationFrame(() => {
-      const el = arenaRef.current
-      if (!el) return
-      const top = el.getBoundingClientRect().top + window.scrollY - (window.innerWidth >= 768 ? 140 : 96)
-      window.scrollTo({ top: Math.max(0, top), behavior: "smooth" })
-    })
+    requestAnimationFrame(() => arenaRef.current?.scrollIntoView({ block: "start", behavior: "smooth" }))
   }, [])
 
   const lock = useCallback(
@@ -243,6 +238,7 @@ export default function MixPage() {
         ref={arenaRef}
         className="relative flex w-full flex-col overflow-hidden"
         style={{
+          scrollMarginTop: 128,
           minHeight: stage === "playing" ? undefined : 420,
           background: "color-mix(in srgb, var(--surface-dark) 96%, var(--ink) 4%)",
         }}

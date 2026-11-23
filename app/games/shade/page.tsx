@@ -23,7 +23,7 @@ const SHRINK = 0.75
 const RELAX = 1.2
 
 // Starting step and floor per axis (L in 0..1, hue in degrees, chroma).
-const STEP0: Record<Mode, number> = { tone: 0.14, hue: 30, sat: 0.055 }
+const STEP0: Record<Mode, number> = { tone: 0.14, hue: 30, sat: 0.035 }
 const STEP_MIN: Record<Mode, number> = { tone: 0.012, hue: 2, sat: 0.006 }
 
 interface Colour { l: number; c: number; h: number }
@@ -49,7 +49,8 @@ function makeRound(mode: Mode, step: number): Round {
     base.c = rnd(0.06, 0.12)
   }
   if (mode === "sat") {
-    base.c = rnd(0.02 + 3 * step, 0.2 - 3 * step)
+    // chroma stays inside 0.01..0.15 so no swatch is clamped to grey or out of gamut
+    base.c = rnd(0.01 + 2 * step, 0.15 - 2 * step)
     base.l = rnd(0.6, 0.72)
   }
   const apply = (k: number): Colour => {
@@ -60,7 +61,7 @@ function makeRound(mode: Mode, step: number): Round {
     return o
   }
   // Four distinct non-zero multiples, so neighbours differ by >= 1 step.
-  const ks = shuffle([-3, -2, -1, 1, 2, 3]).slice(0, 4)
+  const ks = mode === "sat" ? [-2, -1, 1, 2] : shuffle([-3, -2, -1, 1, 2, 3]).slice(0, 4)
   const options = shuffle([base, ...ks.map(apply)])
   return { target: base, options, answer: options.indexOf(base) }
 }
@@ -110,6 +111,7 @@ export default function ShadePage() {
   const [hits, setHits] = useState(0)
   const [topLevel, setTopLevel] = useState(1)
   const [last, setLast] = useState(0)
+  const [streak, setStreak] = useState(0)
   const [bests, setBests] = useState<Record<Mode, number>>({ tone: 0, hue: 0, sat: 0 })
   const [isNew, setIsNew] = useState(false)
   const startedAt = useRef(0)
@@ -128,10 +130,11 @@ export default function ShadePage() {
     setRound(makeRound(mode, STEP0[mode]))
     setPicked(null)
     setLast(0)
+    setStreak(0)
     setIsNew(false)
     startedAt.current = Date.now()
     setStage("playing")
-    arena.current?.scrollIntoView({ block: "center", behavior: "smooth" })
+    arena.current?.scrollIntoView({ block: "start", behavior: "smooth" })
   }, [mode])
 
   const answer = useCallback(
@@ -142,12 +145,14 @@ export default function ShadePage() {
       let gained = 0
       if (ok) {
         const left = Math.max(0, 1 - (Date.now() - startedAt.current) / ROUND_MS)
+        setStreak((n) => n + 1)
         gained = 10 * lvl + Math.round(5 * left)
         setHits((h) => h + 1)
         setTopLevel((v) => Math.max(v, lvl))
         setStep((s) => Math.max(STEP_MIN[mode], s * SHRINK))
         playSfx("/correct.wav", 0.4)
       } else {
+        setStreak(0)
         setStep((s) => Math.min(STEP0[mode], s * RELAX))
         playSfx(i < 0 ? "/nb.wav" : "/incorrect.wav", 0.35)
       }
@@ -217,6 +222,7 @@ export default function ShadePage() {
         ref={arena}
         className="relative flex w-full flex-col overflow-hidden"
         style={{
+          scrollMarginTop: 128,
           minHeight: "max(540px, min(78vh, 640px))",
           background: "color-mix(in srgb, var(--surface-dark) 96%, var(--ink) 4%)",
         }}
@@ -271,12 +277,13 @@ export default function ShadePage() {
         {stage === "playing" && round && (
           <>
             <div
-              className="flex items-baseline justify-between gap-2 px-3 pt-3 text-[11px] sm:px-4 sm:pt-4 uppercase tracking-[0.3em] sm:text-xs"
+              className="flex items-baseline justify-between gap-2 whitespace-nowrap px-3 pt-3 text-[11px] uppercase tracking-[0.12em] sm:px-4 sm:pt-4 sm:text-xs sm:tracking-[0.3em]"
               style={muted}
             >
               <span>{t("game.round")} {index + 1}/{TOTAL_ROUNDS}</span>
               <span>
                 {p(C.level)} <strong style={{ color: "var(--ink)" }}>{levelOf(mode, step)}</strong>
+                {streak >= 2 && <span style={{ color: "#3a9d4e" }}> · x{streak}</span>}
               </span>
               <span>
                 {t("game.score")} <strong style={{ color: "var(--ink)" }}>{score}</strong>
