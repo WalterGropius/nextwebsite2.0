@@ -743,12 +743,32 @@ export const LAB_LINKS: Array<{ href: string; title: string; sub: Localized; cta
     cta: CTA.play,
   },
   {
+    href: "/games/hueshift",
+    title: "hue shift",
+    sub: {
+      en: "Two swatches, one nudged around the colour wheel. Say which way. The nudge gets smaller.",
+      cs: "Dva vzorky, jeden pootočený na barevném kruhu. Řekni kterým směrem. Posun se zmenšuje.",
+      fr: "Deux échantillons, l'un décalé sur le cercle chromatique. Dis dans quel sens. Le décalage rétrécit.",
+    },
+    cta: CTA.play,
+  },
+  {
     href: "/games/mix",
     title: "mix",
     sub: {
       en: "Match a colour with three sliders in fifteen seconds. Light or paint.",
       cs: "Za patnáct vteřin trefíš barvu třemi posuvníky. Světlo, nebo barva.",
       fr: "Retrouve une couleur avec trois curseurs en quinze secondes. Lumière ou peinture.",
+    },
+    cta: CTA.play,
+  },
+  {
+    href: "/games/scale-vr",
+    title: "scale",
+    sub: {
+      en: "How tall is the far box, in metres? In the browser, or in a headset where you can walk up to it.",
+      cs: "Jak vysoká je ta vzdálená krabice, v metrech? V prohlížeči, nebo v headsetu, kde k ní můžeš dojít.",
+      fr: "Quelle est la hauteur de la boîte au loin, en mètres ? Dans le navigateur, ou dans un casque où tu peux t'en approcher.",
     },
     cta: CTA.play,
   },
