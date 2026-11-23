@@ -716,9 +716,39 @@ export const LAB_LINKS: Array<{ href: string; title: string; sub: Localized; cta
     href: "/games/proportion",
     title: "proportion",
     sub: {
-      en: "Guess aspect ratios. Harder than it sounds.",
-      cs: "Tipuj poměry stran. Těžší, než to zní.",
-      fr: "Devine des proportions. Plus dur qu'il n'y paraît.",
+      en: "Read a rectangle as a fraction, 1 to 10 each side. Calm or against the clock.",
+      cs: "Přečti obdélník jako zlomek, 1 až 10 na každé straně. V klidu, nebo na čas.",
+      fr: "Lis un rectangle comme une fraction, de 1 à 10 par côté. Tranquille ou au chrono.",
+    },
+    cta: CTA.play,
+  },
+  {
+    href: "/games/shade",
+    title: "shade",
+    sub: {
+      en: "One of five swatches is identical. The gap shrinks every time you get it right.",
+      cs: "Jeden z pěti vzorků je stejný. Rozdíl se s každou správnou odpovědí zmenšuje.",
+      fr: "Un échantillon sur cinq est identique. L'écart rétrécit à chaque bonne réponse.",
+    },
+    cta: CTA.play,
+  },
+  {
+    href: "/games/complement",
+    title: "complement",
+    sub: {
+      en: "Find the colour exactly opposite on the wheel. The wrong ones creep closer.",
+      cs: "Najdi barvu přesně naproti na kruhu. Ty špatné se přibližují.",
+      fr: "Trouve la couleur exactement opposée sur le cercle. Les mauvaises se rapprochent.",
+    },
+    cta: CTA.play,
+  },
+  {
+    href: "/games/mix",
+    title: "mix",
+    sub: {
+      en: "Match a colour with three sliders in fifteen seconds. Light or paint.",
+      cs: "Za patnáct vteřin trefíš barvu třemi posuvníky. Světlo, nebo barva.",
+      fr: "Retrouve une couleur avec trois curseurs en quinze secondes. Lumière ou peinture.",
     },
     cta: CTA.play,
   },
