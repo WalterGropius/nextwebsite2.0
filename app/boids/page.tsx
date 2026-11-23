@@ -1,9 +1,7 @@
 "use client"
 
-// /boids was double-mounting Canvas (Boids.tsx already ships its own
-// <Canvas>) which crashed R3F with "Canvas is not part of the THREE
-// namespace". Now we just render the scene directly and dress it with
-// the site's navigation + a short header.
+// /boids — Boids.tsx ships its own <Canvas>, so this page only dresses
+// it with the site's navigation, a short header and the ink frame.
 
 import dynamic from "next/dynamic"
 import Link from "next/link"
@@ -12,7 +10,7 @@ import { Navigation } from "@/components/navigation"
 import { PageLoader } from "@/components/page-loader"
 import { useI18n } from "@/lib/i18n/provider"
 
-// Boids pulls in three/examples + leva; dynamic import keeps it out
+// Boids pulls in three/examples + postprocessing; dynamic import keeps it out
 // of the shared bundle and avoids SSR for the WebGL bits.
 const Boids = dynamic(() => import("./Boids"), { ssr: false })
 
@@ -61,15 +59,22 @@ export default function BoidsPage() {
         <div
           className="relative mx-auto w-full"
           style={{
-            height: "min(78vh, 720px)",
-            border: "1.5px solid var(--ink)",
-            filter: "url(#ink-wobble)",
+            height: "min(78dvh, 760px)",
+            minHeight: 420,
             maxWidth: "min(1400px, 96vw)",
             zIndex: 35,
           }}
         >
           <Boids />
+          {/* The wobbly ink frame is its own layer: an SVG filter on the
+              canvas itself would re-filter every frame. */}
+          <div
+            aria-hidden
+            className="pointer-events-none absolute inset-0"
+            style={{ border: "1.5px solid var(--ink)", filter: "url(#ink-wobble)" }}
+          />
         </div>
+        <div className="h-16" />
       </main>
     </PageLoader>
   )
